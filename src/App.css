@@ -1,0 +1,19 @@
+.main {
+  margin-top: 75px;
+}
+
+.navbar-fixed-top img {
+  margin-top: -10px;
+}
+
+.choice, .funnel {
+  cursor: pointer;
+}
+
+.conversation {
+  margin-bottom: 10px;
+}
+
+.conversation > p {
+  margin-bottom: 5px;
+}
