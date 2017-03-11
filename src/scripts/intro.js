@@ -1,46 +1,54 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 
-const arrivalChoice = function (key, text, goToSection, flags, updateFlag) {
-  return {
-    "text": text,
-    "onClick": () => {
-      let actions = flags.arrivalActions.slice();
-      actions.push(key);
-      updateFlag("arrivalActions", actions);
-      return goToSection(key);
-    },
-  };
+const noRepeatedAction = function(flagName, actions, goToSection, flags, updateFlag) {
+  const choice = function(key, text) {
+    return {
+      "text": text,
+      "onClick": () => {
+        let actions = flags[flagName].slice();
+        actions.push(key);
+        updateFlag(flagName, actions);
+        return goToSection(key);
+      },
+    };
+  }
+
+  return actions
+    .filter(function(action){
+      return !flags[flagName].includes(action.key);
+    })
+    .map(function(action){
+      return choice(action.key, action.text);
+    })
+  ;
 }
 
-const arrivalActions = function (goToSection, flags, updateFlag) {
-  let choices = [];
-
-  if (!flags.arrivalActions.includes("visit")) {
-    choices.push(
-      arrivalChoice("visit", "Vous en profitez pour visiter le village.", goToSection, flags, updateFlag)
-    );
-  };
-
-  if (!flags.arrivalActions.includes("repair")) {
-    choices.push(
-      arrivalChoice("repair", "Vous procédez à l’entretien de votre pirogue.", goToSection, flags, updateFlag)
-    );
-  };
-
-  if (!flags.arrivalActions.includes("raiahui-trial")) {
-    choices.push(
-      arrivalChoice("raiahui-trial", "Vous discutez avec Raiahui de son épreuve d’initiation.", goToSection, flags, updateFlag)
-    );
-  };
-
-  if (!flags.arrivalActions.includes("raiahui-atoll")) {
-    choices.push(
-      arrivalChoice("raiahui-atoll", "Vous demandez à Raiahui de vous décrire l’atoll.", goToSection, flags, updateFlag)
-    );
-  };
-
-  return choices;
+const arrivalActions = function(goToSection, flags, updateFlag) {
+  return noRepeatedAction(
+    "arrivalActions",
+    [
+      {
+        "key": "visit",
+        "text": `Vous en profitez pour visiter le village.`,
+      },
+      {
+        "key": "repair",
+        "text": `Vous procédez à l’entretien de votre pirogue.`,
+      },
+      {
+        "key": "raiahui-trial",
+        "text": `Vous discutez avec Raiahui de son épreuve d’initiation.`,
+      },
+      {
+        "key": "raiahui-atoll",
+        "text": `Vous demandez à Raiahui de vous décrire l’atoll.`,
+      },
+    ],
+    goToSection,
+    flags,
+    updateFlag,
+  );
 }
 
 const arrivalNext = function(goToSection, flags, updateFlag) {
@@ -56,9 +64,59 @@ const arrivalNext = function(goToSection, flags, updateFlag) {
   const action = `Vous lui emboîtez le pas.`;
   const choices = [{
     "text": action,
-    "onClick": () => {
-      //TODO
-    }
+    "onClick": () => {goToSection("feast");},
+  }];
+
+  return (
+    <Crossroads text={context} choices={choices} />
+  );
+}
+
+const feastActions = function(goToSection, flags, updateFlag) {
+  return noRepeatedAction(
+    "feastActions",
+    [
+      {
+        "key": "feast-chief",
+        "text": `Le chef Ataroa.`,
+      },
+      {
+        "key": "feast-men",
+        "text": `Les hommes.`,
+      },
+      {
+        "key": "feast-women",
+        "text": `Les femmes.`,
+      },
+      {
+        "key": "feast-boys",
+        "text": `Les adolescents.`,
+      },
+      {
+        "key": "feast-girls",
+        "text": `Les adolescentes.`,
+      },
+    ],
+    goToSection,
+    flags,
+    updateFlag,
+  );
+}
+
+const feastNext = function(goToSection, flags, updateFlag) {
+  if (flags.feastActions.length <= 1) {
+    const description = `Avec qui désirez-vous discuter maintenant ?`;
+
+    return (
+      <Crossroads text={description} choices={feastActions(goToSection, flags, updateFlag)} />
+    );
+  }
+
+  const context = `La fête touche à sa fin.`;
+  const action = `Vous en observez les derniers instants en dodelinant de la tête.`;
+  const choices = [{
+    "text": action,
+    "onClick": () => {goToSection("morning");},
   }];
 
   return (
@@ -280,7 +338,152 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 `
     ,
     "next": arrivalNext,
-  }
+  },
+  "feast": {
+    "text":
+`
+<p>Le ciel commence à s’assombrir lorsque Raiahui vous amène à l’endroit préparé pour le festin. Une nourriture abondante, empalée sur une multitude de broches, est en train de rôtir autour d’un grand feu, emplissant l’air d’une odeur qui vous met instantanément l’eau à la bouche. Le bruit vif et régulier de tambours à l’unisson vient donner un rythme à la soirée qui débute.</p>
+
+<p>Toute la tribu semble rassemblée pour l’occasion : un peu moins d’une centaine de personnes, dont une moitié d’enfants et d’adolescents. Soucieuse de donner une bonne impression, vous avez revêtu le paréo aux couleurs vives que vous conserviez à bord de votre pirogue, mais il semble que ce n’était guère nécessaire : même parmi les femmes, personne n’est vêtu d’autre chose qu’un simple pagne et c’est à peine si vous remarquez çà et là quelques bijoux simples. Vous êtes accueillie par de nombreux regards curieux.</p>
+
+<p>Le festin débute sans cérémonie. En tant qu’invitée d’honneur, vous êtes invitée à vous servir la première, ce que votre estomac vous fait accepter avec plaisir. Une assiette en feuilles de palmier tressées vous est offerte et vous faites votre choix parmi les victuailles abondantes, qui incluent de la viande d’oiseau et de tortue, des oeufs, des crustacés, des coquillages et quelques fruits. Une noix de coco verte, au sommet percé, vous est offerte pour que vous puissiez vous désaltérer.</p>
+
+<p>Une fois que vous êtes allée vous asseoir, les membres de la tribu vont à leur tour se servir, avec un enthousiasme désordonné qui laisse supposer que ces festins ne sont pas choses courantes. A l’exception des très jeunes enfants, vous remarquez qu’ils portent tous des couteaux en ivoire courbes et légèrement dentelés, qu’ils utilisent dextrement. A en juger par l’aisance avec laquelle ils découpent la nourriture, le tranchant en est autrement plus aiguisé que celui de votre vieux couteau en os.</p>
+
+<p>Vous saisissez vite pourquoi il y a une telle abondance de nourriture en observant la voracité avec  laquelle mangent les gens qui vous entourent. Vous entendez fréquemment craquer sous leurs dents des morceaux de carapace ou de petits os d’oiseau qu’ils n’ont pas pris la peine de recracher.</p>
+
+<p>Raiahui vous a déserté pour aller retrouver d’autres adolescents, que vous voyez la féliciter - certains avec une envie perceptible - de son passage prochain à l’âge adulte. De toute évidence, ils présument sa victoire lors de votre course de demain !</p>
+`
+    ,
+    "next": (goToSection, flags, updateFlag) => {
+      const description = `Ce festin est une occasion rêvée pour lier connaissance avec les habitants de l’île. Sur qui votre attention se porte-t-elle ?`;
+
+      return (
+        <Crossroads text={description} choices={feastActions(goToSection, flags, updateFlag)} />
+      );
+    }
+  },
+  "feast-chief": {
+    "text":
+`
+<p>Ataroa est un homme des plus inexpressifs, mais il n’a rien de hautain et ne considère visiblement pas qu’il possède une supériorité innée sur ceux qui l’entourent. C’est un contraste plaisant avec les nombreux chefs de tribu qui prétendent descendre des dieux et imposent le respect de rituels pesants afin de le rappeler à chaque instant. Depuis le début de votre voyage, vous avez à deux reprises dû mettre un terme précipité à votre séjour sur une île parce que vous aviez sans le vouloir enfreint tel ou tel tabou aussi dénué de sens qu’absolu.</p>
+
+<p>Après quelques questions anodines, vous vous aventurez à l’interroger sur le rite de passage qu’impose sa tribu pour accéder au statut d’adulte :</p>
+
+<div class="conversation">
+<p>—  Pourquoi est-ce que la venue d’un étranger est nécessaire ? Est-ce qu’il ne serait pas plus simple d’organiser chaque année une course entre les adolescents qui sont assez âgés ?</p>
+<p>— Tous les jeunes de la tribu ont l’habitude d’être en compétition les uns avec les autres depuis leur enfance, vous répond Ataroa tout en décortiquant adroitement un crabe de la pointe de son couteau. Cela ne peut plus rien leur apprendre. En les confrontant à quelqu’un qu’ils ne connaissent pas, le rite les place dans une situation incertaine, où ils doivent anticiper et s’adapter. L’épreuve est loin d’être purement physique. Si tu veux la victoire, tu ne l’obtiendras que par l’intelligence.</p>
+<p>— Raiahui a l’air certaine qu’elle va gagner.</p>
+</div>
+
+<p>Ataroa a un bref hochement de tête.</p>
+
+<div class="conversation">
+<p>— Si elle perd, ce sera à cause de cette présomption. Ne commets pas la même erreur lorsqu’il faudra commencer la course.</p>
+</div>
+`
+    ,
+    next: feastNext
+  },
+  "feast-men": {
+    "text":
+`
+<p>La plupart des hommes sont occupés à satisfaire leur appétit, mais certains d’entre eux se révèlent curieux d’en savoir davantage sur vous. Leurs questions portent surtout sur vos capacités de nageuse et cherchent clairement à déterminer si vous vous montrerez à la hauteur lors de la compétition du lendemain. Vous restez modeste dans votre description de vous-même : ce que vous dites parviendra peut-être aux oreilles de Raiahui et il vous semble préférable qu’elle vous sous-estime.</p>
+
+<div class="conversation">
+<p>— Est-ce que ta tribu organise également des compétitions traditionnelles ? vous demande un homme du nom de Harumu.</p>
+<p>— Oui. Chaque année, beaucoup d’oiseaux viennent pondre sur une toute petite île proche de la nôtre et il y a une course dont le but est d’être le premier à en rapporter des oeufs.</p>
+<p>— Est-ce qu’il t’est arrivé de gagner ?</p>
+<p>— Oh, il n’y a que les hommes qui participent.</p>
+</div>
+
+<p>Une expression étonnée se peint sur les traits de Harumu.</p>
+
+<div class="conversation">
+<p>— C’est une coutume étrange, commente-t-il. Est-ce qu’elle a une raison particulière ?</p>
+</div>
+
+<p>Ne vous sentant pas en mesure d’apporter à cette question la réponse complexe qu’il lui faudrait, vous vous contentez d’une justification purement technique :</p>
+<div class="conversation">
+<p>— Les hommes nagent plus vite, donc ce ne serait pas une course équitable.</p>
+<p>— Oh… Oui, évidemment…</p>
+</div>
+
+<p>À en juger par la perplexité que laisse paraître son visage, cette raison n’a en réalité rien d’évidente pour lui.</p>
+`
+    ,
+    "next": feastNext,
+  },
+  "feast-women": {
+    "text":
+`
+<p>Lorsque vous engagez la conversation avec quelques-unes des femmes présentes, vous vous attendez à ce que cela vous fournisse un aperçu de la vie domestique de la tribu. Mais, comme vous ne tardez pas à vous en rendre compte, elles ont davantage envie de vous parler de sujets tels que les plus gros poissons qu’il leur est arrivé d’attraper. Certaines des descriptions qu’elles vous font vous laissent pour le moins dubitative !</p>
+
+<div class="conversation">
+<p>— Est-ce qu’il vous arrive de pêcher simplement dans le lagon ? finissez-vous par demander, car elles mentionnent fréquemment qu’elles réalisent leurs prises au large.</p>
+</div>
+
+<p>La question fait rire une femme du nom d’Ariinea, qui était il y a à peine un instant en train de vous parler d’un espadon d’une taille improbable.</p>
+
+<div class="conversation">
+<p>— Assez souvent, par paresse, vous répond-elle, mais ce n’est pas très excitant. La plupart des poissons du lagon ne sont pas très gros. On se lasse vite de ne manger que ça, à moins d’être le Vieux Fainéant.</p>
+<p>— Le Vieux Fainéant ?</p>
+<p>— Il habite sur une île de l’autre côté de l’atoll, vous dit Ariinea, et il passe tout son temps à faire le moins d’effort possible.</p>
+<p>— Il peut tout de même être dangereux, intervient une autre femme, surtout lorsqu’on ne le connaît pas. Je te conseille de ne pas approcher de cette partie de l’atoll, Mananuiva.</p>
+</div>
+
+<p>Ariinea fait la moue, mais ne conteste pas la validité de cette recommandation.</p>
+`
+    ,
+    "next": feastNext,
+  },
+  "feast-boys": {
+    "text":
+`
+<p>La tribu compte un certain nombre de garçons ayant plus ou moins votre âge. Vous vous mêlez à eux, discutant un peu avec chacun. Après quelques instants, vous êtes forcée de parvenir à la conclusion plutôt vexante qu’aucun d’eux n’éprouve le désir de flirter avec vous. Lors de vos escales précédentes sur des îles habitées, votre statut d’étrangère vous conférait un charme exotique qui piquait l’intérêt des adolescents. Cela ne vous rapprochait pas de ce que vous cherchez, mais cela ne nuisait pas à votre amour-propre.</p>
+
+<p>Un jeune garçon du nom de Varenui se montre en revanche intéressé par le récit de votre voyage. Tout lui raconter serait bien long, mais vous prenez le temps de lui décrire quelques-uns des lieux les plus mémorables qu’il vous est arrivé de visiter. Il prête une attention fascinée au moindre détail et pose de nombreuses questions.</p>
+
+<div class="conversation">
+<p>— Tu n’as jamais visité une autre île habitée ? finissez-vous par lui demander.
+<p>— Non. Même les adultes ne le font presque jamais… enfin, à part Faanarua, mais c’est à peine si elle fait encore partie de la tribu.
+<p>— Qui est-ce ?
+<p>— C’est… quelqu’un de bizarre. Elle s’est construit une pirogue avec une voile pour voyager et visiter autant d’autres îles que possible. Elle ne passe généralement ici que quelques jours par an. Elle est justement revenue avant-hier et je voulais lui demander de me raconter ses voyages, mais elle m’a envoyé promener.
+<p>— Elle assiste au festin ? demandez-vous en regardant autour de vous.</p>
+<p>— Non, elle n’est même pas au village. Elle s’est installée sur l’île de l’atoll qui se trouve le plus à l’ouest et elle ne voit presque personne.</p>
+</div>
+`
+    ,
+    "next": feastNext,
+  },
+  "feast-girls": {
+    "text":
+`
+<p>Vous abordez quelques adolescentes qui ne sont pas pour le moment en train d’entourer Raiahui. La conversation est d’abord hésitante et gênée : elles ne savent visiblement pas comment s’y prendre pour discuter avec une étrangère à la tribu. Mais, après avoir tâtonné quelque peu, vous réussissez à les décrisper en leur faisant un récit à peine exagéré des coutumes et des traditions étranges que vous avez découvertes au cours de votre voyage. Elles n’ont visiblement qu’une idée fort confuse de la manière dont vivent les autres tribus ; les bizarreries que vous leur révélez ne vont pas leur en donner une image beaucoup plus exacte, mais elles ne tardent pas à les faire rire.</p>
+
+<p>Après avoir décrit à votre audience amusée quelques-unes des fêtes traditionnelles les plus extravagantes que vous avez observées, vous faites une pause pour reprendre votre souffle. Une jeune fille appelée Runuhati va aussitôt vous chercher une moitié de langouste, présumant visiblement que manger vous donnera la force de poursuivre votre récit. Vous acceptez avec reconnaissance, mais, si votre appétit est resté aiguisé, il n’en va pas de même de votre couteau en os, qui n’est plus en état de découper grand-chose.</p>
+
+<div class="conversation">
+<p>— Est-ce que je peux t’emprunter ton couteau ? demandez-vous à Runuhati.</p>
+</div>
+
+<p>La jeune fille ouvre aussitôt de grands yeux, avec une expression presque affolée.</p>
+
+<div class="conversation">
+<p>— Je… Non… C’est…</p>
+</div>
+
+<p>Une fille un peu plus âgée vient à son aide :</p>
+
+<div class="conversation">
+<p>— C’est quelque chose d’entièrement personnel, que nous ne prêtons jamais, même entre nous. Donne-moi ta langouste, je vais te la décortiquer.</p>
+</div>
+
+<p>Après vous être restaurée et avoir ajouté quelques récits encore plus fantaisistes aux précédents, vous prenez congé des jeunes filles.</p>
+`
+    ,
+    "next": feastNext,
+  },
 };
 
 

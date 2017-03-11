@@ -23,4 +23,9 @@ class Crossroads extends React.Component {
   }
 }
 
+Crossroads.propTypes = {
+  text: React.PropTypes.string.isRequired,
+  choices: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+};
+
 export default Crossroads;

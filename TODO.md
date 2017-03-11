@@ -1,3 +1,9 @@
+## Cool game
+
+### Display informations learned during the introduction on "the map"
+
+Like where is the old lazybones, the paria etc.
+
 ## Polish
 
 ### Proper favicons and all icons for all devices

@@ -8,4 +8,9 @@ class Choice extends React.Component {
   }
 }
 
+Choice.propTypes = {
+  text: React.PropTypes.string.isRequired,
+  onClick: React.PropTypes.func.isRequired,
+};
+
 export default Choice;
