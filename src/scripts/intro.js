@@ -490,7 +490,22 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 `
     ,
     "next": function(goToSection) {
-      //TODO
+      const description = `Comment allez-vous débuter cette journée ?`;
+
+      const choices = [
+        {
+          "text": `Par une visite plus poussée de l’île où se trouve le village.`,
+          "onClick": () => {goToSection("village");},
+        },
+        {
+          "text": `En retrouvant votre pirogue pour ensuite explorer le reste de l’archipel.`,
+          "onClick": () => {goToSection("hub");},
+        },
+      ];
+
+      return (
+        <Crossroads text={description} choices={choices} />
+      );
     }
   }
 };

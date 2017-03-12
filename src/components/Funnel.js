@@ -14,8 +14,8 @@ class Funnel extends React.Component {
   }
 }
 
-Crossroads.propTypes = {
-  context: React.PropTypes.string.isRequired,
+Funnel.propTypes = {
+  context: React.PropTypes.string,
   text: React.PropTypes.string.isRequired,
   action: React.PropTypes.func.isRequired,
 };

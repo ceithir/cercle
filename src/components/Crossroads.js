@@ -3,18 +3,20 @@ import Choice from './Choice.js';
 
 class Crossroads extends React.Component {
   render() {
-  	const choices = this.props.choices.map((choice, index) =>
-  		<Choice
+    const choices = this.props.choices.map((choice, index) =>
+      <Choice
         text={choice.text}
         onClick={choice.onClick}
         key={index.toString()}
       />
-	);
+    );
     return (
       <div className="panel panel-default">
-        <div className="panel-heading">
-          {this.props.text}
-        </div>
+        {this.props.text &&
+          <div className="panel-heading">
+            {this.props.text}
+          </div>
+        }
         <div className="list-group">
           {choices}
         </div>
@@ -24,7 +26,7 @@ class Crossroads extends React.Component {
 }
 
 Crossroads.propTypes = {
-  text: React.PropTypes.string.isRequired,
+  text: React.PropTypes.string,
   choices: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
 
