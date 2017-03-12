@@ -1,5 +1,6 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
+import Funnel from "./../components/Funnel.js";
 
 const noRepeatedAction = function(flagName, actions, goToSection, flags, updateFlag) {
   const choice = function(key, text) {
@@ -14,14 +15,11 @@ const noRepeatedAction = function(flagName, actions, goToSection, flags, updateF
     };
   }
 
-  return actions
-    .filter(function(action){
+  return actions.filter(function(action){
       return !flags[flagName].includes(action.key);
-    })
-    .map(function(action){
+    }).map(function(action){
       return choice(action.key, action.text);
-    })
-  ;
+    });
 }
 
 const arrivalActions = function(goToSection, flags, updateFlag) {
@@ -61,14 +59,11 @@ const arrivalNext = function(goToSection, flags, updateFlag) {
   }
 
   const context = `Raiahui vous informe que le festin devrait commencer sous peu.`;
-  const action = `Vous lui emboîtez le pas.`;
-  const choices = [{
-    "text": action,
-    "onClick": () => {goToSection("feast");},
-  }];
+  const text = `Vous lui emboîtez le pas.`;
+  const action = () => {goToSection("feast");};
 
   return (
-    <Crossroads text={context} choices={choices} />
+    <Funnel context={context} text={text} action={action} />
   );
 }
 
@@ -113,14 +108,11 @@ const feastNext = function(goToSection, flags, updateFlag) {
   }
 
   const context = `La fête touche à sa fin.`;
-  const action = `Vous en observez les derniers instants en dodelinant de la tête.`;
-  const choices = [{
-    "text": action,
-    "onClick": () => {goToSection("morning");},
-  }];
+  const text = `Vous en observez les derniers instants en dodelinant de la tête.`;
+  const action = () => {goToSection("night");};
 
   return (
-    <Crossroads text={context} choices={choices} />
+    <Funnel context={context} text={text} action={action} />
   );
 }
 
@@ -176,17 +168,12 @@ const intro = {
     ,
     "next": function(goToSection) {
       const context = `Perplexe, vous reportez votre attention sur l’île vers laquelle vous naviguez.`;
-      const action = `Vous pouvez maintenant apercevoir le village promis.`;
-      const choices = [{
-        "text": action,
-        "onClick": () => {
-          goToSection("arrival");
-        }
-      }];
+      const text = `Vous pouvez maintenant apercevoir le village promis.`;
+      const action = () => {goToSection("arrival");};
 
       return (
-        <Crossroads text={context} choices={choices} />
-      )
+        <Funnel context={context} text={text} action={action} />
+      );
     }
   },
   "arrival": {
@@ -484,6 +471,28 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
     ,
     "next": feastNext,
   },
+  "night": {
+    "text":
+`
+<p>La nuit est tombée depuis un bon moment lorsque le festin s’achève. Le feu en train d’agoniser vous laisse distinguer au-dessus de votre tête le foisonnement immense des étoiles. Alors que les membres de la tribu se dispersent peu à peu, Raiahui vous emmène jusqu’à un hamac accroché entre deux palmiers, non loin de la plage. Vous vous y allongez avec plaisir. La fatigue de votre journée de voyage est en train de s’appesantir sur vous et vous ne tardez pas à vous endormir, bercée par le murmure de l’eau et un souffle d’air tiède.</p>
+
+<p>Le soleil matinal filtrant entre les palmes vous réveille. Tout est calme. Vous vous prélassez mollement quelques instants avant de vous décider à vous lever. Il n’y a pas d’autre bruit que le chant de quelques oiseaux, ce qui vous laisse supposer que la plupart de la tribu est encore en train de dormir.</p>
+
+<p>Raiahui est allongée dans un hamac peu distant du vôtre. Elle ouvre un oeil tandis que vous entreprenez de vous étirer.</p>
+
+<div class="conversation">
+<p>— Déjà levée ? fait-elle d’une voix pâteuse. Tu devrais te reposer pour la course de ce soir.</p>
+<p>— Je ne vais pas rester ici toute la journée à ne rien faire qu’attendre.</p>
+<p>— Comme tu veux, répond-elle en bâillant, mais ne t’approche pas des deux îles au nord de l’atoll…</p>
+</div>
+
+<p>En l’espace d’à peine quelques respirations, elle s’est déjà rendormie.</p>
+`
+    ,
+    "next": function(goToSection) {
+      //TODO
+    }
+  }
 };
 
 
