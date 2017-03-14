@@ -1,6 +1,9 @@
 import React from 'react';
 import Text from './Text.js';
-import StatusBar from './StatusBar.js';
+import { Navbar, Nav } from 'react-bootstrap';
+import Title from './Title.js';
+import LogButton from './LogButton.js';
+import TextModal from './TextModal.js';
 
 class Game extends React.Component {
   constructor(props) {
@@ -8,16 +11,42 @@ class Game extends React.Component {
     this.state = {
       "currentSection": this.props.startingSection,
       "flags": this.props.flags,
+      "logs": [],
+      "modal": {"show": false},
     };
   }
 
   goToSection = (section) => {
     this.setState((prevState, props) => {
+      var logs = prevState.logs.slice();
+      logs.push(prevState.currentSection);
+
       return {
         "currentSection": section,
+        "logs": logs,
       };
     });
     window.scrollTo(0, 0);
+  }
+
+  showModal = (title, content) => {
+    this.setState(() => {
+      return {
+        "modal": {
+          "show": true,
+          "title": title,
+          "content": content,
+        },
+      };
+    });
+  }
+
+  closeModal = () => {
+    this.setState(() => {
+      return {
+        "modal": {"show": false},
+      };
+    });
   }
 
   updateFlag = (flag, newValue) => {
@@ -40,7 +69,12 @@ class Game extends React.Component {
 
     return (
       <div>
-        <StatusBar title={this.props.title} icon={this.props.icon} />
+        <Navbar fixedTop fluid>
+          <Title icon={this.props.icon} title={this.props.title} />
+          <Nav>
+            <LogButton logs={this.state.logs} sections={this.props.sections} showModal={this.showModal} text="Journal" />
+          </Nav>
+        </Navbar>
         <div className="container-fluid main">
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
@@ -53,6 +87,7 @@ class Game extends React.Component {
             </div>
           </div>
         </div>
+        <TextModal close={this.closeModal} show={this.state.modal.show} title={this.state.modal.title} content={this.state.modal.content} />
       </div>
     );
   }
