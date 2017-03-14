@@ -6,7 +6,7 @@ class Title extends React.Component {
     return (
         <Navbar.Header>
           <Navbar.Brand>
-            <img src={this.props.icon} className="visible-xs visible-xm" title={this.props.title} alt="" />
+            <img src={this.props.icon} className="visible-xs visible-xm" alt={this.props.title} />
             <span className="hidden-xs hidden-xm">{this.props.title}</span>
           </Navbar.Brand>
           {this.props.children}
