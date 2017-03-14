@@ -69,11 +69,15 @@ class Game extends React.Component {
 
     return (
       <div>
-        <Navbar fixedTop fluid>
-          <Title icon={this.props.icon} title={this.props.title} />
-          <Nav>
-            <LogButton logs={this.state.logs} sections={this.props.sections} showModal={this.showModal} text="Journal" />
-          </Nav>
+        <Navbar fixedTop fluid collapseOnSelect>
+          <Title icon={this.props.icon} title={this.props.title}>
+            {this.state.logs.length > 0 && <Navbar.Toggle />}
+          </Title>
+          <Navbar.Collapse>
+            <Nav>
+              <LogButton logs={this.state.logs} sections={this.props.sections} showModal={this.showModal} text="Journal" />
+            </Nav>
+          </Navbar.Collapse>
         </Navbar>
         <div className="container-fluid main">
           <div className="row">

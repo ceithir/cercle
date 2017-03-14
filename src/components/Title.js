@@ -9,6 +9,7 @@ class Title extends React.Component {
             <img src={this.props.icon} className="visible-xs visible-xm" title={this.props.title} alt="" />
             <span className="hidden-xs hidden-xm">{this.props.title}</span>
           </Navbar.Brand>
+          {this.props.children}
         </Navbar.Header>
     );
   }
