@@ -7,6 +7,7 @@ class Crossroads extends React.Component {
       <Choice
         text={choice.text}
         onClick={choice.onClick}
+        condition={choice.condition}
         key={index.toString()}
       />
     );

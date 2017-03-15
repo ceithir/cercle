@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {acquireItem} from "./helpers.js"
+import {acquireItem} from "./helpers.js";
 
 const exploreOrLeave = function(goToSection, flags, updateFlag, text){
   const choices = [
