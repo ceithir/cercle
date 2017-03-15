@@ -1,11 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-
-const acquireItem = function(itemKey, flags, updateFlag) {
-  const item = Object.assign({}, flags["inventory"][itemKey], {acquired: true});
-  updateFlag("inventory", Object.assign({}, flags.inventory, {itemKey: item}));
-};
+import {acquireItem} from "./helpers.js"
 
 const exploreOrLeave = function(goToSection, flags, updateFlag, text){
   const choices = [
