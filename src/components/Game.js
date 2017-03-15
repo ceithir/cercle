@@ -3,6 +3,7 @@ import Text from './Text.js';
 import { Navbar, Nav } from 'react-bootstrap';
 import Title from './Title.js';
 import LogButton from './LogButton.js';
+import InventoryButton from './InventoryButton.js';
 import TextModal from './TextModal.js';
 
 class Game extends React.Component {
@@ -76,6 +77,7 @@ class Game extends React.Component {
           <Navbar.Collapse>
             <Nav>
               <LogButton logs={this.state.logs} sections={this.props.sections} showModal={this.showModal} text="Journal" />
+              <InventoryButton inventory={this.state.flags.inventory} showModal={this.showModal} text="Inventaire" />
             </Nav>
           </Navbar.Collapse>
         </Navbar>

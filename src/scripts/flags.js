@@ -2,7 +2,12 @@ const flags = {
   "arrivalActions": [],
   "feastActions": [],
   "time": 0,
-  "alcohol": false,
+  "inventory": {
+    "alcohol": {
+      "name": "Alcool fort",
+      "description": "Une calebasse d'alcool fort que vous ont offert Oramui et Terani.",
+    },
+  }
 };
 
 export default flags;

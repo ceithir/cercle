@@ -2,6 +2,11 @@ import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 
+const acquireItem = function(itemKey, flags, updateFlag) {
+  const item = Object.assign({}, flags["inventory"][itemKey], {acquired: true});
+  updateFlag("inventory", Object.assign({}, flags.inventory, {itemKey: item}));
+};
+
 const exploreOrLeave = function(goToSection, flags, updateFlag, text){
   const choices = [
     {
@@ -78,7 +83,7 @@ const village = {
         {
           "text": `Vous essayez l’alcool fort.`,
           "onClick": () => {
-            updateFlag("alcohol", true);
+            acquireItem("alcohol", flags, updateFlag);
             goToSection("hard-drink");
           },
         },
