@@ -120,7 +120,10 @@ const getIslandChoices = function(goToSection, flags, updateFlag) {
     return getIslandChoice(island, goToSection, flags, updateFlag);
   });
 
-  const farText = `Vous pouvez également couper court et vous rendre directement à l'une des îles plus éloignées.`;
+  let farText = `Vous pouvez également couper court et vous rendre directement à l'une des îles plus éloignées.`;
+  if (0 === nearChoices.length) {
+    farText = `Vous avez déjà visité toutes les îles mitoyennes de celle-ci, mais avec quelques efforts supplémentaires, vous pouvez atteindre :`;
+  }
   const farChoices = farIslands.map(function(island) {
     return getIslandChoice(island, goToSection, flags, updateFlag);
   });
@@ -130,8 +133,8 @@ const getIslandChoices = function(goToSection, flags, updateFlag) {
 
   return (
     <div>
-      <Crossroads text={nearText} choices={nearChoices} />
-      <Crossroads text={farText} choices={farChoices} />
+      {nearChoices.length > 0 && <Crossroads text={nearText} choices={nearChoices} />}
+      {farChoices.length > 0 && <Crossroads text={farText} choices={farChoices} />}
       <Crossroads text={otherText} choices={otherChoices} />
     </div>
   );
