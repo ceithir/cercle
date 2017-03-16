@@ -3,6 +3,140 @@ import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import {useItem} from "./helpers.js";
 
+const getIslandNumber = function(island) {
+  return island.match(/\w+\-(\d+)/)[1];
+}
+
+const computeTripTime = function(currentIsland, newIsland) {
+  return Math.abs(getIslandNumber(currentIsland) - getIslandNumber(newIsland)) % 7 < 2 ? 1 : 2;
+}
+
+const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
+  const newTime = flags.time + computeTripTime(flags.currentIsland, newIsland);
+  updateFlag("time", flags.time+2);
+
+  if (newTime > 10) {
+    return goToSection("no-more-time-on-sea");
+  }
+
+  updateFlag("currentIsland", newIsland);
+  updateFlag("visitedIslands", flags.visitedIslands.slice().concat([newIsland]));
+  goToSection(newIsland);
+}
+
+const getIslands = function() {
+  return [
+    {
+      "key": "island-2",
+      "description": `La première des deux îles anonymes`,
+    },
+    {
+      "key": "island-3",
+      "description": `La seconde île anonyme`,
+    },
+    {
+      "key": "island-4",
+      "description": `La petite île excentrée`,
+    },
+    {
+      "key": "island-5",
+      "description": `L'étrange rocher`,
+    },
+    {
+      "key": "island-6",
+      "description": `L'île aux arbres`,
+    },
+    {
+      "key": "island-7",
+      "description": `La petite île à côté de l'île de l'épreuve`,
+    },
+    {
+      "key": "island-8",
+      "description": `L'île de l'épreuve`,
+    },
+  ];
+}
+
+const getIslandChoice = function(island, goToSection, flags, updateFlag) {
+  return {
+    "text": island.description,
+    "onClick": () => {
+      moveToIsland(island.key, goToSection, flags, updateFlag);
+    },
+  };
+}
+
+const getOtherChoices = function(goToSection, flags, updateFlag) {
+  let otherChoices = [
+    {
+      "text": `Rentrer vous reposer au village`,
+      "onClick": () => {
+        goToSection("island-1");
+      },
+    },
+    {
+      "text": `Quitter le lagon`,
+      "onClick": () => {
+        updateFlag("time", flags.time+1);
+        goToSection("exit");
+      },
+    },
+  ];
+
+  const alcohol = flags.inventory.alcohol;
+  if (alcohol.acquired && !alcohol.used) {
+    otherChoices.push({
+      "text": `Goûter le contenu de la calebasse`,
+      "onClick": () => {
+        useItem("alcohol", flags, updateFlag);
+        updateFlag("drunk", true);
+        goToSection("drink");
+      },
+      "condition": alcohol.name,
+    });
+  }
+
+  return otherChoices;
+}
+
+const getIslandChoices = function(goToSection, flags, updateFlag) {
+  const currentIsland = flags.currentIsland;
+  const alreadyVisitedIslands = flags.visitedIslands;
+
+  const islands = getIslands().filter(function(island) {
+    return !alreadyVisitedIslands.includes(island.key);
+  });
+
+  const nearIslands = islands.filter(function(island) {
+    return 1 === computeTripTime(currentIsland, island.key);
+  });
+
+  const farIslands = islands.filter(function(island) {
+    return 2 === computeTripTime(currentIsland, island.key);
+  });
+
+  const nearText = `De là où vous êtes, vous êtes à proximité de :`;
+  const nearChoices = nearIslands.map(function(island) {
+    return getIslandChoice(island, goToSection, flags, updateFlag);
+  });
+
+  const farText = `Vous pouvez également couper court et vous rendre directement à l'une des îles plus éloignées.`;
+  const farChoices = farIslands.map(function(island) {
+    return getIslandChoice(island, goToSection, flags, updateFlag);
+  });
+
+  const otherText = `Vous pouvez également mettre en pause l'exploration et…`;
+  const otherChoices = getOtherChoices(goToSection, flags, updateFlag);
+
+  return (
+    <div>
+      <Crossroads text={nearText} choices={nearChoices} />
+      <Crossroads text={farText} choices={farChoices} />
+      <Crossroads text={otherText} choices={otherChoices} />
+    </div>
+  );
+};
+
 const hub = {
   "hub": {
     "text":`
@@ -27,100 +161,16 @@ const hub = {
 <p>La surface du lagon n'est agitée que de minuscules vagues, ce qui vous promet une navigation plus aisée que ce à quoi vous êtes habituée. Vous pourriez sans doute en faire le tour, peut-être pas de toutes mais de la majorité, et revenir dans à temps pour l'épreuve à laquelle vous avez été conviée.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
-      const nearText = `De là où vous êtes, vous êtes à proximité de :`;
-      const nearChoices = [
-        {
-          "text": `La première des deux îles anonymes`,
-          "onClick": () => {
-            updateFlag("time", flags.time+1);
-            goToSection("island-2");
-          },
-        },
-        {
-          "text": `L'île de l'épreuve`,
-          "onClick": () => {
-            updateFlag("time", flags.time+1);
-            goToSection("island-8");
-          },
-        },
-      ];
-
-      const farText = `Vous pouvez également couper court et vous rendre directement à l'une des îles plus éloignées.`;
-      const farChoices = [
-        {
-          "text": `La seconde île anonyme`,
-          "onClick": () => {
-            updateFlag("time", flags.time+2);
-            goToSection("island-3");
-          },
-        },
-        {
-          "text": `La petite île excentrée`,
-          "onClick": () => {
-            updateFlag("time", flags.time+2);
-            goToSection("island-4");
-          },
-        },
-        {
-          "text": `L'étrange rocher'`,
-          "onClick": () => {
-            updateFlag("time", flags.time+2);
-            goToSection("island-5");
-          },
-        },
-        {
-          "text": `L'île aux arbres'`,
-          "onClick": () => {
-            updateFlag("time", flags.time+2);
-            goToSection("island-6");
-          },
-        },
-        {
-          "text": `La petite île à côté de l'île de l'épreuve`,
-          "onClick": () => {
-            updateFlag("time", flags.time+2);
-            goToSection("island-7");
-          },
-        }
-      ];
-
-      const otherText = `Vous pouvez également mettre en pause l'exploration et…`;
-      let otherChoices = [
-        {
-          "text": `Rentrer vous reposer au village`,
-          "onClick": () => {
-            goToSection("rest");
-          },
-        },
-        {
-          "text": `Quitter le lagon`,
-          "onClick": () => {
-            updateFlag("time", flags.time+1);
-            goToSection("exit");
-          },
-        },
-      ];
-
-      const alcohol = flags.inventory.alcohol;
-      if (alcohol.acquired && !alcohol.used) {
-        otherChoices.push({
-          "text": `Goûter le contenu de la calebasse`,
-          "onClick": () => {
-            useItem("alcohol", flags, updateFlag);
-            updateFlag("drunk", true);
-            goToSection("drink");
-          },
-          "condition": alcohol.name,
-        });
-      }
-
-      return (
-        <div>
-          <Crossroads text={nearText} choices={nearChoices} />
-          <Crossroads text={farText} choices={farChoices} />
-          <Crossroads text={otherText} choices={otherChoices} />
-        </div>
-      );
+      return getIslandChoices(goToSection, flags, updateFlag);
+    }
+  },
+  //TODO Handle the time ran out on earth event
+  "back-to-hub": {
+    "text":`
+<p>Vous rejoignez votre pirogue, et prenez quelques instants pour réfléchir à la direction dans laquelle vous allez la propulser.</p>
+    `,
+    "next": function(goToSection, flags, updateFlag) {
+      return getIslandChoices(goToSection, flags, updateFlag);
     }
   },
   "drink": {
@@ -134,12 +184,33 @@ const hub = {
     "next": function(goToSection, flags) {
       //TODO If trip from current island to island would bring time to 10 or greater, interrupted by someone
       const text = `Poussée par cette pensée, vous pagayez pâteusement.`;
-      const action = () => {goToSection('rest')};
+      const action = () => {goToSection('island-1')};
 
       return (
         <Funnel text={text} action={action} />
       );
     },
+  },
+  "no-more-time-on-sea" : {
+    "text": `
+<p>Vous pagayez avec régularité vers votre nouvelle destination lorsqu'un bruit d'éclaboussures attire votre attention : la tête d'un jeune garçon de la tribu vient d'émerger de l'eau à une faible distance de votre pirogue.</p>
+
+<div class="conversation">
+<p>- Mananuiva ! vous crie-t-il. On m'a envoyé te chercher : la course va bientôt commencer.</p>
+</div>
+
+<p>Vous arrêtez votre embarcation et jetez un coup d'oeil à la position du soleil : vous n'avez guère fait attention au passage du temps, mais l'après-midi est en effet sur le point de se terminer.</p>
+
+<p>Vous aidez le garçon — qui doit avoir quatre ou cinq ans de moins que vous — à se hisser à l'avant de la pirogue avant de diriger celle-ci vers l'île où réside la tribu. Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation.</p>
+    `,
+    "next": function(goToSection) {
+      const text = `Vous suivez votre jeune guide vers l'endroit où doit débuter la course.`;
+      const action = () => {goToSection('trial')};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
   }
 }
 

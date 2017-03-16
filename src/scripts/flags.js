@@ -9,7 +9,8 @@ const flags = {
     },
   },
   "drunk": false,
-  "currentIsland": 1,
+  "currentIsland": "island-1",
+  "visitedIslands": [],
 };
 
 export default flags;
