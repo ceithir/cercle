@@ -11,6 +11,8 @@ const flags = {
   "drunk": false,
   "currentIsland": "island-1",
   "visitedIslands": [],
+  "eatenByFaanarua": false,
+  "talkedWithFaanarua": false,
 };
 
 export default flags;

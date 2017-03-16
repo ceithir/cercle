@@ -96,6 +96,8 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
     });
   }
 
+  //TODO Direct trip to island-7 if flags.talkedWithFaanarua
+
   return otherChoices;
 }
 
