@@ -1,8 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {useItem} from "./helpers.js";
-import { Button } from 'react-bootstrap';
+import {useItem, endGame} from "./helpers.js";
 
 const getIslandNumber = function(island) {
   return island.match(/\w+\-(\d+)/)[1];
@@ -264,15 +263,8 @@ const hub = {
 
 <p>Une fois cette explosion de mouvements passée, le calme revient très vite à la surface. Privée de l'impulsion que vous lui donniez à coups de pagaie, votre embarcation flotte avec désoeuvrement, insouciante. Autour d'elle, les reflets que le soleil fait palpiter sur les vagues prennent peu à peu la couleur du rubis.</p>
     `,
-    "next": function(goToSection) {
-      const text = `Nouvelle partie ?`;
-      const action = () => {goToSection(null)};
-
-      return (
-        <div className="text-center">
-          <Button onClick={action}>{text}</Button>
-        </div>
-      );
+    "next": function(goToSection, flags) {
+      return endGame(goToSection, flags);
     }
   }
 }
