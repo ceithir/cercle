@@ -97,7 +97,7 @@ const island5 = {
         choices.push({
           "text": `Vous lui offrez en échange le contenu de votre propre calebasse.`,
           "action": () => {
-            useItem("alcohol");
+            useItem("alcohol", flags, updateFlag);
             goToSection("witch-my-alcohol");
           },
           "condition": alcohol.name,
@@ -260,7 +260,7 @@ const island5 = {
         {
           "text": `Une poignée de perles d'un noir profond.`,
           "action": () => {
-            acquireItem("pearls");
+            acquireItem("pearls", flags, updateFlag);
             goToSection("witch-pearls");
           },
         },

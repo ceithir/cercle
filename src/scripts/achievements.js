@@ -29,6 +29,12 @@ const achievements = [
     "description": `La sorcière a encore attrapé quelqu'un dans son filet. Ce quelqu'un était vous.`,
     "condition": (flags) => {return flags.caughtInAWitchNet;}
   },
+  {
+    "key": "the-crocodile-meal",
+    "name": `Un conte de votre enfance`,
+    "description": `Il parlait bien. Il avait de grandes dents. Il vous a croqué.`,
+    "condition": (flags) => {return flags.eatenByCrocodile;}
+  },
 ];
 
 export default achievements;

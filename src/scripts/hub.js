@@ -17,6 +17,9 @@ const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
     newTime += 1;
     updateFlag("feeble", false);
   }
+  if (flags.damagedBoat) {
+    newTime += 1;
+  }
 
   updateFlag("time", newTime);
 
