@@ -218,7 +218,7 @@ const island3 = {
       const action = () => {goToSection("back-to-hub");};
 
       return (
-          <Funnel text={text} onClick={action} />
+          <Funnel text={text} action={action} />
       );
     },
   },
@@ -235,7 +235,7 @@ const island3 = {
       const action = () => {goToSection("back-to-hub");};
 
       return (
-          <Funnel text={text} onClick={action} />
+          <Funnel text={text} action={action} />
       );
     }
   },

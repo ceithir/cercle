@@ -96,7 +96,15 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
     });
   }
 
-  //TODO Direct trip to island-7 if flags.talkedWithFaanarua
+  if (flags.talkedWithFaanarua && !flags.inventory.dolphin.acquired) {
+    otherChoices.push({
+      "text": `Aller chercher l'amulette`,
+      "onClick": () => {
+        moveToIsland("island-7", goToSection, flags, updateFlag);
+      },
+      "condition": `Faanarua`,
+    });
+  }
 
   return otherChoices;
 }
