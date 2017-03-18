@@ -1,23 +1,34 @@
-const computeAchievements = function(flags) {
-  let achievements = [];
+const achievements = [
+  {
+    "key": "tried-to-escape",
+    "name": `Liberté surveillée`,
+    "description": `Vous pensiez être libre de quitter le lagon dès que vous en auriez envie. Vous vous trompiez.`,
+    "condition": (flags) => {return flags.triedToFlee;}
+  },
+  {
+    "key": "death-under-water",
+    "name": `Un plongeon dans l'inconnu`,
+    "description": `Vous avez plongé dans l'eau en toute innocence. Vous n'en êtes jamais ressortie.`,
+    "condition": (flags) => {return flags.eatenByFaanarua;}
+  },
+  {
+    "key": "the-witch-cup",
+    "name": `Une boisson trop forte pour vous`,
+    "description": `Vous avez bu ce que la sorcière vous offrait. Votre confiance en les lois sacrées de l'hospitalité vous honore.`,
+    "condition": (flags) => {return flags.drunkAtTheWitchCup;}
+  },
+  {
+    "key": "a-cursed-item",
+    "name": `Au contact de la sorcellerie`,
+    "description": `Vous avez essayé de vous emparer d'un objet magique. L'objet ne s'est pas laissé faire.`,
+    "condition": (flags) => {return flags.touchedACursedItem;}
+  },
+  {
+    "key": "the-witch-net",
+    "name": `Une belle prise`,
+    "description": `La sorcière a encore attrapé quelqu'un dans son filet. Ce quelqu'un était vous.`,
+    "condition": (flags) => {return flags.caughtInAWitchNet;}
+  },
+];
 
-  if (flags.triedToFlee) {
-    achievements.push({
-      "key": "tried-to-escape",
-      "name": `Liberté surveillée`,
-      "description": `Vous pensiez être libre de quitter le lagon dès que vous en auriez envie. Vous vous trompiez.`,
-    });
-  }
-
-  if (flags.eatenByFaanarua) {
-    achievements.push({
-      "key": "death-under-water",
-      "name": `Un plongeon dans l'inconnu`,
-      "description": `Vous avez plongé dans l'eau en toute innocence. Vous n'en êtes jamais ressortie.`,
-    });
-  }
-
-  return achievements;
-};
-
-export default computeAchievements;
+export default achievements;

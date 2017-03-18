@@ -12,8 +12,13 @@ const computeTripTime = function(currentIsland, newIsland) {
 }
 
 const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
-  const newTime = flags.time + computeTripTime(flags.currentIsland, newIsland);
-  updateFlag("time", flags.time+2);
+  let newTime = flags.time + computeTripTime(flags.currentIsland, newIsland);
+  if (flags.feeble) {
+    newTime += 1;
+    updateFlag("feeble", false);
+  }
+
+  updateFlag("time", newTime);
 
   if (newTime > 10) {
     return goToSection("no-more-time-on-sea");
@@ -263,9 +268,7 @@ const hub = {
 
 <p>Une fois cette explosion de mouvements passée, le calme revient très vite à la surface. Privée de l'impulsion que vous lui donniez à coups de pagaie, votre embarcation flotte avec désoeuvrement, insouciante. Autour d'elle, les reflets que le soleil fait palpiter sur les vagues prennent peu à peu la couleur du rubis.</p>
     `,
-    "next": function(goToSection, flags) {
-      return endGame(goToSection, flags);
-    }
+    "next": endGame,
   }
 }
 

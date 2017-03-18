@@ -115,9 +115,7 @@ const island3 = {
 
 <p>Une douleur effroyable vous transperce soudain la jambe et, sous le choc, vous laissez échapper tout l'air que contenaient vos poumons. Vous essayez aussitôt de remonter vers la surface, mais vous êtes retenue par une étreinte féroce. Vous vous débattez en vain contre votre agresseur, que vous ne parvenez pas à distinguer clairement.  La panique instinctive qui vous emplit diminue vos forces plutôt qu'elle ne les accroît et un voile sombre ne tarde pas à recouvrir vos yeux. La dernière chose que vous voyez avant que tout ne disparaisse est l'épaisse couleur écarlate qui souille l'eau précédemment cristalline.</p>
     `,
-    "next": function(goToSection, flags) {
-      return endGame(goToSection, flags);
-    }
+    "next": endGame,
   },
   "faanarua-your-journey": {
     "text": `

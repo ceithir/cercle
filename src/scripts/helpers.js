@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from 'react-bootstrap';
 import Achievements from "./../components/Achievements.js";
-import computeAchievements from "./achievements.js";
+import achievements from "./achievements.js";
 
 const updateItem = function(element, itemKey, flags, updateFlag) {
   const item = Object.assign({}, flags["inventory"][itemKey], element);
@@ -37,6 +37,12 @@ const replayButton = function(goToSection) {
     </div>
   );
 }
+
+const computeAchievements = function(flags) {
+  return achievements.filter((achievement) => {
+    return achievement.condition(flags);
+  });
+};
 
 export const endGame = function(goToSection, flags) {
   return (
