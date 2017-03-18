@@ -54,7 +54,7 @@ const arrivalNext = function(goToSection, flags, updateFlag) {
     const description = `Il vous reste encore un peu de temps avant le festin.`;
 
     return (
-      <Crossroads text={description} choices={arrivalActions(goToSection, flags, updateFlag)} />
+      <Crossroads context={description} choices={arrivalActions(goToSection, flags, updateFlag)} />
     );
   }
 
@@ -103,7 +103,7 @@ const feastNext = function(goToSection, flags, updateFlag) {
     const description = `Avec qui désirez-vous discuter maintenant ?`;
 
     return (
-      <Crossroads text={description} choices={feastActions(goToSection, flags, updateFlag)} />
+      <Crossroads context={description} choices={feastActions(goToSection, flags, updateFlag)} />
     );
   }
 
@@ -234,7 +234,7 @@ const intro = {
       const description = `Il va sans doute s’écouler un certain temps avant que le festin ne puisse commencer. À quoi allez-vous l’occuper ?`;
 
       return (
-        <Crossroads text={description} choices={arrivalActions(goToSection, flags, updateFlag)} />
+        <Crossroads context={description} choices={arrivalActions(goToSection, flags, updateFlag)} />
       );
     }
   },
@@ -346,7 +346,7 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
       const description = `Ce festin est une occasion rêvée pour lier connaissance avec les habitants de l’île. Sur qui votre attention se porte-t-elle ?`;
 
       return (
-        <Crossroads text={description} choices={feastActions(goToSection, flags, updateFlag)} />
+        <Crossroads context={description} choices={feastActions(goToSection, flags, updateFlag)} />
       );
     }
   },
@@ -504,7 +504,7 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
       ];
 
       return (
-        <Crossroads text={description} choices={choices} />
+        <Crossroads context={description} choices={choices} />
       );
     }
   }

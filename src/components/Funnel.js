@@ -9,7 +9,7 @@ class Funnel extends React.Component {
     }];
 
     return (
-      <Crossroads text={this.props.context} choices={choices} />
+      <Crossroads context={this.props.context} choices={choices} />
     );
   }
 }

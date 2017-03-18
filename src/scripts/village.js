@@ -19,7 +19,7 @@ const exploreOrLeave = function(goToSection, flags, updateFlag, text){
   ];
 
   return (
-    <Crossroads text={text} choices={choices} />
+    <Crossroads context={text} choices={choices} />
   );
 }
 
@@ -89,7 +89,7 @@ const village = {
 
       return (
         <div>
-          <Crossroads text={stayText} choices={stayChoices} />
+          <Crossroads context={stayText} choices={stayChoices} />
           {exploreOrLeave(goToSection, flags, updateFlag, leaveText)}
         </div>
       );

@@ -13,9 +13,9 @@ class Crossroads extends React.Component {
     );
     return (
       <div className="panel panel-default">
-        {this.props.text &&
+        {this.props.context &&
           <div className="panel-heading">
-            {this.props.text}
+            {this.props.context}
           </div>
         }
         <div className="list-group">
@@ -27,7 +27,7 @@ class Crossroads extends React.Component {
 }
 
 Crossroads.propTypes = {
-  text: React.PropTypes.string,
+  context: React.PropTypes.string,
   choices: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
 

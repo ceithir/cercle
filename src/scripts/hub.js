@@ -143,9 +143,9 @@ const getIslandChoices = function(goToSection, flags, updateFlag) {
 
   return (
     <div>
-      {nearChoices.length > 0 && <Crossroads text={nearText} choices={nearChoices} />}
-      {farChoices.length > 0 && <Crossroads text={farText} choices={farChoices} />}
-      <Crossroads text={otherText} choices={otherChoices} />
+      {nearChoices.length > 0 && <Crossroads context={nearText} choices={nearChoices} />}
+      {farChoices.length > 0 && <Crossroads context={farText} choices={farChoices} />}
+      <Crossroads context={otherText} choices={otherChoices} />
     </div>
   );
 };

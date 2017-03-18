@@ -72,7 +72,7 @@ const island3 = {
       ];
 
       return (
-          <Crossroads text={context} choices={choices} />
+          <Crossroads context={context} choices={choices} />
       );
     }
   },
@@ -155,7 +155,7 @@ const island3 = {
       ];
 
       return (
-          <Crossroads text={context} choices={choices} />
+          <Crossroads context={context} choices={choices} />
       );
     },
   },
