@@ -9,7 +9,11 @@ import TextModal from './TextModal.js';
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = this.getDefaultState();
+  }
+
+  getDefaultState = () => {
+    return {
       "currentSection": this.props.startingSection,
       "flags": this.props.flags,
       "logs": [],
@@ -18,6 +22,12 @@ class Game extends React.Component {
   }
 
   goToSection = (section) => {
+    if (null === section) {
+      this.setState(this.getDefaultState());
+      window.scrollTo(0, 0);
+      return;
+    }
+
     this.setState((prevState, props) => {
       var logs = prevState.logs.slice();
       logs.push(prevState.currentSection);

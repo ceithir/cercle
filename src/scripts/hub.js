@@ -2,6 +2,7 @@ import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import {useItem} from "./helpers.js";
+import { Button } from 'react-bootstrap';
 
 const getIslandNumber = function(island) {
   return island.match(/\w+\-(\d+)/)[1];
@@ -222,6 +223,55 @@ const hub = {
 
       return (
         <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "exit": {
+    "text": `
+<p>Vous engagez votre pirogue dans l'une des passes séparant les îles de l'atoll les unes des autres. Vous gardez un oeil attentif en-dessous de vous, guettant les récifs de corail qui pourraient affleurer juste en-dessous des vagues, mais aucun problème ne se présente et vous avez bientôt quitté le lagon pour rejoindre l'océan, où les vagues sont un peu plus haute et la brise un peu plus vive.</p>
+
+<p>La vision qu'on a de l'atoll est beaucoup plus limitée depuis l'extérieur que depuis l'intérieur et vous n'observez rien de neuf.</p>
+
+<p>À cette frontière entre ce minuscule univers qu'est l'archipel et le véritable monde dans son immensité, vous hésitez.</p>
+    `,
+    "next": function (goToSection, flags, updateFlag) {
+      const choices = [
+        {
+          "text": `Vous retournez dans le lagon.`,
+          "action": () => {
+            goToSection("back-to-hub");
+          },
+        },
+        {
+          "text": `Vous laissez tomber la course et prenez le large.`,
+          "action": () => {
+            updateFlag("triedToFlee", true);
+            goToSection("out-of-here");
+          },
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "out-of-here": {
+    "text": `
+<p>Vous vous éloignez de l'atoll à coups de pagaie réguliers, les yeux dirigés vers l'horizon. Vous ne pensez déjà plus qu'aux prochaines îles que vous visiterez. Vous vous sentez certaine que l'une d'elles vous mettra sur la piste de ce que vous recherchez.</p>
+
+<p>Alors que vous êtes plongée dans vos pensées, un bruit d'éclaboussures se fait soudain entendre juste à côté de vous et une douleur effroyable vous transperce le bras. Vous êtes brutalement tirée hors de votre pirogue et dans l'eau, qui se referme au-dessus de votre tête.</p>
+
+<p>Une fois cette explosion de mouvements passée, le calme revient très vite à la surface. Privée de l'impulsion que vous lui donniez à coups de pagaie, votre embarcation flotte avec désoeuvrement, insouciante. Autour d'elle, les reflets que le soleil fait palpiter sur les vagues prennent peu à peu la couleur du rubis.</p>
+    `,
+    "next": function(goToSection) {
+      const text = `Nouvelle partie ?`;
+      const action = () => {goToSection(null)};
+
+      return (
+        <div className="text-center">
+          <Button onClick={action}>{text}</Button>
+        </div>
       );
     }
   }

@@ -17,6 +17,7 @@ const flags = {
   "visitedIslands": [],
   "eatenByFaanarua": false,
   "talkedWithFaanarua": false,
+  "triedToFlee": false,
 };
 
 export default flags;
