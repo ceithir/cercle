@@ -6,7 +6,7 @@ const noRepeatedAction = function(flagName, actions, goToSection, flags, updateF
   const choice = function(key, text) {
     return {
       "text": text,
-      "onClick": () => {
+      "action": () => {
         let actions = flags[flagName].slice();
         actions.push(key);
         updateFlag(flagName, actions);
@@ -495,11 +495,11 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
       const choices = [
         {
           "text": `Par une visite plus poussée de l’île où se trouve le village.`,
-          "onClick": () => {goToSection("village");},
+          "action": () => {goToSection("village");},
         },
         {
           "text": `En retrouvant votre pirogue pour ensuite explorer le reste de l’archipel.`,
-          "onClick": () => {goToSection("hub");},
+          "action": () => {goToSection("hub");},
         },
       ];
 

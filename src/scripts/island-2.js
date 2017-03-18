@@ -11,14 +11,14 @@ const island2 = {
       const choices = [
         {
           "text": `Vous prenez le temps de l'explorer.`,
-          "onClick": () => {
+          "action": () => {
             updateFlag("time", flags.time+1);
             goToSection("exploring-island-2");
           },
         },
         {
           "text": `N'apercevant rien d'intéressant à première vue, vous repartez de suite.`,
-          "onClick": () => {
+          "action": () => {
             goToSection("back-to-hub");
           },
         },

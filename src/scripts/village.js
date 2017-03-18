@@ -7,11 +7,11 @@ const exploreOrLeave = function(goToSection, flags, updateFlag, text){
   const choices = [
     {
       "text": `Vous regagnez votre pirogue.`,
-      "onClick": () => {goToSection("hub");},
+      "action": () => {goToSection("hub");},
     },
     {
       "text": `Vous continuez votre exploration de l’île.`,
-      "onClick": () => {
+      "action": () => {
         updateFlag("time", flags.time+1);
         goToSection("outside-the-village");
       },
@@ -32,14 +32,14 @@ const village = {
       const choices = [
         {
           "text": `Vous les abordez.`,
-          "onClick": () => {
+          "action": () => {
             updateFlag("time", flags.time+1);
             goToSection("wine-makers");
           },
         },
         {
           "text": `Vous leur retournez leur salut, mais ne vous arrêtez pas.`,
-          "onClick": () => {
+          "action": () => {
             updateFlag("time", flags.time+1);
             goToSection("outside-the-village");
           },
@@ -74,11 +74,11 @@ const village = {
       const stayChoices = [
         {
           "text": `Vous dégustez un peu de vin de palme.`,
-          "onClick": () => {goToSection("soft-drink");},
+          "action": () => {goToSection("soft-drink");},
         },
         {
           "text": `Vous essayez l’alcool fort.`,
-          "onClick": () => {
+          "action": () => {
             acquireItem("alcohol", flags, updateFlag);
             goToSection("hard-drink");
           },

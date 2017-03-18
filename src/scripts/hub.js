@@ -60,7 +60,7 @@ const getIslands = function() {
 const getIslandChoice = function(island, goToSection, flags, updateFlag) {
   return {
     "text": island.description,
-    "onClick": () => {
+    "action": () => {
       moveToIsland(island.key, goToSection, flags, updateFlag);
     },
   };
@@ -70,13 +70,13 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
   let otherChoices = [
     {
       "text": `Rentrer vous reposer au village`,
-      "onClick": () => {
+      "action": () => {
         goToSection("island-1");
       },
     },
     {
       "text": `Quitter le lagon`,
-      "onClick": () => {
+      "action": () => {
         updateFlag("time", flags.time+1);
         goToSection("exit");
       },
@@ -87,7 +87,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
   if (alcohol.acquired && !alcohol.used) {
     otherChoices.push({
       "text": `Goûter le contenu de la calebasse`,
-      "onClick": () => {
+      "action": () => {
         useItem("alcohol", flags, updateFlag);
         updateFlag("drunk", true);
         goToSection("drink");
@@ -99,7 +99,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
   if (flags.talkedWithFaanarua && !flags.inventory.dolphin.acquired) {
     otherChoices.push({
       "text": `Aller chercher l'amulette`,
-      "onClick": () => {
+      "action": () => {
         moveToIsland("island-7", goToSection, flags, updateFlag);
       },
       "condition": `Faanarua`,

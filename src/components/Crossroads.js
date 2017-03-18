@@ -6,7 +6,7 @@ class Crossroads extends React.Component {
     const choices = this.props.choices.map((choice, index) =>
       <Choice
         text={choice.text}
-        onClick={choice.onClick}
+        action={choice.action}
         condition={choice.condition}
         key={index.toString()}
       />

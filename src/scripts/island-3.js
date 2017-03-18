@@ -11,13 +11,13 @@ const island3 = {
       const choices = [
         {
           "text": `Vous vous approchez de l'île.`,
-          "onClick": () => {
+          "action": () => {
             goToSection("exploring-island-3");
           },
         },
         {
           "text": `Vous préférez vous abstenir.`,
-          "onClick": () => {
+          "action": () => {
             goToSection("back-to-hub");
           },
         },
@@ -47,25 +47,25 @@ const island3 = {
       const choices = [
         {
           "text": `Vous ne la dérangez pas plus longtemps.`,
-          "onClick": () => {
+          "action": () => {
             goToSection("back-to-hub");
           },
         },
         {
           "text": `Vous l'interroger sur les voyages qu'elle réalise avec sa pirogue.`,
-          "onClick": () => {
+          "action": () => {
             goToSection("faanarua-her-journey");
           },
         },
         {
           "text": `Vous lui parlez de votre propre voyage.`,
-          "onClick": () => {
+          "action": () => {
             goToSection("faanarua-your-journey");
           },
         },
         {
           "text": `Vous évoquez la course qui va vous opposer à Raiahui.`,
-          "onClick": () => {
+          "action": () => {
             goToSection("faanarua-raiahui");
           },
         },
@@ -90,14 +90,14 @@ const island3 = {
       const choices = [
         {
           "text": `Vous cédez à son chantage.`,
-          "onClick": () => {
+          "action": () => {
             updateFlag("eatenByFaanarua", true);
             goToSection("faanarua-prey");
           },
         },
         {
           "text": `Vous lui renvoyez son mépris en quittant les lieux.`,
-          "onClick": () => {
+          "action": () => {
             goToSection("back-to-hub");
           },
         },
@@ -139,7 +139,7 @@ const island3 = {
       const choices = [
         {
           "text": `Ce voyage vous accordera une vision plus vaste du monde tout entier.`,
-          "onClick": () => {
+          "action": () => {
             updateFlag("time", flags.time+1);
             updateFlag("talkedWithFaanarua", true);
             goToSection("faanarua-the-world");
@@ -147,7 +147,7 @@ const island3 = {
         },
         {
           "text": `Ce voyage vous apportera une vision différente de votre île natale et de votre tribu.`,
-          "onClick": () => {
+          "action": () => {
             updateFlag("time", flags.time+1);
             goToSection("faanarua-my-world");
           },
@@ -259,13 +259,13 @@ const island3 = {
       const choices = [
         {
           "text": `Vous répondez que participer à la course pourrait vous aider à découvrir quelque chose sur vous-même.`,
-          "onClick": () => {
+          "action": () => {
             goToSection("faanarua-her-journey");
           },
         },
         {
           "text": `Vous lui parlez de l'Ecume des Profondeurs, la récompense qu'on vous a promise si vous l'emportez.`,
-          "onClick": () => {
+          "action": () => {
             updateFlag("time", flags.time+1);
             goToSection("faanarua-my-world");
           },

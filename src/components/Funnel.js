@@ -5,7 +5,7 @@ class Funnel extends React.Component {
   render() {
     const choices = [{
       "text": this.props.text,
-      "onClick": this.props.action,
+      "action": this.props.action,
     }];
 
     return (
