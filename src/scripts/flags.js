@@ -23,6 +23,10 @@ const flags = {
       "name": "Figurine en bois",
       "description": `<p>Une figurine à votre effigie qu'un crocodile parlant a « sculpté » à partir de racines. Vous ne savez rien d'autre à son sujet si ce n'est qu'il a essayé de s'en servir comme appât dans un piège à votre intention.</p>`,
     },
+    "net": {
+      "name": "Filet",
+      "description": `<p>Une filet que vous avez récupéré</p>`,
+    },
   },
   "drunk": false,
   "currentIsland": "island-1",
@@ -36,6 +40,7 @@ const flags = {
   "feeble": false,
   "damagedBoat": false,
   "eatenByCrocodile": false,
+  "swumUnderWitchIsland": false,
 };
 
 export default flags;

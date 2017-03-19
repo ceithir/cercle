@@ -6,6 +6,7 @@ class Funnel extends React.Component {
     const choices = [{
       "text": this.props.text,
       "action": this.props.action,
+      "condition": this.props.condition,
     }];
 
     return (
@@ -18,6 +19,7 @@ Funnel.propTypes = {
   context: React.PropTypes.string,
   text: React.PropTypes.string.isRequired,
   action: React.PropTypes.func.isRequired,
+  condition: React.PropTypes.string,
 };
 
 export default Funnel;
