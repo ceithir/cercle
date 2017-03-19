@@ -8,6 +8,7 @@ import island5 from "./island-5.js";
 import island6 from "./island-6.js";
 import island7 from "./island-7.js";
 import island8 from "./island-8.js";
+import trial from "./trial.js";
 
 const script = Object.assign(
   {},
@@ -21,6 +22,7 @@ const script = Object.assign(
   island6,
   island7,
   island8,
+  trial,
 );
 
 export default script;

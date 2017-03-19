@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {useItem, endGame} from "./helpers.js";
+import {useItem, acquireItem, endGame} from "./helpers.js";
 
 const getIslandNumber = function(island) {
   return island.match(/\w+\-(\d+)/)[1];
@@ -102,6 +102,19 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
         goToSection("drink");
       },
       "condition": alcohol.name,
+    });
+  }
+
+  const pearls = flags.inventory.pearls;
+  if (pearls.acquired && !pearls.used) {
+    otherChoices.push({
+      "text": `Examiner de plus près ces mystérieuses perles.`,
+      "action": () => {
+        useItem("pearls", flags, updateFlag);
+        acquireItem("smokePearls", flags, updateFlag);
+        goToSection("look-at-pearls");
+      },
+      "condition": pearls.name,
     });
   }
 
@@ -349,6 +362,27 @@ const hub = {
       );
     },
   },
+  "look-at-pearls": {
+    "text": `
+<p>Ces perles ne viennent pas d'un animal, en tout cas pas d'un animal que vous connaissez. Il vous suffit de les toucher pour vous en rendre compte. La sensation est différente, irrégulière, rugueuse, toute minérale. De plus elles s'effritent entre vos doigts en y laissant une pellicule de poussière d'un noir plus profond qu'une nuit sans lune.</p>
+
+<p>Alors que vous plongez votre main dans l'eau pour la nettoyer, vous remarquez que l'eau change de couleur, s'obscurcissant énormément autour de vos phalanges. Il vous vient alors à l'idée d'immerger entièrement une de ces perles.</p>
+
+<p>Sans grand effet tout d'abord. À peine quelques maigrichonnes fumerolles un peu plus foncées sans échappent. Vous la frottez un peu, et la fumée sous-marine gagne en épaisseur et en opacité. Vous finissez par l'écraser carrément, libérant une vaste nuage ne laissant pas passer la moindre particule de lumière.</p>
+
+<p>Le faible courant du lagon ayant le plus grand mal à disperser le résultat de votre expérience, votre pirogue se trouve maintenant au centre d'une flaque d'ombre. Elle ne semble pas dangereuse, juste impénétrable.</p>
+
+<p>Vous rangez prudemment les perles qu'il vous reste, certaines que vous trouverez bien une utilité à une si intéressante trouvaille.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Pour l'heure, vous reportez votre attention vers la navigation.`;
+      const action = () => {goToSection("back-to-hub")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  }
 }
 
 export default hub;
