@@ -24,7 +24,7 @@ const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
   updateFlag("time", newTime);
 
   if (newTime > 10) {
-    return goToSection("no-more-time-on-sea");
+    return goToSection("no-more-time-at-sea");
   }
 
   updateFlag("currentIsland", newIsland);
@@ -98,6 +98,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
       "action": () => {
         useItem("alcohol", flags, updateFlag);
         updateFlag("drunk", true);
+        updateFlag("time", flags.time+1);
         goToSection("drink");
       },
       "condition": alcohol.name,
@@ -185,12 +186,22 @@ const hub = {
       return getIslandChoices(goToSection, flags, updateFlag);
     }
   },
-  //TODO Handle the time ran out on earth event
   "back-to-hub": {
     "text":`
 <p>Vous rejoignez votre pirogue, et prenez quelques instants pour réfléchir à la direction dans laquelle vous allez la propulser.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
+      if (flags.time >= 10) {
+        const text = `Mais quelqu'un a déjà fait ce choix pour vous.`;
+        const action = () => {
+          goToSection("no-more-time-on-land");
+        }
+
+        return (
+          <Funnel text={text} action={action} />
+        );
+      }
+
       return getIslandChoices(goToSection, flags, updateFlag);
     }
   },
@@ -202,17 +213,18 @@ const hub = {
 
 <p>Nauséeuse, à la fois brûlante et glacée, vous n'avez plus la moindre envie de poursuivre votre exploration de l'atoll. Tout ce que vous désirez, c'est retourner au village vous allonger.</p>
     `,
-    "next": function(goToSection, flags) {
-      //TODO If trip from current island to island would bring time to 10 or greater, interrupted by someone
+    "next": function(goToSection, flags, updateFlag) {
       const text = `Poussée par cette pensée, vous pagayez pâteusement.`;
-      const action = () => {goToSection('island-1')};
+      const action = () => {
+        moveToIsland("island-1", goToSection, flags, updateFlag);
+      };
 
       return (
         <Funnel text={text} action={action} />
       );
     },
   },
-  "no-more-time-on-sea" : {
+  "no-more-time-at-sea" : {
     "text": `
 <p>Vous pagayez avec régularité vers votre nouvelle destination lorsqu'un bruit d'éclaboussures attire votre attention : la tête d'un jeune garçon de la tribu vient d'émerger de l'eau à une faible distance de votre pirogue.</p>
 
@@ -223,6 +235,27 @@ const hub = {
 <p>Vous arrêtez votre embarcation et jetez un coup d'oeil à la position du soleil : vous n'avez guère fait attention au passage du temps, mais l'après-midi est en effet sur le point de se terminer.</p>
 
 <p>Vous aidez le garçon — qui doit avoir quatre ou cinq ans de moins que vous — à se hisser à l'avant de la pirogue avant de diriger celle-ci vers l'île où réside la tribu. Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation.</p>
+    `,
+    "next": function(goToSection) {
+      const text = `Vous suivez votre jeune guide vers l'endroit où doit débuter la course.`;
+      const action = () => {goToSection('trial')};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "no-more-time-on-land" : {
+    "text": `
+<p>Une surprise vous attend lorsque vous regagnez votre pirogue : la tête d'un jeune garçon de la tribu émerge de l'eau à une faible distance.</p>
+
+<div class="conversation">
+<p>- Mananuiva ! vous crie-t-il. On m'a envoyé te chercher : la course va bientôt commencer.</p>
+</div>
+
+<p>Vous jetez un coup d'oeil à la position du soleil : vous n'avez guère fait attention au passage du temps, mais l'après-midi est en effet sur le point de se terminer.</p>
+
+<p>Vous prenez place à bord de la pirogue et dites au garçon - qui doit avoir quatre ou cinq ans de moins que vous - de s'installer à l'avant. Plongeant ensuite votre pagaie dans l'eau, vous prenez la direction de l'île où réside la tribu. Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation.</p>
     `,
     "next": function(goToSection) {
       const text = `Vous suivez votre jeune guide vers l'endroit où doit débuter la course.`;
@@ -272,7 +305,50 @@ const hub = {
 <p>Une fois cette explosion de mouvements passée, le calme revient très vite à la surface. Privée de l'impulsion que vous lui donniez à coups de pagaie, votre embarcation flotte avec désoeuvrement, insouciante. Autour d'elle, les reflets que le soleil fait palpiter sur les vagues prennent peu à peu la couleur du rubis.</p>
     `,
     "next": endGame,
-  }
+  },
+  "island-1": {
+    "text": `
+<p>Les abords du village sont plus animés que lorsque vous êtes partie, mais la différence reste modérée. Vous croisez plusieurs membres de la tribu, qui vous adressent des signes de tête, mais vous ne remarquez nulle part Raiahui.</p>
+
+<p>Vous regagnez rapidement votre hamac — ou un autre qui lui ressemble — et vous y installez confortablement pour vous reposer.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `Vous fermez les yeux juste un instant.`;
+      const action = () => {
+        if (!flags.drunk && flags.time <= 8) {
+          updateFlag("wellRested", true);
+        }
+        if (flags.drunk && flags.time <= 6) {
+          updateFlag("drunk", false);
+        }
+
+        goToSection("rest");
+      };
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
+  },
+  "rest": {
+    "text": `
+<p>Le soleil a fortement décliné lorsqu'un jeune garçon vient vous tirer en vous secouant de la somnolence où vous aviez glissé.</p>
+
+<div class="conversation">
+<p>- Mananuiva, il faut que tu viennes, la course va commencer !</p>
+</div>
+
+<p>Rouvrant les yeux, vous quittez le hamac avec un peu de regret et vous étirez quelques instants.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Enfin, vous emboîtez le pas à votre jeune guide.`;
+      const action = () => {goToSection("trial")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
+  },
 }
 
 export default hub;

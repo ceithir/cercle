@@ -41,6 +41,7 @@ const flags = {
   "damagedBoat": false,
   "eatenByCrocodile": false,
   "swumUnderWitchIsland": false,
+  "wellRested": false,
 };
 
 export default flags;
