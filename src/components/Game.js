@@ -70,6 +70,14 @@ class Game extends React.Component {
     });
   }
 
+  showText = (text) => {
+    if ('string' === typeof text) {
+      return text;
+    }
+
+    return text(this.state.flags);
+  }
+
   render() {
     if (undefined === this.props.sections[this.state.currentSection]) {
       console.error(`Section ${this.state.currentSection} is not defined`);
@@ -94,7 +102,7 @@ class Game extends React.Component {
         <div className="container-fluid main">
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
-              <Text content={section.text} />
+              <Text content={this.showText(section.text)} />
             </div>
           </div>
           <div className="row">

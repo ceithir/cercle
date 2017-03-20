@@ -50,6 +50,11 @@ const flags = {
   "eatenByRaiahui": false,
   "stabbedToDeath": false,
   "survivedTheTrial": false,
+  "toldAboutFaanaruaByRaiahui": false,
+  "toldAboutAtollByRaiahui": false,
+  "toldAboutLazyOneByAriinea": false,
+  "toldAboutFaanaruaByVarenui": false,
+  "watchedKnifeImportance": false,
 };
 
 export default flags;

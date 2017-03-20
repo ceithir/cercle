@@ -32,35 +32,35 @@ const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
   goToSection(newIsland);
 }
 
-const getIslands = function() {
+const getIslands = function(flags) {
   return [
     {
       "key": "island-2",
-      "description": `La première des deux îles anonymes`,
+      "description": `Une île sans réel signe distinctif.`,
     },
     {
       "key": "island-3",
-      "description": `La seconde île anonyme`,
+      "description": flags.toldAboutFaanaruaByVarenui ? `L'île de Faanarua.` : `Une autre île tout ce qu'il y a de plus banal.`,
     },
     {
       "key": "island-4",
-      "description": `La petite île excentrée`,
+      "description": `La petite île excentrée.`,
     },
     {
       "key": "island-5",
-      "description": `L'étrange rocher`,
+      "description": flags.toldAboutAtollByRaiahui ? `L'île de la sorcière.` : `L'étrange rocher.`,
     },
     {
       "key": "island-6",
-      "description": `L'île aux arbres`,
+      "description": flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea ? `L'île du Vieux Fainéant.` : `L'île aux arbres.`,
     },
     {
       "key": "island-7",
-      "description": `La petite île à côté de l'île de l'épreuve`,
+      "description": `La petite île à côté de l'île de l'épreuve.`,
     },
     {
       "key": "island-8",
-      "description": `L'île de l'épreuve`,
+      "description": `L'île de l'épreuve.`,
     },
   ];
 }
@@ -77,13 +77,13 @@ const getIslandChoice = function(island, goToSection, flags, updateFlag) {
 const getOtherChoices = function(goToSection, flags, updateFlag) {
   let otherChoices = [
     {
-      "text": `Rentrer vous reposer au village`,
+      "text": `Rentrer vous reposer au village.`,
       "action": () => {
         goToSection("island-1");
       },
     },
     {
-      "text": `Quitter le lagon`,
+      "text": `Quitter le lagon.`,
       "action": () => {
         updateFlag("time", flags.time+1);
         goToSection("exit");
@@ -94,7 +94,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
   const alcohol = flags.inventory.alcohol;
   if (alcohol.acquired && !alcohol.used) {
     otherChoices.push({
-      "text": `Goûter le contenu de la calebasse`,
+      "text": `Goûter le contenu de la calebasse.`,
       "action": () => {
         useItem("alcohol", flags, updateFlag);
         updateFlag("drunk", true);
@@ -135,7 +135,7 @@ const getIslandChoices = function(goToSection, flags, updateFlag) {
   const currentIsland = flags.currentIsland;
   const alreadyVisitedIslands = flags.visitedIslands;
 
-  const islands = getIslands().filter(function(island) {
+  const islands = getIslands(flags).filter(function(island) {
     return !alreadyVisitedIslands.includes(island.key);
   });
 
@@ -174,7 +174,36 @@ const getIslandChoices = function(goToSection, flags, updateFlag) {
 
 const hub = {
   "hub": {
-    "text":`
+    "text": (flags) => {
+      let faanaruaIsland = ``;
+      if (flags.toldAboutFaanaruaByVarenui) {
+        faanaruaIsland += `<p class="text-info">Ce serait là que ce serait installé Faanarua, la seule membre de cette communauté à avoir exploré plus que superficiellement le monde extérieur.`;
+        if (flags.toldAboutFaanaruaByRaiahui) {
+          faanaruaIsland += ` Faanarua vous a également parlé d'elle, la décrivant comme une grande chasseuse et conteuse.`
+        }
+        faanaruaIsland += `</p>`;
+      }
+
+      let witchIslandDescription = `<p>L'île suivante est curieusement différente des autres : loin d'être une étendue lisse et basse, elle émerge des flots comme un large rocher.`;
+      if (flags.toldAboutAtollByRaiahui) {
+        witchIslandDescription += ` <span class="text-info">Raiahui vous l'a décrite comme étant habitée par une sorcière.</span>`;
+      }
+      witchIslandDescription += '</p>';
+
+      let crocodileIslandDescription = `<p>En continuant votre tour, vous découvrez une île couverte d'un enchevêtrement de grands arbres.`;
+      if (flags.toldAboutAtollByRaiahui) {
+        crocodileIslandDescription += ` <span class="text-info">Raiahui vous a déconseillé de vous y rendre, car ce serait la résidence du peu accueillant « Vieux Fainéant ».</span>`;
+        if (flags.toldAboutLazyOneByAriinea) {
+            crocodileIslandDescription += ` <span class="text-info">Ariinea et son amie vous ont dit peu ou prou la même chose, insistant sur la dangerosité de cette mystérieuse personne.</span>`;
+        }
+      } else {
+        if (flags.toldAboutLazyOneByAriinea) {
+          crocodileIslandDescription += ` <span class="text-info">C'est probablement là que réside le « Vieux Fainéant » dont Ariinea vous a parlé. Et dont son amie vous a fortement déconseillé d'approcher, le considérant réellement dangereux.</span>`;
+        }
+      }
+      crocodileIslandDescription += '</p>';
+
+      return `
 <p>Debout aux côtés de votre pirogue, vous analysez la situation.</p>
 
 <p>L'atoll compte en tout huit îles de tailles variées.</p>
@@ -183,18 +212,21 @@ const hub = {
 
 <p>En tournant sur vous-même dans le sens des aiguilles d'une montre ((un objet que vous n'avez jamais eu sous les yeux, mais dont vous avez vaguement entendu parler) se dévoilent deux îles en apparence, assez similaires : de taille moyenne et couvertes de nombreux palmiers.</p>
 
+${faanaruaIsland}
+
 <p>Puis vient au nord-ouest une île nettement plus petite et à la végétation moins élevée.</p>
 
-<p>L'île suivante est curieusement différente des autres : loin d'être une étendue lisse et basse, elle émerge des flots comme un large rocher.</p>
+${witchIslandDescription}
 
-<p>En continuant votre tour, vous découvrez une île couverte d'un enchevêtrement de grands arbres.</p>
+${crocodileIslandDescription}
 
 <p>Ensuite, quelque part entre l'est et le nord-est, existe une île qui n'est en réalité qu'une minuscule étendue de sable clair.</p>
 
 <p>À ses côtés, une île similaire et à peine plus grande, qui est le point d'arrivée de la course qui vous opposera à Raiahui.</p>
 
 <p>La surface du lagon n'est agitée que de minuscules vagues, ce qui vous promet une navigation plus aisée que ce à quoi vous êtes habituée. Vous pourriez sans doute en faire le tour, peut-être pas de toutes mais de la majorité, et revenir dans à temps pour l'épreuve à laquelle vous avez été conviée.</p>
-    `,
+      `;
+    },
     "next": function(goToSection, flags, updateFlag) {
       return getIslandChoices(goToSection, flags, updateFlag);
     }

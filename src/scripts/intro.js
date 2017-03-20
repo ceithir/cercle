@@ -3,13 +3,17 @@ import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 
 const noRepeatedAction = function(flagName, actions, goToSection, flags, updateFlag) {
-  const choice = function(key, text) {
+  const choice = function(key, text, extraFlag) {
     return {
       "text": text,
       "action": () => {
         let actions = flags[flagName].slice();
         actions.push(key);
         updateFlag(flagName, actions);
+        if (extraFlag) {
+          updateFlag(extraFlag, true);
+        }
+
         return goToSection(key);
       },
     };
@@ -18,7 +22,7 @@ const noRepeatedAction = function(flagName, actions, goToSection, flags, updateF
   return actions.filter(function(action){
       return !flags[flagName].includes(action.key);
     }).map(function(action){
-      return choice(action.key, action.text);
+      return choice(action.key, action.text, action.flag);
     });
 }
 
@@ -29,6 +33,7 @@ const arrivalActions = function(goToSection, flags, updateFlag) {
       {
         "key": "visit",
         "text": `Vous en profitez pour visiter le village.`,
+        "flag": "toldAboutFaanaruaByRaiahui",
       },
       {
         "key": "repair",
@@ -41,6 +46,7 @@ const arrivalActions = function(goToSection, flags, updateFlag) {
       {
         "key": "raiahui-atoll",
         "text": `Vous demandez à Raiahui de vous décrire l’atoll.`,
+        "flag": "toldAboutAtollByRaiahui",
       },
     ],
     goToSection,
@@ -82,14 +88,17 @@ const feastActions = function(goToSection, flags, updateFlag) {
       {
         "key": "feast-women",
         "text": `Les femmes.`,
+        "flag": "toldAboutLazyOneByAriinea",
       },
       {
         "key": "feast-boys",
         "text": `Les adolescents.`,
+        "flag": "toldAboutFaanaruaByVarenui",
       },
       {
         "key": "feast-girls",
         "text": `Les adolescentes.`,
+        "flag": "watchedKnifeImportance",
       },
     ],
     goToSection,
