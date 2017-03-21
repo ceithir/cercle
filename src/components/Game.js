@@ -72,8 +72,8 @@ class Game extends React.Component {
     });
   }
 
-  processText = (section, flags) => {
-    const text = this.props.sections[section]["text"];
+  processText = (sectionKey, flags) => {
+    const text = this.getSection(sectionKey)["text"];
 
     if ('string' === typeof text) {
       return text;
@@ -82,14 +82,19 @@ class Game extends React.Component {
     return text(flags);
   }
 
-  render() {
-    if (undefined === this.props.sections[this.state.currentSection]) {
-      console.error(`Section ${this.state.currentSection} is not defined`);
-      return null;
+  getSection = (sectionKey) => {
+    if (!this.props.sections[sectionKey]) {
+      console.error(`Section ${sectionKey} is not defined`);
+      return {
+        "text": "",
+        "next": () => {},
+      };
     }
 
-    const section = this.props.sections[this.state.currentSection];
+    return this.props.sections[sectionKey];
+  }
 
+  render() {
     return (
       <div>
         <Navbar fixedTop fluid collapseOnSelect>
@@ -111,7 +116,7 @@ class Game extends React.Component {
           </div>
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
-              {section.next(this.goToSection, this.state.flags, this.updateFlag)}
+              {this.getSection(this.state.currentSection).next(this.goToSection, this.state.flags, this.updateFlag)}
             </div>
           </div>
         </div>
