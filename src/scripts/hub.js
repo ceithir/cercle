@@ -179,7 +179,7 @@ const hub = {
       if (flags.toldAboutFaanaruaByVarenui) {
         faanaruaIsland += `<p class="text-info">Ce serait là que ce serait installé Faanarua, la seule membre de cette communauté à avoir exploré plus que superficiellement le monde extérieur.`;
         if (flags.toldAboutFaanaruaByRaiahui) {
-          faanaruaIsland += ` Faanarua vous a également parlé d'elle, la décrivant comme une grande chasseuse et conteuse.`
+          faanaruaIsland += ` Raiahui vous a également parlé d'elle, la décrivant comme une grande chasseuse et conteuse.`
         }
         faanaruaIsland += `</p>`;
       }

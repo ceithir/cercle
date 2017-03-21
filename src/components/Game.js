@@ -18,6 +18,7 @@ class Game extends React.Component {
       "flags": this.props.flags,
       "logs": [],
       "modal": {"show": false},
+      "currentSectionText": this.processText(this.props.startingSection, this.props.flags),
     };
   }
 
@@ -29,12 +30,13 @@ class Game extends React.Component {
     }
 
     this.setState((prevState, props) => {
-      var logs = prevState.logs.slice();
-      logs.push(prevState.currentSection);
+      const text = this.processText(section, prevState.flags);
+      const logs = prevState.logs.concat([prevState.currentSectionText]);
 
       return {
         "currentSection": section,
         "logs": logs,
+        "currentSectionText": text,
       };
     });
     window.scrollTo(0, 0);
@@ -70,12 +72,14 @@ class Game extends React.Component {
     });
   }
 
-  showText = (text) => {
+  processText = (section, flags) => {
+    const text = this.props.sections[section]["text"];
+
     if ('string' === typeof text) {
       return text;
     }
 
-    return text(this.state.flags);
+    return text(flags);
   }
 
   render() {
@@ -94,7 +98,7 @@ class Game extends React.Component {
           </Title>
           <Navbar.Collapse>
             <Nav>
-              <LogButton logs={this.state.logs} sections={this.props.sections} showModal={this.showModal} text="Journal" />
+              <LogButton logs={this.state.logs} showModal={this.showModal} text="Journal" />
               <InventoryButton inventory={this.state.flags.inventory} showModal={this.showModal} text="Inventaire" />
             </Nav>
           </Navbar.Collapse>
@@ -102,7 +106,7 @@ class Game extends React.Component {
         <div className="container-fluid main">
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
-              <Text content={this.showText(section.text)} />
+              <Text content={this.state.currentSectionText} />
             </div>
           </div>
           <div className="row">
