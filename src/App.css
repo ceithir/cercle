@@ -17,3 +17,7 @@
 .conversation > p {
   margin-bottom: 5px;
 }
+
+.title-screen, .main {
+  padding-bottom: 10px;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Row, Col } from "react-bootstrap";
 import Achievements from "./../components/Achievements.js";
 import achievements from "./achievements.js";
 
@@ -28,13 +28,19 @@ const endMessage = function () {
 }
 
 const replayButton = function(goToSection) {
-  const text = `Rejouer ?`;
+  const text = `Nouvelle partie`;
   const action = () => {goToSection(null)};
 
   return (
-    <div className="text-center">
-      <Button onClick={action}>{text}</Button>
-    </div>
+    <Button bsSize="large" block onClick={action}>{text}</Button>
+  );
+}
+
+const titleScreenButton = function(quit) {
+  const text = `Retourner à l’écran titre`;
+
+  return (
+    <Button bsSize="large" block onClick={quit}>{text}</Button>
   );
 }
 
@@ -44,13 +50,18 @@ const computeAchievements = function(flags) {
   });
 };
 
-export const endGame = function(goToSection, flags) {
+export const endGame = function(goToSection, flags, updateFlag, quit) {
   return (
     <div>
       <hr/>
       {endMessage()}
       <Achievements achievements={computeAchievements(flags)} />
-      {replayButton(goToSection)}
+      <Row>
+        <Col mdOffset={3} md={6}>
+          {replayButton(goToSection)}
+          {titleScreenButton(quit)}
+        </Col>
+      </Row>
     </div>
   );
 }

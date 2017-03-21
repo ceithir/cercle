@@ -4,7 +4,7 @@ import { PageHeader, Grid, Row, Image, Col, Button } from 'react-bootstrap';
 class TitleScreen extends React.Component {
   render() {
     return (
-      <Grid>
+      <Grid className="title-screen">
         <Row>
           <Col md={12}>
             <PageHeader className="text-center">{this.props.title}</PageHeader>

@@ -116,7 +116,7 @@ class Game extends React.Component {
           </div>
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
-              {this.getSection(this.state.currentSection).next(this.goToSection, this.state.flags, this.updateFlag)}
+              {this.getSection(this.state.currentSection).next(this.goToSection, this.state.flags, this.updateFlag, this.props.quit)}
             </div>
           </div>
         </div>
@@ -132,6 +132,7 @@ Game.propTypes = {
   startingSection: React.PropTypes.string.isRequired,
   flags: React.PropTypes.object.isRequired,
   sections: React.PropTypes.object.isRequired,
+  quit: React.PropTypes.func.isRequired,
 };
 
 export default Game;

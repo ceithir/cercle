@@ -21,6 +21,12 @@ class App extends Component {
     });
   }
 
+  titleScreen = () => {
+    this.setState({
+      "screen": "title",
+    });
+  }
+
   render() {
     const title = "Au Cœur d’un Cercle de Sable et d’Eau";
 
@@ -46,6 +52,7 @@ class App extends Component {
         startingSection={startingSection}
         flags={flags}
         icon={icon}
+        quit={this.titleScreen}
       />
     );
   }
