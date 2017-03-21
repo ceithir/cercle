@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 import Achievements from "./../components/Achievements.js";
 import achievements from "./achievements.js";
 
@@ -28,7 +28,7 @@ const endMessage = function () {
 }
 
 const replayButton = function(goToSection) {
-  const text = `Rejouer ?`;
+  const text = `Rejouer ?`;
   const action = () => {goToSection(null)};
 
   return (

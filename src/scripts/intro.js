@@ -20,7 +20,7 @@ const noRepeatedAction = function(flagName, actions, goToSection, flags, updateF
   }
 
   return actions.filter(function(action){
-      return !flags[flagName].includes(action.key);
+      return !flags[flagName].includes(action.key);
     }).map(function(action){
       return choice(action.key, action.text, action.flag);
     });
