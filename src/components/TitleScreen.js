@@ -1,5 +1,6 @@
 import React from 'react';
-import { PageHeader, Grid, Row, Image, Col, Button } from 'react-bootstrap';
+import { PageHeader, Grid, Row, Image, Col } from 'react-bootstrap';
+import Crossroads from './Crossroads.js';
 
 class TitleScreen extends React.Component {
   render() {
@@ -16,15 +17,11 @@ class TitleScreen extends React.Component {
           </Col>
         </Row>
         <hr/>
-        {this.props.buttons.map((button, index) => {
-          return(
-            <Row key={index.toString()}>
-              <Col mdOffset={3} md={6}>
-                <Button bsSize="large" block onClick={button.action}>{button.text}</Button>
-              </Col>
-            </Row>
-          );
-        })}
+        <Row>
+          <Col md={6} mdOffset={3} className="lead text-center">
+            <Crossroads choices={this.props.buttons} />
+          </Col>
+        </Row>
       </Grid>
     );
   }

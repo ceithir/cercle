@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
+import Crossroads from "./../components/Crossroads.js";
 import Achievements from "./../components/Achievements.js";
 import achievements from "./achievements.js";
 
@@ -28,20 +29,17 @@ const endMessage = function () {
 }
 
 const replayButton = function(goToSection) {
-  const text = `Nouvelle partie`;
-  const action = () => {goToSection(null)};
-
-  return (
-    <Button bsSize="large" block onClick={action}>{text}</Button>
-  );
+  return {
+    "text": `Nouvelle partie`,
+    "action": () => {goToSection(null)},
+  };
 }
 
 const titleScreenButton = function(quit) {
-  const text = `Retourner à l’écran titre`;
-
-  return (
-    <Button bsSize="large" block onClick={quit}>{text}</Button>
-  );
+  return {
+    "text": `Retourner à l’écran titre`,
+    "action": quit,
+  };
 }
 
 const computeAchievements = function(flags) {
@@ -57,9 +55,8 @@ export const endGame = function(goToSection, flags, updateFlag, quit) {
       {endMessage()}
       <Achievements achievements={computeAchievements(flags)} />
       <Row>
-        <Col mdOffset={3} md={6}>
-          {replayButton(goToSection)}
-          {titleScreenButton(quit)}
+        <Col md={6} mdOffset={3} className="lead text-center">
+          <Crossroads choices={[replayButton(goToSection), titleScreenButton(quit)]} />
         </Col>
       </Row>
     </div>
