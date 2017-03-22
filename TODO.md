@@ -1,14 +1,4 @@
-## Making things work
-
-### Fix log system
-
-Saving current section text on component*Mount()?
-
 ## Cool game
-
-### Display informations learned during the introduction on "the map"
-
-Like where is the old lazybones, the paria etc.
 
 ### Complete achievements
 
