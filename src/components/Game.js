@@ -62,12 +62,19 @@ class Game extends React.Component {
     });
   }
 
+  updateAchievements = (flags) => {
+    this.props.updateAchievements(flags);
+  }
+
   updateFlag = (flag, newValue) => {
     this.setState((prevState, props) => {
       let newFlag = {};
       newFlag[flag] = newValue;
+      const flags = Object.assign({}, prevState.flags, newFlag);
+      this.updateAchievements(flags);
+
       return {
-        "flags": Object.assign({}, prevState.flags, newFlag),
+        "flags": flags,
       };
     });
   }
@@ -133,6 +140,7 @@ Game.propTypes = {
   flags: React.PropTypes.object.isRequired,
   sections: React.PropTypes.object.isRequired,
   quit: React.PropTypes.func.isRequired,
+  updateAchievements: React.PropTypes.func.isRequired,
 };
 
 export default Game;

@@ -16,6 +16,7 @@ class App extends Component {
     super(props);
     this.state = {
       "screen": "title",
+      "achievements": [],
     };
   }
 
@@ -38,11 +39,31 @@ class App extends Component {
     });
   }
 
+  updateAchievements = (flags) => {
+    const newAchievements = achievements.filter((achievement) => {
+      return achievement.condition(flags);
+    }).map((achievement) => {
+      return achievement.key;
+    });
+
+    this.setState((prevState, props) => {
+      const achievements = prevState.achievements
+        .concat(newAchievements)
+        //Ref: http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-an-array#answer-23282057
+        .filter(function(item, i, ar){ return ar.indexOf(item) === i; })
+      ;
+
+      return {
+        "achievements": achievements,
+      };
+    });
+  }
+
   render() {
     const title = `Au Cœur d’un Cercle de Sable et d’Eau`;
     const newGameText = `Nouvelle partie`;
     const achievementsText = `Succès passés`;
-    const unlockedAchievements = [];
+    const unlockedAchievements = this.state.achievements;
 
     if ("title" === this.state.screen) {
       let buttons = [
@@ -85,6 +106,7 @@ class App extends Component {
         flags={flags}
         icon={icon}
         quit={this.titleScreen}
+        updateAchievements={this.updateAchievements}
       />
     );
   }
