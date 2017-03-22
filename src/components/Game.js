@@ -9,27 +9,17 @@ import TextModal from './TextModal.js';
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.getDefaultState();
-    window.scrollTo(0, 0);
-  }
-
-  getDefaultState = () => {
-    return {
+    this.state = {
       "currentSection": this.props.startingSection,
       "flags": this.props.flags,
       "logs": this.props.logs,
       "modal": {"show": false},
       "currentSectionText": this.processText(this.props.startingSection, this.props.flags),
     };
+    window.scrollTo(0, 0);
   }
 
   goToSection = (section) => {
-    if (null === section) {
-      this.setState(this.getDefaultState());
-      window.scrollTo(0, 0);
-      return;
-    }
-
     this.setState((prevState, props) => {
       const flags = prevState.flags;
       const text = this.processText(section, flags);
@@ -109,6 +99,17 @@ class Game extends React.Component {
     return this.props.sections[sectionKey];
   }
 
+  reset = () => {
+    this.props.reset();
+    this.setState({
+      "currentSection": this.props.resetSection,
+      "flags": this.props.resetFlags,
+      "logs": [],
+      "currentSectionText": this.processText(this.props.resetSection, this.props.resetFlags),
+    });
+    window.scrollTo(0, 0);
+  }
+
   render() {
     return (
       <div>
@@ -131,7 +132,7 @@ class Game extends React.Component {
           </div>
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
-              {this.getSection(this.state.currentSection).next(this.goToSection, this.state.flags, this.updateFlag, this.props.quit)}
+              {this.getSection(this.state.currentSection).next(this.goToSection, this.state.flags, this.updateFlag, this.reset, this.props.quit)}
             </div>
           </div>
         </div>
@@ -151,6 +152,9 @@ Game.propTypes = {
   updateAchievements: React.PropTypes.func.isRequired,
   logs: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
   saveProgress: React.PropTypes.func.isRequired,
+  reset: React.PropTypes.func.isRequired,
+  resetSection: React.PropTypes.string.isRequired,
+  resetFlags: React.PropTypes.object.isRequired,
 };
 
 export default Game;

@@ -17,12 +17,19 @@ class App extends Component {
     this.state = {
       "screen": "title",
       "achievements": window.localStorage.getItem("achievements") ? JSON.parse(window.localStorage.getItem("achievements")) : [],
+      "section": "prelude",
+      "flags": flags,
+      "logs": [],
     };
   }
 
   newGame = () => {
+    this.clearProgress();
     this.setState({
       "screen": "game",
+      "section": "prelude",
+      "flags": flags,
+      "logs": [],
     });
   }
 
@@ -40,8 +47,13 @@ class App extends Component {
   }
 
   continueScreen = () => {
+    const progress = JSON.parse(window.localStorage.getItem("progress"));
+
     this.setState({
-      "screen": "continue",
+      "screen": "game",
+      "section": progress.section,
+      "flags": progress.flags,
+      "logs": progress.logs,
     });
   }
 
@@ -131,37 +143,20 @@ class App extends Component {
       );
     }
 
-    if ("continue" === this.state.screen) {
-      const progress = JSON.parse(window.localStorage.getItem("progress"));
-
-      return (
-        <Game
-          title={title}
-          sections={script}
-          startingSection={progress.section}
-          flags={progress.flags}
-          icon={icon}
-          quit={this.softReset}
-          updateAchievements={this.updateAchievements}
-          logs={progress.logs}
-          saveProgress={this.saveProgress}
-        />
-      );
-    }
-
-    const startingSection = "prelude";
-
     return (
       <Game
+        startingSection={this.state.section}
+        flags={this.state.flags}
+        logs={this.state.logs}
         title={title}
         sections={script}
-        startingSection={startingSection}
-        flags={flags}
         icon={icon}
         quit={this.softReset}
         updateAchievements={this.updateAchievements}
-        logs={[]}
         saveProgress={this.saveProgress}
+        reset={this.clearProgress}
+        resetSection="prelude"
+        resetFlags={flags}
       />
     );
   }

@@ -19,7 +19,7 @@ const exploreOrLeave = function(goToSection, flags, updateFlag, text){
   ];
 
   return (
-    <Crossroads context={text} choices={choices} />
+    <Crossroads choices={choices} />
   );
 }
 

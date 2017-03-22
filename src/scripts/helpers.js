@@ -28,10 +28,10 @@ const endMessage = function () {
   );
 }
 
-const replayButton = function(goToSection) {
+const replayButton = function(reset) {
   return {
     "text": `Nouvelle partie`,
-    "action": () => {goToSection(null)},
+    "action": reset,
   };
 }
 
@@ -48,7 +48,7 @@ const computeAchievements = function(flags) {
   });
 };
 
-export const endGame = function(goToSection, flags, updateFlag, quit) {
+export const endGame = function(goToSection, flags, updateFlag, reset, quit) {
   return (
     <div>
       <hr/>
@@ -56,7 +56,7 @@ export const endGame = function(goToSection, flags, updateFlag, quit) {
       <Achievements achievements={computeAchievements(flags)} />
       <Row>
         <Col md={6} mdOffset={3} className="lead text-center">
-          <Crossroads choices={[replayButton(goToSection), titleScreenButton(quit)]} />
+          <Crossroads choices={[replayButton(reset), titleScreenButton(quit)]} />
         </Col>
       </Row>
     </div>
