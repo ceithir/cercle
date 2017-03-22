@@ -4,10 +4,12 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 import './App.css';
 import Game from './components/Game.js';
 import TitleScreen from './components/TitleScreen.js';
+import MemoryScreen from './components/MemoryScreen.js';
 import script from './scripts/script.js';
 import flags from './scripts/flags.js';
 import icon from './images/icon.jpg';
 import cover from './images/cover.jpg';
+import achievements from './scripts/achievements.js';
 
 class App extends Component {
   constructor(props) {
@@ -29,19 +31,47 @@ class App extends Component {
     });
   }
 
+  memoryScreen = () => {
+    window.scrollTo(0, 0);
+    this.setState({
+      "screen": "achievements",
+    });
+  }
+
   render() {
-    const title = "Au Cœur d’un Cercle de Sable et d’Eau";
+    const title = `Au Cœur d’un Cercle de Sable et d’Eau`;
+    const newGameText = `Nouvelle partie`;
+    const achievementsText = `Succès passés`;
+    const unlockedAchievements = [];
 
     if ("title" === this.state.screen) {
-      const buttons = [
+      let buttons = [
         {
-          "text": "Nouvelle partie",
+          "text": newGameText,
           "action": this.newGame,
         }
       ];
 
+      if (unlockedAchievements.length > 0) {
+        buttons.push({
+          "text": achievementsText,
+          "action": this.memoryScreen,
+        });
+      }
+
       return (
         <TitleScreen title={title} image={cover} buttons={buttons} />
+      );
+    }
+
+    if ("achievements" === this.state.screen) {
+      return (
+        <MemoryScreen
+          title={achievementsText}
+          achievements={achievements}
+          quit={this.titleScreen}
+          unlocked={unlockedAchievements}
+        />
       );
     }
 
