@@ -16,7 +16,7 @@ class App extends Component {
     super(props);
     this.state = {
       "screen": "title",
-      "achievements": window.localStorage.getItem("achievements") || [],
+      "achievements": window.localStorage.getItem("achievements") ? JSON.parse(window.localStorage.getItem("achievements")) : [],
     };
   }
 
@@ -39,6 +39,32 @@ class App extends Component {
     });
   }
 
+  continueScreen = () => {
+    this.setState({
+      "screen": "continue",
+    });
+  }
+
+  saveProgress = (currentSection, flags, logs) => {
+    window.localStorage.setItem(
+      "progress",
+      JSON.stringify({
+        "section": currentSection,
+        "flags": flags,
+        "logs": logs,
+      })
+    );
+  }
+
+  clearProgress = () => {
+    window.localStorage.removeItem("progress");
+  }
+
+  softReset = () => {
+    this.clearProgress();
+    this.titleScreen();
+  }
+
   updateAchievements = (flags) => {
     const newAchievements = achievements.filter((achievement) => {
       return achievement.condition(flags);
@@ -52,7 +78,7 @@ class App extends Component {
         //Ref: http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-an-array#answer-23282057
         .filter(function(item, i, ar){ return ar.indexOf(item) === i; })
       ;
-      window.localStorage.setItem("achievements", achievements);
+      window.localStorage.setItem("achievements", JSON.stringify(achievements));
 
       return {
         "achievements": achievements,
@@ -63,6 +89,7 @@ class App extends Component {
   render() {
     const title = `Au Cœur d’un Cercle de Sable et d’Eau`;
     const newGameText = `Nouvelle partie`;
+    const continueText = `Reprendre la partie précédente`;
     const achievementsText = `Succès passés`;
     const unlockedAchievements = this.state.achievements;
 
@@ -73,6 +100,13 @@ class App extends Component {
           "action": this.newGame,
         }
       ];
+
+      if (window.localStorage.getItem("progress")) {
+        buttons.push({
+          "text": continueText,
+          "action": this.continueScreen,
+        });
+      }
 
       if (unlockedAchievements.length > 0) {
         buttons.push({
@@ -97,6 +131,24 @@ class App extends Component {
       );
     }
 
+    if ("continue" === this.state.screen) {
+      const progress = JSON.parse(window.localStorage.getItem("progress"));
+
+      return (
+        <Game
+          title={title}
+          sections={script}
+          startingSection={progress.section}
+          flags={progress.flags}
+          icon={icon}
+          quit={this.softReset}
+          updateAchievements={this.updateAchievements}
+          logs={progress.logs}
+          saveProgress={this.saveProgress}
+        />
+      );
+    }
+
     const startingSection = "prelude";
 
     return (
@@ -106,8 +158,10 @@ class App extends Component {
         startingSection={startingSection}
         flags={flags}
         icon={icon}
-        quit={this.titleScreen}
+        quit={this.softReset}
         updateAchievements={this.updateAchievements}
+        logs={[]}
+        saveProgress={this.saveProgress}
       />
     );
   }

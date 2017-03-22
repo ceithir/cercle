@@ -10,13 +10,14 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.getDefaultState();
+    window.scrollTo(0, 0);
   }
 
   getDefaultState = () => {
     return {
       "currentSection": this.props.startingSection,
       "flags": this.props.flags,
-      "logs": [],
+      "logs": this.props.logs,
       "modal": {"show": false},
       "currentSectionText": this.processText(this.props.startingSection, this.props.flags),
     };
@@ -30,8 +31,11 @@ class Game extends React.Component {
     }
 
     this.setState((prevState, props) => {
-      const text = this.processText(section, prevState.flags);
+      const flags = prevState.flags;
+      const text = this.processText(section, flags);
       const logs = prevState.logs.concat([prevState.currentSectionText]);
+
+      this.saveProgress(section, flags, logs);
 
       return {
         "currentSection": section,
@@ -64,6 +68,10 @@ class Game extends React.Component {
 
   updateAchievements = (flags) => {
     this.props.updateAchievements(flags);
+  }
+
+  saveProgress = (currentSection, flags, logs) => {
+    this.props.saveProgress(currentSection, flags, logs);
   }
 
   updateFlag = (flag, newValue) => {
@@ -141,6 +149,8 @@ Game.propTypes = {
   sections: React.PropTypes.object.isRequired,
   quit: React.PropTypes.func.isRequired,
   updateAchievements: React.PropTypes.func.isRequired,
+  logs: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  saveProgress: React.PropTypes.func.isRequired,
 };
 
 export default Game;
