@@ -15,6 +15,10 @@ A green text when in great form
 
 ## Polish
 
+### Options button in toolbar
+
+Quick new start + Accessibility parameters (like font size)
+
 ### Post-process script for French special characters
 
 ###  Simplify "next" declaration
