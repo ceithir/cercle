@@ -16,7 +16,7 @@ class App extends Component {
     super(props);
     this.state = {
       "screen": "title",
-      "achievements": [],
+      "achievements": window.localStorage.getItem("achievements") || [],
     };
   }
 
@@ -52,6 +52,7 @@ class App extends Component {
         //Ref: http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-an-array#answer-23282057
         .filter(function(item, i, ar){ return ar.indexOf(item) === i; })
       ;
+      window.localStorage.setItem("achievements", achievements);
 
       return {
         "achievements": achievements,
