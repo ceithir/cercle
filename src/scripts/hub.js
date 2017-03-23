@@ -172,6 +172,25 @@ const getIslandChoices = function(goToSection, flags, updateFlag) {
   );
 };
 
+const timeDescription = (time) => {
+  switch(time) {
+    case 0:
+    case 1:
+      return `Le soleil est encore bas, la journée ne fait que commencer.`;
+    case 2:
+    case 3:
+      return `Le soleil poursuit sa route, allant tranquillement vers le milieu de la journée.`;
+    case 4:
+    case 5:
+      return `Le soleil est presque à son zénith.`;
+    case 6:
+    case 7:
+      return `Le soleil est encore resplendissant, mais a entamé sa redescente.`;
+    default:
+      return `Le soleil glisse peu à peu vers l'horizon, le soir s'approche.`;
+  }
+}
+
 const hub = {
   "hub": {
     "text": (flags) => {
@@ -232,9 +251,17 @@ ${crocodileIslandDescription}
     }
   },
   "back-to-hub": {
-    "text":`
+    "text": (flags) => {
+      let text =`
 <p>Vous rejoignez votre pirogue, et prenez quelques instants pour réfléchir à la direction dans laquelle vous allez la propulser.</p>
-    `,
+      `;
+
+      if (flags.time < 10) {
+        text += `<p class="text-info">${timeDescription(flags.time)}</p>`;
+      }
+
+      return text;
+    },
     "next": function(goToSection, flags, updateFlag) {
       if (flags.time >= 10) {
         const text = `Mais quelqu’un a déjà fait ce choix pour vous.`;

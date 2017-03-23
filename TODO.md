@@ -4,10 +4,6 @@
 
 ### Make optional choices look less sucky
 
-### Display time passing by
-
-Different text in "back-to-hub"?
-
 ### Display physical state
 
 A red warning when drunk
