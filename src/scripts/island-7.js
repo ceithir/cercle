@@ -11,7 +11,7 @@ const island7 = {
       if (flags.talkedWithFaanarua && !flags.inventory.dolphin.acquired) {
         const text = `C’est ici que Faanarua aurait enterré l’amulette de son malheureux adversaire.`;
         const action = () => {
-          acquireItem("dolphin", flags, updateFlag);
+          acquireItem("dolphin", updateFlag);
           updateFlag("time", flags.time+1);
           goToSection("exploring-island-7");
         };

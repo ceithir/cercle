@@ -18,7 +18,7 @@ const crocodileLastCrossroads = (goToSection, flags, updateFlag) => {
     {
       "text": `Vous en ramassez quand même un au cas où.`,
       "action": () => {
-        acquireItem("fruit", flags, updateFlag);
+        acquireItem("fruit", updateFlag);
         updateFlag("time", flags.time+1);
         goToSection("back-to-hub");
       },
@@ -317,7 +317,7 @@ const island6 = {
         {
           "text": `Vous essayez de le distraire en faisant semblant d’apercevoir un membre de la tribu qu’il déteste tant.`,
           "action": () => {
-            acquireItem("doll", flags, updateFlag);
+            acquireItem("doll", updateFlag);
             goToSection("crocodile-look-out");
           },
         },

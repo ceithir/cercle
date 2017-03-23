@@ -79,7 +79,7 @@ const village = {
         {
           "text": `Vous essayez l’alcool fort.`,
           "action": () => {
-            acquireItem("alcohol", flags, updateFlag);
+            acquireItem("alcohol", updateFlag);
             goToSection("hard-drink");
           },
         },

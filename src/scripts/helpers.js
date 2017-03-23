@@ -4,11 +4,11 @@ import Crossroads from "./../components/Crossroads.js";
 import Achievements from "./../components/Achievements.js";
 import achievements from "./achievements.js";
 
-export const acquireItem = function(itemKey, flags, updateFlag) {
+export const acquireItem = function(itemKey, updateFlag) {
   updateFlag(["inventory", itemKey, "acquired"], true);
 };
 
-export const useItem = function(itemKey, flags, updateFlag) {
+export const useItem = function(itemKey, updateFlag) {
   updateFlag(["inventory", itemKey, "used"], true);
 };
 

@@ -48,7 +48,7 @@ const sneakingIntoIslandCrossroads = (goToSection, flags, updateFlag) => {
       "text": `Vous l’ignorez et poursuivez votre lente ascension comme auparavant .`,
       "action": () => {
         if (flags.swumUnderWitchIsland) {
-          acquireItem("pearls", flags, updateFlag);
+          acquireItem("pearls", updateFlag);
           goToSection("witch-master-thief");
         } else {
           goToSection("witch-poor-thief");
@@ -138,7 +138,7 @@ const island5 = {
         choices.push({
           "text": `Vous lui offrez en échange le contenu de votre propre calebasse.`,
           "action": () => {
-            useItem("alcohol", flags, updateFlag);
+            useItem("alcohol", updateFlag);
             goToSection("witch-my-alcohol");
           },
           "condition": alcohol.name,
@@ -255,7 +255,7 @@ const island5 = {
         {
           "text": `Une poignée de perles d’un noir profond.`,
           "action": () => {
-            acquireItem("pearls", flags, updateFlag);
+            acquireItem("pearls", updateFlag);
             goToSection("witch-pearls");
           },
         },
@@ -352,8 +352,8 @@ const island5 = {
         const text = `Vos possessions sont soudain bien remuantes.`;
         const condition = doll.name;
         const action = () => {
-          useItem("doll", flags, updateFlag);
-          acquireItem("net", flags, updateFlag);
+          useItem("doll", updateFlag);
+          acquireItem("net", updateFlag);
           goToSection("witch-versus-root");
         };
 
@@ -441,8 +441,8 @@ const island5 = {
         const text = `Vos possessions sont soudain bien remuantes.`;
         const condition = doll.name;
         const action = () => {
-          useItem("doll", flags, updateFlag);
-          acquireItem("net", flags, updateFlag);
+          useItem("doll", updateFlag);
+          acquireItem("net", updateFlag);
           goToSection("witch-versus-root-alt");
         };
 

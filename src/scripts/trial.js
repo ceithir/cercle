@@ -38,7 +38,7 @@ const facingRaiahuiUnderwater = (goToSection, flags, updateFlag) => {
   if (net.acquired && !net.used) {
     const text = `Et vous avez de quoi l’accueillir.`;
     const action = () => {
-      useItem("net", flags, updateFlag);
+      useItem("net", updateFlag);
       goToSection("caught-a-raiahui");
     }
     const condition = net.name;
@@ -60,11 +60,11 @@ const facingRaiahuiUnderwater = (goToSection, flags, updateFlag) => {
 };
 
 const cleanInventoryBeforeRace = (flags, updateFlag) => {
-  useItem("alcohol", flags, updateFlag);
-  useItem("pearls", flags, updateFlag);
-  useItem("fruit", flags, updateFlag);
+  useItem("alcohol", updateFlag);
+  useItem("pearls", updateFlag);
+  useItem("fruit", updateFlag);
   if (flags.droppedDoll) {
-    useItem("doll", flags, updateFlag);
+    useItem("doll", updateFlag);
   }
 }
 
@@ -127,7 +127,7 @@ const trial = {
           {
             "text": `Vous mordez dedans.`,
             "action": () => {
-              useItem("fruit", flags, updateFlag);
+              useItem("fruit", updateFlag);
               if (flags.drunk) {
                 updateFlag("drunk", false);
               } else {
@@ -494,7 +494,7 @@ const trial = {
       if (doll.acquired && !doll.used) {
         const text = `Vous sentez soudain une gêne au niveau de votre taille.`;
         const action = () => {
-          useItem("doll", flags, updateFlag);
+          useItem("doll", updateFlag);
           goToSection("trial-doll");
         };
         const condition = doll.name;
@@ -596,7 +596,7 @@ const trial = {
         if (amulet.acquired && !amulet.used) {
           const text = `L’amulette contre sur votre poitrine tremble sous l’irrégularité de votre souffle.`
           const action = () => {
-            useItem("dolphin", flags, updateFlag);
+            useItem("dolphin", updateFlag);
             goToSection("trial-saved-by-dolphin");
           };
           const condition = amulet.name;
@@ -874,7 +874,7 @@ const trial = {
         choices.push({
           "text": ``,
           "action": () => {
-            useItem("smokePearls", flags, updateFlag);
+            useItem("smokePearls", updateFlag);
             goToSection("trial-coral-pearls");
           },
           "condition": pearls.name,
@@ -920,7 +920,7 @@ const trial = {
       if (doll.acquired && !doll.used) {
         const text = `Vous sentez un mouvement au niveau de votre taille.`;
         const action = () => {
-          useItem("doll", flags, updateFlag);
+          useItem("doll", updateFlag);
           goToSection("trial-coral-doll");
         };
         const condition = doll.name;
@@ -969,7 +969,7 @@ const trial = {
         choices.push({
           "text": `Vous avez encore le filet de la sorcière.`,
           "action": () => {
-            useItem("net", flags, updateFlag);
+            useItem("net", updateFlag);
             goToSection("trial-exhausted-net");
           },
           "condition": net.name,
@@ -980,7 +980,7 @@ const trial = {
         choices.push({
           "text": `Il vous reste toujours les perles de la sorcière.`,
           "action": () => {
-            useItem("smokePearls", flags, updateFlag);
+            useItem("smokePearls", updateFlag);
             goToSection("trial-exhausted-pearls");
           },
           "condition": pearls.name,

@@ -96,7 +96,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
     otherChoices.push({
       "text": `Goûter le contenu de la calebasse.`,
       "action": () => {
-        useItem("alcohol", flags, updateFlag);
+        useItem("alcohol", updateFlag);
         updateFlag("drunk", true);
         updateFlag("time", flags.time+1);
         goToSection("drink");
@@ -110,8 +110,8 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
     otherChoices.push({
       "text": `Examiner de plus près ces mystérieuses perles.`,
       "action": () => {
-        useItem("pearls", flags, updateFlag);
-        acquireItem("smokePearls", flags, updateFlag);
+        useItem("pearls", updateFlag);
+        acquireItem("smokePearls", updateFlag);
         goToSection("look-at-pearls");
       },
       "condition": pearls.name,
