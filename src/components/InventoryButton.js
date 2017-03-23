@@ -21,11 +21,11 @@ class InventoryButton extends React.Component {
       }
 
       const item = inventory[key];
-      if (!item.acquired) {
+      if (!item.acquired || item.used) {
         continue;
       }
       listItems.push(
-        <MenuItem eventKey={key} key={key} disabled={item.used} onSelect={this.onItemSelect}>{item.name}</MenuItem>
+        <MenuItem eventKey={key} key={key} onSelect={this.onItemSelect}>{item.name}</MenuItem>
       );
     }
 

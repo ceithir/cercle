@@ -66,13 +66,36 @@ class Game extends React.Component {
 
   updateFlag = (flag, newValue) => {
     this.setState((prevState, props) => {
-      let newFlag = {};
-      newFlag[flag] = newValue;
-      const flags = Object.assign({}, prevState.flags, newFlag);
-      this.updateAchievements(flags);
+      let updatedFlags = Object.assign({}, prevState.flags);
+
+      if ('string' === typeof flag) {
+        updatedFlags[flag] = newValue;
+      }
+
+      if (Array.isArray(flag)) {
+        if (0 === flag.length) {
+          return null;
+        }
+
+        const propagate = (object, keys, value) => {
+
+          let remainingKeys = keys.slice();
+          const key = remainingKeys.shift();
+
+          if (0 === remainingKeys.length) {
+            return Object.assign({}, object, {[key]: value});
+          }
+
+          return Object.assign({}, object, {[key]: propagate(object[key], remainingKeys, value)});
+        }
+
+        updatedFlags = propagate(updatedFlags, flag, newValue);
+      }
+
+      this.updateAchievements(updatedFlags);
 
       return {
-        "flags": flags,
+        "flags": updatedFlags,
       };
     });
   }

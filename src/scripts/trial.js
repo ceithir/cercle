@@ -59,6 +59,15 @@ const facingRaiahuiUnderwater = (goToSection, flags, updateFlag) => {
   );
 };
 
+const cleanInventoryBeforeRace = (flags, updateFlag) => {
+  useItem("alcohol", flags, updateFlag);
+  useItem("pearls", flags, updateFlag);
+  useItem("fruit", flags, updateFlag);
+  if (flags.droppedDoll) {
+    useItem("doll", flags, updateFlag);
+  }
+}
+
 const trial = {
   "trial": {
     "text": `
@@ -84,14 +93,32 @@ const trial = {
     },
   },
   "trial-preparation": {
-    //TODO Detail how useful items are in our skirt or around our neck
-    "text": `
+    "text": (flags) => {
+      let items = ``;
+
+      const amulet = flags.inventory.dolphin;
+      if (amulet.acquired && !amulet.used) {
+        items += `<p class="text-info">Vous ajustez l'amulette autour de votre cou. Vous ne ressentez rien de spécial, et ignorez si elle vous sera d'une quelconque utilité. En tout cas, votre nouvel ornement ne semble intéresser personne.</p>`
+      }
+
+      const pearls = flags.inventory.smokePearls;
+      if (pearls.acquired && !pearls.used) {
+        items += `<p class="text-info">Vous avez rangé les perles qui vous restent dans un petit sac de toile accroché à votre taille ; vous pourrez certainement leur trouver un usage pendant votre course.</p>`
+      }
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        items += `<p class="text-info">Si l'épreuve devait dégénérer d'une quelconque façon, avoir un filet magique sous la main pourrait se révéler salvateur. Aussi l'enroulez-vous autour de votre taille.</p>`
+      }
+
+      return `
 <p>La course a-t-elle vraiment commencé ? L’ambiance qui vous entoure n’en donne pas l’impression. Les adolescents chahutent, rient et font circuler des calebasses remplies de vin de palme. Raiahui est au coeur de cette sorte de célébration anticipée, savourant visiblement l’attention dont elle est l’objet et ne vous accordant pas un regard.</p>
 
 <p>Vous jetez un coup d’oeil vers votre point d’arrivée. Il y a une certaine distance à parcourir, mais il ne s’agira pas d’une épreuve d’endurance : si vous partiez avec quelques instants d’avance, même un excellent nageur aurait peu de chances de vous rattraper.</p>
 
 <p>Déstabilisée par l’étrangeté de la situation, vous vous raccrochez à des questions plus concrètes, vérifiant que vous êtes dans de bonnes conditions pour nager. Vous vous êtes débarrassée de votre pagne, qui vous ralentirait terriblement.</p>
-    `,
+      ` + items;
+    },
     "next": (goToSection, flags, updateFlag) => {
       const fruit = flags.inventory.fruit;
       if (fruit.acquired && !fruit.used) {
@@ -112,6 +139,30 @@ const trial = {
           {
             "text": `Trop risqué. Et puis vous n’avez pas besoin de ça pour gagner.`,
             "action": () => {
+              goToSection("trial-still-not-started");
+            },
+          },
+        ];
+
+        return (
+          <Crossroads context={context} choices={choices} />
+        );
+      }
+
+      const doll = flags.inventory.doll;
+      if (doll.acquired && !doll.used) {
+        const context = `Vous avez encore en votre possession le figurine sculptée par le crocodile. Dont vous ignorez tout.`;
+        const choices = [
+          {
+            "text": `Vous l'accrochez à votre taille, au cas où.`,
+            "action": () => {
+              goToSection("trial-eat-fruit");
+            },
+          },
+          {
+            "text": `Vous la laissez sur le rivage avec vos autres affaires dispensables.`,
+            "action": () => {
+              updateFlag("droppedDoll", true);
               goToSection("trial-still-not-started");
             },
           },
@@ -154,6 +205,7 @@ const trial = {
         {
           "text": `Vous entamez la course dès maintenant, sans l’attendre.`,
           "action": () => {
+            cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
             goToSection("trial-surprise");
           },
@@ -209,6 +261,7 @@ const trial = {
         {
           "text": `Vous suivez son conseil et partez sans plus tergiverser.`,
           "action": () => {
+            cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
             goToSection("trial-surprise");
           },
@@ -241,6 +294,7 @@ const trial = {
         {
           "text": `Vous suivez son conseil et entamez immédiatement la course.`,
           "action": () => {
+            cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
             goToSection("trial-surprise-alt");
           },
@@ -248,6 +302,7 @@ const trial = {
         {
           "text": `Vous la provoquez pour qu’elle parte en même temps que vous.`,
           "action": () => {
+            cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
             goToSection("trial-fair");
           },
@@ -327,6 +382,7 @@ const trial = {
         {
           "text": `Et vous, vous jetez son couteau dans le lagon.`,
           "action": () => {
+            cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
             goToSection("knife-sea");
           },
@@ -362,9 +418,12 @@ const trial = {
     "text": `
 <p>Le couteau d’ivoire décrit une ample courbe et disparaît silencieusement parmi les palmiers. Avec une exclamation furieuse, Raiahui se détourne aussitôt de vous et se précipite dans cette direction. Vous n’allez pas laisser passer cette occasion ! Sous le regard absolument stupéfait des adolescents qui vous entourent, vous franchissez en trois enjambées la distance qui vous sépare de la rive.</p>
     `,
-    "next": (goToSection) => {
+    "next": (goToSection, flags, updateFlag) => {
       const text = `Et vous plongez.`;
-      const action = () => goToSection("the-trial-begins");
+      const action = () => {
+        cleanInventoryBeforeRace(flags, updateFlag);
+        goToSection("the-trial-begins");
+      };
 
       return (
         <Funnel text={text} action={action} />
@@ -381,9 +440,12 @@ const trial = {
 
 <p>Laissant votre concurrente s’enivrer plus qu’elle ne devrait, vous traversez la plage d’un pas rapide en direction de la rive.</p>
     `,
-    "next": (goToSection) => {
+    "next": (goToSection, flags, updateFlag) => {
       const text = `Et vous plongez.`;
-      const action = () => goToSection("the-trial-begins");
+      const action = () => {
+        cleanInventoryBeforeRace(flags, updateFlag);
+        goToSection("the-trial-begins");
+      };
 
       return (
         <Funnel text={text} action={action} />

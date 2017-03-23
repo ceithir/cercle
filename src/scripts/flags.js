@@ -5,7 +5,7 @@ const flags = {
   "inventory": {
     "alcohol": {
       "name": `Alcool fort`,
-      "description": `<p>Une calebasse d’alcool fort que vous ont offert Oramui et Terani.</p>`,
+      "description": `<p>Une calebasse d’alcool fort offerte par Oramui et Terani.</p>`,
     },
     "dolphin": {
       "name": `Amulette`,
@@ -55,6 +55,7 @@ const flags = {
   "toldAboutLazyOneByAriinea": false,
   "toldAboutFaanaruaByVarenui": false,
   "watchedKnifeImportance": false,
+  "droppedDoll": false,
 };
 
 export default flags;
