@@ -56,6 +56,7 @@ const flags = {
   "toldAboutFaanaruaByVarenui": false,
   "watchedKnifeImportance": false,
   "droppedDoll": false,
+  "survivedWitchIsland": false,
 };
 
 export default flags;

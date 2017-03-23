@@ -300,7 +300,8 @@ const island5 = {
       const text = `Vous retrouvez votre pirogue avec bonheur.`;
       const action = () => {
         updateFlag("time", flags.time+1);
-        goToSection("back-to-hub")
+        updateFlag("survivedWitchIsland", true);
+        goToSection("back-to-hub");
       };
 
       return (
@@ -423,6 +424,7 @@ const island5 = {
       const text = `Vous examinerez votre dernière trouvaille une fois que vous serez loin d’ici.`;
       const action = () => {
         updateFlag("time", flags.time+1);
+        updateFlag("survivedWitchIsland", true);
         goToSection("back-to-hub");
       };
 
@@ -454,6 +456,7 @@ const island5 = {
       const text = `Courrant à toutes jambes, vous regagnez votre pirogue avant qu’elle ne retrouve votre piste.`;
       const action = () => {
         updateFlag("time", flags.time+1);
+        updateFlag("survivedWitchIsland", true);
         goToSection("back-to-hub");
       };
 
@@ -471,6 +474,7 @@ const island5 = {
     const text = `Quelques instants plus tard, vous avez regagné votre pirogue.`;
     const action = () => {
       updateFlag("time", flags.time+1);
+      updateFlag("survivedWitchIsland", true);
       goToSection("back-to-hub");
     };
 

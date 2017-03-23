@@ -30,8 +30,8 @@ const island4 = {
     }
   },
   "exploring-island-4": {
-//TODO Alter conversation if the witch has been encountered
-    "text": `
+    "text": (flags) => {
+      let text = `
 <p>C’est non sans une certaine difficulté que vous vous frayez un chemin à travers la végétation épaisse. En y regardant de plus près, vous parvenez à reconnaître des formes familières derrière l’apparence générale d’étrangeté. C’est comme si quelqu’un avait pris des plantes ordinaires et, d’une manière inexplicable, les avait profondément déformées.</p>
 
 <p>Vous explorez l’île avec patience, mais sans rien observer qui vous paraisse utile. Vous entendez de temps à autres des animaux détaler à votre approche, mais ils restent essentiellement invisibles.</p>
@@ -47,7 +47,23 @@ const island4 = {
 <p>— Je suis homme.</p>
 <p>— Qu… Quoi ?</p>
 <p>— Je suis homme. Changé par sorcière.</p>
+      `;
+
+      if (flags.survivedWitchIsland) {
+        text += `
+</div>
+<p class="text-info">Il parle sans doute de la sorcière que vous avez croisé sur l'île mitoyenne.</p>
+<p>Vous décidez cependant de vous en assurer, peu désireuse de tomber par surprise sur une confrère de la précédente.</p>
+<div class="conversation">
+<p>— Il y a une sorcière sur cette île ?</p>
+        `;
+      } else {
+        text += `
 <p>— Il y a une sorcière sur cette île ? demandez-vous, regardant les alentours avec alarme.</p>
+        `;
+      }
+
+      text += `
 <p>— Autre île. Ici sorcière laisse résultats changements.</p>
 <p>— Comment… Comment est-ce que cela t’est arrivé ?</p>
 <p>— Je touche fétiche. Fétiche crie. Sorcière attrape moi dans filet. Filet toujours attrape, jamais manque.</p>
@@ -61,7 +77,14 @@ const island4 = {
 </div>
 
 <p>Il se laisse tomber de sa branche et disparaît rapidement parmi la végétation.</p>
-    `,
+      `;
+
+      if (!flags.survivedWitchIsland && flags.toldAboutAtollByRaiahui) {
+        text += `<p class="text-info">Vous n'aviez pas totalement pris au sérieux Raiahui quand elle évoquait une sorcière, mais vous êtes en train de revoir votre position.</p>`;
+      }
+
+      return text;
+    },
     "next": function(goToSection) {
       const text = `Ébranlée, vous revenez à votre pirogue.`;
       const action = () => goToSection("back-to-hub");
