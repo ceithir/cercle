@@ -41,10 +41,9 @@ const facingRaiahuiUnderwater = (goToSection, flags, updateFlag) => {
       useItem("net", updateFlag);
       goToSection("caught-a-raiahui");
     }
-    const condition = net.name;
 
     return (
-      <Funnel text={text} action={action} condition={condition} />
+      <Funnel text={text} action={action} conditional={true} />
     );
   }
 
@@ -322,7 +321,7 @@ const trial = {
           "action": () => {
             goToSection("raiahui-drunk");
           },
-          "condition": alcohol.name,
+          "conditional": true,
         });
       }
 
@@ -497,10 +496,9 @@ const trial = {
           useItem("doll", updateFlag);
           goToSection("trial-doll");
         };
-        const condition = doll.name;
 
         return (
-          <Funnel text={text} action={action} condition={condition} />
+          <Funnel text={text} action={action} conditional={true} />
         );
       }
 
@@ -594,15 +592,14 @@ const trial = {
       if (!flags.drunk) {
         const amulet = flags.inventory.dolphin;
         if (amulet.acquired && !amulet.used) {
-          const text = `L’amulette contre sur votre poitrine tremble sous l’irrégularité de votre souffle.`
+          const text = `L’amulette contre votre poitrine tremble sous l’irrégularité de votre souffle.`
           const action = () => {
             useItem("dolphin", updateFlag);
             goToSection("trial-saved-by-dolphin");
           };
-          const condition = amulet.name;
 
           return (
-            <Funnel action={action} text={text} condition={condition} />
+            <Funnel action={action} text={text} conditional={true} />
           );
         }
 
@@ -611,10 +608,9 @@ const trial = {
           const action = () => {
             goToSection("trial-saved-by-fruit");
           };
-          const condition = flags.inventory.fruit.name;
 
           return (
-            <Funnel action={action} text={text} condition={condition} />
+            <Funnel action={action} text={text} conditional={true} />
           );
         }
 
@@ -623,10 +619,9 @@ const trial = {
           const action = () => {
             goToSection("trial-saved-by-sloth");
           };
-          const condition = `En pleine forme`;
 
           return (
-            <Funnel action={action} text={text} condition={condition} />
+            <Funnel action={action} text={text} conditional={true} />
           );
         }
       }
@@ -777,10 +772,10 @@ const trial = {
 
 <p>Vous hurlez un mot que votre mère n’aurait pas été heureuse d’entendre, le ponctuez d’un violent coup de tête qui frappe votre adversaire en plein visage et lui mordez ensuite sauvagement l’avant-bras. Raiahui pousse un cri de douleur perçant et laisse presque échapper son précieux couteau. Vous lui écrasez votre poing sur la figure et, tandis qu’elle titube en arrière, vous franchissez enfin la distance qui vous séparait de la rive sablonneuse.</p>
 
-<p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir.</p>
+<p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir. Et une voix que vous reconnaissez comme celle d'Ataroa énoncent enfin les quelques mots que vous n'espériez plus :</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `L’épreuve est terminée, déclare Ataroa.`;
+      const text = `L’épreuve est terminée.`;
       const action = () => {
         updateFlag("survivedTheTrial", true);
         goToSection("victory");
@@ -877,7 +872,7 @@ const trial = {
             useItem("smokePearls", updateFlag);
             goToSection("trial-coral-pearls");
           },
-          "condition": pearls.name,
+          "conditional": true,
         });
       }
 
@@ -923,10 +918,9 @@ const trial = {
           useItem("doll", updateFlag);
           goToSection("trial-coral-doll");
         };
-        const condition = doll.name;
 
         return (
-          <Funnel text={text} action={action} condition={condition} />
+          <Funnel text={text} action={action} conditional={true} />
         );
       }
 
@@ -972,7 +966,7 @@ const trial = {
             useItem("net", updateFlag);
             goToSection("trial-exhausted-net");
           },
-          "condition": net.name,
+          "conditional": true,
         });
       }
       const pearls = flags.inventory.smokePearls;
@@ -983,7 +977,7 @@ const trial = {
             useItem("smokePearls", updateFlag);
             goToSection("trial-exhausted-pearls");
           },
-          "condition": pearls.name,
+          "conditional": true,
         });
       }
 

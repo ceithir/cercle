@@ -141,7 +141,7 @@ const island5 = {
             useItem("alcohol", updateFlag);
             goToSection("witch-my-alcohol");
           },
-          "condition": alcohol.name,
+          "conditional": true,
         });
       }
 
@@ -351,7 +351,6 @@ const island5 = {
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
         const text = `Vos possessions sont soudain bien remuantes.`;
-        const condition = doll.name;
         const action = () => {
           useItem("doll", updateFlag);
           acquireItem("net", updateFlag);
@@ -359,7 +358,7 @@ const island5 = {
         };
 
         return (
-          <Funnel text={text} condition={condition} action={action} />
+          <Funnel text={text} action={action} conditional={true} />
         );
       }
 
@@ -441,7 +440,6 @@ const island5 = {
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
         const text = `Vos possessions sont soudain bien remuantes.`;
-        const condition = doll.name;
         const action = () => {
           useItem("doll", updateFlag);
           acquireItem("net", updateFlag);
@@ -449,7 +447,7 @@ const island5 = {
         };
 
         return (
-          <Funnel text={text} condition={condition} action={action} />
+          <Funnel text={text} action={action} conditional={true} />
         );
       }
 

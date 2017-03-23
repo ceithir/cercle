@@ -7,7 +7,7 @@ class Crossroads extends React.Component {
       <Choice
         text={choice.text}
         action={choice.action}
-        condition={choice.condition}
+        conditional={choice.conditional}
         key={index.toString()}
       />
     );

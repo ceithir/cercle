@@ -17,7 +17,7 @@ const island7 = {
         };
 
         return (
-          <Funnel text={text} action={action} />
+          <Funnel text={text} action={action} conditional={true} />
         );
       }
 

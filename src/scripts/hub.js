@@ -101,7 +101,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
         updateFlag("time", flags.time+1);
         goToSection("drink");
       },
-      "condition": alcohol.name,
+      "conditional": true,
     });
   }
 
@@ -114,17 +114,17 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
         acquireItem("smokePearls", updateFlag);
         goToSection("look-at-pearls");
       },
-      "condition": pearls.name,
+      "conditional": true,
     });
   }
 
   if (flags.talkedWithFaanarua && !flags.inventory.dolphin.acquired) {
     otherChoices.push({
-      "text": `Aller chercher l’amulette`,
+      "text": `Aller chercher l’amulette dont Faanarua vous a parlé.`,
       "action": () => {
         moveToIsland("island-7", goToSection, flags, updateFlag);
       },
-      "condition": `Faanarua`,
+      "conditional": true,
     });
   }
 

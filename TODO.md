@@ -2,8 +2,6 @@
 
 ### Complete achievements
 
-### Make optional choices look less sucky
-
 ### Display physical state
 
 A red warning when drunk
