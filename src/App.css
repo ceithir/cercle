@@ -17,3 +17,19 @@
 .conversation > p {
   margin-bottom: 5px;
 }
+
+.navbar-text.comment {
+  font-style: italic;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.navbar-text.success {
+  color: #3c763d;
+}
+
+.navbar-text.warning {
+  color: #8a6d3b;
+}

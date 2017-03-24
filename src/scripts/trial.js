@@ -70,7 +70,7 @@ const cleanInventoryBeforeRace = (flags, updateFlag) => {
 const trial = {
   "trial": {
     "text": `
-<p>A la suite du jeune garçon, vous arrivez sur la plage bordant l’extrémité de l’île, où toute la tribu est en train de s’assembler. Vous apercevez Raiahui en compagnie des adolescents de son âge, formant un groupe un peu à part du reste de la foule ; un large sourire se dessine sur son visage lorsque ses yeux se posent sur vous.</p>
+<p>À la suite du jeune garçon, vous arrivez sur la plage bordant l’extrémité de l’île, où toute la tribu est en train de s’assembler. Vous apercevez Raiahui en compagnie des adolescents de son âge, formant un groupe un peu à part du reste de la foule ; un large sourire se dessine sur son visage lorsque ses yeux se posent sur vous.</p>
 
 <p>La clarté du jour, qui ne touche pas encore à sa fin, vous permet de distinguer clairement les récifs de corail recouvrant le fond de la passe que vous avez traversé la veille pour pénétrer dans le lagon. De l’autre côté se trouve l’île sablonneuse qui servira de point d’arrivée à votre course.</p>
 

@@ -5,6 +5,7 @@ import Title from './Title.js';
 import LogButton from './LogButton.js';
 import InventoryButton from './InventoryButton.js';
 import TextModal from './TextModal.js';
+import NavComment from './NavComment.js';
 
 class Game extends React.Component {
   constructor(props) {
@@ -142,8 +143,13 @@ class Game extends React.Component {
           </Title>
           <Navbar.Collapse>
             <Nav>
-              <LogButton logs={this.state.logs} showModal={this.showModal} text="Journal" />
-              <InventoryButton inventory={this.state.flags.inventory} showModal={this.showModal} text="Inventaire" />
+              <LogButton logs={this.state.logs} showModal={this.showModal} text={`Journal`} />
+              <InventoryButton inventory={this.state.flags.inventory} showModal={this.showModal} text={`Inventaire`} />
+              {this.props.comments(this.state.flags).map((comment, index) => {
+                return (
+                  <NavComment key={index.toString()} text={comment.text} color={comment.color} />
+                );
+              })}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -178,6 +184,7 @@ Game.propTypes = {
   reset: React.PropTypes.func.isRequired,
   resetSection: React.PropTypes.string.isRequired,
   resetFlags: React.PropTypes.object.isRequired,
+  comments: React.PropTypes.func.isRequired,
 };
 
 export default Game;

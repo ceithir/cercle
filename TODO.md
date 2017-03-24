@@ -2,11 +2,6 @@
 
 ### Complete achievements
 
-### Display physical state
-
-A red warning when drunk
-A green text when in great form
-
 ## Polish
 
 ### Options button in toolbar
