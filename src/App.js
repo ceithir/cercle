@@ -103,7 +103,7 @@ class App extends Component {
     const title = `Au Cœur d’un Cercle de Sable et d’Eau`;
     const newGameText = `Nouvelle partie`;
     const continueText = `Reprendre la partie précédente`;
-    const achievementsText = `Succès passés`;
+    const achievementsText = `Souvenirs`;
     const unlockedAchievements = this.state.achievements;
 
     if ("title" === this.state.screen) {

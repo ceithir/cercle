@@ -41,6 +41,30 @@ const achievements = [
     "description": `L’histoire s’est bien terminée. Pour Raiahui du moins.`,
     "condition": (flags) => {return flags.eatenByRaiahui;},
   },
+  {
+    "key": "sore-raiahui",
+    "name": `La femme est un requin pour la femme`,
+    "description": `Vous avez réchappé aux centaines de dents de Raiahui. Pas à son unique poignard.`,
+    "condition": (flags) => {return flags.stabbedToDeath;},
+  },
+  {
+    "key": "victory",
+    "name": `Une rêve d'écume`,
+    "description": `Vous êtes sortie victorieuse (et vivante) de l'épreuve.`,
+    "condition": (flags) => {return flags.survivedTheTrial;},
+  },
+  {
+    "key": "just-let-me-sleep",
+    "name": `Pas motivée aujourd'hui`,
+    "description": `Vous vous êtes levée, vous avez marché jusqu'à votre pirogue, vous avez contemplé l'océan. Et vous êtes retournée vous coucher.`,
+    "condition": (flags) => {return 0 === flags.time && (flags.eatenByRaiahui || flags.stabbedToDeath || flags.survivedTheTrial);},
+  },
+  {
+    "key": "speedrun",
+    "name": `La victoire par l'inaction`,
+    "description": `Votre journée de farniente vous aura ouvert les portes d'une soirée de triomphe.`,
+    "condition": (flags) => {return 0 === flags.time && flags.survivedTheTrial;},
+  },
 ];
 
 export default achievements;
