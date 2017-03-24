@@ -97,7 +97,7 @@ const trial = {
 
       const amulet = flags.inventory.dolphin;
       if (amulet.acquired && !amulet.used) {
-        items += `<p class="text-info">Vous ajustez l'amulette autour de votre cou. Vous ne ressentez rien de spécial, et ignorez si elle vous sera d'une quelconque utilité. En tout cas, votre nouvel ornement ne semble intéresser personne.</p>`
+        items += `<p class="text-info">Vous ajustez l’amulette autour de votre cou. Vous ne ressentez rien de spécial, et ignorez si elle vous sera d’une quelconque utilité. En tout cas, votre nouvel ornement ne semble intéresser personne.</p>`
       }
 
       const pearls = flags.inventory.smokePearls;
@@ -107,7 +107,7 @@ const trial = {
 
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
-        items += `<p class="text-info">Si l'épreuve devait dégénérer d'une quelconque façon, avoir un filet magique sous la main pourrait se révéler salvateur. Aussi l'enroulez-vous autour de votre taille.</p>`
+        items += `<p class="text-info">Si l’épreuve devait dégénérer d’une quelconque façon, avoir un filet magique sous la main pourrait se révéler salvateur. Aussi l’enroulez-vous autour de votre taille.</p>`
       }
 
       return `
@@ -153,7 +153,7 @@ const trial = {
         const context = `Vous avez encore en votre possession le figurine sculptée par le crocodile. Dont vous ignorez tout.`;
         const choices = [
           {
-            "text": `Vous l'accrochez à votre taille, au cas où.`,
+            "text": `Vous l’accrochez à votre taille, au cas où.`,
             "action": () => {
               goToSection("trial-eat-fruit");
             },
@@ -772,7 +772,7 @@ const trial = {
 
 <p>Vous hurlez un mot que votre mère n’aurait pas été heureuse d’entendre, le ponctuez d’un violent coup de tête qui frappe votre adversaire en plein visage et lui mordez ensuite sauvagement l’avant-bras. Raiahui pousse un cri de douleur perçant et laisse presque échapper son précieux couteau. Vous lui écrasez votre poing sur la figure et, tandis qu’elle titube en arrière, vous franchissez enfin la distance qui vous séparait de la rive sablonneuse.</p>
 
-<p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir. Et une voix que vous reconnaissez comme celle d'Ataroa énoncent enfin les quelques mots que vous n'espériez plus :</p>
+<p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir. Et une voix que vous reconnaissez comme celle d’Ataroa énoncent enfin les quelques mots que vous n’espériez plus :</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const text = `L’épreuve est terminée.`;

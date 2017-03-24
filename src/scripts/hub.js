@@ -187,7 +187,7 @@ const timeDescription = (time) => {
     case 7:
       return `Le soleil est encore resplendissant, mais a entamé sa redescente.`;
     default:
-      return `Le soleil glisse peu à peu vers l'horizon, le soir s'approche.`;
+      return `Le soleil glisse peu à peu vers l’horizon, la soirée approche.`;
   }
 }
 
