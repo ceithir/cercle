@@ -229,7 +229,7 @@ const hub = {
 
 <p>Celle sur laquelle vous vous trouvez, et où se trouve le village, est à l’extrémité sud. C’est clairement la plus grande de l’atoll ; sa forme mince et courbe fait penser à un arc.</p>
 
-<p>En tournant sur vous-même dans le sens des aiguilles d’une montre ((un objet que vous n’avez jamais eu sous les yeux, mais dont vous avez vaguement entendu parler) se dévoilent deux îles en apparence, assez similaires : de taille moyenne et couvertes de nombreux palmiers.</p>
+<p>En tournant sur vous-même dans le sens des aiguilles d’une montre (un objet que vous n’avez jamais eu sous les yeux, mais dont vous avez vaguement entendu parler) se dévoilent deux îles en apparence, assez similaires : de taille moyenne et couvertes de nombreux palmiers.</p>
 
 ${faanaruaIsland}
 
