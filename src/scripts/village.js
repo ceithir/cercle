@@ -3,7 +3,7 @@ import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import {acquireItem} from "./helpers.js";
 
-const exploreOrLeave = function(goToSection, flags, updateFlag, text){
+const exploreOrLeave = function(goToSection, flags, updateFlag, context = '') {
   const choices = [
     {
       "text": `Vous regagnez votre pirogue.`,
@@ -19,7 +19,7 @@ const exploreOrLeave = function(goToSection, flags, updateFlag, text){
   ];
 
   return (
-    <Crossroads choices={choices} />
+    <Crossroads context={context} choices={choices} />
   );
 }
 
@@ -59,7 +59,7 @@ const village = {
 <p>— Il ne faut pas récolter la sève trop tôt, vous explique Oramui. La boisson devient très rapidement plus forte et plus acide. Si on la conserve plus d’une journée, elle devient imbuvable.</p>
 </div>
 
-<p>Il vous indique du doigt quelques petites piles de calebasses, en vous expliquant qu’elles contiennent la sève qu’ils ont récolté la veille, peu après votre arrivée. Mais votre regard ne tarde pas à être attirée par une douzaine de calebasses conservées à l’écart et enveloppées dans de grandes feuilles.</p>
+<p>Il vous indique du doigt quelques petites piles de calebasses, en vous expliquant qu’elles contiennent la sève qu’ils ont récoltée la veille, peu après votre arrivée. Mais votre regard ne tarde pas à être attirée par une douzaine de calebasses conservées à l’écart et enveloppées dans de grandes feuilles.</p>
 
 <div class="conversation">
 <p>— C’est aussi du vin de palme ? demandez-vous.</p>
@@ -112,7 +112,7 @@ const village = {
     "text": `
 <p>Terani vous fait goûter un peu de la sève recueillie la veille. La liqueur blanchâtre a un goût légèrement sucré que vous trouvez agréable. Vous remerciez poliment les deux récolteurs avant de prendre congé.</p>
     `,
-    "next": exploreOrLeave,
+    "next": (goToSection, flags, updateFlag) => {return exploreOrLeave(goToSection, flags, updateFlag);},
   },
   "hard-drink": {
     "text": `
@@ -124,7 +124,7 @@ const village = {
 
 <p>La recommandation fait sourire Oramui, mais il n’ajoute rien. Vous remerciez poliment les deux récolteurs avant de prendre congé.</p>
     `,
-    "next": exploreOrLeave,
+    "next": (goToSection, flags, updateFlag) => {return exploreOrLeave(goToSection, flags, updateFlag);},
   }
 };
 

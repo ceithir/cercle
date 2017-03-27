@@ -135,7 +135,7 @@ const intro = {
 
 <p>Que l’île soit habitée ou non, elle offrira l’occasion de renouveler vos provisions, qui se limitent actuellement à une petite quantité de tubercules cuits d’igname et de patate douce, agrémentée de quelques bananes. Une source d’eau fraîche serait la bienvenue : l’une de vos deux gourdes est totalement vide. Réparer ou remplacer certains de vos outils ne serait par ailleurs pas un luxe si vous êtes en mesure de prolonger un peu votre escale : votre couteau en os n’est plus guère tranchant et vous avez récemment brisé le manche de votre hachette de pierre.</p>
 
-<p>Et ensuite ? A moins que, par un fait improbable, cette île ne recèle la totalité de ce que vous recherchez, il ne vous restera plus qu’à choisir une nouvelle direction dans laquelle poursuivre votre errance.</p>
+<p>Et ensuite ? À moins que, par un fait improbable, cette île ne recèle la totalité de ce que vous recherchez, il ne vous restera plus qu’à choisir une nouvelle direction dans laquelle poursuivre votre errance.</p>
 
 <p>Vous vous appelez Mananuiva et, depuis le jour de votre naissance, la saison des pluies est revenue dix-sept fois. Au cours de ces années, vous n’avez connu que votre île natale, ses voisines immédiates et les flots qui les entourent. Mais vous avez finalement atteint l’âge auquel les jeunes gens de votre tribu accomplissent leur rite de passage à l’âge adulte : s’embarquer seul sur une pirogue et partir au large. La tradition appelle cela « partir pour l’horizon » et bien des légendes ont pour point de départ un jeune garçon s’aventurant à cette occasion jusqu’à une île lointaine et étrange. Mais la réalité actuelle de cette coutume est que les adolescents ne font que se rendre à l’une des îles habitées situées à moins d’une journée de voyage et y prendre du bon temps pendant une dizaine de jours. Il est courant que des liaisons romantiques se créent à l’occasion de ces séjours et c’est ainsi que naissent bien des mariages entre des personnes qui auraient pu ne jamais se rencontrer.</p>
 
@@ -163,9 +163,9 @@ const intro = {
 
 <p>Raiahui a à peu près le même âge que vous. Elle est un peu plus grande, un peu plus mince et sa peau brune est légèrement plus claire. Ses cheveux noirs ont été coupés de manière curieusement courte, ne lui tombant même pas jusqu’aux épaules.</p>
 
-<p>Vous dirigez votre pirogue alourdie suivant ses instructions. La langue que parle Raiahui est essentiellement la même que la vôtre et son accent n’est pas plus difficile à saisir que beaucoup de ceux que vous avez rencontré au cours de votre voyage. Certaines des expressions qu’elle emploie ne vous sont pas familières, mais cela ne gêne guère votre compréhension mutuelle.</p>
+<p>Vous dirigez votre pirogue alourdie suivant ses instructions. La langue que parle Raiahui est essentiellement la même que la vôtre et son accent n’est pas plus difficile à saisir que beaucoup de ceux que vous avez rencontrés au cours de votre voyage. Certaines des expressions qu’elle emploie ne vous sont pas familières, mais cela ne gêne guère votre compréhension mutuelle.</p>
 
-<p>Vous accédez bientôt à la passe et vous y engagez. Sur votre gauche, l’île que vous avez longé jusqu’ici est restée couverte d’un enchevêtrement de nombreux palmiers. Sur votre droite, vous distinguez à une certaine distance une autre île de l’atoll, qui n’est guère plus qu’une bande de sable nu. En-dessous de votre pirogue, l’eau est d’une limpidité qui contraste avec le bleu profond de l’océan comme du lagon.</p>
+<p>Vous accédez bientôt à la passe et vous y engagez. Sur votre gauche, l’île que vous avez longée jusqu’ici est restée couverte d’un enchevêtrement de nombreux palmiers. Sur votre droite, vous distinguez à une certaine distance une autre île de l’atoll, qui n’est guère plus qu’une bande de sable nu. En-dessous de votre pirogue, l’eau est d’une limpidité qui contraste avec le bleu profond de l’océan comme du lagon.</p>
 
 <div class="conversation">
 <p>— Est-ce que tu es une bonne nageuse ? vous demande soudain Raiahui.</p>
@@ -344,7 +344,7 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 
 <p>Le festin débute sans cérémonie. En tant qu’invitée d’honneur, vous êtes invitée à vous servir la première, ce que votre estomac vous fait accepter avec plaisir. Une assiette en feuilles de palmier tressées vous est offerte et vous faites votre choix parmi les victuailles abondantes, qui incluent de la viande d’oiseau et de tortue, des oeufs, des crustacés, des coquillages et quelques fruits. Une noix de coco verte, au sommet percé, vous est offerte pour que vous puissiez vous désaltérer.</p>
 
-<p>Une fois que vous êtes allée vous asseoir, les membres de la tribu vont à leur tour se servir, avec un enthousiasme désordonné qui laisse supposer que ces festins ne sont pas choses courantes. A l’exception des très jeunes enfants, vous remarquez qu’ils portent tous des couteaux en ivoire courbes et légèrement dentelés, qu’ils utilisent dextrement. A en juger par l’aisance avec laquelle ils découpent la nourriture, le tranchant en est autrement plus aiguisé que celui de votre vieux couteau en os.</p>
+<p>Une fois que vous êtes allée vous asseoir, les membres de la tribu vont à leur tour se servir, avec un enthousiasme désordonné qui laisse supposer que ces festins ne sont pas choses courantes. À l’exception des très jeunes enfants, vous remarquez qu’ils portent tous des couteaux en ivoire courbes et légèrement dentelés, qu’ils utilisent dextrement. À en juger par l’aisance avec laquelle ils découpent la nourriture, le tranchant en est autrement plus aiguisé que celui de votre vieux couteau en os.</p>
 
 <p>Vous saisissez vite pourquoi il y a une telle abondance de nourriture en observant la voracité avec  laquelle mangent les gens qui vous entourent. Vous entendez fréquemment craquer sous leurs dents des morceaux de carapace ou de petits os d’oiseau qu’ils n’ont pas pris la peine de recracher.</p>
 
@@ -487,7 +487,7 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 
 <p>Le soleil matinal filtrant entre les palmes vous réveille. Tout est calme. Vous vous prélassez mollement quelques instants avant de vous décider à vous lever. Il n’y a pas d’autre bruit que le chant de quelques oiseaux, ce qui vous laisse supposer que la plupart de la tribu est encore en train de dormir.</p>
 
-<p>Raiahui est allongée dans un hamac peu distant du vôtre. Elle ouvre un oeil tandis que vous entreprenez de vous étirer.</p>
+<p>Raiahui est allongée dans un hamac peu distant du vôtre. Elle ouvre un œil tandis que vous entreprenez de vous étirer.</p>
 
 <div class="conversation">
 <p>— Déjà levée ? fait-elle d’une voix pâteuse. Tu devrais te reposer pour la course de ce soir.</p>

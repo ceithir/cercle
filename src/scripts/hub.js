@@ -196,28 +196,28 @@ const hub = {
     "text": (flags) => {
       let faanaruaIsland = ``;
       if (flags.toldAboutFaanaruaByVarenui) {
-        faanaruaIsland += `<p class="text-info">Ce serait là que ce serait installé Faanarua, la seule membre de cette communauté à avoir exploré plus que superficiellement le monde extérieur.`;
+        faanaruaIsland += `<p class="text-info">Ce serait là que se serait installée Faanarua, la seule membre de cette communauté à avoir exploré plus que superficiellement le monde extérieur.`;
         if (flags.toldAboutFaanaruaByRaiahui) {
           faanaruaIsland += ` Raiahui vous a également parlé d’elle, la décrivant comme une grande chasseuse et conteuse.`
         }
         faanaruaIsland += `</p>`;
       }
 
-      let witchIslandDescription = `<p>L’île suivante est curieusement différente des autres : loin d’être une étendue lisse et basse, elle émerge des flots comme un large rocher.`;
+      let witchIslandDescription = `<p>La première est curieusement différente des autres : loin d’être une étendue lisse et basse, elle émerge des flots comme un large rocher.`;
       if (flags.toldAboutAtollByRaiahui) {
         witchIslandDescription += ` <span class="text-info">Raiahui vous l’a décrite comme étant habitée par une sorcière.</span>`;
       }
       witchIslandDescription += `</p>`;
 
-      let crocodileIslandDescription = `<p>En continuant votre tour, vous découvrez une île couverte d’un enchevêtrement de grands arbres.`;
+      let crocodileIslandDescription = `<p>La seconde est plus ordinaire en apparence, avec comme seule particularité visible à cette distance d’être couverte d’un enchevêtrement de grands arbres.`;
       if (flags.toldAboutAtollByRaiahui) {
-        crocodileIslandDescription += ` <span class="text-info">Raiahui vous a déconseillé de vous y rendre, car ce serait la résidence du peu accueillant « Vieux Fainéant ».</span>`;
+        crocodileIslandDescription += ` <span class="text-info">Raiahui vous a précisé qu’il s’agissait de la résidence du peu accueillant « Vieux Fainéant ».</span>`;
         if (flags.toldAboutLazyOneByAriinea) {
             crocodileIslandDescription += ` <span class="text-info">Ariinea et son amie vous ont dit peu ou prou la même chose, insistant sur la dangerosité de cette mystérieuse personne.</span>`;
         }
       } else {
         if (flags.toldAboutLazyOneByAriinea) {
-          crocodileIslandDescription += ` <span class="text-info">C’est probablement là que réside le « Vieux Fainéant » dont Ariinea vous a parlé. Et dont son amie vous a fortement déconseillé d’approcher, le considérant réellement dangereux.</span>`;
+          crocodileIslandDescription += ` <span class="text-info">C’est probablement là que réside le « Vieux Fainéant » dont Ariinea vous a parlé. Et dont son amie vous a également fortement déconseillé d’approcher, le considérant réellement dangereux.</span>`;
         }
       }
       crocodileIslandDescription += `</p>`;
@@ -235,13 +235,15 @@ ${faanaruaIsland}
 
 <p>Puis vient au nord-ouest une île nettement plus petite et à la végétation moins élevée.</p>
 
+<p>Se profilent ensuite les deux îles que Raiahui vous a explicitement déconseillé d’approcher.</p>
+
 ${witchIslandDescription}
 
 ${crocodileIslandDescription}
 
 <p>Ensuite, quelque part entre l’est et le nord-est, existe une île qui n’est en réalité qu’une minuscule étendue de sable clair.</p>
 
-<p>À ses côtés, une île similaire et à peine plus grande, qui est le point d’arrivée de la course qui vous opposera à Raiahui.</p>
+<p>L'île juste à côté est similaire, à peine plus grande, mais a cela de notable qu'elle servira de point d’arrivée à la course qui vous opposera à Raiahui.</p>
 
 <p>La surface du lagon n’est agitée que de minuscules vagues, ce qui vous promet une navigation plus aisée que ce à quoi vous êtes habituée. Vous pourriez sans doute en faire le tour, peut-être pas de toutes mais de la majorité, et revenir dans à temps pour l’épreuve à laquelle vous avez été conviée.</p>
       `;
@@ -304,7 +306,7 @@ ${crocodileIslandDescription}
 <p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
 </div>
 
-<p>Vous arrêtez votre embarcation et jetez un coup d’oeil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
+<p>Vous arrêtez votre embarcation et jetez un coup d’œil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
 
 <p>Vous aidez le garçon — qui doit avoir quatre ou cinq ans de moins que vous — à se hisser à l’avant de la pirogue avant de diriger celle-ci vers l’île où réside la tribu. Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation.</p>
     `,
@@ -325,7 +327,7 @@ ${crocodileIslandDescription}
 <p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
 </div>
 
-<p>Vous jetez un coup d’oeil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
+<p>Vous jetez un coup d’œil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
 
 <p>Vous prenez place à bord de la pirogue et dites au garçon — qui doit avoir quatre ou cinq ans de moins que vous — de s’installer à l’avant. Plongeant ensuite votre pagaie dans l’eau, vous prenez la direction de l’île où réside la tribu. Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation.</p>
     `,
@@ -340,7 +342,7 @@ ${crocodileIslandDescription}
   },
   "exit": {
     "text": `
-<p>Vous engagez votre pirogue dans l’une des passes séparant les îles de l’atoll les unes des autres. Vous gardez un oeil attentif en-dessous de vous, guettant les récifs de corail qui pourraient affleurer juste en-dessous des vagues, mais aucun problème ne se présente et vous avez bientôt quitté le lagon pour rejoindre l’océan, où les vagues sont un peu plus haute et la brise un peu plus vive.</p>
+<p>Vous engagez votre pirogue dans l’une des passes séparant les îles de l’atoll les unes des autres. Vous gardez un œil attentif en-dessous de vous, guettant les récifs de corail qui pourraient affleurer juste en-dessous des vagues, mais aucun problème ne se présente et vous avez bientôt quitté le lagon pour rejoindre l’océan, où les vagues sont un peu plus haute et la brise un peu plus vive.</p>
 
 <p>La vision qu’on a de l’atoll est beaucoup plus limitée depuis l’extérieur que depuis l’intérieur et vous n’observez rien de neuf.</p>
 
@@ -351,6 +353,10 @@ ${crocodileIslandDescription}
         {
           "text": `Vous retournez dans le lagon.`,
           "action": () => {
+            if (flags.time >= 10) {
+              return goToSection("no-more-time-at-sea");
+            }
+
             goToSection("back-to-hub");
           },
         },

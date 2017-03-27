@@ -113,10 +113,16 @@ const trial = {
       return `
 <p>La course a-t-elle vraiment commencé ? L’ambiance qui vous entoure n’en donne pas l’impression. Les adolescents chahutent, rient et font circuler des calebasses remplies de vin de palme. Raiahui est au coeur de cette sorte de célébration anticipée, savourant visiblement l’attention dont elle est l’objet et ne vous accordant pas un regard.</p>
 
-<p>Vous jetez un coup d’oeil vers votre point d’arrivée. Il y a une certaine distance à parcourir, mais il ne s’agira pas d’une épreuve d’endurance : si vous partiez avec quelques instants d’avance, même un excellent nageur aurait peu de chances de vous rattraper.</p>
+<p>Vous jetez un coup d’œil vers votre point d’arrivée. Il y a une certaine distance à parcourir, mais il ne s’agira pas d’une épreuve d’endurance : si vous partiez avec quelques instants d’avance, même un excellent nageur aurait peu de chances de vous rattraper.</p>
 
-<p>Déstabilisée par l’étrangeté de la situation, vous vous raccrochez à des questions plus concrètes, vérifiant que vous êtes dans de bonnes conditions pour nager. Vous vous êtes débarrassée de votre pagne, qui vous ralentirait terriblement.</p>
-      ` + items;
+<p>Déstabilisée par l’étrangeté de la situation, vous vous raccrochez à des questions plus concrètes, vérifiant que vous êtes dans de bonnes conditions pour nager.</p>
+
+<p>Vous commencez par vous débarasser de votre pagne, qui vous ralentirait terriblement.</p>
+
+${items}
+
+<p>Vous faites ensuite jouer vos articulations en un échauffement sommaire, plus pour rappeler à Raiahui que vous prenez cette épreuve au sérieux que par réel besoin physique.</p>
+      `;
     },
     "next": (goToSection, flags, updateFlag) => {
       const fruit = flags.inventory.fruit;
@@ -234,7 +240,7 @@ const trial = {
 
 <p>Vous avez déjà accompli le quart du trajet lorsque des exclamations excitées vous parviennent aux oreilles depuis la plage. Votre concurrente vient sans doute enfin d’entamer la course à son tour. Vous vous contentez d’accélérer légèrement le rythme de vos mouvements. Quand bien même Raiahui serait vraiment meilleure nageuse que vous-même, il vous suffit de ne pas épuiser vos forces trop vite pour que votre avance vous garantisse virtuellement la victoire.</p>
 
-<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’oeil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez plus tôt que vous n’en aviez l’intention la cadence de votre nage, mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien. Vous avez accompli la moitié du trajet, mais il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
+<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez plus tôt que vous n’en aviez l’intention la cadence de votre nage, mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien. Vous avez accompli la moitié du trajet, mais il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
 
 <hr/>` + raiahuiGoodEndText,
     "next": endGame,
@@ -319,6 +325,7 @@ const trial = {
         choices.push({
           "text": `Vous lui offrez votre propre calebasse d’alcool fort.`,
           "action": () => {
+            useItem("alcohol", updateFlag);
             goToSection("raiahui-drunk");
           },
           "conditional": true,
@@ -336,7 +343,7 @@ const trial = {
 
 <p>Vous avez déjà accompli le quart du trajet lorsque des exclamations excitées vous parviennent aux oreilles depuis la plage. Votre concurrente vient sans doute enfin de se lancer à votre poursuite. Vous vous contentez d’accélérer légèrement le rythme de vos mouvements. Quand bien même Raiahui serait vraiment meilleure nageuse que vous-même, il vous suffit de ne pas épuiser vos forces trop vite pour que votre avance vous garantisse virtuellement la victoire.</p>
 
-<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’oeil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez plus tôt que vous n’en aviez l’intention la cadence de votre nage, mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien. Vous avez accompli la moitié du trajet, mais il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
+<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez plus tôt que vous n’en aviez l’intention la cadence de votre nage, mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien. Vous avez accompli la moitié du trajet, mais il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
 
 <hr/>
     ` + raiahuiGoodEndText,
@@ -407,7 +414,7 @@ const trial = {
 
 <p>Vous avez déjà parcouru presque le quart du trajet lorsque le bruit d’exclamation vous parvient aux tympans. Un bref regard en arrière vous apprend que les adolescents présents sur la plage sont en train d’agiter les bras en poussant des cris d’encouragement. Raiahui a dû enfin se lancer à votre poursuite, soit que la chance lui ait permis de retrouver rapidement son couteau parmi les coraux du lagon, soit qu’elle ait décidé de s’en occuper plus tard. Cela n’a pas une grande importance : quand bien même elle serait vraiment meilleure nageuse que vous, l’avance que vous avez acquise vous garantit virtuellement la victoire.</p>
 
-<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’oeil furtifs derrière vous, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez plus tôt que vous n’en aviez l’intention la cadence de votre nage, mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien. Vous avez accompli la moitié du trajet, mais il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
+<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs derrière vous, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez plus tôt que vous n’en aviez l’intention la cadence de votre nage, mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien. Vous avez accompli la moitié du trajet, mais il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
 
 <hr/>
     ` + raiahuiGoodEndText,
@@ -457,9 +464,9 @@ const trial = {
 
 <p>Votre tête émerge finalement à l’air libre. Vous adoptez un style de natation un peu plus rapide, mais sans forcer encore l’allure. Plongée dans l’exécution de vos mouvements souples et réguliers, vous oubliez presque la compétition un instant pour ne plus éprouver que le plaisir sans mélange que vous apporte toujours le simple fait de nager.</p>
 
-<p>Vous avez franchi près de la moitié de la distance vous séparant de votre destination lorsqu’un concert d’exclamations vous parvient aux oreilles. Jetant un coup d’oeil en arrière sans perdre votre allure, vous voyez que tous les adolescents se sont assemblés près de la rive. Leurs gesticulations vous laissent deviner que Raiahui vient enfin de plonger à son tour.</p>
+<p>Vous avez franchi près de la moitié de la distance vous séparant de votre destination lorsqu’un concert d’exclamations vous parvient aux oreilles. Jetant un coup d’œil en arrière sans perdre votre allure, vous voyez que tous les adolescents se sont assemblés près de la rive. Leurs gesticulations vous laissent deviner que Raiahui vient enfin de plonger à son tour.</p>
 
-<p>Vous n’augmentez pas immédiatement la cadence de vos mouvements. Vous avez après tout une avance considérable. Vous prenez la précaution de jeter par la suite des coups d’oeil périodiques en arrière, mais, curieusement, ils ne vous apprennent rien : vous ne voyez à aucun moment la tête de Raiahui émerger au-dessus des vagues et sa position vous reste absolument inconnue.</p>
+<p>Vous n’augmentez pas immédiatement la cadence de vos mouvements. Vous avez après tout une avance considérable. Vous prenez la précaution de jeter par la suite des coups d’œil périodiques en arrière, mais, curieusement, ils ne vous apprennent rien : vous ne voyez à aucun moment la tête de Raiahui émerger au-dessus des vagues et sa position vous reste absolument inconnue.</p>
     `,
     "next": (goToSection) => {
       const choices = [
@@ -567,7 +574,7 @@ const trial = {
   },
   "trial-rush": {
     "text": `
-<p>La panique anime vos membres d’une énergie bouillonnante, vous faisant nager plus vite que vous n’en avez jamais été capable. Mais Raiahui reste beaucoup trop rapide. Un coup d’oeil angoissé en arrière vous permet de voir qu’elle est sur le point de vous rejoindre.</p>
+<p>La panique anime vos membres d’une énergie bouillonnante, vous faisant nager plus vite que vous n’en avez jamais été capable. Mais Raiahui reste beaucoup trop rapide. Un coup d’œil angoissé en arrière vous permet de voir qu’elle est sur le point de vous rejoindre.</p>
     `,
     "next": facingRaiahuiUnderwater,
   },
@@ -846,7 +853,7 @@ const trial = {
   },
   "trial-hide": {
     "text": `
-<p>Quelques brasses puissantes vous permettent de vous enfoncer rapidement sous la surface. Vous vous abritez parmi les formes découpées du corail, vous dissimulant de votre mieux au regard de Raiahui. Un coup d’oeil prudent vous permet de voir qu’elle a ralenti son allure et qu’elle semble hésitante. Elle a sans aucun doute saisi votre manoeuvre, mais ne semble pas savoir exactement où vous vous êtes réfugiée. Votre appréhension ne décroît guère pour autant : sa forme actuelle la fait peut-être bénéficier de sens qui vous échappent.</p>
+<p>Quelques brasses puissantes vous permettent de vous enfoncer rapidement sous la surface. Vous vous abritez parmi les formes découpées du corail, vous dissimulant de votre mieux au regard de Raiahui. Un coup d’œil prudent vous permet de voir qu’elle a ralenti son allure et qu’elle semble hésitante. Elle a sans aucun doute saisi votre manoeuvre, mais ne semble pas savoir exactement où vous vous êtes réfugiée. Votre appréhension ne décroît guère pour autant : sa forme actuelle la fait peut-être bénéficier de sens qui vous échappent.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [
@@ -952,7 +959,7 @@ const trial = {
   },
   "exhausted": {
     "text": `
-<p>La panique ne parvient plus à vous faire ignorer votre fatigue. Vos membres sont lourds, votre respiration difficile et vos mouvements se font inexorablement plus lents. Jetant un coup d’oeil angoissé derrière vous, vous voyez à travers l’eau transparente Raiahui se rapprocher rapidement. Vous n’aurez pas le temps d’atteindre l’île avant qu’elle ne vous rattrape ! Allez-vous échouer si près du but ?</p>
+<p>La panique ne parvient plus à vous faire ignorer votre fatigue. Vos membres sont lourds, votre respiration difficile et vos mouvements se font inexorablement plus lents. Jetant un coup d’œil angoissé derrière vous, vous voyez à travers l’eau transparente Raiahui se rapprocher rapidement. Vous n’aurez pas le temps d’atteindre l’île avant qu’elle ne vous rattrape ! Allez-vous échouer si près du but ?</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const context = `Vous cherchez désespérément quelque chose qui pourrait vous aider.`;

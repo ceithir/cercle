@@ -28,7 +28,7 @@ const escapeTheWitch = (goToSection, flags, updateFlag) => {
 const sneakingIntoIslandText = `
 <p>Il vous semble probable que, si cette île recèle quoi que ce soit d’intéressant, c’est dans la hutte située à son sommet que vous le trouverez. Mais les nombreux fétiches disposés le long des pentes vous mettent mal à l’aise : il vous revient à l’esprit des récits parlant de statues créées par des sorciers pour les avertir de la présence des intrus.</p>
 
-<p>Jetant un coup d’oeil prudent hors de l’endroit où vous êtes dissimulée, il vous semble possible de parvenir jusqu’au sommet sans vous exposer aux yeux figés des fétiches. La végétation qui couvre l’île est peu élevée, mais suffisamment dense.</p>
+<p>Jetant un coup d’œil prudent hors de l’endroit où vous êtes dissimulée, il vous semble possible de parvenir jusqu’au sommet sans vous exposer aux yeux figés des fétiches. La végétation qui couvre l’île est peu élevée, mais suffisamment dense.</p>
 
 <p>Mettant votre idée à exécution, vous entreprenez de ramper à l’abri des broussailles. Votre progression est lente, mais aucun signe ne permet de penser que vous avez été repérée.</p>
 
@@ -176,7 +176,7 @@ const island5 = {
   },
   "witch-fetish-embrace": {
     "text":`
-<p>Une douleur aiguë vous transperce le bras au moment où vous touchez la statue et, aussitôt, tous les fétiches de l’île émettent un cri d’alarme strident. Paniquée et à demi assourdie, vous abandonnez toute idée de discrétion et vous redressez pour dévaler la pente en courant. Un coup d’oeil en arrière vous fait apercevoir une large silhouette sortant de la hutte, mais elle est heureusement trop loin pour pouvoir vous arrêter. Vous vous hâtez de rejoindre votre pirogue où vous l’avez laissée et de vous éloigner de l’île.</p>
+<p>Une douleur aiguë vous transperce le bras au moment où vous touchez la statue et, aussitôt, tous les fétiches de l’île émettent un cri d’alarme strident. Paniquée et à demi assourdie, vous abandonnez toute idée de discrétion et vous redressez pour dévaler la pente en courant. Un coup d’œil en arrière vous fait apercevoir une large silhouette sortant de la hutte, mais elle est heureusement trop loin pour pouvoir vous arrêter. Vous vous hâtez de rejoindre votre pirogue où vous l’avez laissée et de vous éloigner de l’île.</p>
 
 <p>La douleur est passée, mais, maintenant que votre panique s’apaise, vous remarquez qu’un certain engourdissement s’est emparé de votre bras. Vous espérez que cette faiblesse n’est que temporaire.</p>
     `,
@@ -386,7 +386,7 @@ const island5 = {
   },
   "witch-poor-thief": {
     "text": ascensionText + `
-<p>Vous vous glissez à pas prudents jusqu’à l’entrée de la hutte. Un coup d’oeil rapide à l’intérieur vous apprend qu’elle est effectivement vide. Vous êtes sur le point d’y pénétrer lorsqu’un bruit de pas vous fait vous retourner : une grosse femme enroulée dans un paréo pourpre est en train de regagner la hutte. Ses cheveux courts sont hérissés comme des piquants et elle est chargée de nombreux bijoux en or. À sa taille, vous remarquez un filet gris et un petit couteau en métal. Il est trop tard pour regagner votre cachette, elle vous a vue.</p>
+<p>Vous vous glissez à pas prudents jusqu’à l’entrée de la hutte. Un coup d’œil rapide à l’intérieur vous apprend qu’elle est effectivement vide. Vous êtes sur le point d’y pénétrer lorsqu’un bruit de pas vous fait vous retourner : une grosse femme enroulée dans un paréo pourpre est en train de regagner la hutte. Ses cheveux courts sont hérissés comme des piquants et elle est chargée de nombreux bijoux en or. À sa taille, vous remarquez un filet gris et un petit couteau en métal. Il est trop tard pour regagner votre cachette, elle vous a vue.</p>
 
 <div class="conversation">
 <p>— Tiens, tiens, tiens, fait-elle d’une voix peu affable. J’étais partie chercher mon intruse et je la trouve sur le seuil de chez moi…</p>

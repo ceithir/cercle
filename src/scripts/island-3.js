@@ -6,7 +6,7 @@ import {endGame} from "./helpers.js";
 const island3 = {
   "island-3": {
     "text": `
-<p>Alors que vous approchez de cette île couverte de nombreux palmiers, votre oeil est attiré par une voile blanche triangulaire, frémissant à peine sous l’effet d’une légère brise. Une pirogue un peu plus grande que la vôtre a été tirée sur la plage et une femme est visiblement en train d’oeuvrer à son entretien. Elle vous tourne le dos et rien ne suggère qu’elle a remarqué votre approche.</p>
+<p>Alors que vous approchez de cette île couverte de nombreux palmiers, votre œil est attiré par une voile blanche triangulaire, frémissant à peine sous l’effet d’une légère brise. Une pirogue un peu plus grande que la vôtre a été tirée sur la plage et une femme est visiblement en train d’oeuvrer à son entretien. Elle vous tourne le dos et rien ne suggère qu’elle a remarqué votre approche.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
       const choices = [
@@ -202,7 +202,7 @@ const island3 = {
 <p>Un sourire étrange plisse les lèvres de Faanarua.</p>
 
 <div class="conversation">
-<p>— J’ai raconté à Raiahui l’histoire de cette amulette, mais je suis sûre qu’elle n’y fera pas attention même si elle te voit la porter autour du cou. La vigilance fait partie des nombreuses choses qu’elle n’a pas hérité de moi.</p>
+<p>— J’ai raconté à Raiahui l’histoire de cette amulette, mais je suis sûre qu’elle n’y fera pas attention même si elle te voit la porter autour du cou. La vigilance fait partie des nombreuses choses qu’elle n’a pas héritées de moi.</p>
 </div>
 
 <p>Il vous faut un instant pour réaliser ce qu’elle vient de dire.</p>
