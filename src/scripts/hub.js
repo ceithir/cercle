@@ -301,7 +301,7 @@ ${crocodileIslandDescription}
 <p>Vous pagayez avec régularité vers votre nouvelle destination lorsqu’un bruit d’éclaboussures attire votre attention : la tête d’un jeune garçon de la tribu vient d’émerger de l’eau à une faible distance de votre pirogue.</p>
 
 <div class="conversation">
-<p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
+<p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
 </div>
 
 <p>Vous arrêtez votre embarcation et jetez un coup d’oeil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
@@ -322,7 +322,7 @@ ${crocodileIslandDescription}
 <p>Une surprise vous attend lorsque vous regagnez votre pirogue : la tête d’un jeune garçon de la tribu émerge de l’eau à une faible distance.</p>
 
 <div class="conversation">
-<p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
+<p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
 </div>
 
 <p>Vous jetez un coup d’oeil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
@@ -407,7 +407,7 @@ ${crocodileIslandDescription}
 <p>Le soleil a fortement décliné lorsqu’un jeune garçon vient vous tirer en vous secouant de la somnolence où vous aviez glissé.</p>
 
 <div class="conversation">
-<p>— Mananuiva, il faut que tu viennes, la course va commencer !</p>
+<p>— Mananuiva, il faut que tu viennes, la course va commencer !</p>
 </div>
 
 <p>Rouvrant les yeux, vous quittez le hamac avec un peu de regret et vous étirez quelques instants.</p>

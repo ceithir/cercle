@@ -114,12 +114,12 @@ const island5 = {
 <p>Le contour de l’île est rocailleux, mais vous parvenez néanmoins à accoster sans trop de mal. Vous gravissez ensuite la pente sous le regard impassible des nombreux fétiches. Alors que vous êtes sur le point d’atteindre la hutte, il en sort soudain une grosse femme enroulée dans un paréo pourpre. Ses cheveux courts sont hérissés comme des piquants et, de la tête aux chevilles, elle porte de nombreux bijoux en or d’une élégance que vous avez rarement observée. A sa taille sont accrochés un sac à demi-plein, un filet gris et un petit couteau en métal. Elle tient à la main une coupe remplie d’un liquide clair.</p>
 
 <div class="conversation">
-<p>— Une visiteuse ! s’exclame-t-elle d’une voix ravie. Quel plaisir ! Cela faisait si longtemps que personne n’était venu…</p>
+<p>— Une visiteuse ! s’exclame-t-elle d’une voix ravie. Quel plaisir ! Cela faisait si longtemps que personne n’était venu…</p>
 </div>
 
 <p>Son accent ne ressemble pas à celui de la tribu, ni à aucun autre de votre connaissance. Elle vous tend la coupe avec tant d’énergie que son contenu vous gicle presque dans la figure et poursuit sans vous laisser le temps de placer un mot :</p>
 <div class="conversation">
-<p>— Il faut célébrer cela ! C’est la tradition !</p>
+<p>— Il faut célébrer cela ! C’est la tradition !</p>
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {
@@ -199,7 +199,7 @@ const island5 = {
   "witch-my-alcohol": {
     "text": `
 <div class="conversation">
-<p>— Je vous suis très reconnaissante de votre accueil ! vous exclamez-vous chaleureusement. Et, pour honorer la tradition, j’ai également une excellente boisson à vous offrir !</p>
+<p>— Je vous suis très reconnaissante de votre accueil ! vous exclamez-vous chaleureusement. Et, pour honorer la tradition, j’ai également une excellente boisson à vous offrir !</p>
 </div>
 
 <p>La grosse femme paraît désarçonnée par votre geste. Après vous avoir remis la coupe — que vous n’avez aucune intention de boire — elle accepte néanmoins la calebasse que vous lui tendez. La débouchant, elle l’approche de ses narines et son expression s’éclaircit aussitôt. Oubliant tout le reste, elle porte la calebasse à ses lèvres et se met à boire goulûment l’alcool qu’elle contient.</p>
@@ -232,7 +232,7 @@ const island5 = {
 <p>L’intérieur de la hutte est encombré d’un invraisemblable fatras d’objets étranges. Ils sont accrochés aux murs, suspendus au plafond, disposés sur des meubles en bois ou éparpillés sur le sol terreux. Mais vous n’avez pas le temps de les examiner tous, loin de là ! Le cri furieux de la grosse femme vient vous frapper les oreilles et vous l’entendez s’approcher à grands pas.</p>
 
 <div class="conversation">
-<p>— Sale petite voleuse ! Tu vas avoir ce que tu mérites !</p>
+<p>— Sale petite voleuse ! Tu vas avoir ce que tu mérites !</p>
 </div>
 
 <p>Pressée par l’urgence, n’ayant aucune idée de ce qui peut vous être utile, vous posez par hasard les yeux sur les objets disposés sur une petite table voisine. Et refermez votre poigne sur l’un d’eux.</p>
@@ -285,7 +285,7 @@ const island5 = {
 <p>Respirant avec difficulté, incapable du moindre mouvement, vous voyez la grosse femme s’approcher sans hâte et s’accroupir à côté de vous.</p>
 
 <div class="conversation">
-<p>— Voilà ce qui arrive quand on touche à n’importe quoi sans savoir ce que c’est, fait-elle en vous prenant le visage entre ses doigts épais. Mais, puisque tu t’intéresses à la sorcellerie, je vais prendre tout le temps nécessaire pour te montrer ce qu’elle permet d’accomplir.</p>
+<p>— Voilà ce qui arrive quand on touche à n’importe quoi sans savoir ce que c’est, fait-elle en vous prenant le visage entre ses doigts épais. Mais, puisque tu t’intéresses à la sorcellerie, je vais prendre tout le temps nécessaire pour te montrer ce qu’elle permet d’accomplir.</p>
 </div>
 
 <p>La sorcière ne vous tuera pas et elle finira même par vous rendre une forme de liberté, mais ce que vous aurez subi entre ses mains ne vous laissera pas en mesure de poursuivre encore la moindre quête.</p>
@@ -316,7 +316,7 @@ const island5 = {
 <p>À peine capable du moindre mouvement, vous voyez la grosse femme s’approcher sans hâte et s’accroupir à côté de vous.</p>
 
 <div class="conversation">
-<p>— Quelle jolie prise, fait-elle, vous prenant le visage entre ses doigts épais. Elle va certainement m’occuper pendant bien des jours.</p>
+<p>— Quelle jolie prise, fait-elle, vous prenant le visage entre ses doigts épais. Elle va certainement m’occuper pendant bien des jours.</p>
 </div>
 
 <p>La sorcière ne vous tuera pas et elle finira même par vous rendre une forme de liberté, mais ce que vous aurez subi entre ses mains ne vous laissera pas en mesure de poursuivre encore la moindre quête.</p>
@@ -330,7 +330,7 @@ const island5 = {
 <p>À peine capable du moindre mouvement, vous voyez la grosse femme s’approcher sans hâte et s’accroupir à côté de vous.</p>
 
 <div class="conversation">
-<p>— J’ai toujours beaucoup d’idées à expérimenter sur les gens qui me tombent entre les mains, fait-elle, vous prenant le visage entre ses doigts épais. Mais, pour une petite voleuse dans ton genre, je vais me donner plus de mal que d’ordinaire.</p>
+<p>— J’ai toujours beaucoup d’idées à expérimenter sur les gens qui me tombent entre les mains, fait-elle, vous prenant le visage entre ses doigts épais. Mais, pour une petite voleuse dans ton genre, je vais me donner plus de mal que d’ordinaire.</p>
 </div>
 
 <p>La sorcière ne vous tuera pas et elle finira même par vous rendre une forme de liberté, mais ce que vous aurez subi entre ses mains ne vous laissera pas en mesure de poursuivre encore la moindre quête.</p>
@@ -377,7 +377,7 @@ const island5 = {
 <p>La grosse femme apparaît à l’entrée de la hutte et ses yeux se posent instantanément sur vous.</p>
 
 <div class="conversation">
-<p>— Sale petite voleuse ! crache-t-elle. D’où sors-tu ?</p>
+<p>— Sale petite voleuse ! crache-t-elle. D’où sors-tu ?</p>
 </div>
 
 <p>Elle se dirige droit sur vous en vociférant des menaces.</p>
@@ -389,7 +389,7 @@ const island5 = {
 <p>Vous vous glissez à pas prudents jusqu’à l’entrée de la hutte. Un coup d’oeil rapide à l’intérieur vous apprend qu’elle est effectivement vide. Vous êtes sur le point d’y pénétrer lorsqu’un bruit de pas vous fait vous retourner : une grosse femme enroulée dans un paréo pourpre est en train de regagner la hutte. Ses cheveux courts sont hérissés comme des piquants et elle est chargée de nombreux bijoux en or. À sa taille, vous remarquez un filet gris et un petit couteau en métal. Il est trop tard pour regagner votre cachette, elle vous a vue.</p>
 
 <div class="conversation">
-<p>— Tiens, tiens, tiens, fait-elle d’une voix peu affable. J’étais partie chercher mon intruse et je la trouve sur le seuil de chez moi…</p>
+<p>— Tiens, tiens, tiens, fait-elle d’une voix peu affable. J’étais partie chercher mon intruse et je la trouve sur le seuil de chez moi…</p>
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {

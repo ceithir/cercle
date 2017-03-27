@@ -148,17 +148,17 @@ const intro = {
 <p>Vous êtes en train de vous demander dans quelle direction il serait préférable de longer la plage lorsqu’un bruit d’éclaboussures vous fait tourner la tête. Surgie de l’eau, les deux bras posés sur le flotteur de votre pirogue, une jeune fille vous observe avec une curiosité ravie.</p>
 
 <div class="conversation">
-<p>— Salut, vous dit-elle d’un ton enjoué. Tu viens de loin ?</p>
-<p>— Assez loin, répondez-vous une fois votre surprise surmontée. Tu veux monter ?</p>
-<p>— Attends un moment. J’ai lâché quelque chose en remontant et je préfère le récupérer tout de suite.</p>
+<p>— Salut, vous dit-elle d’un ton enjoué. Tu viens de loin ?</p>
+<p>— Assez loin, répondez-vous une fois votre surprise surmontée. Tu veux monter ?</p>
+<p>— Attends un moment. J’ai lâché quelque chose en remontant et je préfère le récupérer tout de suite.</p>
 </div>
 
 <p>Elle plonge sans attendre de réponse et, à travers l’eau claire, vous la voyez qui s’enfonce vers un foisonnement de récifs coralliens. Quelques brefs instants plus tard, elle refait surface et se hisse alors sans se faire prier à bord de votre pirogue. Elle tient à la main un couteau en ivoire qui est sans doute l’objet qu’elle avait perdu. L’idée vous effleure qu’elle était en train de ramasser des coquillages ou des crustacés sous l’eau lorsque vous êtes arrivée, mais elle possèderait dans ce cas un filet où ranger ses prises et elle n’a absolument rien sur elle.</p>
 
 <div class="conversation">
-<p>— Je m’appelle Raiahui. Et toi ?</p>
-<p>— Mananuiva. Ton village est loin d’ici ?</p>
-<p>— Il est du côté du lagon. Je vais te montrer la passe la plus proche.</p>
+<p>— Je m’appelle Raiahui. Et toi ?</p>
+<p>— Mananuiva. Ton village est loin d’ici ?</p>
+<p>— Il est du côté du lagon. Je vais te montrer la passe la plus proche.</p>
 </div>
 
 <p>Raiahui a à peu près le même âge que vous. Elle est un peu plus grande, un peu plus mince et sa peau brune est légèrement plus claire. Ses cheveux noirs ont été coupés de manière curieusement courte, ne lui tombant même pas jusqu’aux épaules.</p>
@@ -168,8 +168,8 @@ const intro = {
 <p>Vous accédez bientôt à la passe et vous y engagez. Sur votre gauche, l’île que vous avez longé jusqu’ici est restée couverte d’un enchevêtrement de nombreux palmiers. Sur votre droite, vous distinguez à une certaine distance une autre île de l’atoll, qui n’est guère plus qu’une bande de sable nu. En-dessous de votre pirogue, l’eau est d’une limpidité qui contraste avec le bleu profond de l’océan comme du lagon.</p>
 
 <div class="conversation">
-<p>— Est-ce que tu es une bonne nageuse ? vous demande soudain Raiahui.</p>
-<p>— Très bonne.</p>
+<p>— Est-ce que tu es une bonne nageuse ? vous demande soudain Raiahui.</p>
+<p>— Très bonne.</p>
 </div>
 
 <p>Votre réponse la fait sourire, mais elle ne vous explique pas pourquoi.</p>
@@ -195,31 +195,31 @@ const intro = {
 <p>La foule s’écarte soudain pour laisser passer un homme aux cheveux presque ras, dont le corps noueux est marqué de diverses cicatrices.</p>
 
 <div class="conversation">
-<p>— C’est le chef de la tribu, Ataroa, vous glisse Raiahui tandis que vous descendez à votre tour de la pirogue.</p>
+<p>— C’est le chef de la tribu, Ataroa, vous glisse Raiahui tandis que vous descendez à votre tour de la pirogue.</p>
 </div>
 
 <p>Vous vous inclinez et vous présentez respectueusement, espérant que l’étiquette locale n’est pas plus exigeante. Ataroa vous examine pendant un instant, sans que ses traits rudes ne laissent filtrer la moindre expression. Puis il hoche la tête.</p>
 
 <div class="conversation">
-<p>— Tu es la bienvenue parmi nous. Es-tu venue y chercher quelque chose ?</p>
-<p>— J’accomplis mon voyage d’initiation, répondez-vous. Je suis à la recherche d’un signe pour guider mon avenir.</p>
+<p>— Tu es la bienvenue parmi nous. Es-tu venue y chercher quelque chose ?</p>
+<p>— J’accomplis mon voyage d’initiation, répondez-vous. Je suis à la recherche d’un signe pour guider mon avenir.</p>
 </div>
 
 <p>Cette explication vous a valu un certain nombre de regards étonnés depuis le début de votre voyage : les rites de passage à l’âge adulte prennent des formes très variées à travers l’archipel, mais leur rôle véritable reste d’intégrer les adolescents à la communauté des adultes, non de les lancer dans le genre de quête mystique que pourrait entreprendre un chamane. Si votre réponse surprend Ataroa, il n’en laisse cependant rien paraître.</p>
 
-<p>— La coïncidence est heureuse, dit-il. Il y a également dans notre tribu quelqu’un qui doit accomplir son rite de passage, mais elle devait attendre pour cela la venue d’un étranger.</p>
+<p>— La coïncidence est heureuse, dit-il. Il y a également dans notre tribu quelqu’un qui doit accomplir son rite de passage, mais elle devait attendre pour cela la venue d’un étranger.</p>
 
 <p>D’un geste de la main, il désigne Raiahui, qui a clairement du mal à contenir son excitation.</p>
 
 <div class="conversation">
-<p>— En quoi consiste ce rite ? demandez-vous, quelque peu étonnée.</p>
-<p>— Il s’agit d’une simple course entre l’île où nous sommes et sa voisine, rien de plus. Si Raiahui gagne, elle pourra rejoindre les adultes de la tribu. Si tu gagnes…</p>
+<p>— En quoi consiste ce rite ? demandez-vous, quelque peu étonnée.</p>
+<p>— Il s’agit d’une simple course entre l’île où nous sommes et sa voisine, rien de plus. Si Raiahui gagne, elle pourra rejoindre les adultes de la tribu. Si tu gagnes…</p>
 </div>
 
 <p>Il s’arrête brièvement pour réfléchir, puis reprend :</p>
 
 <div class="conversation">
-<p>— Il y a une boisson sacrée, appelée l’Écume des Profondeurs, que nous ne préparons presque jamais tant les ingrédients sont difficiles à rassembler. Celui qui en boit entre en contact avec le monde des esprits et en reçoit sagesse et connaissance. Mes prédécesseurs recouraient à l’Écume des Profondeurs lorsque la tribu était en danger ; moi-même, je n’ai pas eu l’occasion de le faire jusqu’à présent. Si tu remportes la course, tu pourras en boire. Acceptes-tu ?</p>
+<p>— Il y a une boisson sacrée, appelée l’Écume des Profondeurs, que nous ne préparons presque jamais tant les ingrédients sont difficiles à rassembler. Celui qui en boit entre en contact avec le monde des esprits et en reçoit sagesse et connaissance. Mes prédécesseurs recouraient à l’Écume des Profondeurs lorsque la tribu était en danger ; moi-même, je n’ai pas eu l’occasion de le faire jusqu’à présent. Si tu remportes la course, tu pourras en boire. Acceptes-tu ?</p>
 </div>
 
 <p>La mention de cette récompense a suscité quelques exclamations de surprise au sein de l’assistance. Cette Écume des Profondeurs vous apportera-t-elle vraiment les réponses que vous recherchez ? La magie réelle n’est pas une chose aussi commune que les légendes le font croire, ainsi que vous avez pu l’observer depuis le début de votre voyage. D’un autre côté, si vous ne saisissez pas toutes les opportunités qui se présentent, il est probable que votre quête n’aboutira jamais à rien.</p>
@@ -227,13 +227,13 @@ const intro = {
 <p>D’un point de vue beaucoup plus pratique, vous soupçonnez que la tribu ne vous accordera pas l’hospitalité si vous refusez de participer à cette course et vous n’éprouvez aucune envie de repartir sur votre pirogue avant une bonne nuit de sommeil.</p>
 
 <div class="conversation">
-<p>— J’accepte de participer à ce rite de passage, dites-vous.</p>
+<p>— J’accepte de participer à ce rite de passage, dites-vous.</p>
 </div>
 
 <p>Un gloussement joyeux échappe à Raiahui avant même que vous n’ayiez achevé la phrase ; un murmure de contentement général lui fait écho au sein de la foule.</p>
 
 <div class="conversation">
-<p>— C’est parfait, dit Ataroa. La course aura lieu d’ici une journée et nous tiendrons ce soir un festin en cet honneur.</p>
+<p>— C’est parfait, dit Ataroa. La course aura lieu d’ici une journée et nous tiendrons ce soir un festin en cet honneur.</p>
 </div>
 
 <p>Il distribue des instructions autour de lui et les spectateurs se dispersent tous pour aller préparer le repas. Raiahui s’absente brièvement pour aller passer un pagne, puis revient vous trouver, un large sourire toujours peint sur le visage. Vous observez sa souple musculature d’un œil calculateur, vous demandant à quel point elle sera difficile à battre. Vous êtes restée en deçà de la vérité en lui disant que vous étiez une très bonne nageuse : vous n’avez jamais rencontré une jeune fille de votre âge capable de vous surpasser.</p>
@@ -255,16 +255,16 @@ const intro = {
 <p>Le centre du village vous réserve cependant une surprise impressionnante. Non loin de l’espace que certains des habitants sont en train de préparer pour le festin s’élève un monument fait de très nombreux trophées de pêche. Vous observez des carapaces de tortues, des rostres d’espadon, de nombreux crânes allongés de dauphins… Au centre s’élève une mâchoire mince et allongée, dont la longueur dépasse le double de votre taille ; elle est hérissée de dents épaisses et pointues.</p>
 
 <div class="conversation">
-<p>— C’est la mâchoire d’un cachalot, vous explique Raiahui, souriant de votre étonnement.</p>
+<p>— C’est la mâchoire d’un cachalot, vous explique Raiahui, souriant de votre étonnement.</p>
 </div>
 
 <p>Vous avez entendu parler de ces animaux énormes, mais vous n’en avez jamais vu aucun, ce dont vous vous félicitez à la vue de ce vestige.</p>
 
 <div class="conversation">
-<p>— Comment est-ce que vous avez réussi à pêcher une chose pareille ?</p>
-<p>— Je n’étais pas très grande à l’époque et je me souviens surtout d’avoir mangé du cachalot pendant plusieurs jours. Ils étaient une vingtaine de chasseurs et ils ont eu énormément de mal à séparer l’animal du groupe dont il faisait partie et à le faire s’échouer près de l’atoll. C’est dommage que tu ne puisses pas entendre Faanarua t’expliquer comment ils ont fait.</p>
-<p>— Qui est Faanarua ?</p>
-<p>— C’était l’une des meilleures chasseuses de la tribu… et elle racontait vraiment très bien les histoires. Mais elle est devenue un peu bizarre et on ne la voit plus souvent. Je crois qu’elle est de passage en ce moment, mais je ne pense pas qu’elle aura envie de venir ce soir.</p>
+<p>— Comment est-ce que vous avez réussi à pêcher une chose pareille ?</p>
+<p>— Je n’étais pas très grande à l’époque et je me souviens surtout d’avoir mangé du cachalot pendant plusieurs jours. Ils étaient une vingtaine de chasseurs et ils ont eu énormément de mal à séparer l’animal du groupe dont il faisait partie et à le faire s’échouer près de l’atoll. C’est dommage que tu ne puisses pas entendre Faanarua t’expliquer comment ils ont fait.</p>
+<p>— Qui est Faanarua ?</p>
+<p>— C’était l’une des meilleures chasseuses de la tribu… et elle racontait vraiment très bien les histoires. Mais elle est devenue un peu bizarre et on ne la voit plus souvent. Je crois qu’elle est de passage en ce moment, mais je ne pense pas qu’elle aura envie de venir ce soir.</p>
 </div>
 `
     ,
@@ -286,17 +286,17 @@ const intro = {
     "text":
 `
 <div class="conversation">
-<p>— Si j’ai bien compris, tu ne pouvais pas accomplir ton rite de passage sans la venue d’un étranger ?</p>
-<p>— C’est ça. Mais il faut que ce soit quelqu’un en bonne santé et suffisamment robuste, bien sûr, ou ce serait trop facile.</p>
-<p>— Vous avez souvent des visiteurs ?</p>
-<p>— Pas tellement, non. J’attends quelqu’un depuis le début de la saison sèche. S’il ne vient personne qui convienne pendant une année entière, quelques adultes emmènent ceux qui ont atteint l’âge nécessaire jusqu’à l’une des îles habitées les plus proches, pour y trouver des gens qui acceptent de participer à la course. Mais grâce à toi, je vais pouvoir devenir une adulte dès demain soir. Je suis vraiment contente.</p>
-<p>— Il y a d’abord notre course, ne pouvez-vous vous empêcher de lui faire remarquer.</p>
+<p>— Si j’ai bien compris, tu ne pouvais pas accomplir ton rite de passage sans la venue d’un étranger ?</p>
+<p>— C’est ça. Mais il faut que ce soit quelqu’un en bonne santé et suffisamment robuste, bien sûr, ou ce serait trop facile.</p>
+<p>— Vous avez souvent des visiteurs ?</p>
+<p>— Pas tellement, non. J’attends quelqu’un depuis le début de la saison sèche. S’il ne vient personne qui convienne pendant une année entière, quelques adultes emmènent ceux qui ont atteint l’âge nécessaire jusqu’à l’une des îles habitées les plus proches, pour y trouver des gens qui acceptent de participer à la course. Mais grâce à toi, je vais pouvoir devenir une adulte dès demain soir. Je suis vraiment contente.</p>
+<p>— Il y a d’abord notre course, ne pouvez-vous vous empêcher de lui faire remarquer.</p>
 </div>
 
 <p>Le sourire qui se dessine sur le visage de Raiahui vous dévoile toutes ses dents.</p>
 
 <div class="conversation">
-<p>— Je suis désolée pour ta quête, Mananuiva, mais c’est moi qui gagnerai.
+<p>— Je suis désolée pour ta quête, Mananuiva, mais c’est moi qui gagnerai.
 </div>
 `
     ,
@@ -308,28 +308,28 @@ const intro = {
 <p>À en juger par la direction dans laquelle le soleil décline, l’île où se trouve le village est située à l’extrémité sud de l’atoll. Depuis la plage où a accosté votre pirogue, vous pouvez distinguer les contours des autres îles, mais pas en déterminer le nombre exact. Raiahui vous dessine un plan sommaire sur le sable.</p>
 
 <div class="conversation">
-<p>— Nous sommes ici, dit-elle en traçant un trait légèrement courbe. Juste à droite, c’est la passe par laquelle nous sommes entrées dans le lagon et, de l’autre côté, c’est le point d’arrivée de notre course. Tu as dû voir au passage à quoi ça ressemble : il n’y a même pas un buisson !
+<p>— Nous sommes ici, dit-elle en traçant un trait légèrement courbe. Juste à droite, c’est la passe par laquelle nous sommes entrées dans le lagon et, de l’autre côté, c’est le point d’arrivée de notre course. Tu as dû voir au passage à quoi ça ressemble : il n’y a même pas un buisson !
 Son doigt continue à tracer des formes sans grande précision, faisant progresser la représentation vers le nord.</p>
-<p>— Après, il y a un îlot tout petit, qui donne l’impression qu’il va disparaître à chaque fois que revient la saison des pluies. Et ensuite, il y a l’île où habite le Vieux Fainéant. C’est là qu’on trouve les plus gros arbres de l’atoll, mais je ne te conseille pas d’aller les voir de près : le Vieux n’est pas sincèrement accueillant. Il est assez malin pour nous laisser tranquille, mais les étrangers, c’est une autre histoire.</p>
+<p>— Après, il y a un îlot tout petit, qui donne l’impression qu’il va disparaître à chaque fois que revient la saison des pluies. Et ensuite, il y a l’île où habite le Vieux Fainéant. C’est là qu’on trouve les plus gros arbres de l’atoll, mais je ne te conseille pas d’aller les voir de près : le Vieux n’est pas sincèrement accueillant. Il est assez malin pour nous laisser tranquille, mais les étrangers, c’est une autre histoire.</p>
 </div>
 
 <p>Vous allez lui demander des précisions, mais elle est déjà en train de passer à la suite :</p>
 <div class="conversation">
-<p>— Et là, c’est la demeure de la sorcière !</p>
-<p>— Une sorcière ?</p>
+<p>— Et là, c’est la demeure de la sorcière !</p>
+<p>— Une sorcière ?</p>
 </div>
 
 <p>Vous vous demandez si Raiahui n’est pas en train de se moquer de vous, mais elle semble tout à fait sincère et très désireuse de vous fournir davantage de détails.</p>
 
 <div class="conversation">
-<p>— Lorsque j’étais encore petite, raconte-t-elle avec une excitation nostalgique, il n’y avait rien qui émergeait de l’eau à cet endroit de l’atoll. Et puis, un beau matin, il y a une île qui est apparue là ! Certains pensent qu’elle est venue en flottant, d’autres qu’elle est en fait sur le dos d’un crabe géant au service de la sorcière. L’eau est très sombre tout autour, alors on ne peut pas bien voir… Enfin bon, il y a plusieurs adultes qui sont partis explorer l’île et ils ne sont jamais revenus. Depuis, bien sûr, personne n’y va.</p>
-<p>— Mais comment est-ce que vous savez qu’il y a une sorcière, dans ce cas ?</p>
-<p>— On l’aperçoit de loin, de temps en temps. Elle est très grosse, avec des cheveux hérissés comme des épines d’oursins, et elle porte beaucoup de bijoux dorés bizarres. Elle a souvent l’air occupée, mais personne ne sait vraiment ce qu’elle fait.</p>
+<p>— Lorsque j’étais encore petite, raconte-t-elle avec une excitation nostalgique, il n’y avait rien qui émergeait de l’eau à cet endroit de l’atoll. Et puis, un beau matin, il y a une île qui est apparue là ! Certains pensent qu’elle est venue en flottant, d’autres qu’elle est en fait sur le dos d’un crabe géant au service de la sorcière. L’eau est très sombre tout autour, alors on ne peut pas bien voir… Enfin bon, il y a plusieurs adultes qui sont partis explorer l’île et ils ne sont jamais revenus. Depuis, bien sûr, personne n’y va.</p>
+<p>— Mais comment est-ce que vous savez qu’il y a une sorcière, dans ce cas ?</p>
+<p>— On l’aperçoit de loin, de temps en temps. Elle est très grosse, avec des cheveux hérissés comme des épines d’oursins, et elle porte beaucoup de bijoux dorés bizarres. Elle a souvent l’air occupée, mais personne ne sait vraiment ce qu’elle fait.</p>
 </div>
 
 <p>Les trois îles qui complètent l’atoll du côté ouest sont visiblement loin d’inspirer autant d’intérêt à Raiahui, qui les expédie en quelques mots :</p>
 <div class="conversation">
-<p>— Celle-ci est très petite et il n’y a presque rien. Les deux dernières sont de taille moyenne et elles ont beaucoup de palmiers, comme cette île-ci.</p>
+<p>— Celle-ci est très petite et il n’y a presque rien. Les deux dernières sont de taille moyenne et elles ont beaucoup de palmiers, comme cette île-ci.</p>
 </div>
 `
     ,
@@ -367,15 +367,15 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 <p>Après quelques questions anodines, vous vous aventurez à l’interroger sur le rite de passage qu’impose sa tribu pour accéder au statut d’adulte :</p>
 
 <div class="conversation">
-<p>—  Pourquoi est-ce que la venue d’un étranger est nécessaire ? Est-ce qu’il ne serait pas plus simple d’organiser chaque année une course entre les adolescents qui sont assez âgés ?</p>
-<p>— Tous les jeunes de la tribu ont l’habitude d’être en compétition les uns avec les autres depuis leur enfance, vous répond Ataroa tout en décortiquant adroitement un crabe de la pointe de son couteau. Cela ne peut plus rien leur apprendre. En les confrontant à quelqu’un qu’ils ne connaissent pas, le rite les place dans une situation incertaine, où ils doivent anticiper et s’adapter. L’épreuve est loin d’être purement physique. Si tu veux la victoire, tu ne l’obtiendras que par l’intelligence.</p>
-<p>— Raiahui a l’air certaine qu’elle va gagner.</p>
+<p>—  Pourquoi est-ce que la venue d’un étranger est nécessaire ? Est-ce qu’il ne serait pas plus simple d’organiser chaque année une course entre les adolescents qui sont assez âgés ?</p>
+<p>— Tous les jeunes de la tribu ont l’habitude d’être en compétition les uns avec les autres depuis leur enfance, vous répond Ataroa tout en décortiquant adroitement un crabe de la pointe de son couteau. Cela ne peut plus rien leur apprendre. En les confrontant à quelqu’un qu’ils ne connaissent pas, le rite les place dans une situation incertaine, où ils doivent anticiper et s’adapter. L’épreuve est loin d’être purement physique. Si tu veux la victoire, tu ne l’obtiendras que par l’intelligence.</p>
+<p>— Raiahui a l’air certaine qu’elle va gagner.</p>
 </div>
 
 <p>Ataroa a un bref hochement de tête.</p>
 
 <div class="conversation">
-<p>— Si elle perd, ce sera à cause de cette présomption. Ne commets pas la même erreur lorsqu’il faudra commencer la course.</p>
+<p>— Si elle perd, ce sera à cause de cette présomption. Ne commets pas la même erreur lorsqu’il faudra commencer la course.</p>
 </div>
 `
     ,
@@ -387,22 +387,22 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 <p>La plupart des hommes sont occupés à satisfaire leur appétit, mais certains d’entre eux se révèlent curieux d’en savoir davantage sur vous. Leurs questions portent surtout sur vos capacités de nageuse et cherchent clairement à déterminer si vous vous montrerez à la hauteur lors de la compétition du lendemain. Vous restez modeste dans votre description de vous-même : ce que vous dites parviendra peut-être aux oreilles de Raiahui et il vous semble préférable qu’elle vous sous-estime.</p>
 
 <div class="conversation">
-<p>— Est-ce que ta tribu organise également des compétitions traditionnelles ? vous demande un homme du nom de Harumu.</p>
-<p>— Oui. Chaque année, beaucoup d’oiseaux viennent pondre sur une toute petite île proche de la nôtre et il y a une course dont le but est d’être le premier à en rapporter des oeufs.</p>
-<p>— Est-ce qu’il t’est arrivé de gagner ?</p>
-<p>— Oh, il n’y a que les hommes qui participent.</p>
+<p>— Est-ce que ta tribu organise également des compétitions traditionnelles ? vous demande un homme du nom de Harumu.</p>
+<p>— Oui. Chaque année, beaucoup d’oiseaux viennent pondre sur une toute petite île proche de la nôtre et il y a une course dont le but est d’être le premier à en rapporter des oeufs.</p>
+<p>— Est-ce qu’il t’est arrivé de gagner ?</p>
+<p>— Oh, il n’y a que les hommes qui participent.</p>
 </div>
 
 <p>Une expression étonnée se peint sur les traits de Harumu.</p>
 
 <div class="conversation">
-<p>— C’est une coutume étrange, commente-t-il. Est-ce qu’elle a une raison particulière ?</p>
+<p>— C’est une coutume étrange, commente-t-il. Est-ce qu’elle a une raison particulière ?</p>
 </div>
 
 <p>Ne vous sentant pas en mesure d’apporter à cette question la réponse complexe qu’il lui faudrait, vous vous contentez d’une justification purement technique :</p>
 <div class="conversation">
-<p>— Les hommes nagent plus vite, donc ce ne serait pas une course équitable.</p>
-<p>— Oh… Oui, évidemment…</p>
+<p>— Les hommes nagent plus vite, donc ce ne serait pas une course équitable.</p>
+<p>— Oh… Oui, évidemment…</p>
 </div>
 
 <p>À en juger par la perplexité que laisse paraître son visage, cette raison n’a en réalité rien d’évidente pour lui.</p>
@@ -416,16 +416,16 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 <p>Lorsque vous engagez la conversation avec quelques-unes des femmes présentes, vous vous attendez à ce que cela vous fournisse un aperçu de la vie domestique de la tribu. Mais, comme vous ne tardez pas à vous en rendre compte, elles ont davantage envie de vous parler de sujets tels que les plus gros poissons qu’il leur est arrivé d’attraper. Certaines des descriptions qu’elles vous font vous laissent pour le moins dubitative !</p>
 
 <div class="conversation">
-<p>— Est-ce qu’il vous arrive de pêcher simplement dans le lagon ? finissez-vous par demander, car elles mentionnent fréquemment qu’elles réalisent leurs prises au large.</p>
+<p>— Est-ce qu’il vous arrive de pêcher simplement dans le lagon ? finissez-vous par demander, car elles mentionnent fréquemment qu’elles réalisent leurs prises au large.</p>
 </div>
 
 <p>La question fait rire une femme du nom d’Ariinea, qui était il y a à peine un instant en train de vous parler d’un espadon d’une taille improbable.</p>
 
 <div class="conversation">
-<p>— Assez souvent, par paresse, vous répond-elle, mais ce n’est pas très excitant. La plupart des poissons du lagon ne sont pas très gros. On se lasse vite de ne manger que ça, à moins d’être le Vieux Fainéant.</p>
-<p>— Le Vieux Fainéant ?</p>
-<p>— Il habite sur une île de l’autre côté de l’atoll, vous dit Ariinea, et il passe tout son temps à faire le moins d’effort possible.</p>
-<p>— Il peut tout de même être dangereux, intervient une autre femme, surtout lorsqu’on ne le connaît pas. Je te conseille de ne pas approcher de cette partie de l’atoll, Mananuiva.</p>
+<p>— Assez souvent, par paresse, vous répond-elle, mais ce n’est pas très excitant. La plupart des poissons du lagon ne sont pas très gros. On se lasse vite de ne manger que ça, à moins d’être le Vieux Fainéant.</p>
+<p>— Le Vieux Fainéant ?</p>
+<p>— Il habite sur une île de l’autre côté de l’atoll, vous dit Ariinea, et il passe tout son temps à faire le moins d’effort possible.</p>
+<p>— Il peut tout de même être dangereux, intervient une autre femme, surtout lorsqu’on ne le connaît pas. Je te conseille de ne pas approcher de cette partie de l’atoll, Mananuiva.</p>
 </div>
 
 <p>Ariinea fait la moue, mais ne conteste pas la validité de cette recommandation.</p>
@@ -441,12 +441,12 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 <p>Un jeune garçon du nom de Varenui se montre en revanche intéressé par le récit de votre voyage. Tout lui raconter serait bien long, mais vous prenez le temps de lui décrire quelques-uns des lieux les plus mémorables qu’il vous est arrivé de visiter. Il prête une attention fascinée au moindre détail et pose de nombreuses questions.</p>
 
 <div class="conversation">
-<p>— Tu n’as jamais visité une autre île habitée ? finissez-vous par lui demander.
-<p>— Non. Même les adultes ne le font presque jamais… enfin, à part Faanarua, mais c’est à peine si elle fait encore partie de la tribu.
-<p>— Qui est-ce ?
-<p>— C’est… quelqu’un de bizarre. Elle s’est construit une pirogue avec une voile pour voyager et visiter autant d’autres îles que possible. Elle ne passe généralement ici que quelques jours par an. Elle est justement revenue avant-hier et je voulais lui demander de me raconter ses voyages, mais elle m’a envoyé promener.
-<p>— Elle assiste au festin ? demandez-vous en regardant autour de vous.</p>
-<p>— Non, elle n’est même pas au village. Elle s’est installée sur l’île de l’atoll qui se trouve le plus à l’ouest et elle ne voit presque personne.</p>
+<p>— Tu n’as jamais visité une autre île habitée ? finissez-vous par lui demander.
+<p>— Non. Même les adultes ne le font presque jamais… enfin, à part Faanarua, mais c’est à peine si elle fait encore partie de la tribu.
+<p>— Qui est-ce ?
+<p>— C’est… quelqu’un de bizarre. Elle s’est construit une pirogue avec une voile pour voyager et visiter autant d’autres îles que possible. Elle ne passe généralement ici que quelques jours par an. Elle est justement revenue avant-hier et je voulais lui demander de me raconter ses voyages, mais elle m’a envoyé promener.
+<p>— Elle assiste au festin ? demandez-vous en regardant autour de vous.</p>
+<p>— Non, elle n’est même pas au village. Elle s’est installée sur l’île de l’atoll qui se trouve le plus à l’ouest et elle ne voit presque personne.</p>
 </div>
 `
     ,
@@ -460,19 +460,19 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 <p>Après avoir décrit à votre audience amusée quelques-unes des fêtes traditionnelles les plus extravagantes que vous avez observées, vous faites une pause pour reprendre votre souffle. Une jeune fille appelée Runuhati va aussitôt vous chercher une moitié de langouste, présumant visiblement que manger vous donnera la force de poursuivre votre récit. Vous acceptez avec reconnaissance, mais, si votre appétit est resté aiguisé, il n’en va pas de même de votre couteau en os, qui n’est plus en état de découper grand-chose.</p>
 
 <div class="conversation">
-<p>— Est-ce que je peux t’emprunter ton couteau ? demandez-vous à Runuhati.</p>
+<p>— Est-ce que je peux t’emprunter ton couteau ? demandez-vous à Runuhati.</p>
 </div>
 
 <p>La jeune fille ouvre aussitôt de grands yeux, avec une expression presque affolée.</p>
 
 <div class="conversation">
-<p>— Je… Non… C’est…</p>
+<p>— Je… Non… C’est…</p>
 </div>
 
 <p>Une fille un peu plus âgée vient à son aide :</p>
 
 <div class="conversation">
-<p>— C’est quelque chose d’entièrement personnel, que nous ne prêtons jamais, même entre nous. Donne-moi ta langouste, je vais te la décortiquer.</p>
+<p>— C’est quelque chose d’entièrement personnel, que nous ne prêtons jamais, même entre nous. Donne-moi ta langouste, je vais te la décortiquer.</p>
 </div>
 
 <p>Après vous être restaurée et avoir ajouté quelques récits encore plus fantaisistes aux précédents, vous prenez congé des jeunes filles.</p>
@@ -490,9 +490,9 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 <p>Raiahui est allongée dans un hamac peu distant du vôtre. Elle ouvre un oeil tandis que vous entreprenez de vous étirer.</p>
 
 <div class="conversation">
-<p>— Déjà levée ? fait-elle d’une voix pâteuse. Tu devrais te reposer pour la course de ce soir.</p>
-<p>— Je ne vais pas rester ici toute la journée à ne rien faire qu’attendre.</p>
-<p>— Comme tu veux, répond-elle en bâillant, mais ne t’approche pas des deux îles au nord de l’atoll…</p>
+<p>— Déjà levée ? fait-elle d’une voix pâteuse. Tu devrais te reposer pour la course de ce soir.</p>
+<p>— Je ne vais pas rester ici toute la journée à ne rien faire qu’attendre.</p>
+<p>— Comme tu veux, répond-elle en bâillant, mais ne t’approche pas des deux îles au nord de l’atoll…</p>
 </div>
 
 <p>En l’espace d’à peine quelques respirations, elle s’est déjà rendormie.</p>

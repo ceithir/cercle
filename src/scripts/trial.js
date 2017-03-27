@@ -7,16 +7,16 @@ const raiahuiGoodEndText = `
 <p>La journée est à présent sur le point de toucher à son terme. La course est terminée depuis quelques instants déjà et sur l’île sablonneuse se déroule une cérémonie succincte, qu’aucune personne étrangère à la tribu n’est plus là pour observer.</p>
 
 <div class="conversation">
-<p>— Je te félicite, Raiahui, dit Ataroa. Tu as remporté l’épreuve et prouvé que tu étais digne de faire partie des adultes de la tribu.</p>
+<p>— Je te félicite, Raiahui, dit Ataroa. Tu as remporté l’épreuve et prouvé que tu étais digne de faire partie des adultes de la tribu.</p>
 </div>
 
 <p>Des bruits d’approbation parcourent les hommes et les femmes qui se trouvent là. Raiahui hoche la tête avec un mélange de respect, de fierté et de joie.</p>
 
 <div class="conversation">
-<p>— Cette épreuve t’a-t-elle appris quelque chose ? demande le chef.</p>
-<p>— Elle m’a beaucoup appris.</p>
-<p>— Je souhaite que tu n’oublies pas Mananuiva à l’avenir. Même si elle a participé à ce rite dans d’autres intentions, c’est grâce à elle que tu es désormais une adulte.</p>
-<p>— Je ne l’oublierai pas.</p>
+<p>— Cette épreuve t’a-t-elle appris quelque chose ? demande le chef.</p>
+<p>— Elle m’a beaucoup appris.</p>
+<p>— Je souhaite que tu n’oublies pas Mananuiva à l’avenir. Même si elle a participé à ce rite dans d’autres intentions, c’est grâce à elle que tu es désormais une adulte.</p>
+<p>— Je ne l’oublierai pas.</p>
 </div>
 
 <p>Aucune autre parole n’est nécessaire. Un à un, les adultes qui assistaient à la cérémonie quittent l’île pour regagner le village. Il ne reste bientôt plus que Raiahui, que l’épreuve a laissé curieusement épuisée et pleine d’une humeur introspective. Avec une lenteur rêveuse, elle effleure du bout des doigts le contour de ses lèvres. Puis elle s’assied sur le sable encore chaud. Du côté du lagon, le soleil est en train de se coucher. Raiahui reste à le regarder jusqu’à ce que les derniers reflets ensanglantés aient disparu de la surface de l’eau.</p>
@@ -77,7 +77,7 @@ const trial = {
 <p>Les murmures qui parcouraient la foule s’éteignent lorsqu’Ataroa fait signe à Raiahui et à vous-même de vous tenir devant lui.</p>
 
 <div class="conversation">
-<p>— Vous connaissez toutes les deux les détails dont vous avez besoin, déclare-t-il sans que son visage rude ne manifeste aucune expression. Aucun membre de la tribu ne viendra interférer. La course commence dès maintenant.</p>
+<p>— Vous connaissez toutes les deux les détails dont vous avez besoin, déclare-t-il sans que son visage rude ne manifeste aucune expression. Aucun membre de la tribu ne viendra interférer. La course commence dès maintenant.</p>
 </div>
 
 <p>Il ponctue cette déclaration laconique d’un hochement de tête, puis, sans rien ajouter, il quitte la plage pour retourner vers le village. Sous votre regard interloqué, l’essentiel de la tribu lui emboîte le pas. Il ne reste bientôt plus que vous-même, Raiahui et les autres adolescents.</p>
@@ -244,13 +244,13 @@ const trial = {
 <p>Vous saisissez par le bras une adolescente en train de boire du vin de palme non loin de vous.</p>
 
 <div class="conversation">
-<p>— Qu’est-ce qui se passe ? demandez-vous à savoir. Si la course a bien commencé, pourquoi est-ce que nous ne partons pas toutes les deux ? Est-ce qu’il faut attendre quelque chose ?</p>
+<p>— Qu’est-ce qui se passe ? demandez-vous à savoir. Si la course a bien commencé, pourquoi est-ce que nous ne partons pas toutes les deux ? Est-ce qu’il faut attendre quelque chose ?</p>
 </div>
 
 <p>La fille glousse. À en juger par l’expression hilare qui est peinte sur son visage, la calebasse qu’elle tient doit déjà être assez vide.</p>
 
 <div class="conversation">
-<p>— Ne t’en fais pas, ne t’en fais pas, dit-elle en vous donnant une tape maladroite sur l’épaule. Raiahui va partir, mais tu n’as pas besoin de l’attendre. Prendre un peu d’avance, ça peut être utile !</p>
+<p>— Ne t’en fais pas, ne t’en fais pas, dit-elle en vous donnant une tape maladroite sur l’épaule. Raiahui va partir, mais tu n’as pas besoin de l’attendre. Prendre un peu d’avance, ça peut être utile !</p>
 </div>
 
 <p>Vous n’en tirez rien d’autre.</p>
@@ -283,7 +283,7 @@ const trial = {
 <p>Raiahui est le centre rayonnant d’un cercle d’adolescents, dont la conversation gaie est ponctuée de rires fréquents.</p>
 
 <div class="conversation">
-<p>— Mananuiva ! s’exclame-t-elle en vous apercevant. Je pensais que tu étais déjà partie. Ne m’attends pas : je bois juste un peu et je te rejoins !</p>
+<p>— Mananuiva ! s’exclame-t-elle en vous apercevant. Je pensais que tu étais déjà partie. Ne m’attends pas : je bois juste un peu et je te rejoins !</p>
 </div>
 
 <p>Les autres adolescents vous regardent d’un air amusé, mais ne disent rien. Une calebasse vide gît déjà aux pieds de Raiahui.</p>
@@ -345,13 +345,13 @@ const trial = {
   "trial-fair": {
     "text": `
 <div class="conversation">
-<p>— Pour quelqu’un qui s’attend à devenir adulte aujourd’hui, tu as vraiment un comportement de gamine ! Je ne suis pas là pour te faire rire ! Si tu ne débutes pas cette course tout de suite, en même temps que moi, je renonce à participer à ton rite de passage et tu pourras attendre la venue du prochain étranger !</p>
+<p>— Pour quelqu’un qui s’attend à devenir adulte aujourd’hui, tu as vraiment un comportement de gamine ! Je ne suis pas là pour te faire rire ! Si tu ne débutes pas cette course tout de suite, en même temps que moi, je renonce à participer à ton rite de passage et tu pourras attendre la venue du prochain étranger !</p>
 </div>
 
 <p>Une expression à la fois alarmée et vexée passe sur le visage de Raiahui. Elle regarde les adolescents qui l’entourent comme si elle en espérait un conseil, puis hausse finalement les épaules.</p>
 
 <div class="conversation">
-<p>— Comme tu veux, mais c’est tant pis pour toi.</p>
+<p>— Comme tu veux, mais c’est tant pis pour toi.</p>
 </div>
 
 <p>Vous descendez ensemble vers la rive, suivies de toute la jeune assistance, que la scène semble beaucoup amuser. Des plaisanteries s’échangent autour de vous, mais vous n’y prêtez guère attention. Votre adversaire affiche quant à elle une désinvolture ostensible et vous la voyez même prendre quelques gorgées d’alcool supplémentaires au goulot d’une calebasse.</p>
@@ -371,7 +371,7 @@ const trial = {
 <p>Vous profitez de ce que Raiahui est en train d’entamer une nouvelle calebasse pour lui subtiliser adroitement son couteau. Mais elle s’en rend compte aussitôt et tourne vers vous un regard où il n’y a plus la moindre trace d’amusement.</p>
 
 <div class="conversation">
-<p>— Rends-moi ça ! Rends-moi ça tout de suite !</p>
+<p>— Rends-moi ça ! Rends-moi ça tout de suite !</p>
 </div>
 
 <p>Laissant tomber la calebasse sur le sable, elle se jette sur vous pour récupérer sa possession.</p>
@@ -432,7 +432,7 @@ const trial = {
   "raiahui-drunk": {
     "text": `
 <div class="conversation">
-<p>— Ce n’est pas moi qui vais t’empêcher de te saoûler, dites-vous en lui tendant votre calebasse. Tiens, vide aussi celle-ci, si tu t’imagines vraiment que tu pourras me battre à la course ensuite !</p>
+<p>— Ce n’est pas moi qui vais t’empêcher de te saoûler, dites-vous en lui tendant votre calebasse. Tiens, vide aussi celle-ci, si tu t’imagines vraiment que tu pourras me battre à la course ensuite !</p>
 </div>
 
 <p>Votre défi fait courir des exclamations amusées parmi la jeune assistance. Raiahui accepte votre présent avec un sourire de confiance totale. Même si elle réalise que cette boisson est autrement plus forte que du simple vin de palme, vous soupçonnez qu’elle videra tout de même l’essentiel de la calebasse, ne serait-ce que pour ne pas perdre la face.</p>
@@ -767,7 +767,7 @@ const trial = {
 <p>Votre terreur a atteint son point d’ébullition et elle se vaporise soudain en une rage brûlante.</p>
 
 <div class="conversation">
-<p>— LÂCHE-MOI, ESPÈCE DE…</p>
+<p>— LÂCHE-MOI, ESPÈCE DE…</p>
 </div>
 
 <p>Vous hurlez un mot que votre mère n’aurait pas été heureuse d’entendre, le ponctuez d’un violent coup de tête qui frappe votre adversaire en plein visage et lui mordez ensuite sauvagement l’avant-bras. Raiahui pousse un cri de douleur perçant et laisse presque échapper son précieux couteau. Vous lui écrasez votre poing sur la figure et, tandis qu’elle titube en arrière, vous franchissez enfin la distance qui vous séparait de la rive sablonneuse.</p>
@@ -791,37 +791,37 @@ const trial = {
 <p>Les adultes de la tribu vous entourent en un cercle épais et leurs yeux vous détaillent avec beaucoup plus d’attention que lors de votre arrivée de la veille. Vous vous sentez trop épuisée pour avoir encore peur, mais il n’y a de toute façon aucune hostilité sur leurs visages, seulement une profonde curiosité.</p>
 
 <div class="conversation">
-<p>— Tu as mérité notre respect, Mananuiva, vous déclare Ataroa d’une voix où perce presque une certaine admiration. Ce n’est pas fréquemment qu’un étranger remporte une de nos courses.</p>
+<p>— Tu as mérité notre respect, Mananuiva, vous déclare Ataroa d’une voix où perce presque une certaine admiration. Ce n’est pas fréquemment qu’un étranger remporte une de nos courses.</p>
 </div>
 
 <p>Quelques remarques acerbes se présentent à votre esprit, mais, même si vous aviez le courage de les articuler, vous ne vous sentez pas l’énergie nécessaire.</p>
 
 <div class="conversation">
-<p>— Tu es libre de repartir, poursuit Ataroa, désignant du doigt votre pirogue, qui repose sur le sable à l’autre extrémité de la petite île. Nous avons pris soin de ton embarcation et nous l’avons remplie des provisions dont tu pourras avoir besoin. Quant à ta récompense…</p>
+<p>— Tu es libre de repartir, poursuit Ataroa, désignant du doigt votre pirogue, qui repose sur le sable à l’autre extrémité de la petite île. Nous avons pris soin de ton embarcation et nous l’avons remplie des provisions dont tu pourras avoir besoin. Quant à ta récompense…</p>
 </div>
 
 <p>Il fait un signe de la main et un autre homme s’avance, portant un bol rempli d’un liquide blanc-gris.</p>
 
 <div class="conversation">
-<p>— L’Écume des Profondeurs t’appartient. Il ne reste qu’un ingrédient à y ajouter, ce que nous allons faire tout de suite. Il est ordinairement fourni par celui qui va boire l’Ecume, mais, étant donné les circonstances, il est normal qu’il vienne de quelqu’un d’autre.</p>
+<p>— L’Écume des Profondeurs t’appartient. Il ne reste qu’un ingrédient à y ajouter, ce que nous allons faire tout de suite. Il est ordinairement fourni par celui qui va boire l’Ecume, mais, étant donné les circonstances, il est normal qu’il vienne de quelqu’un d’autre.</p>
 </div>
 
 <p>Deux adultes s’approchent, tenant entre eux Raiahui, qui est visiblement terrifiée. Ataroa lui saisit le poignet et lui entaille profondément la paume de son couteau. Un filet de sang vient se mêler au contenu de la coupe, qui prend aussitôt une teinte vivement argentée.</p>
 
 <div class="conversation">
-<p>— L’Écume des Profondeurs est prête, déclare Ataroa en vous la remettant. Bois-là ce soir et tu visiteras le monde des esprits pendant ton sommeil.</p>
+<p>— L’Écume des Profondeurs est prête, déclare Ataroa en vous la remettant. Bois-là ce soir et tu visiteras le monde des esprits pendant ton sommeil.</p>
 </div>
 
 <p>Il se tourne à présent vers votre concurrente, qui tremble de tout son corps.</p>
 
 <div class="conversation">
-<p>— Raiahui, dit-il d’une voix froide, tu ne mérites pas d’être une adulte. Tu as échoué à l’épreuve par arrogance, en sous-estimant ton adversaire. Je pense que tu ne prendras pas ton épreuve suivante autant à la légère.</p>
+<p>— Raiahui, dit-il d’une voix froide, tu ne mérites pas d’être une adulte. Tu as échoué à l’épreuve par arrogance, en sous-estimant ton adversaire. Je pense que tu ne prendras pas ton épreuve suivante autant à la légère.</p>
 </div>
 
 <p>Il s’empare du couteau de la jeune femme et, d’un mouvement puissant, le jette vers le lagon.</p>
 
 <div class="conversation">
-<p>— Si tu parviens à regagner le village, ta stupidité sera pardonnée.</p>
+<p>— Si tu parviens à regagner le village, ta stupidité sera pardonnée.</p>
 </div>
 
 <p>Les mains qui retenaient Raiahui la relâchent subitement. La jeune femme promène un regard affolé sur les adultes qui l’entourent, puis se précipite vers le lagon pour y plonger. Vous la regardez un instant nager de toutes ses forces vers l’endroit où son couteau a disparu. Prisonnière de sa forme humaine, elle reste une très bonne nageuse, mais vous êtes certaine que vous auriez pu la battre dans une course normale.</p>
@@ -829,7 +829,7 @@ const trial = {
 <p>Ataroa se tourne vers vous et vous adresse un dernier hochement de tête en guise d’adieu.</p>
 
 <div class="conversation">
-<p>— Je te souhaite de découvrir ce que tu cherches, Mananuiva.</p>
+<p>— Je te souhaite de découvrir ce que tu cherches, Mananuiva.</p>
 </div>
 
 <p>Puis tous les adultes de la tribu vont plonger à leur tour et vous voyez dans l’eau transparente leurs formes effilées se lancer à la poursuite de Raiahui.</p>

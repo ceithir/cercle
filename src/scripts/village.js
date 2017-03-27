@@ -56,13 +56,13 @@ const village = {
 <p>L’homme s’appelle Oramui et la femme Terani. En préparation de la cérémonie de ce soir, ils sont occupés à récupérer la sève nécessaire pour faire du vin de palme. Cette boisson claire et effervescente ne vous est pas inconnue — elle est fréquemment servie lors des célébrations dans votre tribu — mais vous n’avez qu’une idée assez vague de la manière dont elle est préparée.</p>
 
 <div class="conversation">
-<p>— Il ne faut pas récolter la sève trop tôt, vous explique Oramui. La boisson devient très rapidement plus forte et plus acide. Si on la conserve plus d’une journée, elle devient imbuvable.</p>
+<p>— Il ne faut pas récolter la sève trop tôt, vous explique Oramui. La boisson devient très rapidement plus forte et plus acide. Si on la conserve plus d’une journée, elle devient imbuvable.</p>
 </div>
 
 <p>Il vous indique du doigt quelques petites piles de calebasses, en vous expliquant qu’elles contiennent la sève qu’ils ont récolté la veille, peu après votre arrivée. Mais votre regard ne tarde pas à être attirée par une douzaine de calebasses conservées à l’écart et enveloppées dans de grandes feuilles.</p>
 
 <div class="conversation">
-<p>— C’est aussi du vin de palme ? demandez-vous.</p>
+<p>— C’est aussi du vin de palme ? demandez-vous.</p>
 </div>
 
 <p>Oramui et Terani secouent vigoureusement la tête et se lancent dans une description compliquée, émaillée de mots que vous ne connaissez pas. Vous parvenez tout de même à saisir qu’il s’agit d’une boisson dérivée du vin de palme, mais beaucoup plus forte.</p>
@@ -119,7 +119,7 @@ const village = {
 <p>Terani fronce les sourcils lorsque vous présentez votre requête et vous devinez que cette boisson, dont la préparation demande davantage d’efforts, est d’une consommation plus réservée que le simple vin de palme. Vous vous attendez à ce qu’elle refuse, mais, après avoir échangé un regard avec Oramui, elle hausse les épaules et vous offre l’une des calebasses d’alcool fort.</p>
 
 <div class="conversation">
-<p>— Cela fait très vite tourner la tête, vous dit-elle. Il ne faut surtout pas que tu en boives avant d’avoir terminé ta course de ce soir contre Raiahui.</p>
+<p>— Cela fait très vite tourner la tête, vous dit-elle. Il ne faut surtout pas que tu en boives avant d’avoir terminé ta course de ce soir contre Raiahui.</p>
 </div>
 
 <p>La recommandation fait sourire Oramui, mais il n’ajoute rien. Vous remerciez poliment les deux récolteurs avant de prendre congé.</p>

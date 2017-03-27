@@ -7,7 +7,7 @@ const crocodileLastWords = `
 <p>Les échos d’un rire guttural vous parviennent tandis que vous vous enfuyez.</p>
 
 <div class="conversation">
-<p>— Tu ne peux pas me reprocher d’avoir essayé, délicieuse fille humaine ! vous crie le crocodile. Mais je vais te donner un véritable conseil pour humilier cette tribu de voleurs. Trouve l’un des fruits rouges qui poussent sur cette île et mange-le juste avant ta course, il te donnera des forces. Tu auras également besoin d’astuce, mais ce n’est pas quelque chose qui s’acquiert aussi facilement !</p>
+<p>— Tu ne peux pas me reprocher d’avoir essayé, délicieuse fille humaine ! vous crie le crocodile. Mais je vais te donner un véritable conseil pour humilier cette tribu de voleurs. Trouve l’un des fruits rouges qui poussent sur cette île et mange-le juste avant ta course, il te donnera des forces. Tu auras également besoin d’astuce, mais ce n’est pas quelque chose qui s’acquiert aussi facilement !</p>
 </div>
 
 <p>Sa voix disparaît derrière vous, mais vous ne ralentissez guère l’allure avant d’avoir regagné votre pirogue. En chemin, vous observez quelques arbustes qui portent en effet de petits fruits ovales d’une couleur écarlate. Il s’agit sans doute de ce dont parlait le crocodile, mais pouvez-vous lui faire confiance cette fois-ci ?</p>
@@ -79,7 +79,7 @@ const island6 = {
 
 <p>L’animal est immobile comme un tronc d’arbre abattu. On pourrait croire qu’il est mort. Vous êtes sur le point de détaler à toutes jambes lorsqu’une voix rocailleuse vient vous heurter les oreilles :</p>
 <div class="conversation">
-<p>— Attends.</p>
+<p>— Attends.</p>
 </div>
     `,
     "next": (goToSection) => {
@@ -180,7 +180,7 @@ const island6 = {
 <p>Le crocodile est toujours au même endroit, figé comme une statue. On pourrait croire qu’il est mort. Ayant vérifié son emplacement, vous vous apprêtez à vous esquiver discrètement lorsqu’une voix rocailleuse vient vous heurter les oreilles :</p>
 
 <div class="conversation">
-<p>— Attends.</p>
+<p>— Attends.</p>
 </div>
     `,
     "next": (goToSection) => {
@@ -197,7 +197,7 @@ const island6 = {
 <p>Le corps massif et cuirassé du crocodile n’a pas perdu son immobilité pesante, mais il a légèrement tourné la tête pour vous regarder de ses yeux jaunes. La voix qui s’échappe de sa gueule à peine entrouverte est à la fois rauque et grondante, ce qui rend presque difficile de saisir ce qu’elle dit :</p>
 
 <div class="conversation">
-<p>— N’aie pas peur, je ne te ferai aucun mal. Je veux t’être utile, au contraire. Approche-toi un peu pour que nous parlions, car j’entends difficilement les voix humaines.</p>
+<p>— N’aie pas peur, je ne te ferai aucun mal. Je veux t’être utile, au contraire. Approche-toi un peu pour que nous parlions, car j’entends difficilement les voix humaines.</p>
 </div>
 
 <p>La plupart des légendes de votre tribu mettent en scène des animaux doués de l’esprit et de la parole. Lors de vos moments de rêverie, vous avez souvent imaginé votre rencontre avec une telle créature. Mais vous ne vous attendiez certes pas à ce qu’elle se déroule ainsi !</p>
@@ -231,7 +231,7 @@ const island6 = {
 <p>Vous faites un pas prudent en avant, prête à vous enfuir à la moindre alerte. Mais le corps énorme du crocodile reste aussi immobile que le sable sur lequel il repose.</p>
 
 <div class="conversation">
-<p>— C’est bien, tu apprends à ne pas te fier aux apparences. Je veux sincèrement t’aider, comme tu en as besoin. Réfléchis : que veux-tu savoir ?</p>
+<p>— C’est bien, tu apprends à ne pas te fier aux apparences. Je veux sincèrement t’aider, comme tu en as besoin. Réfléchis : que veux-tu savoir ?</p>
 </div>
     `,
     "next": (goToSection) => {
@@ -258,7 +258,7 @@ const island6 = {
   "crocodile-bitterness": {
     "text": `
 <div class="conversation">
-<p>— Ces voleurs… J’étais le seul maître de l’atoll avant que leur misérable tribu ne décide de s’y installer ! Aujourd’hui, il ne me reste plus que cette seule île et une petite partie du lagon pour y chasser. Mais je suis patient, je sais attendre pendant des saisons et des saisons… Un jour, ils apprendront que je conserve bien des secrets et des pouvoirs cachés, mais il sera trop tard ce jour-là !</p>
+<p>— Ces voleurs… J’étais le seul maître de l’atoll avant que leur misérable tribu ne décide de s’y installer ! Aujourd’hui, il ne me reste plus que cette seule île et une petite partie du lagon pour y chasser. Mais je suis patient, je sais attendre pendant des saisons et des saisons… Un jour, ils apprendront que je conserve bien des secrets et des pouvoirs cachés, mais il sera trop tard ce jour-là !</p>
 </div>
 
 <p>Il est difficile d’identifier clairement des émotions dans une voix aussi inhumaine, mais vous ne doutez pas de la rancoeur vengeresse que nourrit jalousement le reptile.</p>
@@ -287,19 +287,19 @@ const island6 = {
   "crocodile-power": {
     "text": `
 <div class="conversation">
-<p>— Tu doutes peut-être de ce que je te raconte ? dit le crocodile. Tu es encore jeune et ignorante. Je vais te montrer ce que je peux faire.</p>
+<p>— Tu doutes peut-être de ce que je te raconte ? dit le crocodile. Tu es encore jeune et ignorante. Je vais te montrer ce que je peux faire.</p>
 </div>
 
 <p>Son corps massif se met à bouger et vous vous raidissez aussitôt, alarmée, mais il ne se dirige pas vers vous. Sa mâchoire puissante se referme sur une racine voisine et en arrache un tronçon épais, qu’elle semble ensuite mastiquer longuement. Puis le crocodile se retourne vers vous et recrache sur le sable le morceau de bois.</p>
 
 <div class="conversation">
-<p>— Regarde, voici l’un de mes pouvoirs !</p>
+<p>— Regarde, voici l’un de mes pouvoirs !</p>
 </div>
 
 <p>Son séjour dans la gueule du crocodile a donné une forme étrange au fragment de racine : il ressemble désormais à une figurine humaine. Et, bien que la forme en soit très grossière et les détails inexistants, la certitude étrange apparaît dans votre esprit que c’est vous qu’elle représente. Vos yeux la fixent avec une fascination croissante.</p>
 
 <div class="conversation">
-<p>— Cela te plaît, non ? dit le crocodile d’une voix presque susurrante. Et elle te serait profondément utile. Viens la chercher… Viens… Approche…</p>
+<p>— Cela te plaît, non ? dit le crocodile d’une voix presque susurrante. Et elle te serait profondément utile. Viens la chercher… Viens… Approche…</p>
 </div>
 
 <p>Le désir de posséder la figurine s’est totalement emparé de votre esprit et vous êtes prête à défier la mort pour vous en emparer. Mais, bien que vous soyez incapable de résister au charme qu’elle exerce sur vous, votre bon sens n’est pas totalement engourdi. Vous réalisez que les actions du crocodile n’ont pas d’autre but que de faire de vous son repas.</p>
@@ -337,7 +337,7 @@ const island6 = {
   "crocodile-look-out": {
     "text": `
 <div class="conversation">
-<p>— On dirait que je ne vais pas avoir le temps, dites-vous avec un geste de main vers le lagon. Je vois qu’on vient déjà me chercher pour la course. Ce sera pour…</p>
+<p>— On dirait que je ne vais pas avoir le temps, dites-vous avec un geste de main vers le lagon. Je vois qu’on vient déjà me chercher pour la course. Ce sera pour…</p>
 </div>
 
 <p>L’efficacité de votre mensonge dépasse vos espérances : le corps massif se tourne avec une vélocité stupéfiante vers les nouveaux arrivants imaginaires et la gueule hérissée de dents s’ouvre en grand, de la manière la plus menaçante possible.</p>
@@ -361,12 +361,12 @@ const island6 = {
   "crocodile-help": {
     "text":`
 <div class="conversation">
-<p>— Je dois participer à une course pour le rite de passage d’une jeune fille de la tribu, dites-vous à l’énorme reptile. Vous connaissez peut-être un moyen de m’aider ? Si je gagne, cela embarrassera la tribu toute entière.</p>
+<p>— Je dois participer à une course pour le rite de passage d’une jeune fille de la tribu, dites-vous à l’énorme reptile. Vous connaissez peut-être un moyen de m’aider ? Si je gagne, cela embarrassera la tribu toute entière.</p>
 </p>
 
 <p>Le crocodile médite la suggestion pendant un long moment avant de finalement répondre :</p>
 <div class="conversation">
-<p>— Ne te fais pas d’illusion : cette course est davantage une cérémonie qu’une épreuve pour ton adversaire. Les traditions de cette tribu bâtarde n’ont pour raison d’être que de leur rappeler leur prétendue supériorité. Lorsque cette course débutera, dis-toi bien que tu n’auras une chance qu’en faisant preuve de ruse et de vigilance. Mais je veux t’aider à humilier ces voleurs. Ecoute bien, je vais te révéler l’un de mes secrets…</p>
+<p>— Ne te fais pas d’illusion : cette course est davantage une cérémonie qu’une épreuve pour ton adversaire. Les traditions de cette tribu bâtarde n’ont pour raison d’être que de leur rappeler leur prétendue supériorité. Lorsque cette course débutera, dis-toi bien que tu n’auras une chance qu’en faisant preuve de ruse et de vigilance. Mais je veux t’aider à humilier ces voleurs. Ecoute bien, je vais te révéler l’un de mes secrets…</p>
 </div>
 
 <p>Il s’échappe de sa gueule un bruit étrange, très grave, à mi-chemin entre un grondement et un chant. Son rythme, qui ne ressemble à aucune musique que vous connaissez, exerce sur vous un attrait fascinant.</p>
@@ -409,7 +409,7 @@ const island6 = {
     "text": `
 <p>Un rire saccadé et grinçant s’échappe de la gueule puissante du reptile.</p>
 <div class="conversation">
-<p>— Tu es bien méfiante ! J’imagine que les apparences sont contre moi. Mais tu as pourtant bien d’autres sujets de préoccupation. Veux-tu que je te fasse part de ma sagesse malgré tout ?</p>
+<p>— Tu es bien méfiante ! J’imagine que les apparences sont contre moi. Mais tu as pourtant bien d’autres sujets de préoccupation. Veux-tu que je te fasse part de ma sagesse malgré tout ?</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
@@ -435,7 +435,7 @@ const island6 = {
   "crocodile-angry": {
     "text": `
 <div class="conversation">
-<p>— Je hais ces misérables voleurs, siffle le crocodile avec animosité. L’atoll tout entier m’appartenait avant que leur tribu bâtarde ne décide de s’y installer. Mais il viendra un jour où…</p>
+<p>— Je hais ces misérables voleurs, siffle le crocodile avec animosité. L’atoll tout entier m’appartenait avant que leur tribu bâtarde ne décide de s’y installer. Mais il viendra un jour où…</p>
 </div>
 
 <p>L’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Heureusement, vous n’aviez pas relâché votre vigilance et vous avez juste le temps de vous enfuir à toutes jambes.</p>
@@ -445,7 +445,7 @@ const island6 = {
   "crocodile-trial": {
     "text": `
 <div class="conversation">
-<p>— Ne t’y trompe pas : les membres arrogants de cette tribu bâtarde ne pensent pas que tu as la moindre chance de remporter leur course traditionnelle. Ce n’est pour eux qu’une cérémonie, pas une véritable épreuve. Mais cela me plaierait d’humilier ces voleurs en te faisant gagner malgré tout. Regarde parmi les racines de l’arbre qui se trouve à côté de toi, il y a un objet qui pourrait t’être bien utile.</p>
+<p>— Ne t’y trompe pas : les membres arrogants de cette tribu bâtarde ne pensent pas que tu as la moindre chance de remporter leur course traditionnelle. Ce n’est pour eux qu’une cérémonie, pas une véritable épreuve. Mais cela me plaierait d’humilier ces voleurs en te faisant gagner malgré tout. Regarde parmi les racines de l’arbre qui se trouve à côté de toi, il y a un objet qui pourrait t’être bien utile.</p>
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {

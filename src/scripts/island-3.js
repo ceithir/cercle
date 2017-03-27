@@ -34,12 +34,12 @@ const island3 = {
 <p> Vous avez tout juste eu le temps de faire accoster votre pirogue sur la plage lorsque la femme, interrompant son ouvrage, se retourne avec une expression furieuse :</p>
 
 <div class="conversation">
-<p>— Est-ce que vous allez tous finir par me laisser tranquille ? Je croyais avoir…</p>
+<p>— Est-ce que vous allez tous finir par me laisser tranquille ? Je croyais avoir…</p>
 </div>
 
 <p>Elle s’interrompt momentanément en réalisant que vous lui êtes inconnue, mais ne tarde pas à reprendre, d’un ton à peine moins hostile :</p>
 <div class="conversation">
-<p>— Tu es l’étrangère qui est arrivée hier, c’est ça ? Et bien, il n’y a rien d’intéressant pour toi ici. Retourne au village ou va te promener ailleurs, mais ne reste pas ici à me déranger.</p>
+<p>— Tu es l’étrangère qui est arrivée hier, c’est ça ? Et bien, il n’y a rien d’intéressant pour toi ici. Retourne au village ou va te promener ailleurs, mais ne reste pas ici à me déranger.</p>
 
 <p>Son accent l’identifie clairement comme une membre de la tribu, mais son apparence est assez différente des femmes que vous avez observées la veille au festin : sa chevelure abondante est attachée en une queue de cheval, elle porte un collier fait de nombreux coquillages et un paréo délavé lui entoure les reins. Elle a son couteau d’ivoire à la main et vous devinez qu’elle était en train de s’en servir pour retirer les coquillages accrochés à la coque de sa pirogue.</p>
     `,
@@ -82,7 +82,7 @@ const island3 = {
 <p>Le visage de la femme se plisse d’une grimace impatiente et vous vous attendez à ce qu’elle vous demande à nouveau de déguerpir. Il n’en est cependant rien : un soupir lui échappe et, après quelques instants, elle reprend la parole d’une voix plus calme :</p>
 
 <div class="conversation">
-<p>— Ecoute, je veux bien te parler si ça te fait partir plus vite. Mais ça fait un bon moment que je travaille sans rien manger et je commence à avoir vraiment faim. Rapporte-moi quelques crabes ou quelques écrevisses — il y en a plein le lagon — et je te raconterai ce que tu veux ensuite.</p>
+<p>— Ecoute, je veux bien te parler si ça te fait partir plus vite. Mais ça fait un bon moment que je travaille sans rien manger et je commence à avoir vraiment faim. Rapporte-moi quelques crabes ou quelques écrevisses — il y en a plein le lagon — et je te raconterai ce que tu veux ensuite.</p>
 </div>
 
 <p>Et sur ces mots, elle reprend ses activités comme si vous n’existiez pas, sourde à vos paroles.</p>
@@ -122,13 +122,13 @@ const island3 = {
 <p>Une expression agacée se peint sur le visage de la femme tandis vous lui expliquez le principe de votre voyage d’initiation, mais elle disparaît peu à peu lorsque vous commencez à lui parler des îles que vous avez visité. Ses commentaires — d’abord assez brefs — révèlent vite que certaines d’entre elles lui sont familières.</p>
 
 <div class="conversation">
-<p>— Alors comme ça tu es passée chez les Tongakiri ? fait-elle à un moment. Est-ce qu’ils sont toujours en train de sculpter cette statue en pierre ridiculement grande de je ne sais quel chef légendaire ?</p>
-<p>— Ils devaient la mettre en place justement le jour où je suis arrivée, mais ils s’y sont mal pris : la statue s’est renversée et cassée en trois. J’ai décidé de vite repartir lorsque le chamane de la tribu a déclaré que c’était parce que les dieux étaient mécontents et qu’il fallait leur faire un sacrifice.</p>
+<p>— Alors comme ça tu es passée chez les Tongakiri ? fait-elle à un moment. Est-ce qu’ils sont toujours en train de sculpter cette statue en pierre ridiculement grande de je ne sais quel chef légendaire ?</p>
+<p>— Ils devaient la mettre en place justement le jour où je suis arrivée, mais ils s’y sont mal pris : la statue s’est renversée et cassée en trois. J’ai décidé de vite repartir lorsque le chamane de la tribu a déclaré que c’était parce que les dieux étaient mécontents et qu’il fallait leur faire un sacrifice.</p>
 </div>
 
 <p>Ce récit fait rire votre interlocutrice et détend pour de bon l’atmosphère. Pendant quelques instants agréables, vous vous décrivez l’une à l’autre vos découvertes et vos rencontres les plus saisissantes. La femme est clairement une grande voyageuse et vous apprenez beaucoup en l’écoutant. Mais elle met finalement un terme à cet échange en abordant un sujet différent :</p>
 <div class="conversation">
-<p>— Tu ne peux pas savoir quelle révélation t’apportera ton voyage, bien sûr, mais en quoi est-ce que tu espères qu’il te changera ?</p>
+<p>— Tu ne peux pas savoir quelle révélation t’apportera ton voyage, bien sûr, mais en quoi est-ce que tu espères qu’il te changera ?</p>
 </div>
 
 <p> C’est une excellente question, mais la réflexion prolongée qu’elle mérite demanderait clairement plus de temps libre que vous n’en avez aujourd’hui.</p>
@@ -163,53 +163,53 @@ const island3 = {
 <p>La femme vous donne une tape amicale sur l’épaule.</p>
 
 <div class="conversation">
-<p>— Ma petite, tu commences à me plaire ! Je m’appelle Faanarua, au fait.</p>
-<p>— Moi, c’est Mananuiva.</p>
-<p>— Alors écoute-moi bien, Mananuiva, parce que je vais te donner quelques conseils utiles pour gagner la course de ce soir.</p>
+<p>— Ma petite, tu commences à me plaire ! Je m’appelle Faanarua, au fait.</p>
+<p>— Moi, c’est Mananuiva.</p>
+<p>— Alors écoute-moi bien, Mananuiva, parce que je vais te donner quelques conseils utiles pour gagner la course de ce soir.</p>
 </div>
 
 <p>Vous dressez aussitôt l’oreille avec intérêt.</p>
 
 <div class="conversation">
-<p>— Est-ce qu’il y a des courants ou des récifs dangereux entre les deux îles ? demandez-vous. Je suis passée là en pirogue et je n’ai rien remarqué.</p>
+<p>— Est-ce qu’il y a des courants ou des récifs dangereux entre les deux îles ? demandez-vous. Je suis passée là en pirogue et je n’ai rien remarqué.</p>
 </div>
 
 <p>Faanarua secoue la tête.</p>
 
 <div class="conversation">
-<p>— Il n’y a rien de tout cela, c’est un trajet tout à fait simple. Mais la course elle-même n’est pas le genre de compétition que tu imagines sans doute. Il faudra que tu réfléchisses différemment. Pour commencer, si tu ne pars pas avec une bonne avance sur Raiahui, tu vas forcément perdre.</p>
-<p>— Je suis une excellente nageuse ! protestez-vous, quelque peu vexée.</p>
+<p>— Il n’y a rien de tout cela, c’est un trajet tout à fait simple. Mais la course elle-même n’est pas le genre de compétition que tu imagines sans doute. Il faudra que tu réfléchisses différemment. Pour commencer, si tu ne pars pas avec une bonne avance sur Raiahui, tu vas forcément perdre.</p>
+<p>— Je suis une excellente nageuse ! protestez-vous, quelque peu vexée.</p>
 </div>
 
 <p>Un bref sourire traverse le visage de votre interlocutrice.</p>
 
 <div class="conversation">
-<p>— Fais-moi confiance, Raiahui nage beaucoup plus vite que toi. Elle le sait, comme tout le reste de la tribu. D’une certaine façon, cela joue à ton avantage : elle ne voudra pas partir en même temps que toi, parce que ça suggèrerait qu’elle manque de confiance en elle-même. Mais il ne faut pas trop compter sur cela pour te donner une chance : Raiahui ne voudra certainement pas risquer de perdre cette course. Si tu veux gagner, il faudra te débrouiller pour qu’elle entre dans l’eau le plus tard possible.</p>
+<p>— Fais-moi confiance, Raiahui nage beaucoup plus vite que toi. Elle le sait, comme tout le reste de la tribu. D’une certaine façon, cela joue à ton avantage : elle ne voudra pas partir en même temps que toi, parce que ça suggèrerait qu’elle manque de confiance en elle-même. Mais il ne faut pas trop compter sur cela pour te donner une chance : Raiahui ne voudra certainement pas risquer de perdre cette course. Si tu veux gagner, il faudra te débrouiller pour qu’elle entre dans l’eau le plus tard possible.</p>
 </div>
 
 <p>Elle s’arrête un instant pour réfléchir, tandis que vous digérez ce conseil pour le moins étrange.</p>
 
 <div class="conversation">
-<p>— Même avec une solide avance, il faudra que tu restes vigilante, ajoute-t-elle après un moment. Je n’ai pas de conseil infaillible à te donner, mais je viens de penser à un objet qui pourrait peut-être t’être utile. Comme tous les membres de la tribu, j’ai accompli ce même rite de passage, mais l’étranger que j’ai eu pour adversaire n’était pas quelqu’un d’ordinaire : il avait une amulette qui en faisait un meilleur nageur qu’il n’aurait dû l’être normalement.</p>
-<p>— Vous voulez dire qu’il utilisait une amulette magique ? interrompez-vous. Est-ce que ce n’était pas de la triche ?</p>
-<p>— Oublie ces histoires de triche, vous dit Faanarua. En-dehors du fait qu’elle doit s’accomplir à la nage, cette course n’a presque aucune règle. C’est l’astuce qui permet de gagner alors qu’on devrait perdre. Et c’est ce qui s’est passé à l’époque : j’ai volé l’amulette de mon adversaire et, comme je n’arrivais ni à m’en servir, ni à la détruire, je l’ai tout simplement enfouie quelque part. Lorsque la course a eu lieu, j’ai facilement gagné.</p>
-<p>— Et l’amulette ?</p>
-<p>— Je ne suis jamais retournée la chercher. Je l’avais enterrée au milieu de la toute petite île qui se trouve à l’autre bout de l’atoll.</p>
-<p>— Mais vous avez dit que vous n’arriviez pas à vous en servir…</p>
-<p>— Je suis en quelque sorte incompatible, mais elle marchera certainement pour toi. Elle a peut-être perdu un peu en pouvoir — je l’ai abîmée en essayant de la briser — mais je crois sincèrement qu’elle pourrait t’être utile.</p>
+<p>— Même avec une solide avance, il faudra que tu restes vigilante, ajoute-t-elle après un moment. Je n’ai pas de conseil infaillible à te donner, mais je viens de penser à un objet qui pourrait peut-être t’être utile. Comme tous les membres de la tribu, j’ai accompli ce même rite de passage, mais l’étranger que j’ai eu pour adversaire n’était pas quelqu’un d’ordinaire : il avait une amulette qui en faisait un meilleur nageur qu’il n’aurait dû l’être normalement.</p>
+<p>— Vous voulez dire qu’il utilisait une amulette magique ? interrompez-vous. Est-ce que ce n’était pas de la triche ?</p>
+<p>— Oublie ces histoires de triche, vous dit Faanarua. En-dehors du fait qu’elle doit s’accomplir à la nage, cette course n’a presque aucune règle. C’est l’astuce qui permet de gagner alors qu’on devrait perdre. Et c’est ce qui s’est passé à l’époque : j’ai volé l’amulette de mon adversaire et, comme je n’arrivais ni à m’en servir, ni à la détruire, je l’ai tout simplement enfouie quelque part. Lorsque la course a eu lieu, j’ai facilement gagné.</p>
+<p>— Et l’amulette ?</p>
+<p>— Je ne suis jamais retournée la chercher. Je l’avais enterrée au milieu de la toute petite île qui se trouve à l’autre bout de l’atoll.</p>
+<p>— Mais vous avez dit que vous n’arriviez pas à vous en servir…</p>
+<p>— Je suis en quelque sorte incompatible, mais elle marchera certainement pour toi. Elle a peut-être perdu un peu en pouvoir — je l’ai abîmée en essayant de la briser — mais je crois sincèrement qu’elle pourrait t’être utile.</p>
 </div>
 
 <p>Un sourire étrange plisse les lèvres de Faanarua.</p>
 
 <div class="conversation">
-<p>— J’ai raconté à Raiahui l’histoire de cette amulette, mais je suis sûre qu’elle n’y fera pas attention même si elle te voit la porter autour du cou. La vigilance fait partie des nombreuses choses qu’elle n’a pas hérité de moi.</p>
+<p>— J’ai raconté à Raiahui l’histoire de cette amulette, mais je suis sûre qu’elle n’y fera pas attention même si elle te voit la porter autour du cou. La vigilance fait partie des nombreuses choses qu’elle n’a pas hérité de moi.</p>
 </div>
 
 <p>Il vous faut un instant pour réaliser ce qu’elle vient de dire.</p>
 
 <div class="conversation">
-<p>— Raiahui est votre fille ?</p>
-<p>— Ce genre de liens n’a pas ici l’importance à laquelle tu es habituée. Raiahui et moi n’avons à peu près rien en commun. C’est à toi que je souhaite d’avoir l’astuce et la ténacité nécessaires. Crois-moi, ce sont des qualités bien supérieures à n’importe quel objet magique.</p>
+<p>— Raiahui est votre fille ?</p>
+<p>— Ce genre de liens n’a pas ici l’importance à laquelle tu es habituée. Raiahui et moi n’avons à peu près rien en commun. C’est à toi que je souhaite d’avoir l’astuce et la ténacité nécessaires. Crois-moi, ce sont des qualités bien supérieures à n’importe quel objet magique.</p>
 </div>
     `,
     "next": function(goToSection) {
@@ -226,7 +226,7 @@ const island3 = {
 <p>La femme hoche pensivement la tête en vous écoutant.</p>
 
 <div class="conversation">
-<p>— Il faut que je me remette au travail, dit-elle. J’aimerais repartir dès demain et cette pirogue a encore besoin d’entretien. Mais tu m’es moins désagréable que les membres de ma tribu et je vais donc te donner trois conseils pour la course de ce soir. Le premier est très simple, mais facilement négligé : c’est de prendre le temps de réfléchir et de ne pas t’arrêter aux apparences. Le deuxième est que tu ne pourras gagner qu’en te montrant suffisamment astucieuse : en-dehors du fait qu’elle doit s’effectuer à la nage, cette course n’a presque aucune règle. Et le troisième conseil est de prendre autant d’avance que possible avant même que Raiahui ne soit dans l’eau.</p>
+<p>— Il faut que je me remette au travail, dit-elle. J’aimerais repartir dès demain et cette pirogue a encore besoin d’entretien. Mais tu m’es moins désagréable que les membres de ma tribu et je vais donc te donner trois conseils pour la course de ce soir. Le premier est très simple, mais facilement négligé : c’est de prendre le temps de réfléchir et de ne pas t’arrêter aux apparences. Le deuxième est que tu ne pourras gagner qu’en te montrant suffisamment astucieuse : en-dehors du fait qu’elle doit s’effectuer à la nage, cette course n’a presque aucune règle. Et le troisième conseil est de prendre autant d’avance que possible avant même que Raiahui ne soit dans l’eau.</p>
 </div>
     `,
     "next": function(goToSection) {
@@ -243,15 +243,15 @@ const island3 = {
 <p>La femme ne tarde pas à vous interrompre :</p>
 
 <div class="conversation">
-<p>— Je suis déjà au courant de la course entre Raiahui et toi. Ca ne m’intéresse absolument pas.</p>
-<p>— C’est tout de même un rite de passage à l’âge adulte…</p>
-<p>— C’est une coutume idiote, oui. Qu’est-ce que tu imagines que cela t’apportera de participer à cette course ?</p>
+<p>— Je suis déjà au courant de la course entre Raiahui et toi. Ca ne m’intéresse absolument pas.</p>
+<p>— C’est tout de même un rite de passage à l’âge adulte…</p>
+<p>— C’est une coutume idiote, oui. Qu’est-ce que tu imagines que cela t’apportera de participer à cette course ?</p>
 </div>
 
 <p>Vous essayez de lui expliquer que vous êtes vous-même en train d’accomplir un rite de passage et de lui décrire ce que vous recherchez. Elle vous écoute avec une moue dubitative.</p>
 
 <div class="conversation">
-<p>— Voyager en quête d’une révélation me paraît tout à fait respectable, mais je ne vois toujours pas ce que tu espères trouver ici.</p>
+<p>— Voyager en quête d’une révélation me paraît tout à fait respectable, mais je ne vois toujours pas ce que tu espères trouver ici.</p>
 </div>
     `,
     "next": function(goToSection, flags, updateFlag) {
