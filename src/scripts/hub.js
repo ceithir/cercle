@@ -327,7 +327,7 @@ ${crocodileIslandDescription}
 
 <p>Vous jetez un coup d’oeil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
 
-<p>Vous prenez place à bord de la pirogue et dites au garçon - qui doit avoir quatre ou cinq ans de moins que vous - de s’installer à l’avant. Plongeant ensuite votre pagaie dans l’eau, vous prenez la direction de l’île où réside la tribu. Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation.</p>
+<p>Vous prenez place à bord de la pirogue et dites au garçon — qui doit avoir quatre ou cinq ans de moins que vous — de s’installer à l’avant. Plongeant ensuite votre pagaie dans l’eau, vous prenez la direction de l’île où réside la tribu. Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation.</p>
     `,
     "next": function(goToSection) {
       const text = `Vous suivez votre jeune guide vers l’endroit où doit débuter la course.`;

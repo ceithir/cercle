@@ -53,7 +53,7 @@ const village = {
   },
   "wine-makers": {
     "text": `
-<p>L’homme s’appelle Oramui et la femme Terani. En préparation de la cérémonie de ce soir, ils sont occupés à récupérer la sève nécessaire pour faire du vin de palme. Cette boisson claire et effervescente ne vous est pas inconnue - elle est fréquemment servie lors des célébrations dans votre tribu - mais vous n’avez qu’une idée assez vague de la manière dont elle est préparée.</p>
+<p>L’homme s’appelle Oramui et la femme Terani. En préparation de la cérémonie de ce soir, ils sont occupés à récupérer la sève nécessaire pour faire du vin de palme. Cette boisson claire et effervescente ne vous est pas inconnue — elle est fréquemment servie lors des célébrations dans votre tribu — mais vous n’avez qu’une idée assez vague de la manière dont elle est préparée.</p>
 
 <div class="conversation">
 <p>— Il ne faut pas récolter la sève trop tôt, vous explique Oramui. La boisson devient très rapidement plus forte et plus acide. Si on la conserve plus d’une journée, elle devient imbuvable.</p>

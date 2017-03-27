@@ -202,7 +202,7 @@ const island5 = {
 <p>— Je vous suis très reconnaissante de votre accueil ! vous exclamez-vous chaleureusement. Et, pour honorer la tradition, j’ai également une excellente boisson à vous offrir !</p>
 </div>
 
-<p>La grosse femme paraît désarçonnée par votre geste. Après vous avoir remis la coupe - que vous n’avez aucune intention de boire - elle accepte néanmoins la calebasse que vous lui tendez. La débouchant, elle l’approche de ses narines et son expression s’éclaircit aussitôt. Oubliant tout le reste, elle porte la calebasse à ses lèvres et se met à boire goulûment l’alcool qu’elle contient.</p>
+<p>La grosse femme paraît désarçonnée par votre geste. Après vous avoir remis la coupe — que vous n’avez aucune intention de boire — elle accepte néanmoins la calebasse que vous lui tendez. La débouchant, elle l’approche de ses narines et son expression s’éclaircit aussitôt. Oubliant tout le reste, elle porte la calebasse à ses lèvres et se met à boire goulûment l’alcool qu’elle contient.</p>
     `,
     "next": (goToSection) => {
       const context = `C’est le moment d’agir. Profitant de l’occasion, vous…`;

@@ -188,7 +188,7 @@ const intro = {
   "arrival": {
     "text":
 `
-<p>Le village de Raiahui se révèle d’entrée de jeu fort modeste : il ne consiste qu’en quelques huttes très simples, disposées sans ordre parmi les arbres. Les premiers habitants que vous apercevez - et qui vous aperçoivent - sont de jeunes enfants en train de jouer avec animation sur le sable et dans les vagues. Leurs exclamations excitées ne tardent pas à faire paraître quelques adultes, qui se prélassaient jusque-là dans des hamacs voisins.</p>
+<p>Le village de Raiahui se révèle d’entrée de jeu fort modeste : il ne consiste qu’en quelques huttes très simples, disposées sans ordre parmi les arbres. Les premiers habitants que vous apercevez — et qui vous aperçoivent — sont de jeunes enfants en train de jouer avec animation sur le sable et dans les vagues. Leurs exclamations excitées ne tardent pas à faire paraître quelques adultes, qui se prélassaient jusque-là dans des hamacs voisins.</p>
 
 <p>Lorsque vous parvenez tout près de la plage, Raiahui saute hors de la pirogue pour vous aider à accoster. Une vingtaine de spectateurs de tous âges se sont approchés pour vous observer avec des yeux curieux et il en arrive encore davantage. Vous soutenez de votre mieux toute cette attention ; vous avez visité d’autres îles où le passage d’étrangers est si rare que votre venue faisait figure d’évènement.</p>
 
@@ -277,7 +277,7 @@ const intro = {
 
 <p>Sous le regard curieux de Raiahui, vous examinez donc votre embarcation sous toutes les coutures, vous assurant que rien ne menace son étanchéité et que les liens maintenant en place le flotteur sont toujours solides.</p>
 
-<p>Aucun sujet de préoccupation ne s’étant présenté à vos yeux, vous mettez finalement un terme à votre inspection. Mais, au moment où vous vous redressez, vous remarquez subitement quelque chose d’étonnant : sur la plage longeant le village, il n’y a — en plus de la vôtre — que deux pirogues, d’ailleurs fort frêles. Même si les habitants de l’atoll ne s’aventurent guère en mer, la simple activité de pêcher devrait exiger bien plus d’embarcations que cela. Les autres pirogues de la tribu sont-elles conservées ailleurs ? Vous décidez que la question n’est tout de même pas essentielle au point de mériter une investigation immédiate.</p>
+<p>Aucun sujet de préoccupation ne s’étant présenté à vos yeux, vous mettez finalement un terme à votre inspection. Mais, au moment où vous vous redressez, vous remarquez subitement quelque chose d’étonnant : sur la plage longeant le village, il n’y a — en plus de la vôtre — que deux pirogues, d’ailleurs fort frêles. Même si les habitants de l’atoll ne s’aventurent guère en mer, la simple activité de pêcher devrait exiger bien plus d’embarcations que cela. Les autres pirogues de la tribu sont-elles conservées ailleurs ? Vous décidez que la question n’est tout de même pas essentielle au point de mériter une investigation immédiate.</p>
 `
     ,
     "next": arrivalNext,
@@ -348,7 +348,7 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 
 <p>Vous saisissez vite pourquoi il y a une telle abondance de nourriture en observant la voracité avec  laquelle mangent les gens qui vous entourent. Vous entendez fréquemment craquer sous leurs dents des morceaux de carapace ou de petits os d’oiseau qu’ils n’ont pas pris la peine de recracher.</p>
 
-<p>Raiahui vous a déserté pour aller retrouver d’autres adolescents, que vous voyez la féliciter - certains avec une envie perceptible - de son passage prochain à l’âge adulte. De toute évidence, ils présument sa victoire lors de votre course de demain !</p>
+<p>Raiahui vous a déserté pour aller retrouver d’autres adolescents, que vous voyez la féliciter — certains avec une envie perceptible — de son passage prochain à l’âge adulte. De toute évidence, ils présument sa victoire lors de votre course de demain !</p>
 `
     ,
     "next": (goToSection, flags, updateFlag) => {

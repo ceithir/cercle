@@ -40,7 +40,7 @@ const crocodileLastCrossroads = (goToSection, flags, updateFlag) => {
 const island6 = {
   "island-6": {
     "text": `
-<p>Cette île est couverte d’une abondance de palétuviers, dont les racines enchevêtrées recouvrent totalement le sol. Cà et là, quelques coins de plage résistent non sans mal à l’étouffement. L’île fait une bonne taille — sans être aussi grande que celle où se trouve le village — et son coeur vous est totalement masqué par la végétation.</p>
+<p>Cette île est couverte d’une abondance de palétuviers, dont les racines enchevêtrées recouvrent totalement le sol. Cà et là, quelques coins de plage résistent non sans mal à l’étouffement. L’île fait une bonne taille — sans être aussi grande que celle où se trouve le village — et son coeur vous est totalement masqué par la végétation.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
@@ -71,7 +71,7 @@ const island6 = {
   },
   "exploring-island-6": {
     "text": `
-<p>Vous accostez sur une minuscule plage et vous enfoncez vers le coeur de l’île. Les racines tapissent le sol comme une épaisse toile d’araignée, ce qui rend la marche malaisée et vous fait presque perdre l’équilibre à plusieurs reprises. A mesure que vous vous enfoncez vers l’intérieur, les arbres se font progressivement plus épais, mais vous ne remarquez toujours aucune vie animale. Le silence - que vous trouviez d’abord reposant - ne tarde pas à vous paraître quelque peu oppressant.</p>
+<p>Vous accostez sur une minuscule plage et vous enfoncez vers le coeur de l’île. Les racines tapissent le sol comme une épaisse toile d’araignée, ce qui rend la marche malaisée et vous fait presque perdre l’équilibre à plusieurs reprises. A mesure que vous vous enfoncez vers l’intérieur, les arbres se font progressivement plus épais, mais vous ne remarquez toujours aucune vie animale. Le silence — que vous trouviez d’abord reposant — ne tarde pas à vous paraître quelque peu oppressant.</p>
 
 <p>Après de longs moments qui ne vous font rien découvrir d’intéressant, vous commencez à vous lasser de cette exploration. Il semble de moins en moins probable qu’il y ait quoi que ce soit qui puisse vous être utile sur cette île. Ne sachant plus bien de quelle direction vous êtes venue, vous décidez de regagner simplement le lagon et de le longer ensuite jusqu’à retrouver votre pirogue. Il vous suffit de quelques instants pour atteindre l’une des petites plages qui entourent l’île, presque étranglée par les racines qui l’entourent.</p>
 
@@ -208,7 +208,7 @@ const island6 = {
       const context = `Vous vous trouvez à quatre bonnes enjambées du crocodile.`;
       const choices = [
         {
-          "text": `Vous vous rapprochez — très légèrement — de lui, comme il le demande.`,
+          "text": `Vous vous rapprochez — très légèrement — de lui, comme il le demande.`,
           "action": () => {
             goToSection("crocodile-closer");
           },

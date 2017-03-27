@@ -82,7 +82,7 @@ const island3 = {
 <p>Le visage de la femme se plisse d’une grimace impatiente et vous vous attendez à ce qu’elle vous demande à nouveau de déguerpir. Il n’en est cependant rien : un soupir lui échappe et, après quelques instants, elle reprend la parole d’une voix plus calme :</p>
 
 <div class="conversation">
-<p>— Ecoute, je veux bien te parler si ça te fait partir plus vite. Mais ça fait un bon moment que je travaille sans rien manger et je commence à avoir vraiment faim. Rapporte-moi quelques crabes ou quelques écrevisses - il y en a plein le lagon - et je te raconterai ce que tu veux ensuite.</p>
+<p>— Ecoute, je veux bien te parler si ça te fait partir plus vite. Mais ça fait un bon moment que je travaille sans rien manger et je commence à avoir vraiment faim. Rapporte-moi quelques crabes ou quelques écrevisses — il y en a plein le lagon — et je te raconterai ce que tu veux ensuite.</p>
 </div>
 
 <p>Et sur ces mots, elle reprend ses activités comme si vous n’existiez pas, sourde à vos paroles.</p>
@@ -119,7 +119,7 @@ const island3 = {
   },
   "faanarua-your-journey": {
     "text": `
-<p>Une expression agacée se peint sur le visage de la femme tandis vous lui expliquez le principe de votre voyage d’initiation, mais elle disparaît peu à peu lorsque vous commencez à lui parler des îles que vous avez visité. Ses commentaires — d’abord assez brefs — révèlent vite que certaines d’entre elles lui sont familières.</p>
+<p>Une expression agacée se peint sur le visage de la femme tandis vous lui expliquez le principe de votre voyage d’initiation, mais elle disparaît peu à peu lorsque vous commencez à lui parler des îles que vous avez visité. Ses commentaires — d’abord assez brefs — révèlent vite que certaines d’entre elles lui sont familières.</p>
 
 <div class="conversation">
 <p>— Alors comme ça tu es passée chez les Tongakiri ? fait-elle à un moment. Est-ce qu’ils sont toujours en train de sculpter cette statue en pierre ridiculement grande de je ne sais quel chef légendaire ?</p>
@@ -196,7 +196,7 @@ const island3 = {
 <p>— Et l’amulette ?</p>
 <p>— Je ne suis jamais retournée la chercher. Je l’avais enterrée au milieu de la toute petite île qui se trouve à l’autre bout de l’atoll.</p>
 <p>— Mais vous avez dit que vous n’arriviez pas à vous en servir…</p>
-<p>— Je suis en quelque sorte incompatible, mais elle marchera certainement pour toi. Elle a peut-être perdu un peu en pouvoir - je l’ai abîmée en essayant de la briser - mais je crois sincèrement qu’elle pourrait t’être utile.</p>
+<p>— Je suis en quelque sorte incompatible, mais elle marchera certainement pour toi. Elle a peut-être perdu un peu en pouvoir — je l’ai abîmée en essayant de la briser — mais je crois sincèrement qu’elle pourrait t’être utile.</p>
 </div>
 
 <p>Un sourire étrange plisse les lèvres de Faanarua.</p>

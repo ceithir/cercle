@@ -486,7 +486,7 @@ const trial = {
     "text": `
 <p>Vous forcez la cadence de vos mouvements, atteignant la vitesse maximale dont vous êtes capable. Il reste à peine plus d’un tiers de la course. Comment qui que ce soit pourrait-il encore vous rattraper à présent ?</p>
 
-<p>Et pourtant, un pressentiment oppressant s’est insinué en vous et ne cesse de croître, à chaque fois que vos membres achèvent un nouveau mouvement, à chaque fois que vous prenez une inspiration nouvelle. Il vous semble — et vous ne comprenez pas pourquoi — que le temps dont vous disposez est en train de s’effilocher rapidement.</p>
+<p>Et pourtant, un pressentiment oppressant s’est insinué en vous et ne cesse de croître, à chaque fois que vos membres achèvent un nouveau mouvement, à chaque fois que vous prenez une inspiration nouvelle. Il vous semble — et vous ne comprenez pas pourquoi — que le temps dont vous disposez est en train de s’effilocher rapidement.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const doll = flags.inventory.doll;
@@ -937,7 +937,7 @@ const trial = {
   },
   "trial-coral-doll": {
     "text": `
-<p>Vous sentez tout à coup la figurine être agitée de mouvements convulsifs, jusqu’à se détacher de la lanière par laquelle elle était retenue à votre taille. Vous ne saisissez pas ce qui est en train d’arriver, mais, un instant plus tard, vous sentez une main en bois — de taille tout à fait humaine — se refermer autour de la vôtre pour vous tirer dans une direction nouvelle. Totalement aveugle, vous vous laissez guider, accompagnant à peine le mouvement de petits battements de jambes.</p>
+<p>Vous sentez tout à coup la figurine être agitée de mouvements convulsifs, jusqu’à se détacher de la lanière par laquelle elle était retenue à votre taille. Vous ne saisissez pas ce qui est en train d’arriver, mais, un instant plus tard, vous sentez une main en bois — de taille tout à fait humaine — se refermer autour de la vôtre pour vous tirer dans une direction nouvelle. Totalement aveugle, vous vous laissez guider, accompagnant à peine le mouvement de petits battements de jambes.</p>
 
 <p>Quelques instants plus tard, la main vous relâche et vous émergez hors de l’épais nuage. La surface est toute proche et votre tête émerge bientôt à l’air libre.</p>
     `,
