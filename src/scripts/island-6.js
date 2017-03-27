@@ -7,10 +7,10 @@ const crocodileLastWords = `
 <p>Les échos d’un rire guttural vous parviennent tandis que vous vous enfuyez.</p>
 
 <div class="conversation">
-<p>— Tu ne peux pas me reprocher d’avoir essayé, délicieuse fille humaine ! vous crie le crocodile. Mais je vais te donner un véritable conseil pour humilier cette tribu de voleurs. Trouve l’un des fruits rouges qui poussent sur cette île et mange-le juste avant ta course, il te donnera des forces. Tu auras également besoin d’astuce, mais ce n’est pas quelque chose qui s’acquiert aussi facilement !</p>
+<p>— Tu ne peux pas me reprocher d’avoir essayé, délicieuse fille humaine ! vous crie le crocodile. Mais je vais te donner un véritable conseil pour humilier cette tribu de voleurs. Trouve l’un des fruits rouges qui poussent sur cette île et mange-le juste avant ta course, il te donnera des forces. Tu auras également besoin d’astuce, mais ce n’est pas quelque chose qui s’acquiert aussi facilement !</p>
 </div>
 
-<p>Sa voix disparaît derrière vous, mais vous ne ralentissez guère l’allure avant d’avoir regagné votre pirogue. En chemin, vous observez quelques arbustes qui portent en effet de petits fruits ovales d’une couleur écarlate. Il s’agit sans doute de ce dont parlait le crocodile, mais pouvez-vous lui faire confiance cette fois-ci ?</p>
+<p>Sa voix disparaît derrière vous, mais vous ne ralentissez guère l’allure avant d’avoir regagné votre pirogue. En chemin, vous observez quelques arbustes qui portent en effet de petits fruits ovales d’une couleur écarlate. Il s’agit sans doute de ce dont parlait le crocodile, mais pouvez-vous lui faire confiance cette fois-ci ?</p>
 `;
 
 const crocodileLastCrossroads = (goToSection, flags, updateFlag) => {
@@ -150,7 +150,7 @@ const island6 = {
   },
   "crocodile-quiet-paddling": {
     "text": `
-<p>Plongeant votre pagaie dans l’eau de manière à ne faire aucun bruit, vous dirigez lentement votre pirogue vers le centre du lagon, malgré la peur qui crispe vos muscles. Mais le crocodile, jusque-là immobile comme un tronc d’arbre abattu, se met alors en mouvement avec une soudaineté foudroyante, se précipitant vers vous dans un grand bruit d’éclaboussures ! Transpercée par la terreur, vous vous mettez aussitôt à pagayer de toutes vos forces, mais le reptile a déjà atteint votre embarcation. Un choc violent vous fait presque tomber à l’eau lorsque sa mâchoire puissante se referme sur votre flotteur. Le crocodile essaie de se servir de cette prise pour renverser votre pirogue, mais il emploie une telle violence qu’il arrache totalement le flotteur, vous donnant une chance de lui échapper. Vous ne la laissez pas passer, pagayant plus énergiquement que vous ne l’avez jamais fait de votre vie jusqu’à vous sentir au bord de l’évanouissement.</p>
+<p>Plongeant votre pagaie dans l’eau de manière à ne faire aucun bruit, vous dirigez lentement votre pirogue vers le centre du lagon, malgré la peur qui crispe vos muscles. Mais le crocodile, jusque-là immobile comme un tronc d’arbre abattu, se met alors en mouvement avec une soudaineté foudroyante, se précipitant vers vous dans un grand bruit d’éclaboussures ! Transpercée par la terreur, vous vous mettez aussitôt à pagayer de toutes vos forces, mais le reptile a déjà atteint votre embarcation. Un choc violent vous fait presque tomber à l’eau lorsque sa mâchoire puissante se referme sur votre flotteur. Le crocodile essaie de se servir de cette prise pour renverser votre pirogue, mais il emploie une telle violence qu’il arrache totalement le flotteur, vous donnant une chance de lui échapper. Vous ne la laissez pas passer, pagayant plus énergiquement que vous ne l’avez jamais fait de votre vie jusqu’à vous sentir au bord de l’évanouissement.</p>
 
 <p>Lorsque vous vous arrêtez enfin, le coeur battant à tout rompre, un coup d’oeil en arrière vous apprend que le monstre ne vous a pas poursuivie. Encore sous le choc d’avoir vu la mort vous frôler de si près, il faut un moment pour que cette constatation vous inspire un véritable soulagement.</p>
 
@@ -171,7 +171,7 @@ const island6 = {
 
 <p>Les racines tapissent le sol comme une épaisse toile d’araignée, ce qui rend la marche malaisée et vous fait presque perdre l’équilibre à plusieurs reprises. A mesure que vous vous enfoncez vers l’intérieur, les arbres se font progressivement plus épais, mais vous ne remarquez toujours aucune vie animale. Loin d’être reposant, le silence ne tarde pas à vous paraître oppressant.</p>
 
-<p>Après de longs moments qui ne vous font rien découvrir d’intéressant, vous ne pouvez vous empêcher d’être gagnée par une certaine nervosité. Et si le crocodile avait quitté sa plage et attendait désormais à proximité de votre pirogue ? Vous seriez prise au piège !</p>
+<p>Après de longs moments qui ne vous font rien découvrir d’intéressant, vous ne pouvez vous empêcher d’être gagnée par une certaine nervosité. Et si le crocodile avait quitté sa plage et attendait désormais à proximité de votre pirogue ? Vous seriez prise au piège !</p>
 
 <p>Vous décidez que vous êtes restée suffisamment longtemps sur cette île, où il n’y a de toute évidence rien qui puisse vous être utile. Mais avant d’en partir, vous jugez prudent de vous assurer que le crocodile n’a pas bougé de l’endroit où vous l’avez vu. C’est clairement un risque, mais il vous fait moins peur que de ne pas être certaine de l’endroit exact où se trouve ce monstre.</p>
 
@@ -200,7 +200,7 @@ const island6 = {
 <p>— N’aie pas peur, je ne te ferai aucun mal. Je veux t’être utile, au contraire. Approche-toi un peu pour que nous parlions, car j’entends difficilement les voix humaines.</p>
 </div>
 
-<p>La plupart des légendes de votre tribu mettent en scène des animaux doués de l’esprit et de la parole. Lors de vos moments de rêverie, vous avez souvent imaginé votre rencontre avec une telle créature. Mais vous ne vous attendiez certes pas à ce qu’elle se déroule ainsi !</p>
+<p>La plupart des légendes de votre tribu mettent en scène des animaux doués de l’esprit et de la parole. Lors de vos moments de rêverie, vous avez souvent imaginé votre rencontre avec une telle créature. Mais vous ne vous attendiez certes pas à ce qu’elle se déroule ainsi !</p>
 
 <p>Votre stupéfaction ne vous ôte cependant pas votre prudence instinctive.</p>
     `,
@@ -231,7 +231,7 @@ const island6 = {
 <p>Vous faites un pas prudent en avant, prête à vous enfuir à la moindre alerte. Mais le corps énorme du crocodile reste aussi immobile que le sable sur lequel il repose.</p>
 
 <div class="conversation">
-<p>— C’est bien, tu apprends à ne pas te fier aux apparences. Je veux sincèrement t’aider, comme tu en as besoin. Réfléchis : que veux-tu savoir ?</p>
+<p>— C’est bien, tu apprends à ne pas te fier aux apparences. Je veux sincèrement t’aider, comme tu en as besoin. Réfléchis : que veux-tu savoir ?</p>
 </div>
     `,
     "next": (goToSection) => {
@@ -258,7 +258,7 @@ const island6 = {
   "crocodile-bitterness": {
     "text": `
 <div class="conversation">
-<p>— Ces voleurs… J’étais le seul maître de l’atoll avant que leur misérable tribu ne décide de s’y installer ! Aujourd’hui, il ne me reste plus que cette seule île et une petite partie du lagon pour y chasser. Mais je suis patient, je sais attendre pendant des saisons et des saisons… Un jour, ils apprendront que je conserve bien des secrets et des pouvoirs cachés, mais il sera trop tard ce jour-là !</p>
+<p>— Ces voleurs… J’étais le seul maître de l’atoll avant que leur misérable tribu ne décide de s’y installer ! Aujourd’hui, il ne me reste plus que cette seule île et une petite partie du lagon pour y chasser. Mais je suis patient, je sais attendre pendant des saisons et des saisons… Un jour, ils apprendront que je conserve bien des secrets et des pouvoirs cachés, mais il sera trop tard ce jour-là !</p>
 </div>
 
 <p>Il est difficile d’identifier clairement des émotions dans une voix aussi inhumaine, mais vous ne doutez pas de la rancoeur vengeresse que nourrit jalousement le reptile.</p>
@@ -287,19 +287,19 @@ const island6 = {
   "crocodile-power": {
     "text": `
 <div class="conversation">
-<p>— Tu doutes peut-être de ce que je te raconte ? dit le crocodile. Tu es encore jeune et ignorante. Je vais te montrer ce que je peux faire.</p>
+<p>— Tu doutes peut-être de ce que je te raconte ? dit le crocodile. Tu es encore jeune et ignorante. Je vais te montrer ce que je peux faire.</p>
 </div>
 
 <p>Son corps massif se met à bouger et vous vous raidissez aussitôt, alarmée, mais il ne se dirige pas vers vous. Sa mâchoire puissante se referme sur une racine voisine et en arrache un tronçon épais, qu’elle semble ensuite mastiquer longuement. Puis le crocodile se retourne vers vous et recrache sur le sable le morceau de bois.</p>
 
 <div class="conversation">
-<p>— Regarde, voici l’un de mes pouvoirs !</p>
+<p>— Regarde, voici l’un de mes pouvoirs !</p>
 </div>
 
 <p>Son séjour dans la gueule du crocodile a donné une forme étrange au fragment de racine : il ressemble désormais à une figurine humaine. Et, bien que la forme en soit très grossière et les détails inexistants, la certitude étrange apparaît dans votre esprit que c’est vous qu’elle représente. Vos yeux la fixent avec une fascination croissante.</p>
 
 <div class="conversation">
-<p>— Cela te plaît, non ? dit le crocodile d’une voix presque susurrante. Et elle te serait profondément utile. Viens la chercher… Viens… Approche…</p>
+<p>— Cela te plaît, non ? dit le crocodile d’une voix presque susurrante. Et elle te serait profondément utile. Viens la chercher… Viens… Approche…</p>
 </div>
 
 <p>Le désir de posséder la figurine s’est totalement emparé de votre esprit et vous êtes prête à défier la mort pour vous en emparer. Mais, bien que vous soyez incapable de résister au charme qu’elle exerce sur vous, votre bon sens n’est pas totalement engourdi. Vous réalisez que les actions du crocodile n’ont pas d’autre but que de faire de vous son repas.</p>
@@ -361,7 +361,7 @@ const island6 = {
   "crocodile-help": {
     "text":`
 <div class="conversation">
-<p>— Je dois participer à une course pour le rite de passage d’une jeune fille de la tribu, dites-vous à l’énorme reptile. Vous connaissez peut-être un moyen de m’aider ? Si je gagne, cela embarrassera la tribu toute entière.</p>
+<p>— Je dois participer à une course pour le rite de passage d’une jeune fille de la tribu, dites-vous à l’énorme reptile. Vous connaissez peut-être un moyen de m’aider ? Si je gagne, cela embarrassera la tribu toute entière.</p>
 </p>
 
 <p>Le crocodile médite la suggestion pendant un long moment avant de finalement répondre :</p>
@@ -401,7 +401,7 @@ const island6 = {
   },
   "crocodile-siren": {
     "text": `
-<p>Vous tournez les talons pour vous enfuir. Le bruit cesse aussitôt et l’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Heureusement, vous n’êtes déjà plus à l’endroit où les puissantes mâchoires se referment en claquant. Sans vous retourner, vous vous lancez en courant de toutes vos forces parmi les arbres.</p>
+<p>Vous tournez les talons pour vous enfuir. Le bruit cesse aussitôt et l’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Heureusement, vous n’êtes déjà plus à l’endroit où les puissantes mâchoires se referment en claquant. Sans vous retourner, vous vous lancez en courant de toutes vos forces parmi les arbres.</p>
     ` + crocodileLastWords,
     "next": crocodileLastCrossroads,
   },
@@ -409,7 +409,7 @@ const island6 = {
     "text": `
 <p>Un rire saccadé et grinçant s’échappe de la gueule puissante du reptile.</p>
 <div class="conversation">
-<p>— Tu es bien méfiante ! J’imagine que les apparences sont contre moi. Mais tu as pourtant bien d’autres sujets de préoccupation. Veux-tu que je te fasse part de ma sagesse malgré tout ?</p>
+<p>— Tu es bien méfiante ! J’imagine que les apparences sont contre moi. Mais tu as pourtant bien d’autres sujets de préoccupation. Veux-tu que je te fasse part de ma sagesse malgré tout ?</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
@@ -438,7 +438,7 @@ const island6 = {
 <p>— Je hais ces misérables voleurs, siffle le crocodile avec animosité. L’atoll tout entier m’appartenait avant que leur tribu bâtarde ne décide de s’y installer. Mais il viendra un jour où…</p>
 </div>
 
-<p>L’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Heureusement, vous n’aviez pas relâché votre vigilance et vous avez juste le temps de vous enfuir à toutes jambes.</p>
+<p>L’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Heureusement, vous n’aviez pas relâché votre vigilance et vous avez juste le temps de vous enfuir à toutes jambes.</p>
     ` + crocodileLastWords,
     "next": crocodileLastCrossroads,
   },
@@ -472,7 +472,7 @@ const island6 = {
   "crocodile-tree": {
     "text": `
 <p>Les racines de l’arbre en question sont un écheveau inextricable. Vous vous baissez pour le fouiller à l’aide de vos mains.</p>
-<p>L’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Prise par surprise, vous avez à peine le temps de réagir.</p>
+<p>L’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Prise par surprise, vous avez à peine le temps de réagir.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
@@ -510,7 +510,7 @@ const island6 = {
   },
   "crocodile-unmasked": {
     "text": `
-<p>L’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Heureusement, vous n’aviez pas relâché votre vigilance et vous avez juste le temps de vous enfuir à toutes jambes.</p>
+<p>L’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Heureusement, vous n’aviez pas relâché votre vigilance et vous avez juste le temps de vous enfuir à toutes jambes.</p>
     ` + crocodileLastWords,
     "next": crocodileLastCrossroads,
   },

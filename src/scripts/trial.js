@@ -13,7 +13,7 @@ const raiahuiGoodEndText = `
 <p>Des bruits d’approbation parcourent les hommes et les femmes qui se trouvent là. Raiahui hoche la tête avec un mélange de respect, de fierté et de joie.</p>
 
 <div class="conversation">
-<p>— Cette épreuve t’a-t-elle appris quelque chose ? demande le chef.</p>
+<p>— Cette épreuve t’a-t-elle appris quelque chose ? demande le chef.</p>
 <p>— Elle m’a beaucoup appris.</p>
 <p>— Je souhaite que tu n’oublies pas Mananuiva à l’avenir. Même si elle a participé à ce rite dans d’autres intentions, c’est grâce à elle que tu es désormais une adulte.</p>
 <p>— Je ne l’oublierai pas.</p>
@@ -70,7 +70,7 @@ const cleanInventoryBeforeRace = (flags, updateFlag) => {
 const trial = {
   "trial": {
     "text": `
-<p>À la suite du jeune garçon, vous arrivez sur la plage bordant l’extrémité de l’île, où toute la tribu est en train de s’assembler. Vous apercevez Raiahui en compagnie des adolescents de son âge, formant un groupe un peu à part du reste de la foule ; un large sourire se dessine sur son visage lorsque ses yeux se posent sur vous.</p>
+<p>À la suite du jeune garçon, vous arrivez sur la plage bordant l’extrémité de l’île, où toute la tribu est en train de s’assembler. Vous apercevez Raiahui en compagnie des adolescents de son âge, formant un groupe un peu à part du reste de la foule ; un large sourire se dessine sur son visage lorsque ses yeux se posent sur vous.</p>
 
 <p>La clarté du jour, qui ne touche pas encore à sa fin, vous permet de distinguer clairement les récifs de corail recouvrant le fond de la passe que vous avez traversé la veille pour pénétrer dans le lagon. De l’autre côté se trouve l’île sablonneuse qui servira de point d’arrivée à votre course.</p>
 
@@ -102,7 +102,7 @@ const trial = {
 
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
-        items += `<p class="text-info">Vous avez rangé les perles qui vous restent dans un petit sac de toile accroché à votre taille ; vous pourrez certainement leur trouver un usage pendant votre course.</p>`
+        items += `<p class="text-info">Vous avez rangé les perles qui vous restent dans un petit sac de toile accroché à votre taille ; vous pourrez certainement leur trouver un usage pendant votre course.</p>`
       }
 
       const net = flags.inventory.net;
@@ -111,7 +111,7 @@ const trial = {
       }
 
       return `
-<p>La course a-t-elle vraiment commencé ? L’ambiance qui vous entoure n’en donne pas l’impression. Les adolescents chahutent, rient et font circuler des calebasses remplies de vin de palme. Raiahui est au coeur de cette sorte de célébration anticipée, savourant visiblement l’attention dont elle est l’objet et ne vous accordant pas un regard.</p>
+<p>La course a-t-elle vraiment commencé ? L’ambiance qui vous entoure n’en donne pas l’impression. Les adolescents chahutent, rient et font circuler des calebasses remplies de vin de palme. Raiahui est au coeur de cette sorte de célébration anticipée, savourant visiblement l’attention dont elle est l’objet et ne vous accordant pas un regard.</p>
 
 <p>Vous jetez un coup d’oeil vers votre point d’arrivée. Il y a une certaine distance à parcourir, mais il ne s’agira pas d’une épreuve d’endurance : si vous partiez avec quelques instants d’avance, même un excellent nageur aurait peu de chances de vous rattraper.</p>
 
@@ -244,13 +244,13 @@ const trial = {
 <p>Vous saisissez par le bras une adolescente en train de boire du vin de palme non loin de vous.</p>
 
 <div class="conversation">
-<p>— Qu’est-ce qui se passe ? demandez-vous à savoir. Si la course a bien commencé, pourquoi est-ce que nous ne partons pas toutes les deux ? Est-ce qu’il faut attendre quelque chose ?</p>
+<p>— Qu’est-ce qui se passe ? demandez-vous à savoir. Si la course a bien commencé, pourquoi est-ce que nous ne partons pas toutes les deux ? Est-ce qu’il faut attendre quelque chose ?</p>
 </div>
 
 <p>La fille glousse. À en juger par l’expression hilare qui est peinte sur son visage, la calebasse qu’elle tient doit déjà être assez vide.</p>
 
 <div class="conversation">
-<p>— Ne t’en fais pas, ne t’en fais pas, dit-elle en vous donnant une tape maladroite sur l’épaule. Raiahui va partir, mais tu n’as pas besoin de l’attendre. Prendre un peu d’avance, ça peut être utile !</p>
+<p>— Ne t’en fais pas, ne t’en fais pas, dit-elle en vous donnant une tape maladroite sur l’épaule. Raiahui va partir, mais tu n’as pas besoin de l’attendre. Prendre un peu d’avance, ça peut être utile !</p>
 </div>
 
 <p>Vous n’en tirez rien d’autre.</p>
@@ -283,7 +283,7 @@ const trial = {
 <p>Raiahui est le centre rayonnant d’un cercle d’adolescents, dont la conversation gaie est ponctuée de rires fréquents.</p>
 
 <div class="conversation">
-<p>— Mananuiva ! s’exclame-t-elle en vous apercevant. Je pensais que tu étais déjà partie. Ne m’attends pas : je bois juste un peu et je te rejoins !</p>
+<p>— Mananuiva ! s’exclame-t-elle en vous apercevant. Je pensais que tu étais déjà partie. Ne m’attends pas : je bois juste un peu et je te rejoins !</p>
 </div>
 
 <p>Les autres adolescents vous regardent d’un air amusé, mais ne disent rien. Une calebasse vide gît déjà aux pieds de Raiahui.</p>
@@ -345,7 +345,7 @@ const trial = {
   "trial-fair": {
     "text": `
 <div class="conversation">
-<p>— Pour quelqu’un qui s’attend à devenir adulte aujourd’hui, tu as vraiment un comportement de gamine ! Je ne suis pas là pour te faire rire ! Si tu ne débutes pas cette course tout de suite, en même temps que moi, je renonce à participer à ton rite de passage et tu pourras attendre la venue du prochain étranger !</p>
+<p>— Pour quelqu’un qui s’attend à devenir adulte aujourd’hui, tu as vraiment un comportement de gamine ! Je ne suis pas là pour te faire rire ! Si tu ne débutes pas cette course tout de suite, en même temps que moi, je renonce à participer à ton rite de passage et tu pourras attendre la venue du prochain étranger !</p>
 </div>
 
 <p>Une expression à la fois alarmée et vexée passe sur le visage de Raiahui. Elle regarde les adolescents qui l’entourent comme si elle en espérait un conseil, puis hausse finalement les épaules.</p>
@@ -371,7 +371,7 @@ const trial = {
 <p>Vous profitez de ce que Raiahui est en train d’entamer une nouvelle calebasse pour lui subtiliser adroitement son couteau. Mais elle s’en rend compte aussitôt et tourne vers vous un regard où il n’y a plus la moindre trace d’amusement.</p>
 
 <div class="conversation">
-<p>— Rends-moi ça ! Rends-moi ça tout de suite !</p>
+<p>— Rends-moi ça ! Rends-moi ça tout de suite !</p>
 </div>
 
 <p>Laissant tomber la calebasse sur le sable, elle se jette sur vous pour récupérer sa possession.</p>
@@ -401,11 +401,11 @@ const trial = {
   },
   "knife-sea": {
     "text": `
-<p>Le couteau d’ivoire décrit une ample courbe et retombe dans le lagon avec une légère éclaboussure. Avec une exclamation agacée, Raiahui se détourne aussitôt de vous et se précipite dans cette direction. Vous n’allez pas laisser passer cette occasion ! Sous le regard ébahi des adolescents qui vous entourent, vous franchissez en un instant la distance qui vous sépare de la rive et plongez sans attendre dans les eaux tièdes de la passe.</p>
+<p>Le couteau d’ivoire décrit une ample courbe et retombe dans le lagon avec une légère éclaboussure. Avec une exclamation agacée, Raiahui se détourne aussitôt de vous et se précipite dans cette direction. Vous n’allez pas laisser passer cette occasion ! Sous le regard ébahi des adolescents qui vous entourent, vous franchissez en un instant la distance qui vous sépare de la rive et plongez sans attendre dans les eaux tièdes de la passe.</p>
 
 <p>Quelques brasses vigoureuses sous la surface vous propulsent en direction de l’île sablonneuse. Lorsque vous remontez à l’air libre, Raiahui n’est plus en vue, mais presque tous les spectateurs restés sur la plage se tiennent désormais du côté du lagon, sans doute pour voir si votre concurrente parvient à récupérer son précieux couteau. Vous adoptez un rythme de nage modéré, de manière à économiser pour l’instant vos forces.</p>
 
-<p>Vous avez déjà parcouru presque le quart du trajet lorsque le bruit d’exclamation vous parvient aux tympans. Un bref regard en arrière vous apprend que les adolescents présents sur la plage sont en train d’agiter les bras en poussant des cris d’encouragement. Raiahui a dû enfin se lancer à votre poursuite, soit que la chance lui ait permis de retrouver rapidement son couteau parmi les coraux du lagon, soit qu’elle ait décidé de s’en occuper plus tard. Cela n’a pas une grande importance : quand bien même elle serait vraiment meilleure nageuse que vous, l’avance que vous avez acquise vous garantit virtuellement la victoire.</p>
+<p>Vous avez déjà parcouru presque le quart du trajet lorsque le bruit d’exclamation vous parvient aux tympans. Un bref regard en arrière vous apprend que les adolescents présents sur la plage sont en train d’agiter les bras en poussant des cris d’encouragement. Raiahui a dû enfin se lancer à votre poursuite, soit que la chance lui ait permis de retrouver rapidement son couteau parmi les coraux du lagon, soit qu’elle ait décidé de s’en occuper plus tard. Cela n’a pas une grande importance : quand bien même elle serait vraiment meilleure nageuse que vous, l’avance que vous avez acquise vous garantit virtuellement la victoire.</p>
 
 <p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’oeil furtifs derrière vous, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez plus tôt que vous n’en aviez l’intention la cadence de votre nage, mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien. Vous avez accompli la moitié du trajet, mais il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
 
@@ -415,7 +415,7 @@ const trial = {
   },
   "knife-land": {
     "text": `
-<p>Le couteau d’ivoire décrit une ample courbe et disparaît silencieusement parmi les palmiers. Avec une exclamation furieuse, Raiahui se détourne aussitôt de vous et se précipite dans cette direction. Vous n’allez pas laisser passer cette occasion ! Sous le regard absolument stupéfait des adolescents qui vous entourent, vous franchissez en trois enjambées la distance qui vous sépare de la rive.</p>
+<p>Le couteau d’ivoire décrit une ample courbe et disparaît silencieusement parmi les palmiers. Avec une exclamation furieuse, Raiahui se détourne aussitôt de vous et se précipite dans cette direction. Vous n’allez pas laisser passer cette occasion ! Sous le regard absolument stupéfait des adolescents qui vous entourent, vous franchissez en trois enjambées la distance qui vous sépare de la rive.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const text = `Et vous plongez.`;
@@ -432,7 +432,7 @@ const trial = {
   "raiahui-drunk": {
     "text": `
 <div class="conversation">
-<p>— Ce n’est pas moi qui vais t’empêcher de te saoûler, dites-vous en lui tendant votre calebasse. Tiens, vide aussi celle-ci, si tu t’imagines vraiment que tu pourras me battre à la course ensuite !</p>
+<p>— Ce n’est pas moi qui vais t’empêcher de te saoûler, dites-vous en lui tendant votre calebasse. Tiens, vide aussi celle-ci, si tu t’imagines vraiment que tu pourras me battre à la course ensuite !</p>
 </div>
 
 <p>Votre défi fait courir des exclamations amusées parmi la jeune assistance. Raiahui accepte votre présent avec un sourire de confiance totale. Même si elle réalise que cette boisson est autrement plus forte que du simple vin de palme, vous soupçonnez qu’elle videra tout de même l’essentiel de la calebasse, ne serait-ce que pour ne pas perdre la face.</p>
@@ -536,7 +536,7 @@ const trial = {
   },
   "trial-underwater": {
     "text": `
-<p>Avez-vous deviné que la tribu apparemment si dénuée de moyens vous dissimulait sa vraie nature ? Avez-vous soupçonné que cette course n’était pas une simple compétition, à l’issue de laquelle le perdant ne connaîtrait rien de pire que la vexation de l’échec ? Vous est-il revenu en mémoire de vieilles légendes parlant d’humains qui étaient en même temps autre chose ?</p>
+<p>Avez-vous deviné que la tribu apparemment si dénuée de moyens vous dissimulait sa vraie nature ? Avez-vous soupçonné que cette course n’était pas une simple compétition, à l’issue de laquelle le perdant ne connaîtrait rien de pire que la vexation de l’échec ? Vous est-il revenu en mémoire de vieilles légendes parlant d’humains qui étaient en même temps autre chose ?</p>
 
 <p>Tout cela n’a plus aucune importance à présent, car la transparence de l’eau vous permet de distinguer sans aucun mal la seconde apparence de Raiahui tandis qu’elle réduit à vive allure la distance qui vous sépare. Propulsé par les mouvements puissants de sa queue, son corps marbré de rayures sombres est plus à l’aise dans l’élément aquatique que vous ne pourrez jamais l’être. Sa gueule paraît presque inoffensive pour le moment, mais vous avez déjà vu des mâchoires de requin-tigre et les nombreuses dents tranchantes dont elles sont garnies.</p>
 
@@ -772,7 +772,7 @@ const trial = {
 
 <p>Vous hurlez un mot que votre mère n’aurait pas été heureuse d’entendre, le ponctuez d’un violent coup de tête qui frappe votre adversaire en plein visage et lui mordez ensuite sauvagement l’avant-bras. Raiahui pousse un cri de douleur perçant et laisse presque échapper son précieux couteau. Vous lui écrasez votre poing sur la figure et, tandis qu’elle titube en arrière, vous franchissez enfin la distance qui vous séparait de la rive sablonneuse.</p>
 
-<p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir. Et une voix que vous reconnaissez comme celle d’Ataroa énoncent enfin les quelques mots que vous n’espériez plus :</p>
+<p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir. Et une voix que vous reconnaissez comme celle d’Ataroa énoncent enfin les quelques mots que vous n’espériez plus :</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const text = `L’épreuve est terminée.`;
@@ -836,7 +836,7 @@ const trial = {
 
 <p>Vous ne tenez pas à savoir ce qui va se dérouler dans le lagon et vous n’êtes même pas certaine de préférer l’une ou l’autre issue possible. Vous traversez la petite île sablonneuse et allez vous asseoir devant l’océan. Le bruit régulier des vagues vous apaise, dissipant le peu de tension qui subsiste encore dans vos muscles. Derrière vous, le soleil ne tardera plus à atteindre l’horizon.</p>
 
-<p>Vous baissez les yeux vers l’Écume des Profondeurs, dont la surface reflète confusément votre visage. Cela valait-il la peine que vous vous êtes donnée et les dangers que vous avez courus ? Peu importe désormais : votre aventure sur cet atoll appartient déjà au passé et la suite de votre quête vous attend.</p>
+<p>Vous baissez les yeux vers l’Écume des Profondeurs, dont la surface reflète confusément votre visage. Cela valait-il la peine que vous vous êtes donnée et les dangers que vous avez courus ? Peu importe désormais : votre aventure sur cet atoll appartient déjà au passé et la suite de votre quête vous attend.</p>
 
 <p>Vous vous installez confortablement et portez la coupe à vos lèvres.</p>
 
@@ -885,7 +885,7 @@ const trial = {
     "text": `
 <p>Vous restez absolument immobile, regardant votre poursuivante passer lentement au-dessus des récifs de corails. Quelques petits poissons colorées passent près de vous, mais filent aussitôt se cacher en apercevant Raiahui.</p>
 
-<p>Un moment interminable s’écoule et vous vous demandez avec une certaine panique combien de temps vous allez encore pouvoir tenir. Vous êtes capable de retenir très longtemps votre respiration, mais vous n’êtes pas un poisson !</p>
+<p>Un moment interminable s’écoule et vous vous demandez avec une certaine panique combien de temps vous allez encore pouvoir tenir. Vous êtes capable de retenir très longtemps votre respiration, mais vous n’êtes pas un poisson !</p>
 
 <p>Heureusement, Raiahui descend à ce moment inspecter un renfoncement entre deux récifs. Vous n’hésitez pas : abandonnant votre cachette, vous regagnez en hâte la surface. Votre tête émerge à l’air libre le temps d’une inspiration.</p>
     `,
@@ -902,13 +902,13 @@ const trial = {
     "text": `
 <p>Vous reprenez votre progression vers l’île, nageant aussi vite que cela vous est possible sans vous exposer. Vous ne voyez plus Raiahui et vous espérez qu’elle s’est éloignée dans une mauvaise direction.</p>
 
-<p>Malheureusement pour vous, ce n’est pas du tout le cas : au moment où le manque d’air vous force enfin à remonter vers la surface, vous voyez avec terreur votre poursuivante apparaître entre deux récifs de corail voisins et foncer droit sur vous ! Il ne lui faudra qu’un instant pour vous atteindre.</p>
+<p>Malheureusement pour vous, ce n’est pas du tout le cas : au moment où le manque d’air vous force enfin à remonter vers la surface, vous voyez avec terreur votre poursuivante apparaître entre deux récifs de corail voisins et foncer droit sur vous ! Il ne lui faudra qu’un instant pour vous atteindre.</p>
     `,
     "next": facingRaiahuiUnderwater,
   },
   "trial-coral-pearls": {
     "text": `
-<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. Vous réalisez soudain que votre idée n’était peut-être pas si bonne : Raiahui ne risque certes plus de vous apercevoir, mais vous ne pouvez plus rien voir du tout ! Plongée dans cette obscurité opaque, vous essayez malgré tout de nager dans la direction de l’île sablonneuse, mais le corail qui vous entoure est devenu un piège invisible, contre lequel vous vous blessez les bras et les jambes.</p>
+<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. Vous réalisez soudain que votre idée n’était peut-être pas si bonne : Raiahui ne risque certes plus de vous apercevoir, mais vous ne pouvez plus rien voir du tout ! Plongée dans cette obscurité opaque, vous essayez malgré tout de nager dans la direction de l’île sablonneuse, mais le corail qui vous entoure est devenu un piège invisible, contre lequel vous vous blessez les bras et les jambes.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const doll = flags.inventory.doll;
@@ -952,7 +952,7 @@ const trial = {
   },
   "exhausted": {
     "text": `
-<p>La panique ne parvient plus à vous faire ignorer votre fatigue. Vos membres sont lourds, votre respiration difficile et vos mouvements se font inexorablement plus lents. Jetant un coup d’oeil angoissé derrière vous, vous voyez à travers l’eau transparente Raiahui se rapprocher rapidement. Vous n’aurez pas le temps d’atteindre l’île avant qu’elle ne vous rattrape ! Allez-vous échouer si près du but ?</p>
+<p>La panique ne parvient plus à vous faire ignorer votre fatigue. Vos membres sont lourds, votre respiration difficile et vos mouvements se font inexorablement plus lents. Jetant un coup d’oeil angoissé derrière vous, vous voyez à travers l’eau transparente Raiahui se rapprocher rapidement. Vous n’aurez pas le temps d’atteindre l’île avant qu’elle ne vous rattrape ! Allez-vous échouer si près du but ?</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const context = `Vous cherchez désespérément quelque chose qui pourrait vous aider.`;

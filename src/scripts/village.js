@@ -62,7 +62,7 @@ const village = {
 <p>Il vous indique du doigt quelques petites piles de calebasses, en vous expliquant qu’elles contiennent la sève qu’ils ont récolté la veille, peu après votre arrivée. Mais votre regard ne tarde pas à être attirée par une douzaine de calebasses conservées à l’écart et enveloppées dans de grandes feuilles.</p>
 
 <div class="conversation">
-<p>— C’est aussi du vin de palme ? demandez-vous.</p>
+<p>— C’est aussi du vin de palme ? demandez-vous.</p>
 </div>
 
 <p>Oramui et Terani secouent vigoureusement la tête et se lancent dans une description compliquée, émaillée de mots que vous ne connaissez pas. Vous parvenez tout de même à saisir qu’il s’agit d’une boisson dérivée du vin de palme, mais beaucoup plus forte.</p>

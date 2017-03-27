@@ -39,13 +39,13 @@ const island4 = {
 <p>Vous êtes sur le point de regagner votre pirogue, lassée par l’inutilité de vos efforts, lorsque vous apercevez une sorte de petit singe gris qui vous observe avec de grands yeux, accroché à une branche voisine. Sa tête est d’une taille curieusement disproportionnée avec le reste de son corps.</p>
 
 <div class="conversation">
-<p>— Alors, mon petit, lui lancez-vous avec un peu d’amusement, il y a des choses que tu me recommandes de voir par ici ?</p>
+<p>— Alors, mon petit, lui lancez-vous avec un peu d’amusement, il y a des choses que tu me recommandes de voir par ici ?</p>
 </div>
 
 <p>À votre stupéfaction totale, il ouvre la bouche pour vous répondre d’une voix fluette :</p>
 <div class="conversation">
 <p>— Je suis homme.</p>
-<p>— Qu… Quoi ?</p>
+<p>— Qu… Quoi ?</p>
 <p>— Je suis homme. Changé par sorcière.</p>
       `;
 
@@ -55,19 +55,19 @@ const island4 = {
 <p class="text-info">Il parle sans doute de la sorcière que vous avez croisé sur l’île mitoyenne.</p>
 <p>Vous décidez cependant de vous en assurer, peu désireuse de tomber par surprise sur une confrère de la précédente.</p>
 <div class="conversation">
-<p>— Il y a une sorcière sur cette île ?</p>
+<p>— Il y a une sorcière sur cette île ?</p>
         `;
       } else {
         text += `
-<p>— Il y a une sorcière sur cette île ? demandez-vous, regardant les alentours avec alarme.</p>
+<p>— Il y a une sorcière sur cette île ? demandez-vous, regardant les alentours avec alarme.</p>
         `;
       }
 
       text += `
 <p>— Autre île. Ici sorcière laisse résultats changements.</p>
-<p>— Comment… Comment est-ce que cela t’est arrivé ?</p>
+<p>— Comment… Comment est-ce que cela t’est arrivé ?</p>
 <p>— Je touche fétiche. Fétiche crie. Sorcière attrape moi dans filet. Filet toujours attrape, jamais manque.</p>
-<p>— Est-ce que je peux faire quelque chose pour t’aider ?</p>
+<p>— Est-ce que je peux faire quelque chose pour t’aider ?</p>
 </div>
 
 <p>Le singe secoue la tête avec une tristesse terriblement humaine.</p>

@@ -63,7 +63,7 @@ const sneakingIntoIslandCrossroads = (goToSection, flags, updateFlag) => {
 };
 
 const ascensionText = `
-<p>Au terme d’une progression patiente, vous atteignez enfin le sommet de l’île. A quelques pas de vous s’élève la hutte, d’où ne s’échappe pas le moindre son. Est-elle vraiment vide ? Il est impossible d’en distinguer l’intérieur de là où vous vous trouvez.</p>
+<p>Au terme d’une progression patiente, vous atteignez enfin le sommet de l’île. A quelques pas de vous s’élève la hutte, d’où ne s’échappe pas le moindre son. Est-elle vraiment vide ? Il est impossible d’en distinguer l’intérieur de là où vous vous trouvez.</p>
 `;
 
 const island5 = {
@@ -114,12 +114,12 @@ const island5 = {
 <p>Le contour de l’île est rocailleux, mais vous parvenez néanmoins à accoster sans trop de mal. Vous gravissez ensuite la pente sous le regard impassible des nombreux fétiches. Alors que vous êtes sur le point d’atteindre la hutte, il en sort soudain une grosse femme enroulée dans un paréo pourpre. Ses cheveux courts sont hérissés comme des piquants et, de la tête aux chevilles, elle porte de nombreux bijoux en or d’une élégance que vous avez rarement observée. A sa taille sont accrochés un sac à demi-plein, un filet gris et un petit couteau en métal. Elle tient à la main une coupe remplie d’un liquide clair.</p>
 
 <div class="conversation">
-<p>— Une visiteuse ! s’exclame-t-elle d’une voix ravie. Quel plaisir ! Cela faisait si longtemps que personne n’était venu…</p>
+<p>— Une visiteuse ! s’exclame-t-elle d’une voix ravie. Quel plaisir ! Cela faisait si longtemps que personne n’était venu…</p>
 </div>
 
 <p>Son accent ne ressemble pas à celui de la tribu, ni à aucun autre de votre connaissance. Elle vous tend la coupe avec tant d’énergie que son contenu vous gicle presque dans la figure et poursuit sans vous laisser le temps de placer un mot :</p>
 <div class="conversation">
-<p>— Il faut célébrer cela ! C’est la tradition !</p>
+<p>— Il faut célébrer cela ! C’est la tradition !</p>
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {
@@ -199,7 +199,7 @@ const island5 = {
   "witch-my-alcohol": {
     "text": `
 <div class="conversation">
-<p>— Je vous suis très reconnaissante de votre accueil ! vous exclamez-vous chaleureusement. Et, pour honorer la tradition, j’ai également une excellente boisson à vous offrir !</p>
+<p>— Je vous suis très reconnaissante de votre accueil ! vous exclamez-vous chaleureusement. Et, pour honorer la tradition, j’ai également une excellente boisson à vous offrir !</p>
 </div>
 
 <p>La grosse femme paraît désarçonnée par votre geste. Après vous avoir remis la coupe — que vous n’avez aucune intention de boire — elle accepte néanmoins la calebasse que vous lui tendez. La débouchant, elle l’approche de ses narines et son expression s’éclaircit aussitôt. Oubliant tout le reste, elle porte la calebasse à ses lèvres et se met à boire goulûment l’alcool qu’elle contient.</p>
@@ -229,10 +229,10 @@ const island5 = {
   },
   "in-the-witch-house": {
     "text": `
-<p>L’intérieur de la hutte est encombré d’un invraisemblable fatras d’objets étranges. Ils sont accrochés aux murs, suspendus au plafond, disposés sur des meubles en bois ou éparpillés sur le sol terreux. Mais vous n’avez pas le temps de les examiner tous, loin de là ! Le cri furieux de la grosse femme vient vous frapper les oreilles et vous l’entendez s’approcher à grands pas.</p>
+<p>L’intérieur de la hutte est encombré d’un invraisemblable fatras d’objets étranges. Ils sont accrochés aux murs, suspendus au plafond, disposés sur des meubles en bois ou éparpillés sur le sol terreux. Mais vous n’avez pas le temps de les examiner tous, loin de là ! Le cri furieux de la grosse femme vient vous frapper les oreilles et vous l’entendez s’approcher à grands pas.</p>
 
 <div class="conversation">
-<p>— Sale petite voleuse ! Tu vas avoir ce que tu mérites !</p>
+<p>— Sale petite voleuse ! Tu vas avoir ce que tu mérites !</p>
 </div>
 
 <p>Pressée par l’urgence, n’ayant aucune idée de ce qui peut vous être utile, vous posez par hasard les yeux sur les objets disposés sur une petite table voisine. Et refermez votre poigne sur l’un d’eux.</p>
@@ -345,7 +345,7 @@ const island5 = {
 
 <p>Un invraisemblable fatras d’objets étranges accueille aussitôt votre regard. Ils sont accrochés aux murs, suspendus au plafond, disposés sur des meubles en bois ou éparpillés sur le sol terreux. Vous les examinez des yeux, vous abstenant prudemment de les toucher. Beaucoup d’entre eux dégagent une impression extrêmement désagréable.</p>
 
-<p>Vous êtes en train de regarder quelques perles d’un noir extrêmement profond lorsqu’un bruit de pas vous parvient aux oreilles. La grosse femme est déjà en train de revenir ! Il n’est plus question de poursuivre votre inspection, mais vous vous emparez néanmoins des perles noires, qui ont piqué votre intérêt.</p>
+<p>Vous êtes en train de regarder quelques perles d’un noir extrêmement profond lorsqu’un bruit de pas vous parvient aux oreilles. La grosse femme est déjà en train de revenir ! Il n’est plus question de poursuivre votre inspection, mais vous vous emparez néanmoins des perles noires, qui ont piqué votre intérêt.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const doll = flags.inventory.doll;
@@ -377,7 +377,7 @@ const island5 = {
 <p>La grosse femme apparaît à l’entrée de la hutte et ses yeux se posent instantanément sur vous.</p>
 
 <div class="conversation">
-<p>— Sale petite voleuse ! crache-t-elle. D’où sors-tu ?</p>
+<p>— Sale petite voleuse ! crache-t-elle. D’où sors-tu ?</p>
 </div>
 
 <p>Elle se dirige droit sur vous en vociférant des menaces.</p>
@@ -416,7 +416,7 @@ const island5 = {
   },
   "witch-versus-root": {
     "text": `
-<p>Alors que vous cherchez un moyen de vous enfuir, les membres de la figurine de bois sont saisis de mouvements convulsifs. Sous vos yeux ébahis, la création du crocodile se lève sur ses deux jambes et se met à grandir et à changer de couleur jusqu’à ce que vous ayiez devant vous une réplique très exacte de vous-même !</p>
+<p>Alors que vous cherchez un moyen de vous enfuir, les membres de la figurine de bois sont saisis de mouvements convulsifs. Sous vos yeux ébahis, la création du crocodile se lève sur ses deux jambes et se met à grandir et à changer de couleur jusqu’à ce que vous ayiez devant vous une réplique très exacte de vous-même !</p>
 
 <p>Votre double vous adresse un sourire amusé, puis elle jaillit hors de la hutte, passant juste devant la grosse femme qui arrivait. Celle-ci n’est surprise qu’un instant : s’emparant du filet gris qui se trouve à sa taille, elle le jette après l’intruse d’un geste furieux. Vous étant approchée de la porte de  la hutte, vous voyez le filet traverser l’air avec une précision parfaite et s’enrouler étroitement autour de votre sosie. Prise au piège, la figurine reprend aussitôt son aspect d’origine, puis se désagrège en un nuage de poussière. Saisissant l’occasion, vous passez en courant à côté de la grosse femme ébahie, vous emparez au passage du filet et continuez sans ralentir votre fuite jusqu’à ce que vous ayez regagné votre pirogue.</p>`,
     "next": (goToSection, flags, updateFlag) => {
@@ -464,7 +464,7 @@ const island5 = {
     }
   },
   "witch-versus-root-alt": `
-<p>Alors que vous vous apprêtez à poursuivre votre descente, les membres de la figurine de bois sont saisis de mouvements convulsifs. Sous vos yeux ébahis, la création du crocodile se lève sur ses deux jambes et se met à grandir et à changer de couleur jusqu’à ce que vous ayiez devant vous une réplique très exacte de vous-même !</p>
+<p>Alors que vous vous apprêtez à poursuivre votre descente, les membres de la figurine de bois sont saisis de mouvements convulsifs. Sous vos yeux ébahis, la création du crocodile se lève sur ses deux jambes et se met à grandir et à changer de couleur jusqu’à ce que vous ayiez devant vous une réplique très exacte de vous-même !</p>
 
 <p>Votre double vous adresse un sourire amusé, puis elle sort de derrière le buisson et se met à courir en terrain exposé. Un instant plus tard, vous voyez le filet gris de la grosse femme traverser l’air avec une précision parfaite et s’enrouler étroitement autour d’elle. Prise au piège, la figurine reprend aussitôt son aspect d’origine, puis se désagrège en un nuage de poussière. Saisissant l’occasion, vous courez vous emparer du filet, puis reprenez votre fuite.</p>
   `,

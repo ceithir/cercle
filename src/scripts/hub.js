@@ -40,7 +40,7 @@ const getIslands = function(flags) {
     },
     {
       "key": "island-3",
-      "description": flags.toldAboutFaanaruaByVarenui ? `L’île de Faanarua.` : `Une autre île tout ce qu’il y a de plus banal.`,
+      "description": flags.toldAboutFaanaruaByVarenui ? `L’île de Faanarua.` : `Une autre île tout ce qu’il y a de plus banal.`,
     },
     {
       "key": "island-4",
@@ -48,11 +48,11 @@ const getIslands = function(flags) {
     },
     {
       "key": "island-5",
-      "description": flags.toldAboutAtollByRaiahui ? `L’île de la sorcière.` : `L’étrange rocher.`,
+      "description": flags.toldAboutAtollByRaiahui ? `L’île de la sorcière.` : `L’étrange rocher.`,
     },
     {
       "key": "island-6",
-      "description": flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea ? `L’île du Vieux Fainéant.` : `L’île aux arbres.`,
+      "description": flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea ? `L’île du Vieux Fainéant.` : `L’île aux arbres.`,
     },
     {
       "key": "island-7",
@@ -147,14 +147,14 @@ const getIslandChoices = function(goToSection, flags, updateFlag) {
     return 2 === computeTripTime(currentIsland, island.key);
   });
 
-  const nearText = `De là où vous êtes, vous êtes à proximité de :`;
+  const nearText = `De là où vous êtes, vous êtes à proximité de :`;
   const nearChoices = nearIslands.map(function(island) {
     return getIslandChoice(island, goToSection, flags, updateFlag);
   });
 
   let farText = `Vous pouvez également couper court et vous rendre directement à l’une des îles plus éloignées.`;
   if (0 === nearChoices.length) {
-    farText = `Vous avez déjà visité toutes les îles mitoyennes de celle-ci, mais avec quelques efforts supplémentaires, vous pouvez atteindre :`;
+    farText = `Vous avez déjà visité toutes les îles mitoyennes de celle-ci, mais avec quelques efforts supplémentaires, vous pouvez atteindre :`;
   }
   const farChoices = farIslands.map(function(island) {
     return getIslandChoice(island, goToSection, flags, updateFlag);
@@ -227,9 +227,9 @@ const hub = {
 
 <p>L’atoll compte en tout huit îles de tailles variées.</p>
 
-<p>Celle sur laquelle vous vous trouvez, et où se trouve le village, est à l’extrémité sud. C’est clairement la plus grande de l’atoll ; sa forme mince et courbe fait penser à un arc.</p>
+<p>Celle sur laquelle vous vous trouvez, et où se trouve le village, est à l’extrémité sud. C’est clairement la plus grande de l’atoll ; sa forme mince et courbe fait penser à un arc.</p>
 
-<p>En tournant sur vous-même dans le sens des aiguilles d’une montre ((un objet que vous n’avez jamais eu sous les yeux, mais dont vous avez vaguement entendu parler) se dévoilent deux îles en apparence, assez similaires : de taille moyenne et couvertes de nombreux palmiers.</p>
+<p>En tournant sur vous-même dans le sens des aiguilles d’une montre ((un objet que vous n’avez jamais eu sous les yeux, mais dont vous avez vaguement entendu parler) se dévoilent deux îles en apparence, assez similaires : de taille moyenne et couvertes de nombreux palmiers.</p>
 
 ${faanaruaIsland}
 
@@ -301,7 +301,7 @@ ${crocodileIslandDescription}
 <p>Vous pagayez avec régularité vers votre nouvelle destination lorsqu’un bruit d’éclaboussures attire votre attention : la tête d’un jeune garçon de la tribu vient d’émerger de l’eau à une faible distance de votre pirogue.</p>
 
 <div class="conversation">
-<p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
+<p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
 </div>
 
 <p>Vous arrêtez votre embarcation et jetez un coup d’oeil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
@@ -322,7 +322,7 @@ ${crocodileIslandDescription}
 <p>Une surprise vous attend lorsque vous regagnez votre pirogue : la tête d’un jeune garçon de la tribu émerge de l’eau à une faible distance.</p>
 
 <div class="conversation">
-<p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
+<p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
 </div>
 
 <p>Vous jetez un coup d’oeil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
@@ -407,7 +407,7 @@ ${crocodileIslandDescription}
 <p>Le soleil a fortement décliné lorsqu’un jeune garçon vient vous tirer en vous secouant de la somnolence où vous aviez glissé.</p>
 
 <div class="conversation">
-<p>— Mananuiva, il faut que tu viennes, la course va commencer !</p>
+<p>— Mananuiva, il faut que tu viennes, la course va commencer !</p>
 </div>
 
 <p>Rouvrant les yeux, vous quittez le hamac avec un peu de regret et vous étirez quelques instants.</p>
