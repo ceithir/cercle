@@ -17,9 +17,6 @@ class App extends Component {
     this.state = {
       "screen": "title",
       "achievements": window.localStorage.getItem("achievements") ? JSON.parse(window.localStorage.getItem("achievements")) : [],
-      "section": "prelude",
-      "flags": flags,
-      "logs": [],
     };
   }
 
@@ -27,9 +24,20 @@ class App extends Component {
     this.clearProgress();
     this.setState({
       "screen": "game",
-      "section": "prelude",
-      "flags": flags,
-      "logs": [],
+      "section": null,
+      "flags": null,
+      "logs": null,
+    });
+  }
+
+  continueGame = () => {
+    const progress = JSON.parse(window.localStorage.getItem("progress"));
+
+    this.setState({
+      "screen": "game",
+      "section": progress.section,
+      "flags": progress.flags,
+      "logs": progress.logs,
     });
   }
 
@@ -43,17 +51,6 @@ class App extends Component {
     window.scrollTo(0, 0);
     this.setState({
       "screen": "achievements",
-    });
-  }
-
-  continueScreen = () => {
-    const progress = JSON.parse(window.localStorage.getItem("progress"));
-
-    this.setState({
-      "screen": "game",
-      "section": progress.section,
-      "flags": progress.flags,
-      "logs": progress.logs,
     });
   }
 
@@ -116,7 +113,7 @@ class App extends Component {
       if (window.localStorage.getItem("progress")) {
         buttons.push({
           "text": continueText,
-          "action": this.continueScreen,
+          "action": this.continueGame,
         });
       }
 
@@ -145,18 +142,19 @@ class App extends Component {
 
     return (
       <Game
-        startingSection={this.state.section}
-        flags={this.state.flags}
-        logs={this.state.logs}
+        startingSection={"prelude"}
+        startingFlags={flags}
+        currentSection={this.state.section}
+        currentFlags={this.state.flags}
+        currentLogs={this.state.logs}
+
         title={title}
         sections={script}
         icon={icon}
         quit={this.softReset}
         updateAchievements={this.updateAchievements}
         saveProgress={this.saveProgress}
-        reset={this.clearProgress}
-        resetSection="prelude"
-        resetFlags={flags}
+        clearProgress={this.clearProgress}
       />
     );
   }

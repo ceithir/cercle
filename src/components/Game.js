@@ -9,12 +9,17 @@ import TextModal from './TextModal.js';
 class Game extends React.Component {
   constructor(props) {
     super(props);
+
+    const currentSection = this.props.currentSection || this.props.startingSection;
+    const currentFlags = this.props.currentFlags || this.props.startingFlags;
+    const currentLogs = this.props.currentLogs || [];
+
     this.state = {
-      "currentSection": this.props.startingSection,
-      "flags": this.props.flags,
-      "logs": this.props.logs,
+      "currentSection": currentSection,
+      "flags": currentFlags,
+      "logs": currentLogs,
       "modal": {"show": false},
-      "currentSectionText": this.processText(this.props.startingSection, this.props.flags),
+      "currentSectionText": this.processText(currentSection, currentFlags),
     };
     window.scrollTo(0, 0);
   }
@@ -62,6 +67,21 @@ class Game extends React.Component {
 
   saveProgress = (currentSection, flags, logs) => {
     this.props.saveProgress(currentSection, flags, logs);
+  }
+
+  reset = () => {
+    this.props.clearProgress();
+
+    const currentSection = this.props.startingSection;
+    const currentFlags = this.props.startingFlags;
+
+    this.setState({
+      "currentSection": currentSection,
+      "flags": currentFlags,
+      "logs": [],
+      "currentSectionText": this.processText(currentSection, currentFlags),
+    });
+    window.scrollTo(0, 0);
   }
 
   updateFlag = (flag, newValue) => {
@@ -122,17 +142,6 @@ class Game extends React.Component {
     return this.props.sections[sectionKey];
   }
 
-  reset = () => {
-    this.props.reset();
-    this.setState({
-      "currentSection": this.props.resetSection,
-      "flags": this.props.resetFlags,
-      "logs": [],
-      "currentSectionText": this.processText(this.props.resetSection, this.props.resetFlags),
-    });
-    window.scrollTo(0, 0);
-  }
-
   render() {
     return (
       <div>
@@ -166,18 +175,18 @@ class Game extends React.Component {
 }
 
 Game.propTypes = {
+  startingSection: React.PropTypes.string.isRequired,
+  startingFlags: React.PropTypes.object.isRequired,
+  currentSection: React.PropTypes.string,
+  currentFlags: React.PropTypes.object,
+  currentLogs: React.PropTypes.arrayOf(React.PropTypes.string),
   title: React.PropTypes.string.isRequired,
   icon: React.PropTypes.string.isRequired,
-  startingSection: React.PropTypes.string.isRequired,
-  flags: React.PropTypes.object.isRequired,
   sections: React.PropTypes.object.isRequired,
   quit: React.PropTypes.func.isRequired,
   updateAchievements: React.PropTypes.func.isRequired,
-  logs: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
   saveProgress: React.PropTypes.func.isRequired,
-  reset: React.PropTypes.func.isRequired,
-  resetSection: React.PropTypes.string.isRequired,
-  resetFlags: React.PropTypes.object.isRequired,
+  clearProgress: React.PropTypes.func.isRequired,
 };
 
 export default Game;
