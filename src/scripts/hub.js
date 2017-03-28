@@ -398,6 +398,7 @@ ${crocodileIslandDescription}
         }
         if (flags.drunk && flags.time <= 6) {
           updateFlag("drunk", false);
+          updateFlag("refreshed", true);
         }
 
         goToSection("rest");
@@ -409,7 +410,23 @@ ${crocodileIslandDescription}
     },
   },
   "rest": {
-    "text": `
+    "text": (flags) => {
+      let statusComment = ``;
+
+
+      if (flags.drunk) {
+        statusComment = `<p class="text-info">Ce court repos n'aura malheureusement pas réussi à contrebalancer votre récent excès. Vous vous sentez encore faible, et ne pouvez plus qu'espérer que l'excitation de la course et les claques de l'eau salée contre votre visage seront suffisantes pour vous remettre d'aplomb.</p>`;
+      }
+
+      if (flags.refreshed) {
+        statusComment = `<p class="text-info">La nausée induite par votre consommation enthousiaste d'alcool s'est dissipée. Vous êtes prête.</p>`;
+      }
+
+      if (flags.wellRested) {
+        statusComment = `<p class="text-info">Cette bonne sieste vous a remis d'aplomb. Vous vous sentez en pleine forme, prête à en découdre.</p>`;
+      }
+
+      return `
 <p>Le soleil a fortement décliné lorsqu’un jeune garçon vient vous tirer en vous secouant de la somnolence où vous aviez glissé.</p>
 
 <div class="conversation">
@@ -417,9 +434,12 @@ ${crocodileIslandDescription}
 </div>
 
 <p>Rouvrant les yeux, vous quittez le hamac avec un peu de regret et vous étirez quelques instants.</p>
-    `,
+
+${statusComment}
+      `;
+    },
     "next": (goToSection) => {
-      const text = `Enfin, vous emboîtez le pas à votre jeune guide.`;
+      const text = `Vous emboîtez finalement le pas à votre jeune guide.`;
       const action = () => {goToSection("trial")};
 
       return (

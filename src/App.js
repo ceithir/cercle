@@ -10,7 +10,6 @@ import flags from './scripts/flags.js';
 import icon from './images/icon.jpg';
 import cover from './images/cover.jpg';
 import achievements from './scripts/achievements.js';
-import comments from './scripts/comments.js';
 
 class App extends Component {
   constructor(props) {
@@ -158,7 +157,6 @@ class App extends Component {
         reset={this.clearProgress}
         resetSection="prelude"
         resetFlags={flags}
-        comments={comments}
       />
     );
   }

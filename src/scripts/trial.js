@@ -135,6 +135,7 @@ ${items}
               useItem("fruit", updateFlag);
               if (flags.drunk) {
                 updateFlag("drunk", false);
+                updateFlag("refreshedByFruit", true);
               } else {
                 updateFlag("boostedByFruit", true);
               }
@@ -161,7 +162,7 @@ ${items}
           {
             "text": `Vous l’accrochez à votre taille, au cas où.`,
             "action": () => {
-              goToSection("trial-eat-fruit");
+              goToSection("trial-still-not-started");
             },
           },
           {
@@ -192,9 +193,17 @@ ${items}
 
 <p>Puis le malaise se dissipe. Quelques tremblements vous agitent encore, mais ils ne sont plus dûs qu’à un reste de peur. Vous ne vous sentez pas plus mal qu’auparavant.</p>
     `,
-    "next": (goToSection) => {
-      const text = `Mais pas en meilleure forme non plus.`;
+    "next": (goToSection, flags) => {
       const action = () => {goToSection("trial-still-not-started")};
+
+      if (flags.refreshedByFruit) {
+        const text = `En fait, votre migraine avinée s'en est même allée !`;
+        return (
+          <Funnel text={text} action={action} conditional={true} />
+        );
+      }
+
+      const text = `Mais pas en meilleure forme non plus.`;
 
       return (
         <Funnel text={text} action={action} />
@@ -596,44 +605,53 @@ ${items}
 <p>L’île sablonneuse n’est désormais plus qu’à une faible distance devant vous. Vous nagez vers elle aussi vite que possible, mais les intenses efforts physiques auxquels la terreur vous a poussée commencent à affecter vos forces. Vous sentez un début d’épuisement vous gagner.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      if (!flags.drunk) {
-        const amulet = flags.inventory.dolphin;
-        if (amulet.acquired && !amulet.used) {
-          const text = `L’amulette contre votre poitrine tremble sous l’irrégularité de votre souffle.`
-          const action = () => {
-            useItem("dolphin", updateFlag);
-            goToSection("trial-saved-by-dolphin");
-          };
+      if (flags.drunk) {
+        const text = `Votre ventre est agité de douloureux gargouillis tandis qu'un arrière-goût d'alcool remonte dans votre bouche.`
+        const action = () => {
+          goToSection("exhausted");
+        };
 
-          return (
-            <Funnel action={action} text={text} conditional={true} />
-          );
-        }
-
-        if (flags.boostedByFruit) {
-          const text = `Votre ventre, délaissé par votre organisme au profit de vos muscles, gronde.`
-          const action = () => {
-            goToSection("trial-saved-by-fruit");
-          };
-
-          return (
-            <Funnel action={action} text={text} conditional={true} />
-          );
-        }
-
-        if (flags.wellRested) {
-          const text = `Vous êtes plus forte que la fatigue.`
-          const action = () => {
-            goToSection("trial-saved-by-sloth");
-          };
-
-          return (
-            <Funnel action={action} text={text} conditional={true} />
-          );
-        }
+        return (
+          <Funnel text={text} action={action} conditional={true} />
+        );
       }
 
-      const text = `La tête vous tourne.`
+      const amulet = flags.inventory.dolphin;
+      if (amulet.acquired && !amulet.used) {
+        const text = `L’amulette contre votre poitrine tremble sous l’irrégularité de votre souffle.`
+        const action = () => {
+          useItem("dolphin", updateFlag);
+          goToSection("trial-saved-by-dolphin");
+        };
+
+        return (
+          <Funnel action={action} text={text} conditional={true} />
+        );
+      }
+
+      if (flags.boostedByFruit) {
+        const text = `Votre ventre, délaissé par votre organisme au profit de vos muscles, gronde.`
+        const action = () => {
+          goToSection("trial-saved-by-fruit");
+        };
+
+        return (
+          <Funnel action={action} text={text} conditional={true} />
+        );
+      }
+
+      if (flags.wellRested) {
+        const text = `Vous êtes plus forte que la fatigue.`
+        const action = () => {
+          goToSection("trial-saved-by-sloth");
+        };
+
+        return (
+          <Funnel action={action} text={text} conditional={true} />
+        );
+      }
+
+      const text = `Vous rassemblez vos dernières forces.`
       const action = () => {
         goToSection("exhausted");
       };

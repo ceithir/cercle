@@ -57,6 +57,8 @@ const flags = {
   "watchedKnifeImportance": false,
   "droppedDoll": false,
   "survivedWitchIsland": false,
+  "refreshed": false,
+  "refreshedByFruit": false,
 };
 
 export default flags;
