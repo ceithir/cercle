@@ -69,11 +69,6 @@ class App extends Component {
     window.localStorage.removeItem("progress");
   }
 
-  softReset = () => {
-    this.clearProgress();
-    this.titleScreen();
-  }
-
   updateAchievements = (flags) => {
     const newAchievements = achievements.filter((achievement) => {
       return achievement.condition(flags);
@@ -151,10 +146,10 @@ class App extends Component {
         title={title}
         sections={script}
         icon={icon}
-        quit={this.softReset}
         updateAchievements={this.updateAchievements}
         saveProgress={this.saveProgress}
         clearProgress={this.clearProgress}
+        quit={this.titleScreen}
       />
     );
   }

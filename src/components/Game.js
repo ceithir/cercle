@@ -5,6 +5,7 @@ import Title from './Title.js';
 import LogButton from './LogButton.js';
 import InventoryButton from './InventoryButton.js';
 import TextModal from './TextModal.js';
+import OptionButton from './OptionButton.js';
 
 class Game extends React.Component {
   constructor(props) {
@@ -84,6 +85,15 @@ class Game extends React.Component {
     window.scrollTo(0, 0);
   }
 
+  quit = () => {
+    this.props.quit();
+  }
+
+  resetAndQuit = () => {
+    this.reset();
+    this.quit();
+  }
+
   updateFlag = (flag, newValue) => {
     this.setState((prevState, props) => {
       let updatedFlags = Object.assign({}, prevState.flags);
@@ -142,17 +152,35 @@ class Game extends React.Component {
     return this.props.sections[sectionKey];
   }
 
+  getOptions = () => {
+    return [
+      {
+        "key": "quit",
+        "action": this.quit,
+        "text": `Retour à l’écran titre`,
+      },
+      {
+        "key": "reset",
+        "action": this.reset,
+        "text": `Recommencer`,
+      },
+    ];
+  }
+
   render() {
     return (
       <div>
         <Navbar fixedTop fluid collapseOnSelect>
           <Title icon={this.props.icon} title={this.props.title}>
-            {this.state.logs.length > 0 && <Navbar.Toggle />}
+          <Navbar.Toggle />
           </Title>
           <Navbar.Collapse>
             <Nav>
               <LogButton logs={this.state.logs} showModal={this.showModal} text={`Journal`} />
               <InventoryButton inventory={this.state.flags.inventory} showModal={this.showModal} text={`Inventaire`} />
+            </Nav>
+            <Nav pullRight>
+              <OptionButton options={this.getOptions()} text={`Options`} />
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -164,7 +192,7 @@ class Game extends React.Component {
           </div>
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
-              {this.getSection(this.state.currentSection).next(this.goToSection, this.state.flags, this.updateFlag, this.reset, this.props.quit)}
+              {this.getSection(this.state.currentSection).next(this.goToSection, this.state.flags, this.updateFlag, this.reset, this.resetAndQuit)}
             </div>
           </div>
         </div>

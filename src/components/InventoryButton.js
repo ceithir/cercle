@@ -34,7 +34,7 @@ class InventoryButton extends React.Component {
     }
 
     return (
-      <NavDropdown eventKey="4" title={this.props.text} id="inventory-dropdown">
+      <NavDropdown title={this.props.text} id="inventory-dropdown">
         {listItems}
       </NavDropdown>
     );
