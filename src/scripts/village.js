@@ -3,7 +3,7 @@ import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import {acquireItem} from "./helpers.js";
 
-const exploreOrLeave = function(goToSection, flags, updateFlag, context = '') {
+const exploreOrLeave = function(goToSection, flags, updateFlag, context = "") {
   const choices = [
     {
       "text": `Vous regagnez votre pirogue.`,

@@ -197,7 +197,7 @@ ${items}
       const action = () => {goToSection("trial-still-not-started")};
 
       if (flags.refreshedByFruit) {
-        const text = `En fait, votre migraine avinée s'en est même allée !`;
+        const text = `En fait, votre migraine avinée s’en est même allée !`;
         return (
           <Funnel text={text} action={action} conditional={true} />
         );
@@ -606,7 +606,7 @@ ${items}
     `,
     "next": (goToSection, flags, updateFlag) => {
       if (flags.drunk) {
-        const text = `Votre ventre est agité de douloureux gargouillis tandis qu'un arrière-goût d'alcool remonte dans votre bouche.`
+        const text = `Votre ventre est agité de douloureux gargouillis tandis qu’un arrière-goût d’alcool remonte dans votre bouche.`
         const action = () => {
           goToSection("exhausted");
         };
@@ -828,7 +828,7 @@ ${items}
 <p>Il fait un signe de la main et un autre homme s’avance, portant un bol rempli d’un liquide blanc-gris.</p>
 
 <div class="conversation">
-<p>— L’Écume des Profondeurs t’appartient. Il ne reste qu’un ingrédient à y ajouter, ce que nous allons faire tout de suite. Il est ordinairement fourni par celui qui va boire l’Ecume, mais, étant donné les circonstances, il est normal qu’il vienne de quelqu’un d’autre.</p>
+<p>— L’Écume des Profondeurs t’appartient. Il ne reste qu’un ingrédient à y ajouter, ce que nous allons faire tout de suite. Il est ordinairement fourni par celui qui va boire l’Écume, mais, étant donné les circonstances, il est normal qu’il vienne de quelqu’un d’autre.</p>
 </div>
 
 <p>Deux adultes s’approchent, tenant entre eux Raiahui, qui est visiblement terrifiée. Ataroa lui saisit le poignet et lui entaille profondément la paume de son couteau. Un filet de sang vient se mêler au contenu de la coupe, qui prend aussitôt une teinte vivement argentée.</p>

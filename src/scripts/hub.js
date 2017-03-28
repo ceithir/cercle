@@ -243,7 +243,7 @@ ${crocodileIslandDescription}
 
 <p>Ensuite, quelque part entre l’est et le nord-est, existe une île qui n’est en réalité qu’une minuscule étendue de sable clair.</p>
 
-<p>L'île juste à côté est similaire, à peine plus grande, mais a cela de notable qu'elle servira de point d’arrivée à la course qui vous opposera à Raiahui.</p>
+<p>L’île juste à côté est similaire, à peine plus grande, mais a cela de notable qu’elle servira de point d’arrivée à la course qui vous opposera à Raiahui.</p>
 
 <p>La surface du lagon n’est agitée que de minuscules vagues, ce qui vous promet une navigation plus aisée que ce à quoi vous êtes habituée. Vous pourriez sans doute en faire le tour, peut-être pas de toutes mais de la majorité, et revenir dans à temps pour l’épreuve à laquelle vous avez été conviée.</p>
       `;
@@ -415,15 +415,15 @@ ${crocodileIslandDescription}
 
 
       if (flags.drunk) {
-        statusComment = `<p class="text-info">Ce court repos n'aura malheureusement pas réussi à contrebalancer votre récent excès. Vous vous sentez encore faible, et ne pouvez plus qu'espérer que l'excitation de la course et les claques de l'eau salée contre votre visage seront suffisantes pour vous remettre d'aplomb.</p>`;
+        statusComment = `<p class="text-info">Ce court repos n’aura malheureusement pas réussi à contrebalancer votre récent excès. Vous vous sentez encore faible, et ne pouvez plus qu’espérer que l’excitation de la course et les claques de l’eau salée contre votre visage seront suffisantes pour vous remettre d’aplomb.</p>`;
       }
 
       if (flags.refreshed) {
-        statusComment = `<p class="text-info">La nausée induite par votre consommation enthousiaste d'alcool s'est dissipée. Vous êtes prête.</p>`;
+        statusComment = `<p class="text-info">La nausée induite par votre consommation enthousiaste d’alcool s’est dissipée. Vous êtes prête.</p>`;
       }
 
       if (flags.wellRested) {
-        statusComment = `<p class="text-info">Cette bonne sieste vous a remis d'aplomb. Vous vous sentez en pleine forme, prête à en découdre.</p>`;
+        statusComment = `<p class="text-info">Cette bonne sieste vous a remis d’aplomb. Vous vous sentez en pleine forme, prête à en découdre.</p>`;
       }
 
       return `

@@ -263,7 +263,7 @@ const island3 = {
           },
         },
         {
-          "text": `Vous lui parlez de l’Ecume des Profondeurs, la récompense qu’on vous a promise si vous l’emportez.`,
+          "text": `Vous lui parlez de l’Écume des Profondeurs, la récompense qu’on vous a promise si vous l’emportez.`,
           "action": () => {
             updateFlag("time", flags.time+1);
             goToSection("faanarua-my-world");
