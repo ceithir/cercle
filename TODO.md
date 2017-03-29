@@ -2,11 +2,13 @@
 
 ### Complete achievements
 
+### Credits
+
 ## Polish
 
 ### Options button in toolbar
 
-Quick new start + Accessibility parameters (like font size)
+Accessibility parameters (like font size)
 
 ### Post-process script for French special characters
 
@@ -21,3 +23,8 @@ Object => Funnel
 
 Transitions could be more fluid, more context-sensitive. Right now, it's painfully obvious the same block of text is printed as is in several places.
 
+### Generate a single HTML file?
+
+May not be a good idea, but has some advantages for some distribution methods. Need further analysis.
+
+### Clean Github repo
