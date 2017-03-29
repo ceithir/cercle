@@ -54,11 +54,14 @@ const flags = {
   "toldAboutAtollByRaiahui": false,
   "toldAboutLazyOneByAriinea": false,
   "toldAboutFaanaruaByVarenui": false,
+  "toldAboutWitchByMonkey": false,
   "watchedKnifeImportance": false,
   "droppedDoll": false,
   "survivedWitchIsland": false,
   "refreshed": false,
   "refreshedByFruit": false,
+  "aVillagerOnCrocodileIsland": false,
+  "caughtARaiahui": false,
 };
 
 export default flags;

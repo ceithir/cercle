@@ -39,6 +39,7 @@ const facingRaiahuiUnderwater = (goToSection, flags, updateFlag) => {
     const text = `Et vous avez de quoi l’accueillir.`;
     const action = () => {
       useItem("net", updateFlag);
+      updateFlag("caughtARaiahui", true);
       goToSection("caught-a-raiahui");
     }
 
@@ -892,7 +893,7 @@ ${items}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": ``,
+          "text": `Vous recourrez aux perles.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("trial-coral-pearls");
@@ -989,6 +990,7 @@ ${items}
           "text": `Vous avez encore le filet de la sorcière.`,
           "action": () => {
             useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
             goToSection("trial-exhausted-net");
           },
           "conditional": true,

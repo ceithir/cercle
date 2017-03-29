@@ -13,6 +13,7 @@ const island4 = {
           "text": `Vous accostez tout de même l’île.`,
           "action": () => {
             updateFlag("time", flags.time+1);
+            updateFlag("toldAboutWitchByMonkey", true);
             goToSection("exploring-island-4");
           },
         },

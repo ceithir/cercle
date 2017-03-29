@@ -268,6 +268,9 @@ ${crocodileIslandDescription}
       if (flags.time >= 10) {
         const text = `Mais quelqu’un a déjà fait ce choix pour vous.`;
         const action = () => {
+          if (flags.visitedIslands.length > 0 && "island-6" === flags.visitedIslands[flags.visitedIslands.length-1]) {
+            updateFlag("aVillagerOnCrocodileIsland", true);
+          }
           goToSection("no-more-time-on-land");
         }
 

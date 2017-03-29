@@ -1,5 +1,11 @@
 const achievements = [
   {
+    "key": "fact-checking",
+    "name": `Croiser ses sources`,
+    "description": `Vous avez obtenu des informations concordantes sur certains occupants du lagon d'au moins deux personnes différentes.`,
+    "condition": (flags) => {return (flags.toldAboutFaanaruaByRaiahui && flags.toldAboutFaanaruaByVarenui) || (flags.toldAboutAtollByRaiahui && flags.toldAboutWitchByMonkey) || (flags.toldAboutAtollByRaiahui && flags.toldAboutLazyOneByAriinea);},
+  },
+  {
     "key": "tried-to-escape",
     "name": `Liberté surveillée`,
     "description": `Vous pensiez être libre de quitter le lagon dès que vous en auriez envie. Vous vous trompiez.`,
@@ -60,10 +66,34 @@ const achievements = [
     "condition": (flags) => {return 0 === flags.time && (flags.eatenByRaiahui || flags.stabbedToDeath || flags.survivedTheTrial);},
   },
   {
+    "key": "catch-them-all",
+    "name": `Collectionneuse`,
+    "description": `En à peine une journée dans ce lagon, vous avez mis la main sur pas moins de trois objets distincts qui pourraient être qualifiés de magique.`,
+    "condition": (flags) => {return flags.inventory.dolphin.acquired && flags.inventory.doll.acquired && flags.inventory.pearls.acquired;},
+  },
+  {
+    "key": "prisoner-of-my-web",
+    "name": `Une belle prise`,
+    "description": `Vous avez attrapé un bien gros poisson dans votre filet.`,
+    "condition": (flags) => {return flags.caughtARaiahui;},
+  },
+  {
+    "key": "drunk-victory",
+    "name": `L'attrait de la boisson`,
+    "description": `Ce n'est pas encore tout à fait remise de votre dernière dégustation d'une spécialité locale que vous avez accepté d'en consommer une autre.`,
+    "condition": (flags) => {return flags.drunk && flags.survivedTheTrial;},
+  },
+  {
     "key": "speedrun",
     "name": `La victoire par l’inaction`,
     "description": `Votre journée de farniente vous aura ouvert les portes d’une soirée de triomphe.`,
     "condition": (flags) => {return 0 === flags.time && flags.survivedTheTrial;},
+  },
+  {
+    "key": "funny-coincidence",
+    "name": `La réalité rejoint la fiction`,
+    "description": `Vous pensiez avoir menti au crocodile. Et pourtant, ce que vous lui aviez annoncé s'est réalisé.`,
+    "condition": (flags) => {return flags.inventory.doll.acquired && flags.aVillagerOnCrocodileIsland;},
   },
 ];
 
