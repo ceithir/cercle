@@ -55,7 +55,7 @@ const achievements = [
   },
   {
     "key": "victory",
-    "name": `Une rêve d’écume`,
+    "name": `Un rêve d’écume`,
     "description": `Vous êtes sortie victorieuse (et vivante) de l’épreuve.`,
     "condition": (flags) => {return flags.survivedTheTrial;},
   },
