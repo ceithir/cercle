@@ -1,12 +1,16 @@
 import React from 'react';
-import { Grid, Row, Col, PageHeader, ProgressBar } from 'react-bootstrap';
+import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
 import Achievements from './Achievements.js';
 import Funnel from './Funnel.js';
 
 class MemoryScreen extends React.Component {
-  getUnlockedAchievements = () => {
-    return this.props.achievements.filter((achievement) => {
-      return this.props.unlocked.includes(achievement.key);
+  getAchievements = () => {
+    return this.props.achievements.map((achievement) => {
+      if (!this.props.unlocked.includes(achievement.key)) {
+        return Object.assign({}, achievement, {'description': "???", 'disabled': true});
+      }
+
+      return achievement;
     });
   }
 
@@ -14,10 +18,6 @@ class MemoryScreen extends React.Component {
     if (0 === this.props.achievements.length) {
       return null;
     }
-
-    const unlocked = this.getUnlockedAchievements();
-    const all = this.props.achievements;
-    const unlockedPercentage = Math.round(100*unlocked.length/all.length);
 
     return (
       <Grid className="achievements-screen">
@@ -28,8 +28,7 @@ class MemoryScreen extends React.Component {
         </Row>
         <Row>
           <Col md={8} mdOffset={2}>
-            <ProgressBar now={unlockedPercentage} label={`${unlocked.length} / ${all.length}`}  />
-            <Achievements achievements={unlocked} />
+            <Achievements achievements={this.getAchievements()} />
           </Col>
         </Row>
         <Row>

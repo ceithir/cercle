@@ -7,7 +7,12 @@ class Achievements extends React.Component {
       <div>
         {this.props.achievements.map((achievement) => {
           return (
-            <Achievement key={achievement.key} name={achievement.name} description={achievement.description} />
+            <Achievement
+              key={achievement.key}
+              name={achievement.name}
+              description={achievement.description}
+              disabled={achievement.disabled}
+            />
           );
         })}
       </div>

@@ -73,7 +73,7 @@ const achievements = [
   },
   {
     "key": "prisoner-of-my-web",
-    "name": `Une belle prise`,
+    "name": `Pêcheuse émérite`,
     "description": `Vous avez attrapé un bien gros poisson dans votre filet.`,
     "condition": (flags) => {return flags.caughtARaiahui;},
   },
