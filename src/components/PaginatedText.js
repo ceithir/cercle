@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pagination } from 'react-bootstrap';
+import ReactDOM from 'react-dom';
 
 class PaginatedText extends React.Component {
   constructor(props) {
@@ -18,6 +19,20 @@ class PaginatedText extends React.Component {
     this.setState({
       activePage: eventKey,
     });
+  }
+
+  componentDidUpdate() {
+    this.ensurePaginationIsVisible(this.paginationRef);
+  }
+
+  ensurePaginationIsVisible = (ref) => {
+    // https://facebook.github.io/react/docs/refs-and-the-dom.html + https://developer.mozilla.org/en/docs/Web/API/Element/scrollIntoView
+    const element = ReactDOM.findDOMNode(ref);
+    if (!element) {
+      return;
+    }
+
+    element.scrollIntoView();
   }
 
   render() {
@@ -42,6 +57,7 @@ class PaginatedText extends React.Component {
               maxButtons={3}
               ellipsis
               boundaryLinks
+              ref={(ref) => {this.paginationRef=ref;}}
             />
           </div>
         }
