@@ -22,7 +22,7 @@ class Game extends React.Component {
       "modal": {"show": false},
       "currentSectionText": this.processText(currentSection, currentFlags),
     };
-    window.scrollTo(0, 0);
+    this.resetScrolling();
   }
 
   goToSection = (section) => {
@@ -39,7 +39,7 @@ class Game extends React.Component {
         "currentSectionText": text,
       };
     });
-    window.scrollTo(0, 0);
+    this.resetScrolling();
   }
 
   showModal = (title, content) => {
@@ -82,7 +82,7 @@ class Game extends React.Component {
       "logs": [],
       "currentSectionText": this.processText(currentSection, currentFlags),
     });
-    window.scrollTo(0, 0);
+    this.resetScrolling();
   }
 
   quit = () => {
@@ -165,6 +165,10 @@ class Game extends React.Component {
         "text": `Recommencer`,
       },
     ];
+  }
+
+  resetScrolling = () => {
+    window.scrollTo(0, 0);
   }
 
   render() {
