@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
+import PaginatedText from './PaginatedText.js';
 
 class TextModal extends React.Component {
   close = () => {
@@ -20,7 +21,14 @@ class TextModal extends React.Component {
         <Modal.Header closeButton>
           <Modal.Title>{this.props.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body dangerouslySetInnerHTML={this.prepareContent()}></Modal.Body>
+        {
+          typeof this.props.content === 'string' &&
+          <Modal.Body dangerouslySetInnerHTML={this.prepareContent()}></Modal.Body>
+        }
+        {
+          Array.isArray(this.props.content) &&
+          <Modal.Body><PaginatedText texts={this.props.content} defaultPage={this.props.content.length} /></Modal.Body>
+        }
       </Modal>
     );
   }
@@ -29,7 +37,10 @@ class TextModal extends React.Component {
 TextModal.propTypes = {
   show: React.PropTypes.bool.isRequired,
   title: React.PropTypes.string,
-  content: React.PropTypes.string,
+  content: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.arrayOf(React.PropTypes.string),
+  ]),
   close: React.PropTypes.func.isRequired,
 };
 

@@ -4,7 +4,7 @@ import { NavItem } from 'react-bootstrap';
 class LogButton extends React.Component {
   onSelect = () => {
     const modalTitle = this.props.text;
-    const modalContent = this.props.logs.reverse().join('<hr/>');
+    const modalContent = this.props.logs;
 
     this.props.showModal(modalTitle, modalContent);
   }
