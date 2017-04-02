@@ -22,6 +22,7 @@ class Game extends React.Component {
       "modal": {"show": false},
       "currentSectionText": this.processText(currentSection, currentFlags),
     };
+    this.saveProgress(currentSection, currentFlags, currentLogs);
     this.resetScrolling();
   }
 
@@ -71,17 +72,17 @@ class Game extends React.Component {
   }
 
   reset = () => {
-    this.props.clearProgress();
-
     const currentSection = this.props.startingSection;
     const currentFlags = this.props.startingFlags;
+    const currentLogs = [];
 
     this.setState({
       "currentSection": currentSection,
       "flags": currentFlags,
-      "logs": [],
+      "logs": currentLogs,
       "currentSectionText": this.processText(currentSection, currentFlags),
     });
+    this.props.saveProgress(currentSection, currentFlags, currentLogs);
     this.resetScrolling();
   }
 
@@ -90,7 +91,7 @@ class Game extends React.Component {
   }
 
   resetAndQuit = () => {
-    this.reset();
+    this.props.clearProgress();
     this.quit();
   }
 
