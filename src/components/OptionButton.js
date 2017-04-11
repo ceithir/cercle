@@ -11,7 +11,7 @@ class OptionButton extends React.Component {
       <NavDropdown title={this.props.text} id="option-dropdown">
         {this.props.options.map((option) => {
           return (
-            <MenuItem onSelect={option.action} key={option.key}>{option.text}</MenuItem>
+            <MenuItem onSelect={option.action} key={option.key} disabled={option.disabled}>{option.text}</MenuItem>
           );
         })}
       </NavDropdown>

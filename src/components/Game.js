@@ -2,7 +2,6 @@ import React from 'react';
 import Text from './Text.js';
 import { Navbar, Nav } from 'react-bootstrap';
 import Title from './Title.js';
-import LogButton from './LogButton.js';
 import InventoryButton from './InventoryButton.js';
 import TextModal from './TextModal.js';
 import OptionButton from './OptionButton.js';
@@ -156,14 +155,25 @@ class Game extends React.Component {
   getOptions = () => {
     return [
       {
-        "key": "quit",
-        "action": this.quit,
-        "text": `Retour à l’écran titre`,
+        "key": "logs",
+        "action": () => {
+          const modalTitle = `Historique`;
+          const modalContent = this.state.logs;
+
+          this.showModal(modalTitle, modalContent);
+        },
+        "text": `Historique`,
+        "disabled": 0 === this.state.logs.length,
       },
       {
         "key": "reset",
         "action": this.reset,
         "text": `Recommencer`,
+      },
+      {
+        "key": "quit",
+        "action": this.quit,
+        "text": `Retourner à l’écran titre`,
       },
     ];
   }
@@ -181,7 +191,6 @@ class Game extends React.Component {
           </Title>
           <Navbar.Collapse>
             <Nav>
-              <LogButton logs={this.state.logs} showModal={this.showModal} text={`Journal`} />
               <InventoryButton inventory={this.state.flags.inventory} showModal={this.showModal} text={`Inventaire`} />
             </Nav>
             <Nav pullRight>
