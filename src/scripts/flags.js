@@ -62,6 +62,7 @@ const flags = {
   "refreshedByFruit": false,
   "aVillagerOnCrocodileIsland": false,
   "caughtARaiahui": false,
+  "seenRaiahuiTrueForm": false,
 };
 
 export default flags;

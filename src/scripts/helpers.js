@@ -12,11 +12,27 @@ export const useItem = function(itemKey, updateFlag) {
   updateFlag(["inventory", itemKey, "used"], true);
 };
 
-const endMessage = function () {
+const computeAchievements = function(flags) {
+  return achievements.filter((achievement) => {
+    return achievement.condition(flags);
+  });
+};
+
+const badEndMessage = function(flags) {
+  const achievements = computeAchievements(flags);
+
+  let achievementsText = `Vous avez fait preuve de prudence et d’ingéniosité, mais cela n’a pas suffi à vous éviter une fin brutale :`;
+  if (1 === achievements.length) {
+    achievementsText = `Votre séjour dans ce lagon paradisiaque s’est conclu de bien brutale façon :`;
+  }
+
+  const hintText = `Peut-être souhaiteriez-vous un indice avant d’effectuer une nouvelle tentative ? (non implémenté)`;
+
   return (
-    <div>
-      <p>Votre aventure dans ce lagon isolé est maintenant parvenue à sa conclusion.</p>
-      <p>Si vous le souhaitez, vous pouvez la relire dans son intégralité via le Journal. Vous trouverez également ci-dessous la liste des événements marquants de votre parcours.</p>
+    <div className="ending-message">
+      <p>{achievementsText}</p>
+      <Achievements achievements={achievements} />
+      <p>{hintText}</p>
     </div>
   );
 }
@@ -35,23 +51,57 @@ const titleScreenButton = function(quit) {
   };
 }
 
-const computeAchievements = function(flags) {
-  return achievements.filter((achievement) => {
-    return achievement.condition(flags);
-  });
-};
+const endButtons = function(reset, quit) {
+  return (
+    <Row>
+      <Col md={6} mdOffset={3} className="lead text-center">
+        <Crossroads choices={[replayButton(reset), titleScreenButton(quit)]} />
+      </Col>
+    </Row>
+  );
+}
 
 export const endGame = function(goToSection, flags, updateFlag, reset, quit) {
   return (
     <div>
       <hr/>
-      {endMessage()}
+      {badEndMessage(flags)}
+      <hr/>
+      {endButtons(reset, quit)}
+    </div>
+  );
+}
+
+const goodEndMessage = function(flags) {
+  const achievementsText = `Ce fut un parcours mouvementé, mais vous en êtes venue à bout :`;
+  const hintText = `Mais avez-vous découvert tous les secrets du lagon ? Par exemple saviez-vous…`;
+  //TODO Random hints out of a list
+  const hints = [
+    `Qu’il est possible de rencontrer la mère de Raiahui ?`,
+    `De battre Raiahui sans jamais avoir quitté l’île de départ ?`,
+  ];
+
+  return (
+    <div className="ending-message">
+      <p>{achievementsText}</p>
       <Achievements achievements={computeAchievements(flags)} />
-      <Row>
-        <Col md={6} mdOffset={3} className="lead text-center">
-          <Crossroads choices={[replayButton(reset), titleScreenButton(quit)]} />
-        </Col>
-      </Row>
+      <p>{hintText}</p>
+      <ul>
+        {hints.map((hint, index) => {
+          return <li key={index.toString()}>{hint}</li>;
+        })}
+      </ul>
+    </div>
+  );
+}
+
+export const trueEnd = function(goToSection, flags, updateFlag, reset, quit) {
+  return (
+    <div>
+      <hr/>
+      {goodEndMessage(flags)}
+      <hr/>
+      {endButtons(reset, quit)}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {endGame, useItem} from "./helpers.js";
+import {endGame, trueEnd, useItem} from "./helpers.js";
 
 const raiahuiGoodEndText = `
 <p>La journée est à présent sur le point de toucher à son terme. La course est terminée depuis quelques instants déjà et sur l’île sablonneuse se déroule une cérémonie succincte, qu’aucune personne étrangère à la tribu n’est plus là pour observer.</p>
@@ -478,7 +478,7 @@ ${items}
 
 <p>Vous n’augmentez pas immédiatement la cadence de vos mouvements. Vous avez après tout une avance considérable. Vous prenez la précaution de jeter par la suite des coups d’œil périodiques en arrière, mais, curieusement, ils ne vous apprennent rien : vous ne voyez à aucun moment la tête de Raiahui émerger au-dessus des vagues et sa position vous reste absolument inconnue.</p>
     `,
-    "next": (goToSection) => {
+    "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
           "text": `Vous accélérez votre rythme de nage.`,
@@ -489,6 +489,7 @@ ${items}
         {
           "text": `Vous plongez sous l’eau pour essayer de distinguer où se trouve Raiahui.`,
           "action": () => {
+            updateFlag("seenRaiahuiTrueForm", true);
             goToSection("trial-underwater");
           },
         },
@@ -540,9 +541,10 @@ ${items}
 
 <p>Vous vous débattez furieusement, mais la figurine vous a déjà relâchée et a disparu. Soulagée, vous êtes sur le point de remonter à la surface.</p>
     `,
-    "next": (goToSection) => {
+    "next": (goToSection, flags, updateFlag) => {
       const text = `Quant votre regard accroche ce qui se trouve derrière vous.`;
       const action = () => {
+        updateFlag("seenRaiahuiTrueForm", true);
         goToSection("trial-underwater");
       };
 
@@ -810,7 +812,7 @@ ${items}
       return (
         <Funnel text={text} action={action} />
       );
-    }
+    },
   },
   "victory": {
     "text": `
@@ -865,10 +867,19 @@ ${items}
 <p>Vous baissez les yeux vers l’Écume des Profondeurs, dont la surface reflète confusément votre visage. Cela valait-il la peine que vous vous êtes donnée et les dangers que vous avez courus ? Peu importe désormais : votre aventure sur cet atoll appartient déjà au passé et la suite de votre quête vous attend.</p>
 
 <p>Vous vous installez confortablement et portez la coupe à vos lèvres.</p>
-
-<p>Cette nuit, vous allez rêver. Et demain, vous allez repartir.</p>
     `,
-    "next": endGame,
+    "next": (goToSection) => {
+      const text = `Cette nuit, vous allez rêver. Et demain, vous allez repartir.`;
+      const action = () => {
+        goToSection("ending-credits");
+      };
+
+      return (
+        <div className="true-end-link">
+          <Funnel text={text} action={action} />
+        </div>
+      );
+    },
   },
   "trial-hide": {
     "text": `
@@ -1037,6 +1048,23 @@ ${items}
     `,
     "next": raceEnd,
   },
+  "ending-credits": {
+    //TODO Complete with links, thanks message etc.
+    "text": `
+<h1>Au Cœur d’un Cercle de Sable et d’Eau</h1>
+
+<div class="ending-credits">
+<p>Une aventure d’Outremer.</p>
+
+<p>Texte d’Outremer.</p>
+
+<p>Code par Skarn.</p>
+
+<p>Illustrations, s’il le veut bien, par Klaus Pillon.</p>
+</div>
+    `,
+    "next": trueEnd,
+  }
 };
 
 export default trial;

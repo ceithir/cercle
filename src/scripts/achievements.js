@@ -2,8 +2,20 @@ const achievements = [
   {
     "key": "fact-checking",
     "name": `Croiser ses sources`,
-    "description": `Vous avez obtenu des informations concordantes sur certains occupants du lagon d'au moins deux personnes différentes.`,
+    "description": `Vous avez obtenu des informations concordantes sur certains occupants du lagon d’au moins deux personnes différentes.`,
     "condition": (flags) => {return (flags.toldAboutFaanaruaByRaiahui && flags.toldAboutFaanaruaByVarenui) || (flags.toldAboutAtollByRaiahui && flags.toldAboutWitchByMonkey) || (flags.toldAboutAtollByRaiahui && flags.toldAboutLazyOneByAriinea);},
+  },
+  {
+    "key": "my-precious",
+    "name": `Un peu de magie dans la poche`,
+    "description": `Vous avez réussi à mettre la main sur au moins un objet (supposément) magique.`,
+    "condition": (flags) => {return flags.inventory.dolphin.acquired || flags.inventory.pearls.acquired || flags.inventory.doll.acquired || flags.inventory.net.acquired;},
+  },
+  {
+    "key": "the-truth",
+    "name": `Un mystère de résolu`,
+    "description": `Vous avez découvert la vérité sur les habitants de l’île.`,
+    "condition": (flags) => {return flags.seenRaiahuiTrueForm;},
   },
   {
     "key": "tried-to-escape",
@@ -79,8 +91,8 @@ const achievements = [
   },
   {
     "key": "drunk-victory",
-    "name": `L'attrait de la boisson`,
-    "description": `Ce n'est pas encore tout à fait remise de votre dernière dégustation d'une spécialité locale que vous avez accepté d'en consommer une autre.`,
+    "name": `L’attrait de la boisson`,
+    "description": `Ce n’est pas encore tout à fait remise de votre dernière dégustation d’une spécialité locale que vous avez accepté d’en consommer une autre.`,
     "condition": (flags) => {return flags.drunk && flags.survivedTheTrial;},
   },
   {
@@ -92,7 +104,7 @@ const achievements = [
   {
     "key": "funny-coincidence",
     "name": `La réalité rejoint la fiction`,
-    "description": `Vous pensiez avoir menti au crocodile. Et pourtant, ce que vous lui aviez annoncé s'est réalisé.`,
+    "description": `Vous pensiez avoir menti au crocodile. Et pourtant, ce que vous lui aviez annoncé s’est réalisé.`,
     "condition": (flags) => {return flags.inventory.doll.acquired && flags.aVillagerOnCrocodileIsland;},
   },
 ];

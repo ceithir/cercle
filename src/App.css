@@ -72,3 +72,29 @@
   stroke: #ff6961;
   stroke-opacity: 1;
 }
+
+.ending-message > p {
+  font-style: italic;
+}
+
+.ending-message > ul > li {
+  font-style: italic;
+}
+
+.ending-message > p:first-child {
+  margin-bottom: 15px;
+}
+
+.true-end-link a.list-group-item {
+  color: #2d2d2d;
+  background: linear-gradient(to top, #48d1cc, #6495ed);
+}
+
+.true-end-link a.list-group-item:hover {
+  background: linear-gradient(to top, #48d1cc, #4169e1);
+}
+
+.ending-credits {
+  margin-top: 25px;
+  margin-bottom: -5px;
+}
