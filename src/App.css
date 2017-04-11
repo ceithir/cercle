@@ -37,3 +37,38 @@
 .achievements-screen .panel.disabled {
   opacity: 0.5;
 }
+
+#atoll-map polygon {
+  fill: #e8e8ee;
+  fill-opacity: 0;
+
+  stroke: #d3d3d3;
+  stroke-width: 1px;
+
+  cursor: pointer;
+}
+
+#atoll-map polygon:hover {
+  fill-opacity: 0.2;
+}
+
+#atoll-map polygon + text {
+  text-anchor: middle;
+  visibility: hidden;
+
+}
+
+#atoll-map polygon:hover + text {
+  visibility: visible;
+}
+
+#atoll-map .disabled polygon {
+  cursor: not-allowed;
+  fill-opacity: 0;
+  stroke-opacity: 0;
+}
+
+#atoll-map .current polygon {
+  stroke: #ff6961;
+  stroke-opacity: 1;
+}

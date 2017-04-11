@@ -2,6 +2,8 @@ import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import {useItem, acquireItem, endGame} from "./helpers.js";
+import atollMap from './../images/atoll.jpg';
+import { Image } from "react-bootstrap";
 
 const getIslandNumber = function(island) {
   return island.match(/\w+\-(\d+)/)[1];
@@ -36,38 +38,45 @@ const getIslands = function(flags) {
   return [
     {
       "key": "island-2",
-      "description": `Une île sans réel signe distinctif.`,
+      "description": `Une île sans réel signe distinctif`,
+      "coordinates": "138,453 236,586 138,644 44,504",
     },
     {
       "key": "island-3",
-      "description": flags.toldAboutFaanaruaByVarenui ? `L’île de Faanarua.` : `Une autre île tout ce qu’il y a de plus banal.`,
+      "description": flags.toldAboutFaanaruaByVarenui ? `L’île de Faanarua` : `Une autre île tout ce qu’il y a de plus banal`,
+      "coordinates": "29,301 133,301 133,461 29,461",
     },
     {
       "key": "island-4",
-      "description": `La petite île excentrée.`,
+      "description": `La petite île excentrée`,
+      "coordinates": "64,194 122,194 122,261 64,261",
     },
     {
       "key": "island-5",
-      "description": flags.toldAboutAtollByRaiahui ? `L’île de la sorcière.` : `L’étrange rocher.`,
+      "description": flags.toldAboutAtollByRaiahui ? `L’île de la sorcière` : `L’étrange rocher`,
+      "coordinates": "123,37 255,37 255,145 123,145",
     },
     {
       "key": "island-6",
-      "description": flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea ? `L’île du Vieux Fainéant.` : `L’île aux arbres.`,
+      "description": flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea ? `L’île du Vieux Fainéant` : `L’île aux arbres`,
+      "coordinates": "425,20 706,134 666,223 391,96",
     },
     {
       "key": "island-7",
-      "description": `La petite île à côté de l’île de l’épreuve.`,
+      "description": `La petite île à côté de l’île de l’épreuve`,
+      "coordinates": "660,262 727,262 727,321 660,321",
     },
     {
       "key": "island-8",
-      "description": `L’île de l’épreuve.`,
+      "description": `L’île de l’épreuve`,
+      "coordinates": "628,453 708,453 708,527 628,527",
     },
   ];
 }
 
 const getIslandChoice = function(island, goToSection, flags, updateFlag) {
   return {
-    "text": island.description,
+    "text": island.description+".",
     "action": () => {
       moveToIsland(island.key, goToSection, flags, updateFlag);
     },
@@ -131,6 +140,73 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
   return otherChoices;
 }
 
+const getIslandMap = (goToSection, flags, updateFlag) => {
+  const alreadyVisitedText = ` (déjà visitée)`;
+  const currentIslandText = ` (vous y êtes)`;
+
+  const currentIsland = flags.visitedIslands.length > 0 ? flags.visitedIslands[flags.visitedIslands.length-1]: "island-1";
+
+  const islands = getIslands(flags).concat([
+    {
+      "key": "island-1",
+      "description": `Le village`,
+      "coordinates": "610,518 682,570 621,652 408,732 161,708 202,605 427,631",
+    },
+  ]).map((island) => {
+    const disabled = flags.visitedIslands.includes(island.key);
+    const current = island.key === currentIsland;
+
+    const onClick = () => {
+      if (disabled) {
+        return;
+      }
+
+      moveToIsland(island.key, goToSection, flags, updateFlag);
+    };
+
+    return Object.assign(
+      {},
+      island,
+      {
+        "description": island.description + (current ? currentIslandText : (disabled ? alreadyVisitedText : "")),
+        "current": current,
+        "disabled": disabled,
+        "onClick": onClick,
+      },
+    );
+  });
+
+  return (
+    <div>
+      <Image src={atollMap} className="center-block visible-xs visible-xm" responsive />
+      <svg
+        id="atoll-map"
+        width="800" height="800"
+        className="center-block hidden-xs hidden-xm"
+        xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
+      >
+        <image xlinkHref={atollMap} x="0" y="0" height="800" width="800"/>
+        {islands.map((island) => {
+          let className = "";
+          if (island.current) {
+            className += " current";
+          }
+          if (island.disabled) {
+            className += " disabled";
+          }
+
+          return (
+            <g key={island.key} className={className}>
+              <polygon points={island.coordinates} onClick={island.onClick} />
+              <text x="390" y="370" className="lead">{island.description}</text>
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+  );
+}
+
 const getIslandChoices = function(goToSection, flags, updateFlag) {
   const currentIsland = flags.currentIsland;
   const alreadyVisitedIslands = flags.visitedIslands;
@@ -165,6 +241,7 @@ const getIslandChoices = function(goToSection, flags, updateFlag) {
 
   return (
     <div>
+      {getIslandMap(goToSection, flags, updateFlag)}
       {nearChoices.length > 0 && <Crossroads context={nearText} choices={nearChoices} />}
       {farChoices.length > 0 && <Crossroads context={farText} choices={farChoices} />}
       <Crossroads context={otherText} choices={otherChoices} />
