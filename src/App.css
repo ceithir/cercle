@@ -104,13 +104,37 @@
 }
 
 .core .logs > div {
-  opacity: 0.6;
+  opacity: 0.2;
+}
+
+.core .logs > div:nth-last-child(7) {
+  opacity: 0.25;
+}
+
+.core .logs > div:nth-last-child(6) {
+  opacity: 0.3;
+}
+
+.core .logs > div:nth-last-child(5) {
+  opacity: 0.35;
+}
+
+.core .logs > div:nth-last-child(5) {
+  opacity: 0.4;
+}
+
+.core .logs > div:nth-last-child(4) {
+  opacity: 0.45;
+}
+
+.core .logs > div:nth-last-child(3) {
+  opacity: 0.5;
 }
 
 .core .logs > div:nth-last-child(2) {
-  opacity: 0.7;
+  opacity: 0.55;
 }
 
 .core .logs > div:last-child {
-  opacity: 0.8;
+  opacity: 0.6;
 }

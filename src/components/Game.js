@@ -7,6 +7,8 @@ import TextModal from './TextModal.js';
 import OptionButton from './OptionButton.js';
 import ReactDOM from 'react-dom';
 
+const logsMaxLength = 10;
+
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -30,6 +32,9 @@ class Game extends React.Component {
       const flags = prevState.flags;
       const text = this.processText(section, flags);
       const logs = prevState.logs.concat([prevState.currentSectionText]);
+      if (logs.length > logsMaxLength) {
+        logs.shift();
+      }
 
       this.saveProgress(section, flags, logs);
 
