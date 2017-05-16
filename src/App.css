@@ -103,38 +103,49 @@
   border-color: #d0d0d0;
 }
 
-.core .logs > div {
+.core .logs > div p {
   opacity: 0.2;
 }
 
-.core .logs > div:nth-last-child(7) {
+.core .logs > div:nth-last-child(7) p {
   opacity: 0.25;
 }
 
-.core .logs > div:nth-last-child(6) {
+.core .logs > div:nth-last-child(6) p {
   opacity: 0.3;
 }
 
-.core .logs > div:nth-last-child(5) {
+.core .logs > div:nth-last-child(5) p {
   opacity: 0.35;
 }
 
-.core .logs > div:nth-last-child(5) {
+.core .logs > div:nth-last-child(5) p {
   opacity: 0.4;
 }
 
-.core .logs > div:nth-last-child(4) {
+.core .logs > div:nth-last-child(4) p {
   opacity: 0.45;
 }
 
-.core .logs > div:nth-last-child(3) {
+.core .logs > div:nth-last-child(3) p {
   opacity: 0.5;
 }
 
-.core .logs > div:nth-last-child(2) {
+.core .logs > div:nth-last-child(2) p {
   opacity: 0.55;
 }
 
-.core .logs > div:last-child {
+.core .logs > div:last-child p {
   opacity: 0.6;
+}
+
+a.action-img {
+  cursor: pointer;
+  display:block;
+  border: 1px dashed #a8a8a8;
+  margin-bottom: 20px;
+}
+
+a.action-img:hover {
+  border: 1px solid #7e7e7e;
 }
