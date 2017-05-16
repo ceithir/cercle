@@ -2,7 +2,11 @@ import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 
-const noRepeatedAction = function(flagName, actions, goToSection, flags, updateFlag) {
+const noRepeatedAction = function(flagName, actions, goToSection, flags, updateFlag, logFunc) {
+  if (!logFunc) {
+    logFunc = () => "";
+  }
+
   const choice = function(key, text, extraFlag) {
     return {
       "text": text,
@@ -14,7 +18,7 @@ const noRepeatedAction = function(flagName, actions, goToSection, flags, updateF
           updateFlag(extraFlag, true);
         }
 
-        return goToSection(key);
+        return goToSection(key, logFunc(text));
       },
     };
   }
@@ -32,12 +36,12 @@ const arrivalActions = function(goToSection, flags, updateFlag) {
     [
       {
         "key": "visit",
-        "text": `Vous en profitez pour visiter le village.`,
+        "text": `Vous visitez le village.`,
         "flag": "toldAboutFaanaruaByRaiahui",
       },
       {
         "key": "repair",
-        "text": `Vous procédez à l’entretien de votre pirogue.`,
+        "text": `Vous vous consacrez à l’entretien de votre pirogue.`,
       },
       {
         "key": "raiahui-trial",
@@ -57,23 +61,20 @@ const arrivalActions = function(goToSection, flags, updateFlag) {
 
 const arrivalNext = function(goToSection, flags, updateFlag) {
   if (flags.arrivalActions.length <= 1) {
-    const description = `Il vous reste encore un peu de temps avant le festin.`;
-
     return (
-      <Crossroads context={description} choices={arrivalActions(goToSection, flags, updateFlag)} />
+      <Crossroads choices={arrivalActions(goToSection, flags, updateFlag)} />
     );
   }
 
-  const context = `Raiahui vous informe que le festin devrait commencer sous peu.`;
-  const text = `Vous lui emboîtez le pas.`;
-  const action = () => {goToSection("feast");};
+  const text = `Le festin est désormais sur le point de commencer.`;
+  const action = () => {goToSection("feast", `<p><strong>${text}</strong></p>`);};
 
   return (
-    <Funnel context={context} text={text} action={action} />
+    <Funnel text={text} action={action} />
   );
 }
 
-const feastActions = function(goToSection, flags, updateFlag) {
+const feastActions = function(goToSection, flags, updateFlag, transitionText) {
   return noRepeatedAction(
     "feastActions",
     [
@@ -104,24 +105,33 @@ const feastActions = function(goToSection, flags, updateFlag) {
     goToSection,
     flags,
     updateFlag,
+    text => {
+        if (!transitionText) {
+          transitionText = `<p>Vous pourriez passer du temps à discuter avec <strong>{text}</strong>.</p>`;
+        }
+
+        return transitionText.replace("{text}", text.charAt(0).toLowerCase() + text.slice(1, -1));
+    },
   );
 }
 
 const feastNext = function(goToSection, flags, updateFlag) {
   if (flags.feastActions.length <= 1) {
-    const description = `Avec qui désirez-vous discuter maintenant ?`;
+    const transitionText = `<p>Vous conversez encore quelques instants avant de prendre poliment congé pour aller rencontrer <strong>{text}</strong>.</p>`
 
     return (
-      <Crossroads context={description} choices={feastActions(goToSection, flags, updateFlag)} />
+      <div>
+        <p>{`Vous conversez encore quelques instants avant de prendre poliment congé pour aller rencontrer d’autres personnes :`}</p>
+        <Crossroads choices={feastActions(goToSection, flags, updateFlag, transitionText)} />
+      </div>
     );
   }
 
-  const context = `La fête touche à sa fin.`;
-  const text = `Vous en observez les derniers instants en dodelinant de la tête.`;
-  const action = () => {goToSection("night");};
+  const text = `Vous discutez encore un certain temps. L’activité qui vous entoure est en train de commencer à décroître.`;
+  const action = () => {goToSection("night", `<p><strong>${text}</strong></p>`);};
 
   return (
-    <Funnel context={context} text={text} action={action} />
+    <Funnel text={text} action={action} />
   );
 }
 
@@ -139,11 +149,11 @@ const intro = {
 
 <p>Vous vous appelez Mananuiva et, depuis le jour de votre naissance, la saison des pluies est revenue dix-sept fois. Au cours de ces années, vous n’avez connu que votre île natale, ses voisines immédiates et les flots qui les entourent. Mais vous avez finalement atteint l’âge auquel les jeunes gens de votre tribu accomplissent leur rite de passage à l’âge adulte : s’embarquer seul sur une pirogue et partir au large. La tradition appelle cela « partir pour l’horizon » et bien des légendes ont pour point de départ un jeune garçon s’aventurant à cette occasion jusqu’à une île lointaine et étrange. Mais la réalité actuelle de cette coutume est que les adolescents ne font que se rendre à l’une des îles habitées situées à moins d’une journée de voyage et y prendre du bon temps pendant une dizaine de jours. Il est courant que des liaisons romantiques se créent à l’occasion de ces séjours et c’est ainsi que naissent bien des mariages entre des personnes qui auraient pu ne jamais se rencontrer.</p>
 
-<p>Au cours des mois qui ont précédé, vous avez passé de nombreuses soirées à rêvasser à la manière dont se déroulerait votre propre rite de passage, remuant l’espérance imprécise qu’il vous apprendrait quelque chose d’inestimable sur vous-même et sur le monde. Et, le jour venu, votre île natale n’avait pas encore disparu derrière vous lorsqu’une révélation soudaine vous est effectivement venue… celle que la vie d’adulte qui vous attend à l’issue de ce voyage ne recèle aucune perspective qui vous plaise. Vous n’avez pas envie de devenir une femme raisonnable et rangée, pas envie de vous marier et d’avoir beaucoup d’enfants, pas envie de mener une vie comme celle de vos parents et de vos cinq frères et soeurs plus âgés.</p>
+<p>Au cours des mois qui ont précédé, vous avez passé de nombreuses soirées à rêvasser à la manière dont se déroulerait votre propre rite de passage, remuant l’espérance imprécise qu’il vous apprendrait quelque chose d’inestimable sur vous-même et sur le monde. Et, le jour venu, votre île natale n’avait pas encore disparu derrière vous lorsque vous avez effectivement eu une révélation soudaine… celle que la vie d’adulte qui vous attend à l’issue de ce voyage ne recèle aucune perspective qui vous plaise. Vous n’avez pas envie de devenir une femme raisonnable et rangée, pas envie de vous marier et d’avoir beaucoup d’enfants, pas envie de mener une vie comme celle de vos parents et de vos cinq frères et soeurs plus âgés.</p>
 
 <p>Cela remonte à près de deux mois. Depuis, vous avez visité bien des îles à la recherche d’un signe, d’une vision ou d’un oracle qui vous révélera une voie qui vous vous convienne. Vous n’êtes toujours pas certaine de la raison pour laquelle vous avez refusé l’avenir qui vous était promis : votre vie jusqu’alors n’avait pas été malheureuse, tout au plus teintée parfois d’une certaine insatisfaction. Mais vous n’avez jamais douté d’avoir fait le bon choix.</p>
 
-<p>Vous n’êtes désormais plus qu’à quelques coups de pagaie de la plage où viennent expirer les vagues, mais vous n’accostez pas encore. Vous soupçonnez que vous n’avez pas affaire à une île unique, mais à un atoll, auquel cas accéder au lagon intérieur vous offrira une bien meilleure vue d’ensemble.</p>
+<p>Vous avez adroitement franchi les brisants qu’engendrent les récifs de corail et n’êtes désormais plus qu’à quelques coups de pagaie de la plage où expirent les vagues. Mais vous n’accostez pas encore. Vous soupçonnez que vous n’avez pas affaire à une île unique, mais à un atoll, auquel cas accéder au lagon intérieur vous offrira une bien meilleure vue d’ensemble.</p>
 
 <p>Vous êtes en train de vous demander dans quelle direction il serait préférable de longer la plage lorsqu’un bruit d’éclaboussures vous fait tourner la tête. Surgie de l’eau, les deux bras posés sur le flotteur de votre pirogue, une jeune fille vous observe avec une curiosité ravie.</p>
 
@@ -153,7 +163,7 @@ const intro = {
 <p>— Attends un moment. J’ai lâché quelque chose en remontant et je préfère le récupérer tout de suite.</p>
 </div>
 
-<p>Elle plonge sans attendre de réponse et, à travers l’eau claire, vous la voyez qui s’enfonce vers un foisonnement de récifs coralliens. Quelques brefs instants plus tard, elle refait surface et se hisse alors sans se faire prier à bord de votre pirogue. Elle tient à la main un couteau en ivoire qui est sans doute l’objet qu’elle avait perdu. L’idée vous effleure qu’elle était en train de ramasser des coquillages ou des crustacés sous l’eau lorsque vous êtes arrivée, mais elle possèderait dans ce cas un filet où ranger ses prises et elle n’a absolument rien sur elle.</p>
+<p>Elle plonge sans attendre de réponse. À travers l’eau claire, vous la voyez s’enfoncer vers un enchevêtrement de corail particulièrement dense, plonger le bras dans une anfractuosité, puis remonter aussitôt. Un bref instant plus tard, elle refait surface et se hisse alors sans se faire prier à bord de votre pirogue. Elle tient désormais un couteau en ivoire à la main et vous êtes étonnée qu’elle ait pu retrouver aussi rapidement un objet de cette taille parmi le foisonnement extravagant des récifs. L’idée vous effleure qu’elle devait être en train de chercher des coquillages ou des crustacés sous l’eau lorsque vous êtes arrivée, mais elle possèderait dans ce cas un filet où ranger ses prises et elle n’a absolument rien sur elle.</p>
 
 <div class="conversation">
 <p>— Je m’appelle Raiahui. Et toi ?</p>
@@ -165,7 +175,7 @@ const intro = {
 
 <p>Vous dirigez votre pirogue alourdie suivant ses instructions. La langue que parle Raiahui est essentiellement la même que la vôtre et son accent n’est pas plus difficile à saisir que beaucoup de ceux que vous avez rencontrés au cours de votre voyage. Certaines des expressions qu’elle emploie ne vous sont pas familières, mais cela ne gêne guère votre compréhension mutuelle.</p>
 
-<p>Vous accédez bientôt à la passe et vous y engagez. Sur votre gauche, l’île que vous avez longée jusqu’ici est restée couverte d’un enchevêtrement de nombreux palmiers. Sur votre droite, vous distinguez à une certaine distance une autre île de l’atoll, qui n’est guère plus qu’une bande de sable nu. En-dessous de votre pirogue, l’eau est d’une limpidité qui contraste avec le bleu profond de l’océan comme du lagon.</p>
+<p>Vous accédez bientôt à la passe et vous y engagez. Sur votre gauche, l’île que vous avez longée jusqu’ici est tout du long restée d’un enchevêtrement de palmiers. Sur votre droite, vous distinguez à une certaine distance une autre île de l’atoll, qui n’est guère plus qu’une bande de sable nu. En-dessous de votre pirogue, l’eau est d’une limpidité qui contraste avec le bleu profond de l’océan comme du lagon.</p>
 
 <div class="conversation">
 <p>— Est-ce que tu es une bonne nageuse ? vous demande soudain Raiahui.</p>
@@ -176,12 +186,11 @@ const intro = {
 `
     ,
     "next": function(goToSection) {
-      const context = `Perplexe, vous reportez votre attention sur l’île vers laquelle vous naviguez.`;
-      const text = `Vous pouvez maintenant apercevoir le village promis.`;
-      const action = () => {goToSection("arrival");};
+      const text = `Suivant ses instructions, vous pénétrez à l’intérieur du lagon.`;
+      const action = () => {goToSection("arrival", `<p><strong>${text}</strong></p>`);};
 
       return (
-        <Funnel context={context} text={text} action={action} />
+        <Funnel text={text} action={action} />
       );
     }
   },
@@ -237,18 +246,18 @@ const intro = {
 </div>
 
 <p>Il distribue des instructions autour de lui et les spectateurs se dispersent tous pour aller préparer le repas. Raiahui s’absente brièvement pour aller passer un pagne, puis revient vous trouver, un large sourire toujours peint sur le visage. Vous observez sa souple musculature d’un œil calculateur, vous demandant à quel point elle sera difficile à battre. Vous êtes restée en deçà de la vérité en lui disant que vous étiez une très bonne nageuse : vous n’avez jamais rencontré une jeune fille de votre âge capable de vous surpasser.</p>
+
+<p>Il va sans doute s’écouler un certain temps avant que le festin ne puisse commencer.</p>
 `
     ,
     "next": (goToSection, flags, updateFlag) => {
-      const description = `Il va sans doute s’écouler un certain temps avant que le festin ne puisse commencer. À quoi allez-vous l’occuper ?`;
-
       return (
-        <Crossroads context={description} choices={arrivalActions(goToSection, flags, updateFlag)} />
+        <Crossroads choices={arrivalActions(goToSection, flags, updateFlag)} />
       );
     }
   },
   "visit": {
-    "text":
+    "text": flags =>
 `
 <p>Raiahui vous fait visiter son village. Les quelques huttes qui le composent se révèlent rudimentaires et peu élégantes, même si vous gardez bien entendu cette opinion pour vous. La végétation qui s’étend tout autour est abondante, mais de taille limitée, comme c’est fréquemment le cas sur les atolls : même si les palmiers s’élèvent nettement au-dessus de votre tête, ils restent d’une épaisseur fort modeste.</p>
 
@@ -266,28 +275,32 @@ const intro = {
 <p>— Qui est Faanarua ?</p>
 <p>— C’était l’une des meilleures chasseuses de la tribu… et elle racontait vraiment très bien les histoires. Mais elle est devenue un peu bizarre et on ne la voit plus souvent. Je crois qu’elle est de passage en ce moment, mais je ne pense pas qu’elle aura envie de venir ce soir.</p>
 </div>
+
+${flags.arrivalActions.length <= 1? `<p>Une fois la visite du village terminée, il reste encore un certain temps avant que le festin ne puisse commencer.</p>`: ""}
 `
     ,
     "next": arrivalNext,
   },
   "repair": {
-    "text":
+    "text": flags =>
 `
-<p>Vérifier à chaque escale le bon état de votre pirogue est une habitude que vous avez eu le bon sens de prendre dès le début de votre voyage. Sa faible taille vous permet de la manoeuvrer seule, mais la rendrait plus vulnérable si le ciel et la mer cessaient d’être aussi favorables. Elle serait mise à rude épreuve si vous veniez à être surprise en pleine mer par un coup de vent sérieux.</p>
+<p>Vérifier à chaque escale l’état de votre pirogue est une habitude que vous avez eu le bon sens de prendre dès le début de votre voyage. Sa faible taille vous permet de la manoeuvrer seule, mais la rendrait plus vulnérable si le ciel et la mer cessaient d’être aussi favorables. Elle serait mise à rude épreuve si vous veniez à être surprise en pleine mer par un coup de vent sérieux.</p>
 
 <p>Sous le regard curieux de Raiahui, vous examinez donc votre embarcation sous toutes les coutures, vous assurant que rien ne menace son étanchéité et que les liens maintenant en place le flotteur sont toujours solides.</p>
 
 <p>Aucun sujet de préoccupation ne s’étant présenté à vos yeux, vous mettez finalement un terme à votre inspection. Mais, au moment où vous vous redressez, vous remarquez subitement quelque chose d’étonnant : sur la plage longeant le village, il n’y a — en plus de la vôtre — que deux pirogues, d’ailleurs fort frêles. Même si les habitants de l’atoll ne s’aventurent guère en mer, la simple activité de pêcher devrait exiger bien plus d’embarcations que cela. Les autres pirogues de la tribu sont-elles conservées ailleurs ? Vous décidez que la question n’est tout de même pas essentielle au point de mériter une investigation immédiate.</p>
+
+${flags.arrivalActions.length <= 1? `<p>Il reste encore un certain temps avant que le festin ne puisse commencer.</p>`: ""}
 `
     ,
     "next": arrivalNext,
   },
   "raiahui-trial": {
-    "text":
+    "text": flags =>
 `
 <div class="conversation">
 <p>— Si j’ai bien compris, tu ne pouvais pas accomplir ton rite de passage sans la venue d’un étranger ?</p>
-<p>— C’est ça. Mais il faut que ce soit quelqu’un en bonne santé et suffisamment robuste, bien sûr, ou ce serait trop facile.</p>
+<p>— C’est ça. Mais il faut quelqu’un qui soit en bonne santé et suffisamment robuste, bien sûr, ou ce serait trop facile.</p>
 <p>— Vous avez souvent des visiteurs ?</p>
 <p>— Pas tellement, non. J’attends quelqu’un depuis le début de la saison sèche. S’il ne vient personne qui convienne pendant une année entière, quelques adultes emmènent ceux qui ont atteint l’âge nécessaire jusqu’à l’une des îles habitées les plus proches, pour y trouver des gens qui acceptent de participer à la course. Mais grâce à toi, je vais pouvoir devenir une adulte dès demain soir. Je suis vraiment contente.</p>
 <p>— Il y a d’abord notre course, ne pouvez-vous vous empêcher de lui faire remarquer.</p>
@@ -298,12 +311,14 @@ const intro = {
 <div class="conversation">
 <p>— Je suis désolée pour ta quête, Mananuiva, mais c’est moi qui gagnerai.
 </div>
+
+${flags.arrivalActions.length <= 1? `<p>Il reste encore un certain temps avant que le festin ne puisse commencer.</p>`: ""}
 `
     ,
     "next": arrivalNext
   },
   "raiahui-atoll": {
-    "text":
+    "text": flags =>
 `
 <p>À en juger par la direction dans laquelle le soleil décline, l’île où se trouve le village est située à l’extrémité sud de l’atoll. Depuis la plage où a accosté votre pirogue, vous pouvez distinguer les contours des autres îles, mais pas en déterminer le nombre exact. Raiahui vous dessine un plan sommaire sur le sable.</p>
 
@@ -331,6 +346,8 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 <div class="conversation">
 <p>— Celle-ci est très petite et il n’y a presque rien. Les deux dernières sont de taille moyenne et elles ont beaucoup de palmiers, comme cette île-ci.</p>
 </div>
+
+${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste encore un certain temps avant que le festin ne puisse commencer.</p>`: ""}
 `
     ,
     "next": arrivalNext,
@@ -342,20 +359,23 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 
 <p>Toute la tribu semble rassemblée pour l’occasion : un peu moins d’une centaine de personnes, dont une moitié d’enfants et d’adolescents. Soucieuse de donner une bonne impression, vous avez revêtu le paréo aux couleurs vives que vous conserviez à bord de votre pirogue, mais il semble que ce n’était guère nécessaire : même parmi les femmes, personne n’est vêtu d’autre chose qu’un simple pagne et c’est à peine si vous remarquez çà et là quelques bijoux simples. Vous êtes accueillie par de nombreux regards curieux.</p>
 
-<p>Le festin débute sans cérémonie. En tant qu’invitée d’honneur, vous êtes invitée à vous servir la première, ce que votre estomac vous fait accepter avec plaisir. Une assiette en feuilles de palmier tressées vous est offerte et vous faites votre choix parmi les victuailles abondantes, qui incluent de la viande d’oiseau et de tortue, des oeufs, des crustacés, des coquillages et quelques fruits. Une noix de coco verte, au sommet percé, vous est offerte pour que vous puissiez vous désaltérer.</p>
+<p>Le festin débute sans cérémonie. En tant qu’invitée d’honneur, vous êtes invitée à vous servir la première, ce que votre estomac vous fait accepter avec plaisir. Une assiette en feuilles de palmier tressées vous est offerte et vous faites votre choix parmi les victuailles abondantes, qui incluent de la viande d’oiseau et de tortue, des oeufs, des crustacés, des coquillages et quelques fruits. Une noix de coco verte, au sommet percé, vous est présentée pour que vous puissiez vous désaltérer.</p>
 
-<p>Une fois que vous êtes allée vous asseoir, les membres de la tribu vont à leur tour se servir, avec un enthousiasme désordonné qui laisse supposer que ces festins ne sont pas choses courantes. À l’exception des très jeunes enfants, vous remarquez qu’ils portent tous des couteaux en ivoire courbes et légèrement dentelés, qu’ils utilisent dextrement. À en juger par l’aisance avec laquelle ils découpent la nourriture, le tranchant en est autrement plus aiguisé que celui de votre vieux couteau en os.</p>
+<p>Une fois que vous êtes allée vous asseoir, les membres de la tribu vont à leur tour se servir, avec un enthousiasme désordonné qui laisse supposer que ces festins ne sont pas choses courantes. À l’exception des très jeunes enfants, vous remarquez qu’ils possèdent tous des couteaux en ivoire semblables à celui de Raiahui — courbes et légèrement dentelés — qu’ils utilisent avec une grande dextérité. À en juger par l’aisance avec laquelle ils ouvrent les noix de coco, décortiquent les crustacés découpent la chair, le tranchant de ces instruments doit être incomparablement supérieur à celui de votre couteau en os.</p>
 
 <p>Vous saisissez vite pourquoi il y a une telle abondance de nourriture en observant la voracité avec  laquelle mangent les gens qui vous entourent. Vous entendez fréquemment craquer sous leurs dents des morceaux de carapace ou de petits os d’oiseau qu’ils n’ont pas pris la peine de recracher.</p>
 
 <p>Raiahui vous a déserté pour aller retrouver d’autres adolescents, que vous voyez la féliciter — certains avec une envie perceptible — de son passage prochain à l’âge adulte. De toute évidence, ils présument sa victoire lors de votre course de demain !</p>
+
+<p>Ce festin est une excellente occasion d’en apprendre davantage sur la tribu, même si vous n’aurez certainement pas l’occasion de bavarder avec tout le monde.</p>
 `
     ,
     "next": (goToSection, flags, updateFlag) => {
-      const description = `Ce festin est une occasion rêvée pour lier connaissance avec les habitants de l’île. Sur qui votre attention se porte-t-elle ?`;
-
       return (
-        <Crossroads context={description} choices={feastActions(goToSection, flags, updateFlag)} />
+        <div>
+          <p>{`Vous pourriez passer du temps à discuter avec :`}</p>
+          <Crossroads choices={feastActions(goToSection, flags, updateFlag)} />
+        </div>
       );
     }
   },
@@ -472,13 +492,31 @@ Son doigt continue à tracer des formes sans grande précision, faisant progress
 <p>Une fille un peu plus âgée vient à son aide :</p>
 
 <div class="conversation">
-<p>— C’est quelque chose d’entièrement personnel, que nous ne prêtons jamais, même entre nous. Donne-moi ta langouste, je vais te la décortiquer.</p>
+<p>— C’est un objet entièrement personnel, que nous conservons toute notre vie et que nous ne prêtons jamais, même entre nous. Donne-moi ta langouste, je vais te la décortiquer.</p>
 </div>
-
-<p>Après vous être restaurée et avoir ajouté quelques récits encore plus fantaisistes aux précédents, vous prenez congé des jeunes filles.</p>
 `
     ,
-    "next": feastNext,
+    "next": (goToSection, flags, updateFlag) => {
+      if (flags.feastActions.length <= 1) {
+        const transitionText = `
+<p>Vous conversez encore quelques instants, ajoutant quelques récits semi-fantaisistes aux précédents, avant de prendre poliment congé pour aller rencontrer <strong>{text}</strong>.</p>
+        `;
+
+        return (
+          <div>
+            <p>{`Vous conversez encore quelques instants, ajoutant quelques récits semi-fantaisistes aux précédents, avant de prendre poliment congé pour aller rencontrer :`}</p>
+            <Crossroads choices={feastActions(goToSection, flags, updateFlag, transitionText)} />
+          </div>
+        );
+      }
+
+      const text = `Vous discutez encore un certain temps, ajoutant quelques récits semi-fantaisistes aux précédents. L’activité qui vous entoure est en train de commencer à décroître.`;
+      const action = () => {goToSection("night", `<p><strong>${text}</strong></p>`);};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
   },
   "night": {
     "text":
