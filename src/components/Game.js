@@ -27,11 +27,13 @@ class Game extends React.Component {
     this.saveProgress(currentSection, currentFlags, currentLogs);
   }
 
-  goToSection = (section) => {
+  goToSection = (section, extraLog = '') => {
     this.setState((prevState, props) => {
       const flags = prevState.flags;
       const text = this.processText(section, flags);
-      const logs = prevState.logs.concat([prevState.currentSectionText]);
+
+      const log = prevState.currentSectionText + extraLog;
+      const logs = prevState.logs.concat([log]);
       if (logs.length > logsMaxLength) {
         logs.shift();
       }
