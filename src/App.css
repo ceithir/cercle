@@ -98,3 +98,19 @@
   margin-top: 25px;
   margin-bottom: -5px;
 }
+
+.core hr {
+  border-color: #d0d0d0;
+}
+
+.core .logs > div {
+  opacity: 0.6;
+}
+
+.core .logs > div:nth-last-child(2) {
+  opacity: 0.7;
+}
+
+.core .logs > div:last-child {
+  opacity: 0.8;
+}

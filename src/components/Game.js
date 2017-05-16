@@ -5,6 +5,7 @@ import Title from './Title.js';
 import InventoryButton from './InventoryButton.js';
 import TextModal from './TextModal.js';
 import OptionButton from './OptionButton.js';
+import ReactDOM from 'react-dom';
 
 class Game extends React.Component {
   constructor(props) {
@@ -22,7 +23,6 @@ class Game extends React.Component {
       "currentSectionText": this.processText(currentSection, currentFlags),
     };
     this.saveProgress(currentSection, currentFlags, currentLogs);
-    this.resetScrolling();
   }
 
   goToSection = (section) => {
@@ -39,7 +39,6 @@ class Game extends React.Component {
         "currentSectionText": text,
       };
     });
-    this.resetScrolling();
   }
 
   showModal = (title, content) => {
@@ -82,7 +81,6 @@ class Game extends React.Component {
       "currentSectionText": this.processText(currentSection, currentFlags),
     });
     this.props.saveProgress(currentSection, currentFlags, currentLogs);
-    this.resetScrolling();
   }
 
   quit = () => {
@@ -155,17 +153,6 @@ class Game extends React.Component {
   getOptions = () => {
     return [
       {
-        "key": "logs",
-        "action": () => {
-          const modalTitle = `Historique`;
-          const modalContent = this.state.logs;
-
-          this.showModal(modalTitle, modalContent);
-        },
-        "text": `Historique`,
-        "disabled": 0 === this.state.logs.length,
-      },
-      {
         "key": "reset",
         "action": this.reset,
         "text": `Recommencer`,
@@ -179,7 +166,20 @@ class Game extends React.Component {
   }
 
   resetScrolling = () => {
-    window.scrollTo(0, 0);
+    const element = ReactDOM.findDOMNode(this.currentSectionRef);
+    if (!element) {
+      return;
+    }
+
+    window.scrollTo(0, element.offsetTop);
+  }
+
+  componentDidMount = () => {
+    this.resetScrolling();
+  }
+
+  componentDidUpdate = () => {
+    this.resetScrolling();
   }
 
   render() {
@@ -198,10 +198,20 @@ class Game extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <div className="container-fluid main">
+        <div className="container-fluid main core">
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
-              <Text content={this.state.currentSectionText} />
+              <div className="logs">
+                {this.state.logs.map((log, index) => {
+                  return (
+                    <div key={index.toString()}>
+                      <Text content={log} />
+                      <hr/>
+                    </div>
+                  );
+                })}
+              </div>
+              <Text content={this.state.currentSectionText} ref={(ref) => { this.currentSectionRef = ref; }} />
             </div>
           </div>
           <div className="row">
