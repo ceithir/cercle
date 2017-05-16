@@ -10,13 +10,16 @@ import flags from './scripts/flags.js';
 import icon from './images/icon.jpg';
 import cover from './images/cover.jpg';
 import achievements from './scripts/achievements.js';
+import Storage from './Storage.js';
+
+const storage = new Storage("XNaZOJAPjfXevMueSJg6L75JjCEcuDAg");
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       "screen": "title",
-      "achievements": window.localStorage.getItem("achievements") ? JSON.parse(window.localStorage.getItem("achievements")) : [],
+      "achievements": storage.load("achievements") || [],
     };
   }
 
@@ -31,7 +34,7 @@ class App extends Component {
   }
 
   continueGame = () => {
-    const progress = JSON.parse(window.localStorage.getItem("progress"));
+    const progress = storage.load("progress");
 
     this.setState({
       "screen": "game",
@@ -55,18 +58,18 @@ class App extends Component {
   }
 
   saveProgress = (currentSection, flags, logs) => {
-    window.localStorage.setItem(
+    storage.save(
       "progress",
-      JSON.stringify({
+      {
         "section": currentSection,
         "flags": flags,
         "logs": logs,
-      })
+      }
     );
   }
 
   clearProgress = () => {
-    window.localStorage.removeItem("progress");
+    storage.save("progress", null);
   }
 
   updateAchievements = (flags) => {
@@ -82,7 +85,7 @@ class App extends Component {
         //Ref: http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-an-array#answer-23282057
         .filter(function(item, i, ar){ return ar.indexOf(item) === i; })
       ;
-      window.localStorage.setItem("achievements", JSON.stringify(achievements));
+      storage.save("achievements", achievements);
 
       return {
         "achievements": achievements,
@@ -105,7 +108,7 @@ class App extends Component {
         }
       ];
 
-      if (window.localStorage.getItem("progress")) {
+      if (storage.load("progress")) {
         buttons.push({
           "text": continueText,
           "action": this.continueGame,
