@@ -139,13 +139,6 @@
   opacity: 0.6;
 }
 
-a.action-img {
-  cursor: pointer;
-  display:block;
-  border: 1px dashed #a8a8a8;
+img.text-img {
   margin-bottom: 20px;
-}
-
-a.action-img:hover {
-  border: 1px solid #7e7e7e;
 }

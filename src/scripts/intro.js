@@ -2,7 +2,6 @@ import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import raiahuiIntroImage from "./../images/raiahui-intro.jpg";
-import { Image } from "react-bootstrap";
 import {repeatingFunnel} from "./helpers";
 
 const noRepeatedAction = function(flagName, actions, goToSection, flags, updateFlag, logFunc) {
@@ -158,16 +157,16 @@ const intro = {
 
 <p>Vous avez adroitement franchi les brisants qu’engendrent les récifs de corail et n’êtes désormais plus qu’à quelques coups de pagaie de la plage où expirent les vagues. Mais vous n’accostez pas encore. Vous soupçonnez que vous n’avez pas affaire à une île unique, mais à un atoll, auquel cas accéder au lagon intérieur vous offrira une bien meilleure vue d’ensemble.</p>
 
-<p>Vous êtes en train de vous demander dans quelle direction il serait préférable de longer la plage lorsqu’un bruit d’éclaboussures vous fait tourner la tête. Surgie de l’eau, les deux bras posés sur le flotteur de votre pirogue, une jeune fille vous observe avec une curiosité ravie.</p>
+<p>Vous êtes en train de vous demander dans quelle direction il serait préférable de longer la plage lorsqu’un bruit d’éclaboussures vous fait tourner la tête.</p>
+
+<img src="${raiahuiIntroImage}" class="img-responsive center-block text-img" alt=""/>
 `
     ,
     "next": function(goToSection) {
-      const action = () => {goToSection("prelude-2", `<img src="${raiahuiIntroImage}" class="img-responsive center-block" alt=""/>`);};
-
-      return (
-        <a onClick={action} className="action-img">
-          <Image src={raiahuiIntroImage} className="center-block" responsive />
-        </a>
+      return repeatingFunnel(
+        goToSection,
+        `Surgie de l’eau, les deux bras posés sur le flotteur de votre pirogue, une jeune fille vous observe avec une curiosité ravie.`,
+        "prelude-2"
       );
     }
   },
