@@ -1,6 +1,6 @@
 import React from "react";
 import Funnel from "./../components/Funnel.js";
-import {acquireItem} from "./helpers.js";
+import {acquireItem, repeatingFunnel} from "./helpers.js";
 
 const island7 = {
   "island-7": {
@@ -9,7 +9,7 @@ const island7 = {
     `,
     "next": function(goToSection, flags, updateFlag) {
       if (flags.talkedWithFaanarua && !flags.inventory.dolphin.acquired) {
-        const text = `C’est ici que Faanarua aurait enterré l’amulette de son malheureux adversaire.`;
+        const text = `Vous vous mettez à la recherche du médaillon dont Faanarua vous a parlé.`;
         const action = () => {
           acquireItem("dolphin", updateFlag);
           updateFlag("time", flags.time+1);
@@ -21,12 +21,10 @@ const island7 = {
         );
       }
 
-      const text = `Il n’y a visiblement rien à faire ici.`;
-      const action = () => {goToSection("back-to-hub");};
+      const text = `Vous parvenez vite à la conclusion qu’il n’y a rien à faire ici.`;
+      const action = "back-to-hub";
 
-      return (
-        <Funnel text={text} action={action} />
-      );
+      return repeatingFunnel(goToSection, text, action);
     }
   },
   "exploring-island-7" : {
@@ -39,11 +37,9 @@ const island7 = {
     `,
     "next": function(goToSection) {
       const text = `N’ayant de toute évidence rien d’autre à faire sur cette île, vous ne tardez pas à repartir.`;
-      const action = () => {goToSection("back-to-hub")};
+      const action = "back-to-hub";
 
-      return (
-        <Funnel text={text} action={action} />
-      );
+      return repeatingFunnel(goToSection, text, action);
     }
   }
 }
