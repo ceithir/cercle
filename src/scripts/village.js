@@ -3,23 +3,25 @@ import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import {acquireItem} from "./helpers.js";
 
-const exploreOrLeave = function(goToSection, flags, updateFlag, context = "") {
+const exploreOrLeave = function(goToSection, flags, updateFlag) {
+  const leaveText = `Vous regagnez votre pirogue.`;
+
   const choices = [
     {
-      "text": `Vous regagnez votre pirogue.`,
-      "action": () => {goToSection("hub");},
-    },
-    {
-      "text": `Vous continuez votre exploration de l’île.`,
+      "text": `Vous partez explorer le reste de l'île.`,
       "action": () => {
         updateFlag("time", flags.time+1);
         goToSection("outside-the-village");
       },
     },
+    {
+      "text": leaveText,
+      "action": () => {goToSection("hub", `<p><strong>${leaveText}</strong></p>`);},
+    },
   ];
 
   return (
-    <Crossroads context={context} choices={choices} />
+    <Crossroads choices={choices} />
   );
 }
 
@@ -31,14 +33,14 @@ const village = {
     "next": function(goToSection, flags, updateFlag) {
       const choices = [
         {
-          "text": `Vous les abordez.`,
+          "text": `Vous décidez de les aborder.`,
           "action": () => {
             updateFlag("time", flags.time+1);
             goToSection("wine-makers");
           },
         },
         {
-          "text": `Vous leur retournez leur salut, mais ne vous arrêtez pas.`,
+          "text": `Vous partez explorer le reste de l'île.`,
           "action": () => {
             updateFlag("time", flags.time+1);
             goToSection("outside-the-village");
@@ -56,7 +58,7 @@ const village = {
 <p>L’homme s’appelle Oramui et la femme Terani. En préparation de la cérémonie de ce soir, ils sont occupés à récupérer la sève nécessaire pour faire du vin de palme. Cette boisson claire et effervescente ne vous est pas inconnue — elle est fréquemment servie lors des célébrations dans votre tribu — mais vous n’avez qu’une idée assez vague de la manière dont elle est préparée.</p>
 
 <div class="conversation">
-<p>— Il ne faut pas récolter la sève trop tôt, vous explique Oramui. La boisson devient très rapidement plus forte et plus acide. Si on la conserve plus d’une journée, elle devient imbuvable.</p>
+<p>— Il ne faut pas récolter la sève trop à l'avance, vous explique Oramui. La boisson devient très rapidement plus forte et plus acide. Si on la conserve plus d’un jour, elle se fait vite imbuvable.</p>
 </div>
 
 <p>Il vous indique du doigt quelques petites piles de calebasses, en vous expliquant qu’elles contiennent la sève qu’ils ont récoltée la veille, peu après votre arrivée. Mais votre regard ne tarde pas à être attirée par une douzaine de calebasses conservées à l’écart et enveloppées dans de grandes feuilles.</p>
@@ -70,28 +72,39 @@ const village = {
 <p>Une fois leurs explications achevées, les deux récolteurs s’apprêtent à reprendre leur ouvrage, mais une grimace contrariée tord la bouche de Terani lorsqu’elle réalise qu’elle a égaré son couteau d’ivoire. Elle le cherche pendant quelques instants avec une frustration visible ; vous êtes sur le point de lui proposer votre aide lorsqu’elle le retrouve enfin, planté à hauteur d’yeux dans le tronc d’un palmier voisin.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
-      const stayText = `Si cette conversation a piqué votre curiosité (ou votre gourmandise), vous pouvez leur demander de vous faire goûter leur production.`;
-      const stayChoices = [
+      let choices = [
         {
-          "text": `Vous dégustez un peu de vin de palme.`,
-          "action": () => {goToSection("soft-drink");},
+          "text": `Vous demandez à boire un peu de vin de palme.`,
+          "action": () => "soft-drink",
         },
         {
-          "text": `Vous essayez l’alcool fort.`,
+          "text": `Vous demandez à essayer l'alcool fort.`,
           "action": () => {
             acquireItem("alcohol", updateFlag);
-            goToSection("hard-drink");
+            return "hard-drink";
           },
         },
+        {
+          "text": `Vous prenez congé pour aller explorer le reste de l'île.`,
+          "action": () => {
+            updateFlag("time", flags.time+1);
+            return "outside-the-village";
+          },
+        },
+        {
+          "text": `Vous prenez congé et regagnez votre pirogue.`,
+          "action": () => "hub",
+        },
       ];
-
-      const leaveText = `Sinon, vous repartez.`;
+      choices = choices.map(choice => {
+        return {
+          "text": choice.text,
+          "action": () => goToSection(choice.action(), `<p><strong>${choice.text}</strong></p>`)
+        };
+      });
 
       return (
-        <div>
-          <Crossroads context={stayText} choices={stayChoices} />
-          {exploreOrLeave(goToSection, flags, updateFlag, leaveText)}
-        </div>
+        <Crossroads choices={choices} />
       );
     },
   },
@@ -101,7 +114,7 @@ const village = {
     `,
     "next": function(goToSection) {
       const text = `Lassée, vous bifurquez pour atteindre la plage et vous hâtez ensuite de regagner votre pirogue.`;
-      const action = () => {goToSection("hub");};
+      const action = () => {goToSection("hub", `<p><strong>${text}</strong></p>`);};
 
       return (
         <Funnel text={text} action={action} />
@@ -112,7 +125,7 @@ const village = {
     "text": `
 <p>Terani vous fait goûter un peu de la sève recueillie la veille. La liqueur blanchâtre a un goût légèrement sucré que vous trouvez agréable. Vous remerciez poliment les deux récolteurs avant de prendre congé.</p>
     `,
-    "next": (goToSection, flags, updateFlag) => {return exploreOrLeave(goToSection, flags, updateFlag);},
+    "next": exploreOrLeave,
   },
   "hard-drink": {
     "text": `
@@ -124,7 +137,7 @@ const village = {
 
 <p>La recommandation fait sourire Oramui, mais il n’ajoute rien. Vous remerciez poliment les deux récolteurs avant de prendre congé.</p>
     `,
-    "next": (goToSection, flags, updateFlag) => {return exploreOrLeave(goToSection, flags, updateFlag);},
+    "next": exploreOrLeave,
   }
 };
 

@@ -536,11 +536,24 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
   "night": {
     "text":
 `
-<p>La nuit est tombée depuis un bon moment lorsque le festin s’achève. Le feu en train d’agoniser vous laisse distinguer au-dessus de votre tête le foisonnement immense des étoiles. Alors que les membres de la tribu se dispersent peu à peu, Raiahui vous emmène jusqu’à un hamac accroché entre deux palmiers, non loin de la plage. Vous vous y allongez avec plaisir. La fatigue de votre journée de voyage est en train de s’appesantir sur vous et vous ne tardez pas à vous endormir, bercée par le murmure de l’eau et un souffle d’air tiède.</p>
+<p>La nuit est tombée depuis un bon moment lorsque le festin s’achève. Le feu en train d’agoniser vous laisse distinguer au-dessus de votre tête le foisonnement immense des étoiles. Alors que les membres de la tribu se dispersent peu à peu, Raiahui vous emmène jusqu’à un hamac accroché entre deux palmiers, non loin de la plage. La fatigue de votre journée de voyage est en train de s’appesantir sur vous et vous vous y allongez avec plaisir.</p>
+`
+    ,
+    "next": (goToSection) => {
+      const text = `Vous ne tardez pas à vous endormir, bercée par le murmure de l'eau et un souffle d'air tiède.`;
+      const action = () => {goToSection("awakening", `<p><strong>${text}</strong></p>`);};
 
-<p>Le soleil matinal filtrant entre les palmes vous réveille. Tout est calme. Vous vous prélassez mollement quelques instants avant de vous décider à vous lever. Il n’y a pas d’autre bruit que le chant de quelques oiseaux, ce qui vous laisse supposer que la plupart de la tribu est encore en train de dormir.</p>
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "awakening": {
+    "text":
+`
+<p>Le soleil matinal filtrant entre les palmes vous réveille. Tout est calme. Vous vous prélassez mollement quelques instants avant de vous décider à vous lever. Il n’y a pas d’autre bruit que le chant des oiseaux, ce qui vous laisse supposer que la plupart de la tribu est encore en train de dormir.</p>
 
-<p>Raiahui est allongée dans un hamac peu distant du vôtre. Elle ouvre un œil tandis que vous entreprenez de vous étirer.</p>
+<p>Raiahui est allongée dans un hamac peu distant du vôtre, son couteau posé sur le ventre. Elle ouvre un œil tandis que vous entreprenez de vous étirer.</p>
 
 <div class="conversation">
 <p>— Déjà levée ? fait-elle d’une voix pâteuse. Tu devrais te reposer pour la course de ce soir.</p>
@@ -552,21 +565,21 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
 `
     ,
     "next": function(goToSection) {
-      const description = `Comment allez-vous débuter cette journée ?`;
+      const hubText = `Vous allez prendre votre pirogue pour explorer le reste de l'atoll.`;
 
       const choices = [
         {
-          "text": `Par une visite plus poussée de l’île où se trouve le village.`,
+          "text": `Vous prenez le temps de visiter l'île sur laquelle se trouve le village.`,
           "action": () => {goToSection("village");},
         },
         {
-          "text": `En retrouvant votre pirogue pour ensuite explorer le reste de l’archipel.`,
-          "action": () => {goToSection("hub");},
+          "text": hubText,
+          "action": () => {goToSection("hub", `<p><strong>${hubText}</strong></p>`);},
         },
       ];
 
       return (
-        <Crossroads context={description} choices={choices} />
+        <Crossroads choices={choices} />
       );
     }
   }
