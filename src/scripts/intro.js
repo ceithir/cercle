@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import raiahuiIntroImage from './../images/raiahui-intro.jpg';
+import raiahuiIntroImage from "./../images/raiahui-intro.jpg";
 import { Image } from "react-bootstrap";
 
 const noRepeatedAction = function(flagName, actions, goToSection, flags, updateFlag, logFunc) {
@@ -540,7 +540,7 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
 `
     ,
     "next": (goToSection) => {
-      const text = `Vous ne tardez pas à vous endormir, bercée par le murmure de l'eau et un souffle d'air tiède.`;
+      const text = `Vous ne tardez pas à vous endormir, bercée par le murmure de l’eau et un souffle d’air tiède.`;
       const action = () => {goToSection("awakening", `<p><strong>${text}</strong></p>`);};
 
       return (
@@ -565,11 +565,11 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
 `
     ,
     "next": function(goToSection) {
-      const hubText = `Vous allez prendre votre pirogue pour explorer le reste de l'atoll.`;
+      const hubText = `Vous allez prendre votre pirogue pour explorer le reste de l’atoll.`;
 
       const choices = [
         {
-          "text": `Vous prenez le temps de visiter l'île sur laquelle se trouve le village.`,
+          "text": `Vous prenez le temps de visiter l’île sur laquelle se trouve le village.`,
           "action": () => {goToSection("village");},
         },
         {

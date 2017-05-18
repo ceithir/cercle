@@ -2,7 +2,7 @@ import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import {useItem, acquireItem, endGame} from "./helpers.js";
-import atollMap from './../images/atoll.jpg';
+import atollMap from "./../images/atoll.jpg";
 import { Image } from "react-bootstrap";
 
 const getIslandNumber = function(island) {
@@ -43,7 +43,7 @@ const getIslands = function(flags) {
     },
     {
       "key": "island-3",
-      "description": flags.toldAboutFaanaruaByVarenui ? `L’île de Faanarua` : `Une autre île tout ce qu’il y a de plus banal`,
+      "description": flags.toldAboutFaanaruaByVarenui? `L’île de Faanarua`: `Une autre île tout ce qu’il y a de plus banal`,
       "coordinates": "29,301 133,301 133,461 29,461",
     },
     {
@@ -53,12 +53,12 @@ const getIslands = function(flags) {
     },
     {
       "key": "island-5",
-      "description": flags.toldAboutAtollByRaiahui ? `L’île de la sorcière` : `L’étrange rocher`,
+      "description": flags.toldAboutAtollByRaiahui? `L’île de la sorcière`: `L’étrange rocher`,
       "coordinates": "123,37 255,37 255,145 123,145",
     },
     {
       "key": "island-6",
-      "description": flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea ? `L’île du Vieux Fainéant` : `L’île aux arbres`,
+      "description": (flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea)? `L’île du Vieux Fainéant`: `L’île aux arbres`,
       "coordinates": "425,20 706,134 666,223 391,96",
     },
     {
