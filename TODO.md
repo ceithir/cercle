@@ -1,3 +1,7 @@
+## Technical
+
+Default images are far too big, see how this could be improved
+
 ## Cool game
 
 ### Complete achievements
@@ -10,18 +14,7 @@
 
 Accessibility parameters (like font size)
 
-### Post-process script for French special characters
-
-###  Simplify "next" declaration
-
-Array => Crossroads
-Object => Funnel
-
 ### Proper favicons and all icons for all devices
-
-### Fluidify transitions
-
-Transitions could be more fluid, more context-sensitive. Right now, it's painfully obvious the same block of text is printed as is in several places.
 
 ### Generate a single HTML file?
 
