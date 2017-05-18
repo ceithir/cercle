@@ -142,3 +142,11 @@
 img.text-img {
   margin-bottom: 20px;
 }
+
+.hint-warning {
+  cursor: pointer;
+}
+
+.hint {
+  font-style: italic;
+}

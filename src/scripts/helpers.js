@@ -4,6 +4,8 @@ import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import Achievements from "./../components/Achievements.js";
 import achievements from "./achievements.js";
+import {getHint} from "./hints.js";
+import Hint from "./../components/Hint.js";
 
 export const acquireItem = function(itemKey, updateFlag) {
   updateFlag(["inventory", itemKey, "acquired"], true);
@@ -27,13 +29,14 @@ const badEndMessage = function(flags) {
     achievementsText = `Votre séjour dans ce lagon paradisiaque s’est conclu de bien brutale façon :`;
   }
 
-  const hintText = `Peut-être souhaiteriez-vous un indice avant d’effectuer une nouvelle tentative ? (non implémenté)`;
+  const hint = getHint(flags);
+  const hintWarning = `Peut-être souhaiteriez-vous un indice avant d’effectuer une nouvelle tentative ?`;
 
   return (
     <div className="ending-message">
       <p>{achievementsText}</p>
       <Achievements achievements={achievements} />
-      <p>{hintText}</p>
+      {hint && <Hint hint={hint} warning={hintWarning} />}
     </div>
   );
 }
