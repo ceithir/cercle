@@ -110,12 +110,14 @@ export const trueEnd = function(goToSection, flags, updateFlag, reset, quit) {
   );
 }
 
+export const coatSentence = text => `<p><strong>${text}</strong></p>`;
+
 export const repeatingCrossroad = (goToSection, choices) => {
   return (
     <Crossroads choices={choices.map(choice => {
       return {
         "text": choice.text,
-        "action": () => goToSection("function" === typeof choice.action? choice.action(): choice.action, `<p><strong>${choice.text}</strong></p>`)
+        "action": () => goToSection("function" === typeof choice.action? choice.action(): choice.action, coatSentence(choice.text))
       };
     })} />
   );
@@ -123,6 +125,6 @@ export const repeatingCrossroad = (goToSection, choices) => {
 
 export const repeatingFunnel = (goToSection, text, action) => {
   return (
-    <Funnel text={text} action={() => goToSection("function" === typeof action? action(): action, `<p><strong>${text}</strong></p>`)} />
+    <Funnel text={text} action={() => goToSection("function" === typeof action? action(): action, coatSentence(text))} />
   );
 }

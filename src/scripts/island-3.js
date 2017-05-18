@@ -1,7 +1,6 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
-import Funnel from "./../components/Funnel.js";
-import {endGame} from "./helpers.js";
+import {endGame, coatSentence, repeatingCrossroad, repeatingFunnel} from "./helpers.js";
 
 const island3 = {
   "island-3": {
@@ -9,17 +8,19 @@ const island3 = {
 <p>Alors que vous approchez de cette île couverte de nombreux palmiers, votre œil est attiré par une voile blanche triangulaire, frémissant à peine sous l’effet d’une légère brise. Une pirogue un peu plus grande que la vôtre a été tirée sur la plage et une femme est visiblement en train d’oeuvrer à son entretien. Elle vous tourne le dos et rien ne suggère qu’elle a remarqué votre approche.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
+      const leaveText = `Vous préférez vous rendre à un autre point de l’atoll.`;
+
       const choices = [
         {
-          "text": `Vous vous approchez de l’île.`,
+          "text": `Vous décidez d’aborder cette île.`,
           "action": () => {
             goToSection("exploring-island-3");
           },
         },
         {
-          "text": `Vous préférez vous abstenir.`,
+          "text": leaveText,
           "action": () => {
-            goToSection("back-to-hub");
+            goToSection("back-to-hub", coatSentence(leaveText));
           },
         },
       ];
@@ -42,20 +43,19 @@ const island3 = {
 <p>— Tu es l’étrangère qui est arrivée hier, c’est ça ? Et bien, il n’y a rien d’intéressant pour toi ici. Retourne au village ou va te promener ailleurs, mais ne reste pas ici à me déranger.</p>
 
 <p>Son accent l’identifie clairement comme une membre de la tribu, mais son apparence est assez différente des femmes que vous avez observées la veille au festin : sa chevelure abondante est attachée en une queue de cheval, elle porte un collier fait de nombreux coquillages et un paréo délavé lui entoure les reins. Elle a son couteau d’ivoire à la main et vous devinez qu’elle était en train de s’en servir pour retirer les coquillages accrochés à la coque de sa pirogue.</p>
+
+<p>Il vous paraît probable que la présence de cette femme est le seul intérêt que présente cette île. Mais vous ne tirerez rien d’elle à moins de la convaincre que vous ne méritez pas son agressivité.</p>
     `,
     "next": function(goToSection) {
-      const context = `Il vous paraît probable qu’il n’y a sur cette île rien d’intéressant en-dehors de cette revêche personne.`;
+      const text1 = `Vous l’interrogez sur les voyages qu’elle réalise avec sa pirogue.`;
+      const text2 = `Vous lui parlez de la course qui va vous opposer à Raiahui.`;
+      const text3 = `Vous préférez repartir comme elle vous le demande.`;
+
       const choices = [
         {
-          "text": `Vous ne la dérangez pas plus longtemps.`,
+          "text": text1,
           "action": () => {
-            goToSection("back-to-hub");
-          },
-        },
-        {
-          "text": `Vous l’interroger sur les voyages qu’elle réalise avec sa pirogue.`,
-          "action": () => {
-            goToSection("faanarua-her-journey");
+            goToSection("faanarua-her-journey", coatSentence(text1));
           },
         },
         {
@@ -65,15 +65,21 @@ const island3 = {
           },
         },
         {
-          "text": `Vous évoquez la course qui va vous opposer à Raiahui.`,
+          "text": text2,
           "action": () => {
-            goToSection("faanarua-raiahui");
+            goToSection("faanarua-raiahui", coatSentence(text2));
+          },
+        },
+        {
+          "text": text3,
+          "action": () => {
+            goToSection("back-to-hub", coatSentence(text3));
           },
         },
       ];
 
       return (
-          <Crossroads context={context} choices={choices} />
+          <Crossroads choices={choices} />
       );
     }
   },
@@ -85,21 +91,22 @@ const island3 = {
 <p>— Ecoute, je veux bien te parler si ça te fait partir plus vite. Mais ça fait un bon moment que je travaille sans rien manger et je commence à avoir vraiment faim. Rapporte-moi quelques crabes ou quelques écrevisses — il y en a plein le lagon — et je te raconterai ce que tu veux ensuite.</p>
 </div>
 
-<p>Et sur ces mots, elle reprend ses activités comme si vous n’existiez pas, sourde à vos paroles.</p>
+<p>Vous n’obtiendrez clairement pas mieux que ce marché.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
+      const leaveText = `Vous le refusez et regagnez votre pirogue.`;
       const choices = [
         {
-          "text": `Vous cédez à son chantage.`,
+          "text": `Vous l’acceptez.`,
           "action": () => {
             updateFlag("eatenByFaanarua", true);
             goToSection("faanarua-prey");
           },
         },
         {
-          "text": `Vous lui renvoyez son mépris en quittant les lieux.`,
+          "text": leaveText,
           "action": () => {
-            goToSection("back-to-hub");
+            goToSection("back-to-hub", coatSentence(leaveText));
           },
         },
       ];
@@ -131,31 +138,30 @@ const island3 = {
 <p>— Tu ne peux pas savoir quelle révélation t’apportera ton voyage, bien sûr, mais en quoi est-ce que tu espères qu’il te changera ?</p>
 </div>
 
-<p> C’est une excellente question, mais la réflexion prolongée qu’elle mérite demanderait clairement plus de temps libre que vous n’en avez aujourd’hui.</p>
+<p>C’est une excellente question, mais la réflexion prolongée qu’elle mérite demanderait clairement plus de temps libre que vous n’en avez aujourd’hui.</p>
+
+<p>Deux idées vagues de réponse vous viennent cependant à l’esprit :</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
-      const context = `Deux idées vagues de réponse vous viennent cependant à l’esprit.`;
       const choices = [
         {
-          "text": `Ce voyage vous accordera une vision plus vaste du monde tout entier.`,
+          "text": `— Je voudrais que ce voyage m’apporte une vision plus vaste du monde tout entier.`,
           "action": () => {
             updateFlag("time", flags.time+1);
             updateFlag("talkedWithFaanarua", true);
-            goToSection("faanarua-the-world");
+            return "faanarua-the-world";
           },
         },
         {
-          "text": `Ce voyage vous apportera une vision différente de votre île natale et de votre tribu.`,
+          "text": `— Je voudrais que ce voyage me donne une vision différente de mon île natale et de ma tribu.`,
           "action": () => {
             updateFlag("time", flags.time+1);
-            goToSection("faanarua-my-world");
+            return "faanarua-my-world";
           },
         },
       ];
 
-      return (
-          <Crossroads context={context} choices={choices} />
-      );
+      return repeatingCrossroad(goToSection, choices);
     },
   },
   "faanarua-the-world": {
@@ -184,13 +190,13 @@ const island3 = {
 <p>Un bref sourire traverse le visage de votre interlocutrice.</p>
 
 <div class="conversation">
-<p>— Fais-moi confiance, Raiahui nage beaucoup plus vite que toi. Elle le sait, comme tout le reste de la tribu. D’une certaine façon, cela joue à ton avantage : elle ne voudra pas partir en même temps que toi, parce que ça suggèrerait qu’elle manque de confiance en elle-même. Mais il ne faut pas trop compter sur cela pour te donner une chance : Raiahui ne voudra certainement pas risquer de perdre cette course. Si tu veux gagner, il faudra te débrouiller pour qu’elle entre dans l’eau le plus tard possible.</p>
+<p>— Fais-moi confiance, Raiahui nage beaucoup plus vite que toi. Elle le sait, comme tout le reste de la tribu. D’une certaine façon, cela joue à ton avantage : elle ne voudra pas partir en même temps que toi, parce que ça suggèrerait qu’elle manque de confiance en elle-même. Mais il ne faut pas trop compter sur cela pour te donner une chance : Raiahui ne prendra pas intentionnellement le risque de perdre cette course. Si tu veux gagner, il faudra te débrouiller pour qu’elle entre dans l’eau plus tard qu’elle ne le voudrait.</p>
 </div>
 
 <p>Elle s’arrête un instant pour réfléchir, tandis que vous digérez ce conseil pour le moins étrange.</p>
 
 <div class="conversation">
-<p>— Même avec une solide avance, il faudra que tu restes vigilante, ajoute-t-elle après un moment. Je n’ai pas de conseil infaillible à te donner, mais je viens de penser à un objet qui pourrait peut-être t’être utile. Comme tous les membres de la tribu, j’ai accompli ce même rite de passage, mais l’étranger que j’ai eu pour adversaire n’était pas quelqu’un d’ordinaire : il avait une amulette qui en faisait un meilleur nageur qu’il n’aurait dû l’être normalement.</p>
+<p>— Même avec une solide avance, il faudra que tu prêtes très attention à tout ce qui t’entoure et que tu saches réagir rapidement à l’inattendu, ajoute-t-elle après un moment. Je n’ai pas de conseil infaillible à te donner, mais je viens de penser à un objet qui pourrait peut-être t’être utile. Comme tous les membres de la tribu, j’ai accompli ce même rite de passage, mais l’étranger que j’ai eu pour adversaire n’était pas quelqu’un d’ordinaire : il avait une amulette qui en faisait de lui un nageur exceptionnel.</p>
 <p>— Vous voulez dire qu’il utilisait une amulette magique ? interrompez-vous. Est-ce que ce n’était pas de la triche ?</p>
 <p>— Oublie ces histoires de triche, vous dit Faanarua. En-dehors du fait qu’elle doit s’accomplir à la nage, cette course n’a presque aucune règle. C’est l’astuce qui permet de gagner alors qu’on devrait perdre. Et c’est ce qui s’est passé à l’époque : j’ai volé l’amulette de mon adversaire et, comme je n’arrivais ni à m’en servir, ni à la détruire, je l’ai tout simplement enfouie quelque part. Lorsque la course a eu lieu, j’ai facilement gagné.</p>
 <p>— Et l’amulette ?</p>
@@ -214,11 +220,9 @@ const island3 = {
     `,
     "next": function(goToSection) {
       const text = `Faanarua n’a pas d’autres conseils à vous fournir et, après l’avoir remerciée, vous regagnez votre pirogue.`;
-      const action = () => {goToSection("back-to-hub");};
+      const action = "back-to-hub";
 
-      return (
-          <Funnel text={text} action={action} />
-      );
+      return repeatingFunnel(goToSection, text, action);
     },
   },
   "faanarua-my-world": {
@@ -231,11 +235,9 @@ const island3 = {
     `,
     "next": function(goToSection) {
       const text = `Elle n’a rien d’autre à ajouter et, après l’avoir remerciée, vous regagnez votre pirogue.`;
-      const action = () => {goToSection("back-to-hub");};
+      const action = "back-to-hub";
 
-      return (
-          <Funnel text={text} action={action} />
-      );
+      return repeatingFunnel(goToSection, text, action);
     }
   },
   "faanarua-raiahui": {
@@ -258,21 +260,20 @@ const island3 = {
       const choices = [
         {
           "text": `Vous répondez que participer à la course pourrait vous aider à découvrir quelque chose sur vous-même.`,
-          "action": () => {
-            goToSection("faanarua-her-journey");
-          },
+          "action": "faanarua-her-journey",
         },
         {
           "text": `Vous lui parlez de l’Écume des Profondeurs, la récompense qu’on vous a promise si vous l’emportez.`,
           "action": () => {
             updateFlag("time", flags.time+1);
-            goToSection("faanarua-my-world");
+            return "faanarua-my-world";
           },
         },
       ];
 
-      return (
-          <Crossroads choices={choices} />
+      return repeatingCrossroad(
+        goToSection,
+        choices
       );
     }
   }

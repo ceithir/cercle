@@ -7,5 +7,11 @@ export const getHint = (flags) => {
     `;
   }
 
+  if (flags.eatenByFaanarua) {
+    return `
+<p>La femme qui vous a envoyé pêcher dans le lagon s’est installée sur cette île parce qu’elle ne supporte plus le contact et la conversation des membres de sa propre tribu. Pour vous concilier ses bonnes grâces, il serait judicieux de vous démarquer d’eux autant que possible.</p>
+    `;
+  }
+
   return "";
 };
