@@ -1,7 +1,6 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
-import Funnel from "./../components/Funnel.js";
-import {acquireItem} from "./helpers.js";
+import {acquireItem, repeatingCrossroad, repeatingFunnel} from "./helpers.js";
 
 const exploreOrLeave = function(goToSection, flags, updateFlag) {
   const leaveText = `Vous regagnez votre pirogue.`;
@@ -72,10 +71,10 @@ const village = {
 <p>Une fois leurs explications achevées, les deux récolteurs s’apprêtent à reprendre leur ouvrage, mais une grimace contrariée tord la bouche de Terani lorsqu’elle réalise qu’elle a égaré son couteau d’ivoire. Elle le cherche pendant quelques instants avec une frustration visible ; vous êtes sur le point de lui proposer votre aide lorsqu’elle le retrouve enfin, planté à hauteur d’yeux dans le tronc d’un palmier voisin.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
-      let choices = [
+      const choices = [
         {
           "text": `Vous demandez à boire un peu de vin de palme.`,
-          "action": () => "soft-drink",
+          "action": "soft-drink",
         },
         {
           "text": `Vous demandez à essayer l’alcool fort.`,
@@ -93,19 +92,11 @@ const village = {
         },
         {
           "text": `Vous prenez congé et regagnez votre pirogue.`,
-          "action": () => "hub",
+          "action": "hub",
         },
       ];
-      choices = choices.map(choice => {
-        return {
-          "text": choice.text,
-          "action": () => goToSection(choice.action(), `<p><strong>${choice.text}</strong></p>`)
-        };
-      });
 
-      return (
-        <Crossroads choices={choices} />
-      );
+      return repeatingCrossroad(goToSection, choices)
     },
   },
   "outside-the-village": {
@@ -114,11 +105,9 @@ const village = {
     `,
     "next": function(goToSection) {
       const text = `Lassée, vous bifurquez pour atteindre la plage et vous hâtez ensuite de regagner votre pirogue.`;
-      const action = () => {goToSection("hub", `<p><strong>${text}</strong></p>`);};
+      const action = "hub";
 
-      return (
-        <Funnel text={text} action={action} />
-      );
+      return repeatingFunnel(goToSection, text, action);
     }
   },
   "soft-drink": {

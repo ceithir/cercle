@@ -1,9 +1,11 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {useItem, acquireItem, endGame} from "./helpers.js";
+import {useItem, acquireItem, endGame, repeatingFunnel} from "./helpers.js";
 import atollMap from "./../images/atoll.jpg";
 import { Image } from "react-bootstrap";
+
+const timeLimit = 12;
 
 const getIslandNumber = function(island) {
   return island.match(/\w+\-(\d+)/)[1];
@@ -25,7 +27,7 @@ const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
 
   updateFlag("time", newTime);
 
-  if (newTime > 10) {
+  if (newTime >= timeLimit) {
     return goToSection("no-more-time-at-sea");
   }
 
@@ -253,15 +255,17 @@ const timeDescription = (time) => {
   switch(time) {
     case 0:
     case 1:
-      return `Le soleil est encore bas, la journée ne fait que commencer.`;
     case 2:
+      return `Le soleil est encore bas, la journée ne fait que commencer.`;
     case 3:
-      return `Le soleil poursuit sa route, allant tranquillement vers le milieu de la journée.`;
     case 4:
     case 5:
-      return `Le soleil est presque à son zénith.`;
+      return `Le soleil poursuit sa route, allant tranquillement vers le milieu de la journée.`;
     case 6:
     case 7:
+      return `Le soleil est presque à son zénith.`;
+    case 8:
+    case 9:
       return `Le soleil est encore resplendissant, mais a entamé sa redescente.`;
     default:
       return `Le soleil glisse peu à peu vers l’horizon, la soirée approche.`;
@@ -335,14 +339,14 @@ ${crocodileIslandDescription}
 <p>Vous rejoignez votre pirogue, et prenez quelques instants pour réfléchir à la direction dans laquelle vous allez la propulser.</p>
       `;
 
-      if (flags.time < 10) {
+      if (flags.time < timeLimit) {
         text += `<p class="text-info">${timeDescription(flags.time)}</p>`;
       }
 
       return text;
     },
     "next": function(goToSection, flags, updateFlag) {
-      if (flags.time >= 10) {
+      if (flags.time >= timeLimit) {
         const text = `Mais quelqu’un a déjà fait ce choix pour vous.`;
         const action = () => {
           if (flags.visitedIslands.length > 0 && "island-6" === flags.visitedIslands[flags.visitedIslands.length-1]) {
@@ -388,15 +392,13 @@ ${crocodileIslandDescription}
 
 <p>Vous arrêtez votre embarcation et jetez un coup d’œil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
 
-<p>Vous aidez le garçon — qui doit avoir quatre ou cinq ans de moins que vous — à se hisser à l’avant de la pirogue avant de diriger celle-ci vers l’île où réside la tribu. Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation.</p>
+<p>Vous aidez le garçon — qui transporte avec lui son couteau d’ivoire incurvé — à se hisser à l’avant de la pirogue, puis vous dirigez celle-ci vers l’île où réside la tribu.</p>
     `,
     "next": function(goToSection) {
-      const text = `Vous suivez votre jeune guide vers l’endroit où doit débuter la course.`;
-      const action = () => {goToSection("trial")};
+      const text = `Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation et suivez votre jeune guide vers l’endroit où doit débuter la course.`;
+      const action = "trial";
 
-      return (
-        <Funnel text={text} action={action} />
-      );
+      return repeatingFunnel(goToSection, text, action);
     }
   },
   "no-more-time-on-land" : {
@@ -409,15 +411,13 @@ ${crocodileIslandDescription}
 
 <p>Vous jetez un coup d’œil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
 
-<p>Vous prenez place à bord de la pirogue et dites au garçon — qui doit avoir quatre ou cinq ans de moins que vous — de s’installer à l’avant. Plongeant ensuite votre pagaie dans l’eau, vous prenez la direction de l’île où réside la tribu. Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation.</p>
+<p>Vous prenez place à bord de la pirogue et dites au garçon — qui n’a rien d’autre avec lui que son couteau d’ivoire incurvé — de s’installer à l’avant. Plongeant ensuite votre pagaie dans l’eau, vous prenez la direction de l’île où réside la tribu.</p>
     `,
     "next": function(goToSection) {
-      const text = `Vous suivez votre jeune guide vers l’endroit où doit débuter la course.`;
-      const action = () => {goToSection("trial")};
+      const text = `Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation et suivez votre jeune guide vers l’endroit où doit débuter la course.`;
+      const action = "trial";
 
-      return (
-        <Funnel text={text} action={action} />
-      );
+      return repeatingFunnel(goToSection, text, action);
     }
   },
   "exit": {
@@ -429,19 +429,23 @@ ${crocodileIslandDescription}
 <p>À cette frontière entre ce minuscule univers qu’est l’archipel et le véritable monde dans son immensité, vous hésitez.</p>
     `,
     "next": function (goToSection, flags, updateFlag) {
+      const backText = `Vous regagnez le lagon pour choisir une nouvelle destination.`;
+
       const choices = [
         {
-          "text": `Vous retournez dans le lagon.`,
+          "text": backText,
           "action": () => {
-            if (flags.time >= 10) {
-              return goToSection("no-more-time-at-sea");
+            const extraLog = `<p><strong>${backText}</strong></p>`;
+
+            if (flags.time >= timeLimit) {
+              return goToSection("no-more-time-at-sea", extraLog);
             }
 
-            goToSection("back-to-hub");
+            goToSection("back-to-hub", extraLog);
           },
         },
         {
-          "text": `Vous laissez tomber la course et prenez le large.`,
+          "text": `Vous décidez de renoncer à la course et de quitter l’atoll.`,
           "action": () => {
             updateFlag("triedToFlee", true);
             goToSection("out-of-here");
@@ -473,10 +477,10 @@ ${crocodileIslandDescription}
     "next": (goToSection, flags, updateFlag) => {
       const text = `Vous fermez les yeux juste un instant.`;
       const action = () => {
-        if (!flags.drunk && flags.time <= 8) {
+        if (!flags.drunk && flags.time <= 9) {
           updateFlag("wellRested", true);
         }
-        if (flags.drunk && flags.time <= 6) {
+        if (flags.drunk && flags.time <= 8) {
           updateFlag("drunk", false);
           updateFlag("refreshed", true);
         }
@@ -491,8 +495,7 @@ ${crocodileIslandDescription}
   },
   "rest": {
     "text": (flags) => {
-      let statusComment = ``;
-
+      let statusComment = `<p class="text-info">Vous auriez bien dormi quelques instants de plus.</p>`;
 
       if (flags.drunk) {
         statusComment = `<p class="text-info">Ce court repos n’aura malheureusement pas réussi à contrebalancer votre récent excès. Vous vous sentez encore faible, et ne pouvez plus qu’espérer que l’excitation de la course et les claques de l’eau salée contre votre visage seront suffisantes pour vous remettre d’aplomb.</p>`;
@@ -519,7 +522,7 @@ ${statusComment}
       `;
     },
     "next": (goToSection) => {
-      const text = `Vous emboîtez finalement le pas à votre jeune guide.`;
+      const text = `Vous emboîtez le pas à votre jeune guide.`;
       const action = () => {goToSection("trial")};
 
       return (

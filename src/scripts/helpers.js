@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
 import Crossroads from "./../components/Crossroads.js";
+import Funnel from "./../components/Funnel.js";
 import Achievements from "./../components/Achievements.js";
 import achievements from "./achievements.js";
 
@@ -103,5 +104,22 @@ export const trueEnd = function(goToSection, flags, updateFlag, reset, quit) {
       <hr/>
       {endButtons(reset, quit)}
     </div>
+  );
+}
+
+export const repeatingCrossroad = (goToSection, choices) => {
+  return (
+    <Crossroads choices={choices.map(choice => {
+      return {
+        "text": choice.text,
+        "action": () => goToSection("function" === typeof choice.action? choice.action(): choice.action, `<p><strong>${choice.text}</strong></p>`)
+      };
+    })} />
+  );
+}
+
+export const repeatingFunnel = (goToSection, text, action) => {
+  return (
+    <Funnel text={text} action={() => goToSection("function" === typeof action? action(): action, `<p><strong>${text}</strong></p>`)} />
   );
 }

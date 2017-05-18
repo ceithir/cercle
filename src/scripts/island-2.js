@@ -1,6 +1,4 @@
-import React from "react";
-import Crossroads from "./../components/Crossroads.js";
-import Funnel from "./../components/Funnel.js";
+import {repeatingCrossroad, repeatingFunnel} from "./helpers";
 
 const island2 = {
   "island-2": {
@@ -10,23 +8,19 @@ const island2 = {
     "next": function(goToSection, flags, updateFlag) {
       const choices = [
         {
-          "text": `Vous prenez le temps de l’explorer.`,
+          "text": `Vous abordez cette île pour l’explorer.`,
           "action": () => {
             updateFlag("time", flags.time+1);
-            goToSection("exploring-island-2");
+            return "exploring-island-2";
           },
         },
         {
-          "text": `N’apercevant rien d’intéressant à première vue, vous repartez de suite.`,
-          "action": () => {
-            goToSection("back-to-hub");
-          },
+          "text": `Vous décidez de vous rendre ailleurs.`,
+          "action":  "back-to-hub",
         },
       ];
 
-      return (
-        <Crossroads choices={choices} />
-      );
+      return repeatingCrossroad(goToSection, choices);
     }
   },
   "exploring-island-2" : {
@@ -35,10 +29,12 @@ const island2 = {
     `,
     "next": function(goToSection) {
       const text = `Après vous être assurée qu’il n’y a rien d’autre sur cette île, vous regagnez votre pirogue pour repartir.`;
-      const action = () => {goToSection("back-to-hub")};
+      const action = "back-to-hub";
 
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        text,
+        action
       );
     }
   }

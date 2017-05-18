@@ -3,6 +3,7 @@ import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import raiahuiIntroImage from "./../images/raiahui-intro.jpg";
 import { Image } from "react-bootstrap";
+import {repeatingFunnel} from "./helpers";
 
 const noRepeatedAction = function(flagName, actions, goToSection, flags, updateFlag, logFunc) {
   if (!logFunc) {
@@ -202,11 +203,9 @@ const intro = {
     ,
     "next": function(goToSection) {
       const text = `Suivant ses instructions, vous pénétrez à l’intérieur du lagon.`;
-      const action = () => {goToSection("arrival", `<p><strong>${text}</strong></p>`);};
+      const action = "arrival";
 
-      return (
-        <Funnel text={text} action={action} />
-      );
+      return repeatingFunnel(goToSection, text, action);
     }
   },
   "arrival": {
@@ -526,11 +525,9 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
       }
 
       const text = `Vous discutez encore un certain temps, ajoutant quelques récits semi-fantaisistes aux précédents. L’activité qui vous entoure est en train de commencer à décroître.`;
-      const action = () => {goToSection("night", `<p><strong>${text}</strong></p>`);};
+      const action = "night";
 
-      return (
-        <Funnel text={text} action={action} />
-      );
+      return repeatingFunnel(goToSection, text, action);
     },
   },
   "night": {
@@ -541,11 +538,9 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
     ,
     "next": (goToSection) => {
       const text = `Vous ne tardez pas à vous endormir, bercée par le murmure de l’eau et un souffle d’air tiède.`;
-      const action = () => {goToSection("awakening", `<p><strong>${text}</strong></p>`);};
+      const action = "awakening";
 
-      return (
-        <Funnel text={text} action={action} />
-      );
+      return repeatingFunnel(goToSection, text, action);
     }
   },
   "awakening": {
