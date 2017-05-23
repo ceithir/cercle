@@ -160,18 +160,9 @@ const intro = {
 <p>Vous êtes en train de vous demander dans quelle direction il serait préférable de longer la plage lorsqu’un bruit d’éclaboussures vous fait tourner la tête.</p>
 
 <img src="${raiahuiIntroImage}" class="img-responsive center-block text-img" alt=""/>
-`
-    ,
-    "next": function(goToSection) {
-      return repeatingFunnel(
-        goToSection,
-        `Surgie de l’eau, les deux bras posés sur le flotteur de votre pirogue, une jeune fille vous observe avec une curiosité ravie.`,
-        "prelude-2"
-      );
-    }
-  },
-  "prelude-2": {
-    "text": `
+
+<p>Surgie de l’eau, les deux bras posés sur le flotteur de votre pirogue, une jeune fille vous observe avec une curiosité ravie.</p>
+
 <div class="conversation">
 <p>— Salut, vous dit-elle d’un ton enjoué. Tu viens de loin ?</p>
 <p>— Assez loin, répondez-vous une fois votre surprise surmontée. Tu veux monter ?</p>
