@@ -2,7 +2,7 @@ import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import {useItem, acquireItem, endGame, repeatingFunnel} from "./helpers.js";
-import atollMap from "./../images/atoll.jpg";
+import atollMap from "./../images/map.jpg";
 import { Image } from "react-bootstrap";
 
 const timeLimit = 12;
@@ -41,37 +41,37 @@ const getIslands = function(flags) {
     {
       "key": "island-2",
       "description": `Une île sans réel signe distinctif`,
-      "coordinates": "138,453 236,586 138,644 44,504",
+      "path": "M95 415 C 20 430, 50 560, 145 555 S 140 395, 95 415",
     },
     {
       "key": "island-3",
       "description": flags.toldAboutFaanaruaByVarenui? `L’île de Faanarua`: `Une autre île tout ce qu’il y a de plus banal`,
-      "coordinates": "29,301 133,301 133,461 29,461",
+      "path": "M20 345 C 20 245, 125 245, 130 345 S 20 405, 20 345",
     },
     {
       "key": "island-4",
       "description": `La petite île excentrée`,
-      "coordinates": "64,194 122,194 122,261 64,261",
+      "path": "M50 205 C 50 150, 120 170, 125 205 S 50 260, 50 205",
     },
     {
       "key": "island-5",
       "description": flags.toldAboutAtollByRaiahui? `L’île de la sorcière`: `L’étrange rocher`,
-      "coordinates": "123,37 255,37 255,145 123,145",
+      "path": "M100 80 C 120 0, 210 0, 240 80 S 90 170, 100 80",
     },
     {
       "key": "island-6",
       "description": (flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea)? `L’île du Vieux Fainéant`: `L’île aux arbres`,
-      "coordinates": "425,20 706,134 666,223 391,96",
+      "path": "M355 50 C 405 -50, 650 60, 635 155 S 320 150, 355 50",
     },
     {
       "key": "island-7",
       "description": `La petite île à côté de l’île de l’épreuve`,
-      "coordinates": "660,262 727,262 727,321 660,321",
+      "path": "M595 260 C 605 240, 625 210, 650 250 S 580 290, 595 260",
     },
     {
       "key": "island-8",
       "description": `L’île de l’épreuve`,
-      "coordinates": "628,453 708,453 708,527 628,527",
+      "path": "M575 430 C 580 380, 645 365, 650 430 S 575 480, 575 430",
     },
   ];
 }
@@ -152,7 +152,7 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
     {
       "key": "island-1",
       "description": `Le village`,
-      "coordinates": "610,518 682,570 621,652 408,732 161,708 202,605 427,631",
+      "path": "M185 550 C 300 560, 500 500, 530 485 S 630 490, 620 550 S 130 780, 155 570 C 180 535, 185 555, 185 550",
     },
   ]).map((island) => {
     const disabled = flags.visitedIslands.includes(island.key);
@@ -183,13 +183,13 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
       <Image src={atollMap} className="center-block visible-xs visible-xm" responsive />
       <svg
         id="atoll-map"
-        width="800" height="800"
+        width="720" height="720"
         className="center-block hidden-xs hidden-xm"
         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
       >
-        <image xlinkHref={atollMap} x="0" y="0" height="800" width="800"/>
+        <image xlinkHref={atollMap} x="0" y="0" height="720" width="720"/>
         {islands.map((island) => {
-          let className = "";
+          let className = "island";
           if (island.current) {
             className += " current";
           }
@@ -199,7 +199,7 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
 
           return (
             <g key={island.key} className={className}>
-              <polygon points={island.coordinates} onClick={island.onClick} />
+              <path d={island.path} className="shape" onClick={island.onClick} />
               <text x="390" y="370" className="lead">{island.description}</text>
             </g>
           );
