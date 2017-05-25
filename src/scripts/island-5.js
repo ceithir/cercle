@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {endGame, useItem, acquireItem} from "./helpers.js";
+import {endGame, useItem, acquireItem, coatSentence, repeatingFunnel} from "./helpers.js";
 
 const escapeTheWitch = (goToSection, flags, updateFlag) => {
   const choices = [
@@ -40,7 +40,6 @@ const sneakingIntoIslandCrossroads = (goToSection, flags, updateFlag) => {
     {
       "text": `Vous poussez le fétiche de manière à ce qu’il se renverse.`,
       "action": () => {
-        updateFlag("feeble", true);
         goToSection("witch-fetish-embrace");
       },
     },
@@ -74,11 +73,11 @@ const island5 = {
 <p>Au sommet de l’île, vous distinguez une large hutte ronde et il vous semble apercevoir fugitivement une silhouette en train d’y entrer.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
-      const context = `Tous vos instincts vous incitent à la prudence.`;
+      const leaveText = `Vous préférez renoncez à visiter cette île.`;
 
       const choices = [
         {
-          "text": `Vous les ignorez et abordez normalement, en face de la hutte.`,
+          "text": `Vous abordez normalement et montez tout droit vers la hutte.`,
           "action": () => {
             goToSection("witch-bold-approach");
           },
@@ -97,15 +96,15 @@ const island5 = {
           },
         },
         {
-          "text": `Vous renoncez à visiter cette île.`,
+          "text": leaveText,
           "action": () => {
-            goToSection("back-to-hub");
+            goToSection("back-to-hub", coatSentence(leaveText));
           },
         },
       ];
 
       return (
-        <Crossroads context={context} choices={choices} />
+        <Crossroads choices={choices} />
       );
     }
   },
@@ -136,7 +135,7 @@ const island5 = {
       const alcohol = flags.inventory.alcohol;
       if (alcohol.acquired && !alcohol.used) {
         choices.push({
-          "text": `Vous lui offrez en échange le contenu de votre propre calebasse.`,
+          "text": `Vous lui offrez en retour la calebasse d’alcool que vous transportez.`,
           "action": () => {
             useItem("alcohol", updateFlag);
             goToSection("witch-my-alcohol");
@@ -146,7 +145,7 @@ const island5 = {
       }
 
       choices.push({
-        "text": `Vous fichez le camp d’ici à toutes jambes.`,
+        "text": `Vous jugez que la meilleure chose à faire est de fuir.`,
         "action": () => {
           updateFlag("caughtInAWitchNet", true);
           goToSection("witch-doomed-escape");
@@ -180,12 +179,17 @@ const island5 = {
 
 <p>La douleur est passée, mais, maintenant que votre panique s’apaise, vous remarquez qu’un certain engourdissement s’est emparé de votre bras. Vous espérez que cette faiblesse n’est que temporaire.</p>
     `,
-    "next": (goToSection) => {
-      const text = `Pour le moment, vous faites avec.`;
-      const action = () => {goToSection("back-to-hub")};
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `Vous le massez patiemment, attendant qu’il ait retrouvé toute sa sensibilité pour vous remettre en route.`;
+      const action = () => {
+        updateFlag("time", flags.time+1);
+        return "back-to-hub";
+      };
 
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        text,
+        action,
       );
     },
   },
@@ -205,25 +209,25 @@ const island5 = {
 <p>La grosse femme paraît désarçonnée par votre geste. Après vous avoir remis la coupe — que vous n’avez aucune intention de boire — elle accepte néanmoins la calebasse que vous lui tendez. La débouchant, elle l’approche de ses narines et son expression s’éclaircit aussitôt. Oubliant tout le reste, elle porte la calebasse à ses lèvres et se met à boire goulûment l’alcool qu’elle contient.</p>
     `,
     "next": (goToSection) => {
-      const context = `C’est le moment d’agir. Profitant de l’occasion, vous…`;
+      const sneakText = `Vous profitez de l’occasion pour vous glisser à l’intérieur de la hutte.`;
 
       const choices = [
         {
-          "text": `Vous glissez à l’intérieur de la hutte.`,
+          "text": `Vous profitez de l’occasion pour vous enfuir.`,
           "action": () => {
-            goToSection("in-the-witch-house");
+            goToSection("witch-drunk-escape");
           },
         },
         {
-          "text": `Déguerpissez d’ici.`,
+          "text": sneakText,
           "action": () => {
-            goToSection("witch-drunk-escape");
+            goToSection("in-the-witch-house", coatSentence(sneakText));
           },
         },
       ];
 
       return (
-        <Crossroads context={context} choices={choices} />
+        <Crossroads choices={choices} />
       );
     },
   },
@@ -235,34 +239,35 @@ const island5 = {
 <p>— Sale petite voleuse ! Tu vas avoir ce que tu mérites !</p>
 </div>
 
-<p>Pressée par l’urgence, n’ayant aucune idée de ce qui peut vous être utile, vous posez par hasard les yeux sur les objets disposés sur une petite table voisine. Et refermez votre poigne sur l’un d’eux.</p>
+<p>Pressée par l’urgence, n’ayant aucune idée de ce qui peut vous être utile, vous posez par hasard les yeux sur les objets disposés sur une petite table voisine.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const choices = [
-        {
-          "text": `Une parure décoratives faite de plumes jaunes et rouges.`,
-          "action": () => {
-            goToSection("witch-feathers");
-          },
-        },
-        {
-          "text": `Une sorte de sceptre sculpté dans un os blanc comme la craie.`,
-          "action": () => {
-            updateFlag("touchedACursedItem", true);
-            goToSection("witch-sceptre");
-          },
-        },
-        {
-          "text": `Une poignée de perles d’un noir profond.`,
-          "action": () => {
-            acquireItem("pearls", updateFlag);
-            goToSection("witch-pearls");
-          },
-        },
-      ];
+      const text = `Pressée par l’urgence, n’ayant aucune idée de ce qui peut vous être utile, vous posez par hasard les yeux sur les objets disposés sur une petite table voisine :`;
+
+      const feathers = `une parure décoratives faite de plumes jaunes et rouges`;
+      const scepter = `un sceptre sinistre sculpté dans un os blanc comme la craie`;
+      const pearls = `une poignée de perles d’un noir profond`;
+
+      const feathersAction = () => {
+        goToSection("witch-feathers", `<p>${text} <strong>${feathers}</strong>, ${scepter} et ${pearls}.</p>`)
+      };
+      const scepterAction = () => {
+        updateFlag("touchedACursedItem", true);
+        goToSection("witch-sceptre", `<p>${text} ${feathers}, <strong>${scepter}</strong> et ${pearls}.</p>`);
+      };
+      const pearlsAction = () => {
+        acquireItem("pearls", updateFlag);
+        goToSection("witch-pearls", `<p>${text} ${feathers}, ${scepter} et <strong>${pearls}</strong>.</p>`);
+      };
+
+      const link = (text, action) => {
+        return (
+          <a className="choice" onClick={action}>{text}</a>
+        );
+      }
 
       return (
-        <Crossroads choices={choices} />
+        <p>{text} {link(feathers, feathersAction)}, {link(scepter, scepterAction)} et {link(pearls, pearlsAction)}.</p>
       );
     },
   },
@@ -294,18 +299,20 @@ const island5 = {
   },
   "witch-window-escape": {
     "text": `
-<p>Vous vous précipitez vers la fenêtre. La grosse femme se lance à vos trousses, mais vous êtes beaucoup plus rapide et agile. En moins de temps qu’il n’en faut pour le dire, vous vous êtes glissée hors de la hutte par cette sortie improvisée. Vous dévalez ensuite la pente à toutes jambes, pressée de quitter cette île au plus vite.</p>
+<p>Vous vous précipitez vers la fenêtre. La grosse femme se lance à vos trousses, mais vous êtes beaucoup plus rapide et agile. En moins de temps qu’il n’en faut pour le dire, vous vous êtes glissée hors de la hutte par cette sortie improvisée.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous retrouvez votre pirogue avec bonheur.`;
+      const text = `Vous dévalez ensuite la pente à toutes jambes, pressée de quitter cette île au plus vite.`;
       const action = () => {
         updateFlag("time", flags.time+1);
         updateFlag("survivedWitchIsland", true);
-        goToSection("back-to-hub");
+        return "back-to-hub";
       };
 
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        text,
+        action
       );
     }
   },
@@ -348,9 +355,10 @@ const island5 = {
 <p>Vous êtes en train de regarder quelques perles d’un noir extrêmement profond lorsqu’un bruit de pas vous parvient aux oreilles. La grosse femme est déjà en train de revenir ! Il n’est plus question de poursuivre votre inspection, mais vous vous emparez néanmoins des perles noires, qui ont piqué votre intérêt.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
+      const text = `La grosse femme n’est plus qu’à quelques pas de la hutte.`;
+
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
-        const text = `Vos possessions sont soudain bien remuantes.`;
         const action = () => {
           useItem("doll", updateFlag);
           acquireItem("net", updateFlag);
@@ -362,7 +370,6 @@ const island5 = {
         );
       }
 
-      const text = `Vous essayez de vous éclipser avant d’être remarquée, mais il est trop tard.`;
       const action = () => {
         goToSection("witch-thief-honeypot");
       };
@@ -393,15 +400,16 @@ const island5 = {
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {
+      const inText = `Vous vous engouffrez à l’intérieur de la hutte.`;
       const choices = [
         {
-          "text": `Vous vous engouffrez à l’intérieur de la hutte.`,
+          "text": inText,
           "action": () => {
-            goToSection("in-the-witch-house");
+            goToSection("in-the-witch-house", coatSentence(inText));
           },
         },
         {
-          "text": `Vous prenez de suite la fuite.`,
+          "text": `Vous vous enfuyez dans la direction d’où vous êtes venue.`,
           "action": () => {
             updateFlag("caughtInAWitchNet", true);
             goToSection("witch-doomed-escape");
@@ -416,19 +424,21 @@ const island5 = {
   },
   "witch-versus-root": {
     "text": `
-<p>Alors que vous cherchez un moyen de vous enfuir, les membres de la figurine de bois sont saisis de mouvements convulsifs. Sous vos yeux ébahis, la création du crocodile se lève sur ses deux jambes et se met à grandir et à changer de couleur jusqu’à ce que vous ayiez devant vous une réplique très exacte de vous-même !</p>
+<p>Alors que vous cherchez un moyen de vous enfuir, les membres de la figurine de bois sont saisis de mouvements convulsifs. Sous vos yeux ébahis, la création du crocodile se lève sur ses deux jambes et se met à grandir et à changer de couleur jusqu’à ce que vous ayez devant vous une réplique très exacte de vous-même !</p>
 
 <p>Votre double vous adresse un sourire amusé, puis elle jaillit hors de la hutte, passant juste devant la grosse femme qui arrivait. Celle-ci n’est surprise qu’un instant : s’emparant du filet gris qui se trouve à sa taille, elle le jette après l’intruse d’un geste furieux. Vous étant approchée de la porte de  la hutte, vous voyez le filet traverser l’air avec une précision parfaite et s’enrouler étroitement autour de votre sosie. Prise au piège, la figurine reprend aussitôt son aspect d’origine, puis se désagrège en un nuage de poussière. Saisissant l’occasion, vous passez en courant à côté de la grosse femme ébahie, vous emparez au passage du filet et continuez sans ralentir votre fuite jusqu’à ce que vous ayez regagné votre pirogue.</p>`,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous examinerez votre dernière trouvaille une fois que vous serez loin d’ici.`;
+      const text = `Vous vous hâtez de vous éloigner de cette île.`;
       const action = () => {
         updateFlag("time", flags.time+1);
         updateFlag("survivedWitchIsland", true);
-        goToSection("back-to-hub");
+        return "back-to-hub";
       };
 
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        text,
+        action,
       );
     },
   },
@@ -439,7 +449,7 @@ const island5 = {
     "next": (goToSection, flags, updateFlag) => {
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
-        const text = `Vos possessions sont soudain bien remuantes.`;
+        const text = `Avant que vous ne repreniez votre course, il se passe quelque chose de totalement inattendu.`;
         const action = () => {
           useItem("doll", updateFlag);
           acquireItem("net", updateFlag);
@@ -451,33 +461,37 @@ const island5 = {
         );
       }
 
-      const text = `Courrant à toutes jambes, vous regagnez votre pirogue avant qu’elle ne retrouve votre piste.`;
+      const text = `Vous poursuivez votre fuite sans ralentir, regagnez votre pirogue et vous hâtez de vous éloigner de cette île.`;
       const action = () => {
         updateFlag("time", flags.time+1);
         updateFlag("survivedWitchIsland", true);
-        goToSection("back-to-hub");
+        return "back-to-hub";
       };
 
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        text,
+        action,
       );
     }
   },
   "witch-versus-root-alt": `
 <p>Alors que vous vous apprêtez à poursuivre votre descente, les membres de la figurine de bois sont saisis de mouvements convulsifs. Sous vos yeux ébahis, la création du crocodile se lève sur ses deux jambes et se met à grandir et à changer de couleur jusqu’à ce que vous ayiez devant vous une réplique très exacte de vous-même !</p>
 
-<p>Votre double vous adresse un sourire amusé, puis elle sort de derrière le buisson et se met à courir en terrain exposé. Un instant plus tard, vous voyez le filet gris de la grosse femme traverser l’air avec une précision parfaite et s’enrouler étroitement autour d’elle. Prise au piège, la figurine reprend aussitôt son aspect d’origine, puis se désagrège en un nuage de poussière. Saisissant l’occasion, vous courez vous emparer du filet, puis reprenez votre fuite.</p>
+<p>Votre double vous adresse un sourire amusé, puis elle sort de derrière le buisson et se met à courir en terrain exposé. Un instant plus tard, vous voyez le filet gris de la grosse femme traverser l’air avec une précision parfaite et s’enrouler étroitement autour d’elle. Prise au piège, la figurine reprend aussitôt son aspect d’origine, puis se désagrège en un nuage de poussière. Saisissant l’occasion, vous courez vous emparer du filet, puis reprenez votre fuite. Quelques instants plus tard, vous avez regagné votre pirogue.</p>
   `,
   "next": (goToSection, flags, updateFlag) => {
-    const text = `Quelques instants plus tard, vous avez regagné votre pirogue.`;
+    const text = `Vous vous hâtez de vous éloigner de cette île.`;
     const action = () => {
       updateFlag("time", flags.time+1);
       updateFlag("survivedWitchIsland", true);
-      goToSection("back-to-hub");
+      return "back-to-hub";
     };
 
-    return (
-      <Funnel text={text} action={action} />
+    return repeatingFunnel(
+      goToSection,
+      text,
+      action,
     );
   },
 }

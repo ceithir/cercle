@@ -41,7 +41,6 @@ const flags = {
   "drunkAtTheWitchCup": false,
   "caughtInAWitchNet": false,
   "touchedACursedItem": false,
-  "feeble": false,
   "damagedBoat": false,
   "eatenByCrocodile": false,
   "swumUnderWitchIsland": false,

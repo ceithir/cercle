@@ -17,10 +17,6 @@ const computeTripTime = function(currentIsland, newIsland) {
 
 const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
   let newTime = flags.time + computeTripTime(flags.currentIsland, newIsland);
-  if (flags.feeble) {
-    newTime += 1;
-    updateFlag("feeble", false);
-  }
   if (flags.damagedBoat) {
     newTime += 1;
   }

@@ -13,5 +13,11 @@ export const getHint = (flags) => {
     `;
   }
 
+  if (flags.caughtInAWitchNet || flags.drunkAtTheWitchCup || flags.touchedACursedItem) {
+    return `
+<p>Les objets magiques que possède la sorcière sont d’une efficacité redoutable, mais ils ne s’affranchissent pas totalement des limites que leur impose leur forme même.</p>
+    `;
+  }
+
   return "";
 };
