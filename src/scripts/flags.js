@@ -20,8 +20,8 @@ const flags = {
       "description": `<p>Des perles d’un noir profond que vous avez volées à la sorcière du lagon.</p><p>Vous avez découvert que lorsque l’une d’elles est écrasée sous l’eau, elle se dissout aussitôt en un épais nuage absolument opaque.</p>`,
     },
     "fruit": {
-      "name": `Fruit rouge`,
-      "description": `<p>Un mystérieux fruit qu’un crocodile parlant vous a conseillé. Il prétend qu’il vous donnera des forces pour l’épreuve qui vous attend.</p><p>Vous ne sauriez dire si le fait qu’il ait également essayé de vous manger est un argument en la faveur ou en la défaveur de la véracité de cette information.</p>`,
+      "name": `Fruits rouges`,
+      "description": `<p>Un poignée de mystérieux fruits qu’un crocodile parlant vous a conseillé. Il prétend qu’ils vous aideront pour l’épreuve qui vous attend.</p><p>Vous ne sauriez dire si le fait qu’il ait également essayé de vous manger est un argument en la faveur ou en la défaveur de la véracité de cette information.</p>`,
     },
     "doll": {
       "name": "Figurine du crocodile",

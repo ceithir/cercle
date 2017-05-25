@@ -1,13 +1,12 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
-import Funnel from "./../components/Funnel.js";
-import {endGame, acquireItem} from "./helpers.js";
+import {endGame, acquireItem, coatSentence, repeatingFunnel, repeatingCrossroad} from "./helpers.js";
 
 const crocodileLastWords = `
 <p>Les échos d’un rire guttural vous parviennent tandis que vous vous enfuyez.</p>
 
 <div class="conversation">
-<p>— Tu ne peux pas me reprocher d’avoir essayé, délicieuse fille humaine ! vous crie le crocodile. Mais je vais te donner un véritable conseil pour humilier cette tribu de voleurs. Trouve l’un des fruits rouges qui poussent sur cette île et mange-le juste avant ta course, il te donnera des forces. Tu auras également besoin d’astuce, mais ce n’est pas quelque chose qui s’acquiert aussi facilement !</p>
+<p>— Tu ne peux pas me reprocher d’avoir essayé, délicieuse fille humaine ! vous crie le crocodile. Mais je vais te donner un véritable conseil pour humilier cette tribu de voleurs. Trouve quelques-uns des fruits rouges qui poussent sur cette île et emporte-les avec toi. Si tu goûte l’un d’entre eux juste avant ta course, cela te donnera peut-être une chance de l’emporter. Tu auras également besoin d’astuce, mais ce n’est pas quelque chose qui s’acquiert aussi facilement !</p>
 </div>
 
 <p>Sa voix disparaît derrière vous, mais vous ne ralentissez guère l’allure avant d’avoir regagné votre pirogue. En chemin, vous observez quelques arbustes qui portent en effet de petits fruits ovales d’une couleur écarlate. Il s’agit sans doute de ce dont parlait le crocodile, mais pouvez-vous lui faire confiance cette fois-ci ?</p>
@@ -16,18 +15,49 @@ const crocodileLastWords = `
 const crocodileLastCrossroads = (goToSection, flags, updateFlag) => {
   const choices = [
     {
-      "text": `Vous en ramassez quand même un au cas où.`,
+      "text": `Vous prenez quelques instants pour récolter une poignée de ces fruits rouges.`,
       "action": () => {
         acquireItem("fruit", updateFlag);
         updateFlag("time", flags.time+1);
-        goToSection("back-to-hub");
+        return "back-to-hub";
       },
     },
     {
-      "text": `Vous choisissez d’ignorer son conseil.`,
+      "text": `Vous quittez immédiatement cette île dangereuse.`,
       "action": () => {
         updateFlag("time", flags.time+1);
-        goToSection("back-to-hub");
+        return "back-to-hub";
+      },
+    },
+  ];
+
+  return repeatingCrossroad(
+    goToSection,
+    choices
+  );
+};
+
+const singOrDie = (goToSection, flags, updateFlag) => {
+  const songText = `Vous essayez de l’imiter en fredonnant.`;
+
+  const choices = [
+    {
+      "text": `Vous écoutez le crocodile.`,
+      "action": () => {
+        updateFlag("eatenByCrocodile", true);
+        goToSection("crocodile-song");
+      },
+    },
+    {
+      "text": songText,
+      "action": () => {
+        goToSection("crocodile-chorus", coatSentence(songText));
+      },
+    },
+    {
+      "text": `Soupçonnant qu’il s’agit d’un piège, vous décidez de vous enfuir.`,
+      "action": () => {
+        goToSection("crocodile-siren");
       },
     },
   ];
@@ -43,23 +73,25 @@ const island6 = {
 <p>Cette île est couverte d’une abondance de palétuviers, dont les racines enchevêtrées recouvrent totalement le sol. Cà et là, quelques coins de plage résistent non sans mal à l’étouffement. L’île fait une bonne taille — sans être aussi grande que celle où se trouve le village — et son coeur vous est totalement masqué par la végétation.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
+      const leaveText = `Vous préférez repartir vers une autre destination.`;
+
       const choices = [
         {
-          "text": `Vous accostez sur l’une des bandes de sable.`,
+          "text": `Vous accostez sur l’une des bandes de sable et entreprenez votre exploration à pied.`,
           "action": () => {
             goToSection("exploring-island-6");
           },
         },
         {
-          "text": `Vous longez d’abord l’île en pirogue.`,
+          "text": `Vous commencez par longer l’île en pirogue.`,
           "action": () => {
             goToSection("observing-island-6");
           },
         },
         {
-          "text": `Vous repartez immédiatement.`,
+          "text": leaveText,
           "action": () => {
-            goToSection("back-to-hub");
+            goToSection("back-to-hub", coatSentence(leaveText));
           },
         },
       ];
@@ -78,16 +110,15 @@ const island6 = {
 <p>Votre sang se refroidit dans vos veines. Etendu sur le sable, juste devant vous, il y a un crocodile qui fait quatre fois votre taille.</p>
 
 <p>L’animal est immobile comme un tronc d’arbre abattu. On pourrait croire qu’il est mort. Vous êtes sur le point de détaler à toutes jambes lorsqu’une voix rocailleuse vient vous heurter les oreilles :</p>
-<div class="conversation">
-<p>— Attends.</p>
-</div>
     `,
     "next": (goToSection) => {
-      const text = `Sous l’effet de la surprise, vous obtempérez.`;
-      const action = () => {goToSection("crocodile");};
+      const text = `— Attends.`;
+      const action = () => "crocodile";
 
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        text,
+        action
       );
     }
   },
@@ -96,10 +127,10 @@ const island6 = {
 <p>Plongée dans l’ombre des palétuviers, vous faites progresser votre pirogue à coups de pagaie réguliers. Tout ce qui se trouve sur l’île semble plongé dans une profonde torpeur, que ne vient pas troubler le moindre chant d’oiseau. L’immobilité générale vous inspire progressivement l’impression que rien d’animé ne se trouve ici. Et, pour cette raison, vous ne remarquez l’unique habitant de l’île que très tardivement.</p>
 
 <p>Le sang se refroidit dans vos veines. Etendu sur une bande de sable garrottée d’épaisses racines, si proche que vous pourriez l’atteindre en deux coups de pagaie, il y a un crocodile qui fait quatre fois votre taille.</p>
+
+<p>Il ne bouge pas d’un pouce et vous ne distinguez pas si ses yeux sont ouverts.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const context = `Il ne bouge pas d’un pouce et vous ne distinguez pas si ses yeux sont ouverts.`;
-
       const choices = [
         {
           "text": `Vous vous éloignez précipitamment.`,
@@ -108,7 +139,7 @@ const island6 = {
           },
         },
         {
-          "text": `Vous vous éloignez silencieusement.`,
+          "text": `Vous vous éloignez aussi silencieusement que possible.`,
           "action": () => {
             updateFlag("damagedBoat", true);
             goToSection("crocodile-quiet-paddling");
@@ -117,51 +148,54 @@ const island6 = {
       ];
 
       return (
-        <Crossroads context={context} choices={choices} />
+        <Crossroads choices={choices} />
       );
     }
   },
   "crocodile-swift-paddling": {
     "text": `
 <p>Faisant brutalement virer votre pirogue vers le centre du lagon, vous pagayez de toutes vos forces pour vous éloigner au plus vite de ce monstre cuirassé. Il s’écoule un bon moment avant que vous n’osiez vous arrêter, au bord de l’essoufflement. Jetant alors un coup d’œil en arrière, vous voyez que le crocodile est toujours au même emplacement, aussi immobile qu’un tronc abattu.</p>
+
+<p>Vous connaissez à présent le danger qui réside sur cette île.</p>
     `,
     "next": (goToSection) => {
-      const context = `Ce dangereux obstacle entre vous et l’île vous incite tout autant à la prudence qu’il titille votre curiosité.`;
-
       const choices = [
         {
-          "text": `Vous préférez ne pas tenter le diable.`,
+          "text": `Vous prenez le risque d’y retourner malgré tout.`,
           "action": () => {
-            goToSection("back-to-hub");
+            return "island-6-take-two";
           },
         },
         {
-          "text": `Vous ne lâchez pas l’affaire aussi facilement.`,
+          "text": `Vous jugez plus sensé de choisir une nouvelle destination.`,
           "action": () => {
-            goToSection("island-6-take-two");
+            return "back-to-hub";
           },
         },
       ];
 
-      return (
-        <Crossroads context={context} choices={choices} />
+      return repeatingCrossroad(
+        goToSection,
+        choices
       );
     },
   },
   "crocodile-quiet-paddling": {
     "text": `
-<p>Plongeant votre pagaie dans l’eau de manière à ne faire aucun bruit, vous dirigez lentement votre pirogue vers le centre du lagon, malgré la peur qui crispe vos muscles. Mais le crocodile, jusque-là immobile comme un tronc d’arbre abattu, se met alors en mouvement avec une soudaineté foudroyante, se précipitant vers vous dans un grand bruit d’éclaboussures ! Transpercée par la terreur, vous vous mettez aussitôt à pagayer de toutes vos forces, mais le reptile a déjà atteint votre embarcation. Un choc violent vous fait presque tomber à l’eau lorsque sa mâchoire puissante se referme sur votre flotteur. Le crocodile essaie de se servir de cette prise pour renverser votre pirogue, mais il emploie une telle violence qu’il arrache totalement le flotteur, vous donnant une chance de lui échapper. Vous ne la laissez pas passer, pagayant plus énergiquement que vous ne l’avez jamais fait de votre vie jusqu’à vous sentir au bord de l’évanouissement.</p>
+<p>Plongeant votre pagaie dans l’eau de manière à ne faire aucun bruit, vous dirigez lentement votre pirogue vers le centre du lagon, malgré la peur qui crispe vos muscles. Mais le crocodile, jusque-là immobile comme un tronc d’arbre abattu, se met alors en mouvement avec une soudaineté foudroyante, se précipitant vers vous dans un grand bruit d’éclaboussures ! Saisie de terreur, vous vous mettez aussitôt à pagayer de toutes vos forces, mais le reptile a déjà atteint votre embarcation. Un choc violent vous fait presque tomber à l’eau lorsque sa mâchoire puissante se referme sur votre flotteur. Le crocodile essaie de se servir de cette prise pour renverser votre pirogue, mais il emploie une telle violence qu’il arrache totalement le flotteur, vous donnant une chance de lui échapper. Vous ne la laissez pas passer, pagayant plus énergiquement que vous ne l’avez jamais fait de votre vie jusqu’à vous sentir au bord de l’évanouissement.</p>
 
 <p>Lorsque vous vous arrêtez enfin, le coeur battant à tout rompre, un coup d’œil en arrière vous apprend que le monstre ne vous a pas poursuivie. Encore sous le choc d’avoir vu la mort vous frôler de si près, il faut un moment pour que cette constatation vous inspire un véritable soulagement.</p>
 
 <p>Vos moyens finissent par vous revenir et vous décidez de faire route vers une autre île. Mais la perte de son flotteur rend votre pirogue beaucoup moins stable et il vous faudra la piloter avec davantage de prudence. Ce qui vous ralentira d’autant.</p>
     `,
     "next": (goToSection) => {
-      const text = `Il va bien falloir faire avec.`;
-      const action = () => {goToSection("back-to-hub");};
+      const text = `Vous décidez de vous choisir une destination moins dangereuse.`;
+      const action = () => "back-to-hub";
 
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        text,
+        action,
       );
     },
   },
@@ -178,17 +212,15 @@ const island6 = {
 <p>Vous vous dirigez avec une extrême prudence vers la plage où vous avez vu le crocodile, prête à vous enfuir à toutes jambes au moindre signe alarmant. Votre coeur cogne dans votre poitrine avec une violence assourdissante et votre appréhension croît jusqu’à une intensité telle que vous êtes bien près de partir en courant rejoindre votre pirogue, lorsque la bande de sable se dévoile soudain juste devant vous.</p>
 
 <p>Le crocodile est toujours au même endroit, figé comme une statue. On pourrait croire qu’il est mort. Ayant vérifié son emplacement, vous vous apprêtez à vous esquiver discrètement lorsqu’une voix rocailleuse vient vous heurter les oreilles :</p>
-
-<div class="conversation">
-<p>— Attends.</p>
-</div>
     `,
     "next": (goToSection) => {
-      const text = `Sous l’effet de la surprise, vous obtempérez.`;
-      const action = () => {goToSection("crocodile");};
+      const text = `— Attends.`;
+      const action = () => "crocodile";
 
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        text,
+        action
       );
     },
   },
@@ -203,9 +235,12 @@ const island6 = {
 <p>La plupart des légendes de votre tribu mettent en scène des animaux doués de l’esprit et de la parole. Lors de vos moments de rêverie, vous avez souvent imaginé votre rencontre avec une telle créature. Mais vous ne vous attendiez certes pas à ce qu’elle se déroule ainsi !</p>
 
 <p>Votre stupéfaction ne vous ôte cependant pas votre prudence instinctive.</p>
+
+<p>Vous vous trouvez à quatre bonnes enjambées du crocodile.</p>
     `,
     "next": (goToSection) => {
-      const context = `Vous vous trouvez à quatre bonnes enjambées du crocodile.`;
+      const unmovingText = `Vous restez exactement où vous êtes.`;
+
       const choices = [
         {
           "text": `Vous vous rapprochez — très légèrement — de lui, comme il le demande.`,
@@ -214,15 +249,15 @@ const island6 = {
           },
         },
         {
-          "text": `Vous restez exactement où vous êtes.`,
+          "text": unmovingText,
           "action": () => {
-            goToSection("crocodile-close-enough");
+            goToSection("crocodile-close-enough", coatSentence(unmovingText));
           },
         },
       ];
 
       return (
-        <Crossroads context={context} choices={choices} />
+        <Crossroads choices={choices} />
       );
     },
   },
@@ -243,7 +278,7 @@ const island6 = {
           },
         },
         {
-          "text": `Vous le questionnez sur le sujet de la tribu.`,
+          "text": `Vous l’interrogez sur la tribu.`,
           "action": () => {
             goToSection("crocodile-bitterness");
           },
@@ -266,21 +301,22 @@ const island6 = {
     "next": (goToSection) => {
       const choices = [
         {
-          "text": `Vous l’enjoignez d’apporter une preuve des pouvoirs qu’il est censé posséder.`,
+          "text": `Vous demandez à voir une preuve des pouvoirs qu’il est censé posséder.`,
           "action": () => {
-            goToSection("crocodile-power");
+            return "crocodile-power";
           },
         },
         {
           "text": `Vous lui demandez s’il peut vous aider à gagner votre course contre Raiahui.`,
           "action": () => {
-            goToSection("crocodile-help");
+            return "crocodile-help";
           },
         },
       ];
 
-      return (
-        <Crossroads choices={choices} />
+      return repeatingCrossroad(
+        goToSection,
+        choices
       );
     },
   },
@@ -303,9 +339,10 @@ const island6 = {
 </div>
 
 <p>Le désir de posséder la figurine s’est totalement emparé de votre esprit et vous êtes prête à défier la mort pour vous en emparer. Mais, bien que vous soyez incapable de résister au charme qu’elle exerce sur vous, votre bon sens n’est pas totalement engourdi. Vous réalisez que les actions du crocodile n’ont pas d’autre but que de faire de vous son repas.</p>
+
+<p>La figurine se trouve à mi-chemin entre vous deux. Une longue branche, épaisse comme votre cheville, gît sur le sol à côté de vous.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const context = `La figurine se trouve à mi-chemin entre vous deux. Une longue branche, épaisse comme votre cheville, gît sur le sol à côté de vous.`;
       const choices = [
         {
           "text": `Vous ramassez la branche et vous en servez pour tenir à distance le crocodile.`,
@@ -324,7 +361,7 @@ const island6 = {
       ];
 
       return (
-        <Crossroads context={context} choices={choices} />
+        <Crossroads choices={choices} />
       );
     },
   },
@@ -347,14 +384,16 @@ const island6 = {
 <p>Quelques instants plus tard, atteignant votre pirogue, vous prenez le temps d’examiner la figurine grossière. Le charme qui vous avait inspiré le désir irrésistible de la posséder s’est dissipé, mais une intuition vous dit qu’elle pourrait véritablement se révéler utile.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Toutefois, en ce moment, vous envisagez surtout d’augmenter la distance entre vous et son créateur en quelques vigoureux coups de pagaie.`;
+      const text = `Vous vous éloignez de l’île.`;
       const action = () => {
         updateFlag("time", flags.time+1);
-        goToSection("back-to-hub");
+        return "back-to-hub";
       };
 
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        text,
+        action
       );
     },
   },
@@ -371,27 +410,7 @@ const island6 = {
 
 <p>Il s’échappe de sa gueule un bruit étrange, très grave, à mi-chemin entre un grondement et un chant. Son rythme, qui ne ressemble à aucune musique que vous connaissez, exerce sur vous un attrait fascinant.</p>
     `,
-    "next": (goToSection, flags, updateFlag) => {
-      const choices = [
-        {
-          "text": `Vous continuez de l’écouter.`,
-          "action": () => {
-            updateFlag("eatenByCrocodile", true);
-            goToSection("crocodile-song");
-          },
-        },
-        {
-          "text": `Redoutant un piège, vous choisissez plutôt de vous enfuir.`,
-          "action": () => {
-            goToSection("crocodile-siren");
-          },
-        },
-      ];
-
-      return (
-        <Crossroads choices={choices} />
-      );
-    },
+    "next": singOrDie,
   },
   "crocodile-song": {
     "text": `
@@ -416,31 +435,32 @@ const island6 = {
         {
           "text": `Vous l’interrogez sur la course que vous allez devoir livrer.`,
           "action": () => {
-            goToSection("crocodile-trial");
+            return "crocodile-trial";
           },
         },
         {
-          "text": `Vous le questionnez sur le sujet de la tribu.`,
+          "text": `Vous l’interrogez au sujet de la tribu.`,
           "action": () => {
-            goToSection("crocodile-angry");
+            return "crocodile-angry";
           },
         },
       ];
 
-      return (
-        <Crossroads choices={choices} />
+      return repeatingCrossroad(
+        goToSection,
+        choices
       );
     }
   },
   "crocodile-angry": {
     "text": `
 <div class="conversation">
-<p>— Je hais ces misérables voleurs, siffle le crocodile avec animosité. L’atoll tout entier m’appartenait avant que leur tribu bâtarde ne décide de s’y installer. Mais il viendra un jour où…</p>
+<p>— Je hais ces misérables voleurs, siffle le crocodile avec animosité. L’atoll tout entier m’appartenait avant que leur tribu bâtarde ne décide de s’y installer. Aujourd’hui, il ne me reste plus que cette seule île et une petite partie du lagon pour y chasser. Mais je suis patient et je conserve bien des secrets dont cette misérable tribu n’a aucune idée. Ecoute bien, je vais te révéler l’un d’entre eux, il te sera utile…</p>
 </div>
 
-<p>L’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Heureusement, vous n’aviez pas relâché votre vigilance et vous avez juste le temps de vous enfuir à toutes jambes.</p>
-    ` + crocodileLastWords,
-    "next": crocodileLastCrossroads,
+<p>Il s’échappe de sa gueule un bruit étrange, très grave, à mi-chemin entre un grondement et un chant. Son rythme, qui ne ressemble à aucune musique que vous connaissez, exerce sur vous un attrait fascinant.</p>
+    `,
+    "next": singOrDie,
   },
   "crocodile-trial": {
     "text": `
@@ -449,17 +469,19 @@ const island6 = {
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {
+      const noText = `Vous vous abstenez, soupçonnant un piège.`;
+
       const choices = [
         {
-          "text": `Vous suivez ses indications et fouillez les racines.`,
+          "text": `Vous suivez cette avis.`,
           "action": () => {
             goToSection("crocodile-tree");
           },
         },
         {
-          "text": `Vous vous abstenez, soupçonnant un piège.`,
+          "text": noText,
           "action": () => {
-            goToSection("crocodile-unmasked");
+            goToSection("crocodile-unmasked", coatSentence(noText));
           },
         },
       ];
@@ -513,6 +535,55 @@ const island6 = {
 <p>L’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Heureusement, vous n’aviez pas relâché votre vigilance et vous avez juste le temps de vous enfuir à toutes jambes.</p>
     ` + crocodileLastWords,
     "next": crocodileLastCrossroads,
+  },
+  "crocodile-chorus": {
+    "text": `
+<p>Vous faites de votre mieux, mais votre oreille est aussi incapable de comprendre le rythme étrange que votre gorge humaine l’est de produire des notes aussi graves. Sous l’effet d’une pulsion, vous poursuivez néanmoins votre fredonnement, couvrant le son lancinant qui s’insinuait dans votre crâne, mélangeant à la mélopée du crocodile votre imitation de moins en moins ressemblante.</p>
+
+<p>Le crocodile s’interrompt tout à coup et vous en faites autant, vacillant comme sous l’effet d’un étourdissement soudain.</p>
+
+<div class="conversation">
+<p>— Assez chanté. Regarde, à présent.</p>
+</div>
+
+<p>Son corps massif se met à bouger et vous vous raidissez aussitôt, alarmée, mais il ne se dirige pas vers vous. Sa mâchoire puissante se referme sur une racine voisine et en arrache un tronçon épais, qu’elle semble ensuite mastiquer longuement. Puis le crocodile se retourne vers vous et recrache sur le sable le morceau de bois.</p>
+
+<div class="conversation">
+<p>— Voici l’un de mes pouvoirs !</p>
+</div>
+
+<p>Son séjour dans la gueule du crocodile a donné une forme étrange au fragment de racine : il ressemble désormais à une figurine humaine. Et, bien que la forme en soit très grossière et les détails inexistants, la certitude étrange apparaît dans votre esprit que c’est vous qu’elle représente. Vos yeux la fixent avec une fascination croissante.</p>
+
+<div class="conversation">
+<p>— Cela te plaît, non ? dit le crocodile d’une voix presque susurrante. Et elle te serait profondément utile. Viens la chercher… Viens… Approche…</p>
+</div>
+
+<p>Le désir de posséder la figurine s’est totalement emparé de votre esprit et vous êtes prête à défier la mort pour vous en emparer. Mais, bien que vous soyez incapable de résister au charme qu’elle exerce sur vous, votre bon sens n’est pas totalement engourdi. Vous réalisez que les actions du crocodile n’ont pas d’autre but que de faire de vous son repas.</p>
+
+<p>La figurine se trouve à mi-chemin entre vous. Une longue branche, épaisse comme votre cheville, gît sur le sol à côté de vous.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const choices = [
+        {
+          "text": `Vous ramassez la branche et vous en servez pour tenir à distance le crocodile le temps de récupérer la figurine.`,
+          "action": () => {
+            updateFlag("eatenByCrocodile", true);
+            goToSection("crocodile-branch");
+          },
+        },
+        {
+          "text": `Vous tentez de distraire le crocodile en faisant semblant d’apercevoir un membre de la tribu qu’il déteste tant, avant de courir vous emparer de la figurine.`,
+          "action": () => {
+            acquireItem("doll", updateFlag);
+            goToSection("crocodile-look-out");
+          },
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    },
   },
 }
 

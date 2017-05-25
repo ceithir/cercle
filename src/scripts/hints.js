@@ -19,5 +19,11 @@ export const getHint = (flags) => {
     `;
   }
 
+  if (flags.eatenByCrocodile) {
+    return `
+<p>Bien qu’il soit vieux et patient, le crocodile est avant tout gouverné par ses impulsions. Ses trois motivations principales – par ordre décroissant d’importance – sont la faim, la perfidie et la rancœur.</p>
+    `;
+  }
+
   return "";
 };
