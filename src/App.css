@@ -72,9 +72,10 @@
   stroke-opacity: 0;
 }
 
-#atoll-map .island.current .shape {
-  stroke: #ff6961;
-  stroke-opacity: 1;
+#atoll-map .island .here {
+  text-anchor: middle;
+  fill: red;
+  font-size: 20px;
 }
 
 .ending-message > p {

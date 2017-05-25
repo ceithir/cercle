@@ -42,36 +42,43 @@ const getIslands = function(flags) {
       "key": "island-2",
       "description": `Une île sans réel signe distinctif`,
       "path": "M95 415 C 20 430, 50 560, 145 555 S 140 395, 95 415",
+      "harbor": {"x": 165, "y": 485},
     },
     {
       "key": "island-3",
       "description": flags.toldAboutFaanaruaByVarenui? `L’île de Faanarua`: `Une autre île tout ce qu’il y a de plus banal`,
       "path": "M20 345 C 20 245, 125 245, 130 345 S 20 405, 20 345",
+      "harbor": {"x": 120, "y": 340},
     },
     {
       "key": "island-4",
       "description": `La petite île excentrée`,
       "path": "M50 205 C 50 150, 120 170, 125 205 S 50 260, 50 205",
+      "harbor": {"x": 115, "y": 220},
     },
     {
       "key": "island-5",
       "description": flags.toldAboutAtollByRaiahui? `L’île de la sorcière`: `L’étrange rocher`,
       "path": "M100 80 C 120 0, 210 0, 240 80 S 90 170, 100 80",
+      "harbor": {"x": 160, "y": 140},
     },
     {
       "key": "island-6",
       "description": (flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea)? `L’île du Vieux Fainéant`: `L’île aux arbres`,
       "path": "M355 50 C 405 -50, 650 60, 635 155 S 320 150, 355 50",
+      "harbor": {"x": 525, "y": 150},
     },
     {
       "key": "island-7",
       "description": `La petite île à côté de l’île de l’épreuve`,
       "path": "M595 260 C 605 240, 625 210, 650 250 S 580 290, 595 260",
+      "harbor": {"x": 605, "y": 265},
     },
     {
       "key": "island-8",
       "description": `L’île de l’épreuve`,
       "path": "M575 430 C 580 380, 645 365, 650 430 S 575 480, 575 430",
+      "harbor": {"x": 585, "y": 410},
     },
   ];
 }
@@ -144,7 +151,6 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
 
 const getIslandMap = (goToSection, flags, updateFlag) => {
   const alreadyVisitedText = ` (déjà visitée)`;
-  const currentIslandText = ` (vous y êtes)`;
 
   const currentIsland = flags.visitedIslands.length > 0 ? flags.visitedIslands[flags.visitedIslands.length-1]: "island-1";
 
@@ -153,6 +159,7 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
       "key": "island-1",
       "description": `Le village`,
       "path": "M185 550 C 300 560, 500 500, 530 485 S 630 490, 620 550 S 130 780, 155 570 C 180 535, 185 555, 185 550",
+      "harbor": {"x": 325, "y": 585},
     },
   ]).map((island) => {
     const disabled = flags.visitedIslands.includes(island.key);
@@ -170,7 +177,7 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
       {},
       island,
       {
-        "description": island.description + (current ? currentIslandText : (disabled ? alreadyVisitedText : "")),
+        "description": island.description + (disabled ? alreadyVisitedText : ""),
         "current": current,
         "disabled": disabled,
         "onClick": onClick,
@@ -201,6 +208,7 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
             <g key={island.key} className={className}>
               <path d={island.path} className="shape" onClick={island.onClick} />
               <text x="390" y="370" className="lead">{island.description}</text>
+              {island.current && <text x={island.harbor.x} y={island.harbor.y} className="here">{`⚓`}</text>}
             </g>
           );
         })}
