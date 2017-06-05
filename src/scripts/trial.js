@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {endGame, trueEnd, useItem, acquireItem} from "./helpers.js";
+import {endGame, trueEnd, useItem, acquireItem, repeatingFunnel} from "./helpers.js";
 
 const cleanInventoryBeforeRace = (flags, updateFlag) => {
   useItem("alcohol", updateFlag);
@@ -82,18 +82,16 @@ const preludeNext = (goToSection, flags, updateFlag) => {
   );
 }
 
-const trueStartAction = (goToSection, flags, updateFlag) => {
-  return () => {
-    cleanInventoryBeforeRace(flags, updateFlag);
-    goToSection("the-trial-begins");
-  };
-}
-
 const trueStartFunnel = (text, goToSection, flags, updateFlag) => {
-  const action = trueStartAction(goToSection, flags, updateFlag);
+  const action = () => {
+    cleanInventoryBeforeRace(flags, updateFlag);
+    return "the-trial-begins";
+  };
 
-  return (
-    <Funnel text={text} action={action} />
+  return repeatingFunnel(
+    goToSection,
+    text,
+    action
   );
 }
 
@@ -1118,11 +1116,10 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
 <p>Vous écrasez facilement tous les fruits rouges qui vous restent et en mélangez le jus avec le contenu de la calebasse. Le simple fait d’entamer un seul d’entre eux ayant suffi à vous mettre la gorge en feu, le breuvage que vous préparez ainsi devrait avoir quelques similarités avec la lave en fusion. Raiahui va très rapidement se rendre compte qu’il ne s’agit pas de vin de palme ordinaire, mais pas avant d’en avoir avalé une gorgée ou deux.</p>
     `,
     "next": (goToSection) => {
-      const text = `Il est à présent temps d’aller trouver votre concurrente.`;
-      const action = () => {goToSection("trial-raiahui")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Il est à présent temps d’aller trouver votre concurrente.`,
+        "trial-raiahui"
       );
     },
   },
