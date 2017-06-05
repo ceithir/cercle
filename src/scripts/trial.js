@@ -95,6 +95,15 @@ const trueStartFunnel = (text, goToSection, flags, updateFlag) => {
   );
 }
 
+const savePointAction = (goToSection, flags, updateFlag) => {
+  updateFlag("seenRaiahuiTrueForm", true);
+  if (!flags.drunk) {
+    const upToDateFlags = Object.assign({}, flags, {"seenRaiahuiTrueForm": true});
+    updateFlag("flagsBeforeActualTrial", Object.assign({}, upToDateFlags, {"flagsBeforeActualTrial": upToDateFlags}));
+  }
+  return goToSection("trial-underwater");
+}
+
 const raiahuiGoodEndText = `
 <p>La journée est à présent sur le point de toucher à son terme. La course est terminée depuis quelques instants déjà et sur l’île sablonneuse se déroule une cérémonie succincte, qu’aucune personne étrangère à la tribu n’est plus là pour observer.</p>
 
@@ -540,8 +549,7 @@ ${intro}
         {
           "text": `Vous plongez sous l’eau pour essayer de distinguer où se trouve Raiahui.`,
           "action": () => {
-            updateFlag("seenRaiahuiTrueForm", true);
-            goToSection("trial-underwater");
+            savePointAction(goToSection, flags, updateFlag);
           },
         },
       ];
@@ -595,8 +603,7 @@ ${intro}
     "next": (goToSection, flags, updateFlag) => {
       const text = `Quant votre regard accroche ce qui se trouve derrière vous.`;
       const action = () => {
-        updateFlag("seenRaiahuiTrueForm", true);
-        goToSection("trial-underwater");
+        savePointAction(goToSection, flags, updateFlag);
       };
 
       return (

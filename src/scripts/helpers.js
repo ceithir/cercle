@@ -41,25 +41,33 @@ const badEndMessage = function(flags) {
   );
 }
 
-const replayButton = function(reset) {
-  return {
-    "text": `Nouvelle partie`,
-    "action": reset,
-  };
-}
+const endButtons = function(flags, reset, quit) {
+  let choices = [];
 
-const titleScreenButton = function(quit) {
-  return {
-    "text": `Retourner à l’écran titre`,
-    "action": quit,
-  };
-}
+  if (!flags.survivedTheTrial && flags.flagsBeforeActualTrial) {
+    choices.push({
+      "text": `Retenter l'épreuve`,
+      "action": () => {reset("trial-underwater", flags.flagsBeforeActualTrial)},
+    });
+    choices.push({
+      "text": `Recommencer à zéro`,
+      "action": () => {reset()},
+    });
+  } else {
+    choices.push({
+      "text": flags.survivedTheTrial? `Nouvelle partie`: `Recommencer`,
+      "action": () => {reset()},
+    });
+    choices.push({
+      "text": `Retourner à l’écran titre`,
+      "action": () => {quit()},
+    });
+  }
 
-const endButtons = function(reset, quit) {
   return (
     <Row>
       <Col md={6} mdOffset={3} className="lead text-center">
-        <Crossroads choices={[replayButton(reset), titleScreenButton(quit)]} />
+        <Crossroads choices={choices} />
       </Col>
     </Row>
   );
@@ -71,7 +79,7 @@ export const endGame = function(goToSection, flags, updateFlag, reset, quit) {
       <hr/>
       {badEndMessage(flags)}
       <hr/>
-      {endButtons(reset, quit)}
+      {endButtons(flags, reset, quit)}
     </div>
   );
 }
@@ -105,7 +113,7 @@ export const trueEnd = function(goToSection, flags, updateFlag, reset, quit) {
       <hr/>
       {goodEndMessage(flags)}
       <hr/>
-      {endButtons(reset, quit)}
+      {endButtons(flags, reset, quit)}
     </div>
   );
 }

@@ -69,6 +69,7 @@ const flags = {
   "talkedToPerfectlyUselessDrunkGirl": false,
   "examinedTrialCalabashes": false,
   "playedTheFool": false,
+  "flagsBeforeActualTrial": undefined,
 };
 
 export default flags;

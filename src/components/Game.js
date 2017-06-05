@@ -76,9 +76,9 @@ class Game extends React.Component {
     this.props.saveProgress(currentSection, flags, logs);
   }
 
-  reset = () => {
-    const currentSection = this.props.startingSection;
-    const currentFlags = this.props.startingFlags;
+  reset = (section, flags) => {
+    const currentSection = section || this.props.startingSection;
+    const currentFlags = flags || this.props.startingFlags;
     const currentLogs = [];
 
     this.setState({
