@@ -1,7 +1,101 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {endGame, trueEnd, useItem} from "./helpers.js";
+import {endGame, trueEnd, useItem, acquireItem} from "./helpers.js";
+
+const cleanInventoryBeforeRace = (flags, updateFlag) => {
+  useItem("alcohol", updateFlag);
+  useItem("pearls", updateFlag);
+  useItem("fruit", updateFlag);
+  useItem("fieryCalabash", updateFlag);
+}
+
+const preludeChoices = (goToSection, flags, updateFlag) => {
+  let choices = [];
+
+  const fruit = flags.inventory.fruit;
+  if (fruit.acquired && !fruit.used && !flags.tastedFruit) {
+    choices.push({
+      "text": `Vous goûtez à l’un des fruits rouges que vous avez cueillis sur l’île du crocodile.`,
+      "action": () => {
+        updateFlag("tastedFruit", true);
+        goToSection("trial-eat-fruit");
+      },
+      "conditional": true,
+    });
+  }
+
+  if (flags.tastedFruit && flags.examinedTrialCalabashes && !flags.inventory.fieryCalabash.acquired) {
+    choices.push({
+      "text": `Vous mélangez le jus des fruits rouges au contenu d’une calebasse.`,
+      "action": () => {
+        useItem("fruit", updateFlag);
+        acquireItem("fieryCalabash", updateFlag);
+        goToSection("trial-brew-fire");
+      },
+      "conditional": true,
+    });
+  }
+
+  choices.push({
+    "text": `Vous entamez la course dès maintenant, sans attendre.`,
+    "action": () => {
+      cleanInventoryBeforeRace(flags, updateFlag);
+      updateFlag("eatenByRaiahui", true);
+      goToSection("trial-surprise");
+    },
+  });
+
+  if (!flags.talkedToPerfectlyUselessDrunkGirl) {
+    choices.push({
+      "text": `Vous interrogez quelqu’un pour obtenir des explications.`,
+      "action": () => {
+        updateFlag("talkedToPerfectlyUselessDrunkGirl", true);
+        goToSection("trial-explanations");
+      } ,
+    });
+  }
+
+  if (!flags.examinedTrialCalabashes) {
+    choices.push({
+      "text": `Vous allez examiner l’une des nombreuses calebasses éparpillées ici et là.`,
+      "action": () => {
+        updateFlag("examinedTrialCalabashes", true);
+        goToSection("trial-calabashes");
+      },
+    });
+  }
+
+  choices.push({
+    "text": `Vous allez voir Raiahui.`,
+    "action": () => {
+      goToSection("trial-raiahui");
+    } ,
+  });
+
+  return choices;
+}
+
+const preludeNext = (goToSection, flags, updateFlag) => {
+  return (
+    <Crossroads choices={preludeChoices(goToSection, flags, updateFlag)} />
+  );
+}
+
+const trueStartAction = (goToSection, flags, updateFlag) => {
+  return () => {
+    cleanInventoryBeforeRace(flags, updateFlag);
+    goToSection("the-trial-begins");
+  };
+}
+
+const trueStartFunnel = (text, goToSection, flags, updateFlag) => {
+  const action = trueStartAction(goToSection, flags, updateFlag);
+
+  return (
+    <Funnel text={text} action={action} />
+  );
+}
 
 const raiahuiGoodEndText = `
 <p>La journée est à présent sur le point de toucher à son terme. La course est terminée depuis quelques instants déjà et sur l’île sablonneuse se déroule une cérémonie succincte, qu’aucune personne étrangère à la tribu n’est plus là pour observer.</p>
@@ -59,21 +153,12 @@ const facingRaiahuiUnderwater = (goToSection, flags, updateFlag) => {
   );
 };
 
-const cleanInventoryBeforeRace = (flags, updateFlag) => {
-  useItem("alcohol", updateFlag);
-  useItem("pearls", updateFlag);
-  useItem("fruit", updateFlag);
-  if (flags.droppedDoll) {
-    useItem("doll", updateFlag);
-  }
-}
-
 const trial = {
   "trial": {
     "text": `
 <p>À la suite du jeune garçon, vous arrivez sur la plage bordant l’extrémité de l’île, où toute la tribu est en train de s’assembler. Vous apercevez Raiahui en compagnie des adolescents de son âge, formant un groupe un peu à part du reste de la foule ; un large sourire se dessine sur son visage lorsque ses yeux se posent sur vous.</p>
 
-<p>La clarté du jour, qui ne touche pas encore à sa fin, vous permet de distinguer clairement les récifs de corail recouvrant le fond de la passe que vous avez traversé la veille pour pénétrer dans le lagon. De l’autre côté se trouve l’île sablonneuse qui servira de point d’arrivée à votre course.</p>
+<p>Le jour est en train de décliner, mais sa clarté reste suffisante pour donner à l’eau une grande transparence. Le fond de la passe — celle-là même que vous avez traversée hier pour pénétrer dans le lagon — est en partie recouvert de coraux que vous distinguez avec netteté. De l’autre côté se trouve l’île sablonneuse qui servira de point d’arrivée à votre course.</p>
 
 <p>Les murmures qui parcouraient la foule s’éteignent lorsqu’Ataroa fait signe à Raiahui et à vous-même de vous tenir devant lui.</p>
 
@@ -81,10 +166,10 @@ const trial = {
 <p>— Vous connaissez toutes les deux les détails dont vous avez besoin, déclare-t-il sans que son visage rude ne manifeste aucune expression. Aucun membre de la tribu ne viendra interférer. La course commence dès maintenant.</p>
 </div>
 
-<p>Il ponctue cette déclaration laconique d’un hochement de tête, puis, sans rien ajouter, il quitte la plage pour retourner vers le village. Sous votre regard interloqué, l’essentiel de la tribu lui emboîte le pas. Il ne reste bientôt plus que vous-même, Raiahui et les autres adolescents.</p>
+<p>Il ponctue cette déclaration laconique d’un hochement de tête, puis, sans rien ajouter, il quitte la plage pour retourner vers le village. Sous votre regard interloqué, l’essentiel de la tribu lui emboîte le pas.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous vous tenez prête à partir, tous vos muscles frémissant.`;
+      const text = `Il ne reste bientôt plus que vous-même, Raiahui et les autres adolescents.`;
       const action = () => {goToSection("trial-preparation");};
 
       return (
@@ -94,21 +179,38 @@ const trial = {
   },
   "trial-preparation": {
     "text": (flags) => {
-      let items = ``;
+      let equipment = ``;
 
       const amulet = flags.inventory.dolphin;
       if (amulet.acquired && !amulet.used) {
-        items += `<p class="text-info">Vous ajustez l’amulette autour de votre cou. Vous ne ressentez rien de spécial, et ignorez si elle vous sera d’une quelconque utilité. En tout cas, votre nouvel ornement ne semble intéresser personne.</p>`
+        equipment += `<p class="text-info">Vous portez l’amulette en forme de dauphin autour de votre cou. Il est impossible de ne pas la voir, mais ni Raiahui ni sa cour ne semblent y accorder la moindre espèce d’attention.</p>`;
+      }
+
+      let items = ``;
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        items += `<p class="text-info">Vous avez en revanche enroulé le filet de la sorcière autour de votre taille, soupçonnant qu’il pourrait vous être très utile.</p>`;
+      }
+
+      const doll = flags.inventory.doll;
+      if (doll.acquired && !doll.used) {
+        items += `<p class="text-info">Vous avez en revanche attaché la figurine de bois à une lanière passée autour de votre taille, vous fiant à l’intuition qui vous souffle qu’elle pourrait vous être très utile.</p>`;
       }
 
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
-        items += `<p class="text-info">Vous avez rangé les perles qui vous restent dans un petit sac de toile accroché à votre taille ; vous pourrez certainement leur trouver un usage pendant votre course.</p>`
-      }
-
-      const net = flags.inventory.net;
-      if (net.acquired && !net.used) {
-        items += `<p class="text-info">Si l’épreuve devait dégénérer d’une quelconque façon, avoir un filet magique sous la main pourrait se révéler salvateur. Aussi l’enroulez-vous autour de votre taille.</p>`
+        if (doll.acquired && !doll.used) {
+          items += `<p class="text-info">Vous avez également glissé à ses côtés un petit sac de toile abritant les perles de la sorcière.`;
+        } else {
+          if (net.acquired && !net.used) {
+            items += `<p class="text-info">Vous emportez également ses perles`;
+          } else {
+            items += `<p class="text-info">Vous emportez avec vous les perles de la sorcière`;
+          }
+          items += `, dans un petit sac de toile accroché à votre taille à l’aide d’une lanière.`;
+        }
+        items += `</p>`;
       }
 
       return `
@@ -118,123 +220,41 @@ const trial = {
 
 <p>Déstabilisée par l’étrangeté de la situation, vous vous raccrochez à des questions plus concrètes, vérifiant que vous êtes dans de bonnes conditions pour nager.</p>
 
-<p>Vous commencez par vous débarasser de votre pagne, qui vous ralentirait terriblement.</p>
+${equipment}
+
+<p>Vous commencez par vous débarasser de votre pagne, qui vous ralentirait inutilement.</p>
 
 ${items}
 
 <p>Vous faites ensuite jouer vos articulations en un échauffement sommaire, plus pour rappeler à Raiahui que vous prenez cette épreuve au sérieux que par réel besoin physique.</p>
       `;
     },
-    "next": (goToSection, flags, updateFlag) => {
-      const fruit = flags.inventory.fruit;
-      if (fruit.acquired && !fruit.used) {
-        const context = `Vous avez encore en votre possession le fruit conseillé par le crocodile.`;
-        const choices = [
-          {
-            "text": `Vous mordez dedans.`,
-            "action": () => {
-              useItem("fruit", updateFlag);
-              if (flags.drunk) {
-                updateFlag("drunk", false);
-                updateFlag("refreshedByFruit", true);
-              } else {
-                updateFlag("boostedByFruit", true);
-              }
-              goToSection("trial-eat-fruit");
-            },
-          },
-          {
-            "text": `Trop risqué. Et puis vous n’avez pas besoin de ça pour gagner.`,
-            "action": () => {
-              goToSection("trial-still-not-started");
-            },
-          },
-        ];
-
-        return (
-          <Crossroads context={context} choices={choices} />
-        );
-      }
-
-      const doll = flags.inventory.doll;
-      if (doll.acquired && !doll.used) {
-        const context = `Vous avez encore en votre possession le figurine sculptée par le crocodile. Dont vous ignorez tout.`;
-        const choices = [
-          {
-            "text": `Vous l’accrochez à votre taille, au cas où.`,
-            "action": () => {
-              goToSection("trial-still-not-started");
-            },
-          },
-          {
-            "text": `Vous la laissez sur le rivage avec vos autres affaires dispensables.`,
-            "action": () => {
-              updateFlag("droppedDoll", true);
-              goToSection("trial-still-not-started");
-            },
-          },
-        ];
-
-        return (
-          <Crossroads context={context} choices={choices} />
-        );
-      }
-
-      const text = `Vous êtes aussi prête que vous pouvez l’être.`;
-      const action = () => {goToSection("trial-still-not-started")};
-
-      return (
-        <Funnel text={text} action={action} />
-      );
-    },
+    "next": preludeNext,
   },
   "trial-eat-fruit": {
     "text": `
-<p>Vous ingérez le petit fruit d’une bouchée et faites la grimace aussitôt que son jus acide vient vous brûler la gorge. L’espace d’un moment, vous n’éprouvez rien d’autre. Puis votre coeur se met à cogner violemment dans votre poitrine, des frémissements convulsifs parcourent votre peau et une sueur glacée naît sur votre front. Terrifiée, il vous vient la pensée que vous venez de vous empoisonner, trompée par le dernier mensonge du crocodile.</p>
-
-<p>Puis le malaise se dissipe. Quelques tremblements vous agitent encore, mais ils ne sont plus dûs qu’à un reste de peur. Vous ne vous sentez pas plus mal qu’auparavant.</p>
-    `,
-    "next": (goToSection, flags) => {
-      const action = () => {goToSection("trial-still-not-started")};
-
-      if (flags.refreshedByFruit) {
-        const text = `En fait, votre migraine avinée s’en est même allée !`;
-        return (
-          <Funnel text={text} action={action} conditional={true} />
-        );
-      }
-
-      const text = `Mais pas en meilleure forme non plus.`;
-
-      return (
-        <Funnel text={text} action={action} />
-      );
-    }
-  },
-  "trial-still-not-started": {
-    "text": `
-<p>Que vous soyez fin prête ne semble pas intéresser Raiahui le moins du monde.</p>
+<p>Espérant qu’il vous aidera dans votre course, comme vous l’a assuré le crocodile, vous goûtez au plus petit des fruits rouges… mais vos dents ont à peine entamé sa chair juteuse qu’une atroce sensation de brûlure enflamme toute votre gorge.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous entamez la course dès maintenant, sans l’attendre.`,
+          "text": `Vous recrachez le fruit aussitôt.`,
           "action": () => {
-            cleanInventoryBeforeRace(flags, updateFlag);
-            updateFlag("eatenByRaiahui", true);
-            goToSection("trial-surprise");
+            updateFlag("boostedByFruit", true);
+            goToSection("trial-spit-fruit");
           },
         },
         {
-          "text": `Vous interrogez quelqu’un pour obtenir des explications.`,
+          "text": `Vous avalez le fruit malgré tout.`,
           "action": () => {
-            goToSection("trial-explanations");
-          } ,
-        },
-        {
-          "text": `Vous allez voir Raiahui.`,
-          "action": () => {
-            goToSection("trial-raiahui");
+            if (flags.drunk) {
+              updateFlag("refreshedByFruit", true);
+              updateFlag("drunk", false);
+              return goToSection("trial-swallow-fruit-drunk");
+            }
+
+            updateFlag("drunk", true);
+            goToSection("trial-swallow-fruit");
           } ,
         },
       ];
@@ -244,13 +264,47 @@ ${items}
       );
     }
   },
+  "trial-spit-fruit": {
+    "text": `
+<p>Vous recrachez sans tarder le fruit sur le sable de la plage. La sensation de brûlure persiste et semble même se répandre dans le reste de votre corps, faisant naître de minuscules gouttes de sueur à la surface de votre peau.</p>
+
+<p>Vous prenez des inspirations profondes et, après quelques instants, le phénomène se résorbe heureusement jusqu’à ne laisser qu’une vague impression de chaleur au creux de votre ventre.</p>
+
+<p>Pas question de goûter à un autre de ces fruits !</p>
+    `,
+    "next": preludeNext,
+  },
+  "trial-swallow-fruit-drunk": {
+    "text": `
+<p>Avec une grimace, vous vous forcez à avaler le fruit rouge. L’espace d’un instant, vous n’éprouvez rien de plus que la sensation de brûlure qui subsiste dans votre gorge. Puis vos entrailles se tordent, des frémissements convulsifs parcourent votre peau et une sueur glacée naît sur votre front. Terrifiée, il vous vient la pensée que vous venez de vous empoisonner, trompée par le dernier mensonge du crocodile.</p>
+
+<p>Tout aussi soudainement qu’il était apparu, le malaise se dissipe. Quelques tremblements vous agitent encore, mais ils ne sont plus dûs qu’à un reste de peur. Vous ne vous sentez pas plus mal qu’auparavant. Au contraire, vous réalisez que la migraine nauséeuse qui vous tourmentait depuis que vous avez eu l’imprudence de boire la calebasse d’alcool fort s’est dissipée !</p>
+
+<p>Vous jugez néanmoins imprudent de consommer davantage qu’un seul de ces fruits.</p>
+    `,
+    "next": preludeNext,
+  },
+  "trial-swallow-fruit": {
+    "text": `
+<p>Avec une grimace, vous vous forcez à avaler le fruit rouge. L’espace d’un instant, vous n’éprouvez rien de plus que la sensation de brûlure qui subsiste dans votre gorge. Puis vos entrailles se tordent, des frémissements convulsifs parcourent votre peau et une sueur glacée naît sur votre front. Terrifiée, il vous vient la pensée que vous venez de vous empoisonner, trompée par le dernier mensonge du crocodile.</p>
+
+<p>Après quelques instants de panique, le malaise se résorbe heureusement peu à peu. Mais c’est de façon incomplète : un vertige insistant rend instable le sol sous vos pas et des accès de nausée vous donnent périodiquement l’impression que vous êtes sur le point de vomir.</p>
+
+<p>Il n’y a rien à faire, sinon maudire la perfidie irrationnelle du reptile géant. Vous allez devoir faire preuve de volonté et de ressource pour arracher la victoire dans cette course en dépit de votre état.</p>
+
+<p>Il est bien entendu hors de question de goûter à un autre de ces maudits fruits !</p>
+    `,
+    "next": preludeNext,
+  },
   "trial-surprise": {
     "text": `
 <p>Vous ne saisissez pas clairement les raisons du comportement de Raiahui, mais la chose la plus sensée à faire vous semble être de saisir l’occasion. Vous assurant que personne ne vous prête attention, vous vous approchez de la rive et vous immergez aussi silencieusement que possible dans les eaux tièdes de la passe. Quelques brasses vigoureuses sous la surface vous propulsent en direction de l’île sablonneuse. Lorsque vous refaites surface, un rapide regard en arrière vous apprend que Raiahui se tient toujours sur la plage, entourée des autres adolescents. Elle ne semble pas avoir remarqué votre départ.</p>
 
 <p>Vous avez déjà accompli le quart du trajet lorsque des exclamations excitées vous parviennent aux oreilles depuis la plage. Votre concurrente vient sans doute enfin d’entamer la course à son tour. Vous vous contentez d’accélérer légèrement le rythme de vos mouvements. Quand bien même Raiahui serait vraiment meilleure nageuse que vous-même, il vous suffit de ne pas épuiser vos forces trop vite pour que votre avance vous garantisse virtuellement la victoire.</p>
 
-<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez plus tôt que vous n’en aviez l’intention la cadence de votre nage, mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien. Vous avez accompli la moitié du trajet, mais il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
+<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez la cadence de votre nage plus tôt que vous n’en aviez l’intention, alors que vous n’avez pas tout à fait accompli la moitié du trajet. Mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien.</p>
+
+<p>Il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
 
 <hr/>` + raiahuiGoodEndText,
     "next": endGame,
@@ -271,28 +325,7 @@ ${items}
 
 <p>Vous n’en tirez rien d’autre.</p>
     `,
-    "next": (goToSection, flags, updateFlag) => {
-      const choices = [
-        {
-          "text": `Vous suivez son conseil et partez sans plus tergiverser.`,
-          "action": () => {
-            cleanInventoryBeforeRace(flags, updateFlag);
-            updateFlag("eatenByRaiahui", true);
-            goToSection("trial-surprise");
-          },
-        },
-        {
-          "text": `Vous allez voir Raiahui.`,
-          "action": () => {
-            goToSection("trial-raiahui");
-          } ,
-        },
-      ];
-
-      return (
-        <Crossroads choices={choices} />
-      );
-    },
+    "next": preludeNext,
   },
   "trial-raiahui": {
     "text": `
@@ -323,6 +356,12 @@ ${items}
           },
         },
         {
+          "text": `Vous restez quelques instants en sa compagnie.`,
+          "action": () => {
+            goToSection("trial-raiahui-slow");
+          },
+        },
+        {
           "text": `Vous essayez de dérober le couteau en ivoire que vous voyez accroché à son pagne.`,
           "action": () => {
             goToSection("trial-knife");
@@ -342,6 +381,18 @@ ${items}
         });
       }
 
+      const calabash = flags.inventory.fieryCalabash;
+      if (calabash.acquired && !calabash.used) {
+        choices.push({
+          "text": `Vous lui offrez la calebasse à laquelle vous avez mélangé le jus des fruits rouges.`,
+          "action": () => {
+            useItem("fieryCalabash", updateFlag);
+            goToSection("raiahui-poisoned");
+          },
+          "conditional": true,
+        });
+      }
+
       return (
         <Crossroads choices={choices} />
       );
@@ -353,7 +404,9 @@ ${items}
 
 <p>Vous avez déjà accompli le quart du trajet lorsque des exclamations excitées vous parviennent aux oreilles depuis la plage. Votre concurrente vient sans doute enfin de se lancer à votre poursuite. Vous vous contentez d’accélérer légèrement le rythme de vos mouvements. Quand bien même Raiahui serait vraiment meilleure nageuse que vous-même, il vous suffit de ne pas épuiser vos forces trop vite pour que votre avance vous garantisse virtuellement la victoire.</p>
 
-<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez plus tôt que vous n’en aviez l’intention la cadence de votre nage, mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien. Vous avez accompli la moitié du trajet, mais il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
+<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez la cadence de votre nage plus tôt que vous n’en aviez l’intention, alors que vous n’avez pas tout à fait accompli la moitié du trajet. Mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien.</p>
+
+<p>Il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
 
 <hr/>
     ` + raiahuiGoodEndText,
@@ -377,7 +430,9 @@ ${items}
 
 <p>Votre tête émerge finalement à la surface et vous êtes alors presque assourdie par la cacophonie de cris des adolescents restés sur la plage. Raiahui est toujours sous l’eau, mais vous ne perdez pas un instant à essayer de déterminer sa position exacte. A présent que la course a commencé, l’habitude vous fait faire abstraction de tout ce qui est extérieur à vos mouvements de nage.</p>
 
-<p>Mais cet état de concentration ne dure que jusqu’à votre inspiration suivante. Quelque chose ne va pas. Raiahui n’a toujours pas reparu, les cris provenant de la plage sont en train d’atteindre un sommet d’excitation stridente et, sans savoir pourquoi, vous sentez grandir en vous le pressentiment glaçant d’avoir commis une terrible erreur.</p>
+<p>Mais cet état de concentration ne dure que jusqu’à votre inspiration suivante. Quelque chose ne va pas. Raiahui n’a toujours pas reparu, les cris provenant de la plage sont en train d’atteindre un sommet d’excitation stridente.</p>
+
+<p>Sans savoir pourquoi, vous sentez grandir en vous le pressentiment glaçant d’avoir commis une terrible erreur.</p>
 
 <hr/>
     ` + raiahuiGoodEndText,
@@ -396,7 +451,7 @@ ${items}
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Et vous, vous jetez son couteau dans le lagon.`,
+          "text": `Vous jetez le couteau dans le lagon.`,
           "action": () => {
             cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
@@ -404,7 +459,7 @@ ${items}
           },
         },
         {
-          "text": `Et vous, vous jetez son couteau dans les arbres qui bordent la plage.`,
+          "text": `Vous jetez le couteau parmi les arbres qui bordent la plage.`,
           "action": () => {
             goToSection("knife-land");
           },
@@ -422,9 +477,11 @@ ${items}
 
 <p>Quelques brasses vigoureuses sous la surface vous propulsent en direction de l’île sablonneuse. Lorsque vous remontez à l’air libre, Raiahui n’est plus en vue, mais presque tous les spectateurs restés sur la plage se tiennent désormais du côté du lagon, sans doute pour voir si votre concurrente parvient à récupérer son précieux couteau. Vous adoptez un rythme de nage modéré, de manière à économiser pour l’instant vos forces.</p>
 
-<p>Vous avez déjà parcouru presque le quart du trajet lorsque le bruit d’exclamation vous parvient aux tympans. Un bref regard en arrière vous apprend que les adolescents présents sur la plage sont en train d’agiter les bras en poussant des cris d’encouragement. Raiahui a dû enfin se lancer à votre poursuite, soit que la chance lui ait permis de retrouver rapidement son couteau parmi les coraux du lagon, soit qu’elle ait décidé de s’en occuper plus tard. Cela n’a pas une grande importance : quand bien même elle serait vraiment meilleure nageuse que vous, l’avance que vous avez acquise vous garantit virtuellement la victoire.</p>
+<p>Vous avez déjà parcouru presque le quart du trajet lorsque le bruit d’exclamation vous parvient aux tympans. Un bref regard en arrière vous apprend que les adolescents présents sur la plage sont en train d’agiter les bras en poussant des cris d’encouragement. Raiahui a dû enfin se lancer à votre poursuite, soit que la chance lui ait permis de retrouver rapidement son couteau au fond du lagon, soit qu’elle ait décidé de s’en occuper plus tard. Cela n’a pas une grande importance : quand bien même elle serait vraiment meilleure nageuse que vous, l’avance que vous avez acquise vous garantit virtuellement la victoire.</p>
 
-<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs derrière vous, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez plus tôt que vous n’en aviez l’intention la cadence de votre nage, mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien. Vous avez accompli la moitié du trajet, mais il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
+<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez la cadence de votre nage plus tôt que vous n’en aviez l’intention, alors que vous n’avez pas tout à fait accompli la moitié du trajet. Mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien.</p>
+
+<p>Il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
 
 <hr/>
     ` + raiahuiGoodEndText,
@@ -432,18 +489,12 @@ ${items}
   },
   "knife-land": {
     "text": `
-<p>Le couteau d’ivoire décrit une ample courbe et disparaît silencieusement parmi les palmiers. Avec une exclamation furieuse, Raiahui se détourne aussitôt de vous et se précipite dans cette direction. Vous n’allez pas laisser passer cette occasion ! Sous le regard absolument stupéfait des adolescents qui vous entourent, vous franchissez en trois enjambées la distance qui vous sépare de la rive.</p>
+<p>Le couteau d’ivoire décrit une ample courbe et disparaît silencieusement parmi les palmiers. Avec une exclamation furieuse, Raiahui se détourne aussitôt de vous et se précipite dans cette direction. Vous n’allez pas laisser passer cette occasion !</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Et vous plongez.`;
-      const action = () => {
-        cleanInventoryBeforeRace(flags, updateFlag);
-        goToSection("the-trial-begins");
-      };
+      const text = `Sous le regard absolument stupéfait des adolescents qui vous entourent, vous franchissez en trois enjambées la distance qui vous sépare de la rive.`;
 
-      return (
-        <Funnel text={text} action={action} />
-      );
+      return trueStartFunnel(text, goToSection, flags, updateFlag);
     },
   },
   "raiahui-drunk": {
@@ -453,31 +504,33 @@ ${items}
 </div>
 
 <p>Votre défi fait courir des exclamations amusées parmi la jeune assistance. Raiahui accepte votre présent avec un sourire de confiance totale. Même si elle réalise que cette boisson est autrement plus forte que du simple vin de palme, vous soupçonnez qu’elle videra tout de même l’essentiel de la calebasse, ne serait-ce que pour ne pas perdre la face.</p>
-
-<p>Laissant votre concurrente s’enivrer plus qu’elle ne devrait, vous traversez la plage d’un pas rapide en direction de la rive.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Et vous plongez.`;
-      const action = () => {
-        cleanInventoryBeforeRace(flags, updateFlag);
-        goToSection("the-trial-begins");
-      };
+      const text = `Laissant votre concurrente s’enivrer plus qu’elle ne devrait, vous traversez la plage d’un pas rapide en direction de la rive.`;
 
-      return (
-        <Funnel text={text} action={action} />
-      );
+      return trueStartFunnel(text, goToSection, flags, updateFlag);
     },
   },
   "the-trial-begins": {
-    "text": `
+    "text": (flags) => {
+      let intro = `
 <p>Les eaux tièdes et transparentes de la passe se referment sur vous. Vous glissez un instant, portée par l’élan de votre plongeon, puis vous commencez à nager sans remonter tout de suite à la surface. Vous adoptez un rythme énergique, mais pas précipité, de manière à conserver une partie de vos forces.</p>
+      `;
+
+      if (flags.playedTheFool) {
+        intro = ``;
+      }
+
+      return `
+${intro}
 
 <p>Votre tête émerge finalement à l’air libre. Vous adoptez un style de natation un peu plus rapide, mais sans forcer encore l’allure. Plongée dans l’exécution de vos mouvements souples et réguliers, vous oubliez presque la compétition un instant pour ne plus éprouver que le plaisir sans mélange que vous apporte toujours le simple fait de nager.</p>
 
 <p>Vous avez franchi près de la moitié de la distance vous séparant de votre destination lorsqu’un concert d’exclamations vous parvient aux oreilles. Jetant un coup d’œil en arrière sans perdre votre allure, vous voyez que tous les adolescents se sont assemblés près de la rive. Leurs gesticulations vous laissent deviner que Raiahui vient enfin de plonger à son tour.</p>
 
 <p>Vous n’augmentez pas immédiatement la cadence de vos mouvements. Vous avez après tout une avance considérable. Vous prenez la précaution de jeter par la suite des coups d’œil périodiques en arrière, mais, curieusement, ils ne vous apprennent rien : vous ne voyez à aucun moment la tête de Raiahui émerger au-dessus des vagues et sa position vous reste absolument inconnue.</p>
-    `,
+      `;
+    },
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
@@ -1048,6 +1101,261 @@ ${items}
     `,
     "next": raceEnd,
   },
+  "trial-calabashes": {
+    "text": (flags) => {
+      return `
+<p>Plusieurs des calebasses qui jonchent la plage sont déjà vides, mais vous n’avez pas trop de difficulté à en trouver une de pleine. Vous en reniflez le contenu, ce qui vous permet de confirmer qu’il s’agit bel et bien de vin de palme. Ce n’est normalement pas un alcool bien fort et en boire une gorgée ou deux n’aurait guère d’effet sur vous, mais il vous semble inutile de prendre ce risque juste avant une course.</p>
+
+<p>Raiahui ne partage clairement pas cette prudence, car vous la voyez boire sans aucune retenue au milieu des autres adolescents !</p>
+
+${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et réfléchissez à ce qu’il convient de faire à présent.</p>`}
+      `;
+    },
+    "next": preludeNext,
+  },
+  "trial-brew-fire": {
+    "text": `
+<p>Vous écrasez facilement tous les fruits rouges qui vous restent et en mélangez le jus avec le contenu de la calebasse. Le simple fait d’entamer un seul d’entre eux ayant suffi à vous mettre la gorge en feu, le breuvage que vous préparez ainsi devrait avoir quelques similarités avec la lave en fusion. Raiahui va très rapidement se rendre compte qu’il ne s’agit pas de vin de palme ordinaire, mais pas avant d’en avoir avalé une gorgée ou deux.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Il est à présent temps d’aller trouver votre concurrente.`;
+      const action = () => {goToSection("trial-raiahui")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
+  },
+  "raiahui-poisoned": {
+    "text": `
+<div class="conversation">
+<p>— Ce n’est pas moi qui vais t’empêcher de te saoûler, dites-vous en lui tendant votre calebasse. Tiens, vide aussi celle-ci, si tu t’imagines vraiment que tu pourras me battre à la course ensuite !</p>
+</div>
+
+<p>Votre défi fait courir des exclamations amusées parmi la jeune assistance. Raiahui accepte votre présent avec un sourire de confiance totale. L’idée que vous lui tendiez un piège ne lui effleure visiblement pas l’esprit.</p>
+
+<p>Ne tenant pas à vous attarder, vous descendez ensuite la plage d’un pas rapide. Juste au moment où vous atteignez la rive, un sursaut de brouhaha vous fait vous retourner : au milieu des autres adolescents, étonnés et quelquefois moqueurs, Raiahui est courbée en deux, la main pressée contre sa bouche comme si elle allait vomir.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `Désormais assurée de disposer d’une avance confortable, vous plongez.`;
+
+      return trueStartFunnel(text, goToSection, flags, updateFlag);
+    }
+  },
+  "trial-raiahui-slow": {
+    "text": `
+<div class="conversation">
+<p>— Si tu n’es pas pressée, je ne le suis pas non plus, déclarez-vous en ramassant l’une des calebasses de vin de palme éparpillées sur le sol.</p>
+</div>
+
+<p>Raiahui affecte d’accueillir cette décision avec désinvolture, mais vous sentez que votre présence a subtilement modifiée l’atmosphère qui règne parmi les adolescents. Les paroles deviennent plus brèves et plus espacées, les plaisanteries s’échangent à demi-mot, les rires restent tout aussi fréquents mais se font moins sonores, des coups d’œil incessants tissent une toile de communication muette dont vous êtes le centre.</p>
+
+<p>Quelques instants s’écoulent. Vous portez périodiquement la calebasse à vos lèvres et faites mine de boire. En réalité, c’est à peine si vous laissez à chaque fois une minuscule quantité de vin de palme traverser votre bouche. L’excitation sous-jacente qui vous entoure est telle que personne ne remarque ce subterfuge.</p>
+
+<p>Raiahui laisse tomber sa calebasse vide sur le sable, vous adresse un regard inquisiteur, puis se cherche ostensiblement autre chose à boire. Il est désormais très clair qu’elle ne souhaite pas entamer la course en même temps que vous. Vous allez devoir prendre l’initiative.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [
+        {
+          "text": `Vous entamez la course sans attendre davantage.`,
+          "action": () => {
+            cleanInventoryBeforeRace(flags, updateFlag);
+            updateFlag("eatenByRaiahui", true);
+            goToSection("trial-copypaste-1");
+          },
+        },
+        {
+          "text": `Vous provoquez Raiahui pour qu’elle parte en même temps que vous.`,
+          "action": () => {
+            cleanInventoryBeforeRace(flags, updateFlag);
+            updateFlag("eatenByRaiahui", true);
+            goToSection("trial-copypaste-2");
+          },
+        },
+        {
+          "text": `Vous prétextez un besoin naturel pour vous éclipser parmi les arbres, puis entamer la course sans qu’elle puisse vous voir.`,
+          "action": () => {
+            updateFlag("playedTheFool", true);
+            goToSection("trial-bathroom-break");
+          },
+        },
+        {
+          "text": `Vous essayez de dérober le couteau en ivoire accroché à son pagne.`,
+          "action": () => {
+            goToSection("trial-copypaste-3");
+          },
+        },
+      ];
+
+      const alcohol = flags.inventory.alcohol;
+      if (alcohol.acquired && !alcohol.used) {
+        choices.push({
+          "text": `Vous lui offrez votre propre calebasse d’alcool fort.`,
+          "action": () => {
+            useItem("alcohol", updateFlag);
+            goToSection("trial-copypaste-4");
+          },
+          "conditional": true,
+        });
+      }
+
+      const calabash = flags.inventory.fieryCalabash;
+      if (calabash.acquired && !calabash.used) {
+        choices.push({
+          "text": `Vous lui offrez la calebasse à laquelle vous avez mélangé le jus des fruits rouges.`,
+          "action": () => {
+            useItem("fieryCalabash", updateFlag);
+            goToSection("trial-copypaste-5");
+          },
+          "conditional": true,
+        });
+      }
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "trial-copypaste-1": {
+    "text": `
+<p>Vous saisissez mal les raisons du comportement de Raiahui, mais à quoi bon refuser l’avance qu’elle s’obstine à vouloir vous accorder ? Vous quittez le groupe sans un mot et vous dirigez à grands pas vers la rive, ignorant les gloussements qui vous poursuivent. Vous jetez de côté votre calebasse encore presque pleine et plongez sans plus attendre dans les eaux tièdes de la passe. Quelques brasses vigoureuses sous la surface vous propulsent en direction de l’île sablonneuse. Lorsque vous refaites surface, un rapide regard en arrière vous apprend que Raiahui se tient toujours sur la plage, entourée des autres adolescents. Elle ne semble même pas regarder dans votre direction.</p>
+
+<p>Vous avez déjà accompli le quart du trajet lorsque des exclamations excitées vous parviennent aux oreilles depuis la plage. Votre concurrente vient sans doute enfin de se lancer à votre poursuite. Vous vous contentez d’accélérer légèrement le rythme de vos mouvements. Quand bien même Raiahui serait vraiment meilleure nageuse que vous-même, il vous suffit de ne pas épuiser vos forces trop vite pour que votre avance vous garantisse virtuellement la victoire.</p>
+
+<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’oeil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez la cadence de votre nage plus tôt que vous n’en aviez l’intention, alors que vous n’avez pas tout à fait accompli la moitié du trajet.</p>
+
+<p>Mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien.</p>
+
+<p>Il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
+
+<hr/>
+    ` + raiahuiGoodEndText,
+    "next": endGame,
+  },
+  "trial-copypaste-2": {
+    "text": `
+<div class="conversation">
+<p>— Nous avons assez bu, il est temps de commencer la course.</p>
+<p>— J’ai encore un peu soif, fait Raiahui en souriant. Vas-y, je te rattraperai.</p>
+<p>— Je ne suis pas là pour jouer ! Si tu ne débutes pas cette course tout de suite, en même temps que moi, je renonce à participer à ton rite de passage et tu pourras attendre la venue du prochain étranger !</p>
+</div>
+
+<p>Une expression à la fois alarmée et vexée passe sur le visage de Raiahui. Elle regarde les adolescents qui l’entourent comme si elle en espérait un conseil, puis hausse finalement les épaules.</p>
+
+<div class="conversation">
+<p>— Comme tu veux, mais c’est tant pis pour toi.</p>
+</div>
+
+<p>Vous descendez ensemble vers la rive, suivies de toute la jeune assistance, que la scène semble beaucoup amuser. Des plaisanteries s’échangent autour de vous, mais vous n’y prêtez guère attention. Votre adversaire affiche quant à elle une désinvolture ostensible et vous la voyez même prendre quelques gorgées d’alcool supplémentaires au goulot d’une calebasse.</p>
+
+<p>Les eaux tièdes de la passe se referment en même temps sur vous deux, mais quelques brasses vigoureuses vous permettent de passer devant Raiahui. Vous savez que la distance à franchir va vous imposer d’économiser vos forces, mais le fait de se retrouver d’entrée de jeu derrière vous devrait ébranler la confiance en elle-même de votre concurrente.</p>
+
+<p>Votre tête émerge finalement à la surface et vous êtes alors presque assourdie par la cacophonie de cris des adolescents restés sur la plage. Raiahui est toujours sous l’eau, mais vous ne perdez pas un instant à essayer de déterminer sa position exacte. A présent que la course a commencé, l’habitude vous fait faire abstraction de tout ce qui est extérieur à vos mouvements de nage.</p>
+
+<p>Mais cet état de concentration ne dure que jusqu’à votre inspiration suivante. Quelque chose ne va pas. Raiahui n’a toujours pas reparu et les cris provenant de la plage sont en train d’atteindre un sommet d’excitation stridente.</p>
+
+<p>Sans savoir pourquoi, vous sentez grandir en vous le pressentiment glaçant d’avoir commis une terrible erreur.</p>
+
+<hr/>
+    ` + raiahuiGoodEndText,
+    "next": endGame,
+  },
+  "trial-bathroom-break": {
+    "text": `
+<p>Des éclats de rire explosent tout autour de vous quand, feignant l’embarras, vous laissez entendre que vous avez un besoin urgent à satisfaire.</p>
+
+<div class="conversation">
+<p>— Vas-y, vas-y, vous dit Raiahui en étouffant un gloussement. Ne t’inquiète pas, je ne partirai pas en douce pendant que tu es occupée.</p>
+</div>
+
+<p>Vous vous hâtez de disparaître parmi les palmiers, suivie par les regards amusés des adolescents. Sitôt qu’ils ne peuvent plus vous apercevoir, vous vous débarrassez de la calebasse – encore presque pleine – et traversez en courant la végétation jusqu’à un point de la plage suffisamment éloigné. Ce point de départ alternatif augmentera à peine la distance que vous avez à franchir pour atteindre l’îlot qui constitue la destination de la course.</p>
+
+<p>Dissimulée derrière un tronc suffisamment épais, vous jetez un coup d’œil rapide dans la direction où se trouvent Raiahui et les autres adolescents de la tribu. L’un d’entre eux pourrait peut-être vous apercevoir pendant que vous traverserez la plage, mais leur état de dissipation vous fait juger que les chances sont en votre faveur. Vous espérez qu’il retardera par ailleurs le moment où votre concurrente réalisera que votre absence s’est trop prolongée.</p>
+
+<p>Vous prenez plusieurs profondes inspirations, puis vous quittez votre cachette et traversez en quelques enjambées rapides la distance qui vous sépare de la rive. Les eaux tièdes et transparentes de la passe se referment sur vous lorsque vous plongez. Vous glissez un instant, portée par l’élan de votre plongeon, avant de vous mettre à nager. Pour ne pas risquer d’être aperçue avant d’avoir acquis une solide avance, vous prévoyez de ne remonter à la surface que le plus tard possible.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      return trueStartFunnel(
+        `Vous nagez à une allure modérée, de manière à conserver l’essentiel de vos forces.`,
+        goToSection,
+        flags,
+        updateFlag,
+      );
+    }
+  },
+  "trial-copypaste-3": {
+    "text": `
+<p>Vous profitez de ce que Raiahui se penche pour ramasser une nouvelle calebasse pour lui subtiliser adroitement son couteau. Mais elle s’en rend compte immédiatement et il n’y a plus la moindre trace d’amusement dans le regard qu’elle dirige sur vous.</p>
+
+<div class="conversation">
+<p>— Rends-moi ça ! Rends-moi ça tout de suite !</p>
+</div>
+
+<p>Laissant tomber la calebasse sur le sable, elle se jette sur vous pour récupérer sa possession.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const choices = [
+        {
+          "text": `Vous jetez le couteau dans le lagon.`,
+          "action": () => {
+            cleanInventoryBeforeRace(flags, updateFlag);
+            updateFlag("eatenByRaiahui", true);
+            goToSection("knife-sea");
+          },
+        },
+        {
+          "text": `Vous jetez le couteau parmi les arbres qui bordent la plage.`,
+          "action": () => {
+            goToSection("knife-land");
+          },
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    },
+  },
+  "trial-copypaste-4": {
+    "text": `
+<div class="conversation">
+<p>— J’ai vraiment assez bu, prétendez-vous. Pas toi ?</p>
+<p>— Pas du tout, répond Raiahui avec assurance. Je tiens très bien l’alcool.</p>
+<p>— Eh bien, je n’ai pas de raison de t’empêcher de te saoûler, dites-vous en lui tendant votre calebasse. Tiens, vide aussi celle-ci, si tu t’imagines vraiment que tu pourras me battre à la course ensuite !</p>
+</div>
+
+<p>Votre défi fait courir des exclamations amusées parmi la jeune assistance. Raiahui accepte votre présent avec un sourire de confiance totale. Même si elle réalise que cette boisson est autrement plus forte que du simple vin de palme, vous soupçonnez qu’elle videra tout de même l’essentiel de la calebasse, ne serait-ce que pour ne pas perdre la face.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      return trueStartFunnel(
+        `Laissant votre concurrente s’enivrer plus qu’elle ne devrait, vous traversez rapidement la plage en direction de la rive.`,
+        goToSection,
+        flags,
+        updateFlag,
+      );
+    },
+  },
+  "trial-copypaste-5": {
+    "text": `
+<div class="conversation">
+<p>— J’ai vraiment assez bu, prétendez-vous. Pas toi ?</p>
+<p>— Pas du tout, répond Raiahui avec assurance. Je tiens très bien l’alcool.</p>
+<p>— Eh bien, je n’ai pas de raison de t’empêcher de te saoûler, dites-vous en lui tendant votre calebasse. Tiens, vide aussi celle-ci, si tu t’imagines vraiment que tu pourras me battre à la course ensuite !</p>
+</div>
+
+<p>Votre défi fait courir des exclamations amusées parmi la jeune assistance. Raiahui accepte votre présent avec un sourire de confiance totale. L’idée que vous lui tendiez un piège ne lui effleure visiblement pas l’esprit.</p>
+
+<p>Ne tenant pas à vous attarder, vous descendez ensuite la plage d’un pas rapide. Juste au moment où vous atteignez la rive, un sursaut de brouhaha vous fait vous retourner : au milieu des autres adolescents, étonnés et quelquefois moqueurs, Raiahui est courbée en deux, la main pressée contre la bouche comme si elle allait vomir.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      return trueStartFunnel(
+        `Désormais assurée de disposer d’une avance confortable, vous plongez.`,
+        goToSection,
+        flags,
+        updateFlag,
+      );
+    },
+  },
   "ending-credits": {
     //TODO Complete with links, thanks message etc.
     "text": `
@@ -1064,7 +1372,7 @@ ${items}
 </div>
     `,
     "next": trueEnd,
-  }
+  },
 };
 
 export default trial;

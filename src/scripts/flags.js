@@ -24,12 +24,16 @@ const flags = {
       "description": `<p>Un poignée de mystérieux fruits qu’un crocodile parlant vous a conseillé. Il prétend qu’ils vous aideront pour l’épreuve qui vous attend.</p><p>Vous ne sauriez dire si le fait qu’il ait également essayé de vous manger est un argument en la faveur ou en la défaveur de la véracité de cette information.</p>`,
     },
     "doll": {
-      "name": "Figurine du crocodile",
+      "name": `Figurine du crocodile`,
       "description": `<p>Une figurine à votre effigie qu’un crocodile parlant a « sculpté » à partir de racines. Vous ne savez rien d’autre à son sujet si ce n’est qu’il a essayé de s’en servir comme appât dans un piège à votre intention.</p>`,
     },
     "net": {
-      "name": "Filet de la sorcière",
+      "name": `Filet de la sorcière`,
       "description": `<p>Une filet que vous avez récupéré auprès d’une sorcière. Taillé pour la capture d’êtres humains, pas pour celles de petits poissons.</p>`,
+    },
+    "fieryCalabash": {
+      "name": `Calebasse piégée`,
+      "description": `<p>Juste un peu de vin de palme, agrémenté de quelques fruits légèrement épicés.</p>`
     },
   },
   "drunk": false,
@@ -55,13 +59,16 @@ const flags = {
   "toldAboutFaanaruaByVarenui": false,
   "toldAboutWitchByMonkey": false,
   "watchedKnifeImportance": false,
-  "droppedDoll": false,
   "survivedWitchIsland": false,
   "refreshed": false,
   "refreshedByFruit": false,
   "aVillagerOnCrocodileIsland": false,
   "caughtARaiahui": false,
   "seenRaiahuiTrueForm": false,
+  "tastedFruit": false,
+  "talkedToPerfectlyUselessDrunkGirl": false,
+  "examinedTrialCalabashes": false,
+  "playedTheFool": false,
 };
 
 export default flags;
