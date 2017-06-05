@@ -1,7 +1,8 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {endGame, trueEnd, useItem, acquireItem, repeatingFunnel} from "./helpers.js";
+import {endGame, trueEnd, useItem, acquireItem, repeatingFunnel, coatSentence} from "./helpers.js";
+import squaleImage from "./../images/squale.jpg";
 
 const cleanInventoryBeforeRace = (flags, updateFlag) => {
   useItem("alcohol", updateFlag);
@@ -95,13 +96,13 @@ const trueStartFunnel = (text, goToSection, flags, updateFlag) => {
   );
 }
 
-const savePointAction = (goToSection, flags, updateFlag) => {
+const savePointAction = (text, goToSection, flags, updateFlag) => {
   updateFlag("seenRaiahuiTrueForm", true);
   if (!flags.drunk) {
     const upToDateFlags = Object.assign({}, flags, {"seenRaiahuiTrueForm": true});
     updateFlag("flagsBeforeActualTrial", Object.assign({}, upToDateFlags, {"flagsBeforeActualTrial": upToDateFlags}));
   }
-  return goToSection("trial-underwater");
+  return goToSection("trial-underwater", coatSentence(text));
 }
 
 const raiahuiGoodEndText = `
@@ -536,9 +537,12 @@ ${intro}
 <p>Vous avez franchi près de la moitié de la distance vous séparant de votre destination lorsqu’un concert d’exclamations vous parvient aux oreilles. Jetant un coup d’œil en arrière sans perdre votre allure, vous voyez que tous les adolescents se sont assemblés près de la rive. Leurs gesticulations vous laissent deviner que Raiahui vient enfin de plonger à son tour.</p>
 
 <p>Vous n’augmentez pas immédiatement la cadence de vos mouvements. Vous avez après tout une avance considérable. Vous prenez la précaution de jeter par la suite des coups d’œil périodiques en arrière, mais, curieusement, ils ne vous apprennent rien : vous ne voyez à aucun moment la tête de Raiahui émerger au-dessus des vagues et sa position vous reste absolument inconnue.</p>
+
+<p>Comment peut-elle retenir son souffle aussi longtemps ?</p>
       `;
     },
     "next": (goToSection, flags, updateFlag) => {
+      const diveText = `Vous plongez sous l’eau pour distinguer enfin où se trouve Raiahui.`;
       const choices = [
         {
           "text": `Vous accélérez votre rythme de nage.`,
@@ -547,9 +551,9 @@ ${intro}
           },
         },
         {
-          "text": `Vous plongez sous l’eau pour essayer de distinguer où se trouve Raiahui.`,
+          "text": diveText,
           "action": () => {
-            savePointAction(goToSection, flags, updateFlag);
+            savePointAction(diveText, goToSection, flags, updateFlag);
           },
         },
       ];
@@ -566,12 +570,13 @@ ${intro}
 <p>Et pourtant, un pressentiment oppressant s’est insinué en vous et ne cesse de croître, à chaque fois que vos membres achèvent un nouveau mouvement, à chaque fois que vous prenez une inspiration nouvelle. Il vous semble — et vous ne comprenez pas pourquoi — que le temps dont vous disposez est en train de s’effilocher rapidement.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
+      const text = `Il vous semble — et vous ne comprenez pas pourquoi — que le temps dont vous disposez est en train de s’effilocher rapidement.`;
+
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
-        const text = `Vous sentez soudain une gêne au niveau de votre taille.`;
         const action = () => {
           useItem("doll", updateFlag);
-          goToSection("trial-doll");
+          goToSection("trial-doll", coatSentence(text));
         };
 
         return (
@@ -579,10 +584,21 @@ ${intro}
         );
       }
 
-      const text = `Vous misez tout sur votre habileté de nageuse.`;
+      const amulet = flags.inventory.dolphin;
+      if (amulet.acquired && !amulet.used) {
+        const action = () => {
+          useItem("dolphin", updateFlag);
+          goToSection("trial-early-amulet", coatSentence(text));
+        };
+
+        return (
+          <Funnel text={text} action={action} conditional={true} />
+        );
+      }
+
       const action = () => {
         updateFlag("eatenByRaiahui", true);
-        goToSection("raiahui-good-end");
+        goToSection("raiahui-good-end", coatSentence(text));
       };
 
       return (
@@ -598,12 +614,31 @@ ${intro}
     "text": `
 <p>La figurine, que vous aviez attachée à votre taille, commence à s’agiter furieusement. Craignant quelque sorcellerie, vous essayez de vous en débarrasser, mais elle se délivre d’elle-même et s’accroche fermement à votre bras. Son poids devient tout à coup immense et vous avez à peine le temps de prendre une inspiration avant qu’il ne vous entraîne sous la surface.</p>
 
-<p>Vous vous débattez furieusement, mais la figurine vous a déjà relâchée et a disparu. Soulagée, vous êtes sur le point de remonter à la surface.</p>
+<p>Vous vous débattez furieusement, mais la figurine vous a déjà relâchée et a disparu.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Quant votre regard accroche ce qui se trouve derrière vous.`;
+      const text = `Soulagée, vous êtes sur le point de remonter à la surface, mais votre regard se tourne un instant derrière vous.`;
       const action = () => {
-        savePointAction(goToSection, flags, updateFlag);
+        savePointAction(text, goToSection, flags, updateFlag);
+      };
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
+  },
+  "trial-early-amulet": {
+    "text": `
+<p>Une multitude de sons à peine audibles est en train de vous parvenir, emplissant votre crâne jusqu’à presque le saturer. D’une manière que vous seriez incapable d’expliquer, vous possédez soudain une manière supplémentaire de percevoir ce qui vous entoure. Vous avez une conscience très nette du fond sablonneux de la passe, saisissant sans avoir besoin les voir tous les récifs de corail qui le hérisse.</p>
+
+<p>Mais surtout, vous pouvez sentir une forme qui se trouve derrière vous et ne cesse de se rapprocher. Vous ne parvenez pas à interpréter ses contours fuselés, mais ils vous inspirent une profonde crainte instinctive.</p>
+
+<p>Votre sens supplémentaire se volatilise aussi soudainement qu’il était apparu et, au même instant, l’amulette que vous portiez autour de votre cou se désagrège.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `Devinant intuitivement qu’elle vient d’épuiser ses derniers pouvoirs pour vous transmettre cet avertissement, vous plongez sous l’eau pour voir ce qui vous suit.`;
+      const action = () => {
+        savePointAction(text, goToSection, flags, updateFlag);
       };
 
       return (
@@ -615,7 +650,11 @@ ${intro}
     "text": `
 <p>Avez-vous deviné que la tribu apparemment si dénuée de moyens vous dissimulait sa vraie nature ? Avez-vous soupçonné que cette course n’était pas une simple compétition, à l’issue de laquelle le perdant ne connaîtrait rien de pire que la vexation de l’échec ? Vous est-il revenu en mémoire de vieilles légendes parlant d’humains qui étaient en même temps autre chose ?</p>
 
-<p>Tout cela n’a plus aucune importance à présent, car la transparence de l’eau vous permet de distinguer sans aucun mal la seconde apparence de Raiahui tandis qu’elle réduit à vive allure la distance qui vous sépare. Propulsé par les mouvements puissants de sa queue, son corps marbré de rayures sombres est plus à l’aise dans l’élément aquatique que vous ne pourrez jamais l’être. Sa gueule paraît presque inoffensive pour le moment, mais vous avez déjà vu des mâchoires de requin-tigre et les nombreuses dents tranchantes dont elles sont garnies.</p>
+<p>Tout cela n’a plus aucune importance à présent, car la transparence de l’eau vous permet de distinguer sans aucun mal la seconde apparence de Raiahui tandis qu’elle réduit à vive allure la distance qui vous sépare.</p>
+
+<img src="${squaleImage}" class="img-responsive lg-img" alt=""/>
+
+<p>Propulsé par les mouvements puissants de sa queue, son corps marbré de rayures sombres est plus à l’aise dans l’élément aquatique que vous ne pourrez jamais l’être. Sa gueule paraît presque inoffensive pour le moment, mais vous avez déjà vu des mâchoires de requin-tigre et les nombreuses dents tranchantes dont elles sont garnies.</p>
 
 <p>Vous remontez à la surface pour respirer. Une terreur horrible s’est répandue dans tout votre être, mais elle ne vous prive pas encore de vos moyens.</p>
     `,

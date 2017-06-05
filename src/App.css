@@ -176,6 +176,10 @@ img.text-img {
   }
 }
 
+img.lg-img {
+  margin-bottom: 10px;
+}
+
 .hint-warning {
   cursor: pointer;
 }

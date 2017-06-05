@@ -46,7 +46,7 @@ const endButtons = function(flags, reset, quit) {
 
   if (!flags.survivedTheTrial && flags.flagsBeforeActualTrial) {
     choices.push({
-      "text": `Retenter l'épreuve`,
+      "text": `Retenter l’épreuve`,
       "action": () => {reset("trial-underwater", flags.flagsBeforeActualTrial)},
     });
     choices.push({
