@@ -99,8 +99,7 @@ const trueStartFunnel = (text, goToSection, flags, updateFlag) => {
 const savePointAction = (text, goToSection, flags, updateFlag) => {
   updateFlag("seenRaiahuiTrueForm", true);
   if (!flags.drunk) {
-    const upToDateFlags = Object.assign({}, flags, {"seenRaiahuiTrueForm": true});
-    updateFlag("flagsBeforeActualTrial", Object.assign({}, upToDateFlags, {"flagsBeforeActualTrial": upToDateFlags}));
+    updateFlag("flagsBeforeActualTrial", Object.assign({}, flags, {"seenRaiahuiTrueForm": true}));
   }
   return goToSection("trial-underwater", coatSentence(text));
 }
