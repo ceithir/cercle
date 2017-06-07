@@ -25,5 +25,31 @@ export const getHint = (flags) => {
     `;
   }
 
+  if (flags.eatenByRaiahui) {
+    if (!flags.seenRaiahuiTrueForm) {
+      if (flags.gotAHeadStart) {
+        return `
+<p>Dans une course ordinaire, rester à la surface et ne prêter attention à rien d’autre qu’à votre destination aurait été un comportement sensé.</p>
+
+<p>Pas dans cette course-ci.</p>
+        `;
+      }
+
+      return `
+<p>Raiahui n’est pas aussi fair-play qu’elle veut bien le laisser paraître. Veillez à ne pas l’être non plus.</p>
+      `;
+    }
+
+    return `
+<p>Un requin possède des sens bien particuliers, capable de détecter certaines choses dont un être humain n’aurait aucune conscience. Un être humain possède une intelligence développée, capable d’anticiper et de planifier à un degré qu’un requin serait incapable d’atteindre. Vous devez échapper aux deux à la fois.</p>
+    `;
+  }
+
+  if (flags.stabbedToDeath) {
+    return `
+<p>Si proche ! Cette ultime confrontation est plus facile si vous y parvenez sans être trop épuisée.</p>
+    `;
+  }
+
   return "";
 };

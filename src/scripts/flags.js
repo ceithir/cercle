@@ -72,6 +72,7 @@ const flags = {
   "flagsBeforeActualTrial": undefined,
   "bleeding": false,
   "weakened": false,
+  "gotAHeadStart": false,
 };
 
 export default flags;

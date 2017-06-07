@@ -86,6 +86,7 @@ const preludeNext = (goToSection, flags, updateFlag) => {
 const trueStartFunnel = (text, goToSection, flags, updateFlag) => {
   const action = () => {
     cleanInventoryBeforeRace(flags, updateFlag);
+    updateFlag("gotAHeadStart", true);
     return "the-trial-begins";
   };
 
