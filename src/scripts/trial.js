@@ -828,14 +828,29 @@ ${intro}
   },
   "final-island": {
     "text": `
-<p>Une bouffée d’espoir délirant vous saisit lorsque vous sentez enfin le sable sous vos pieds. Vous vous hâtez de vous redresser. L’eau ne vous parvient qu’à la taille et il vous suffira de quelques enjambées pour atteindre enfin l’île.</p>
+<p>Une bouffée d’espoir délirante vous saisit lorsque vous sentez enfin le sable sous vos pieds. Vous vous hâtez de vous redresser. L’eau ne vous parvient qu’à la taille et il vous suffira de quelques enjambées pour atteindre enfin l’île.</p>
 
 <p>Un grand bruit d’éclaboussures vous fait vous retourner : Raiahui vient d’émerger de l’eau à son tour. L’espace d’un fugitif instant, vous la voyez sous une curieuse forme hybride, à mi-chemin entre ses deux apparences. Puis sa peau reprend une couleur brune uniforme, son visage retrouve un aspect humain et ses membres antérieurs se terminent à nouveau par des mains, dont l’une serre un couteau couleur d’ivoire.</p>
 
-<p>L’instant suivant, elle se précipite vers vous avec un hurlement enragé, son arme tendue devant elle.</p>
+<p>Son arme tendue devant elle, Raiahui se précipite vers vous avec un hurlement enragé.</p>
     `,
-    "next": (goToSection) => {
-      const choices = [
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("net-on-sand");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices = choices.concat([
         {
           "text": `Vous essayez de lui arracher son couteau.`,
           "action": () => {
@@ -848,7 +863,7 @@ ${intro}
             goToSection("run-to-finish");
           },
         },
-      ];
+      ]);
 
       return (
         <Crossroads choices={choices} />
@@ -857,7 +872,7 @@ ${intro}
   },
   "raiahui-fight": {
     "text": `
-<p>Vous essayez d’attraper le poignet de Raiahui pour le tordre, mais vous n’êtes pas assez rapide. Elle essaie de vous transpercer le ventre, mais vous vous tordez sur le côté et le tranchant aiguisé du couteau ne vous inflige qu’une légère estafilade.</p>
+<p>Vous échouez à saisir le poignet de Raiahui. D’un mouvement vif, elle tente de vous transpercer le ventre, mais vous vous tordez de justesse sur le côté et le tranchant aiguisé du couteau ne vous inflige qu’une légère estafilade.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
@@ -870,8 +885,12 @@ ${intro}
         {
           "text": `Vous l’agrippez au corps-à-corps.`,
           "action": () => {
-            updateFlag("stabbedToDeath", true);
-            goToSection("raiahui-grapple");
+            if (flags.drunk || flags.weakened) {
+              updateFlag("stabbedToDeath", true);
+              return goToSection("raiahui-grapple");
+            }
+
+            goToSection("raiahui-grapple-strong");
           },
         },
       ];
@@ -883,7 +902,7 @@ ${intro}
   },
   "raiahui-punch": {
     "text": `
-<p>Votre coup surprend Raiahui, qui n’a pas le réflexe de l’esquiver. Vous la frappez en plein ventre et elle vacille légèrement en arrière, mais elle tend son couteau devant elle pour vous empêcher d’en profiter.</p>
+<p>Votre coup de poing surprend Raiahui, qui n’a pas le réflexe de l’esquiver. Il la frappe en plein ventre et elle vacille légèrement en arrière, mais elle tend son couteau devant elle pour vous empêcher d’en profiter.</p>
     `,
     "next": (goToSection) => {
       const text = `Réalisant que la situation est à votre désavantage, vous profitez de l’occasion pour vous précipiter vers l’île.`;
@@ -902,6 +921,87 @@ ${intro}
     `,
     "next": endGame,
   },
+  "raiahui-grapple-strong": {
+    "text": `
+<p>Vous essayez de saisir votre adversaire d’une manière qui l’empêche de se servir de son arme, mais l’eau rend sa peau glissante. Brièvement déséquilibrée par cette tentative, c’est tout juste si vous parvenez à arrêter le bras de Raiahui lorsqu’elle tente à nouveau de vous poignarder.</p>
+
+<p>Vous luttez un instant l’un contre l’autre, mais vos prises sont mal assurées et vous n’avez pas l’avantage.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const choices = [
+        {
+          "text": `Vous poussez Raiahui en arrière de toutes vos forces.`,
+          "action": () => {
+            updateFlag("stabbedToDeath", true);
+            goToSection("raiahui-grapple-strong-death");
+          },
+        },
+        {
+          "text": `Vous lui griffez le visage.`,
+          "action": () => {
+            goToSection("raiahui-grapple-strong-escape");
+          },
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      )
+    }
+  },
+  "raiahui-grapple-strong-death": {
+    "text": `
+<p>Vous parvenez à déséquilibrer Raiahui, mais elle s’agrippe à vous et vous entraîne avec elle ! Vous basculez ensemble dans l’eau, où s’ensuit une mêlée confuse et frénétique. Le couteau de Raiahui finit par s’enfoncer dans votre ventre et la douleur foudroyante vous ôte instantanément toutes vos forces. La dernière chose que vous distinguez, alors qu’un rouge épais remplace la transparence de l’eau, est le visage de votre meurtrière tout proche du vôtre.</p>
+    `,
+    "next": endGame,
+  },
+  "raiahui-grapple-strong-escape": {
+    "text": `
+<p>Raiahui a un réflexe de recul lorsque vos doigts tendus se rapprochent de ses yeux. Saisissant l’occasion, vous parvenez à vous dégager et à la repousser en arrière. Raiahui est momentanément déséquilibrée, mais elle tend son couteau devant elle pour vous empêcher d’en profiter.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Réalisant que vous avez peu de chance de prendre le dessus dans cet affrontement, vous vous enfuyez vers l’îlot.`;
+      const action = () => {goToSection("run-to-finish")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "net-on-sand": {
+    "text": `
+<p>Vous jetez le filet de la sorcière vers Raiahui, mais elle est trop proche pour qu’il puisse se déployer totalement avant de l’atteindre. Il ne fait que s’enrouler étroitement autour de son bras, sans lui causer de gêne véritable. Ce phénomène inattendu la fait cependant hésiter un instant et vous en profitez pour vous enfuir vers la rive sablonneuse.</p>
+
+<p>Vous n’avez pas le temps de l’atteindre : vous avez à peine effectué quelques enjambées, soulevant de grandes gerbes d’eau autour de vous, lorsqu’une poussée brutale vous fait perdre l’équilibre et basculer en avant. Reprenant rapidement pied, vous vous retournez juste à temps pour saisir le poignet de Raiahui, arrêtant la pointe de son couteau tout près de votre visage. L’eau vous arrive encore à mi-cuisse. La main libre de Raiahui se referme sur votre bras et vous luttez furieusement l’une contre l’autre, faisant jaillir des éclaboussures à moins de trois enjambées de la rive.</p>
+
+<p>Le couteau vous frôle à plusieurs reprises et vous sentez que Raiahui essaie de vous ramener à un endroit où l’eau sera plus profonde.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const choices = [
+        {
+          "text": `Vous résistez farouchement.`,
+          "action": () => {
+            goToSection("raiahui-struggle");
+          },
+        },
+        {
+          "text": `Vous guettez une occasion de vous dégager et de fuir vers l’île.`,
+          "action": () => {
+            if (flags.drunk || flags.weakened) {
+              updateFlag("stabbedToDeath", true);
+              return goToSection("raiahui-backstab");
+            }
+
+            goToSection("raiahui-knife-close");
+          },
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
   "run-to-finish": {
     "text": `
 <p>Vos jambes soulèvent de grandes gerbes d’eau tandis que vous essayez de gagner la rive sablonneuse au plus vite. Mais vous avez à peine le temps d’effectuer quelques enjambées avant qu’une poussée brutale ne vous fasse perdre l’équilibre et basculer en avant. Reprenant rapidement pied, vous vous retournez juste à temps pour saisir le poignet de Raiahui, arrêtant la pointe de son couteau tout près de votre visage. L’eau vous arrive encore à mi-cuisse. La main libre de Raiahui se referme sur votre bras et vous luttez furieusement l’une contre l’autre, faisant jaillir des éclaboussures à moins de trois enjambées de la rive. Le couteau vous frôle à plusieurs reprises et vous sentez que Raiahui essaie de vous ramener à un endroit où l’eau sera plus profonde.</p>
@@ -915,10 +1015,14 @@ ${intro}
           },
         },
         {
-          "text": `Vous conservez vos forces, guettant l’occasion propice de vous dégager et de reprendre votre fuite.`,
+          "text": `Vous guettez une occasion de vous dégager et de fuir vers l’île.`,
           "action": () => {
-            updateFlag("stabbedToDeath", true);
-            goToSection("raiahui-backstab");
+            if (flags.drunk || flags.weakened) {
+              updateFlag("stabbedToDeath", true);
+              return goToSection("raiahui-backstab");
+            }
+
+            goToSection("raiahui-knife-close");
           },
         },
       ];
@@ -934,6 +1038,40 @@ ${intro}
     `,
     "next": endGame,
   },
+  "raiahui-knife-close": {
+    "text": `
+<p>Vous réussissez finalement à vous dégager de l’étreinte de votre adversaire et vous tournez pour courir jusqu’à la rive ensablée. Mais Raiahui est trop proche et réagit trop rapidement. Du coin de l’oeil, vous voyez son bras se tendre pour vous poignarder. D’extrême justesse, vous parvenez à vous tordre sur le côté et le couteau d’ivoire ne fait que vous écorcher le flanc au lieu de s’enfoncer profondément dans votre dos.</p>
+
+<p>Raiahui vous agrippe par les cheveux et vous tire brutalement en arrière. Vous parvenez à lui donner un coup de coude dans le ventre, ce qui ne lui fait pas lâcher prise mais vous donne le temps de lui saisir le poignet à deux mains avant qu’elle ne puisse vous enfoncer son couteau d’ivoire dans la gorge.</p>
+
+<p>Pendant un bref instant, vous êtes toutes les deux immobiles, haletantes, guettant pareillement l’occasion de prendre l’avantage dans cet étrange corps-à-corps. Tout près de votre visage, vous distinguez avec netteté les gouttes de votre sang qui perlent le long de la blancheur laiteuse du couteau.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const choices = [
+        {
+          "text": `Vous frappez Raiahui aussi fort que vous le pouvez.`,
+          "action": () => {goToSection("raiahui-struggle-alt")},
+        },
+        {
+          "text": `Vous lui tordez le bras pour essayer de lui faire lâcher son couteau.`,
+          "action": () => {
+            updateFlag("stabbedToDeath", true);
+            goToSection("raiahui-struggle-death");
+          },
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "raiahui-struggle-death": {
+    "text": `
+<p>Vous parvenez brièvement à éloigner de vous la pointe du couteau d’ivoire. Puis le bras libre de Raiahui entoure votre cou, sa jambe s’enroule autour de la vôtre et elle vous tire brutalement en arrière. Vous basculez ensemble dans l’eau, où s’ensuit une mêlée confuse et frénétique. Le couteau de Raiahui finit par s’enfoncer dans votre ventre et la douleur foudroyante vous ôte instantanément toutes vos forces. La dernière chose que vous distinguez, alors qu’un rouge épais remplace la transparence de l’eau, est le visage de votre meurtrière tout proche du vôtre.</p>
+    `,
+    "next": endGame,
+  },
   "raiahui-struggle": {
     "text": `
 <p>Votre terreur a atteint son point d’ébullition et elle se vaporise soudain en une rage brûlante.</p>
@@ -944,10 +1082,10 @@ ${intro}
 
 <p>Vous hurlez un mot que votre mère n’aurait pas été heureuse d’entendre, le ponctuez d’un violent coup de tête qui frappe votre adversaire en plein visage et lui mordez ensuite sauvagement l’avant-bras. Raiahui pousse un cri de douleur perçant et laisse presque échapper son précieux couteau. Vous lui écrasez votre poing sur la figure et, tandis qu’elle titube en arrière, vous franchissez enfin la distance qui vous séparait de la rive sablonneuse.</p>
 
-<p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir. Et une voix que vous reconnaissez comme celle d’Ataroa énoncent enfin les quelques mots que vous n’espériez plus :</p>
+<p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `L’épreuve est terminée.`;
+      const text = `— L’épreuve est terminée, déclare Ataroa.`;
       const action = () => {
         updateFlag("survivedTheTrial", true);
         goToSection("victory");
@@ -957,6 +1095,30 @@ ${intro}
         <Funnel text={text} action={action} />
       );
     },
+  },
+  "raiahui-struggle-alt": {
+    "text": `
+<p>Votre terreur a atteint son point d’ébullition et elle se vaporise soudain en une rage brûlante.</p>
+
+<div class="conversation">
+<p>— LÂCHE-MOI, ESPÈCE DE…</p>
+</div>
+
+<p>Vous hurlez un mot que votre mère n’aurait pas été heureuse d’entendre, le ponctuez d’un violent coup de tête en arrière qui frappe votre adversaire en plein visage et lui mordez ensuite sauvagement l’avant-bras. Raiahui pousse un cri de douleur perçant, lâche vos cheveux et laisse presque échapper son précieux couteau. Vous retournant à demi, vous lui assénez un coup de coude brutal en pleine poitrine et, tandis qu’elle titube en arrière, vous franchissez enfin la distance qui vous séparait de la rive sablonneuse.</p>
+
+<p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `— L’épreuve est terminée, déclare Ataroa.`;
+      const action = () => {
+        updateFlag("survivedTheTrial", true);
+        goToSection("victory");
+      };
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
   },
   "victory": {
     "text": `
@@ -2797,7 +2959,7 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
 
 <p>Code par Skarn.</p>
 
-<p>Illustrations, s’il le veut bien, par Klaus Pillon.</p>
+<p>Illustrations de Klaus Pillon.</p>
 </div>
     `,
     "next": trueEnd,
