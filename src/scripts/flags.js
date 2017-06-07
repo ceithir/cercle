@@ -70,6 +70,8 @@ const flags = {
   "examinedTrialCalabashes": false,
   "playedTheFool": false,
   "flagsBeforeActualTrial": undefined,
+  "bleeding": false,
+  "weakened": false,
 };
 
 export default flags;

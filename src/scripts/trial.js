@@ -123,43 +123,6 @@ const raiahuiGoodEndText = `
 <p>Aucune autre parole n’est nécessaire. Un à un, les adultes qui assistaient à la cérémonie quittent l’île pour regagner le village. Il ne reste bientôt plus que Raiahui, que l’épreuve a laissé curieusement épuisée et pleine d’une humeur introspective. Avec une lenteur rêveuse, elle effleure du bout des doigts le contour de ses lèvres. Puis elle s’assied sur le sable encore chaud. Du côté du lagon, le soleil est en train de se coucher. Raiahui reste à le regarder jusqu’à ce que les derniers reflets ensanglantés aient disparu de la surface de l’eau.</p>
 `;
 
-const raceEnd = (goToSection) => {
-  const text = `Et vous atteignez enfin un semblant de terre.`;
-  const action = () => {
-    goToSection("final-island");
-  };
-
-  return (
-    <Funnel text={text} action={action} />
-  );
-};
-
-const facingRaiahuiUnderwater = (goToSection, flags, updateFlag) => {
-  const net = flags.inventory.net;
-  if (net.acquired && !net.used) {
-    const text = `Et vous avez de quoi l’accueillir.`;
-    const action = () => {
-      useItem("net", updateFlag);
-      updateFlag("caughtARaiahui", true);
-      goToSection("caught-a-raiahui");
-    }
-
-    return (
-      <Funnel text={text} action={action} conditional={true} />
-    );
-  }
-
-  const text = `Et vous n’avez aucun moyen de vous défendre.`
-  const action = () => {
-    updateFlag("eatenByRaiahui", true);
-    goToSection("raiahui-good-end");
-  };
-
-  return (
-    <Funnel text={text} action={action} />
-  );
-};
-
 const trial = {
   "trial": {
     "text": `
@@ -655,20 +618,24 @@ ${intro}
 
 <p>Propulsé par les mouvements puissants de sa queue, son corps marbré de rayures sombres est plus à l’aise dans l’élément aquatique que vous ne pourrez jamais l’être. Sa gueule paraît presque inoffensive pour le moment, mais vous avez déjà vu des mâchoires de requin-tigre et les nombreuses dents tranchantes dont elles sont garnies.</p>
 
-<p>Vous remontez à la surface pour respirer. Une terreur horrible s’est répandue dans tout votre être, mais elle ne vous prive pas encore de vos moyens.</p>
+<p>Vous remontez à la surface pour respirer. Une terreur horrible s’est répandue dans tout votre être, mais elle ne vous prive pas encore de vos moyens. Un tiers de la distance vous sépare encore de l’îlot qui constitue votre destination. En-dessous de vous, quelques récifs de corail émergent ici et là du fond sablonneux de la passe. Sur votre droite, du côté de l’océan, le corail devient beaucoup plus dense et enchevêtré.</p>
     `,
     "next": (goToSection) => {
-      const context = `L’île marquant la fin de l’épreuve n’est désormais plus à une grande distance.`;
-
       const choices = [
         {
-          "text": `Vous nagez de toutes vos forces dans sa direction.`,
+          "text": `Vous nagez de toutes vos forces en direction de l’îlot.`,
           "action": () => {
             goToSection("trial-rush");
           },
         },
         {
-          "text": `Vous plongez à nouveau et vous réfugiez parmi les récifs de corail.`,
+          "text": `Vous plongez vers les récifs de corail qui se trouvent juste en-dessous de vous.`,
+          "action": () => {
+            goToSection("trial-hide-closer");
+          },
+        },
+        {
+          "text": `Vous essayez d’atteindre les récifs sur votre droite, plus denses mais deux fois plus éloignés.`,
           "action": () => {
             goToSection("trial-hide");
           },
@@ -676,7 +643,7 @@ ${intro}
       ];
 
       return (
-        <Crossroads context={context} choices={choices} />
+        <Crossroads choices={choices} />
       );
     },
   },
@@ -684,11 +651,51 @@ ${intro}
     "text": `
 <p>La panique anime vos membres d’une énergie bouillonnante, vous faisant nager plus vite que vous n’en avez jamais été capable. Mais Raiahui reste beaucoup trop rapide. Un coup d’œil angoissé en arrière vous permet de voir qu’elle est sur le point de vous rejoindre.</p>
     `,
-    "next": facingRaiahuiUnderwater,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("caught-a-raiahui");
+          },
+          "conditional": true,
+        });
+      }
+
+      const pearls = flags.inventory.smokePearls;
+      if (pearls.acquired && !pearls.used) {
+        choices.push({
+          "text": `Vous écrasez les perles noires en votre possession.`,
+          "action": () => {
+            useItem("smokePearls", updateFlag);
+            goToSection("killed-by-pearls");
+          },
+          "conditional": true,
+        });
+      }
+
+      const escapeText = `Vous nagez aussi vite que possible en une tentative désespérée pour lui échapper malgré tout.`;
+      choices.push({
+        "text": escapeText,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end", coatSentence(escapeText));
+        }
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    },
   },
   "caught-a-raiahui": {
     "text": `
-<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez en hâte vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante juste au moment où celle-ci allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles étroites pour parvenir à se libérer.</p>
+<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez vers Raiahui. Votre geste n’a presque aucune force, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante alors qu’elle allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
     `,
     "next": (goToSection) => {
       const text = `Vous vous éloignez d’elle avec toute la vitesse possible.`;
@@ -698,6 +705,26 @@ ${intro}
         <Funnel text={text} action={action} />
       );
     },
+  },
+  "killed-by-pearls": {
+    "text": `
+<p>Vous écrasez les perles d’un geste convulsif et les eaux transparentes qui vous entourent deviennent brusquement d’un noir impénétrable.</p>
+
+<p>Vous continuez à nager aussi vite que vous en êtes capable, mais il ne s’écoule qu’un bref instant avant qu’un impact cuisant ne vous cingle tout à coup la jambe. Un corps rugueux vient de passer tout près de vous !</p>
+
+<p>Sous vos yeux horrifiés, un aileron brun-gris émerge de l’eau opaque juste devant vous.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `D’un mouvement brusque, il s’oriente dans votre direction.`;
+      const action = () => {
+        updateFlag("eatenByRaiahui", true);
+        goToSection("raiahui-good-end");
+      };
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
   },
   "arrival-in-sight": {
     "text": `
@@ -762,21 +789,42 @@ ${intro}
   },
   "trial-saved-by-dolphin": {
     "text": `
-<p>Il vous semble tout à coup qu’une profonde bouffée d’air pur s’infiltre dans vos poumons. La faiblesse qui commençait à alourdir vos membres se dissipe comme si elle n’avait jamais existé et vous continuez sans mal à nager à une vitesse étourdissante. À votre cou, l’amulette en forme de dauphin se désagrège, ayant épuisé pour vous ses derniers pouvoirs.</p>
+<p>Il vous semble tout à coup qu’une profonde bouffée d’air pur s’infiltre dans vos poumons. La faiblesse qui commençait à alourdir vos membres se dissipe comme si elle n’avait jamais existé et vous continuez sans mal à nager à une vitesse étourdissante.</p>
     `,
-    "next": raceEnd,
+    "next": (goToSection) => {
+      const text = `À votre cou, l’amulette en forme de dauphin se désagrège, ayant épuisé pour vous ses derniers pouvoirs.`;
+      const action = () => {goToSection("final-island")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
   },
   "trial-saved-by-fruit": {
     "text": `
-<p>Alors que la panique vous saisit à l’idée de défaillir si près de votre but, une énergie brûlante naît soudain dans le creux de votre ventre et se répand dans tous vos muscles avec la vivacité de la foudre. N’éprouvant plus rien de l’épuisement qui alourdissait vos membres il y a un instant, vous continuez de nager à une vitesse étourdissante.</p>
+<p>Alors que la panique vous saisit à l’idée de défaillir si près de votre but, une énergie brûlante naît soudain dans le creux de votre ventre et se répand dans tous vos muscles avec la vivacité de la foudre.</p>
     `,
-    "next": raceEnd,
+    "next": (goToSection) => {
+      const text = `N’éprouvant plus rien de l’épuisement qui alourdissait vos membres il y a un instant, vous continuez de nager à une vitesse étourdissante.`;
+      const action = () => {goToSection("final-island")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
   },
   "trial-saved-by-sloth": {
     "text": `
-<p>Vous puisez dans toutes vos ressources pour franchir la distance qui vous sépare encore de votre but. Là où la panique ne suffit plus, c’est votre volonté qui contraint vos muscles à dépasser l’épuisement et à vous propulser vers l’île, toujours plus près, sans ralentir un instant.</p>
+<p>Vous puisez dans toutes vos ressources pour franchir la distance qui vous sépare encore de votre but.</p>
     `,
-    "next": raceEnd,
+    "next": (goToSection) => {
+      const text = `Là où la panique ne suffit plus, c’est votre volonté qui contraint vos muscles à dépasser l’épuisement et à vous propulser vers l’île, toujours plus près, sans ralentir un instant.`;
+      const action = () => {goToSection("final-island")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
   },
   "final-island": {
     "text": `
@@ -979,88 +1027,583 @@ ${intro}
   },
   "trial-hide": {
     "text": `
-<p>Quelques brasses puissantes vous permettent de vous enfoncer rapidement sous la surface. Vous vous abritez parmi les formes découpées du corail, vous dissimulant de votre mieux au regard de Raiahui. Un coup d’œil prudent vous permet de voir qu’elle a ralenti son allure et qu’elle semble hésitante. Elle a sans aucun doute saisi votre manoeuvre, mais ne semble pas savoir exactement où vous vous êtes réfugiée. Votre appréhension ne décroît guère pour autant : sa forme actuelle la fait peut-être bénéficier de sens qui vous échappent.</p>
+<p>Vous restez un instant encore à la surface, nageant de toutes vos forces pour vous rapprocher des récifs. Puis vous prenez une profonde inspiration et vous plongez.</p>
+
+<p>Quelques brasses puissantes vous permettent de vous enfoncer rapidement vers le fond de la passe. Entre deux masses de corail aux formes extravagantes, vous repérez une anfractuosité verticale et irrégulière, qui vous semble trop étroite pour que Raiahui vous y suive.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      let choices = [
+      const choices = [
         {
-          "text": `Vous attendez sans bouger.`,
+          "text": `Vous nagez sans vous retourner pour l’atteindre le plus vite possible.`,
           "action": () => {
-            goToSection("trial-holding-breath");
+            goToSection("trial-not-looking-back");
           },
         },
         {
-          "text": `Vous continuez votre progression vers l’île sablonneuse en restant cachée du mieux possible.`,
+          "text": `Vous prenez le temps de jeter un coup d’œil en arrière pour voir où se trouve Raiahui.`,
           "action": () => {
-            goToSection("trial-sneaking-around");
+            goToSection("trial-looking-back");
           },
         },
       ];
-
-      const pearls = flags.inventory.smokePearls;
-      if (pearls.acquired && !pearls.used) {
-        choices.push({
-          "text": `Vous recourrez aux perles.`,
-          "action": () => {
-            useItem("smokePearls", updateFlag);
-            goToSection("trial-coral-pearls");
-          },
-          "conditional": true,
-        });
-      }
 
       return (
         <Crossroads choices={choices} />
       );
     },
   },
-  "trial-holding-breath": {
+  "trial-not-looking-back": {
     "text": `
-<p>Vous restez absolument immobile, regardant votre poursuivante passer lentement au-dessus des récifs de corails. Quelques petits poissons colorées passent près de vous, mais filent aussitôt se cacher en apercevant Raiahui.</p>
+<p>Vous n’avez pas besoin de voir Raiahui pour savoir qu’elle vous poursuit et que l’écart entre vous ne cesse de se réduire. Tourner la tête pour le vérifier vous ralentirait un instant sans rien vous apporter.</p>
 
-<p>Un moment interminable s’écoule et vous vous demandez avec une certaine panique combien de temps vous allez encore pouvoir tenir. Vous êtes capable de retenir très longtemps votre respiration, mais vous n’êtes pas un poisson !</p>
+<p>Vous nagez aussi vite que vous en êtes capable. Six brasses vous séparent encore de l’anfractuosité où vous espérez vous réfugier. Puis cinq. Puis quatre. Raiahui ne doit certainement plus être loin derrière vous. Plus que trois. Plus que deux. Vous y êtes presque. Une. Vous y êtes !</p>
 
-<p>Heureusement, Raiahui descend à ce moment inspecter un renfoncement entre deux récifs. Vous n’hésitez pas : abandonnant votre cachette, vous regagnez en hâte la surface. Votre tête émerge à l’air libre le temps d’une inspiration.</p>
+<p>Alors que vous vous glissez à l’intérieur de l’anfractuosité, vous voyez du coin de l’oeil Raiahui sur le point de vous rejoindre, sa gueule entrouverte révélant ses nombreuses dents effilées.</p>
     `,
     "next": (goToSection) => {
-      const text = `Puis vous reprenez sans attendre votre course.`;
-      const action = () => {goToSection("arrival-in-sight")};
+      const text = `Vous vous hâtez de vous enfoncer parmi les coraux pour vous mettre hors de sa portée.`;
+      const action = () => {goToSection("far-corals")};
 
       return (
         <Funnel text={text} action={action} />
       );
     },
   },
-  "trial-sneaking-around": {
+  "trial-looking-back": {
     "text": `
-<p>Vous reprenez votre progression vers l’île, nageant aussi vite que cela vous est possible sans vous exposer. Vous ne voyez plus Raiahui et vous espérez qu’elle s’est éloignée dans une mauvaise direction.</p>
-
-<p>Malheureusement pour vous, ce n’est pas du tout le cas : au moment où le manque d’air vous force enfin à remonter vers la surface, vous voyez avec terreur votre poursuivante apparaître entre deux récifs de corail voisins et foncer droit sur vous ! Il ne lui faudra qu’un instant pour vous atteindre.</p>
+<p>Vous tournez la tête et un frémissement d’effroi vous parcourt lorsque vous découvrez que Raiahui est beaucoup plus proche qu’elle ne l’était il y a seulement quelques instants. La distance qui vous sépare encore est en train de diminuer avec une grande rapidité. Pouvez-vous vraiment atteindre les récifs de corail avant qu’elle ne vous rattrape ?</p>
     `,
-    "next": facingRaiahuiUnderwater,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("far-corals-net");
+          },
+          "conditional": true,
+        });
+      }
+
+      const pearls = flags.inventory.smokePearls;
+      if (pearls.acquired && !pearls.used) {
+        choices.push({
+          "text": `Vous écrasez les perles noires en votre possession.`,
+          "action": () => {
+            useItem("smokePearls", updateFlag);
+            goToSection("far-corals-pearls");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices.push({
+        "text": `Vous nagez de toutes vos forces vers l’anfractuosité que vous avez repérée.`,
+        "action": () => {
+          if (flags.boostedByFruit) {
+            updateFlag("boostedByFruit", false);
+            return goToSection("far-corals-doped");
+          }
+
+          updateFlag("bleeding", true);
+          goToSection("far-corals-wound");
+        }
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    },
   },
-  "trial-coral-pearls": {
+  "far-corals-pearls": {
     "text": `
-<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. Vous réalisez soudain que votre idée n’était peut-être pas si bonne : Raiahui ne risque certes plus de vous apercevoir, mais vous ne pouvez plus rien voir du tout ! Plongée dans cette obscurité opaque, vous essayez malgré tout de nager dans la direction de l’île sablonneuse, mais le corail qui vous entoure est devenu un piège invisible, contre lequel vous vous blessez les bras et les jambes.</p>
+<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. Totalement aveugle, vous nagez dans la direction approximative de l’anfractuosité.</p>
+
+<p>Après quelques brasses énergiques, vous parvenez de nouveau à distinguer vos propres membres, puis les couleurs vives du corail.</p>
+
+<p>L’eau achève de redevenir transparente autour de vous. Tournant la tête, vous apercevez la forme souple et fuselée de Raiahui, à une certaine distance sur votre droite. Elle est parvenue à rester en-dehors du nuage opaque, mais cela lui a fait perdre du temps. L’anfractuosité où vous espériez trouver refuge ne se trouve plus qu’à quelques brasses devant vous.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous l’atteignez et vous y glissez sans perdre un instant.`;
+      const action = () => {goToSection("far-corals")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "far-corals-net": {
+    "text": `
+<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et traverse en un instant la distance qui vous sépare pour envelopper étroitement votre poursuivante. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Ce répit vous suffit amplement à atteindre les récifs de corail et à vous réfugier dans l’anfractuosité.`;
+      const action = () => {goToSection("far-corals")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
+  },
+  "far-corals-doped": {
+    "text": `
+<p>Vous nagez aussi vite que vous en êtes capable, mais la panique vous tenaille à l’idée que ce n’est pas suffisant.</p>
+
+<p>Une énergie brûlante naît soudain dans le creux de votre ventre et se répand dans tous vos muscles avec la vivacité de la foudre. Vos mouvements se font plus rapides et plus puissants. Les récifs de corail se rapprochent à une vitesse étourdissante !</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Cette vitalité anormale se volatilise à l’instant même où vous atteignez l’anfractuosité, où vous vous glissez sans perdre un instant.`;
+      const action = () => {goToSection("far-corals")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "far-corals-wound": {
+    "text": `
+<p>Vous nagez aussi vite que vous en êtes capable, mais la panique vous tenaille à l’idée que ce n’est pas suffisant.</p>
+
+<p>Six brasses vous séparent encore de l’anfractuosité où vous espérez vous réfugier. Plus que cinq. Plus que quatre. À quelle distance se trouve désormais Raiahui ? Trois. Il vous semble à chaque instant que sa mâchoire est sur le point de se refermer sur votre jambe. Deux. Vous y êtes presque. Une. Vous y êtes !</p>
+
+<p>Alors qu’un ultime mouvement de jambes vous propulse à l’intérieur de l’anfractuosité, vous sentez un impact soudain contre la plante de votre pied. Terrifiée, vous vous enfoncez en hâte parmi les formes baroques et colorées du corail.</p>
+
+<p>Une fois certaine d’être — pour l’instant — hors d’atteinte de Raiahui, vous prenez le temps d’examiner votre pied. Vous avez une mince coupure au talon, trop peu profonde pour être bien doulourouse. Il s’en échappe un peu de sang, qui se dissout presque aussitôt dans la transparence de l’eau.</p>
+
+<p>Avec un frémissement, vous réalisez ce qui s’est passé : juste au moment où vous atteigniez l’anfractuosité, Raiahui a tenté de vous happer par la cheville. Elle vous a manqué de justesse, mais votre pied a heurté le rebord de sa gueule et c’est le tranchant de l’une de ses dents qui vous a fait cette blessure superficielle.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous vous en tirez à bon compte et ce n’est pas cette coupure qui vous gênera pour nager, mais vous êtes encore loin d’être tirée d’affaire.`;
+      const action = () => {goToSection("far-corals")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "far-corals": {
+    "text": `
+<p>La lumière qui vous parvient depuis la surface diminue brièvement lorsque la forme effilée de Raiahui passe juste au-dessus de vous avec une lenteur ostensible.</p>
+
+<p>Vous savez que le temps ne joue pas en votre faveur. Raiahui ne peut pas vous atteindre, mais elle sait très bien où vous êtes en ce moment et, contrairement à elle, vous ne pouvez pas rester sous l’eau indéfiniment.</p>
+
+<p>L’étroite faille entre les deux masses de corail est plus longue que vous ne le réalisiez et vous réalisez avec une bouffée d’espoir qu’elle est plus ou moins orientée vers l’îlot qui constitue votre destination. Peut-être avez-vous une chance de vous rapprocher de la terre ferme sans vous exposer aux yeux de votre poursuivante.</p>
+
+<p>Vous progressez adroitement le long de la faille. Les parois irrégulières du corail sont d’abord si rapprochées que vous devez parfois vous contorsionner pour vous glisser entre elles sans vous écorcher la peau. Mais elles s’écartent peu à peu, jusqu’à un point où vous commencez à vous sentir dangereusement exposée.</p>
+
+<p>Vous vous arrêtez un instant, hésitante. Une demi-douzaine de brasses devant vous, la faille capricieuse se resserre de nouveau. Mais, sur toute cette distance, sa largeur est suffisante pour qu’un requin puisse s’y introduire. Raiahui est actuellement hors de votre champ de vision, mais cela ne signifie pas qu’elle soit éloignée.</p>
+    `,
+    "next": (goToSection) => {
+      const choices = [
+        {
+          "text": `Vous traversez cet espace exposé aussi rapidement que possible.`,
+          "action": () => {goToSection("far-corals-quick")},
+        },
+        {
+          "text": `Vous traversez l’espace exposé en vous efforçant de rester discrète.`,
+          "action": () => {goToSection("far-corals-sneaky")},
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      )
+    }
+  },
+  "far-corals-quick": {
+    "text": `
+<p>Vous vous propulsez en avant et nagez aussi vite que vous le permet cet espace malgré tout confiné. Mais vous avez à peine franchi la moitié de la distance lorsque Raiahui apparaît soudain sur votre gauche ! D’un mouvement rapide, elle se glisse à l’intérieur de la faille, ses nageoires frôlant les parois de corail. Vous distinguez avec une netteté terrifiante les dents qui hérissent sa gueule encore presque close alors qu’elle se rapproche de vos jambes.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("far-corals-net-2");
+          },
+          "conditional": true,
+        });
+      }
+
+      const pearls = flags.inventory.smokePearls;
+      if (pearls.acquired && !pearls.used) {
+        choices.push({
+          "text": `Vous écrasez les perles noires en votre possession.`,
+          "action": () => {
+            useItem("smokePearls", updateFlag);
+            goToSection("far-corals-pearls-2");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices.push({
+        "text": `Vous lui donnez des coups de pieds en une tentative désespérée pour la tenir à distance.`,
+        "action": () => {
+          updateFlag("bleeding", true);
+          goToSection("far-corals-fight");
+        }
+      });
+      choices.push({
+        "text": `Vous continuez de nager aussi vite que vous êtes capable.`,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end");
+        }
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "far-corals-net-2": {
+    "text": `
+<p>Raiahui est trop proche pour que le filet de la sorcière puisse se déployer totalement avant de l’atteindre. Mais il s’enroule étroitement autour de sa tête et s’accroche à ses dents tranchantes.</p>
+
+<p>Elle s’agite furieusement, déchiquetant les mailles serrées pour se débarrasser de cette gêne. Le mince sursis que cela vous accorde vous permet d’atteindre le point où les parois de corail se resserrent suffisamment pour qu’elle ne puisse plus vous suivre.</p>
+
+<p>Jetant un coup d’œil en arrière, vous voyez Raiahui achever de mettre le filet en lambeaux, puis remonter et disparaître de votre champ de vision.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous reprenez votre progression sans perdre un instant.`;
+      const action = () => {goToSection("far-corals-last")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "far-corals-fight": {
+    "text": `
+<p>Vous décochez des coups de pied convulsifs au museau gris-brun avec toute la force que vous donne la panique. Raiahui n’en est guère affectée, mais cette résistance acharnée fait obstacle à ses efforts pour vous happer. Sa mâchoire terrifiante s’ouvre et se referme à plusieurs reprises tout près de l’une de vos chevilles, sans parvenir à l’atteindre.</p>
+
+<p>Si l’espace qui vous entoure était plus dégagé, vous n’auriez aucune chance de vous défendre ainsi. Mais le corail confine les mouvements de Raiahui, l’empêchant de tirer parti de sa mobilité et de sa vitesse.</p>
+
+<p>Tout en la repoussant de votre mieux, vous continuez autant que possible à progresser le long de la passe. Votre attention étant toute entière concentrée dans une seule direction, vous vous écorchez à plusieurs reprises contre les aspérités du corail, mais c’est à peine si vous remarquez la douleur.</p>
+
+<p>Enfin, presque sans vous en rendre compte, vous atteignez le point où la faille se resserre trop pour votre poursuivante. Avec un soulagement incrédule, vous voyez Raiahui remonter tout à coup, puis disparaître de votre champ de vision.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous poursuivez sans attendre votre progression.`;
+      const action = () => {goToSection("far-corals-last")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "far-corals-pearls-2": {
+    "text": `
+<p>Vous écrasez d’un geste convulsif toutes les perles en votre possession et un nuage noir impénétrable se répand aussitôt autour de vous.</p>
+
+<p>Votre réconfort ne dure qu’un minuscule instant : Raiahui ne peut certes plus vous voir, mais vous êtes vous-même totalement aveugle ! Le corail qui vous entoure, loin de vous accorder encore la moindre protection, est devenu un piège invisible contre lequel vous risquez à chaque instant de vous blesser.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
-        const text = `Vous sentez un mouvement au niveau de votre taille.`;
+        const text = `Juste avant que vous ne preniez une décision, il se passe quelque chose de totalement inattendu.`;
         const action = () => {
           useItem("doll", updateFlag);
-          goToSection("trial-coral-doll");
-        };
+          goToSection("far-corals-doll");
+        }
 
         return (
-          <Funnel text={text} action={action} conditional={true} />
+          <Funnel text={text} action={action} />
         );
       }
 
-      const text = `Malgré la terreur que cette perspective vous inspire, vous allez devoir remonter vers la surface…`;
+      const dolphin = flags.inventory.dolphin;
+      if (dolphin.acquired && !dolphin.used) {
+        const text = `Juste avant que vous ne preniez une décision, il se passe quelque chose de totalement inattendu.`;
+        const action = () => {
+          useItem("dolphin", updateFlag);
+          goToSection("far-corals-amulet");
+        }
+
+        return (
+          <Funnel text={text} action={action} />
+        );
+      }
+
+      const choices = [
+        {
+          "text": `Vous vous efforcez malgré tout de continuer à suivre la faille.`,
+          "action": () => {
+            updateFlag("eatenByRaiahui", true);
+            goToSection("raiahui-good-end");
+          },
+        },
+        {
+          "text": `Vous remontez vers la surface.`,
+          "action": () => {
+            updateFlag("bleeding", true);
+            goToSection("i-hate-pearls");
+          }
+        }
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "far-corals-doll": {
+    "text": `
+<p> La figurine créée par le crocodile est tout à coup agitée de mouvements convulsifs, jusqu’à se détacher de la lanière par laquelle elle était retenue à votre taille. Vous ne saisissez pas ce qui est en train d’arriver, mais, un instant plus tard, vous sentez une main en bois — de taille tout à fait humaine — se refermer autour de la vôtre pour vous tirer vers le haut. Totalement aveugle mais étrangement confiante, vous vous laissez guider, accompagnant à peine le mouvement de petits battements de jambes.</p>
+
+<p>Quelques instants plus tard, la main vous relâche et vous émergez hors de l’épais nuage. La surface ensoleillée se trouve à seulement quelques brasses au-dessus de vous. En contrebas, les récifs de corail parmi lesquels vous vous trouviez restent en bonne partie dissimulés par l’étrange obscurité. Vous ne parvenez pas à distinguer où se trouve Raiahui, mais vous ne pouvez de toute façon pas retenir votre respiration beaucoup plus longtemps.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous remontez à l’air libre.`;
+      const action = () => {goToSection("surface-close")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
+  },
+  "far-corals-amulet": {
+    "text": `
+<p>Une multitude de sons à peine audibles est en train de vous parvenir, emplissant votre crâne jusqu’à presque le saturer. Brusquement, vous n’êtes plus aveugle. Vos yeux restent incapables de percer l’obscurité, mais, d’une façon que vous seriez incapable d’expliquer, vous percevez les formes de tout ce qui vous entoure, aussi bien celles du corail que celle — toute proche — de Raiahui.</p>
+
+<p>Ne cherchant pas à comprendre ce phénomène miraculeux, vous vous hâtez de vous éloigner de votre poursuivante. Quelques instants vous suffisent à atteindre le point où la faille se resserre trop pour qu’elle puisse vous suivre. Vous continuez votre progression sans presque ralentir.</p>
+
+<p>L’eau qui vous entoure retrouve progressivement sa transparence : vous pouvez de nouveau distinguer votre propre membres, puis le mélange désordonné des couleurs du corail. À mesure que la vue vous revient, votre étrange sens supplémentaire s’estompe. Lorsqu’il disparaît complètement, vous voyez l’amulette que vous portez se désagréger tout à coup. Ce phénomène surnaturel devait être son œuvre, mais il lui a coûté les derniers pouvoirs qu’elle possédait encore.</p>
+
+<p>Derrière vous, la zone d’obscurité est loin d’avoir disparu. Vous ne pouvez pas distinguer où se trouve Raiahui.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous poursuivez sans attendre votre progression.`;
+      const action = () => {goToSection("far-corals-last")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
+  },
+  "i-hate-pearls": {
+    "text": `
+<p>Vous vous écorchez la jambe contre l’une des excroissances invisibles du corail, mais vous parvenez tant bien que mal à vous diriger vers la surface. L’obscurité qui vous entoure perd peu à peu son opacité : vous pouvez de nouveau distinguer vos propres membres, puis les reflets du soleil au-dessus de vous.</p>
+
+<p>Mais lorsque l’eau achève de redevenir transparente, c’est pour vous révéler la forme souple et fuselée de Raiahui, juste en-dessous de vous ! Qu’elle ait deviné votre tentative ou simplement voulu échapper à la zone de ténèbres, elle est remontée en même temps que vous.</p>
+
+<p>Elle se dirige droit sur vous aussitôt qu’elle vous aperçoit.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("far-net-surface");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices.push({
+        "text": `Vous tentez désespérément de lui échapper.`,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end");
+        }
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    },
+  },
+  "far-net-surface": {
+    "text": `
+<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez en hâte vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante juste au moment où celle-ci allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous vous hâtez de vous éloigner d’elle, tout en remontant progressivement à l’air libre.`;
+      const action = () => {goToSection("surface-close")};
+
+      return (
+        <Funnel text={text} action={action} />
+      )
+    },
+  },
+  "far-corals-sneaky": {
+    "text": `
+<p>Vous progressez de façon fluide, utilisant autant que possible le relief du corail pour que Raiahui ait du mal à vous apercevoir si elle venait à passer soudain au-dessus de vous. La crainte qui vous tenaille fait de cette lenteur délibérée une torture, mais vous vous forcez à ne pas aller plus vite.</p>
+
+<p>Après quelques instants qui vous paraissent interminables, vous atteignez le point où les parois de corail se rapprochent suffisamment pour vous accorder de nouveau une relative sécurité. Vous jetez un coup d’oeil en arrière, mais ne distinguez toujours pas où se trouve Raiahui.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous reprenez sans plus attendre votre progression.`;
+      const action = () => {goToSection("far-corals-last")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "far-corals-last": {
+    "text": `
+<p>La faille s’incurve sur la gauche et se resserre encore. Les deux masses de corail qui vous entourent se font si proches qu’elles commencent à se confondre et il vient un point où les espaces qui subsistent entre elles sont devenus trop étroits pour que vous puissiez encore vous y glisser. Vous allez devoir remonter.</p>
+
+<p>Le manque d’air commence de toute façon à être difficile à supporter. Vous êtes capable de retenir très longtemps votre respiration, mais vous n’êtes pas un poisson !</p>
+
+<p>Vous élevant prudemment jusqu’au rebord de l’anfractuosité, vous réalisez que votre parcours au milieu des récifs de corail ne vous a pas autant rapproché de l’îlot sablonneux que vous l’espériez. Du moins vous a-t-il permis d’échapper temporairement à Raiahui. Vous vous efforcez de distinguer où elle se trouve actuellement, mais sans succès.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const choices = [
+        {
+          "text": `Vous abandonnez définitivement votre abri et remontez vers la surface.`,
+          "action": () => {
+            goToSection("far-corals-last-out-quick");
+          },
+        },
+        {
+          "text": `Vous restez où vous êtes, malgré la sensation de brûlure qui commence à remplir vos poumons.`,
+          "action": () => {
+            const dolphin = flags.inventory.dolphin;
+            if (dolphin.acquired && !dolphin.used) {
+                useItem("dolphin", updateFlag);
+                return goToSection("far-corals-last-out-slow-amulet");
+            }
+
+            updateFlag("weakened", true);
+            goToSection("far-corals-last-out-slow")
+          }
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      )
+    }
+  },
+  "far-corals-last-out-quick": {
+    "text": `
+<p>Vous abandonnez votre abri et remontez vers la surface. C’est à ce moment-là seulement que vous apercevez la forme fuselée de Raiahui, à une certaine distance, en train de vous chercher parmi les récifs de corail. Elle n’est pas tournée dans votre direction pour l’instant. Vous espérez que cela durera assez longtemps pour que vous puissiez vous éloigner.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous franchissez en hâte la distance qui vous sépare encore de l’air libre.`;
+      const action = () => {goToSection("surface-close")};
+
+      return (
+        <Funnel text={text} action={action} />
+      )
+    }
+  },
+  "far-corals-last-out-slow-amulet": {
+    "text": `
+<p>Il vous semble tout à coup qu’une profonde bouffée d’air pur s’infiltre dans vos poumons. La tentation grandissante de remonter à la surface se volatilise et vous vous sentez capable de retenir votre respiration au moins aussi longtemps que vous l’avez déjà fait. À votre cou, l’amulette en forme de dauphin se désagrège et vous devinez qu’elle vient d’épuiser pour vous ses derniers pouvoirs.</p>
+
+<p>Les instants s’écoulent et vous n’apercevez toujours pas Raiahui. Continuer d’attendre indéfiniment n’est guère susceptible d’augmenter vos chances ; vous devez prendre le risque de remonter.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `Vous quittez donc votre refuge temporaire et vous dirigez vers la surface.`;
       const action = () => {
-        updateFlag("eatenByRaiahui", true);
-        goToSection("raiahui-good-end");
+        if (flags.bleeding) {
+          return goToSection("far-corals-last-out-slow-amulet-bleeding");
+        }
+
+        goToSection("far-corals-last-out-quick");
+      }
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "far-corals-last-out-slow-amulet-bleeding": {
+    "text": `
+<p>Vous avez à peine quitté votre abri pour vous diriger vers la surface lorsque la forme souple de Raiahui surgit tout à coup sur votre droite ! Elle savait où vous étiez cachée et guettait le moment où vous seriez forcée d’en sortir !</p>
+
+<p>Une accélération foudroyante la propulse dans votre direction.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("far-net-surface");
+          },
+          "conditional": true,
+        });
+      }
+
+      const pearls = flags.inventory.smokePearls;
+      if (pearls.acquired && !pearls.used) {
+        choices.push({
+          "text": `Vous écrasez les perles noires en votre possession.`,
+          "action": () => {
+            useItem("smokePearls", updateFlag);
+            goToSection("i-hate-pearls-2");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices.push({
+        "text": `Vous tentez désespérément de lui échapper.`,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end");
+        }
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "i-hate-pearls-2": {
+    "text": `
+<p>Juste à temps, vous vous souvenez des perles noires en votre possession. Vous les écrasez d’un geste convulsif, sans même les retirer du sachet accroché à votre taille, et un épais nuage de ténèbres impénétrables vous enveloppe instantanément.</p>
+
+<p>Totalement aveugle, vous voulez d’abord continuer à vous diriger vers la surface, mais vous réalisez soudain que c’est sans doute ce à quoi s’attendra Raiahui. Fort heureusement, le sursis que vous a accordé l’amulette vous permet de retenir votre respiration encore un certain temps. Interrompant donc votre remontée, vous vous mettez à nager vigoureusement dans une direction perpendiculaire à celle d’où venait votre poursuivante.</p>
+
+<p>L’eau qui vous entoure retrouve sa transparence à mesure que vous vous éloignez de l’endroit où vous avez écrasé les perles. Vous distinguez de nouveau vos propres membres, puis les reflets du soleil contre la surface, puis les récifs de corail et l’îlot qui constitue votre destination. Risquant un regard en arrière, vers la zone d’obscurité qui s’étire et se dilue avec une grande lenteur, vous ne parvenez pas à apercevoir Raiahui.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `L’effet de l’amulette s’est totalement estompé et vous êtes donc contrainte de remonter à l’air libre.`;
+      const action = () => {goToSection("surface-close")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "far-corals-last-out-slow": {
+    "text": `
+<p>Vous vous contraignez à rester où vous êtes, cherchant à apercevoir Raiahui malgré les ombres qui s’amoncellent devant vos yeux. Vous plaquez une main contre votre bouche pour retenir le réflexe mortel qui vous ferait tenter de prendre une inspiration.</p>
+
+<p>Les instants passent et vous ne distinguez toujours nulle part votre poursuivante. Votre crâne s’est rempli d’un brouillard noir et rouge qui ne cesse de s’épaissir. Finalement, vous réalisez que vous n’avez plus le choix : vous devez prendre le risque de remonter ou mourir noyée.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `Vous quittez votre refuge temporaire et vous dirigez vers la surface en toute hâte.`;
+      const action = () => {
+        if (flags.bleeding) {
+          return goToSection("far-corals-last-out-slow-bleeding");
+        }
+
+        goToSection("surface-close");
       };
 
       return (
@@ -1068,33 +1611,533 @@ ${intro}
       );
     }
   },
-  "trial-coral-doll": {
+  "far-corals-last-out-slow-bleeding": {
     "text": `
-<p>Vous sentez tout à coup la figurine être agitée de mouvements convulsifs, jusqu’à se détacher de la lanière par laquelle elle était retenue à votre taille. Vous ne saisissez pas ce qui est en train d’arriver, mais, un instant plus tard, vous sentez une main en bois — de taille tout à fait humaine — se refermer autour de la vôtre pour vous tirer dans une direction nouvelle. Totalement aveugle, vous vous laissez guider, accompagnant à peine le mouvement de petits battements de jambes.</p>
+<p>Vous avez à peine quitté votre abri pour vous diriger vers la surface lorsque la forme souple de Raiahui surgit tout à coup sur votre droite ! Elle savait où vous étiez cachée et guettait le moment où vous seriez forcée d’en sortir !</p>
 
-<p>Quelques instants plus tard, la main vous relâche et vous émergez hors de l’épais nuage. La surface est toute proche et votre tête émerge bientôt à l’air libre.</p>
+<p>Une accélération foudroyante la propulse dans votre direction.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("far-net-surface");
+          },
+          "conditional": true,
+        });
+      }
+
+      const pearls = flags.inventory.smokePearls;
+      if (pearls.acquired && !pearls.used) {
+        choices.push({
+          "text": `Vous écrasez les perles noires en votre possession.`,
+          "action": () => {
+            useItem("smokePearls", updateFlag);
+            goToSection("i-hate-pearls-3");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices.push({
+        "text": `Vous tentez désespérément de lui échapper.`,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end");
+        }
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "i-hate-pearls-3": {
+    "text": `
+<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. Totalement aveugle, vous vous dirigez vers la surface pour pouvoir enfin respirer.</p>
+
+<p>Après quelques brasses vigoureuses, l’obscurité commence à perdre son opacité : vous pouvez de nouveau distinguer vos propres membres, puis les reflets du soleil au-dessus de vous.</p>
+
+<p>Mais lorsque l’eau achève de redevenir transparente, c’est pour vous révéler la forme souple et fuselée de Raiahui, juste en-dessous de vous ! Devinant peut-être que vous manquiez d’air, elle s’est également rapprochée de la surface. Elle se dirige droit vers vous aussitôt qu’elle vous aperçoit de nouveau.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("far-net-surface");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices.push({
+        "text": `Vous tentez désespérément de lui échapper.`,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end");
+        }
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "surface-close": {
+    "text": `
+<p>Votre tête émerge brusquement à la surface et une profonde inspiration fait de nouveau affluer l’air dans vos poumons. Mais la peur qui vous tenaille ne vous laisse pas éprouver le moindre soulagement. Les reflets du soleil contre les vagues ne vous permettent pas de bien scruter les eaux de la passe, mais vous savez que Raiahui se trouve quelque part en-dessous de vous. Vous espérez qu’elle ne vous a pas vu remonter à la surface, mais cela ne vous accorde qu’un faible répit. Elle ne peut pas perdre totalement votre trace alors que vous n’avez qu’une seule destination possible.</p>
+
+<p>L’îlot de sable se trouve droit devant vous, à une distance qui vous paraîtrait négligeable dans des circonstances normales, mais qui vous emplit actuellement d’une incertitude glaçante. Même en nageant aussi vite que vous en êtes capable, pouvez-vous vraiment la franchir sans être rattrapée ?</p>
+
+<p>Une alternative vous vient soudain à l’esprit : vous pourriez plonger de nouveau vers le fond de la passe — de façon à être plus difficilement repérable  — puis nager jusqu’à l’îlot en suivant une trajectoire indirecte, qui vous rapprocherait de l’intérieur du lagon. Raiahui aura peut-être plus de mal à vous repérer si vous ne suivez pas le chemin le plus bref jusqu’à votre destination.</p>
     `,
     "next": (goToSection) => {
-      const text = `Mais vous ne prenez pas le temps de récupérez votre souffle et poursuivez aussitôt votre course.`;
-      const action = () => {goToSection("arrival-in-sight")};
+      const choices = [
+        {
+          "text": `Vous restez à la surface et nagez de toutes vos forces vers l’îlot.`,
+          "action": () => {goToSection("final-stretch-straight")},
+        },
+        {
+          "text": `Vous plongez de nouveau et essayez d’atteindre l’îlot sans être repérée.`,
+          "action": () => {goToSection("final-stretch-oblique")},
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    },
+  },
+  "final-stretch-straight": {
+    "text": `
+<p>La distance qui vous sépare de votre destination diminue à une vitesse qui vous exalterait lors d’une course ordinaire, mais qui est loin de suffire à vous donner espoir en ce moment. Jamais vous n’avez à ce point perçu l’eau comme un milieu étranger et vos mouvements de nage comme une imitation dérisoire de ses véritables habitants.</p>
+
+<p>Pire que tout, vous pouvez sentir qu’un début d’épuisement est en train de vous gagner.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `Vous vous efforcez désespérément de maintenir votre allure malgré tout.`;
+
+      if (flags.boostedByFruit) {
+        const action = () => {
+          updateFlag("boostedByFruit", false);
+          goToSection("trial-saved-by-fruit");
+        };
+
+        return (
+          <Funnel action={action} text={text} />
+        );
+      }
+
+      if (flags.drunk || flags.weakened) {
+        const action = () => {goToSection("exhausted")};
+
+        return (
+          <Funnel text={text} action={action} />
+        );
+      }
+
+      const amulet = flags.inventory.dolphin;
+      if (amulet.acquired && !amulet.used) {
+        const action = () => {
+          useItem("dolphin", updateFlag);
+          goToSection("trial-saved-by-dolphin");
+        };
+
+        return (
+          <Funnel action={action} text={text} />
+        );
+      }
+
+      if (flags.wellRested) {
+        const action = () => {goToSection("trial-saved-by-sloth")};
+
+        return (
+          <Funnel action={action} text={text} />
+        );
+      }
+
+      const action = () => {goToSection("exhausted")};
 
       return (
         <Funnel text={text} action={action} />
       );
     },
   },
+  "final-stretch-oblique": {
+    "text": `
+<p>Vous plongez de nouveau et nagez vigoureusement pour atteindre le fond de la passe. Vous ne parvenez pas à distinguer où se trouve Raiahui et vous ne pouvez qu’espérer que l’inverse est également vrai.</p>
+
+<p>Ne pas suivre le trajet le plus rapide jusqu’à la terre ferme révolte votre instinct de survie, mais vous vous forcez à le faire malgré tout. Vous ne pouvez qu’espérer que vous parviendrez à retenir votre respiration suffisamment longtemps.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `Vous nagez aussi vite que vous en êtes capable vers le lagon.`;
+
+      if (flags.bleeding) {
+        const action = () => {goToSection("final-stretch-oblique-bleeding")}
+
+        return (
+          <Funnel text={text} action={action} />
+        );
+      }
+
+      const dolphin = flags.inventory.dolphin;
+      if (dolphin.acquired && !dolphin.used) {
+        const action = () => {
+          useItem("dolphin", updateFlag);
+          goToSection("final-stretch-oblique-dolphin");
+        }
+
+        return (
+          <Funnel text={text} action={action} />
+        );
+      }
+
+      if (flags.drunk || flags.weakened) {
+        const action = () => {goToSection("final-stretch-oblique-weak")}
+
+        return (
+          <Funnel text={text} action={action} />
+        );
+      }
+
+      if (flags.wellRested) {
+        const action = () => {goToSection("final-stretch-oblique-strong")}
+
+        return (
+          <Funnel text={text} action={action} />
+        );
+      }
+
+      const action = () => {goToSection("final-stretch-oblique-default")}
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "final-stretch-oblique-bleeding": {
+    "text": `
+<p>Alors que vous jugez vous être suffisamment éloignée pour vous diriger de nouveau vers l’îlot qui constitue votre destination, un frémissement de terreur vous parcourt tout à coup. Raiahui vient d’apparaître sur votre droite et vous la voyez se diriger vers vous à vive allure !</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("final-stretch-oblique-bleeding-net");
+          },
+          "conditional": true,
+        });
+      }
+
+      const pearls = flags.inventory.smokePearls;
+      if (pearls.acquired && !pearls.used) {
+        choices.push({
+          "text": `Vous écrasez les perles noires en votre possession.`,
+          "action": () => {
+            useItem("smokePearls", updateFlag);
+            goToSection("final-stretch-oblique-bleeding-pearls");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices.push({
+        "text": `Vous nagez de toutes vos forces en direction de l’îlot.`,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end");
+        },
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "final-stretch-oblique-bleeding-net": {
+    "text": `
+<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez en hâte vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante juste au moment où celle-ci allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+
+<p>Il n’est plus question de discrétion à présent ! Vous remontez en toute hâte vers la surface. Votre tête émerge bientôt à l’air libre.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous prenez tout juste le temps d’inspirer profondément avant de nager de toutes vos forces vers l’îlot sablonneux.`;
+      const action = () => {goToSection("final-stretch-straight")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "final-stretch-oblique-bleeding-pearls": {
+    "text": `
+<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. Totalement aveugle, vous nagez dans la direction approximative de l’îlot, espérant échapper au péril mortel que vous savez être tout proche.</p>
+
+<p>Après quelques brasses énergiques, vous parvenez de nouveau à distinguer vos propres membres, puis la pâleur du fond sablonneux. Le manque d’air commence à devenir difficile à supporter.</p>
+
+<p>L’eau achève de redevenir transparente autour de vous. Mais au lieu de remonter à la surface pour y respirer, vous vous immobilisez soudain, frappée par la terreur en voyant la forme souple et fuselée de Raiahui passer lentement devant vous. Elle est à une certaine distance, mais vous repère au moment même où vous la apercevez et oblique brusquement dans votre direction.</p>
+
+<p>Vous réalisez qu’elle est parvenue à rester à l’extérieur du nuage opaque. Même s’il vous a temporairement dérobée à ses yeux, elle n’a pas eu de mal à deviner dans quelle direction vous vous dirigiez et à vous couper la route.</p>
+
+<p>Une accélération foudroyante la propulse vers vous, sa gueule entrouverte dévoilant ses nombreuses dents effilées.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("final-stretch-oblique-bleeding-net");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices.push({
+        "text": `Vous nagez de toutes vos forces en direction de l’îlot.`,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end");
+        },
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "final-stretch-oblique-dolphin": {
+    "text": `
+<p>Une fois que vous jugez vous être suffisamment éloignée, vous vous dirigez de nouveau vers l’îlot qui constitue votre destination.</p>
+
+<p>Vous avez franchi la moitié de la distance qui vous en sépare encore lorsqu’il vous semble tout à coup qu’une profonde bouffée d’air pur s’infiltre dans vos poumons. La tentation grandissante de remonter à la surface se volatilise et vous vous sentez capable de retenir votre respiration au moins aussi longtemps que vous l’avez déjà fait. À votre cou, l’amulette en forme de dauphin se désagrège et vous devinez qu’elle vient d’épuiser pour vous ses derniers pouvoirs.</p>
+
+<p>Vous n’êtes plus guère éloignée de l’îlot lorsque vous apercevez soudain la forme fuselée de Raiahui sur votre droite. Elle vous a finalement repérée et se dirige vers vous à une vitesse foudroyante !</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`;
+      const action = () => {goToSection("final-island")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "final-stretch-oblique-weak": {
+    "text": `
+<p>Une fois que vous jugez vous être suffisamment éloignée, vous vous dirigez de nouveau vers l’îlot qui constitue votre destination.</p>
+
+<p>Vous avez franchi un peu plus de la moitié de la distance qui vous en sépare encore lorsque la brûlure de vos poumons commence à devenir insupportable. Vous redoublez d’effort, mais c’est en vain. Vous réalisez que vous ne pourrez pas retenir votre respiration jusqu’à l’îlot.</p>
+
+<p>Vous remontez rapidement vers la surface… et, alors que vous êtes sur le point de l’atteindre, vous apercevez tout à coup tout à coup Raiahui se dirigeant droit sur vous à une vitesse effrayante !</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("final-stretch-oblique-weak-net");
+          },
+          "conditional": true,
+        });
+      }
+
+      const pearls = flags.inventory.smokePearls;
+      if (pearls.acquired && !pearls.used) {
+        choices.push({
+          "text": `Vous écrasez les perles noires en votre possession.`,
+          "action": () => {
+            useItem("smokePearls", updateFlag);
+            goToSection("final-stretch-oblique-weak-pearls");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices.push({
+        "text": `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end");
+        },
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    },
+  },
+  "final-stretch-oblique-weak-net": {
+    "text": `
+<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez en hâte vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante juste au moment où celle-ci allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+
+<p>Il n’est plus question de discrétion à présent !</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Votre tête émerge à l’air libre et vous prenez tout juste le temps d’inspirer profondément avant de nager de toutes vos forces pour atteindre enfin l’îlot sablonneux.`;
+      const action = () => {goToSection("final-island")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "final-stretch-oblique-weak-pearls": {
+    "text": `
+<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. L’espace d’un bref instant, vous êtes totalement aveugle. Puis votre tête émerge à l’air libre et vous pouvez de nouveau voir et respirer.</p>
+
+<p>La zone de noirceur opaque s’étend sur une large surface et vous êtes incapable de deviner où se trouve actuellement Raiahui. Vous ne pouvez qu’espérer que l’inverse est également vrai.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous nagez aussi vite que vous en êtes capable pour atteindre enfin l’îlot sablonneux.`;
+      const action = () => {goToSection("final-island")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "final-stretch-oblique-strong": {
+    "text": `
+<p>Une fois que vous jugez vous être suffisamment éloignée, vous vous dirigez de nouveau vers l’îlot qui constitue votre destination.</p>
+
+<p>À mesure que vous vous en rapprochez, vous éprouvez la tentation grandissante de remonter à l’air libre ne serait-ce que pour un bref moment. Mais vous êtes une nageuse expérimentée, habituée à retenir votre respiration pendant de longues périodes. Vous restez près du fond sablonneux et continuez à progresser régulièrement vers votre objectif.</p>
+
+<p>Vous n’êtes plus guère éloignée de l’îlot lorsque vous apercevez soudain la forme fuselée de Raiahui sur votre droite. Elle vous a finalement repérée et se dirige vers vous à une vitesse foudroyante !</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`;
+      const action = () => {goToSection("final-island")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "final-stretch-oblique-default": {
+    "text": `
+<p>Une fois que vous jugez vous être suffisamment éloignée, vous vous dirigez de nouveau vers l’îlot qui constitue votre destination.</p>
+
+<p>Vous avez franchi un peu plus de la moitié de la distance qui vous en sépare encore lorsque la brûlure de vos poumons commence à devenir très pénible. Êtes-vous vraiment capable de retenir votre respiration jusqu’à cet îlot ?</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const choices = [
+        {
+          "text": `Vous vous forcez à rester sous l’eau jusqu’au bout.`,
+          "action": () => {
+            updateFlag("weakened", true);
+            goToSection("final-stretch-oblique-default-force");
+          },
+        },
+        {
+          "text": `Vous prenez le risque de remonter à la surface pour respirer.`,
+          "action": () => {goToSection("final-stretch-oblique-default-interrupt")},
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "final-stretch-oblique-default-force": {
+    "text": `
+<p>Vous nagez vigoureusement, malgré la brûlure qui dévore désormais vos poumons et les ombres qui s’amoncellent devant vos yeux. Votre mâchoire est crispée par l’effort de résister au réflexe mortel qui vous ferait tenter de prendre une inspiration.</p>
+
+<p>Un brouillard noir et rouge est en train de remplir votre crâne lorsque vous réalisez que vous n’êtes plus qu’à une faible distance de l’îlot. Au même instant, vous apercevez soudain la forme fuselée de Raiahui sur votre droite. Elle vous a finalement repérée et se dirige vers vous à une vitesse foudroyante !</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et, prenant à peine le temps de respirer, vous nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`;
+      const action = () => {goToSection("final-island")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "final-stretch-oblique-default-interrupt": {
+    "text": `
+<p>Vous remontez rapidement vers la surface… et, alors que vous êtes sur le point de l’atteindre, vous apercevez tout à coup tout à coup Raiahui se dirigeant droit sur vous à une vitesse terrifiante !</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            updateFlag("caughtARaiahui", true);
+            goToSection("final-stretch-oblique-weak-net");
+          },
+          "conditional": true,
+        });
+      }
+
+      const pearls = flags.inventory.smokePearls;
+      if (pearls.acquired && !pearls.used) {
+        choices.push({
+          "text": `Vous écrasez les perles noires en votre possession.`,
+          "action": () => {
+            useItem("smokePearls", updateFlag);
+            goToSection("final-stretch-oblique-weak-pearls");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices.push({
+        "text": `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end");
+        },
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
   "exhausted": {
     "text": `
 <p>La panique ne parvient plus à vous faire ignorer votre fatigue. Vos membres sont lourds, votre respiration difficile et vos mouvements se font inexorablement plus lents. Jetant un coup d’œil angoissé derrière vous, vous voyez à travers l’eau transparente Raiahui se rapprocher rapidement. Vous n’aurez pas le temps d’atteindre l’île avant qu’elle ne vous rattrape ! Allez-vous échouer si près du but ?</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const context = `Vous cherchez désespérément quelque chose qui pourrait vous aider.`;
-
       let choices = [];
+
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous avez encore le filet de la sorcière.`,
+          "text": `Vous lui jetez le filet de la sorcière.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -1103,10 +2146,11 @@ ${intro}
           "conditional": true,
         });
       }
+
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Il vous reste toujours les perles de la sorcière.`,
+          "text": `Vous écrasez les perles noires en votre possession.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("trial-exhausted-pearls");
@@ -1115,34 +2159,44 @@ ${intro}
         });
       }
 
-      if (0 === choices.length) {
-        const text = `Et vous ne trouvez rien.`;
-        const action = () => {
+      choices.push({
+        "text": `Vous tentez désespérément de nager assez vite pour lui échapper.`,
+        "action": () => {
           updateFlag("eatenByRaiahui", true);
           goToSection("raiahui-good-end");
-        };
-
-        return (
-          <Funnel text={text} action={action} context={context} />
-        );
-      }
+        },
+      });
 
       return (
-        <Crossroads context={context} choices={choices} />
+        <Crossroads choices={choices} />
       );
     },
   },
   "trial-exhausted-net": {
     "text": `
-<p>Le désespoir est en train de vous envahir lorsque vous vous souvenez tout à coup du filet que vous avez enroulé autour de votre taille. Vous vous en emparez en hâte et le jetez vers Raiahui. Votre geste n’a presque aucune force, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante alors qu’elle allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles étroites pour parvenir à se libérer. Avec un sursaut d’énergie, vous nagez vers l’île sablonneuse aussi vite que vous le pouvez encore.</p>
+<p>Le désespoir est en train de vous envahir lorsque vous vous souvenez tout à coup du filet que vous avez enroulé autour de votre taille. Vous vous en emparez en hâte et le jetez vers Raiahui. Votre geste n’a presque aucune force, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante alors qu’elle allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
     `,
-    "next": raceEnd,
+    "next": (goToSection) => {
+      const text = `Avec un sursaut d’énergie, vous nagez vers l’île sablonneuse aussi vite que vous le pouvez encore.`;
+      const action = () => {goToSection("final-island")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
   },
   "trial-exhausted-pearls": {
     "text": `
-<p>Le désespoir est en train de vous envahir lorsque vous vous souvenez tout à coup des perles noires que vous transportez. Vous vous en emparez en hâte et les écrasez toutes à la fois. Les eaux qui vous entourent deviennent soudain d’un noir impénétrable, vous dissimulant aux yeux de Raiahui alors qu’elle allait vous atteindre. Avec un sursaut d’énergie, vous nagez vers l’île sablonneuse aussi vite que vous le pouvez encore.</p>
+<p>Le désespoir est en train de vous envahir lorsque vous vous souvenez tout à coup des perles noires que vous transportez. Vous vous en emparez en hâte et les écrasez toutes à la fois. Les eaux qui vous entourent deviennent soudain d’un noir impénétrable, vous dissimulant aux yeux de Raiahui avant qu’elle ne puisse vous atteindre.</p>
     `,
-    "next": raceEnd,
+    "next": (goToSection) => {
+      const text = `Avec un sursaut d’énergie, vous nagez vers l’île sablonneuse aussi vite que vous le pouvez encore.`;
+      const action = () => {goToSection("final-island")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
   },
   "trial-calabashes": {
     "text": (flags) => {
@@ -1397,6 +2451,339 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
         updateFlag,
       );
     },
+  },
+  "trial-hide-closer": {
+    "text": `
+<p>Vous prenez une profonde inspiration et plongez à nouveau. Quelques brasses énergiques vous permettent de vous enfoncer rapidement sous la surface. Un frémissement d’espoir vous saisit lorsque vous découvrez, juste au-dessus du sol sabloneux, un renfoncement dans les formes baroques du récif le plus proche. Vous vous glissez sans attendre dans cette cachette et restez aussi immobile que possible, entourée par les mille couleurs extravagantes du corail.</p>
+
+<p>Quelques instants plus tard, la forme effilée de Raiahui vient se découper contre la surface ensoleillée de l’eau, à la verticale exacte de votre position. Vous redoutez de la voir obliquer aussitôt dans votre direction, mais elle n’en fait rien, continuant d’avancer dans la même direction. Ses mouvements fluides sont désormais d’une lenteur qui vous paraît presque moqueuse.</p>
+
+<p>Vous n’imaginez pas un instant qu’elle prévoit de gagner la course simplement en atteignant l’îlot avant vous. Peut-être, cependant, n’a-t-elle pas une idée claire de l’endroit où vous avez trouvé refuge.</p>
+
+<p>Vous réfléchissez rapidement. Le renfoncement vous rend sans doute difficile à apercevoir, mais vous seriez une proie facile si cela ne suffisait pas, car il est trop peu profond pour vous mettre hors de portée d’une mâchoire de requin. Sur votre gauche, à une distance modeste, un autre récif de corail émerge du fond sablonneux ; il n’offre aucun abri comparable à celui où vous vous trouvez, mais il est juste assez grand pour vous dissimuler aux yeux de Raiahui si vous l’interposez entre elle et vous. Sur votre droite, un récif de taille plus importante vous semble offrir de meilleures cachettes, mais il est nettement plus éloigné.</p>
+
+<p>L’allure de Raiahui se ralentit encore et vous craignez qu’elle ne continue pas davantage à s’éloigner.</p>
+    `,
+    "next": (goToSection) => {
+      const choices = [
+        {
+          "text": `Vous restez prudemment abritée dans votre cachette actuelle.`,
+          "action": () => {goToSection("trial-hide-closer-1")},
+        },
+        {
+          "text": `Vous quittez votre cachette et nagez jusqu’au récif de gauche.`,
+          "action": () => {goToSection("trial-hide-closer-2")},
+        },
+        {
+          "text": `Vous quittez votre cachette et nagez de toutes vos forces pour atteindre le récif de droite.`,
+          "action": () => {goToSection("trial-hide-closer-3")},
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      )
+    }
+  },
+  "trial-hide-closer-1": {
+    "text": `
+<p>Un instant plus tard, comme vous le redoutiez, Raihui fait demi-tour et revient dans votre direction. Elle s’approche cette fois tout près du récif et entreprend de tourner autour. Si elle sait que vous êtes là, vous réalisez qu’elle n’a pas besoin de découvrir votre cachette précise : il lui suffit d’attendre que le manque d’air vous force à tenter de rejoindre la surface !</p>
+
+<p>Raiahui décrit un premier cercle… un deuxième cercle… puis elle disparaît de votre champ de vision et n’y revient plus.</p>
+
+<p>Le ventre noué par la peur, vous hésitez à saisir cette occasion.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const doll = flags.inventory.doll;
+      if (doll.acquired && !doll.used) {
+        const text = `Avant que vous ne puissiez prendre une décision, il se passe quelque chose de totalement inattendu.`;
+        const action = () => {
+          useItem("doll", updateFlag);
+          goToSection("trial-hide-closer-1-doll");
+        };
+
+        return (
+          <Funnel text={text} action={action} />
+        );
+      }
+
+      let choices = [];
+
+      const pearls = flags.inventory.smokePearls;
+      if (pearls.acquired && !pearls.used) {
+        choices.push({
+          "text": `Vous écrasez les perles noires en votre possession avant de quitter votre cachette.`,
+          "action": () => {
+            useItem("smokePearls", updateFlag);
+            goToSection("trial-hide-closer-1-pearls");
+          },
+          "conditional": true,
+        });
+      }
+
+      choices.push({
+        "text": `Vous restez immobile.`,
+        "action": () => {goToSection("trial-hide-closer-1-still")},
+      });
+      choices.push({
+        "text": `Vous quittez votre cachette et vous éloignez le plus vite possible.`,
+        "action": () => {goToSection("trial-hide-closer-1-fast")},
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "trial-hide-closer-1-doll": {
+    "text": `
+<p>La figurine de bois, que vous aviez attachée à votre taille, commence à s’agiter furieusement. Craignant quelque sorcellerie, vous essayez de vous en débarrasser, mais elle se délivre d’elle-même et, d’un mouvement convulsif, se propulse à l’extérieur de votre cachette. Sous vos yeux ébahis, la création du crocodile se met alors à grandir et à changer de couleur jusqu’à ce que vous ayiez devant vous une réplique très exacte de vous-même !</p>
+
+<p>Votre double vous adresse un sourire amusé, puis se met à nager vigoureusement vers l’extérieur de l’atoll. Elle n’a pas franchi une distance bien importante lorsque la forme redoutée de Raiahui surgit au-dessus du récif de corail et se lance à sa poursuite. Vous n’attendez pas davantage pour vous propulser hors de votre cachette et vous enfuir vers l’îlot en nageant de toutes vos forces.</p>
+
+<p>Un rapide coup d’œil sur le côté vous permet de voir l’accélération fulgurante avec laquelle Raiahui rattrape celle qu’elle croit être sa proie. Aussitôt que les dents acérées se referment sur votre étrange jumelle, celle-ci se désagrège en une myriade de minuscules fragments de bois. Cette diversion inespérée n’aura pas duré longtemps, mais vous espérez que la stupéfaction fera perdre quelques instants supplémentaires à Raiahui.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Ne pouvant pas vous passer d’air beaucoup plus longtemps, vous remontez à l’air libre.`;
+      const action = () => {goToSection("surface-close")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "trial-hide-closer-1-pearls": {
+    "text": `
+<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. Sans attendre davantage, vous vous propulsez hors de votre cachette et vous enfuyez dans la direction approximative de l’îlot.</p>
+
+<p>La zone d’obscurité totale n’englobe que le récif de corail et ses environs immédiat. Après quelques brasses énergiques, vous parvenez de nouveau à distinguer vos propres membres, puis la pâleur du fond sablonneux. Le manque d’air est en train de devenir difficile à supporter.</p>
+
+<p>L’eau achève de redevenir transparente autour de vous. Mais au lieu de remonter à la surface pour y respirer, vous vous immobilisez soudain, frappée par la terreur en voyant la forme souple et fuselée de Raiahui passer lentement devant vous. Elle est à une certaine distance, mais vous repère au moment même où vous l’apercevez et oblique brusquement dans votre direction.</p>
+
+<p>Vous réalisez tout à coup que votre usage des perles noires a eu pour principal effet de confirmer à Raiahui votre position et de l’avertir de votre tentative de fuite. Elle s’est facilement tenue à l’extérieur du nuage opaque et, même s’il l’a d’abord empêchée de vous repérer, elle n’a eu aucun mal à deviner dans quelle direction vous vous dirigiez et à vous couper la route.</p>
+
+<p>Une accélération foudroyante la propulse vers vous, sa gueule entrouverte dévoilant ses nombreuses dents effilées.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            goToSection("trial-hide-closer-net");
+          },
+          "conditional": true,
+        })
+      }
+
+      choices.push({
+        "text": `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end");
+        },
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "trial-hide-closer-1-still": {
+    "text": `
+<p>Vous restez le plus immobile possible. Les instants s’écoulent sans que Raiahui ne reparaisse dans votre champ de vision. S’est-elle réellement éloignée ou vous tend-elle un piège ? Le manque d’air est en train de devenir douloureux. Vous êtes capable de retenir très longtemps votre respiration, mais vous n’êtes pas un poisson !</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const choices = [
+        {
+          "text": `Vous tentez votre chance en quittant votre cachette.`,
+          "action": () => {
+            goToSection("trial-hide-closer-1-still-exit");
+          },
+        },
+        {
+          "text": `Vous restez où vous êtes.`,
+          "action": () => {
+            const dolphin = flags.inventory.dolphin;
+            if (dolphin.acquired && !dolphin.used) {
+              useItem("dolphin", updateFlag);
+              return goToSection("trial-hide-closer-1-still-dolphin");
+            }
+
+            updateFlag("weakened", true);
+            goToSection("trial-hide-closer-1-still-asphyxia");
+          },
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "trial-hide-closer-1-still-exit": {
+    "text": `
+<p>Vous vous glissez prudemment hors du renfoncement, regardant tout autour de vous. Un tressaillement de frayeur vous saisit lorsque vous apercevez tout à coup la forme fuselée de Raiahui. Mais elle s’est éloignée vers le grand récif que vous avez remarqué sur votre droite et ne regarde pas dans votre direction.</p>
+
+<p>Réalisant que vous n’aurez pas de meilleure occasion, vous abandonnez définitivement votre cachette et vous éloignez sans perdre un instant.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous restez sous l’eau autant que possible, mais vous devez finalement remonter à l’air libre.`;
+      const action = () => {goToSection("surface-close")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "trial-hide-closer-1-still-dolphin": {
+    "text": `
+<p>Il vous semble tout à coup qu’une profonde bouffée d’air pur s’infiltre dans vos poumons. Le réflexe mortel qui allait bientôt vous faire ouvrir la bouche s’éloigne et vous vous sentez capable de retenir votre respiration au moins aussi longtemps que vous l’avez déjà fait. À votre cou, l’amulette en forme de dauphin se désagrège et vous devinez qu’elle vient d’épuiser pour vous ses derniers pouvoirs.</p>
+
+<p>Vous ne pouvez cependant pas rester dans cette cachette éternellement. Après un assez long moment, vous vous risquez enfin à la quitter. Il ne vous faut pas longtemps pour apercevoir la forme fuselée de Raiahui, qui s’est éloignée vers une zone où les récifs sont plus denses. Votre patience a apparemment réussi à la tromper pour l’instant.</p>
+
+<p>Vous ne perdez pas un instant de plus : abandonnant définitivement votre cachette, vous nagez vigoureusement en direction de l’îlot.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `L’effet de l’amulette finit par s’estomper et vous devez remonter à l’air libre.`;
+      const action = () => {goToSection("surface-close")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "trial-hide-closer-1-still-asphyxia": {
+    "text": `
+<p>Vous vous contraignez à rester dans votre cachette, malgré la sensation de brûlure qui dévore vos poumons et les ombres qui s’amoncellent devant vos yeux. Vous plaquez une main contre votre bouche pour retenir le réflexe mortel qui vous ferait tenter de prendre une inspiration.</p>
+
+<p>Les instants passent. Votre crâne s’est rempli d’un brouillard noir et rouge qui ne cesse de s’épaissir davantage. Finalement, vous réalisez que vous n’avez plus le choix : vous devez prendre le risque de remonter à la surface ou mourir noyée.</p>
+
+<p>Vous jaillissez hors de votre cachette sans plus attendre. Votre vision obscurcie ne distingue plus avec précision ce qui vous entoure, mais Raiahui n’est pas à proximité. Il vous semble apercevoir sa forme fuselée à une certaine distance, au-dessus d’une zone où les récifs de corail sont plus denses.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous remontez à l’air libre aussi vite que vos forces vous le permettent.`;
+      const action = () => {goToSection("surface-close")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "trial-hide-closer-1-fast": {
+    "text": `
+<p>Vous vous propulsez hors de votre cachette. Mais vous avez à peine esquissé une brasse lorsque Raiahui surgit tout à coup au-dessus du récif de corail ! Elle vous guettait !</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `Une accélération foudroyante la propulse dans votre direction, ne vous laissant pas le temps de tenter quoi que ce soit.`;
+      const action = () => {
+        updateFlag("eatenByRaiahui", true);
+        goToSection("raiahui-good-end");
+      };
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "trial-hide-closer-net": {
+    "text": `
+<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez en hâte vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante juste au moment où celle-ci allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Vous nagez de toutes vos forces en direction de l’îlot, tout en remontant progressivement à l’air libre.`;
+      const action = () => {goToSection("surface-close")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
+  },
+  "trial-hide-closer-2": {
+    "text": `
+<p>Le cœur battant à tout rompre, vous vous glissez hors de ce renfoncement providentiel et nagez vers votre objectif. Vous l’atteignez juste à temps : Raiahui est en train de faire demi-tour ! Vous vous tapissez derrière le récif, espérant que cela suffira à vous faire échapper à ses yeux.</p>
+
+<p>De minces espaces entre les excroissances colorés du corail vous permettent de suivre Raiahui à mesure qu’elle se rapproche. Elle passe à une faible distance, apparemment sans vous remarquer. Vous la voyez s’approcher très près du récif où vous aviez précédemment trouvé refuge, puis commencer à en faire le tour.</p>
+
+<p>Votre instinct vous dit que vous n’aurez pas de meilleure occasion ; profitant de ce qu’elle est momentanément incapable de vous apercevoir, vous quittez votre deuxième cachette et nagez en direction de l’îlot, restant proche du fond sablonneux dans l’espoir que cela vous rendra un peu plus difficile à repérer.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Ne pouvant pas retenir indéfiniment votre souffle, il vient cependant un moment où vous devez remonter à l’air libre.`;
+      const action = () => {goToSection("surface-close")};
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    },
+  },
+  "trial-hide-closer-3": {
+    "text": `
+<p>Le cœur battant à tout rompre, vous vous glissez hors du renfoncement et nagez de toutes vos forces vers votre objectif. Vous avez franchi la moitié de la distance qui vous en sépare lorsque Raiahui fait tout à coup demi-tour !</p>
+
+<p>Il est immédiatement clair qu’elle vous a aperçu : d’un mouvement puissant de sa queue, elle se propulse dans votre direction à une vitesse bien supérieure à l’allure paresseuse qu’elle avait adopté. Vous redoublez d’efforts pour atteindre le récif de corail, dans l’espoir d’y trouver un refuge providentiel. Mais vous réalisez avec effroi que vous n’y parviendrez pas à temps : Raiahui vient d’accélèrer de façon foudroyante, sa gueule entrouverte dévoilant ses nombreuses dents effilées.</p>
+    `,
+    "next": (goToSection, flags, updateFlag) => {
+      let choices = [];
+
+      const net = flags.inventory.net;
+      if (net.acquired && !net.used) {
+        choices.push({
+          "text": `Vous lui jetez le filet de la sorcière.`,
+          "action": () => {
+            useItem("net", updateFlag);
+            goToSection("trial-hide-closer-net");
+          },
+          "conditional": true,
+        })
+      }
+
+      const pearls = flags.inventory.smokePearls;
+      if (pearls.acquired && !pearls.used) {
+        choices.push({
+          "text": `Vous écrasez les perles noires que vous transportez.`,
+          "action": () => {
+            useItem("smokePearls", updateFlag);
+            updateFlag("bleeding", true);
+            goToSection("trial-hide-closer-3-pearls");
+          },
+          "conditional": true,
+        })
+      }
+
+      choices.push({
+        "text": `Vous tentez désespérément de lui échapper malgré tout.`,
+        "action": () => {
+          updateFlag("eatenByRaiahui", true);
+          goToSection("raiahui-good-end");
+        },
+      });
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    }
+  },
+  "trial-hide-closer-3-pearls": {
+    "text": `
+<p>Juste à temps, vous vous souvenez des perles noires en votre possession. Vous les écrasez d’un geste convulsif, sans même les retirer du sachet accroché à votre taille, et un épais nuage de ténèbres impénétrables vous enveloppe instantanément.</p>
+
+<p>Totalement aveugle, vous nagez droit devant vous dans l’espoir d’échapper au péril mortel que vous savez être tout proche. Vous éprouvez soudain un impact cuisant contre votre cuisse ! Raiahui n’est pas parvenue à vous mordre, mais elle vient de vous cingler involontairement avec sa queue, vous écorchant sans doute la peau.</p>
+
+<p>Refoulant immédiatement la terreur qui menace de vous faire perdre vos moyens, vous descendez plus profondément, jusqu’à effleurer le sol sablonneux, puis vous vous mettez à nager dans la direction opposée à celle que vous suiviez auparavant.</p>
+
+<p>L’eau qui vous entoure retrouve sa transparence à mesure que vous vous éloignez de l’endroit où vous avez écrasé les perles. Vous distinguez de nouveau vos propres membres, puis les reflets du soleil contre la surface, puis les récifs de corail et l’îlot qui constitue votre destination. Risquant un regard en arrière, vers la zone d’obscurité qui s’étire et se dilue avec une grande lenteur, vous ne parvenez pas à apercevoir Raiahui.</p>
+    `,
+    "next": (goToSection) => {
+      const text = `Incapable de retenir votre respiration beaucoup plus longtemps, vous remontez à l’air libre.`;
+      const action = () => goToSection("surface-close");
+
+      return (
+        <Funnel text={text} action={action} />
+      );
+    }
   },
   "ending-credits": {
     //TODO Complete with links, thanks message etc.
