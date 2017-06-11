@@ -1,7 +1,3 @@
-.main {
-  margin-top: 75px;
-}
-
 .navbar-fixed-top img {
   margin-top: -10px;
 }
@@ -190,4 +186,18 @@ img.lg-img {
 
 .inventory dl {
   margin-bottom: 0;
+}
+
+.core {
+  padding-top: 75px;
+}
+
+.core .col-md-8 {
+  background-color: white;
+}
+
+@media (min-width: 1200px) {
+  .core {
+    background: linear-gradient(to right,#3BB9FF,white 15%,white 85%,#3BB9FF);
+  }
 }
