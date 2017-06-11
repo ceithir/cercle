@@ -716,14 +716,13 @@ ${intro}
 <p>Sous vos yeux horrifiés, un aileron brun-gris émerge de l’eau opaque juste devant vous.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `D’un mouvement brusque, il s’oriente dans votre direction.`;
-      const action = () => {
-        updateFlag("eatenByRaiahui", true);
-        goToSection("raiahui-good-end");
-      };
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `D’un mouvement brusque, il s’oriente dans votre direction.`,
+        () => {
+          updateFlag("eatenByRaiahui", true);
+          return "raiahui-good-end";
+        },
       );
     }
   },
@@ -819,11 +818,10 @@ ${intro}
 <p>Vous puisez dans toutes vos ressources pour franchir la distance qui vous sépare encore de votre but.</p>
     `,
     "next": (goToSection) => {
-      const text = `Là où la panique ne suffit plus, c’est votre volonté qui contraint vos muscles à dépasser l’épuisement et à vous propulser vers l’île, toujours plus près, sans ralentir un instant.`;
-      const action = () => {goToSection("final-island")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Là où la panique ne suffit plus, c’est votre volonté qui contraint vos muscles à dépasser l’épuisement et à vous propulser vers l’île, toujours plus près, sans ralentir un instant.`,
+        "final-island",
       );
     },
   },
@@ -961,11 +959,10 @@ ${intro}
 <p>Raiahui a un réflexe de recul lorsque vos doigts tendus se rapprochent de ses yeux. Saisissant l’occasion, vous parvenez à vous dégager et à la repousser en arrière. Raiahui est momentanément déséquilibrée, mais elle tend son couteau devant elle pour vous empêcher d’en profiter.</p>
     `,
     "next": (goToSection) => {
-      const text = `Réalisant que vous avez peu de chance de prendre le dessus dans cet affrontement, vous vous enfuyez vers l’îlot.`;
-      const action = () => {goToSection("run-to-finish")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Réalisant que vous avez peu de chance de prendre le dessus dans cet affrontement, vous vous enfuyez vers l’îlot.`,
+        "run-to-finish",
       );
     }
   },
@@ -1086,14 +1083,13 @@ ${intro}
 <p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `— L’épreuve est terminée, déclare Ataroa.`;
-      const action = () => {
-        updateFlag("survivedTheTrial", true);
-        goToSection("victory");
-      };
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `— L’épreuve est terminée, déclare Ataroa.`,
+        () => {
+          updateFlag("survivedTheTrial", true);
+          return "victory";
+        },
       );
     },
   },
@@ -1110,14 +1106,13 @@ ${intro}
 <p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `— L’épreuve est terminée, déclare Ataroa.`;
-      const action = () => {
-        updateFlag("survivedTheTrial", true);
-        goToSection("victory");
-      };
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `— L’épreuve est terminée, déclare Ataroa.`,
+        () => {
+          updateFlag("survivedTheTrial", true);
+          return "victory";
+        },
       );
     }
   },
@@ -1291,11 +1286,10 @@ ${intro}
 <p>L’eau achève de redevenir transparente autour de vous. Tournant la tête, vous apercevez la forme souple et fuselée de Raiahui, à une certaine distance sur votre droite. Elle est parvenue à rester en-dehors du nuage opaque, mais cela lui a fait perdre du temps. L’anfractuosité où vous espériez trouver refuge ne se trouve plus qu’à quelques brasses devant vous.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous l’atteignez et vous y glissez sans perdre un instant.`;
-      const action = () => {goToSection("far-corals")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Vous l’atteignez et vous y glissez sans perdre un instant.`,
+        "far-corals",
       );
     }
   },
@@ -1304,11 +1298,10 @@ ${intro}
 <p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et traverse en un instant la distance qui vous sépare pour envelopper étroitement votre poursuivante. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
     `,
     "next": (goToSection) => {
-      const text = `Ce répit vous suffit amplement à atteindre les récifs de corail et à vous réfugier dans l’anfractuosité.`;
-      const action = () => {goToSection("far-corals")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Ce répit vous suffit amplement à atteindre les récifs de corail et à vous réfugier dans l’anfractuosité.`,
+        "far-corals",
       );
     },
   },
@@ -1319,11 +1312,10 @@ ${intro}
 <p>Une énergie brûlante naît soudain dans le creux de votre ventre et se répand dans tous vos muscles avec la vivacité de la foudre. Vos mouvements se font plus rapides et plus puissants. Les récifs de corail se rapprochent à une vitesse étourdissante !</p>
     `,
     "next": (goToSection) => {
-      const text = `Cette vitalité anormale se volatilise à l’instant même où vous atteignez l’anfractuosité, où vous vous glissez sans perdre un instant.`;
-      const action = () => {goToSection("far-corals")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Cette vitalité anormale se volatilise à l’instant même où vous atteignez l’anfractuosité, où vous vous glissez sans perdre un instant.`,
+        "far-corals",
       );
     }
   },
@@ -1340,11 +1332,10 @@ ${intro}
 <p>Avec un frémissement, vous réalisez ce qui s’est passé : juste au moment où vous atteigniez l’anfractuosité, Raiahui a tenté de vous happer par la cheville. Elle vous a manqué de justesse, mais votre pied a heurté le rebord de sa gueule et c’est le tranchant de l’une de ses dents qui vous a fait cette blessure superficielle.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous vous en tirez à bon compte et ce n’est pas cette coupure qui vous gênera pour nager, mais vous êtes encore loin d’être tirée d’affaire.`;
-      const action = () => {goToSection("far-corals")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Vous vous en tirez à bon compte et ce n’est pas cette coupure qui vous gênera pour nager, mais vous êtes encore loin d’être tirée d’affaire.`,
+        "far-corals",
       );
     }
   },
@@ -1416,11 +1407,13 @@ ${intro}
           goToSection("far-corals-fight");
         }
       });
+
+      const deathText = `Vous continuez de nager aussi vite que vous êtes capable.`;
       choices.push({
-        "text": `Vous continuez de nager aussi vite que vous êtes capable.`,
+        "text": deathText,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
-          goToSection("raiahui-good-end");
+          goToSection("raiahui-good-end", coatSentence(deathText));
         }
       });
 
@@ -1457,11 +1450,10 @@ ${intro}
 <p>Enfin, presque sans vous en rendre compte, vous atteignez le point où la faille se resserre trop pour votre poursuivante. Avec un soulagement incrédule, vous voyez Raiahui remonter tout à coup, puis disparaître de votre champ de vision.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous poursuivez sans attendre votre progression.`;
-      const action = () => {goToSection("far-corals-last")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Vous poursuivez sans attendre votre progression.`,
+        "far-corals-last"
       );
     }
   },
@@ -1498,12 +1490,13 @@ ${intro}
         );
       }
 
+      const deathText = `Vous vous efforcez malgré tout de continuer à suivre la faille.`;
       const choices = [
         {
-          "text": `Vous vous efforcez malgré tout de continuer à suivre la faille.`,
+          "text": deathText,
           "action": () => {
             updateFlag("eatenByRaiahui", true);
-            goToSection("raiahui-good-end");
+            goToSection("raiahui-good-end", coatSentence(deathText));
           },
         },
         {
@@ -1546,11 +1539,10 @@ ${intro}
 <p>Derrière vous, la zone d’obscurité est loin d’avoir disparu. Vous ne pouvez pas distinguer où se trouve Raiahui.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous poursuivez sans attendre votre progression.`;
-      const action = () => {goToSection("far-corals-last")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Vous poursuivez sans attendre votre progression.`,
+        "far-corals-last"
       );
     },
   },
@@ -1578,11 +1570,12 @@ ${intro}
         });
       }
 
+      const deathText = `Vous tentez désespérément de lui échapper.`;
       choices.push({
-        "text": `Vous tentez désespérément de lui échapper.`,
+        "text": deathText,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
-          goToSection("raiahui-good-end");
+          goToSection("raiahui-good-end", coatSentence(deathText));
         }
       });
 
@@ -1596,12 +1589,11 @@ ${intro}
 <p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez en hâte vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante juste au moment où celle-ci allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous vous hâtez de vous éloigner d’elle, tout en remontant progressivement à l’air libre.`;
-      const action = () => {goToSection("surface-close")};
-
-      return (
-        <Funnel text={text} action={action} />
-      )
+      return repeatingFunnel(
+        goToSection,
+        `Vous vous hâtez de vous éloigner d’elle, tout en remontant progressivement à l’air libre.`,
+        "surface-close",
+      );
     },
   },
   "far-corals-sneaky": {
@@ -1611,11 +1603,10 @@ ${intro}
 <p>Après quelques instants qui vous paraissent interminables, vous atteignez le point où les parois de corail se rapprochent suffisamment pour vous accorder de nouveau une relative sécurité. Vous jetez un coup d’oeil en arrière, mais ne distinguez toujours pas où se trouve Raiahui.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous reprenez sans plus attendre votre progression.`;
-      const action = () => {goToSection("far-corals-last")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Vous reprenez sans plus attendre votre progression.`,
+        "far-corals-last",
       );
     }
   },
@@ -1723,11 +1714,12 @@ ${intro}
         });
       }
 
+      const deathText = `Vous tentez désespérément de lui échapper.`;
       choices.push({
-        "text": `Vous tentez désespérément de lui échapper.`,
+        "text": deathText,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
-          goToSection("raiahui-good-end");
+          goToSection("raiahui-good-end", coatSentence(deathText));
         }
       });
 
@@ -1745,11 +1737,10 @@ ${intro}
 <p>L’eau qui vous entoure retrouve sa transparence à mesure que vous vous éloignez de l’endroit où vous avez écrasé les perles. Vous distinguez de nouveau vos propres membres, puis les reflets du soleil contre la surface, puis les récifs de corail et l’îlot qui constitue votre destination. Risquant un regard en arrière, vers la zone d’obscurité qui s’étire et se dilue avec une grande lenteur, vous ne parvenez pas à apercevoir Raiahui.</p>
     `,
     "next": (goToSection) => {
-      const text = `L’effet de l’amulette s’est totalement estompé et vous êtes donc contrainte de remonter à l’air libre.`;
-      const action = () => {goToSection("surface-close")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `L’effet de l’amulette s’est totalement estompé et vous êtes donc contrainte de remonter à l’air libre.`,
+        "surface-close",
       );
     }
   },
@@ -1808,11 +1799,12 @@ ${intro}
         });
       }
 
+      const deathText = `Vous tentez désespérément de lui échapper.`;
       choices.push({
-        "text": `Vous tentez désespérément de lui échapper.`,
+        "text": deathText,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
-          goToSection("raiahui-good-end");
+          goToSection("raiahui-good-end", coatSentence(deathText));
         }
       });
 
@@ -1845,11 +1837,12 @@ ${intro}
         });
       }
 
+      const deathText = `Vous tentez désespérément de lui échapper.`;
       choices.push({
-        "text": `Vous tentez désespérément de lui échapper.`,
+        "text": deathText,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
-          goToSection("raiahui-good-end");
+          goToSection("raiahui-good-end", coatSentence(deathText));
         }
       });
 
@@ -2022,11 +2015,12 @@ ${intro}
         });
       }
 
+      const deathText = `Vous nagez de toutes vos forces en direction de l’îlot.`;
       choices.push({
-        "text": `Vous nagez de toutes vos forces en direction de l’îlot.`,
+        "text": deathText,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
-          goToSection("raiahui-good-end");
+          goToSection("raiahui-good-end", coatSentence(deathText));
         },
       });
 
@@ -2042,11 +2036,10 @@ ${intro}
 <p>Il n’est plus question de discrétion à présent ! Vous remontez en toute hâte vers la surface. Votre tête émerge bientôt à l’air libre.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous prenez tout juste le temps d’inspirer profondément avant de nager de toutes vos forces vers l’îlot sablonneux.`;
-      const action = () => {goToSection("final-stretch-straight")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Vous prenez tout juste le temps d’inspirer profondément avant de nager de toutes vos forces vers l’îlot sablonneux.`,
+        "final-stretch-straight",
       );
     }
   },
@@ -2100,11 +2093,10 @@ ${intro}
 <p>Vous n’êtes plus guère éloignée de l’îlot lorsque vous apercevez soudain la forme fuselée de Raiahui sur votre droite. Elle vous a finalement repérée et se dirige vers vous à une vitesse foudroyante !</p>
     `,
     "next": (goToSection) => {
-      const text = `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`;
-      const action = () => {goToSection("final-island")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`,
+        "final-island",
       );
     }
   },
@@ -2144,11 +2136,12 @@ ${intro}
         });
       }
 
+      const deathText = `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`;
       choices.push({
-        "text": `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`,
+        "text": deathText,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
-          goToSection("raiahui-good-end");
+          goToSection("raiahui-good-end", coatSentence(deathText));
         },
       });
 
@@ -2164,11 +2157,10 @@ ${intro}
 <p>Il n’est plus question de discrétion à présent !</p>
     `,
     "next": (goToSection) => {
-      const text = `Votre tête émerge à l’air libre et vous prenez tout juste le temps d’inspirer profondément avant de nager de toutes vos forces pour atteindre enfin l’îlot sablonneux.`;
-      const action = () => {goToSection("final-island")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Votre tête émerge à l’air libre et vous prenez tout juste le temps d’inspirer profondément avant de nager de toutes vos forces pour atteindre enfin l’îlot sablonneux.`,
+        "final-island",
       );
     }
   },
@@ -2196,11 +2188,10 @@ ${intro}
 <p>Vous n’êtes plus guère éloignée de l’îlot lorsque vous apercevez soudain la forme fuselée de Raiahui sur votre droite. Elle vous a finalement repérée et se dirige vers vous à une vitesse foudroyante !</p>
     `,
     "next": (goToSection) => {
-      const text = `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`;
-      const action = () => {goToSection("final-island")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`,
+        "final-island",
       );
     }
   },
@@ -2237,11 +2228,10 @@ ${intro}
 <p>Un brouillard noir et rouge est en train de remplir votre crâne lorsque vous réalisez que vous n’êtes plus qu’à une faible distance de l’îlot. Au même instant, vous apercevez soudain la forme fuselée de Raiahui sur votre droite. Elle vous a finalement repérée et se dirige vers vous à une vitesse foudroyante !</p>
     `,
     "next": (goToSection) => {
-      const text = `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et, prenant à peine le temps de respirer, vous nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`;
-      const action = () => {goToSection("final-island")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et, prenant à peine le temps de respirer, vous nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`,
+        "final-island",
       );
     }
   },
@@ -2277,11 +2267,12 @@ ${intro}
         });
       }
 
+      const deathText = `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`;
       choices.push({
-        "text": `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`,
+        "text": deathText,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
-          goToSection("raiahui-good-end");
+          goToSection("raiahui-good-end", coatSentence(deathText));
         },
       });
 
@@ -2340,11 +2331,10 @@ ${intro}
 <p>Le désespoir est en train de vous envahir lorsque vous vous souvenez tout à coup du filet que vous avez enroulé autour de votre taille. Vous vous en emparez en hâte et le jetez vers Raiahui. Votre geste n’a presque aucune force, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante alors qu’elle allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
     `,
     "next": (goToSection) => {
-      const text = `Avec un sursaut d’énergie, vous nagez vers l’île sablonneuse aussi vite que vous le pouvez encore.`;
-      const action = () => {goToSection("final-island")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Avec un sursaut d’énergie, vous nagez vers l’île sablonneuse aussi vite que vous le pouvez encore.`,
+        "final-island",
       );
     },
   },
@@ -2353,11 +2343,10 @@ ${intro}
 <p>Le désespoir est en train de vous envahir lorsque vous vous souvenez tout à coup des perles noires que vous transportez. Vous vous en emparez en hâte et les écrasez toutes à la fois. Les eaux qui vous entourent deviennent soudain d’un noir impénétrable, vous dissimulant aux yeux de Raiahui avant qu’elle ne puisse vous atteindre.</p>
     `,
     "next": (goToSection) => {
-      const text = `Avec un sursaut d’énergie, vous nagez vers l’île sablonneuse aussi vite que vous le pouvez encore.`;
-      const action = () => {goToSection("final-island")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Avec un sursaut d’énergie, vous nagez vers l’île sablonneuse aussi vite que vous le pouvez encore.`,
+        "final-island",
       );
     },
   },
@@ -2707,11 +2696,10 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
 <p>Un rapide coup d’œil sur le côté vous permet de voir l’accélération fulgurante avec laquelle Raiahui rattrape celle qu’elle croit être sa proie. Aussitôt que les dents acérées se referment sur votre étrange jumelle, celle-ci se désagrège en une myriade de minuscules fragments de bois. Cette diversion inespérée n’aura pas duré longtemps, mais vous espérez que la stupéfaction fera perdre quelques instants supplémentaires à Raiahui.</p>
     `,
     "next": (goToSection) => {
-      const text = `Ne pouvant pas vous passer d’air beaucoup plus longtemps, vous remontez à l’air libre.`;
-      const action = () => {goToSection("surface-close")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Ne pouvant pas vous passer d’air beaucoup plus longtemps, vous remontez à l’air libre.`,
+        "surface-close",
       );
     }
   },
@@ -2742,11 +2730,12 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
         })
       }
 
+      const deathText = `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`;
       choices.push({
-        "text": `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`,
+        "text": deathText,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
-          goToSection("raiahui-good-end");
+          goToSection("raiahui-good-end", coatSentence(deathText));
         },
       });
 
@@ -2794,11 +2783,10 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
 <p>Réalisant que vous n’aurez pas de meilleure occasion, vous abandonnez définitivement votre cachette et vous éloignez sans perdre un instant.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous restez sous l’eau autant que possible, mais vous devez finalement remonter à l’air libre.`;
-      const action = () => {goToSection("surface-close")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Vous restez sous l’eau autant que possible, mais vous devez finalement remonter à l’air libre.`,
+        "surface-close",
       );
     }
   },
@@ -2811,11 +2799,10 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
 <p>Vous ne perdez pas un instant de plus : abandonnant définitivement votre cachette, vous nagez vigoureusement en direction de l’îlot.</p>
     `,
     "next": (goToSection) => {
-      const text = `L’effet de l’amulette finit par s’estomper et vous devez remonter à l’air libre.`;
-      const action = () => {goToSection("surface-close")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `L’effet de l’amulette finit par s’estomper et vous devez remonter à l’air libre.`,
+        "surface-close",
       );
     }
   },
@@ -2828,11 +2815,10 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
 <p>Vous jaillissez hors de votre cachette sans plus attendre. Votre vision obscurcie ne distingue plus avec précision ce qui vous entoure, mais Raiahui n’est pas à proximité. Il vous semble apercevoir sa forme fuselée à une certaine distance, au-dessus d’une zone où les récifs de corail sont plus denses.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous remontez à l’air libre aussi vite que vos forces vous le permettent.`;
-      const action = () => {goToSection("surface-close")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Vous remontez à l’air libre aussi vite que vos forces vous le permettent.`,
+        "surface-close",
       );
     }
   },
@@ -2841,14 +2827,13 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
 <p>Vous vous propulsez hors de votre cachette. Mais vous avez à peine esquissé une brasse lorsque Raiahui surgit tout à coup au-dessus du récif de corail ! Elle vous guettait !</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Une accélération foudroyante la propulse dans votre direction, ne vous laissant pas le temps de tenter quoi que ce soit.`;
-      const action = () => {
-        updateFlag("eatenByRaiahui", true);
-        goToSection("raiahui-good-end");
-      };
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Une accélération foudroyante la propulse dans votre direction, ne vous laissant pas le temps de tenter quoi que ce soit.`,
+        () => {
+          updateFlag("eatenByRaiahui", true);
+          return "raiahui-good-end";
+        },
       );
     }
   },
@@ -2857,11 +2842,10 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
 <p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez en hâte vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante juste au moment où celle-ci allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous nagez de toutes vos forces en direction de l’îlot, tout en remontant progressivement à l’air libre.`;
-      const action = () => {goToSection("surface-close")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Vous nagez de toutes vos forces en direction de l’îlot, tout en remontant progressivement à l’air libre.`,
+        "surface-close",
       );
     }
   },
@@ -2874,11 +2858,10 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
 <p>Votre instinct vous dit que vous n’aurez pas de meilleure occasion ; profitant de ce qu’elle est momentanément incapable de vous apercevoir, vous quittez votre deuxième cachette et nagez en direction de l’îlot, restant proche du fond sablonneux dans l’espoir que cela vous rendra un peu plus difficile à repérer.</p>
     `,
     "next": (goToSection) => {
-      const text = `Ne pouvant pas retenir indéfiniment votre souffle, il vient cependant un moment où vous devez remonter à l’air libre.`;
-      const action = () => {goToSection("surface-close")};
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Ne pouvant pas retenir indéfiniment votre souffle, il vient cependant un moment où vous devez remonter à l’air libre.`,
+        "surface-close",
       );
     },
   },
@@ -2916,11 +2899,12 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
         })
       }
 
+      const deathText = `Vous tentez désespérément de lui échapper malgré tout.`;
       choices.push({
-        "text": `Vous tentez désespérément de lui échapper malgré tout.`,
+        "text": deathText,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
-          goToSection("raiahui-good-end");
+          goToSection("raiahui-good-end", coatSentence(deathText));
         },
       });
 
@@ -2940,11 +2924,10 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
 <p>L’eau qui vous entoure retrouve sa transparence à mesure que vous vous éloignez de l’endroit où vous avez écrasé les perles. Vous distinguez de nouveau vos propres membres, puis les reflets du soleil contre la surface, puis les récifs de corail et l’îlot qui constitue votre destination. Risquant un regard en arrière, vers la zone d’obscurité qui s’étire et se dilue avec une grande lenteur, vous ne parvenez pas à apercevoir Raiahui.</p>
     `,
     "next": (goToSection) => {
-      const text = `Incapable de retenir votre respiration beaucoup plus longtemps, vous remontez à l’air libre.`;
-      const action = () => goToSection("surface-close");
-
-      return (
-        <Funnel text={text} action={action} />
+      return repeatingFunnel(
+        goToSection,
+        `Incapable de retenir votre respiration beaucoup plus longtemps, vous remontez à l’air libre.`,
+        "surface-close",
       );
     }
   },
