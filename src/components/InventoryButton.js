@@ -1,18 +1,29 @@
 import React from 'react';
-import { NavDropdown, MenuItem } from 'react-bootstrap';
+import { NavItem, Modal } from 'react-bootstrap';
 
 class InventoryButton extends React.Component {
-  onItemSelect = (eventKey) => {
-    const item = this.props.inventory[eventKey];
+  constructor(props) {
+    super(props);
 
-    const modalTitle = item.name;
-    const modalContent = item.description;
-
-    this.props.showModal(modalTitle, modalContent);
+    this.state = {
+      "showModal": false,
+    };
   }
 
-  render() {
-    let listItems = [];
+  showInventory = () => {
+    this.setState({
+      "showModal": true,
+    });
+  }
+
+  hideInventory = () => {
+    this.setState({
+      "showModal": false,
+    });
+  }
+
+  getItems = () => {
+    let items = [];
 
     const inventory = this.props.inventory;
     for (let key in inventory) {
@@ -24,19 +35,36 @@ class InventoryButton extends React.Component {
       if (!item.acquired || item.used) {
         continue;
       }
-      listItems.push(
-        <MenuItem eventKey={key} key={key} onSelect={this.onItemSelect}>{item.name}</MenuItem>
-      );
+      items.push(Object.assign({}, item, {"key": key}));
     }
 
-    if (!listItems.length) {
+    return items;
+  }
+
+  render() {
+    const items = this.getItems();
+    if (0 === items.length) {
       return null;
     }
 
     return (
-      <NavDropdown title={this.props.text} id="inventory-dropdown">
-        {listItems}
-      </NavDropdown>
+      <NavItem id="inventory" onClick={() => {this.showInventory()}}>
+        {this.props.text}
+        <Modal show={this.state.showModal} onHide={this.hideInventory} className="inventory">
+          <Modal.Body>
+            <dl>
+              {items.map((item) => {
+                return (
+                  <div key={item.key}>
+                    <dt>{item.name}</dt>
+                    <dd dangerouslySetInnerHTML={{__html: item.description}}></dd>
+                  </div>
+                );
+              })}
+            </dl>
+          </Modal.Body>
+        </Modal>
+      </NavItem>
     );
   }
 }
@@ -44,7 +72,6 @@ class InventoryButton extends React.Component {
 InventoryButton.propTypes = {
   text: React.PropTypes.string.isRequired,
   inventory: React.PropTypes.object.isRequired,
-  showModal: React.PropTypes.func.isRequired,
 };
 
 export default InventoryButton;

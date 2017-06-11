@@ -3,7 +3,6 @@ import Text from './Text.js';
 import { Navbar, Nav } from 'react-bootstrap';
 import Title from './Title.js';
 import InventoryButton from './InventoryButton.js';
-import TextModal from './TextModal.js';
 import OptionButton from './OptionButton.js';
 import ReactDOM from 'react-dom';
 
@@ -21,7 +20,6 @@ class Game extends React.Component {
       "currentSection": currentSection,
       "flags": currentFlags,
       "logs": currentLogs,
-      "modal": {"show": false},
       "currentSectionText": this.processText(currentSection, currentFlags),
     };
     this.saveProgress(currentSection, currentFlags, currentLogs);
@@ -44,26 +42,6 @@ class Game extends React.Component {
         "currentSection": section,
         "logs": logs,
         "currentSectionText": text,
-      };
-    });
-  }
-
-  showModal = (title, content) => {
-    this.setState(() => {
-      return {
-        "modal": {
-          "show": true,
-          "title": title,
-          "content": content,
-        },
-      };
-    });
-  }
-
-  closeModal = () => {
-    this.setState(() => {
-      return {
-        "modal": {"show": false},
       };
     });
   }
@@ -198,7 +176,7 @@ class Game extends React.Component {
           </Title>
           <Navbar.Collapse>
             <Nav>
-              <InventoryButton inventory={this.state.flags.inventory} showModal={this.showModal} text={`Inventaire`} />
+              <InventoryButton inventory={this.state.flags.inventory} text={`Inventaire`} />
             </Nav>
             <Nav pullRight>
               <OptionButton options={this.getOptions()} text={`Options`} />
@@ -227,7 +205,6 @@ class Game extends React.Component {
             </div>
           </div>
         </div>
-        <TextModal close={this.closeModal} show={this.state.modal.show} title={this.state.modal.title} content={this.state.modal.content} />
       </div>
     );
   }

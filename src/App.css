@@ -187,3 +187,7 @@ img.lg-img {
 .hint {
   font-style: italic;
 }
+
+.inventory dl {
+  margin-bottom: 0;
+}
