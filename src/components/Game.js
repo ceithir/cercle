@@ -156,7 +156,9 @@ class Game extends React.Component {
       return;
     }
 
-    window.scrollTo(0, element.offsetTop +10);
+    const offset = this.state.logs.length > 0 ? 10 : 0;
+
+    window.scrollTo(0, element.offsetTop + offset);
   }
 
   componentDidMount = () => {
