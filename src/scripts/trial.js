@@ -615,7 +615,7 @@ ${intro}
 
 <p>Tout cela n’a plus aucune importance à présent, car la transparence de l’eau vous permet de distinguer sans aucun mal la seconde apparence de Raiahui tandis qu’elle réduit à vive allure la distance qui vous sépare.</p>
 
-<img src="${squaleImage}" class="img-responsive lg-img" alt=""/>
+<img src="${squaleImage}" class="img-responsive text-img" alt=""/>
 
 <p>Propulsé par les mouvements puissants de sa queue, son corps marbré de rayures sombres est plus à l’aise dans l’élément aquatique que vous ne pourrez jamais l’être. Sa gueule paraît presque inoffensive pour le moment, mais vous avez déjà vu des mâchoires de requin-tigre et les nombreuses dents tranchantes dont elles sont garnies.</p>
 

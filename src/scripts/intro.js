@@ -159,7 +159,7 @@ const intro = {
 
 <p>Vous êtes en train de vous demander dans quelle direction il serait préférable de longer la plage lorsqu’un bruit d’éclaboussures vous fait tourner la tête.</p>
 
-<img src="${raiahuiIntroImage}" class="img-responsive center-block text-img" alt=""/>
+<img src="${raiahuiIntroImage}" class="img-responsive text-img tall left" alt=""/>
 
 <p>Surgie de l’eau, les deux bras posés sur le flotteur de votre pirogue, une jeune fille vous observe avec une curiosité ravie.</p>
 

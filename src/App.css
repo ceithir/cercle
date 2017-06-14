@@ -160,20 +160,21 @@
 }
 
 img.text-img {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 @media (min-width: 992px) {
-  img.text-img {
-    float:left;
+  img.text-img.tall {
     max-width: 50%;
-    margin-right: 20px;
-    margin-bottom: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
-}
 
-img.lg-img {
-  margin-bottom: 10px;
+  img.text-img.tall.left {
+    margin-right: 20px;
+    float:left;
+  }
 }
 
 .hint-warning {
