@@ -121,7 +121,7 @@ export const trueEnd = function(goToSection, flags, updateFlag, reset, quit) {
   );
 }
 
-export const coatSentence = text => `<p><strong>${text}</strong></p>`;
+export const coatSentence = text => `<p class="transition-sentence">${text}</p>`;
 
 export const repeatingCrossroad = (goToSection, choices) => {
   return (

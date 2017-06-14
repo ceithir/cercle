@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {useItem, acquireItem, endGame, repeatingFunnel} from "./helpers.js";
+import {useItem, acquireItem, endGame, repeatingFunnel, coatSentence} from "./helpers.js";
 import atollMap from "./../images/map.jpg";
 import { Image } from "react-bootstrap";
 
@@ -455,7 +455,7 @@ ${crocodileIslandDescription}
         {
           "text": backText,
           "action": () => {
-            const extraLog = `<p><strong>${backText}</strong></p>`;
+            const extraLog = coatSentence(backText);
 
             if (flags.time >= timeLimit) {
               return goToSection("no-more-time-at-sea", extraLog);

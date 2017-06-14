@@ -1,8 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
-import Funnel from "./../components/Funnel.js";
 import raiahuiIntroImage from "./../images/raiahui-intro.jpg";
-import {repeatingFunnel} from "./helpers";
+import {repeatingFunnel, coatSentence} from "./helpers";
 
 const noRepeatedAction = function(flagName, actions, goToSection, flags, updateFlag, logFunc) {
   if (!logFunc) {
@@ -68,11 +67,10 @@ const arrivalNext = function(goToSection, flags, updateFlag) {
     );
   }
 
-  const text = `Le festin est désormais sur le point de commencer.`;
-  const action = () => {goToSection("feast", `<p><strong>${text}</strong></p>`);};
-
-  return (
-    <Funnel text={text} action={action} />
+  return repeatingFunnel(
+    goToSection,
+    `Le festin est désormais sur le point de commencer.`,
+    "feast",
   );
 }
 
@@ -109,7 +107,7 @@ const feastActions = function(goToSection, flags, updateFlag, transitionText) {
     updateFlag,
     text => {
         if (!transitionText) {
-          transitionText = `<p>Vous pourriez passer du temps à discuter avec <strong>{text}</strong>.</p>`;
+          transitionText = `<p>Vous pourriez passer du temps à discuter avec <span class="transition-sentence">{text}</span>.</p>`;
         }
 
         return transitionText.replace("{text}", text.charAt(0).toLowerCase() + text.slice(1, -1));
@@ -119,7 +117,7 @@ const feastActions = function(goToSection, flags, updateFlag, transitionText) {
 
 const feastNext = function(goToSection, flags, updateFlag) {
   if (flags.feastActions.length <= 1) {
-    const transitionText = `<p>Vous conversez encore quelques instants avant de prendre poliment congé pour aller rencontrer <strong>{text}</strong>.</p>`
+    const transitionText = `<p>Vous conversez encore quelques instants avant de prendre poliment congé pour aller rencontrer <span class="transition-sentence">{text}</span>.</p>`
 
     return (
       <div>
@@ -129,11 +127,10 @@ const feastNext = function(goToSection, flags, updateFlag) {
     );
   }
 
-  const text = `Vous discutez encore un certain temps. L’activité qui vous entoure est en train de commencer à décroître.`;
-  const action = () => {goToSection("night", `<p><strong>${text}</strong></p>`);};
-
-  return (
-    <Funnel text={text} action={action} />
+  return repeatingFunnel(
+    goToSection,
+    `Vous discutez encore un certain temps. L’activité qui vous entoure est en train de commencer à décroître.`,
+    "night"
   );
 }
 
@@ -503,7 +500,7 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
     "next": (goToSection, flags, updateFlag) => {
       if (flags.feastActions.length <= 1) {
         const transitionText = `
-<p>Vous conversez encore quelques instants, ajoutant quelques récits semi-fantaisistes aux précédents, avant de prendre poliment congé pour aller rencontrer <strong>{text}</strong>.</p>
+<p>Vous conversez encore quelques instants, ajoutant quelques récits semi-fantaisistes aux précédents, avant de prendre poliment congé pour aller rencontrer <span class="transition-sentence">{text}</span>.</p>
         `;
 
         return (
@@ -559,7 +556,7 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
         },
         {
           "text": hubText,
-          "action": () => {goToSection("hub", `<p><strong>${hubText}</strong></p>`);},
+          "action": () => {goToSection("hub", coatSentence(hubText));},
         },
       ];
 

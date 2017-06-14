@@ -1,6 +1,6 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
-import {acquireItem, repeatingCrossroad, repeatingFunnel} from "./helpers.js";
+import {acquireItem, repeatingCrossroad, repeatingFunnel, coatSentence} from "./helpers.js";
 
 const exploreOrLeave = function(goToSection, flags, updateFlag) {
   const leaveText = `Vous regagnez votre pirogue.`;
@@ -15,7 +15,7 @@ const exploreOrLeave = function(goToSection, flags, updateFlag) {
     },
     {
       "text": leaveText,
-      "action": () => {goToSection("hub", `<p><strong>${leaveText}</strong></p>`);},
+      "action": () => {goToSection("hub", coatSentence(leaveText));},
     },
   ];
 

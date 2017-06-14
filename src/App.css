@@ -206,3 +206,7 @@ img.text-img {
 .list-group-item.choice:hover {
   background-color: rgba(178, 223, 238, 0.5);
 }
+
+.transition-sentence {
+  font-weight: bold;
+}

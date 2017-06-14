@@ -249,15 +249,15 @@ const island5 = {
       const pearls = `une poignée de perles d’un noir profond`;
 
       const feathersAction = () => {
-        goToSection("witch-feathers", `<p>${text} <strong>${feathers}</strong>, ${scepter} et ${pearls}.</p>`)
+        goToSection("witch-feathers", `<p>${text} <span class="transition-sentence">${feathers}</span>, ${scepter} et ${pearls}.</p>`)
       };
       const scepterAction = () => {
         updateFlag("touchedACursedItem", true);
-        goToSection("witch-sceptre", `<p>${text} ${feathers}, <strong>${scepter}</strong> et ${pearls}.</p>`);
+        goToSection("witch-sceptre", `<p>${text} ${feathers}, <span class="transition-sentence">${scepter}</span> et ${pearls}.</p>`);
       };
       const pearlsAction = () => {
         acquireItem("pearls", updateFlag);
-        goToSection("witch-pearls", `<p>${text} ${feathers}, ${scepter} et <strong>${pearls}</strong>.</p>`);
+        goToSection("witch-pearls", `<p>${text} ${feathers}, ${scepter} et <span class="transition-sentence">${pearls}</span>.</p>`);
       };
 
       const link = (text, action) => {
