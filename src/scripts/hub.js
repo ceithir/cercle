@@ -41,6 +41,7 @@ const getIslands = function(flags) {
       "harbor": {"x": 165, "y": 485},
       "textPosition": {"x": 180, "y": 475},
       "textAnchor": "left",
+      "cross": [65, 430, 180, 540, 145, 425, 75, 540],
     },
     {
       "key": "island-3",
@@ -49,6 +50,7 @@ const getIslands = function(flags) {
       "harbor": {"x": 120, "y": 340},
       "textPosition": {"x": 140, "y": 335},
       "textAnchor": "left",
+      "cross": [30, 270, 125, 410, 125, 275, 25, 405],
     },
     {
       "key": "island-4",
@@ -57,6 +59,7 @@ const getIslands = function(flags) {
       "harbor": {"x": 115, "y": 220},
       "textPosition": {"x": 135, "y": 215},
       "textAnchor": "left",
+      "cross": [60, 175, 105, 235, 120, 175, 45, 235],
     },
     {
       "key": "island-5",
@@ -65,6 +68,7 @@ const getIslands = function(flags) {
       "harbor": {"x": 160, "y": 140},
       "textPosition": {"x": 175, "y": 170},
       "textAnchor": "left",
+      "cross": [120, 25, 225, 145, 235, 35, 115, 135],
     },
     {
       "key": "island-6",
@@ -73,6 +77,7 @@ const getIslands = function(flags) {
       "harbor": {"x": 525, "y": 150},
       "textPosition": {"x": 490, "y": 165},
       "textAnchor": "right",
+      "cross": [375, 15, 620, 190, 360, 90, 635, 120],
     },
     {
       "key": "island-7",
@@ -81,14 +86,16 @@ const getIslands = function(flags) {
       "harbor": {"x": 605, "y": 265},
       "textPosition": {"x": 590, "y": 265},
       "textAnchor": "right",
+      "cross": [605, 245, 640, 275, 645, 240, 605, 275],
     },
     {
       "key": "island-8",
       "description": `L’île de l’épreuve`,
       "path": "M575 430 C 580 380, 645 365, 650 430 S 575 480, 575 430",
-      "harbor": {"x": 585, "y": 410},
+      "harbor": {"x": 580, "y": 430},
       "textPosition": {"x": 560, "y": 430},
       "textAnchor": "right",
+      "cross": [585, 405, 645, 450, 650, 405, 580, 450],
     },
   ];
 }
@@ -221,6 +228,10 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
               <path d={island.path} className="shape" onClick={island.onClick} />
               <text x={island.textPosition.x} y={island.textPosition.y} className={`lead text-anchor-${island.textAnchor}`}>{island.description}</text>
               {island.current && <text x={island.harbor.x} y={island.harbor.y} className="here">{`⚓`}</text>}
+              {island.disabled && island.cross && <g className="crossed">
+                <line x1={island.cross[0]} y1={island.cross[1]} x2={island.cross[2]} y2={island.cross[3]} />
+                <line x1={island.cross[4]} y1={island.cross[5]} x2={island.cross[6]} y2={island.cross[7]} />
+              </g>}
             </g>
           );
         })}

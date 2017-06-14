@@ -87,6 +87,11 @@
   visibility: hidden;
 }
 
+#atoll-map .island.disabled .crossed {
+  stroke: #ff3232;
+  stroke-width: 5px;
+}
+
 #atoll-map .island .here {
   text-anchor: middle;
   fill: red;
