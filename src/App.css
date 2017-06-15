@@ -183,7 +183,12 @@ img.text-img {
 
   img.text-img.tall.left {
     margin-right: 20px;
-    float:left;
+    float: left;
+  }
+
+  img.text-img.tall.right {
+    margin-left: 20px;
+    float: right;
   }
 }
 
