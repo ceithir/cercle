@@ -1,9 +1,19 @@
 import React from 'react';
 
 class Choice extends React.Component {
+  onClick = (event) => {
+    event.preventDefault();
+    event.target.blur();
+    this.props.action();
+  }
+
   render() {
     return (
-    	<a className="list-group-item choice" onClick={this.props.action}>
+    	<a
+        className="list-group-item choice"
+        href="#"
+        onClick={this.onClick}
+      >
         {!this.props.conditional && this.props.text}
         {this.props.conditional && <span className="text-info">{this.props.text}</span>}
       </a>

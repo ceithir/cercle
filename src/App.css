@@ -2,8 +2,13 @@
   margin-top: -10px;
 }
 
-.choice, .funnel {
+.choice {
   cursor: pointer;
+  outline: 0;
+}
+
+.list-group-item.choice:hover, .list-group-item.choice:focus {
+  background-color: rgba(178, 223, 238, 0.5);
 }
 
 .conversation {
@@ -206,10 +211,6 @@ img.text-img {
   .core {
     background: linear-gradient(to right,#3BB9FF,white 15%,white 85%,#3BB9FF);
   }
-}
-
-.list-group-item.choice:hover {
-  background-color: rgba(178, 223, 238, 0.5);
 }
 
 .transition-sentence {
