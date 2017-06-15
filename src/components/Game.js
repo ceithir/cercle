@@ -185,7 +185,7 @@ class Game extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <div className="container-fluid main core">
+        <div className="container-fluid core">
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
               <div className="logs">
