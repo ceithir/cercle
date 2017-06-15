@@ -21,6 +21,7 @@ class Game extends React.Component {
       "flags": currentFlags,
       "logs": currentLogs,
       "currentSectionText": this.processText(currentSection, currentFlags),
+      "scrollOffset": 0,
     };
     this.saveProgress(currentSection, currentFlags, currentLogs);
   }
@@ -38,10 +39,13 @@ class Game extends React.Component {
 
       this.saveProgress(section, flags, logs);
 
+      const offset = (window.scrollY > 0) ? window.scrollY : prevState.scrollOffset;
+
       return {
         "currentSection": section,
         "logs": logs,
         "currentSectionText": text,
+        "scrollOffset": offset,
       };
     });
   }
@@ -64,6 +68,7 @@ class Game extends React.Component {
       "flags": currentFlags,
       "logs": currentLogs,
       "currentSectionText": this.processText(currentSection, currentFlags),
+      "scrollOffset": 0,
     });
     this.props.saveProgress(currentSection, currentFlags, currentLogs);
   }
@@ -150,7 +155,7 @@ class Game extends React.Component {
     ];
   }
 
-  resetScrolling = () => {
+  componentDidMount = () => {
     const element = ReactDOM.findDOMNode(this.currentSectionRef);
     if (!element) {
       return;
@@ -161,12 +166,8 @@ class Game extends React.Component {
     window.scrollTo(0, element.offsetTop + offset);
   }
 
-  componentDidMount = () => {
-    this.resetScrolling();
-  }
-
   componentDidUpdate = () => {
-    this.resetScrolling();
+    window.scrollTo(0, this.state.scrollOffset);
   }
 
   render() {

@@ -216,3 +216,7 @@ img.text-img {
 .transition-sentence {
   font-weight: bold;
 }
+
+.core > *:last-child {
+  margin-bottom: 50px;
+}
