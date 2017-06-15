@@ -138,6 +138,10 @@ class Game extends React.Component {
   getOptions = () => {
     return [
       {
+        "key": "autosave",
+        "text": `Ce jeu sauvegarde automatiquement.`,
+      },
+      {
         "key": "reset",
         "action": this.reset,
         "text": `Recommencer`,
