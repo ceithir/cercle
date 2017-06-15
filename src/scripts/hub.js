@@ -73,7 +73,7 @@ const getIslands = function(flags) {
     {
       "key": "island-6",
       "description": (flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea)? `L’île du Vieux Fainéant`: `L’île aux arbres`,
-      "path": "M355 50 C 405 -50, 650 60, 635 155 S 320 150, 355 50",
+      "path": "M 360, 50 C 400,-35 640,100 630,145 620,175 580, 210 570, 200 575, 185 475, 115 390, 105 385, 110 355, 80 360, 50 Z",
       "harbor": {"x": 525, "y": 150},
       "textPosition": {"x": 490, "y": 165},
       "textAnchor": "right",
@@ -175,7 +175,7 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
     {
       "key": "island-1",
       "description": `Le village`,
-      "path": "M185 550 C 300 560, 500 500, 530 485 S 630 490, 620 550 S 130 780, 155 570 C 180 535, 185 555, 185 550",
+      "path": "M 170, 555 C 220, 520 290, 600 330, 580 400, 570 530, 490 540, 475 555, 460 625, 510 615, 520 575, 635 240, 715 150, 620 150, 622 170, 555 170, 555 Z",
       "harbor": {"x": 325, "y": 585},
       "textPosition": {"x": 370, "y": 615},
       "textAnchor": "middle",
