@@ -133,6 +133,14 @@
   border-color: #d0d0d0;
 }
 
+.core .logs > div {
+  display: none;
+}
+
+.core .logs > div:nth-last-child(-n+9) {
+  display: block;
+}
+
 .core .logs > div p {
   opacity: 0.2;
 }
@@ -224,4 +232,50 @@ img.text-img {
 
 .text-conditional {
   color: #31708f;
+}
+
+@media print {
+  body {
+    text-align: justify;
+    font-size: 10pt;
+  }
+
+  p {
+    page-break-inside: avoid;
+  }
+
+  .core {
+    padding-top: 0;
+  }
+
+  .core .logs > div {
+    display: block;
+  }
+
+  .core .logs > div p {
+    opacity: 1 !important;
+  }
+
+  .transition-sentence {
+    font-weight: normal;
+  }
+
+  .text-conditional {
+    color: #333;
+  }
+
+  .next {
+    display: none;
+  }
+
+  img.text-img {
+    page-break-inside: avoid;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 120mm;
+  }
+
+  h1 {
+    font-size: 16pt;
+  }
 }

@@ -6,8 +6,6 @@ import InventoryButton from './InventoryButton.js';
 import OptionButton from './OptionButton.js';
 import ReactDOM from 'react-dom';
 
-const logsMaxLength = 10;
-
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -32,9 +30,6 @@ class Game extends React.Component {
 
       const log = prevState.currentSectionText + extraLog;
       const logs = prevState.logs.concat([log]);
-      if (logs.length > logsMaxLength) {
-        logs.shift();
-      }
 
       this.saveProgress(section, flags, logs);
 
@@ -205,7 +200,7 @@ class Game extends React.Component {
               <Text content={this.state.currentSectionText} ref={(ref) => { this.currentSectionRef = ref; }} />
             </div>
           </div>
-          <div className="row">
+          <div className="row next">
             <div className="col-md-8 col-md-offset-2">
               {this.getSection(this.state.currentSection).next(this.goToSection, this.state.flags, this.updateFlag, this.reset, this.resetAndQuit)}
             </div>

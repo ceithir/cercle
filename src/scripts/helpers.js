@@ -67,6 +67,11 @@ const endButtons = function(flags, reset, quit) {
     });
   }
 
+  choices.push({
+    "text": `Imprimer`,
+    "action": () => {window.print()},
+  });
+
   return (
     <Row>
       <Col md={6} mdOffset={3} className="lead text-center">
