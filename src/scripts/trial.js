@@ -71,7 +71,7 @@ const preludeChoices = (goToSection, flags, updateFlag) => {
     "text": `Vous allez voir Raiahui.`,
     "action": () => {
       goToSection("trial-raiahui");
-    } ,
+    },
   });
 
   return choices;
@@ -97,9 +97,28 @@ const trueStartFunnel = (text, goToSection, flags, updateFlag) => {
   );
 }
 
+const gameIsStillWinnableWithoutTurningFullyMad = (flags) => {
+  if (flags.drunk) {
+    // Technically still possible with enough other options, but so hard it barely matters
+    return false;
+  }
+
+  const options = [
+    flags.wellRested,
+    flags.boostedByFruit,
+    flags.inventory.dolphin.acquired && !flags.inventory.dolphin.used,
+    flags.inventory.smokePearls.acquired && !flags.inventory.smokePearls.used,
+    flags.inventory.doll.acquired && !flags.inventory.doll.used,
+    flags.inventory.net.acquired && !flags.inventory.net.used,
+  ];
+
+  // You can win with only one option, but it's quite hard, so requiring at least two
+  return options.filter(element => element).length >= 2;
+}
+
 const savePointAction = (text, goToSection, flags, updateFlag) => {
   updateFlag("seenRaiahuiTrueForm", true);
-  if (!flags.drunk) {
+  if (gameIsStillWinnableWithoutTurningFullyMad(flags)) {
     updateFlag("flagsBeforeActualTrial", Object.assign({}, flags, {"seenRaiahuiTrueForm": true}));
   }
   return goToSection("trial-underwater", coatSentence(text));
@@ -219,7 +238,6 @@ ${items}
           "text": `Vous avalez le fruit malgré tout.`,
           "action": () => {
             if (flags.drunk) {
-              updateFlag("refreshedByFruit", true);
               updateFlag("drunk", false);
               return goToSection("trial-swallow-fruit-drunk");
             }

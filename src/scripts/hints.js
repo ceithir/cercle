@@ -40,6 +40,12 @@ export const getHint = (flags) => {
       `;
     }
 
+    if (!flags.flagsBeforeActualTrial) {
+      return `
+<p>Il est techniquement possible de remporter la course sans recourir au moindre artifice. Cependant, avoir mis la fin sur quelque surprise aide grandement, tout comme d’être dans votre meilleure forme, ou mieux.</p>
+      `;
+    }
+
     return `
 <p>Un requin possède des sens bien particuliers, capable de détecter certaines choses dont un être humain n’aurait aucune conscience. Un être humain possède une intelligence développée, capable d’anticiper et de planifier à un degré qu’un requin serait incapable d’atteindre. Vous devez échapper aux deux à la fois.</p>
     `;

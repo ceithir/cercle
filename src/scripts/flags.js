@@ -61,7 +61,6 @@ const flags = {
   "watchedKnifeImportance": false,
   "survivedWitchIsland": false,
   "refreshed": false,
-  "refreshedByFruit": false,
   "aVillagerOnCrocodileIsland": false,
   "caughtARaiahui": false,
   "seenRaiahuiTrueForm": false,
