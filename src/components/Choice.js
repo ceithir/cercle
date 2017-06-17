@@ -15,7 +15,7 @@ class Choice extends React.Component {
         onClick={this.onClick}
       >
         {!this.props.conditional && this.props.text}
-        {this.props.conditional && <span className="text-info">{this.props.text}</span>}
+        {this.props.conditional && <span className="text-conditional">{this.props.text}</span>}
       </a>
     );
   }

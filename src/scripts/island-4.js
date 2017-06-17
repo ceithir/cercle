@@ -47,7 +47,7 @@ const island4 = {
       if (flags.survivedWitchIsland) {
         text += `
 </div>
-<p class="text-info">Il parle sans doute de la sorcière que vous avez croisé sur l’île mitoyenne.</p>
+<p class="text-conditional">Il parle sans doute de la sorcière que vous avez croisé sur l’île mitoyenne.</p>
 <p>Vous décidez cependant de vous en assurer, peu désireuse de tomber par surprise sur une confrère de la précédente.</p>
 <div class="conversation">
 <p>— Il y a une sorcière sur cette île ?</p>
@@ -75,7 +75,7 @@ const island4 = {
       `;
 
       if (!flags.survivedWitchIsland && flags.toldAboutAtollByRaiahui) {
-        text += `<p class="text-info">Vous n’aviez pas totalement pris au sérieux Raiahui quand elle évoquait une sorcière, mais vous êtes en train de revoir votre position.</p>`;
+        text += `<p class="text-conditional">Vous n’aviez pas totalement pris au sérieux Raiahui quand elle évoquait une sorcière, mais vous êtes en train de revoir votre position.</p>`;
       }
 
       return text;

@@ -154,30 +154,30 @@ const trial = {
 
       const amulet = flags.inventory.dolphin;
       if (amulet.acquired && !amulet.used) {
-        equipment += `<p class="text-info">Vous portez l’amulette en forme de dauphin autour de votre cou. Il est impossible de ne pas la voir, mais ni Raiahui ni sa cour ne semblent y accorder la moindre espèce d’attention.</p>`;
+        equipment += `<p class="text-conditional">Vous portez l’amulette en forme de dauphin autour de votre cou. Il est impossible de ne pas la voir, mais ni Raiahui ni sa cour ne semblent y accorder la moindre espèce d’attention.</p>`;
       }
 
       let items = ``;
 
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
-        items += `<p class="text-info">Vous avez en revanche enroulé le filet de la sorcière autour de votre taille, soupçonnant qu’il pourrait vous être très utile.</p>`;
+        items += `<p class="text-conditional">Vous avez en revanche enroulé le filet de la sorcière autour de votre taille, soupçonnant qu’il pourrait vous être très utile.</p>`;
       }
 
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
-        items += `<p class="text-info">Vous avez en revanche attaché la figurine de bois à une lanière passée autour de votre taille, vous fiant à l’intuition qui vous souffle qu’elle pourrait vous être très utile.</p>`;
+        items += `<p class="text-conditional">Vous avez en revanche attaché la figurine de bois à une lanière passée autour de votre taille, vous fiant à l’intuition qui vous souffle qu’elle pourrait vous être très utile.</p>`;
       }
 
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         if (doll.acquired && !doll.used) {
-          items += `<p class="text-info">Vous avez également glissé à ses côtés un petit sac de toile abritant les perles de la sorcière.`;
+          items += `<p class="text-conditional">Vous avez également glissé à ses côtés un petit sac de toile abritant les perles de la sorcière.`;
         } else {
           if (net.acquired && !net.used) {
-            items += `<p class="text-info">Vous emportez également ses perles`;
+            items += `<p class="text-conditional">Vous emportez également ses perles`;
           } else {
-            items += `<p class="text-info">Vous emportez avec vous les perles de la sorcière`;
+            items += `<p class="text-conditional">Vous emportez avec vous les perles de la sorcière`;
           }
           items += `, dans un petit sac de toile accroché à votre taille à l’aide d’une lanière.`;
         }

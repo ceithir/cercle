@@ -308,7 +308,7 @@ const hub = {
     "text": (flags) => {
       let faanaruaIsland = ``;
       if (flags.toldAboutFaanaruaByVarenui) {
-        faanaruaIsland += `<p class="text-info">Ce serait là que se serait installée Faanarua, la seule membre de cette communauté à avoir exploré plus que superficiellement le monde extérieur.`;
+        faanaruaIsland += `<p class="text-conditional">Ce serait là que se serait installée Faanarua, la seule membre de cette communauté à avoir exploré plus que superficiellement le monde extérieur.`;
         if (flags.toldAboutFaanaruaByRaiahui) {
           faanaruaIsland += ` Raiahui vous a également parlé d’elle, la décrivant comme une grande chasseuse et conteuse.`
         }
@@ -317,19 +317,19 @@ const hub = {
 
       let witchIslandDescription = `<p>La première est curieusement différente des autres : loin d’être une étendue lisse et basse, elle émerge des flots comme un large rocher.`;
       if (flags.toldAboutAtollByRaiahui) {
-        witchIslandDescription += ` <span class="text-info">Raiahui vous l’a décrite comme étant habitée par une sorcière.</span>`;
+        witchIslandDescription += ` <span class="text-conditional">Raiahui vous l’a décrite comme étant habitée par une sorcière.</span>`;
       }
       witchIslandDescription += `</p>`;
 
       let crocodileIslandDescription = `<p>La seconde est plus ordinaire en apparence, avec comme seule particularité visible à cette distance d’être couverte d’un enchevêtrement de grands arbres.`;
       if (flags.toldAboutAtollByRaiahui) {
-        crocodileIslandDescription += ` <span class="text-info">Raiahui vous a précisé qu’il s’agissait de la résidence du peu accueillant « Vieux Fainéant ».</span>`;
+        crocodileIslandDescription += ` <span class="text-conditional">Raiahui vous a précisé qu’il s’agissait de la résidence du peu accueillant « Vieux Fainéant ».</span>`;
         if (flags.toldAboutLazyOneByAriinea) {
-            crocodileIslandDescription += ` <span class="text-info">Ariinea et son amie vous ont dit peu ou prou la même chose, insistant sur la dangerosité de cette mystérieuse personne.</span>`;
+            crocodileIslandDescription += ` <span class="text-conditional">Ariinea et son amie vous ont dit peu ou prou la même chose, insistant sur la dangerosité de cette mystérieuse personne.</span>`;
         }
       } else {
         if (flags.toldAboutLazyOneByAriinea) {
-          crocodileIslandDescription += ` <span class="text-info">C’est probablement là que réside le « Vieux Fainéant » dont Ariinea vous a parlé. Et dont son amie vous a également fortement déconseillé d’approcher, le considérant réellement dangereux.</span>`;
+          crocodileIslandDescription += ` <span class="text-conditional">C’est probablement là que réside le « Vieux Fainéant » dont Ariinea vous a parlé. Et dont son amie vous a également fortement déconseillé d’approcher, le considérant réellement dangereux.</span>`;
         }
       }
       crocodileIslandDescription += `</p>`;
@@ -371,7 +371,7 @@ ${crocodileIslandDescription}
       `;
 
       if (flags.time < timeLimit) {
-        text += `<p class="text-info">${timeDescription(flags.time)}</p>`;
+        text += `<p class="text-conditional">${timeDescription(flags.time)}</p>`;
       }
 
       return text;
@@ -526,18 +526,18 @@ ${crocodileIslandDescription}
   },
   "rest": {
     "text": (flags) => {
-      let statusComment = `<p class="text-info">Vous auriez bien dormi quelques instants de plus.</p>`;
+      let statusComment = `<p class="text-conditional">Vous auriez bien dormi quelques instants de plus.</p>`;
 
       if (flags.drunk) {
-        statusComment = `<p class="text-info">Ce court repos n’aura malheureusement pas réussi à contrebalancer votre récent excès. Vous vous sentez encore faible, et ne pouvez plus qu’espérer que l’excitation de la course et les claques de l’eau salée contre votre visage seront suffisantes pour vous remettre d’aplomb.</p>`;
+        statusComment = `<p class="text-conditional">Ce court repos n’aura malheureusement pas réussi à contrebalancer votre récent excès. Vous vous sentez encore faible, et ne pouvez plus qu’espérer que l’excitation de la course et les claques de l’eau salée contre votre visage seront suffisantes pour vous remettre d’aplomb.</p>`;
       }
 
       if (flags.refreshed) {
-        statusComment = `<p class="text-info">La nausée induite par votre consommation enthousiaste d’alcool s’est dissipée. Vous êtes prête.</p>`;
+        statusComment = `<p class="text-conditional">La nausée induite par votre consommation enthousiaste d’alcool s’est dissipée. Vous êtes prête.</p>`;
       }
 
       if (flags.wellRested) {
-        statusComment = `<p class="text-info">Cette bonne sieste vous a remis d’aplomb. Vous vous sentez en pleine forme, prête à en découdre.</p>`;
+        statusComment = `<p class="text-conditional">Cette bonne sieste vous a remis d’aplomb. Vous vous sentez en pleine forme, prête à en découdre.</p>`;
       }
 
       return `
