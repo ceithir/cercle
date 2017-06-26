@@ -1,3 +1,11 @@
+#root {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#root .lead {
+  font-family: 'Quicksand', sans-serif;
+}
+
 .navbar-fixed-top img {
   margin-top: -10px;
 }
