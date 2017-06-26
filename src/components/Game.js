@@ -171,6 +171,7 @@ class Game extends React.Component {
           callback: () => {
             this.stopPlayingWithScroll = false;
           },
+          easing: (t, b, c, d) => c*(t/=d)*t + b,
         });
         return;
       }
