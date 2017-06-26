@@ -5,6 +5,7 @@ import Title from './Title.js';
 import InventoryButton from './InventoryButton.js';
 import OptionButton from './OptionButton.js';
 import ReactDOM from 'react-dom';
+import jump from 'jump.js';
 
 class Game extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class Game extends React.Component {
       "flags": currentFlags,
       "logs": currentLogs,
       "currentSectionText": this.processText(currentSection, currentFlags),
+      "scrollOffset": 0,
     };
     this.saveProgress(currentSection, currentFlags, currentLogs);
   }
@@ -33,10 +35,13 @@ class Game extends React.Component {
 
       this.saveProgress(section, flags, logs);
 
+      const offset = (window.scrollY > 0) ? window.scrollY : prevState.scrollOffset;
+
       return {
         "currentSection": section,
         "logs": logs,
         "currentSectionText": text,
+        "scrollOffset": offset,
       };
     });
   }
@@ -59,6 +64,7 @@ class Game extends React.Component {
       "flags": currentFlags,
       "logs": currentLogs,
       "currentSectionText": this.processText(currentSection, currentFlags),
+      "scrollOffset": 0,
     });
     this.props.saveProgress(currentSection, currentFlags, currentLogs);
   }
@@ -149,7 +155,7 @@ class Game extends React.Component {
     ];
   }
 
-  resetScrolling = () => {
+  scrollActiveSectionToTop = (behavior='auto') => {
     const element = ReactDOM.findDOMNode(this.currentSectionRef);
     if (!element) {
       return;
@@ -157,15 +163,40 @@ class Game extends React.Component {
 
     const offset = this.state.logs.length > 0 ? 10 : 0;
 
+    if ("smooth" === behavior) {
+      const scrollBy = element.offsetTop + offset - window.scrollY;
+      if (scrollBy > 0) {
+        jump(scrollBy, {
+          duration: 500,
+          callback: () => {
+            this.stopPlayingWithScroll = false;
+          },
+        });
+        return;
+      }
+    }
+
     window.scrollTo(0, element.offsetTop + offset);
+    this.stopPlayingWithScroll = false;
+  }
+
+  maintainScroll = () => {
+    window.scrollTo(0, this.state.scrollOffset);
   }
 
   componentDidMount = () => {
-    this.resetScrolling();
+    this.scrollActiveSectionToTop();
   }
 
   componentDidUpdate = () => {
-    this.resetScrolling();
+    if (this.stopPlayingWithScroll) {
+      return;
+    }
+
+    this.stopPlayingWithScroll = true;
+
+    this.maintainScroll();
+    this.scrollActiveSectionToTop('smooth');
   }
 
   render() {
