@@ -75,7 +75,7 @@
   stroke: transparent;
 }
 
-#atoll-map .island .shape:hover {
+#atoll-map .island .shape:hover, #atoll-map .island a:focus .shape {
   fill-opacity: 0.2;
 }
 

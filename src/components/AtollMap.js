@@ -1,6 +1,12 @@
 import React from 'react';
 
 class AtollMap extends React.Component {
+  onClick = (event, action) => {
+    event.preventDefault();
+    event.target.blur();
+    action();
+  }
+
   render() {
     return (
       <svg
@@ -21,14 +27,16 @@ class AtollMap extends React.Component {
 
           return (
             <g key={island.key} className={className}>
-              <path d={island.path} className="shape hidden-xs hidden-xm" onClick={island.onClick} />
-              <text
-                x={island.textPosition.x}
-                y={island.textPosition.y}
-                className={`lead text-anchor-${island.textAnchor} hidden-xs hidden-xm`}
-              >
-                {island.description}
-              </text>
+              <a className="choice" onClick={event => this.onClick(event, island.onClick)} href="#">
+                <path d={island.path} className="shape hidden-xs hidden-xm" />
+                <text
+                  x={island.textPosition.x}
+                  y={island.textPosition.y}
+                  className={`lead text-anchor-${island.textAnchor} hidden-xs hidden-xm`}
+                >
+                  {island.description}
+                </text>
+              </a>
               {island.current && <text x={island.harbor.x} y={island.harbor.y} className="here">{`⚓`}</text>}
               {island.disabled && island.cross && <g className="crossed">
                 <line x1={island.cross[0]} y1={island.cross[1]} x2={island.cross[2]} y2={island.cross[3]} />
