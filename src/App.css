@@ -48,6 +48,7 @@
 }
 
 #atoll-map {
+  max-width: 720px;
   margin-bottom: 20px;
 }
 
