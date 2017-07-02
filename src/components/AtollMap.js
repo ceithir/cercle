@@ -7,6 +7,19 @@ class AtollMap extends React.Component {
     action();
   }
 
+  getCourse = () => {
+    const course = this.props.course;
+    return (
+      <line
+        x1={course[0]}
+        y1={course[1]}
+        x2={course[2]}
+        y2={course[3]}
+        className="course"
+      />
+    )
+  }
+
   render() {
     return (
       <svg
@@ -44,6 +57,7 @@ class AtollMap extends React.Component {
             </g>
           );
         })}
+        {this.props.course && this.getCourse()}
       </svg>
     );
   }
@@ -69,6 +83,7 @@ AtollMap.propTypes = {
     }).isRequired,
     cross: React.PropTypes.arrayOf(React.PropTypes.number),
   })).isRequired,
+  course: React.PropTypes.arrayOf(React.PropTypes.number),
 };
 
 export default AtollMap;

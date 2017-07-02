@@ -112,6 +112,12 @@
   font-size: 20px;
 }
 
+.atoll-map .course {
+  stroke: #e59400;
+  stroke-dasharray: 5, 10;
+  stroke-width: 2;
+}
+
 .ending-message > p {
   font-style: italic;
 }

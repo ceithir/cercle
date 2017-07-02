@@ -85,9 +85,8 @@ const getIslands = function(flags) {
 }
 
 const getIslandsWithMapMetadata = (flags, currentIsland) => {
-  const visitedIslands = flags.visitedIslands;
   if (!currentIsland) {
-    currentIsland = visitedIslands.length > 0 ? visitedIslands[visitedIslands.length-1]: "island-1";
+    currentIsland = flags.currentIsland;
   }
 
   return getIslands(flags).concat([
@@ -104,13 +103,15 @@ const getIslandsWithMapMetadata = (flags, currentIsland) => {
     island,
     {
       "current": island.key === currentIsland,
-      "disabled": visitedIslands.includes(island.key) || island.key === currentIsland,
+      "disabled": flags.visitedIslands.includes(island.key) || island.key === currentIsland,
     },
   ));
 }
 
 const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
-  let newTime = flags.time + computeTripTime(flags.currentIsland, newIsland);
+  const currentIsland = flags.currentIsland;
+
+  let newTime = flags.time + computeTripTime(currentIsland, newIsland);
   if (flags.damagedBoat) {
     newTime += 1;
   }
@@ -123,10 +124,25 @@ const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
 
   updateFlag("currentIsland", newIsland);
   updateFlag("visitedIslands", flags.visitedIslands.slice().concat([newIsland]));
+
+  const islands = getIslandsWithMapMetadata(flags, newIsland);
+  const from = islands.find(island => currentIsland === island.key);
+  const to = islands.find(island => newIsland === island.key);
+  const course = [
+    from["harbor"]["x"],
+    from["harbor"]["y"],
+    to["harbor"]["x"],
+    to["harbor"]["y"],
+  ];
+
   goToSection(
     newIsland,
     ReactDOMServer.renderToString(
-      <AtollMap mapImg={atollMapImg} islands={getIslandsWithMapMetadata(flags, newIsland)} />
+      <AtollMap
+        mapImg={atollMapImg}
+        islands={islands}
+        course={course}
+      />
     )
   );
 }
