@@ -42,7 +42,7 @@ export const getHint = (flags) => {
 
     if (!flags.flagsBeforeActualTrial) {
       return `
-<p>Il est techniquement possible de remporter la course sans recourir au moindre artifice. Cependant, avoir mis la fin sur quelque surprise aide grandement, tout comme d’être dans votre meilleure forme, ou mieux.</p>
+<p>Il est techniquement possible de remporter la course sans recourir au moindre artifice. Tricher en amenant quelques surprises de votre cru aide cependant grandement.</p>
       `;
     }
 
