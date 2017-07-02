@@ -39,7 +39,11 @@ class AtollMap extends React.Component {
 
           return (
             <g key={island.key} className={className}>
-              {island.onClick && <a className="choice hidden-xs hidden-xm" onClick={event => this.onClick(event, island.onClick)} href="#">
+              {island.onClick && !island.disabled && <a
+                className="choice hidden-xs hidden-xm"
+                onClick={event => this.onClick(event, island.onClick)}
+                href="#"
+              >
                 <path d={island.path} className="shape" />
                 <text
                   x={island.textPosition.x}
