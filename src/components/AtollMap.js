@@ -10,9 +10,8 @@ class AtollMap extends React.Component {
   render() {
     return (
       <svg
-        id="atoll-map"
         viewBox="0 0 720 720"
-        className="center-block"
+        className="atoll-map center-block"
         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
       >
         <image xlinkHref={this.props.mapImg} x="0" y="0" height="720" width="720"/>
@@ -27,16 +26,16 @@ class AtollMap extends React.Component {
 
           return (
             <g key={island.key} className={className}>
-              <a className="choice" onClick={event => this.onClick(event, island.onClick)} href="#">
-                <path d={island.path} className="shape hidden-xs hidden-xm" />
+              {island.onClick && <a className="choice hidden-xs hidden-xm" onClick={event => this.onClick(event, island.onClick)} href="#">
+                <path d={island.path} className="shape" />
                 <text
                   x={island.textPosition.x}
                   y={island.textPosition.y}
-                  className={`lead text-anchor-${island.textAnchor} hidden-xs hidden-xm`}
+                  className={`lead text-anchor-${island.textAnchor}`}
                 >
                   {island.description}
                 </text>
-              </a>
+              </a>}
               {island.current && <text x={island.harbor.x} y={island.harbor.y} className="here">{`⚓`}</text>}
               {island.disabled && island.cross && <g className="crossed">
                 <line x1={island.cross[0]} y1={island.cross[1]} x2={island.cross[2]} y2={island.cross[3]} />
@@ -55,7 +54,7 @@ AtollMap.propTypes = {
   islands: React.PropTypes.arrayOf(React.PropTypes.shape({
     key: React.PropTypes.string.isRequired,
     path: React.PropTypes.string.isRequired,
-    onClick: React.PropTypes.func.isRequired,
+    onClick: React.PropTypes.func,
     current: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     textPosition: React.PropTypes.shape({

@@ -47,66 +47,66 @@
   opacity: 0.5;
 }
 
-#atoll-map {
+.atoll-map {
   max-width: 720px;
   margin-bottom: 20px;
 }
 
-#atoll-map text.text-anchor-left {
+.atoll-map text.text-anchor-left {
   text-anchor: start;
 }
 
-#atoll-map text.text-anchor-right {
+.atoll-map text.text-anchor-right {
   text-anchor: end;
 }
 
-#atoll-map text.text-anchor-middle {
+.atoll-map text.text-anchor-middle {
   text-anchor: middle;
 }
 
-#atoll-map .island {
+.atoll-map .island {
   cursor: pointer;
 }
 
-#atoll-map .island .shape {
+.atoll-map .island .shape {
   fill: #e8e8ee;
   fill-opacity: 0;
 
   stroke: transparent;
 }
 
-#atoll-map .island .shape:hover, #atoll-map .island a:focus .shape {
+.atoll-map .island .shape:hover, .atoll-map .island a:focus .shape {
   fill-opacity: 0.2;
 }
 
-#atoll-map .island .shape + text {
+.atoll-map .island .shape + text {
   visibility: hidden;
   pointer-events:none;
 }
 
-#atoll-map .island .shape:hover + text {
+.atoll-map .island .shape:hover + text {
   visibility: visible;
 }
 
-#atoll-map .island.disabled {
+.atoll-map .island.disabled {
   cursor: default;
 }
 
-#atoll-map .island.disabled .shape {
+.atoll-map .island.disabled .shape {
   fill-opacity: 0;
   stroke-opacity: 0;
 }
 
-#atoll-map .island.disabled .shape:hover + text {
+.atoll-map .island.disabled .shape:hover + text {
   visibility: hidden;
 }
 
-#atoll-map .island.disabled .crossed {
+.atoll-map .island.disabled .crossed {
   stroke: #ff3232;
   stroke-width: 5px;
 }
 
-#atoll-map .island .here {
+.atoll-map .island .here {
   text-anchor: middle;
   fill: red;
   font-size: 20px;

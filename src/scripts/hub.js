@@ -4,6 +4,7 @@ import Funnel from "./../components/Funnel.js";
 import {useItem, acquireItem, endGame, repeatingFunnel, coatSentence} from "./helpers.js";
 import atollMapImg from "./../images/map.jpg";
 import AtollMap from "./../components/AtollMap.js";
+import ReactDOMServer from 'react-dom/server'
 
 const timeLimit = 12;
 
@@ -13,23 +14,6 @@ const getIslandNumber = function(island) {
 
 const computeTripTime = function(currentIsland, newIsland) {
   return Math.abs(getIslandNumber(currentIsland) - getIslandNumber(newIsland)) % 7 < 2 ? 1 : 2;
-}
-
-const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
-  let newTime = flags.time + computeTripTime(flags.currentIsland, newIsland);
-  if (flags.damagedBoat) {
-    newTime += 1;
-  }
-
-  updateFlag("time", newTime);
-
-  if (newTime >= timeLimit) {
-    return goToSection("no-more-time-at-sea");
-  }
-
-  updateFlag("currentIsland", newIsland);
-  updateFlag("visitedIslands", flags.visitedIslands.slice().concat([newIsland]));
-  goToSection(newIsland);
 }
 
 const getIslands = function(flags) {
@@ -100,6 +84,53 @@ const getIslands = function(flags) {
   ];
 }
 
+const getIslandsWithMapMetadata = (flags, currentIsland) => {
+  const visitedIslands = flags.visitedIslands;
+  if (!currentIsland) {
+    currentIsland = visitedIslands.length > 0 ? visitedIslands[visitedIslands.length-1]: "island-1";
+  }
+
+  return getIslands(flags).concat([
+    {
+      "key": "island-1",
+      "description": `Le village`,
+      "path": "M 170, 555 C 220, 520 290, 600 330, 580 400, 570 530, 490 540, 475 555, 460 625, 510 615, 520 575, 635 240, 715 150, 620 150, 622 170, 555 170, 555 Z",
+      "harbor": {"x": 325, "y": 585},
+      "textPosition": {"x": 370, "y": 615},
+      "textAnchor": "middle",
+    },
+  ]).map(island => Object.assign(
+    {},
+    island,
+    {
+      "current": island.key === currentIsland,
+      "disabled": visitedIslands.includes(island.key) || island.key === currentIsland,
+    },
+  ));
+}
+
+const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
+  let newTime = flags.time + computeTripTime(flags.currentIsland, newIsland);
+  if (flags.damagedBoat) {
+    newTime += 1;
+  }
+
+  updateFlag("time", newTime);
+
+  if (newTime >= timeLimit) {
+    return goToSection("no-more-time-at-sea");
+  }
+
+  updateFlag("currentIsland", newIsland);
+  updateFlag("visitedIslands", flags.visitedIslands.slice().concat([newIsland]));
+  goToSection(
+    newIsland,
+    ReactDOMServer.renderToString(
+      <AtollMap mapImg={atollMapImg} islands={getIslandsWithMapMetadata(flags, newIsland)} />
+    )
+  );
+}
+
 const getIslandChoice = function(island, goToSection, flags, updateFlag) {
   return {
     "text": island.description+".",
@@ -167,42 +198,19 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
 }
 
 const getIslandMap = (goToSection, flags, updateFlag) => {
-  const alreadyVisitedText = ` (déjà visitée)`;
-
-  const currentIsland = flags.visitedIslands.length > 0 ? flags.visitedIslands[flags.visitedIslands.length-1]: "island-1";
-
-  const islands = getIslands(flags).concat([
+  const islands = getIslandsWithMapMetadata(flags).map(island => Object.assign(
+    {},
+    island,
     {
-      "key": "island-1",
-      "description": `Le village`,
-      "path": "M 170, 555 C 220, 520 290, 600 330, 580 400, 570 530, 490 540, 475 555, 460 625, 510 615, 520 575, 635 240, 715 150, 620 150, 622 170, 555 170, 555 Z",
-      "harbor": {"x": 325, "y": 585},
-      "textPosition": {"x": 370, "y": 615},
-      "textAnchor": "middle",
-    },
-  ]).map((island) => {
-    const disabled = flags.visitedIslands.includes(island.key);
-    const current = island.key === currentIsland;
+      "onClick": () => {
+        if (island.disabled) {
+          return;
+        }
 
-    const onClick = () => {
-      if (disabled) {
-        return;
-      }
-
-      moveToIsland(island.key, goToSection, flags, updateFlag);
-    };
-
-    return Object.assign(
-      {},
-      island,
-      {
-        "description": island.description + (disabled ? alreadyVisitedText : ""),
-        "current": current,
-        "disabled": disabled,
-        "onClick": onClick,
+        moveToIsland(island.key, goToSection, flags, updateFlag);
       },
-    );
-  });
+    },
+  ));
 
   return (
     <AtollMap mapImg={atollMapImg} islands={islands} />
