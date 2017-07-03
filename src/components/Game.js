@@ -12,7 +12,7 @@ class Game extends React.Component {
     super(props);
 
     const currentSection = this.props.currentSection || this.props.startingSection;
-    const currentFlags = this.props.currentFlags || this.props.startingFlags;
+    const currentFlags = Object.assign({}, this.props.startingFlags, this.props.currentFlags || {});
     const currentLogs = this.props.currentLogs || [];
 
     this.state = {

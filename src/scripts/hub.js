@@ -111,6 +111,10 @@ const getIslandsWithMapMetadata = (flags, currentIsland) => {
 const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
   const currentIsland = flags.currentIsland;
 
+  if (currentIsland === newIsland) {
+    return;
+  }
+
   let newTime = flags.time + computeTripTime(currentIsland, newIsland);
   if (flags.damagedBoat) {
     newTime += 1;
@@ -128,12 +132,13 @@ const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
   const islands = getIslandsWithMapMetadata(flags, newIsland);
   const from = islands.find(island => currentIsland === island.key);
   const to = islands.find(island => newIsland === island.key);
-  const course = [
+  const course = flags.course.concat([[
     from["harbor"]["x"],
     from["harbor"]["y"],
     to["harbor"]["x"],
     to["harbor"]["y"],
-  ];
+  ]]);
+  updateFlag("course", course);
 
   goToSection(
     newIsland,
@@ -229,7 +234,7 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
   ));
 
   return (
-    <AtollMap mapImg={atollMapImg} islands={islands} />
+    <AtollMap mapImg={atollMapImg} islands={islands} course={flags.course} />
   );
 }
 

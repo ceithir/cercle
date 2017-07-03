@@ -72,6 +72,7 @@ const flags = {
   "bleeding": false,
   "weakened": false,
   "gotAHeadStart": false,
+  "course": [],
 };
 
 export default flags;

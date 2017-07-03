@@ -8,16 +8,21 @@ class AtollMap extends React.Component {
   }
 
   getCourse = () => {
-    const course = this.props.course;
     return (
-      <line
-        x1={course[0]}
-        y1={course[1]}
-        x2={course[2]}
-        y2={course[3]}
-        className="course"
-      />
-    )
+      <g className="course">
+        {this.props.course.map((line, index) => {
+          return (
+            <line
+              key={index.toString()}
+              x1={line[0]}
+              y1={line[1]}
+              x2={line[2]}
+              y2={line[3]}
+            />
+        );
+        })}
+      </g>
+    );
   }
 
   render() {
@@ -87,7 +92,7 @@ AtollMap.propTypes = {
     }).isRequired,
     cross: React.PropTypes.arrayOf(React.PropTypes.number),
   })).isRequired,
-  course: React.PropTypes.arrayOf(React.PropTypes.number),
+  course: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.number)),
 };
 
 export default AtollMap;
