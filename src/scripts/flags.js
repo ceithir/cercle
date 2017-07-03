@@ -73,6 +73,7 @@ const flags = {
   "weakened": false,
   "gotAHeadStart": false,
   "course": [],
+  "targetIsland": undefined,
 };
 
 export default flags;

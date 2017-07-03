@@ -25,11 +25,11 @@ const getIslands = function(flags) {
       "textPosition": {"x": 180, "y": 475},
       "textAnchor": "left",
       "cross": [65, 430, 180, 540, 145, 425, 75, 540],
-      "description": (flags) => {
+      "description": ((flags) => {
         return `
 <p>Cette île presque contiguë à celle où vous avez dormi n'a aucune particularité visible.</p>
         `;
-      },
+      })(flags),
     },
     {
       "key": "island-3",
@@ -39,7 +39,7 @@ const getIslands = function(flags) {
       "textPosition": {"x": 140, "y": 335},
       "textAnchor": "left",
       "cross": [30, 270, 125, 410, 125, 275, 25, 405],
-      "description": (flags) => {
+      "description": ((flags) => {
           let text =`
 <p>Cette île ne se démarque guère de ses voisines, affichant le même type de relief et de végétation.</p>
           `;
@@ -55,7 +55,7 @@ const getIslands = function(flags) {
           }
 
           return text;
-      },
+      })(flags),
     },
     {
       "key": "island-4",
@@ -65,11 +65,11 @@ const getIslands = function(flags) {
       "textPosition": {"x": 135, "y": 215},
       "textAnchor": "left",
       "cross": [60, 175, 105, 235, 120, 175, 45, 235],
-      "description": (flags) => {
+      "description": ((flags) => {
         return `
 <p>Si cette île est juste assez grande pour accueillir de la végétation, celle-ci ne monte pas bien haut.</p>
         `;
-      },
+      })(flags),
     },
     {
       "key": "island-5",
@@ -79,7 +79,7 @@ const getIslands = function(flags) {
       "textPosition": {"x": 175, "y": 170},
       "textAnchor": "left",
       "cross": [120, 25, 225, 145, 235, 35, 115, 135],
-      "description": (flags) => {
+      "description": ((flags) => {
         let text = `
 <p>Cette île, qui fait partie de celles que Raiahui vous a explicitement déconseillé d’approcher, est curieusement différente des autres : loin d’être une étendue lisse et basse, elle émerge des flots comme un large rocher.
         `;
@@ -95,7 +95,7 @@ const getIslands = function(flags) {
         text += `</p>`;
 
         return text;
-      },
+      })(flags),
     },
     {
       "key": "island-6",
@@ -105,7 +105,7 @@ const getIslands = function(flags) {
       "textPosition": {"x": 490, "y": 165},
       "textAnchor": "right",
       "cross": [375, 15, 620, 190, 360, 90, 635, 120],
-      "description": (flags) => {
+      "description": ((flags) => {
         let text = `
 <p>Cette île paraît plutôt ordinaire, si ce n'est qu'elle est couverte d’un enchevêtrement de grands arbres. Raiahui vous a cependant déconseillé de vous en approcher.
         `;
@@ -125,7 +125,7 @@ const getIslands = function(flags) {
         text += `</p>`;
 
         return text;
-      },
+      })(flags),
     },
     {
       "key": "island-7",
@@ -135,11 +135,11 @@ const getIslands = function(flags) {
       "textPosition": {"x": 590, "y": 265},
       "textAnchor": "right",
       "cross": [605, 245, 640, 275, 645, 240, 605, 275],
-      "description": (flags) => {
+      "description": ((flags) => {
         return `
 <p>Cette île n’est en réalité qu’une minuscule étendue de sable clair.</p>
         `;
-      },
+      })(flags),
     },
     {
       "key": "island-8",
@@ -149,11 +149,11 @@ const getIslands = function(flags) {
       "textPosition": {"x": 560, "y": 430},
       "textAnchor": "right",
       "cross": [585, 405, 645, 450, 650, 405, 580, 450],
-      "description": (flags) => {
+      "description": ((flags) => {
         return `
 <p>Si ce n'était pas le point d'arrivée de la course qui vous opposera ce soir à Raiahui, il n'y aurait rien à dire sur cette bande de sable seulement séparé de l'île principal par un court bras de mer.</p>
         `;
-      },
+      })(flags),
     },
   ];
 }
@@ -171,11 +171,11 @@ const getIslandsWithMapMetadata = (flags, currentIsland) => {
       "harbor": {"x": 325, "y": 585},
       "textPosition": {"x": 370, "y": 615},
       "textAnchor": "middle",
-      "description": (flags) => {
+      "description": ((flags) => {
           return `
 <p>L'île principale de l'atoll, celle où vous résidez temporairement. Si vous y retournez, il n'est pas sûr que vous trouviez la force de résister à l'attrait de ses confortables hamacs.</p>
           `;
-      },
+      })(flags),
     },
   ]).map(island => Object.assign(
     {},
@@ -188,7 +188,7 @@ const getIslandsWithMapMetadata = (flags, currentIsland) => {
 }
 
 const getIslandWithMapMetadata = (islandKey, flags) => {
-  return getIslandWithMapMetadata(flags).find(island => islandKey === island.key);
+  return getIslandsWithMapMetadata(flags).find(island => islandKey === island.key);
 }
 
 const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
@@ -302,7 +302,8 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
           return;
         }
 
-        moveToIsland(island.key, goToSection, flags, updateFlag);
+        updateFlag("targetIsland", island.key);
+        goToSection(`island-confirm`);
       },
     },
   ));
@@ -653,7 +654,32 @@ ${statusComment}
         <Funnel text={text} action={action} />
       );
     }
-  }
+  },
+  "island-confirm": {
+    "text": (flags) => {
+      return getIslandWithMapMetadata(flags.targetIsland, flags)["description"];
+    },
+    "next": (goToSection, flags, updateFlag) => {
+      const choices = [
+        {
+          "text": `Vous vous dirigez dans sa direction.`,
+          "action": () => {
+            moveToIsland(flags.targetIsland, goToSection, flags, updateFlag);
+          },
+        },
+        {
+          "text": `Vous évaluez vos autres possibilités.`,
+          "action": () => {
+            goToSection("back-to-hub");
+          }
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    },
+  },
 }
 
 export default hub;
