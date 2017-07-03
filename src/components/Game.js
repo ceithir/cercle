@@ -30,8 +30,14 @@ class Game extends React.Component {
       const flags = prevState.flags;
       const text = this.processText(section, flags);
 
-      const log = prevState.currentSectionText + extraLog;
-      const logs = prevState.logs.concat([log]);
+      let log;
+      if (typeof extraLog === 'function') {
+        log = extraLog(prevState.currentSectionText);
+      } else {
+        log = prevState.currentSectionText + extraLog;;
+      }
+
+      const logs = log.length > 0 ? prevState.logs.concat([log]) : prevState.logs;
 
       this.saveProgress(section, flags, logs);
 

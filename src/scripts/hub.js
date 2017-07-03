@@ -15,6 +15,10 @@ const computeTripTime = function(currentIsland, newIsland) {
   return Math.abs(getIslandNumber(currentIsland) - getIslandNumber(newIsland)) % 7 < 2 ? 1 : 2;
 }
 
+const emptyFunction = () => {
+  return '';
+}
+
 const getIslands = function(flags) {
   return [
     {
@@ -191,7 +195,7 @@ const getIslandWithMapMetadata = (islandKey, flags) => {
   return getIslandsWithMapMetadata(flags).find(island => islandKey === island.key);
 }
 
-const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
+const moveToIsland = function(newIsland, goToSection, flags, updateFlag, extraLog = '') {
   const currentIsland = flags.currentIsland;
 
   if (currentIsland === newIsland) {
@@ -206,7 +210,7 @@ const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
   updateFlag("time", newTime);
 
   if (newTime >= timeLimit) {
-    return goToSection("no-more-time-at-sea");
+    return goToSection("no-more-time-at-sea", extraLog);
   }
 
   updateFlag("currentIsland", newIsland);
@@ -223,31 +227,31 @@ const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
   ]]);
   updateFlag("course", course);
 
-  goToSection(newIsland);
+  goToSection(newIsland, extraLog);
 }
 
-const getIslandChoice = function(island, goToSection, flags, updateFlag) {
+const getIslandChoice = function(island, goToSection, flags, updateFlag, extraLog = '') {
   return {
     "text": island.name+".",
     "action": () => {
-      moveToIsland(island.key, goToSection, flags, updateFlag);
+      moveToIsland(island.key, goToSection, flags, updateFlag, extraLog);
     },
   };
 }
 
-const getOtherChoices = function(goToSection, flags, updateFlag) {
+const getOtherChoices = function(goToSection, flags, updateFlag, extraLog = '') {
   let otherChoices = [
     {
       "text": `Rentrer vous reposer au village.`,
       "action": () => {
-        goToSection("island-1");
+        goToSection("island-1", extraLog);
       },
     },
     {
       "text": `Quitter le lagon.`,
       "action": () => {
         updateFlag("time", flags.time+1);
-        goToSection("exit");
+        goToSection("exit", extraLog);
       },
     },
   ];
@@ -260,7 +264,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
         useItem("alcohol", updateFlag);
         updateFlag("drunk", true);
         updateFlag("time", flags.time+1);
-        goToSection("drink");
+        goToSection("drink", extraLog);
       },
       "conditional": true,
     });
@@ -273,7 +277,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
       "action": () => {
         useItem("pearls", updateFlag);
         acquireItem("smokePearls", updateFlag);
-        goToSection("look-at-pearls");
+        goToSection("look-at-pearls", extraLog);
       },
       "conditional": true,
     });
@@ -283,7 +287,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
     otherChoices.push({
       "text": `Aller chercher l’amulette dont Faanarua vous a parlé.`,
       "action": () => {
-        moveToIsland("island-7", goToSection, flags, updateFlag);
+        moveToIsland("island-7", goToSection, flags, updateFlag, extraLog);
       },
       "conditional": true,
     });
@@ -292,7 +296,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag) {
   return otherChoices;
 }
 
-const getIslandMap = (goToSection, flags, updateFlag) => {
+const getIslandMap = (goToSection, flags, updateFlag, extraLog = '') => {
   const islands = getIslandsWithMapMetadata(flags).map(island => Object.assign(
     {},
     island,
@@ -303,7 +307,7 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
         }
 
         updateFlag("targetIsland", island.key);
-        goToSection(`island-confirm`);
+        goToSection(`island-confirm`, extraLog);
       },
     },
   ));
@@ -313,7 +317,7 @@ const getIslandMap = (goToSection, flags, updateFlag) => {
   );
 }
 
-const getIslandChoices = function(goToSection, flags, updateFlag) {
+const getIslandChoices = function(goToSection, flags, updateFlag, extraLog = '') {
   const currentIsland = flags.currentIsland;
   const alreadyVisitedIslands = flags.visitedIslands;
 
@@ -331,7 +335,7 @@ const getIslandChoices = function(goToSection, flags, updateFlag) {
 
   const nearText = `De là où vous êtes, vous êtes à proximité de :`;
   const nearChoices = nearIslands.map(function(island) {
-    return getIslandChoice(island, goToSection, flags, updateFlag);
+    return getIslandChoice(island, goToSection, flags, updateFlag, extraLog);
   });
 
   let farText = `Vous pouvez également couper court et vous rendre directement à l’une des îles plus éloignées.`;
@@ -339,15 +343,15 @@ const getIslandChoices = function(goToSection, flags, updateFlag) {
     farText = `Vous avez déjà visité toutes les îles mitoyennes de celle-ci, mais avec quelques efforts supplémentaires, vous pouvez atteindre :`;
   }
   const farChoices = farIslands.map(function(island) {
-    return getIslandChoice(island, goToSection, flags, updateFlag);
+    return getIslandChoice(island, goToSection, flags, updateFlag, extraLog);
   });
 
   const otherText = `Vous pouvez également mettre en pause l’exploration et…`;
-  const otherChoices = getOtherChoices(goToSection, flags, updateFlag);
+  const otherChoices = getOtherChoices(goToSection, flags, updateFlag, extraLog);
 
   return (
     <div>
-      {getIslandMap(goToSection, flags, updateFlag)}
+      {getIslandMap(goToSection, flags, updateFlag, extraLog)}
       {nearChoices.length > 0 && <Crossroads context={nearText} choices={nearChoices} />}
       {farChoices.length > 0 && <Crossroads context={farText} choices={farChoices} />}
       <Crossroads context={otherText} choices={otherChoices} />
@@ -439,32 +443,40 @@ ${crocodileIslandDescription}
   },
   "back-to-hub": {
     "text": (flags) => {
-      let text =`
-<p>Vous rejoignez votre pirogue, et prenez quelques instants pour réfléchir à la direction dans laquelle vous allez la propulser.</p>
-      `;
+      if (flags.time >= timeLimit) {
+        return `
+<p>Une surprise vous attend lorsque vous regagnez votre pirogue : la tête d’un jeune garçon de la tribu émerge de l’eau à une faible distance.</p>
 
-      if (flags.time < timeLimit) {
-        text += `<p class="text-conditional">${timeDescription(flags.time)}</p>`;
+<div class="conversation">
+<p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
+</div>
+
+<p>Vous jetez un coup d’œil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
+
+<p>Vous prenez place à bord de la pirogue et dites au garçon — qui n’a rien d’autre avec lui que son couteau d’ivoire incurvé — de s’installer à l’avant. Plongeant ensuite votre pagaie dans l’eau, vous prenez la direction de l’île où réside la tribu.</p>
+        `;
       }
 
-      return text;
+      return `
+<p>Vous rejoignez votre pirogue, et prenez quelques instants pour réfléchir à la direction dans laquelle vous allez la propulser.</p>
+
+<p class="text-conditional">${timeDescription(flags.time)}</p>
+      `;
     },
     "next": function(goToSection, flags, updateFlag) {
       if (flags.time >= timeLimit) {
-        const text = `Mais quelqu’un a déjà fait ce choix pour vous.`;
+        const text = `Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation et suivez votre jeune guide vers l’endroit où doit débuter la course.`;
         const action = () => {
           if (flags.visitedIslands.length > 0 && "island-6" === flags.visitedIslands[flags.visitedIslands.length-1]) {
             updateFlag("aVillagerOnCrocodileIsland", true);
           }
-          goToSection("no-more-time-on-land");
-        }
+          return "trial";
+        };
 
-        return (
-          <Funnel text={text} action={action} />
-        );
+        return repeatingFunnel(goToSection, text, action);
       }
 
-      return getIslandChoices(goToSection, flags, updateFlag);
+      return getIslandChoices(goToSection, flags, updateFlag, emptyFunction);
     }
   },
   "drink": {
@@ -497,25 +509,6 @@ ${crocodileIslandDescription}
 <p>Vous arrêtez votre embarcation et jetez un coup d’œil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
 
 <p>Vous aidez le garçon — qui transporte avec lui son couteau d’ivoire incurvé — à se hisser à l’avant de la pirogue, puis vous dirigez celle-ci vers l’île où réside la tribu.</p>
-    `,
-    "next": function(goToSection) {
-      const text = `Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation et suivez votre jeune guide vers l’endroit où doit débuter la course.`;
-      const action = "trial";
-
-      return repeatingFunnel(goToSection, text, action);
-    }
-  },
-  "no-more-time-on-land" : {
-    "text": `
-<p>Une surprise vous attend lorsque vous regagnez votre pirogue : la tête d’un jeune garçon de la tribu émerge de l’eau à une faible distance.</p>
-
-<div class="conversation">
-<p>— Mananuiva ! vous crie-t-il. On m’a envoyé te chercher : la course va bientôt commencer.</p>
-</div>
-
-<p>Vous jetez un coup d’œil à la position du soleil : vous n’avez guère fait attention au passage du temps, mais l’après-midi est en effet sur le point de se terminer.</p>
-
-<p>Vous prenez place à bord de la pirogue et dites au garçon — qui n’a rien d’autre avec lui que son couteau d’ivoire incurvé — de s’installer à l’avant. Plongeant ensuite votre pagaie dans l’eau, vous prenez la direction de l’île où réside la tribu.</p>
     `,
     "next": function(goToSection) {
       const text = `Une fois revenue sur la même plage dont vous êtes partie ce matin, vous laissez là votre embarcation et suivez votre jeune guide vers l’endroit où doit débuter la course.`;
@@ -664,13 +657,13 @@ ${statusComment}
         {
           "text": `Vous vous dirigez dans sa direction.`,
           "action": () => {
-            moveToIsland(flags.targetIsland, goToSection, flags, updateFlag);
+            moveToIsland(flags.targetIsland, goToSection, flags, updateFlag, emptyFunction);
           },
         },
         {
           "text": `Vous évaluez vos autres possibilités.`,
           "action": () => {
-            goToSection("back-to-hub");
+            goToSection("back-to-hub", emptyFunction);
           }
         },
       ];
