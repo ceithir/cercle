@@ -55,7 +55,7 @@ class AtollMap extends React.Component {
                   y={island.textPosition.y}
                   className={`lead text-anchor-${island.textAnchor}`}
                 >
-                  {island.description}
+                  {island.name}
                 </text>
               </a>}
               {island.current && <text x={island.harbor.x} y={island.harbor.y} className="here">{`⚓`}</text>}
@@ -85,7 +85,7 @@ AtollMap.propTypes = {
       y: React.PropTypes.number.isRequired,
     }).isRequired,
     textAnchor: React.PropTypes.string.isRequired,
-    description: React.PropTypes.string.isRequired,
+    name: React.PropTypes.string.isRequired,
     harbor: React.PropTypes.shape({
       x: React.PropTypes.number.isRequired,
       y: React.PropTypes.number.isRequired,

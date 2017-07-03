@@ -4,7 +4,6 @@ import Funnel from "./../components/Funnel.js";
 import {useItem, acquireItem, endGame, repeatingFunnel, coatSentence} from "./helpers.js";
 import atollMapImg from "./../images/map.jpg";
 import AtollMap from "./../components/AtollMap.js";
-import ReactDOMServer from 'react-dom/server'
 
 const timeLimit = 12;
 
@@ -20,66 +19,141 @@ const getIslands = function(flags) {
   return [
     {
       "key": "island-2",
-      "description": `Une île sans réel signe distinctif`,
+      "name": `Une île sans réel signe distinctif`,
       "path": "M95 415 C 20 430, 50 560, 145 555 S 140 395, 95 415",
       "harbor": {"x": 165, "y": 485},
       "textPosition": {"x": 180, "y": 475},
       "textAnchor": "left",
       "cross": [65, 430, 180, 540, 145, 425, 75, 540],
+      "description": (flags) => {
+        return `
+<p>Cette île presque contiguë à celle où vous avez dormi n'a aucune particularité visible.</p>
+        `;
+      },
     },
     {
       "key": "island-3",
-      "description": flags.toldAboutFaanaruaByVarenui? `L’île de Faanarua`: `Une autre île tout ce qu’il y a de plus banal`,
+      "name": flags.toldAboutFaanaruaByVarenui? `L’île de Faanarua`: `Une autre île tout ce qu’il y a de plus banal`,
       "path": "M20 345 C 20 245, 125 245, 130 345 S 20 405, 20 345",
       "harbor": {"x": 120, "y": 340},
       "textPosition": {"x": 140, "y": 335},
       "textAnchor": "left",
       "cross": [30, 270, 125, 410, 125, 275, 25, 405],
+      "description": (flags) => {
+          let text =`
+<p>Cette île ne se démarque guère de ses voisines, affichant le même type de relief et de végétation.</p>
+          `;
+
+          if (flags.toldAboutFaanaruaByVarenui) {
+            text += `
+<p class="text-conditional">Toutefois, ce serait là que se serait installée Faanarua, la seule membre de cette communauté à avoir exploré plus que superficiellement le monde extérieur.
+            `;
+            if (flags.toldAboutFaanaruaByRaiahui) {
+              text += ` Raiahui vous a également parlé d’elle, la décrivant comme une grande chasseuse et conteuse.`
+            }
+            text += `</p>`;
+          }
+
+          return text;
+      },
     },
     {
       "key": "island-4",
-      "description": `La petite île excentrée`,
+      "name": `La petite île excentrée`,
       "path": "M50 205 C 50 150, 120 170, 125 205 S 50 260, 50 205",
       "harbor": {"x": 115, "y": 220},
       "textPosition": {"x": 135, "y": 215},
       "textAnchor": "left",
       "cross": [60, 175, 105, 235, 120, 175, 45, 235],
+      "description": (flags) => {
+        return `
+<p>Si cette île est juste assez grande pour accueillir de la végétation, celle-ci ne monte pas bien haut.</p>
+        `;
+      },
     },
     {
       "key": "island-5",
-      "description": flags.toldAboutAtollByRaiahui? `L’île de la sorcière`: `L’étrange rocher`,
+      "name": flags.toldAboutAtollByRaiahui? `L’île de la sorcière`: `L’étrange rocher`,
       "path": "M100 80 C 120 0, 210 0, 240 80 S 90 170, 100 80",
       "harbor": {"x": 160, "y": 140},
       "textPosition": {"x": 175, "y": 170},
       "textAnchor": "left",
       "cross": [120, 25, 225, 145, 235, 35, 115, 135],
+      "description": (flags) => {
+        let text = `
+<p>Cette île, qui fait partie de celles que Raiahui vous a explicitement déconseillé d’approcher, est curieusement différente des autres : loin d’être une étendue lisse et basse, elle émerge des flots comme un large rocher.
+        `;
+        if (flags.toldAboutAtollByRaiahui) {
+          text += ` <span class="text-conditional">Raiahui vous a précisée qu'elle était habitée par une sorcière.`;
+          if (flags.toldAboutWitchByMonkey) {
+            text += ` Et cette histoire vous a été confirmé par rien de moins qu'un homme métamorphosé en singe, lui apportant une crédibilité certaine.`;
+          }
+          text += `</span>`;
+        } else if (flags.toldAboutWitchByMonkey) {
+          text += ` <span class="text-conditional">Le singe, ou plutôt l'homme transformé en singe, de l'île voisine vous a mis en garde contre la sorcière qui l'habite.</span>`;
+        }
+        text += `</p>`;
+
+        return text;
+      },
     },
     {
       "key": "island-6",
-      "description": (flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea)? `L’île du Vieux Fainéant`: `L’île aux arbres`,
+      "name": (flags.toldAboutAtollByRaiahui || flags.toldAboutLazyOneByAriinea)? `L’île du Vieux Fainéant`: `L’île aux arbres`,
       "path": "M 360, 50 C 400,-35 640,100 630,145 620,175 580, 210 570, 200 575, 185 475, 115 390, 105 385, 110 355, 80 360, 50 Z",
       "harbor": {"x": 525, "y": 150},
       "textPosition": {"x": 490, "y": 165},
       "textAnchor": "right",
       "cross": [375, 15, 620, 190, 360, 90, 635, 120],
+      "description": (flags) => {
+        let text = `
+<p>Cette île paraît plutôt ordinaire, si ce n'est qu'elle est couverte d’un enchevêtrement de grands arbres. Raiahui vous a cependant déconseillé de vous en approcher.
+        `;
+
+        if (flags.toldAboutAtollByRaiahui) {
+          text += ` <span class="text-conditional">Elle vous a également précisé qu’il s’agissait de la résidence du peu accueillant « Vieux Fainéant ».`;
+          if (flags.toldAboutLazyOneByAriinea) {
+            text += ` Ariinea et son amie vous ont dit peu ou prou la même chose, insistant sur la dangerosité de cette mystérieuse personne.`;
+          }
+          text += `</span>`;
+        } else {
+          if (flags.toldAboutAtollByRaiahui) {
+            text += ` <span class="text-conditional">C’est probablement là que réside le « Vieux Fainéant » dont Ariinea vous a parlé. Son amie avait l'air de le considérer comme quelqu'un vraiment dangereux.</span>`;
+          }
+        }
+
+        text += `</p>`;
+
+        return text;
+      },
     },
     {
       "key": "island-7",
-      "description": `La petite île à côté de l’île de l’épreuve`,
+      "name": `La petite île à côté de l’île de l’épreuve`,
       "path": "M595 260 C 605 240, 625 210, 650 250 S 580 290, 595 260",
       "harbor": {"x": 605, "y": 265},
       "textPosition": {"x": 590, "y": 265},
       "textAnchor": "right",
       "cross": [605, 245, 640, 275, 645, 240, 605, 275],
+      "description": (flags) => {
+        return `
+<p>Cette île n’est en réalité qu’une minuscule étendue de sable clair.</p>
+        `;
+      },
     },
     {
       "key": "island-8",
-      "description": `L’île de l’épreuve`,
+      "name": `L’île de l’épreuve`,
       "path": "M575 430 C 580 380, 645 365, 650 430 S 575 480, 575 430",
       "harbor": {"x": 580, "y": 430},
       "textPosition": {"x": 560, "y": 430},
       "textAnchor": "right",
       "cross": [585, 405, 645, 450, 650, 405, 580, 450],
+      "description": (flags) => {
+        return `
+<p>Si ce n'était pas le point d'arrivée de la course qui vous opposera ce soir à Raiahui, il n'y aurait rien à dire sur cette bande de sable seulement séparé de l'île principal par un court bras de mer.</p>
+        `;
+      },
     },
   ];
 }
@@ -92,11 +166,16 @@ const getIslandsWithMapMetadata = (flags, currentIsland) => {
   return getIslands(flags).concat([
     {
       "key": "island-1",
-      "description": `Le village`,
+      "name": `Le village`,
       "path": "M 170, 555 C 220, 520 290, 600 330, 580 400, 570 530, 490 540, 475 555, 460 625, 510 615, 520 575, 635 240, 715 150, 620 150, 622 170, 555 170, 555 Z",
       "harbor": {"x": 325, "y": 585},
       "textPosition": {"x": 370, "y": 615},
       "textAnchor": "middle",
+      "description": (flags) => {
+          return `
+<p>L'île principale de l'atoll, celle où vous résidez temporairement. Si vous y retournez, il n'est pas sûr que vous trouviez la force de résister à l'attrait de ses confortables hamacs.</p>
+          `;
+      },
     },
   ]).map(island => Object.assign(
     {},
@@ -106,6 +185,10 @@ const getIslandsWithMapMetadata = (flags, currentIsland) => {
       "disabled": flags.visitedIslands.includes(island.key) || island.key === currentIsland,
     },
   ));
+}
+
+const getIslandWithMapMetadata = (islandKey, flags) => {
+  return getIslandWithMapMetadata(flags).find(island => islandKey === island.key);
 }
 
 const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
@@ -140,21 +223,12 @@ const moveToIsland = function(newIsland, goToSection, flags, updateFlag) {
   ]]);
   updateFlag("course", course);
 
-  goToSection(
-    newIsland,
-    ReactDOMServer.renderToString(
-      <AtollMap
-        mapImg={atollMapImg}
-        islands={islands}
-        course={course}
-      />
-    )
-  );
+  goToSection(newIsland);
 }
 
 const getIslandChoice = function(island, goToSection, flags, updateFlag) {
   return {
-    "text": island.description+".",
+    "text": island.name+".",
     "action": () => {
       moveToIsland(island.key, goToSection, flags, updateFlag);
     },
