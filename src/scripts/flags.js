@@ -74,6 +74,9 @@ const flags = {
   "gotAHeadStart": false,
   "course": [],
   "targetIsland": undefined,
+  "searchedIsland2": false,
+  "approachedFaanarua": false,
+  "approchedCrocodile": false,
 };
 
 export default flags;

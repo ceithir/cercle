@@ -111,9 +111,12 @@ const island6 = {
 
 <p>L’animal est immobile comme un tronc d’arbre abattu. On pourrait croire qu’il est mort. Vous êtes sur le point de détaler à toutes jambes lorsqu’une voix rocailleuse vient vous heurter les oreilles :</p>
     `,
-    "next": (goToSection) => {
+    "next": (goToSection, flags, updateFlag) => {
       const text = `— Attends.`;
-      const action = () => "crocodile";
+      const action = () => {
+        updateFlag("approchedCrocodile", true);
+        return "crocodile";
+      };
 
       return repeatingFunnel(
         goToSection,
@@ -213,9 +216,12 @@ const island6 = {
 
 <p>Le crocodile est toujours au même endroit, figé comme une statue. On pourrait croire qu’il est mort. Ayant vérifié son emplacement, vous vous apprêtez à vous esquiver discrètement lorsqu’une voix rocailleuse vient vous heurter les oreilles :</p>
     `,
-    "next": (goToSection) => {
+    "next": (goToSection, flags, updateFlag) => {
       const text = `— Attends.`;
-      const action = () => "crocodile";
+      const action = () => {
+        updateFlag("approchedCrocodile", true);
+        return "crocodile";
+      };
 
       return repeatingFunnel(
         goToSection,

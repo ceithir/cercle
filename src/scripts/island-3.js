@@ -14,6 +14,7 @@ const island3 = {
         {
           "text": `Vous décidez d’aborder cette île.`,
           "action": () => {
+            updateFlag("approachedFaanarua", true);
             goToSection("exploring-island-3");
           },
         },

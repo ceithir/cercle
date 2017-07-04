@@ -34,6 +34,9 @@ const getIslands = function(flags) {
 <p>Cette île presque contiguë à celle où vous avez dormi n'a aucune particularité visible.</p>
         `;
       })(flags),
+      "disabled": ((flags) => {
+        return flags.searchedIsland2;
+      })(flags),
     },
     {
       "key": "island-3",
@@ -60,6 +63,9 @@ const getIslands = function(flags) {
 
           return text;
       })(flags),
+      "disabled": ((flags) => {
+        return flags.approachedFaanarua;
+      })(flags),
     },
     {
       "key": "island-4",
@@ -73,6 +79,9 @@ const getIslands = function(flags) {
         return `
 <p>Si cette île est juste assez grande pour accueillir de la végétation, celle-ci ne monte pas bien haut.</p>
         `;
+      })(flags),
+      "disabled": ((flags) => {
+        return flags.toldAboutWitchByMonkey;
       })(flags),
     },
     {
@@ -99,6 +108,9 @@ const getIslands = function(flags) {
         text += `</p>`;
 
         return text;
+      })(flags),
+      "disabled": ((flags) => {
+        return flags.survivedWitchIsland;
       })(flags),
     },
     {
@@ -130,6 +142,9 @@ const getIslands = function(flags) {
 
         return text;
       })(flags),
+      "disabled": ((flags) => {
+        return flags.approchedCrocodile;
+      })(flags),
     },
     {
       "key": "island-7",
@@ -144,6 +159,13 @@ const getIslands = function(flags) {
 <p>Cette île n’est en réalité qu’une minuscule étendue de sable clair.</p>
         `;
       })(flags),
+      "disabled": ((flags) => {
+        if (flags.talkedWithFaanarua && !flags.inventory.dolphin.acquired) {
+          return false;
+        }
+
+        return flags.visitedIslands.includes("island-7");
+      })(flags),
     },
     {
       "key": "island-8",
@@ -157,6 +179,9 @@ const getIslands = function(flags) {
         return `
 <p>Si ce n'était pas le point d'arrivée de la course qui vous opposera ce soir à Raiahui, il n'y aurait rien à dire sur cette bande de sable seulement séparé de l'île principal par un court bras de mer.</p>
         `;
+      })(flags),
+      "disabled": ((flags) => {
+        return flags.visitedIslands.includes("island-8");
       })(flags),
     },
   ];
@@ -180,13 +205,14 @@ const getIslandsWithMapMetadata = (flags, currentIsland) => {
 <p>L'île principale de l'atoll, celle où vous résidez temporairement. Si vous y retournez, il n'est pas sûr que vous trouviez la force de résister à l'attrait de ses confortables hamacs.</p>
           `;
       })(flags),
+      "disabled": false,
     },
   ]).map(island => Object.assign(
     {},
     island,
     {
       "current": island.key === currentIsland,
-      "disabled": flags.visitedIslands.includes(island.key) || island.key === currentIsland,
+      "disabled": island.disabled || island.key === currentIsland,
     },
   ));
 }

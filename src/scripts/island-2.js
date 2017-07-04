@@ -11,6 +11,7 @@ const island2 = {
           "text": `Vous abordez cette île pour l’explorer.`,
           "action": () => {
             updateFlag("time", flags.time+1);
+            updateFlag("searchedIsland2", true);
             return "exploring-island-2";
           },
         },
