@@ -3,6 +3,8 @@ import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import {endGame, trueEnd, useItem, acquireItem, repeatingFunnel, coatSentence} from "./helpers.js";
 import squaleImage from "./../images/squale.jpg";
+import raiahuiFriendsImage from "./../images/raiahui-friends.jpg";
+import sunsetImage from "./../images/sunset.jpg";
 
 const cleanInventoryBeforeRace = (flags, updateFlag) => {
   useItem("alcohol", updateFlag);
@@ -205,6 +207,8 @@ const trial = {
 
       return `
 <p>La course a-t-elle vraiment commencé ? L’ambiance qui vous entoure n’en donne pas l’impression. Les adolescents chahutent, rient et font circuler des calebasses remplies de vin de palme. Raiahui est au coeur de cette sorte de célébration anticipée, savourant visiblement l’attention dont elle est l’objet et ne vous accordant pas un regard.</p>
+
+<img src="${raiahuiFriendsImage}" class="img-responsive text-img tall" alt=""/>
 
 <p>Vous jetez un coup d’œil vers votre point d’arrivée. Il y a une certaine distance à parcourir, mais il ne s’agira pas d’une épreuve d’endurance : si vous partiez avec quelques instants d’avance, même un excellent nageur aurait peu de chances de vous rattraper.</p>
 
@@ -2950,18 +2954,21 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
     }
   },
   "ending-credits": {
-    //TODO Complete with links, thanks message etc.
     "text": `
 <h1>Au Cœur d’un Cercle de Sable et d’Eau</h1>
+
+<img src="${sunsetImage}" class="img-responsive text-img tall left" alt=""/>
 
 <div class="ending-credits">
 <p>Une aventure d’Outremer.</p>
 
-<p>Texte d’Outremer.</p>
+<p>Initialement écrite pour le <a target="_blank" rel="noopener noreferrer" href="http://litteraction.fr/presentation/livre-dont-on-est-le-heros/resultats-detailles-du-concours-yaztromo-2011">concours Yaztromo, édition 2011</a>.</p>
+
+<p>Texte par Outremer.</p>
+
+<p>Illustrations par <a target="_blank" rel="noopener noreferrer" href="http://klauspillon.deviantart.com/">Klaus Pillon</a>, originellement dans le cadre du projet <em>Gamebook Store</em>.</p>
 
 <p>Code par Skarn.</p>
-
-<p>Illustrations de Klaus Pillon.</p>
 </div>
     `,
     "next": trueEnd,

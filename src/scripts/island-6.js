@@ -1,6 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import {endGame, acquireItem, coatSentence, repeatingFunnel, repeatingCrossroad, secondTimeToIsland} from "./helpers.js";
+import crocodileImage from "./../images/crocodile.jpg";
 
 const crocodileLastWords = `
 <p>Les échos d’un rire guttural vous parviennent tandis que vous vous enfuyez.</p>
@@ -222,7 +223,11 @@ const island6 = {
   },
   "crocodile-quiet-paddling": {
     "text": `
-<p>Plongeant votre pagaie dans l’eau de manière à ne faire aucun bruit, vous dirigez lentement votre pirogue vers le centre du lagon, malgré la peur qui crispe vos muscles. Mais le crocodile, jusque-là immobile comme un tronc d’arbre abattu, se met alors en mouvement avec une soudaineté foudroyante, se précipitant vers vous dans un grand bruit d’éclaboussures ! Saisie de terreur, vous vous mettez aussitôt à pagayer de toutes vos forces, mais le reptile a déjà atteint votre embarcation. Un choc violent vous fait presque tomber à l’eau lorsque sa mâchoire puissante se referme sur votre flotteur. Le crocodile essaie de se servir de cette prise pour renverser votre pirogue, mais il emploie une telle violence qu’il arrache totalement le flotteur, vous donnant une chance de lui échapper. Vous ne la laissez pas passer, pagayant plus énergiquement que vous ne l’avez jamais fait de votre vie jusqu’à vous sentir au bord de l’évanouissement.</p>
+<p>Plongeant votre pagaie dans l’eau de manière à ne faire aucun bruit, vous dirigez lentement votre pirogue vers le centre du lagon, malgré la peur qui crispe vos muscles. Mais le crocodile, jusque-là immobile comme un tronc d’arbre abattu, se met alors en mouvement avec une soudaineté foudroyante, se précipitant vers vous dans un grand bruit d’éclaboussures ! Saisie de terreur, vous vous mettez aussitôt à pagayer de toutes vos forces, mais le reptile a déjà atteint votre embarcation.</p>
+
+<img src="${crocodileImage}" class="img-responsive text-img" alt=""/>
+
+<p>Un choc violent vous fait presque tomber à l’eau lorsque sa mâchoire puissante se referme sur votre flotteur. Le crocodile essaie de se servir de cette prise pour renverser votre pirogue, mais il emploie une telle violence qu’il arrache totalement le flotteur, vous donnant une chance de lui échapper. Vous ne la laissez pas passer, pagayant plus énergiquement que vous ne l’avez jamais fait de votre vie jusqu’à vous sentir au bord de l’évanouissement.</p>
 
 <p>Lorsque vous vous arrêtez enfin, le coeur battant à tout rompre, un coup d’œil en arrière vous apprend que le monstre ne vous a pas poursuivie. Encore sous le choc d’avoir vu la mort vous frôler de si près, il faut un moment pour que cette constatation vous inspire un véritable soulagement.</p>
 

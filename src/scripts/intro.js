@@ -2,6 +2,7 @@ import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import raiahuiIntroImage from "./../images/raiahui-intro.jpg";
 import chiefImage from "./../images/chief.jpg";
+import feastImage from "./../images/feast.jpg";
 import {repeatingFunnel, coatSentence} from "./helpers";
 
 const noRepeatedAction = function(flagName, actions, goToSection, flags, updateFlag, logFunc) {
@@ -360,6 +361,8 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
     "text":
 `
 <p>Le ciel commence à s’assombrir lorsque Raiahui vous amène à l’endroit préparé pour le festin. Une nourriture abondante, empalée sur une multitude de broches, est en train de rôtir autour d’un grand feu, emplissant l’air d’une odeur qui vous met instantanément l’eau à la bouche. Le bruit vif et régulier de tambours à l’unisson vient donner un rythme à la soirée qui débute.</p>
+
+<img src="${feastImage}" class="img-responsive text-img tall left" alt=""/>
 
 <p>Toute la tribu semble rassemblée pour l’occasion : un peu moins d’une centaine de personnes, dont une moitié d’enfants et d’adolescents. Soucieuse de donner une bonne impression, vous avez revêtu le paréo aux couleurs vives que vous conserviez à bord de votre pirogue, mais il semble que ce n’était guère nécessaire : même parmi les femmes, personne n’est vêtu d’autre chose qu’un simple pagne et c’est à peine si vous remarquez çà et là quelques bijoux simples. Vous êtes accueillie par de nombreux regards curieux.</p>
 
