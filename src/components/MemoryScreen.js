@@ -6,7 +6,7 @@ import Funnel from './Funnel.js';
 class MemoryScreen extends React.Component {
   getAchievements = () => {
     return this.props.achievements.map((achievement) => {
-      if (!this.props.unlocked.includes(achievement.key)) {
+      if (-1 === this.props.unlocked.indexOf(achievement.key)) {
         return Object.assign({}, achievement, {'description': "???", 'disabled': true});
       }
 

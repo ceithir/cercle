@@ -177,7 +177,7 @@ Pas question de vous approcher à nouveau de cette île !
           return false;
         }
 
-        return flags.visitedIslands.includes("island-7");
+        return -1 !== flags.visitedIslands.indexOf("island-7");
       })(flags),
       "disabledText": `
 Il est clairement inutile de retourner sur cet îlot minuscule.
@@ -197,7 +197,7 @@ Il est clairement inutile de retourner sur cet îlot minuscule.
         `;
       })(flags),
       "disabled": ((flags) => {
-        return flags.visitedIslands.includes("island-8");
+        return -1 !== flags.visitedIslands.indexOf("island-8");
       })(flags),
       "disabledText": `
 Inutile de retourner maintenant sur cette île. Vous aurez tout le loisir de l’admirer lorsque vous aurez gagné la course de ce soir.
@@ -363,7 +363,7 @@ const getIslandChoices = function(goToSection, flags, updateFlag, extraLog = '')
   const alreadyVisitedIslands = flags.visitedIslands;
 
   const islands = getIslands(flags).filter(function(island) {
-    return !alreadyVisitedIslands.includes(island.key);
+    return -1 === alreadyVisitedIslands.indexOf(island.key);
   });
 
   const nearIslands = islands.filter(function(island) {
