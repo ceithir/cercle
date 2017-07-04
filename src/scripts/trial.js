@@ -5,6 +5,7 @@ import {endGame, trueEnd, useItem, acquireItem, repeatingFunnel, coatSentence} f
 import squaleImage from "./../images/squale.jpg";
 import raiahuiFriendsImage from "./../images/raiahui-friends.jpg";
 import sunsetImage from "./../images/sunset.jpg";
+import credits from "./credits.js";
 
 const cleanInventoryBeforeRace = (flags, updateFlag) => {
   useItem("alcohol", updateFlag);
@@ -2959,17 +2960,7 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
 
 <img src="${sunsetImage}" class="img-responsive text-img tall left" alt=""/>
 
-<div class="ending-credits">
-<p>Une aventure d’Outremer.</p>
-
-<p>Initialement écrite pour le <a target="_blank" rel="noopener noreferrer" href="http://litteraction.fr/presentation/livre-dont-on-est-le-heros/resultats-detailles-du-concours-yaztromo-2011">concours Yaztromo, édition 2011</a>.</p>
-
-<p>Texte par Outremer.</p>
-
-<p>Illustrations par <a target="_blank" rel="noopener noreferrer" href="http://klauspillon.deviantart.com/">Klaus Pillon</a>, originellement dans le cadre du projet <em>Gamebook Store</em>.</p>
-
-<p>Code par Skarn.</p>
-</div>
+${credits}
     `,
     "next": trueEnd,
   },
