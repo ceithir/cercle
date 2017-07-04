@@ -84,24 +84,20 @@
   visibility: visible;
 }
 
-.atoll-map .island.disabled .shape {
-  fill-opacity: 0;
-  stroke-opacity: 0;
-}
-
-.atoll-map .island.disabled .shape:hover + text {
-  visibility: hidden;
-}
-
 .atoll-map .island.disabled .crossed {
   stroke: #ff3232;
   stroke-width: 5px;
+  pointer-events: none;
 }
 
 .atoll-map .island .here {
   text-anchor: middle;
   fill: red;
   font-size: 20px;
+}
+
+.atoll-map .island a {
+  text-decoration: none;
 }
 
 .atoll-map .course {

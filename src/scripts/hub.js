@@ -37,6 +37,9 @@ const getIslands = function(flags) {
       "disabled": ((flags) => {
         return flags.searchedIsland2;
       })(flags),
+      "disabledText": `
+Vous avez de meilleures façons d’occuper votre temps que d’explorer à nouveau cet îlot inhabité.
+      `,
     },
     {
       "key": "island-3",
@@ -66,6 +69,9 @@ const getIslands = function(flags) {
       "disabled": ((flags) => {
         return flags.approachedFaanarua;
       })(flags),
+      "disabledText": `
+Il semble improbable que vous puissiez apprendre quoi que ce soit de plus en retournant sur cet île.
+      `,
     },
     {
       "key": "island-4",
@@ -83,6 +89,9 @@ const getIslands = function(flags) {
       "disabled": ((flags) => {
         return flags.toldAboutWitchByMonkey;
       })(flags),
+      "disabledText": `
+Explorer cet îlot une fois vous a amplement suffi.
+      `,
     },
     {
       "key": "island-5",
@@ -112,6 +121,9 @@ const getIslands = function(flags) {
       "disabled": ((flags) => {
         return flags.survivedWitchIsland;
       })(flags),
+      "disabledText": `
+Vous n’avez aucune intention de retourner sur cette île !
+      `,
     },
     {
       "key": "island-6",
@@ -123,28 +135,29 @@ const getIslands = function(flags) {
       "cross": [375, 15, 620, 190, 360, 90, 635, 120],
       "description": ((flags) => {
         let text = `
-<p>Cette île paraît plutôt ordinaire, si ce n'est qu'elle est couverte d’un enchevêtrement de grands arbres. Raiahui vous a cependant déconseillé de vous en approcher.
+<p>Cette île paraît plutôt ordinaire, si ce n'est qu'elle est couverte d’un enchevêtrement de grands arbres. Raiahui vous a cependant déconseillé de vous en approcher.</p>
         `;
 
         if (flags.toldAboutAtollByRaiahui) {
-          text += ` <span class="text-conditional">Elle vous a également précisé qu’il s’agissait de la résidence du peu accueillant « Vieux Fainéant ».`;
+          text += ` <p class="text-conditional">Elle vous a également précisé qu’il s’agissait de la résidence du peu accueillant « Vieux Fainéant ».`;
           if (flags.toldAboutLazyOneByAriinea) {
             text += ` Ariinea et son amie vous ont dit peu ou prou la même chose, insistant sur la dangerosité de cette mystérieuse personne.`;
           }
-          text += `</span>`;
+          text += `</p>`;
         } else {
           if (flags.toldAboutAtollByRaiahui) {
-            text += ` <span class="text-conditional">C’est probablement là que réside le « Vieux Fainéant » dont Ariinea vous a parlé. Son amie avait l'air de le considérer comme quelqu'un vraiment dangereux.</span>`;
+            text += ` <p class="text-conditional">C’est probablement là que réside le « Vieux Fainéant » dont Ariinea vous a parlé. Son amie avait l'air de le considérer comme quelqu'un vraiment dangereux.</p>`;
           }
         }
-
-        text += `</p>`;
 
         return text;
       })(flags),
       "disabled": ((flags) => {
-        return flags.approchedCrocodile;
+        return flags.approchedCrocodile || flags.damagedBoat;
       })(flags),
+      "disabledText": `
+Pas question de vous approcher à nouveau de cette île !
+      `,
     },
     {
       "key": "island-7",
@@ -166,6 +179,9 @@ const getIslands = function(flags) {
 
         return flags.visitedIslands.includes("island-7");
       })(flags),
+      "disabledText": `
+Il est clairement inutile de retourner sur cet îlot minuscule.
+      `,
     },
     {
       "key": "island-8",
@@ -183,6 +199,9 @@ const getIslands = function(flags) {
       "disabled": ((flags) => {
         return flags.visitedIslands.includes("island-8");
       })(flags),
+      "disabledText": `
+Inutile de retourner maintenant sur cette île. Vous aurez tout le loisir de l’admirer lorsque vous aurez gagné la course de ce soir.
+      `,
     },
   ];
 }
@@ -212,7 +231,7 @@ const getIslandsWithMapMetadata = (flags, currentIsland) => {
     island,
     {
       "current": island.key === currentIsland,
-      "disabled": island.disabled || island.key === currentIsland,
+      "disabled": island.disabled,
     },
   ));
 }
@@ -328,10 +347,6 @@ const getIslandMap = (goToSection, flags, updateFlag, extraLog = '') => {
     island,
     {
       "onClick": () => {
-        if (island.disabled) {
-          return;
-        }
-
         updateFlag("targetIsland", island.key);
         goToSection(`island-confirm`, extraLog);
       },
@@ -364,7 +379,7 @@ const getIslandChoices = function(goToSection, flags, updateFlag, extraLog = '')
     return getIslandChoice(island, goToSection, flags, updateFlag, extraLog);
   });
 
-  let farText = `Vous pouvez également couper court et vous rendre directement à l’une des îles plus éloignées.`;
+  let farText = `Vous pouvez couper court et vous rendre directement à l’une des îles plus éloignées :`;
   if (0 === nearChoices.length) {
     farText = `Vous avez déjà visité toutes les îles mitoyennes de celle-ci, mais avec quelques efforts supplémentaires, vous pouvez atteindre :`;
   }
@@ -679,6 +694,30 @@ ${statusComment}
       return getIslandWithMapMetadata(flags.targetIsland, flags)["description"];
     },
     "next": (goToSection, flags, updateFlag) => {
+      const island = getIslandWithMapMetadata(flags.targetIsland, flags);
+
+      if (island.current) {
+        const text = `Vous y êtes.`;
+        const action = () => {
+          goToSection("back-to-hub", emptyFunction);
+        };
+
+        return (
+          <Funnel text={text} action={action} />
+        );
+      }
+
+      if (island.disabled) {
+        const text = island.disabledText;
+        const action = () => {
+          goToSection("back-to-hub", emptyFunction);
+        };
+
+        return (
+          <Funnel text={text} action={action} />
+        );
+      }
+
       const choices = [
         {
           "text": `Vous vous dirigez dans sa direction.`,

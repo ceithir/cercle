@@ -33,6 +33,7 @@ class AtollMap extends React.Component {
         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
       >
         <image xlinkHref={this.props.mapImg} x="0" y="0" height="720" width="720"/>
+        {this.props.course && this.getCourse()}
         {this.props.islands.map((island) => {
           let className = "island";
           if (island.current) {
@@ -44,7 +45,7 @@ class AtollMap extends React.Component {
 
           return (
             <g key={island.key} className={className}>
-              {island.onClick && !island.disabled && <a
+              {island.onClick && <a
                 className="choice hidden-xs hidden-xm"
                 onClick={event => this.onClick(event, island.onClick)}
                 href="#"
@@ -66,7 +67,6 @@ class AtollMap extends React.Component {
             </g>
           );
         })}
-        {this.props.course && this.getCourse()}
       </svg>
     );
   }
