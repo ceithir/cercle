@@ -1,6 +1,6 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
-import {endGame, acquireItem, coatSentence, repeatingFunnel, repeatingCrossroad} from "./helpers.js";
+import {endGame, acquireItem, coatSentence, repeatingFunnel, repeatingCrossroad, secondTimeToIsland} from "./helpers.js";
 
 const crocodileLastWords = `
 <p>Les échos d’un rire guttural vous parviennent tandis que vous vous enfuyez.</p>
@@ -69,10 +69,46 @@ const singOrDie = (goToSection, flags, updateFlag) => {
 
 const island6 = {
   "island-6": {
-    "text": `
+    "text": (flags) => {
+      if (flags.encounteredCrocodileAtSea) {
+        return `
+<p>Vos coups de pagaie se font plus hésitants à mesure que vous approchez des rives étouffées sous les palétuviers. Vous connaissez désormais le danger qui réside sur cette île.</p>
+        `;
+      }
+
+      if (secondTimeToIsland("island-6", flags)) {
+        return `
+<p>Ensevelie sous les racines des palétuviers, l’île ne paraît pas avoir connu le moindre changement depuis votre précédent passage.</p>
+        `;
+      }
+
+      return `
 <p>Cette île est couverte d’une abondance de palétuviers, dont les racines enchevêtrées recouvrent totalement le sol. Cà et là, quelques coins de plage résistent non sans mal à l’étouffement. L’île fait une bonne taille — sans être aussi grande que celle où se trouve le village — et son coeur vous est totalement masqué par la végétation.</p>
-    `,
+      `;
+    },
     "next": (goToSection, flags, updateFlag) => {
+      if (flags.encounteredCrocodileAtSea) {
+        const choices = [
+          {
+            "text": `Vous prenez le risque d’y retourner malgré tout.`,
+            "action": () => {
+              return "island-6-take-two";
+            },
+          },
+          {
+            "text": `Vous jugez plus sensé de choisir une nouvelle destination.`,
+            "action": () => {
+              return "back-to-hub";
+            },
+          },
+        ];
+
+        return repeatingCrossroad(
+          goToSection,
+          choices
+        );
+      }
+
       const leaveText = `Vous préférez repartir vers une autre destination.`;
 
       const choices = [
@@ -85,6 +121,7 @@ const island6 = {
         {
           "text": `Vous commencez par longer l’île en pirogue.`,
           "action": () => {
+            updateFlag("encounteredCrocodileAtSea", true);
             goToSection("observing-island-6");
           },
         },

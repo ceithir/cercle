@@ -1,12 +1,20 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
-import {endGame, coatSentence, repeatingCrossroad, repeatingFunnel} from "./helpers.js";
+import {endGame, coatSentence, repeatingCrossroad, repeatingFunnel, secondTimeToIsland} from "./helpers.js";
 
 const island3 = {
   "island-3": {
-    "text": `
+    "text": (flags) => {
+      if (secondTimeToIsland("island-3", flags)) {
+        return `
+<p>La voile blanche attire votre attention aussitôt que vous approchez de nouveau de l’île. Accroupie sur le sable de la plage, concentrée, l’inconnue travaille toujours à l’entretien de sa pirogue.</p>
+        `;
+      }
+
+      return `
 <p>Alors que vous approchez de cette île couverte de nombreux palmiers, votre œil est attiré par une voile blanche triangulaire, frémissant à peine sous l’effet d’une légère brise. Une pirogue un peu plus grande que la vôtre a été tirée sur la plage et une femme est visiblement en train d’oeuvrer à son entretien. Elle vous tourne le dos et rien ne suggère qu’elle a remarqué votre approche.</p>
-    `,
+      `;
+    },
     "next": function(goToSection, flags, updateFlag) {
       const leaveText = `Vous préférez vous rendre à un autre point de l’atoll.`;
 

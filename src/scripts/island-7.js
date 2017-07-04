@@ -1,12 +1,20 @@
 import React from "react";
 import Funnel from "./../components/Funnel.js";
-import {acquireItem, repeatingFunnel} from "./helpers.js";
+import {acquireItem, repeatingFunnel, secondTimeToIsland} from "./helpers.js";
 
 const island7 = {
   "island-7": {
-    "text": `
+    "text": (flags) => {
+      if (secondTimeToIsland("island-7", flags)) {
+        return `
+<p>L’îlot paraît encore plus insignifiant que lors de votre passage précédent. Il ne vous serait jamais venu à l’esprit spontanément qu’il puisse s’y trouver quelque chose de précieux.</p>
+        `;
+      }
+
+      return `
 <p>Cette île n’est rien d’autre qu’une étendue de sable nu affleurant tout juste au-dessus des vagues. Vous pourriez la traverser en moins d’une dizaine d’enjambées.</p>
-    `,
+      `;
+    },
     "next": function(goToSection, flags, updateFlag) {
       if (flags.talkedWithFaanarua && !flags.inventory.dolphin.acquired) {
         const text = `Vous vous mettez à la recherche du médaillon dont Faanarua vous a parlé.`;

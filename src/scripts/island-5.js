@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {endGame, useItem, acquireItem, coatSentence, repeatingFunnel} from "./helpers.js";
+import {endGame, useItem, acquireItem, coatSentence, repeatingFunnel, secondTimeToIsland} from "./helpers.js";
 
 const escapeTheWitch = (goToSection, flags, updateFlag) => {
   const choices = [
@@ -67,11 +67,19 @@ const ascensionText = `
 
 const island5 = {
   "island-5": {
-    "text": `
+    "text": (flags) => {
+      if (secondTimeToIsland("island-5", flags)) {
+        return `
+<p>Les statues de bois sombre montent toujours leur garde silencieuse sur les flancs de l’île. La silhouette que vous avez précédemment cru apercevoir près de la hutte ronde située au sommet n’est plus visible nulle part.</p>
+        `;
+      }
+
+      return `
 <p> Vue de plus près, l’île se distingue encore davantage du reste de l’atoll. Ses pentes curieusement régulières sont couvertes d’une végétation peu élevée, parmi lesquelles se dressent de nombreuses statues de bois sombre. Moitié moins grandes que vous, elles vous font penser à certains types de fétiches qu’il vous est arrivé d’observer sur d’autres îles. Les personnages impassibles qu’elles représentent ont tous le regard tourné vers l’extérieur.</p>
 
 <p>Au sommet de l’île, vous distinguez une large hutte ronde et il vous semble apercevoir fugitivement une silhouette en train d’y entrer.</p>
-    `,
+      `;
+    },
     "next": function(goToSection, flags, updateFlag) {
       const leaveText = `Vous préférez renoncez à visiter cette île.`;
 

@@ -1,10 +1,18 @@
-import {repeatingCrossroad, repeatingFunnel} from "./helpers.js";
+import {repeatingCrossroad, repeatingFunnel, secondTimeToIsland} from "./helpers.js";
 
 const island4 = {
   "island-4": {
-    "text": `
+    "text": (flags) => {
+      if (secondTimeToIsland("island-4", flags)) {
+        return `
+<p>La bizarrerie de la végétation qui recouvre cet îlot vous frappe tout autant que lors de votre précédent passage.</p>
+        `;
+      }
+
+      return `
 <p>Arrivée à proximité de la petite île, vous êtes saisie d’une hésitation. Sans être réellement monstrueuses, les nombreuses plantes qui y poussent ont des formes et des teintes bizarres, nettement différente de la végétation qui vous est familière. Même les cris d’oiseau que vous entendez ont une sonorité qui vous paraît étrange.</p>
-    `,
+      `;
+    },
     "next": function(goToSection, flags, updateFlag) {
       const choices = [
         {

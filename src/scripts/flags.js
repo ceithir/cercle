@@ -77,6 +77,7 @@ const flags = {
   "searchedIsland2": false,
   "approachedFaanarua": false,
   "approchedCrocodile": false,
+  "encounteredCrocodileAtSea": false,
 };
 
 export default flags;

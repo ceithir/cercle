@@ -1,10 +1,18 @@
-import {repeatingCrossroad, repeatingFunnel} from "./helpers";
+import {repeatingCrossroad, repeatingFunnel, secondTimeToIsland} from "./helpers";
 
 const island2 = {
   "island-2": {
-    "text": `
+    "text": (flags) => {
+      if (secondTimeToIsland("island-2", flags)) {
+        return `
+<p>Le vacarme des oiseaux n’a pas diminué depuis votre précédent passage.</p>
+        `;
+      }
+
+      return `
 <p>L’île dont vous approchez est couverte de nombreux palmiers et buissons. Approchant votre pirogue de la plage de sable clair, vous êtes frappée par la cacophonie de trilles et de sifflements qui s’échappe de cette abondance végétale. De toute évidence, une multitude d’oiseaux a élu ici domicile. En revanche, vous ne distinguez aucun signe qu’il y ait d’autres habitants.</p>
-    `,
+      `;
+    },
     "next": function(goToSection, flags, updateFlag) {
       const choices = [
         {

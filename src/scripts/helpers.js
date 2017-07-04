@@ -144,3 +144,11 @@ export const repeatingFunnel = (goToSection, text, action) => {
     <Funnel text={text} action={() => goToSection("function" === typeof action? action(): action, coatSentence(text))} />
   );
 }
+
+export const wentToIsland = (islandKey, flags) => {
+  return -1 !== flags.visitedIslands.indexOf(islandKey);
+}
+
+export const secondTimeToIsland = (islandKey, flags) => {
+  return flags.visitedIslands.filter(visitedIslandKey => islandKey === visitedIslandKey).length >= 2;
+}

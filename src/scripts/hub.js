@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {useItem, acquireItem, endGame, repeatingFunnel, coatSentence} from "./helpers.js";
+import {useItem, acquireItem, endGame, repeatingFunnel, coatSentence, wentToIsland} from "./helpers.js";
 import atollMapImg from "./../images/map.jpg";
 import AtollMap from "./../components/AtollMap.js";
 
@@ -177,7 +177,7 @@ Pas question de vous approcher à nouveau de cette île !
           return false;
         }
 
-        return -1 !== flags.visitedIslands.indexOf("island-7");
+        return wentToIsland("island-7", flags);
       })(flags),
       "disabledText": `
 Il est clairement inutile de retourner sur cet îlot minuscule.
@@ -197,7 +197,7 @@ Il est clairement inutile de retourner sur cet îlot minuscule.
         `;
       })(flags),
       "disabled": ((flags) => {
-        return -1 !== flags.visitedIslands.indexOf("island-8");
+        return wentToIsland("island-8", flags);
       })(flags),
       "disabledText": `
 Inutile de retourner maintenant sur cette île. Vous aurez tout le loisir de l’admirer lorsque vous aurez gagné la course de ce soir.
