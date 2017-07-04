@@ -297,6 +297,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag, extraLog = "") 
       "text": `Quitter le lagon.`,
       "action": () => {
         updateFlag("time", flags.time+1);
+        updateFlag("hesitationCounter", flags.hesitationCounter+1);
         goToSection("exit", extraLog);
       },
     },
@@ -560,13 +561,21 @@ ${crocodileIslandDescription}
     }
   },
   "exit": {
-    "text": `
+    "text": (flags) => {
+      if (flags.hesitationCounter >= 2) {
+        return `
+<p>Vous dirigez votre pirogue vers la passe la plus proche et la traversez de quelques coups de pagaie vigoureux. Cela ne vous révèle rien de neuf sur les îles qui vous entourent, mais vous apercevez de nouveau distinctement la ligne écumeuse des brisants qui séparent l’atoll de l’océan immense.</p>
+        `;
+      }
+
+      return `
 <p>Vous engagez votre pirogue dans l’une des passes séparant les îles de l’atoll les unes des autres. Vous gardez un œil attentif en-dessous de vous, guettant les récifs de corail qui pourraient affleurer juste en-dessous des vagues, mais aucun problème ne se présente et vous avez bientôt quitté le lagon pour rejoindre l’océan, où les vagues sont un peu plus haute et la brise un peu plus vive.</p>
 
 <p>La vision qu’on a de l’atoll est beaucoup plus limitée depuis l’extérieur que depuis l’intérieur et vous n’observez rien de neuf.</p>
 
 <p>À cette frontière entre ce minuscule univers qu’est l’archipel et le véritable monde dans son immensité, vous hésitez.</p>
-    `,
+      `;
+    },
     "next": function (goToSection, flags, updateFlag) {
       const backText = `Vous regagnez le lagon pour choisir une nouvelle destination.`;
 

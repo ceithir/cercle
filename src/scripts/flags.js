@@ -78,6 +78,7 @@ const flags = {
   "approachedFaanarua": false,
   "approchedCrocodile": false,
   "encounteredCrocodileAtSea": false,
+  "hesitationCounter": 0,
 };
 
 export default flags;
