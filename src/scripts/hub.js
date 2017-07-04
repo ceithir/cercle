@@ -31,7 +31,7 @@ const getIslands = function(flags) {
       "cross": [65, 430, 180, 540, 145, 425, 75, 540],
       "description": ((flags) => {
         return `
-<p>Cette île presque contiguë à celle où vous avez dormi n'a aucune particularité visible.</p>
+<p>Cette île presque contiguë à celle où vous avez dormi n’a aucune particularité visible.</p>
         `;
       })(flags),
       "disabled": ((flags) => {
@@ -106,13 +106,13 @@ Explorer cet îlot une fois vous a amplement suffi.
 <p>Cette île, qui fait partie de celles que Raiahui vous a explicitement déconseillé d’approcher, est curieusement différente des autres : loin d’être une étendue lisse et basse, elle émerge des flots comme un large rocher.
         `;
         if (flags.toldAboutAtollByRaiahui) {
-          text += ` <span class="text-conditional">Raiahui vous a précisée qu'elle était habitée par une sorcière.`;
+          text += ` <span class="text-conditional">Raiahui vous a précisée qu’elle était habitée par une sorcière.`;
           if (flags.toldAboutWitchByMonkey) {
-            text += ` Et cette histoire vous a été confirmé par rien de moins qu'un homme métamorphosé en singe, lui apportant une crédibilité certaine.`;
+            text += ` Et cette histoire vous a été confirmé par rien de moins qu’un homme métamorphosé en singe, lui apportant une crédibilité certaine.`;
           }
           text += `</span>`;
         } else if (flags.toldAboutWitchByMonkey) {
-          text += ` <span class="text-conditional">Le singe, ou plutôt l'homme transformé en singe, de l'île voisine vous a mis en garde contre la sorcière qui l'habite.</span>`;
+          text += ` <span class="text-conditional">Le singe, ou plutôt l’homme transformé en singe, de l’île voisine vous a mis en garde contre la sorcière qui l’habite.</span>`;
         }
         text += `</p>`;
 
@@ -122,7 +122,7 @@ Explorer cet îlot une fois vous a amplement suffi.
         return flags.survivedWitchIsland;
       })(flags),
       "disabledText": `
-Vous n’avez aucune intention de retourner sur cette île !
+Vous n’avez aucune intention de retourner sur cette île !
       `,
     },
     {
@@ -135,7 +135,7 @@ Vous n’avez aucune intention de retourner sur cette île !
       "cross": [375, 15, 620, 190, 360, 90, 635, 120],
       "description": ((flags) => {
         let text = `
-<p>Cette île paraît plutôt ordinaire, si ce n'est qu'elle est couverte d’un enchevêtrement de grands arbres. Raiahui vous a cependant déconseillé de vous en approcher.</p>
+<p>Cette île paraît plutôt ordinaire, si ce n’est qu’elle est couverte d’un enchevêtrement de grands arbres. Raiahui vous a cependant déconseillé de vous en approcher.</p>
         `;
 
         if (flags.toldAboutAtollByRaiahui) {
@@ -146,7 +146,7 @@ Vous n’avez aucune intention de retourner sur cette île !
           text += `</p>`;
         } else {
           if (flags.toldAboutAtollByRaiahui) {
-            text += ` <p class="text-conditional">C’est probablement là que réside le « Vieux Fainéant » dont Ariinea vous a parlé. Son amie avait l'air de le considérer comme quelqu'un vraiment dangereux.</p>`;
+            text += ` <p class="text-conditional">C’est probablement là que réside le « Vieux Fainéant » dont Ariinea vous a parlé. Son amie avait l’air de le considérer comme quelqu’un vraiment dangereux.</p>`;
           }
         }
 
@@ -156,7 +156,7 @@ Vous n’avez aucune intention de retourner sur cette île !
         return flags.approchedCrocodile || flags.damagedBoat;
       })(flags),
       "disabledText": `
-Pas question de vous approcher à nouveau de cette île !
+Pas question de vous approcher à nouveau de cette île !
       `,
     },
     {
@@ -193,7 +193,7 @@ Il est clairement inutile de retourner sur cet îlot minuscule.
       "cross": [585, 405, 645, 450, 650, 405, 580, 450],
       "description": ((flags) => {
         return `
-<p>Si ce n'était pas le point d'arrivée de la course qui vous opposera ce soir à Raiahui, il n'y aurait rien à dire sur cette bande de sable seulement séparé de l'île principal par un court bras de mer.</p>
+<p>Si ce n’était pas le point d’arrivée de la course qui vous opposera ce soir à Raiahui, il n’y aurait rien à dire sur cette bande de sable seulement séparé de l’île principal par un court bras de mer.</p>
         `;
       })(flags),
       "disabled": ((flags) => {
@@ -221,7 +221,7 @@ const getIslandsWithMapMetadata = (flags, currentIsland) => {
       "textAnchor": "middle",
       "description": ((flags) => {
           return `
-<p>L'île principale de l'atoll, celle où vous résidez temporairement. Si vous y retournez, il n'est pas sûr que vous trouviez la force de résister à l'attrait de ses confortables hamacs.</p>
+<p>L’île principale de l’atoll, celle où vous résidez temporairement. Si vous y retournez, il n’est pas sûr que vous trouviez la force de résister à l’attrait de ses confortables hamacs.</p>
           `;
       })(flags),
       "disabled": false,
@@ -240,7 +240,7 @@ const getIslandWithMapMetadata = (islandKey, flags) => {
   return getIslandsWithMapMetadata(flags).find(island => islandKey === island.key);
 }
 
-const moveToIsland = function(newIsland, goToSection, flags, updateFlag, extraLog = '') {
+const moveToIsland = function(newIsland, goToSection, flags, updateFlag, extraLog = "") {
   const currentIsland = flags.currentIsland;
 
   if (currentIsland === newIsland) {
@@ -275,7 +275,7 @@ const moveToIsland = function(newIsland, goToSection, flags, updateFlag, extraLo
   goToSection(newIsland, extraLog);
 }
 
-const getIslandChoice = function(island, goToSection, flags, updateFlag, extraLog = '') {
+const getIslandChoice = function(island, goToSection, flags, updateFlag, extraLog = "") {
   return {
     "text": island.name+".",
     "action": () => {
@@ -284,7 +284,7 @@ const getIslandChoice = function(island, goToSection, flags, updateFlag, extraLo
   };
 }
 
-const getOtherChoices = function(goToSection, flags, updateFlag, extraLog = '') {
+const getOtherChoices = function(goToSection, flags, updateFlag, extraLog = "") {
   let otherChoices = [
     {
       "text": `Rentrer vous reposer au village.`,
@@ -341,7 +341,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag, extraLog = '') 
   return otherChoices;
 }
 
-const getIslandMap = (goToSection, flags, updateFlag, extraLog = '') => {
+const getIslandMap = (goToSection, flags, updateFlag, extraLog = "") => {
   const islands = getIslandsWithMapMetadata(flags).map(island => Object.assign(
     {},
     island,
@@ -358,7 +358,7 @@ const getIslandMap = (goToSection, flags, updateFlag, extraLog = '') => {
   );
 }
 
-const getIslandChoices = function(goToSection, flags, updateFlag, extraLog = '') {
+const getIslandChoices = function(goToSection, flags, updateFlag, extraLog = "") {
   const currentIsland = flags.currentIsland;
   const alreadyVisitedIslands = flags.visitedIslands;
 
