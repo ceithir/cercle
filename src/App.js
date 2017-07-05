@@ -6,6 +6,7 @@ import Game from './components/Game.js';
 import TitleScreen from './components/TitleScreen.js';
 import MemoryScreen from './components/MemoryScreen.js';
 import CreditsScreen from './components/CreditsScreen.js';
+import GalleryScreen from './components/GalleryScreen.js';
 import script from './scripts/script.js';
 import flags from './scripts/flags.js';
 import icon from './images/icon.jpg';
@@ -64,6 +65,12 @@ class App extends Component {
     });
   }
 
+  galleryScreen = () => {
+    this.setState({
+      "screen": "gallery",
+    });
+  }
+
   saveProgress = (currentSection, flags, logs) => {
     storage.save(
       "progress",
@@ -105,6 +112,7 @@ class App extends Component {
     const newGameText = `Nouvelle partie`;
     const continueText = `Reprendre la partie précédente`;
     const achievementsText = `Souvenirs`;
+    const galleryText = `Illustrations`;
     const creditsText = `Plumes`;
     const unlockedAchievements = this.state.achievements;
 
@@ -131,6 +139,11 @@ class App extends Component {
       }
 
       buttons.push({
+        "text": galleryText,
+        "action": this.galleryScreen,
+      });
+
+      buttons.push({
         "text": creditsText,
         "action": this.creditsScreen,
       });
@@ -155,6 +168,15 @@ class App extends Component {
       return (
         <CreditsScreen
           title={creditsText}
+          quit={this.titleScreen}
+        />
+      );
+    }
+
+    if ("gallery" === this.state.screen) {
+      return (
+        <GalleryScreen
+          title={galleryText}
           quit={this.titleScreen}
         />
       );
