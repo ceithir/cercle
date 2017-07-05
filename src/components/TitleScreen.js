@@ -12,11 +12,10 @@ class TitleScreen extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col md={12}>
-            <Image src={this.props.image} responsive={true} className="center-block"/>
+          <Col md={8} mdOffset={2}>
+            <Image src={this.props.image} responsive={true} className="center-block cover"/>
           </Col>
         </Row>
-        <hr/>
         <Row>
           <Col md={6} mdOffset={3} className="lead text-center">
             <Crossroads choices={this.props.buttons} />
