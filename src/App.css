@@ -222,6 +222,12 @@ img.text-img {
   background-color: white;
 }
 
+@media (min-width: 1000px) {
+  .core {
+    background: linear-gradient(to right,#3BB9FF,white 12%,white 88%,#3BB9FF);
+  }
+}
+
 @media (min-width: 1200px) {
   .core {
     background: linear-gradient(to right,#3BB9FF,white 15%,white 85%,#3BB9FF);
