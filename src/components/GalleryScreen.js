@@ -87,8 +87,8 @@ class GalleryScreen extends React.Component {
           onClickNext={this.goToNext}
           currentImage={this.state.currentImageIndex}
           isOpen={this.state.lightboxIsOpen}
-          leftArrowTitle={`Précédente`}
-          rightArrowTitle={`Suivante`}
+          leftArrowTitle={`Illustration précédente`}
+          rightArrowTitle={`Illustration suivante`}
           showImageCount={false}
           width={1600}
           showCloseButton={false}
