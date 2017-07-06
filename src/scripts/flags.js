@@ -79,6 +79,8 @@ const flags = {
   "approchedCrocodile": false,
   "encounteredCrocodileAtSea": false,
   "hesitationCounter": 0,
+  "wentBeyondIntroduction": false,
+  "reachedTheTrial": false,
 };
 
 export default flags;

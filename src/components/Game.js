@@ -52,10 +52,6 @@ class Game extends React.Component {
     });
   }
 
-  updateAchievements = (flags) => {
-    this.props.updateAchievements(flags);
-  }
-
   saveProgress = (currentSection, flags, logs) => {
     this.props.saveProgress(currentSection, flags, logs);
   }
@@ -112,7 +108,8 @@ class Game extends React.Component {
         updatedFlags = propagate(updatedFlags, flag, newValue);
       }
 
-      this.updateAchievements(updatedFlags);
+      this.props.updateAchievements(updatedFlags);
+      this.props.updateGallery(updatedFlags);
 
       return {
         "flags": updatedFlags,
@@ -260,6 +257,7 @@ Game.propTypes = {
   sections: React.PropTypes.object.isRequired,
   quit: React.PropTypes.func.isRequired,
   updateAchievements: React.PropTypes.func.isRequired,
+  updateGallery: React.PropTypes.func.isRequired,
   saveProgress: React.PropTypes.func.isRequired,
   clearProgress: React.PropTypes.func.isRequired,
 };

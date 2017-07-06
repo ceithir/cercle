@@ -3,7 +3,6 @@ import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
 import Funnel from './Funnel.js';
 import Gallery from 'react-photo-gallery';
 import Lightbox from 'react-images';
-import coverImage from "./../images/rest.jpg";
 import widePlaceholder from "./../images/wide-placeholder.png";
 import tallPlaceholder from "./../images/tall-placeholder.png";
 
@@ -18,16 +17,25 @@ class GalleryScreen extends React.Component {
   }
 
   getImages = () => {
-    return [
-      {src: coverImage, width: 1200, height: 1600},
-      {src: tallPlaceholder, width: 1200, height: 1600},
-      {src: tallPlaceholder, width: 1200, height: 1600},
-      {src: tallPlaceholder, width: 1200, height: 1600},
-      {src: widePlaceholder, width: 1600, height: 1200},
-      {src: tallPlaceholder, width: 1200, height: 1600},
-      {src: widePlaceholder, width: 1600, height: 1200},
-      {src: tallPlaceholder, width: 1200, height: 1600},
-    ];
+    return this.props.illustrations.map((illustration) => {
+      if (illustration.unlocked) {
+        return illustration;
+      }
+
+      if (illustration.width > illustration.height) {
+        return {
+          "src": widePlaceholder,
+          "width": 1600,
+          "height": 1200,
+        };
+      }
+
+      return {
+        "src": tallPlaceholder,
+        "width": 1200,
+        "height": 1600,
+      };
+    });
   }
 
   openLightbox = (index, event) => {
@@ -102,6 +110,7 @@ class GalleryScreen extends React.Component {
 GalleryScreen.propTypes = {
   title: React.PropTypes.string.isRequired,
   quit: React.PropTypes.func.isRequired,
+  illustrations: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
 
 export default GalleryScreen;

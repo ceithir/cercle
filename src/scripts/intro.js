@@ -529,9 +529,12 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
 <p>La nuit est tombée depuis un bon moment lorsque le festin s’achève. Le feu en train d’agoniser vous laisse distinguer au-dessus de votre tête le foisonnement immense des étoiles. Alors que les membres de la tribu se dispersent peu à peu, Raiahui vous emmène jusqu’à un hamac accroché entre deux palmiers, non loin de la plage. La fatigue de votre journée de voyage est en train de s’appesantir sur vous et vous vous y allongez avec plaisir.</p>
 `
     ,
-    "next": (goToSection) => {
+    "next": (goToSection, flags, updateFlag) => {
       const text = `Vous ne tardez pas à vous endormir, bercée par le murmure de l’eau et un souffle d’air tiède.`;
-      const action = "awakening";
+      const action = () => {
+        updateFlag("wentBeyondIntroduction", true);
+        return "awakening";
+      };
 
       return repeatingFunnel(goToSection, text, action);
     }

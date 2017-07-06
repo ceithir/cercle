@@ -161,9 +161,12 @@ const trial = {
 
 <p>Il ponctue cette déclaration laconique d’un hochement de tête, puis, sans rien ajouter, il quitte la plage pour retourner vers le village. Sous votre regard interloqué, l’essentiel de la tribu lui emboîte le pas.</p>
     `,
-    "next": (goToSection) => {
+    "next": (goToSection, flags, updateFlag) => {
       const text = `Il ne reste bientôt plus que vous-même, Raiahui et les autres adolescents.`;
-      const action = () => {goToSection("trial-preparation");};
+      const action = () => {
+        updateFlag("reachedTheTrial", true);
+        goToSection("trial-preparation");
+      };
 
       return (
         <Funnel text={text} action={action} />

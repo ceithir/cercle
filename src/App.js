@@ -12,6 +12,7 @@ import flags from './scripts/flags.js';
 import icon from './images/icon.jpg';
 import cover from './images/cover.jpg';
 import achievements from './scripts/achievements.js';
+import illustrations from './scripts/illustrations.js';
 import Storage from './Storage.js';
 
 const storage = new Storage("XNaZOJAPjfXevMueSJg6L75JjCEcuDAg");
@@ -22,6 +23,7 @@ class App extends Component {
     this.state = {
       "screen": "title",
       "achievements": storage.load("achievements") || [],
+      "unlockedIllustrations": storage.load("illustrations") || this.getUnlockedIllustrations([], flags),
     };
   }
 
@@ -107,6 +109,29 @@ class App extends Component {
     });
   }
 
+  getUnlockedIllustrations = (previouslyUnlockedIllustrations, flags) => {
+    const playthroughIllustrations = illustrations.filter((illustration) => {
+      return illustration.condition(flags);
+    }).map((illustration) => {
+      return illustration.key;
+    });
+
+    return previouslyUnlockedIllustrations.concat(playthroughIllustrations.filter((illustration) => {
+      return -1 === previouslyUnlockedIllustrations.indexOf(illustration);
+    }));
+  }
+
+  updateGallery = (flags) => {
+    this.setState((prevState, props) => {
+      const unlockedIllustrations = this.getUnlockedIllustrations(prevState.unlockedIllustrations, flags);
+      storage.save("illustrations", unlockedIllustrations);
+
+      return {
+        "unlockedIllustrations": unlockedIllustrations,
+      };
+    });
+  }
+
   render() {
     const title = `Au Cœur d’un Cercle de Sable et d’Eau`;
     const newGameText = `Nouvelle partie`;
@@ -177,6 +202,15 @@ class App extends Component {
       return (
         <GalleryScreen
           title={galleryText}
+          illustrations={illustrations.map((illustration) => {
+            return Object.assign(
+              {},
+              illustration,
+              {
+                "unlocked": -1 !== this.state.unlockedIllustrations.indexOf(illustration.key),
+              },
+            )
+          })}
           quit={this.titleScreen}
         />
       );
@@ -194,6 +228,7 @@ class App extends Component {
         sections={script}
         icon={icon}
         updateAchievements={this.updateAchievements}
+        updateGallery={this.updateGallery}
         saveProgress={this.saveProgress}
         clearProgress={this.clearProgress}
         quit={this.titleScreen}
