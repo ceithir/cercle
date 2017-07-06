@@ -1,8 +1,6 @@
-## Technical
-
-Default images are far too big, see how this could be improved
-
 ## Cool game
+
+### Add feebdack for all of our actions
 
 ### Complete achievements
 
@@ -10,9 +8,9 @@ Default images are far too big, see how this could be improved
 
 ## Polish
 
-### Options button in toolbar
+### Better map
 
-Accessibility parameters (like font size)
+Better illustration, better transitions, better icons etc.
 
 ### Proper favicons and all icons for all devices
 
@@ -21,3 +19,4 @@ Accessibility parameters (like font size)
 May not be a good idea, but has some advantages for some distribution methods. Need further analysis.
 
 ### Clean Github repo
+
