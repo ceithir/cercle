@@ -132,6 +132,10 @@ class App extends Component {
     });
   }
 
+  saveSettings = (settings) => {
+    storage.save("settings", settings);
+  }
+
   render() {
     const title = `Au Cœur d’un Cercle de Sable et d’Eau`;
     const newGameText = `Nouvelle partie`;
@@ -140,6 +144,7 @@ class App extends Component {
     const galleryText = `Illustrations`;
     const creditsText = `Plumes`;
     const unlockedAchievements = this.state.achievements;
+    const settings = storage.load("settings");
 
     if ("title" === this.state.screen) {
       let buttons = [
@@ -229,6 +234,8 @@ class App extends Component {
         icon={icon}
         updateAchievements={this.updateAchievements}
         updateGallery={this.updateGallery}
+        currentSettings={settings}
+        saveSettings={this.saveSettings}
         saveProgress={this.saveProgress}
         clearProgress={this.clearProgress}
         quit={this.titleScreen}

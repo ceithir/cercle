@@ -15,6 +15,7 @@ class Game extends React.Component {
     const currentSection = this.props.currentSection || this.props.startingSection;
     const currentFlags = Object.assign({}, this.props.startingFlags, this.props.currentFlags || {});
     const currentLogs = this.props.currentLogs || [];
+    const settings = Object.assign({}, {"fontSize": 14, "justified": false}, this.props.currentSettings || {});
 
     this.state = {
       "currentSection": currentSection,
@@ -22,10 +23,7 @@ class Game extends React.Component {
       "logs": currentLogs,
       "currentSectionText": this.processText(currentSection, currentFlags),
       "scrollOffset": 0,
-      "settings": {
-        "fontSize": 14,
-        "justified": false,
-      },
+      "settings": settings,
       "showSettings": false,
       "scrollToNextSection": true,
     };
@@ -239,6 +237,8 @@ class Game extends React.Component {
     this.setState((prevState, props) => {
       const settings = Object.assign({}, prevState.settings, values);
 
+      this.props.saveSettings(settings);
+
       return {
         "settings": settings,
       };
@@ -310,6 +310,8 @@ Game.propTypes = {
   updateGallery: React.PropTypes.func.isRequired,
   saveProgress: React.PropTypes.func.isRequired,
   clearProgress: React.PropTypes.func.isRequired,
+  currentSettings: React.PropTypes.object,
+  saveSettings: React.PropTypes.func.isRequired,
 };
 
 export default Game;
