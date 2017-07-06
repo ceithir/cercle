@@ -1,11 +1,12 @@
 import React from 'react';
 import Text from './Text.js';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Modal } from 'react-bootstrap';
 import Title from './Title.js';
 import InventoryButton from './InventoryButton.js';
 import OptionButton from './OptionButton.js';
 import ReactDOM from 'react-dom';
 import jump from 'jump.js';
+import Settings from './Settings.js';
 
 class Game extends React.Component {
   constructor(props) {
@@ -21,6 +22,12 @@ class Game extends React.Component {
       "logs": currentLogs,
       "currentSectionText": this.processText(currentSection, currentFlags),
       "scrollOffset": 0,
+      "settings": {
+        "fontSize": 14,
+        "justified": false,
+      },
+      "showSettings": false,
+      "scrollToNextSection": true,
     };
     this.saveProgress(currentSection, currentFlags, currentLogs);
   }
@@ -48,6 +55,7 @@ class Game extends React.Component {
         "logs": logs,
         "currentSectionText": text,
         "scrollOffset": offset,
+        "scrollToNextSection": true,
       };
     });
   }
@@ -67,6 +75,7 @@ class Game extends React.Component {
       "logs": currentLogs,
       "currentSectionText": this.processText(currentSection, currentFlags),
       "scrollOffset": 0,
+      "scrollToNextSection": true,
     });
     this.props.saveProgress(currentSection, currentFlags, currentLogs);
   }
@@ -139,8 +148,27 @@ class Game extends React.Component {
     return this.props.sections[sectionKey];
   }
 
+  showSettings = () => {
+    this.setState({
+      "showSettings": true,
+      "scrollToNextSection": false,
+      "scrollOffset": window.scrollY,
+    })
+  }
+
+  hideSettings = () => {
+    this.setState({
+      "showSettings": false,
+    })
+  }
+
   getOptions = () => {
     return [
+      {
+        "key": "settings",
+        "action": this.showSettings,
+        "text": `Paramètres`,
+      },
       {
         "key": "autosave",
         "text": `Ce jeu sauvegarde automatiquement.`,
@@ -200,7 +228,21 @@ class Game extends React.Component {
     this.stopPlayingWithScroll = true;
 
     this.maintainScroll();
+    if (!this.state.scrollToNextSection) {
+      this.stopPlayingWithScroll = false;
+      return;
+    }
     this.scrollActiveSectionToTop('smooth');
+  }
+
+  updateSettings = (values) => {
+    this.setState((prevState, props) => {
+      const settings = Object.assign({}, prevState.settings, values);
+
+      return {
+        "settings": settings,
+      };
+    });
   }
 
   render() {
@@ -219,7 +261,7 @@ class Game extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <div className="container-fluid core">
+        <div className={"container-fluid core font-"+this.state.settings.fontSize + (this.state.settings.justified ? " text-justify" : "")}>
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
               <div className="logs">
@@ -241,6 +283,14 @@ class Game extends React.Component {
             </div>
           </div>
         </div>
+        <Modal show={this.state.showSettings} onHide={this.hideSettings} className="settings">
+          <Modal.Body>
+            <Settings
+              values={this.state.settings}
+              update={this.updateSettings}
+            />
+          </Modal.Body>
+        </Modal>
       </div>
     );
   }
