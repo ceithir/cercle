@@ -15,7 +15,7 @@ class Game extends React.Component {
     const currentSection = this.props.currentSection || this.props.startingSection;
     const currentFlags = Object.assign({}, this.props.startingFlags, this.props.currentFlags || {});
     const currentLogs = this.props.currentLogs || [];
-    const settings = Object.assign({}, {"fontSize": 14, "justified": false}, this.props.currentSettings || {});
+    const settings = Object.assign({}, {"fontSize": 14, "justified": false, "noTransitions": false}, this.props.currentSettings || {});
 
     this.state = {
       "currentSection": currentSection,
@@ -230,7 +230,7 @@ class Game extends React.Component {
       this.stopPlayingWithScroll = false;
       return;
     }
-    this.scrollActiveSectionToTop('smooth');
+    this.scrollActiveSectionToTop(this.state.settings.noTransitions ? 'auto' : 'smooth');
   }
 
   updateSettings = (values) => {

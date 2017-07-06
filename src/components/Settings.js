@@ -38,6 +38,13 @@ class Settings extends React.Component {
     this.props.update(values);
   }
 
+  onTransitionChange = (event) => {
+    event.persist();
+    const values = {"noTransitions": event.target.checked};
+    this.updateForm(values);
+    this.props.update(values);
+  }
+
   render() {
     return (
       <form onSubmit={(e) => {e.preventDefault()}}>
@@ -63,6 +70,14 @@ class Settings extends React.Component {
             onChange={this.onJustificationChange}
           >
             {`Justifier le texte ?`}
+          </Checkbox>
+        </FormGroup>
+        <FormGroup>
+          <Checkbox
+            checked={this.state.form.noTransitions}
+            onChange={this.onTransitionChange}
+          >
+            {`Désactiver les transitions ?`}
           </Checkbox>
         </FormGroup>
       </form>
