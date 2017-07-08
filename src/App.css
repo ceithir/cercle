@@ -319,3 +319,18 @@ img.text-img {
 .font-18 {
   font-size: 18px;
 }
+
+.inventory-change-container {
+  display: flex;
+  justify-content: center;
+}
+
+.inventory-change {
+  border: 1px solid #696969;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.inventory-change .item-name {
+  font-weight: bold;
+}
