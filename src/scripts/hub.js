@@ -107,18 +107,17 @@ Explorer cet îlot une fois vous a amplement suffi.
       "cross": [120, 25, 225, 145, 235, 35, 115, 135],
       "description": ((flags) => {
         let text = `
-<p>Cette île, qui fait partie de celles que Raiahui vous a explicitement déconseillé d’approcher, est curieusement différente des autres : loin d’être une étendue lisse et basse, elle émerge des flots comme un large rocher.
+<p>Cette île, qui fait partie de celles que Raiahui vous a explicitement déconseillé d’approcher, est curieusement différente des autres : loin d’être une étendue lisse et basse, elle émerge des flots comme un large rocher.</p>
         `;
         if (flags.toldAboutAtollByRaiahui) {
-          text += ` <span class="text-conditional">Raiahui vous a précisée qu’elle était habitée par une sorcière.`;
+          text += ` <p class="text-conditional">Raiahui vous a précisée qu’elle était habitée par une sorcière.`;
           if (flags.toldAboutWitchByMonkey) {
             text += ` Et cette histoire vous a été confirmé par rien de moins qu’un homme métamorphosé en singe, lui apportant une crédibilité certaine.`;
           }
-          text += `</span>`;
+          text += `</p>`;
         } else if (flags.toldAboutWitchByMonkey) {
-          text += ` <span class="text-conditional">Le singe, ou plutôt l’homme transformé en singe, de l’île voisine vous a mis en garde contre la sorcière qui l’habite.</span>`;
+          text += ` <p class="text-conditional">Le singe, ou plutôt l’homme transformé en singe, de l’île voisine vous a mis en garde contre la sorcière qui l’habite.</p>`;
         }
-        text += `</p>`;
 
         return text;
       })(flags),

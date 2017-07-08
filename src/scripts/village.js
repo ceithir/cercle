@@ -1,6 +1,6 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
-import {acquireItem, repeatingCrossroad, repeatingFunnel, coatSentence} from "./helpers.js";
+import {acquireItem, repeatingCrossroad, repeatingFunnel, coatSentence, itemAcquisitionFeedback} from "./helpers.js";
 
 const exploreOrLeave = function(goToSection, flags, updateFlag) {
   const leaveText = `Vous regagnez votre pirogue.`;
@@ -121,11 +121,7 @@ const village = {
       return `
 <p>Terani fronce les sourcils lorsque vous présentez votre requête et vous devinez que cette boisson, dont la préparation demande davantage d’efforts, est d’une consommation plus réservée que le simple vin de palme. Vous vous attendez à ce qu’elle refuse, mais, après avoir échangé un regard avec Oramui, elle hausse les épaules et vous offre l’une des calebasses d’alcool fort.</p>
 
-<div class="inventory-change-container">
-  <p class="inventory-change">
-    <span class="item-name">${flags.inventory.alcohol.name}</span> a été ajouté à votre inventaire.
-  </p>
-</div>
+${itemAcquisitionFeedback(flags.inventory.alcohol.name)}
 
 <div class="conversation">
 <p>— Cela fait très vite tourner la tête, vous dit-elle. Il ne faut surtout pas que tu en boives avant d’avoir terminé ta course de ce soir contre Raiahui.</p>

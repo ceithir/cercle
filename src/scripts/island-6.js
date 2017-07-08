@@ -1,6 +1,6 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
-import {endGame, acquireItem, coatSentence, repeatingFunnel, repeatingCrossroad, secondTimeToIsland} from "./helpers.js";
+import {endGame, acquireItem, coatSentence, repeatingFunnel, repeatingCrossroad, secondTimeToIsland, itemAcquisitionFeedback} from "./helpers.js";
 import crocodileImage from "./../images/crocodile.jpg";
 
 const crocodileLastWords = `
@@ -19,8 +19,7 @@ const crocodileLastCrossroads = (goToSection, flags, updateFlag) => {
       "text": `Vous prenez quelques instants pour récolter une poignée de ces fruits rouges.`,
       "action": () => {
         acquireItem("fruit", updateFlag);
-        updateFlag("time", flags.time+1);
-        return "back-to-hub";
+        return "gather-fruits";
       },
     },
     {
@@ -420,7 +419,8 @@ const island6 = {
     "next": endGame,
   },
   "crocodile-look-out": {
-    "text": `
+    "text": (flags) => {
+      return `
 <div class="conversation">
 <p>— On dirait que je ne vais pas avoir le temps, dites-vous avec un geste de main vers le lagon. Je vois qu’on vient déjà me chercher pour la course. Ce sera pour…</p>
 </div>
@@ -430,7 +430,10 @@ const island6 = {
 <p>Vous ne laissez pas passer cette occasion fabuleuse : le temps que le monstre saisisse votre subterfuge, vous avez franchi l’espace vous séparant de la figurine, vous en êtes emparée et repartez en courant à toutes jambes. Il se jette rageusement à vos trousses, mais vous le distancez sans peine, prenant garde de ne pas trébucher sur l’une des innombrables racines qui parsèment l’île.</p>
 
 <p>Quelques instants plus tard, atteignant votre pirogue, vous prenez le temps d’examiner la figurine grossière. Le charme qui vous avait inspiré le désir irrésistible de la posséder s’est dissipé, mais une intuition vous dit qu’elle pourrait véritablement se révéler utile.</p>
-    `,
+
+${itemAcquisitionFeedback(flags.inventory.doll.name)}
+      `;
+    },
     "next": (goToSection, flags, updateFlag) => {
       const text = `Vous vous éloignez de l’île.`;
       const action = () => {
@@ -630,6 +633,25 @@ const island6 = {
 
       return (
         <Crossroads choices={choices} />
+      );
+    },
+  },
+  "gather-fruits": {
+    "text": (flags) => {
+      return `
+<p>Vous ne ressentez aucune démangeaison ou autre réaction cutanée malsaine au contact des fruits. Si nouveau piège du crocodile il y a, il n'est pas à chercher de ce côté-là.</p>
+
+${itemAcquisitionFeedback(flags.inventory.fruit.name)}
+      `;
+    },
+    "next": (goToSection, flags, updateFlag) => {
+      return repeatingFunnel(
+        goToSection,
+        `Vous repartez aussitôt votre récolte effectuée.`,
+        () => {
+          updateFlag("time", flags.time+1);
+          return "back-to-hub";
+        },
       );
     },
   },

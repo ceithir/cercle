@@ -152,3 +152,13 @@ export const wentToIsland = (islandKey, flags) => {
 export const secondTimeToIsland = (islandKey, flags) => {
   return flags.visitedIslands.filter(visitedIslandKey => islandKey === visitedIslandKey).length >= 2;
 }
+
+export const itemAcquisitionFeedback = (itemName) => {
+  return `
+<div class="inventory-change-container">
+  <p class="inventory-change">
+    <span class="item-name">${itemName}</span> a été ajouté à votre inventaire.
+  </p>
+</div>
+  `;
+}

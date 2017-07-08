@@ -286,6 +286,10 @@ img.text-img {
   h1 {
     font-size: 16pt;
   }
+
+  .inventory-change {
+    display: none;
+  }
 }
 
 .cover {
@@ -328,7 +332,7 @@ img.text-img {
 .inventory-change {
   border: 1px solid #696969;
   border-radius: 5px;
-  padding: 5px;
+  padding: 5px 10px;
 }
 
 .inventory-change .item-name {

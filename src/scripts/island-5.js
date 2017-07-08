@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {endGame, useItem, acquireItem, coatSentence, repeatingFunnel, secondTimeToIsland} from "./helpers.js";
+import {endGame, useItem, acquireItem, coatSentence, repeatingFunnel, secondTimeToIsland, itemAcquisitionFeedback} from "./helpers.js";
 
 const escapeTheWitch = (goToSection, flags, updateFlag) => {
   const choices = [
@@ -286,9 +286,13 @@ const island5 = {
     "next": escapeTheWitch,
   },
   "witch-pearls": {
-    "text": `
+    "text": (flags) => {
+      return `
 <p>Les perles glissent dans votre paume sans se faire prier. Vous n’avez pas le temps de vous intéresser à autre chose : la grosse femme vient d’entrer dans la hutte et se dirige droit sur vous en vociférant des menaces.</p>
-    `,
+
+${itemAcquisitionFeedback(flags.inventory.pearls.name)}
+      `;
+    },
     "next": escapeTheWitch,
   },
   "witch-sceptre": {
@@ -353,7 +357,8 @@ const island5 = {
     "next": endGame,
   },
   "witch-master-thief": {
-    "text": ascensionText + `
+    "text": (flags) => {
+      return ascensionText + `
 <p>Vous êtes sur le point de quitter votre cachette lorsqu’une grosse femme enroulée dans un paréo pourpre apparaît à peu de distance. Ses cheveux courts sont hérissés comme des piquants et, de la tête aux chevilles, elle porte de nombreux bijoux en or d’une élégance que vous avez rarement observée. A sa taille sont accrochés un sac à demi-plein, un filet gris et un petit couteau en métal.</p>
 
 <p>Vous êtes soulagée de voir qu’elle semble totalement ignorer la présence en ce moment d’une intruse sur son île. Elle passe tout près de l’endroit où vous êtes dissimulée et s’éloigne ensuite dans une autre direction. Enhardie, vous attendez qu’elle ait disparu pour vous faufiler sans bruit jusqu’à la hutte et vous glisser à l’intérieur.</p>
@@ -361,7 +366,10 @@ const island5 = {
 <p>Un invraisemblable fatras d’objets étranges accueille aussitôt votre regard. Ils sont accrochés aux murs, suspendus au plafond, disposés sur des meubles en bois ou éparpillés sur le sol terreux. Vous les examinez des yeux, vous abstenant prudemment de les toucher. Beaucoup d’entre eux dégagent une impression extrêmement désagréable.</p>
 
 <p>Vous êtes en train de regarder quelques perles d’un noir extrêmement profond lorsqu’un bruit de pas vous parvient aux oreilles. La grosse femme est déjà en train de revenir ! Il n’est plus question de poursuivre votre inspection, mais vous vous emparez néanmoins des perles noires, qui ont piqué votre intérêt.</p>
-    `,
+
+${itemAcquisitionFeedback(flags.inventory.pearls.name)}
+      `;
+    } ,
     "next": (goToSection, flags, updateFlag) => {
       const text = `La grosse femme n’est plus qu’à quelques pas de la hutte.`;
 
@@ -431,10 +439,15 @@ const island5 = {
     },
   },
   "witch-versus-root": {
-    "text": `
+    "text": (flags) => {
+      return `
 <p>Alors que vous cherchez un moyen de vous enfuir, les membres de la figurine de bois sont saisis de mouvements convulsifs. Sous vos yeux ébahis, la création du crocodile se lève sur ses deux jambes et se met à grandir et à changer de couleur jusqu’à ce que vous ayez devant vous une réplique très exacte de vous-même !</p>
 
-<p>Votre double vous adresse un sourire amusé, puis elle jaillit hors de la hutte, passant juste devant la grosse femme qui arrivait. Celle-ci n’est surprise qu’un instant : s’emparant du filet gris qui se trouve à sa taille, elle le jette après l’intruse d’un geste furieux. Vous étant approchée de la porte de  la hutte, vous voyez le filet traverser l’air avec une précision parfaite et s’enrouler étroitement autour de votre sosie. Prise au piège, la figurine reprend aussitôt son aspect d’origine, puis se désagrège en un nuage de poussière. Saisissant l’occasion, vous passez en courant à côté de la grosse femme ébahie, vous emparez au passage du filet et continuez sans ralentir votre fuite jusqu’à ce que vous ayez regagné votre pirogue.</p>`,
+<p>Votre double vous adresse un sourire amusé, puis elle jaillit hors de la hutte, passant juste devant la grosse femme qui arrivait. Celle-ci n’est surprise qu’un instant : s’emparant du filet gris qui se trouve à sa taille, elle le jette après l’intruse d’un geste furieux. Vous étant approchée de la porte de  la hutte, vous voyez le filet traverser l’air avec une précision parfaite et s’enrouler étroitement autour de votre sosie. Prise au piège, la figurine reprend aussitôt son aspect d’origine, puis se désagrège en un nuage de poussière. Saisissant l’occasion, vous passez en courant à côté de la grosse femme ébahie, vous emparez au passage du filet et continuez sans ralentir votre fuite jusqu’à ce que vous ayez regagné votre pirogue.</p>
+
+${itemAcquisitionFeedback(flags.inventory.net.name)}
+      `;
+    },
     "next": (goToSection, flags, updateFlag) => {
       const text = `Vous vous hâtez de vous éloigner de cette île.`;
       const action = () => {
@@ -483,24 +496,30 @@ const island5 = {
       );
     }
   },
-  "witch-versus-root-alt": `
+  "witch-versus-root-alt": {
+    "text": (flags) => {
+      return `
 <p>Alors que vous vous apprêtez à poursuivre votre descente, les membres de la figurine de bois sont saisis de mouvements convulsifs. Sous vos yeux ébahis, la création du crocodile se lève sur ses deux jambes et se met à grandir et à changer de couleur jusqu’à ce que vous ayiez devant vous une réplique très exacte de vous-même !</p>
 
 <p>Votre double vous adresse un sourire amusé, puis elle sort de derrière le buisson et se met à courir en terrain exposé. Un instant plus tard, vous voyez le filet gris de la grosse femme traverser l’air avec une précision parfaite et s’enrouler étroitement autour d’elle. Prise au piège, la figurine reprend aussitôt son aspect d’origine, puis se désagrège en un nuage de poussière. Saisissant l’occasion, vous courez vous emparer du filet, puis reprenez votre fuite. Quelques instants plus tard, vous avez regagné votre pirogue.</p>
-  `,
-  "next": (goToSection, flags, updateFlag) => {
-    const text = `Vous vous hâtez de vous éloigner de cette île.`;
-    const action = () => {
-      updateFlag("time", flags.time+1);
-      updateFlag("survivedWitchIsland", true);
-      return "back-to-hub";
-    };
 
-    return repeatingFunnel(
-      goToSection,
-      text,
-      action,
-    );
+${itemAcquisitionFeedback(flags.inventory.net.name)}
+      `;
+    },
+    "next": (goToSection, flags, updateFlag) => {
+      const text = `Vous vous hâtez de vous éloigner de cette île.`;
+      const action = () => {
+        updateFlag("time", flags.time+1);
+        updateFlag("survivedWitchIsland", true);
+        return "back-to-hub";
+      };
+
+      return repeatingFunnel(
+        goToSection,
+        text,
+        action,
+      );
+    },
   },
 }
 
