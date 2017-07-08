@@ -153,12 +153,22 @@ export const secondTimeToIsland = (islandKey, flags) => {
   return flags.visitedIslands.filter(visitedIslandKey => islandKey === visitedIslandKey).length >= 2;
 }
 
-export const itemAcquisitionFeedback = (itemName) => {
+const inventoryChange = (content) => {
   return `
 <div class="inventory-change-container">
-  <p class="inventory-change">
-    <span class="item-name">${itemName}</span> a été ajouté à votre inventaire.
-  </p>
+  <p class="inventory-change">${content}</p>
 </div>
   `;
+}
+
+export const itemAcquisitionFeedback = (itemName) => {
+  return inventoryChange(`
+<span class="item-name">${itemName}</span> a été ajouté à votre inventaire.
+  `);
+}
+
+export const itemUpdateFeedback = (itemName) => {
+  return inventoryChange(`
+L'objet <span class="item-name">${itemName}</span> a été mis à jour.
+  `);
 }

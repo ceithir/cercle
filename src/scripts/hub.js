@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {useItem, acquireItem, endGame, repeatingFunnel, coatSentence, wentToIsland} from "./helpers.js";
+import {useItem, acquireItem, endGame, repeatingFunnel, coatSentence, wentToIsland, itemUpdateFeedback} from "./helpers.js";
 import atollMapImg from "./../images/map.jpg";
 import AtollMap from "./../components/AtollMap.js";
 
@@ -679,7 +679,8 @@ ${statusComment}
     },
   },
   "look-at-pearls": {
-    "text": `
+    "text": (flags) => {
+      return `
 <p>Ces perles ne viennent pas d’un animal, en tout cas pas d’un animal que vous connaissez. Il vous suffit de les toucher pour vous en rendre compte. La sensation est différente, irrégulière, rugueuse, toute minérale. De plus elles s’effritent entre vos doigts en y laissant une pellicule de poussière d’un noir plus profond qu’une nuit sans lune.</p>
 
 <p>Alors que vous plongez votre main dans l’eau pour la nettoyer, vous remarquez que l’eau change de couleur, s’obscurcissant énormément autour de vos phalanges. Il vous vient alors à l’idée d’immerger entièrement une de ces perles.</p>
@@ -688,8 +689,11 @@ ${statusComment}
 
 <p>Le faible courant du lagon ayant le plus grand mal à disperser le résultat de votre expérience, votre pirogue se trouve maintenant au centre d’une flaque d’ombre. Elle ne semble pas dangereuse, juste impénétrable.</p>
 
+${itemUpdateFeedback(flags.inventory.pearls.name)}
+
 <p>Vous rangez prudemment les perles qu’il vous reste, certaines que vous trouverez bien une utilité à une si intéressante trouvaille.</p>
-    `,
+      `;
+    },
     "next": (goToSection) => {
       const text = `Pour l’heure, vous reportez votre attention vers la navigation.`;
       const action = () => {goToSection("back-to-hub")};

@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {endGame, trueEnd, useItem, acquireItem, repeatingFunnel, coatSentence} from "./helpers.js";
+import {endGame, trueEnd, useItem, acquireItem, repeatingFunnel, coatSentence, itemUpdateFeedback} from "./helpers.js";
 import squaleImage from "./../images/squale.jpg";
 import raiahuiFriendsImage from "./../images/raiahui-friends.jpg";
 import sunsetImage from "./../images/sunset.jpg";
@@ -2389,9 +2389,13 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
     "next": preludeNext,
   },
   "trial-brew-fire": {
-    "text": `
+    "text": (flags) => {
+      return `
 <p>Vous écrasez facilement tous les fruits rouges qui vous restent et en mélangez le jus avec le contenu de la calebasse. Le simple fait d’entamer un seul d’entre eux ayant suffi à vous mettre la gorge en feu, le breuvage que vous préparez ainsi devrait avoir quelques similarités avec la lave en fusion. Raiahui va très rapidement se rendre compte qu’il ne s’agit pas de vin de palme ordinaire, mais pas avant d’en avoir avalé une gorgée ou deux.</p>
-    `,
+
+${itemUpdateFeedback(flags.inventory.alcohol.name)}
+      `;
+    },
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
