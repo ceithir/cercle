@@ -12,6 +12,10 @@ const getIslandNumber = function(island) {
 }
 
 const computeTripTime = function(currentIsland, newIsland) {
+  if (newIsland === currentIsland) {
+    return 0;
+  }
+
   return Math.abs(getIslandNumber(currentIsland) - getIslandNumber(newIsland)) % 7 < 2 ? 1 : 2;
 }
 
@@ -243,14 +247,11 @@ const getIslandWithMapMetadata = (islandKey, flags) => {
 const moveToIsland = function(newIsland, goToSection, flags, updateFlag, extraLog = "") {
   const currentIsland = flags.currentIsland;
 
-  if (currentIsland === newIsland) {
-    return;
+  let tripTime = computeTripTime(currentIsland, newIsland);
+  if (flags.damagedBoat && tripTime > 0) {
+    tripTime += 1;
   }
-
-  let newTime = flags.time + computeTripTime(currentIsland, newIsland);
-  if (flags.damagedBoat) {
-    newTime += 1;
-  }
+  const newTime = flags.time + tripTime;
 
   updateFlag("time", newTime);
 
@@ -290,7 +291,7 @@ const getOtherChoices = function(goToSection, flags, updateFlag, extraLog = "") 
     {
       "text": `Rentrer vous reposer au village.`,
       "action": () => {
-        goToSection("island-1", extraLog);
+        moveToIsland("island-1", goToSection, flags, updateFlag, extraLog);
       },
     },
     {
@@ -706,7 +707,7 @@ ${statusComment}
     "next": (goToSection, flags, updateFlag) => {
       const island = getIslandWithMapMetadata(flags.targetIsland, flags);
 
-      if (island.current) {
+      if (island.current && "island-1" !== island.key) {
         const text = `Vous y êtes.`;
         const action = () => {
           goToSection("back-to-hub", emptyFunction);
@@ -728,9 +729,11 @@ ${statusComment}
         );
       }
 
+      const isOnStartingIslandAndWantToStayThere = island.current && "island-1" === island.key;
+
       const choices = [
         {
-          "text": `Vous vous dirigez dans sa direction.`,
+          "text": !isOnStartingIslandAndWantToStayThere? `Vous vous dirigez dans sa direction.`: `Une bonne sieste vous semble la plus agréable manière de commencer la journée.`,
           "action": () => {
             moveToIsland(flags.targetIsland, goToSection, flags, updateFlag, emptyFunction);
           },
