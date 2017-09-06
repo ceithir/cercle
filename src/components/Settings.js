@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormGroup, ControlLabel, FormControl, Checkbox } from 'react-bootstrap';
 
 class Settings extends React.Component {
@@ -86,8 +87,8 @@ class Settings extends React.Component {
 }
 
 Settings.propTypes = {
-  values: React.PropTypes.object.isRequired,
-  update: React.PropTypes.func.isRequired,
+  values: PropTypes.object.isRequired,
+  update: PropTypes.func.isRequired,
 };
 
 export default Settings;

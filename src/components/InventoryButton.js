@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavItem, Modal } from 'react-bootstrap';
 
 class InventoryButton extends React.Component {
@@ -70,8 +71,8 @@ class InventoryButton extends React.Component {
 }
 
 InventoryButton.propTypes = {
-  text: React.PropTypes.string.isRequired,
-  inventory: React.PropTypes.object.isRequired,
+  text: PropTypes.string.isRequired,
+  inventory: PropTypes.object.isRequired,
 };
 
 export default InventoryButton;

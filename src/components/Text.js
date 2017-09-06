@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Text extends React.Component {
   prepareHtmlContent = () => {
@@ -13,7 +14,7 @@ class Text extends React.Component {
 }
 
 Text.propTypes = {
-  content: React.PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
 };
 
 export default Text;

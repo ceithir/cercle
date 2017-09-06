@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { PageHeader, Grid, Row, Image, Col } from 'react-bootstrap';
 import Crossroads from './Crossroads.js';
 
@@ -27,9 +28,9 @@ class TitleScreen extends React.Component {
 }
 
 TitleScreen.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  image: React.PropTypes.string.isRequired,
-  buttons: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  buttons: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default TitleScreen;

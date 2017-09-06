@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Crossroads from './Crossroads.js';
 
 class Funnel extends React.Component {
@@ -16,10 +17,10 @@ class Funnel extends React.Component {
 }
 
 Funnel.propTypes = {
-  context: React.PropTypes.string,
-  text: React.PropTypes.string.isRequired,
-  action: React.PropTypes.func.isRequired,
-  conditional: React.PropTypes.bool,
+  context: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  action: PropTypes.func.isRequired,
+  conditional: PropTypes.bool,
 };
 
 export default Funnel;

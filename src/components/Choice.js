@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Choice extends React.Component {
   onClick = (event) => {
@@ -22,9 +23,9 @@ class Choice extends React.Component {
 }
 
 Choice.propTypes = {
-  text: React.PropTypes.string.isRequired,
-  action: React.PropTypes.func.isRequired,
-  conditional: React.PropTypes.bool,
+  text: PropTypes.string.isRequired,
+  action: PropTypes.func.isRequired,
+  conditional: PropTypes.bool,
 };
 
 export default Choice;

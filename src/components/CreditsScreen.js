@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
 import Funnel from './Funnel.js';
 import credits from "../scripts/credits.js";
@@ -31,8 +32,8 @@ class CreditsScreen extends React.Component {
 }
 
 CreditsScreen.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  quit: React.PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  quit: PropTypes.func.isRequired,
 };
 
 export default CreditsScreen;

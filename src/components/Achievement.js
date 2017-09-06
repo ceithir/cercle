@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Panel } from 'react-bootstrap';
 
 class Achievement extends React.Component {
@@ -10,9 +11,9 @@ class Achievement extends React.Component {
 }
 
 Achievement.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  description: React.PropTypes.string.isRequired,
-  disabled: React.PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default Achievement;

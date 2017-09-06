@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Achievement from './Achievement.js';
 
 class Achievements extends React.Component {
@@ -21,7 +22,7 @@ class Achievements extends React.Component {
 }
 
 Achievements.propTypes = {
-  achievements: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  achievements: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Achievements;

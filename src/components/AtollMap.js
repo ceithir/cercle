@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class AtollMap extends React.Component {
   onClick = (event, action) => {
@@ -73,26 +74,26 @@ class AtollMap extends React.Component {
 }
 
 AtollMap.propTypes = {
-  mapImg: React.PropTypes.string.isRequired,
-  islands: React.PropTypes.arrayOf(React.PropTypes.shape({
-    key: React.PropTypes.string.isRequired,
-    path: React.PropTypes.string.isRequired,
-    onClick: React.PropTypes.func,
-    current: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    textPosition: React.PropTypes.shape({
-      x: React.PropTypes.number.isRequired,
-      y: React.PropTypes.number.isRequired,
+  mapImg: PropTypes.string.isRequired,
+  islands: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    current: PropTypes.bool,
+    disabled: PropTypes.bool,
+    textPosition: PropTypes.shape({
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
     }).isRequired,
-    textAnchor: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired,
-    harbor: React.PropTypes.shape({
-      x: React.PropTypes.number.isRequired,
-      y: React.PropTypes.number.isRequired,
+    textAnchor: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    harbor: PropTypes.shape({
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
     }).isRequired,
-    cross: React.PropTypes.arrayOf(React.PropTypes.number),
+    cross: PropTypes.arrayOf(PropTypes.number),
   })).isRequired,
-  course: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.number)),
+  course: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
 };
 
 export default AtollMap;

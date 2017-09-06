@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Navbar } from 'react-bootstrap';
 
 class Title extends React.Component {
@@ -16,8 +17,8 @@ class Title extends React.Component {
 }
 
 Title.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  icon: React.PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
 };
 
 export default Title;

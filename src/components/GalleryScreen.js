@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
 import Funnel from './Funnel.js';
 import Gallery from 'react-photo-gallery';
@@ -108,9 +109,9 @@ class GalleryScreen extends React.Component {
 }
 
 GalleryScreen.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  quit: React.PropTypes.func.isRequired,
-  illustrations: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  title: PropTypes.string.isRequired,
+  quit: PropTypes.func.isRequired,
+  illustrations: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default GalleryScreen;

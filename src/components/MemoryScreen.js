@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
 import Achievements from './Achievements.js';
 import Funnel from './Funnel.js';
@@ -42,10 +43,10 @@ class MemoryScreen extends React.Component {
 }
 
 MemoryScreen.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  achievements: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  unlocked: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-  quit: React.PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  achievements: PropTypes.arrayOf(PropTypes.object).isRequired,
+  unlocked: PropTypes.arrayOf(PropTypes.string).isRequired,
+  quit: PropTypes.func.isRequired,
 };
 
 export default MemoryScreen;

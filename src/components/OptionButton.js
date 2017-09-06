@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavDropdown, MenuItem } from 'react-bootstrap';
 
 class OptionButton extends React.Component {
@@ -26,8 +27,8 @@ class OptionButton extends React.Component {
 }
 
 OptionButton.propTypes = {
-  text: React.PropTypes.string.isRequired,
-  options: React.PropTypes.arrayOf(React.PropTypes.object),
+  text: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default OptionButton;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Choice from './Choice.js';
 
 class Crossroads extends React.Component {
@@ -27,8 +28,8 @@ class Crossroads extends React.Component {
 }
 
 Crossroads.propTypes = {
-  context: React.PropTypes.string,
-  choices: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  context: PropTypes.string,
+  choices: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Crossroads;

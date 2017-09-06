@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Pagination } from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 
@@ -67,8 +68,8 @@ class PaginatedText extends React.Component {
 }
 
 PaginatedText.propTypes = {
-  texts: React.PropTypes.arrayOf(React.PropTypes.string),
-  defaultPage: React.PropTypes.number,
+  texts: PropTypes.arrayOf(PropTypes.string),
+  defaultPage: PropTypes.number,
 };
 
 export default PaginatedText;

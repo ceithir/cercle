@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Text from './Text.js';
 import { Navbar, Nav, Modal } from 'react-bootstrap';
 import Title from './Title.js';
@@ -297,21 +298,21 @@ class Game extends React.Component {
 }
 
 Game.propTypes = {
-  startingSection: React.PropTypes.string.isRequired,
-  startingFlags: React.PropTypes.object.isRequired,
-  currentSection: React.PropTypes.string,
-  currentFlags: React.PropTypes.object,
-  currentLogs: React.PropTypes.arrayOf(React.PropTypes.string),
-  title: React.PropTypes.string.isRequired,
-  icon: React.PropTypes.string.isRequired,
-  sections: React.PropTypes.object.isRequired,
-  quit: React.PropTypes.func.isRequired,
-  updateAchievements: React.PropTypes.func.isRequired,
-  updateGallery: React.PropTypes.func.isRequired,
-  saveProgress: React.PropTypes.func.isRequired,
-  clearProgress: React.PropTypes.func.isRequired,
-  currentSettings: React.PropTypes.object,
-  saveSettings: React.PropTypes.func.isRequired,
+  startingSection: PropTypes.string.isRequired,
+  startingFlags: PropTypes.object.isRequired,
+  currentSection: PropTypes.string,
+  currentFlags: PropTypes.object,
+  currentLogs: PropTypes.arrayOf(PropTypes.string),
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  sections: PropTypes.object.isRequired,
+  quit: PropTypes.func.isRequired,
+  updateAchievements: PropTypes.func.isRequired,
+  updateGallery: PropTypes.func.isRequired,
+  saveProgress: PropTypes.func.isRequired,
+  clearProgress: PropTypes.func.isRequired,
+  currentSettings: PropTypes.object,
+  saveSettings: PropTypes.func.isRequired,
 };
 
 export default Game;

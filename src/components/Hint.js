@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Hint extends React.Component {
   constructor(props) {
@@ -24,8 +25,8 @@ class Hint extends React.Component {
 }
 
 Hint.propTypes = {
-  warning: React.PropTypes.string.isRequired,
-  hint: React.PropTypes.string.isRequired,
+  warning: PropTypes.string.isRequired,
+  hint: PropTypes.string.isRequired,
 };
 
 export default Hint;
