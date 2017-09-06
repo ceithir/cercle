@@ -5,7 +5,7 @@ import Achievement from './Achievement.js';
 class Achievements extends React.Component {
   render() {
     return (
-      <div>
+      <div className="achievements-container">
         {this.props.achievements.map((achievement) => {
           return (
             <Achievement

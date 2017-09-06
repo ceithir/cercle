@@ -88,6 +88,11 @@
   background: none;
 }
 
+.achievements-container {
+  position: relative;
+  z-index: 1;
+}
+
 .atoll-map {
   max-width: 720px;
   margin-bottom: 20px;
