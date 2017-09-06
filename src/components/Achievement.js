@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Panel } from 'react-bootstrap';
 
 class Achievement extends React.Component {
   render() {
     return (
-      <Panel header={this.props.name} className={this.props.disabled ? "disabled" : ""}>{this.props.description}</Panel>
+      <div className={"achievement" + (this.props.disabled ? " disabled" : "")}>
+        <div className="achievement-heading">{this.props.name}</div>
+        <div className="achievement-body">{this.props.description}</div>
+      </div>
     );
   }
 }
