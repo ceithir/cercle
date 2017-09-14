@@ -376,9 +376,26 @@ img.text-img {
 }
 
 .inventory-change {
-  border: 1px solid #696969;
+  position: relative;
+  border: 2px solid #c4313e;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 20px 15px;
+  background: linear-gradient(to right, #f8674e, #ff3e3f);
+  color: white;
+}
+
+.inventory-change::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background: url('./images/inventory-change-background.png') no-repeat;
+  background-size: contain;
+  background-position: top right 10px;
+  opacity: 0.25;
+  pointer-events: none;
 }
 
 .inventory-change .item-name {
