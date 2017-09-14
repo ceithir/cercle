@@ -10,6 +10,42 @@
   margin-top: -10px;
 }
 
+.navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {
+  color: #e3a872;
+}
+
+.navbar {
+  background: url('./images/navbar-middle.png') repeat-x;
+  background-size: contain;
+}
+
+.navbar::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: url('./images/navbar-left.png') no-repeat;
+  background-size: contain;
+  z-index: -1;
+}
+
+.navbar::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: url('./images/navbar-right.png') no-repeat;
+  background-size: contain;
+  background-position: right;
+  z-index: -1;
+}
+
 .choice {
   cursor: pointer;
   outline: 0;
