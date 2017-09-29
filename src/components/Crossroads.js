@@ -13,7 +13,7 @@ class Crossroads extends React.Component {
       />
     );
     return (
-      <div className="panel panel-default">
+      <div className="panel panel-default choices">
         {this.props.context &&
           <div className="panel-heading">
             {this.props.context}

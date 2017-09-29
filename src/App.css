@@ -63,13 +63,56 @@
   color: #cebaaf;
 }
 
+.choices {
+  display: table;
+  margin: 0 auto 20px auto;
+  background-color: #f2e5db;
+}
+
+@media (min-width: 992px) {
+  .choices {
+    min-width: 600px;
+  }
+}
+
+.choices .list-group {
+  display: table;
+  margin: 10px auto;
+  box-shadow: none;
+}
+
 .choice {
   cursor: pointer;
   outline: 0;
 }
 
-.list-group-item.choice:hover, .list-group-item.choice:focus {
-  background-color: rgba(178, 223, 238, 0.5);
+.panel.choices > .list-group .list-group-item,
+.panel.choices > .list-group:first-child .list-group-item:first-child,
+.panel.choices > .list-group:last-child .list-group-item:last-child {
+  background-color: #f2e5db;
+  border: 1px solid transparent;
+  color: #b79579;
+  margin-bottom: 1px;
+}
+
+.panel.choices > .list-group .list-group-item:hover,
+.panel.choices > .list-group .list-group-item:focus,
+.panel.choices > .list-group:first-child .list-group-item:first-child:hover,
+.panel.choices > .list-group:first-child .list-group-item:first-child:focus,
+.panel.choices > .list-group:last-child .list-group-item:last-child:hover,
+.panel.choices > .list-group:last-child .list-group-item:last-child:focus {
+  background-color: #edf0f2;
+  border-color: #bfcdc8;
+  /* Ref: https://stackoverflow.com/questions/4772906/css-is-it-possible-to-add-a-black-outline-around-each-character-in-text#answer-4772914 */
+  color: #fff;
+  text-shadow: 1px 0 0 #b9bcbe, 0 -1px 0 #b9bcbe, 0 1px 0 #b9bcbe, -1px 0 0 #b9bcbe;
+}
+
+.panel.choices > .panel-heading {
+  background: linear-gradient(to left, #ab9483 0%, #cfb39f 50%, #ab9483 100%);
+  color: #8a6148;
+  padding: 10px 20px;
+  font-weight: bold;
 }
 
 .conversation {
