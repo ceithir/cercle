@@ -46,6 +46,23 @@
   z-index: -1;
 }
 
+.navbar .dropdown-menu {
+  background-color: #faeade;
+}
+
+.navbar .dropdown-menu > li > a {
+  color: #dcb49b;
+}
+
+.navbar .dropdown-menu > li:first-child > a {
+  color: #ac764d;
+  font-weight: bold;
+}
+
+.navbar .dropdown-menu > li.dropdown-header {
+  color: #cebaaf;
+}
+
 .choice {
   cursor: pointer;
   outline: 0;
