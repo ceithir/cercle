@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Text from './Text.js';
 import { Navbar, Nav, Modal } from 'react-bootstrap';
 import Title from './Title.js';
-import InventoryButton from './InventoryButton.js';
 import OptionButton from './OptionButton.js';
 import ReactDOM from 'react-dom';
 import jump from 'jump.js';
@@ -254,9 +253,6 @@ class Game extends React.Component {
           <Navbar.Toggle />
           </Title>
           <Navbar.Collapse>
-            <Nav>
-              <InventoryButton inventory={this.state.flags.inventory} text={`Inventaire`} />
-            </Nav>
             <Nav pullRight>
               <OptionButton options={this.getOptions()} text={`Options`} />
             </Nav>
