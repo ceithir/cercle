@@ -81,12 +81,12 @@
 
 .achievement {
   border: 10px solid transparent;
-  border-radius: 40% 40% 0 0;
   margin-bottom: 30px;
   text-align: center;
   background: #e3d5c6;
   background-clip: padding-box;
   position: relative;
+  border-radius: 40% 40% 20px 20px;
 }
 
 /* Ref: https://stackoverflow.com/questions/5706963/possible-to-use-border-radius-together-with-a-border-image-which-has-a-gradient#answer-29223812 */
@@ -97,7 +97,7 @@
   background: linear-gradient(to bottom, #cff2f4 0%, #a5b89a 50%, #af9066 100%);
   content: '';
   z-index: -1;
-  border-radius: 40% 40% 0 0;
+  border-radius: 40% 40% 20px 20px;
 }
 
 .achievement-heading {
