@@ -450,3 +450,36 @@ img.text-img {
 .inventory-change .item-name {
   font-weight: bold;
 }
+
+.settings .modal-body {
+  padding: 0;
+  background-color: #fbece1;
+  border: 2px solid #d3c1b5;
+  border-top-style: none;
+  border-radius: 0 0 5px 5px;
+}
+
+.settings .modal-body form {
+  padding: 15px;
+  color: #cfa07c;
+}
+
+.settings form #fontSizeOption {
+  color: #cfa07c;
+  padding-right: 12px;
+}
+
+.settings form .has-error #fontSizeOption {
+  padding-right: 30px;
+}
+
+.settings h2 {
+  background: url('./images/modal-header.png') no-repeat;
+  background-size: contain;
+  text-align: center;
+  margin: 0;
+  padding: 7px 0;
+  margin: 0 -2px;
+  color: #dda06c;
+  font-size: 25px;
+}

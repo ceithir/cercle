@@ -48,40 +48,43 @@ class Settings extends React.Component {
 
   render() {
     return (
-      <form onSubmit={(e) => {e.preventDefault()}}>
-        <FormGroup
-          controlId="fontSizeOption"
-          validationState={ this.isFontSizeValid(this.state.form.fontSize) ? null : 'error' }
-        >
-          <ControlLabel>
-            {`Taille de la police`}
-          </ControlLabel>
-          <FormControl
-            type="number"
-            min="14"
-            max="18"
-            value={this.state.form.fontSize}
-            onChange={this.onFontSizeOptionChange}
-          />
-          <FormControl.Feedback />
-        </FormGroup>
-        <FormGroup>
-          <Checkbox
-            checked={this.state.form.justified}
-            onChange={this.onJustificationChange}
+      <div>
+        <h2>{`Paramètres`}</h2>
+        <form onSubmit={(e) => {e.preventDefault()}}>
+          <FormGroup
+            controlId="fontSizeOption"
+            validationState={ this.isFontSizeValid(this.state.form.fontSize) ? null : 'error' }
           >
-            {`Justifier le texte ?`}
-          </Checkbox>
-        </FormGroup>
-        <FormGroup>
-          <Checkbox
-            checked={this.state.form.noTransitions}
-            onChange={this.onTransitionChange}
-          >
-            {`Désactiver les transitions ?`}
-          </Checkbox>
-        </FormGroup>
-      </form>
+            <ControlLabel>
+              {`Taille de la police`}
+            </ControlLabel>
+            <FormControl
+              type="number"
+              min="14"
+              max="18"
+              value={this.state.form.fontSize}
+              onChange={this.onFontSizeOptionChange}
+            />
+            <FormControl.Feedback />
+          </FormGroup>
+          <FormGroup>
+            <Checkbox
+              checked={this.state.form.justified}
+              onChange={this.onJustificationChange}
+            >
+              {`Justifier le texte ?`}
+            </Checkbox>
+          </FormGroup>
+          <FormGroup>
+            <Checkbox
+              checked={this.state.form.noTransitions}
+              onChange={this.onTransitionChange}
+            >
+              {`Désactiver les transitions ?`}
+            </Checkbox>
+          </FormGroup>
+        </form>
+      </div>
     );
   }
 }
