@@ -12,8 +12,9 @@ class Crossroads extends React.Component {
         key={index.toString()}
       />
     );
+    const isFunnel = 1 === choices.length;
     return (
-      <div className="panel panel-default choices">
+      <div className={`panel panel-default choices${isFunnel? " funnel": ""}`}>
         {this.props.context &&
           <div className="panel-heading">
             {this.props.context}

@@ -80,8 +80,13 @@
 
 .choices .list-group {
   display: table;
+  width: 100%;
   margin: 10px auto;
   box-shadow: none;
+}
+
+.choices.funnel .list-group {
+  margin: 0;
 }
 
 .choice {
@@ -95,7 +100,7 @@
   background-color: transparent;
   border: 1px solid transparent;
   color: #c1a28a;
-  margin-bottom: 1px;
+  margin: 0 20px 1px 20px;
 }
 
 .panel.choices > .list-group .list-group-item:hover,
@@ -110,6 +115,14 @@
   /* Ref: https://stackoverflow.com/questions/4772906/css-is-it-possible-to-add-a-black-outline-around-each-character-in-text#answer-4772914 */
   color: #77868e;
   text-shadow: 1px 0 0 #b9bcbe, 0 -1px 0 #b9bcbe, 0 1px 0 #b9bcbe, -1px 0 0 #b9bcbe;
+}
+
+.panel.choices.funnel > .list-group .list-group-item,
+.panel.choices.funnel > .list-group:first-child .list-group-item:first-child,
+.panel.choices.funnel > .list-group:last-child .list-group-item:last-child {
+  margin: 0;
+  padding: 20px;
+  text-align: center;
 }
 
 .panel.choices > .panel-heading {
