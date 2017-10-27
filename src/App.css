@@ -535,7 +535,6 @@ img.text-img {
   background: url('./images/inventory-change-background.png') no-repeat;
   background-size: contain;
   background-position: top right 10px;
-  opacity: 0.25;
   pointer-events: none;
 }
 
