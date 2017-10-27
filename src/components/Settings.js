@@ -49,7 +49,7 @@ class Settings extends React.Component {
   render() {
     return (
       <div>
-        <h2>{`Paramètres`}</h2>
+        <div className="modal-title"><h2>{`Paramètres`}</h2></div>
         <form onSubmit={(e) => {e.preventDefault()}}>
           <FormGroup
             controlId="fontSizeOption"

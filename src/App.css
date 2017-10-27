@@ -10,7 +10,7 @@
   margin-top: -10px;
 }
 
-.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-nav > li > a {
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-nav > li > a, .settings .modal-title h2 {
   color: #d7a26d;
   /* Ref: http://bradsknutson.com/blog/css-engraved-text/ */
   text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
@@ -571,13 +571,44 @@ img.text-img {
   padding-right: 30px;
 }
 
-.settings h2 {
-  background: url('./images/modal-header.png') no-repeat;
+.settings .modal-title {
+  background: url('./images/navbar-middle.png') repeat-x;
   background-size: contain;
+  box-shadow: 0 0 2px 2px #f1d3be;
+  position: relative;
+}
+
+.settings .modal-title h2 {
   text-align: center;
-  margin: 0;
-  padding: 7px 0;
-  margin: 0 -2px;
   color: #dda06c;
   font-size: 25px;
+  padding: 10px 0 5px 0;
+  margin: 0;
+  z-index: 10;
+  position: relative;
+}
+
+.settings .modal-title::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: url('./images/navbar-left.png') no-repeat;
+  background-size: contain;
+}
+
+.settings .modal-title::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: url('./images/navbar-right.png') no-repeat;
+  background-size: contain;
+  background-position: right;
 }
