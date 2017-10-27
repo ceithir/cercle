@@ -10,13 +10,26 @@
   margin-top: -10px;
 }
 
-.navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {
-  color: #e3a872;
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-nav > li > a {
+  color: #d7a26d;
+  /* Ref: http://bradsknutson.com/blog/css-engraved-text/ */
+  text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: #a77e55;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background: none;
+  box-shadow: none;
 }
 
 .navbar {
   background: url('./images/navbar-middle.png') repeat-x;
   background-size: contain;
+  border: none;
+  box-shadow: 0 0 2px 2px #d0a78e;
 }
 
 .navbar::before {
@@ -47,11 +60,18 @@
 }
 
 .navbar .dropdown-menu {
-  background-color: #faeade;
+  background-color: #f9eadd;
+  border-color: #e2ccbe;
 }
 
 .navbar .dropdown-menu > li > a {
   color: #dcb49b;
+  text-shadow: -1px -1px 1px #f0d9c9;
+}
+
+.navbar .dropdown-menu > li > a:hover, .navbar .dropdown-menu > li > a:focus {
+  color: #9a7d6c;
+  background: none;
 }
 
 .navbar .dropdown-menu > li:first-child > a {
@@ -59,8 +79,24 @@
   font-weight: bold;
 }
 
+.navbar .dropdown-menu > li:first-child > a:hover, .navbar .dropdown-menu > li:first-child > a:focus {
+  color: #785235;
+}
+
 .navbar .dropdown-menu > li.dropdown-header {
   color: #cebaaf;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.navbar .dropdown-menu > li > a, .navbar .dropdown-menu > li.dropdown-header {
+  border-bottom: 1px solid #f4d8c7;
+  padding: 7px 0;
+  margin: 0 20px;
+}
+
+.navbar .dropdown-menu > li:last-child > a {
+  border-bottom: none;
 }
 
 .choices {
