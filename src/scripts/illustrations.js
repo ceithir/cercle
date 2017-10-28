@@ -1,6 +1,6 @@
 import coverImage from "./../images/rest.jpg";
 import raiahuiIntroImage from "./../images/raiahui-intro.jpg";
-import chiefImage from "./../images/chief.jpg";
+import witchImage from "./../images/witch.jpg";
 import feastImage from "./../images/feast.jpg";
 import crocodileImage from "./../images/crocodile.jpg";
 import raiahuiFriendsImage from "./../images/raiahui-friends.jpg";
@@ -23,16 +23,16 @@ const illustrations = [
     height: 1600,
   },
   {
-    key: "chief",
-    src: chiefImage,
+    key: "feast",
+    src: feastImage,
     condition: (flags) => {return flags.wentBeyondIntroduction;},
     width: 1200,
     height: 1600,
   },
   {
-    key: "feast",
-    src: feastImage,
-    condition: (flags) => {return flags.wentBeyondIntroduction;},
+    key: "witch",
+    src: witchImage,
+    condition: (flags) => {return flags.friendlyWithWitch;},
     width: 1200,
     height: 1600,
   },

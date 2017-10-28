@@ -1,7 +1,6 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import raiahuiIntroImage from "./../images/raiahui-intro.jpg";
-import chiefImage from "./../images/chief.jpg";
 import feastImage from "./../images/feast.jpg";
 import {repeatingFunnel, coatSentence} from "./helpers";
 
@@ -205,8 +204,6 @@ const intro = {
 <p>Lorsque vous parvenez tout près de la plage, Raiahui saute hors de la pirogue pour vous aider à accoster. Une vingtaine de spectateurs de tous âges se sont approchés pour vous observer avec des yeux curieux et il en arrive encore davantage. Vous soutenez de votre mieux toute cette attention ; vous avez visité d’autres îles où le passage d’étrangers est si rare que votre venue faisait figure d’évènement.</p>
 
 <p>La foule s’écarte soudain pour laisser passer un homme aux cheveux presque ras, dont le corps noueux est marqué de diverses cicatrices.</p>
-
-<img src="${chiefImage}" class="img-responsive text-img tall right" alt=""/>
 
 <div class="conversation">
 <p>— C’est le chef de la tribu, Ataroa, vous glisse Raiahui tandis que vous descendez à votre tour de la pirogue.</p>

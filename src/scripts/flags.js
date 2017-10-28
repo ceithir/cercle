@@ -81,6 +81,7 @@ const flags = {
   "hesitationCounter": 0,
   "wentBeyondIntroduction": false,
   "reachedTheTrial": false,
+  "friendlyWithWitch": false,
 };
 
 export default flags;

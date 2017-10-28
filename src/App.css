@@ -404,6 +404,10 @@
   opacity: 0.6;
 }
 
+.core .logs > div > hr {
+  clear: both;
+}
+
 img.text-img {
   margin-bottom: 10px;
   margin-left: auto;

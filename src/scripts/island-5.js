@@ -2,6 +2,7 @@ import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
 import {endGame, useItem, acquireItem, coatSentence, repeatingFunnel, secondTimeToIsland, itemAcquisitionFeedback} from "./helpers.js";
+import witchImage from "./../images/witch.jpg";
 
 const escapeTheWitch = (goToSection, flags, updateFlag) => {
   const choices = [
@@ -87,6 +88,7 @@ const island5 = {
         {
           "text": `Vous abordez normalement et montez tout droit vers la hutte.`,
           "action": () => {
+            updateFlag("friendlyWithWitch", true);
             goToSection("witch-bold-approach");
           },
         },
@@ -119,6 +121,8 @@ const island5 = {
   "witch-bold-approach": {
     "text": `
 <p>Le contour de l’île est rocailleux, mais vous parvenez néanmoins à accoster sans trop de mal. Vous gravissez ensuite la pente sous le regard impassible des nombreux fétiches. Alors que vous êtes sur le point d’atteindre la hutte, il en sort soudain une grosse femme enroulée dans un paréo pourpre. Ses cheveux courts sont hérissés comme des piquants et, de la tête aux chevilles, elle porte de nombreux bijoux en or d’une élégance que vous avez rarement observée. A sa taille sont accrochés un sac à demi-plein, un filet gris et un petit couteau en métal. Elle tient à la main une coupe remplie d’un liquide clair.</p>
+
+<img src="${witchImage}" class="img-responsive text-img tall left" alt=""/>
 
 <div class="conversation">
 <p>— Une visiteuse ! s’exclame-t-elle d’une voix ravie. Quel plaisir ! Cela faisait si longtemps que personne n’était venu…</p>
