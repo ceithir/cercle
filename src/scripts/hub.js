@@ -280,7 +280,7 @@ const getIslandChoice = function(island, goToSection, flags, updateFlag, extraLo
     "text": island.name+".",
     "action": () => {
       updateFlag("targetIsland", island.key);
-      goToSection(`island-confirm`, extraLog);
+      goToSection("island-confirm", extraLog);
     },
   };
 }
