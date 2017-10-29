@@ -240,7 +240,7 @@ const getIslandsWithMapMetadata = (flags, currentIsland) => {
 }
 
 const getIslandWithMapMetadata = (islandKey, flags) => {
-  return getIslandsWithMapMetadata(flags).find(island => islandKey === island.key);
+  return getIslandsWithMapMetadata(flags).filter(island => islandKey === island.key)[0];
 }
 
 const moveToIsland = function(newIsland, goToSection, flags, updateFlag, extraLog = "") {
@@ -262,8 +262,8 @@ const moveToIsland = function(newIsland, goToSection, flags, updateFlag, extraLo
   updateFlag("visitedIslands", flags.visitedIslands.slice().concat([newIsland]));
 
   const islands = getIslandsWithMapMetadata(flags, newIsland);
-  const from = islands.find(island => currentIsland === island.key);
-  const to = islands.find(island => newIsland === island.key);
+  const from = islands.filter(island => currentIsland === island.key)[0];
+  const to = islands.filter(island => newIsland === island.key)[0];
   const course = flags.course.concat([[
     from["harbor"]["x"],
     from["harbor"]["y"],
