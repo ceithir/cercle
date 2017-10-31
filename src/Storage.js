@@ -15,7 +15,7 @@ class Storage {
     try {
       window.localStorage.setItem(
         this.storageKey,
-        this.stringify(Object.assign(
+        this._stringify(Object.assign(
           {},
           this._loadWarehouse(),
           {[key]: value},
@@ -29,7 +29,7 @@ class Storage {
 
   // JSON.stringify is supported in all major browsers
   // But the abandoned yet still widely used polyfill asserting this has a bug in Opera Mobile
-  stringify (value) {
+  _stringify (value) {
     //Ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON#Polyfill
     var toString = Object.prototype.toString;
     var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -45,18 +45,18 @@ class Storage {
       return value.toString();
     } else if (typeof value === 'object') {
       if (typeof value.toJSON === 'function') {
-        return this.stringify(value.toJSON());
+        return this._stringify(value.toJSON());
       } else if (isArray(value)) {
         var res = '[';
         for (var i = 0; i < value.length; i++)
-          res += (i ? ', ' : '') + this.stringify(value[i]);
+          res += (i ? ', ' : '') + this._stringify(value[i]);
         return res + ']';
       } else if (toString.call(value) === '[object Object]') {
         var tmp = [];
         for (var k in value) {
           // in case "hasOwnProperty" has been shadowed
           if (hasOwnProperty.call(value, k))
-            tmp.push(this.stringify(k) + ': ' + this.stringify(value[k]));
+            tmp.push(this._stringify(k) + ': ' + this._stringify(value[k]));
         }
         return '{' + tmp.join(', ') + '}';
       }
