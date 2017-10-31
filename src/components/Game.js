@@ -169,7 +169,7 @@ class Game extends React.Component {
       },
       {
         "key": "autosave",
-        "text": `Ce jeu sauvegarde automatiquement.`,
+        "text": this.props.canSave? `Ce jeu sauvegarde automatiquement.` : `Sauvegarde indisponible sur ce navigateur.`,
       },
       {
         "key": "reset",
@@ -309,6 +309,7 @@ Game.propTypes = {
   clearProgress: PropTypes.func.isRequired,
   currentSettings: PropTypes.object,
   saveSettings: PropTypes.func.isRequired,
+  canSave: PropTypes.bool.isRequired,
 };
 
 export default Game;

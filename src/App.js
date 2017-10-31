@@ -239,6 +239,7 @@ class App extends Component {
         saveProgress={this.saveProgress}
         clearProgress={this.clearProgress}
         quit={this.titleScreen}
+        canSave={storage.isAvailable()}
       />
     );
   }
