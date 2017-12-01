@@ -570,6 +570,37 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
         <Crossroads choices={choices} />
       );
     }
+  },
+  "quick-start": {
+    "text": `<p>Passer l'introduction ?</p>`,
+    "next": (goToSection, flags, updateFlag) => {
+      const noLog = () => "";
+
+      const choices = [
+        {
+          "text": `Oui.`,
+          "action": () => {
+            updateFlag("toldAboutFaanaruaByRaiahui", true);
+            updateFlag("toldAboutAtollByRaiahui", true);
+            updateFlag("toldAboutLazyOneByAriinea", true);
+            updateFlag("toldAboutFaanaruaByVarenui", true);
+            updateFlag("watchedKnifeImportance", true);
+            updateFlag("wentBeyondIntroduction", true);
+            goToSection("awakening", noLog);
+          },
+        },
+        {
+          "text": `Non.`,
+          "action": () => {
+            goToSection("prelude", noLog);
+          },
+        },
+      ];
+
+      return (
+        <Crossroads choices={choices} />
+      );
+    },
   }
 };
 

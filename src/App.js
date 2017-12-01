@@ -136,6 +136,21 @@ class App extends Component {
     storage.save("settings", settings);
   }
 
+  canFastForward = () => {
+    if (this.state.achievements.indexOf("the-truth") !== -1) {
+      // Seen enough
+      return true;
+    }
+
+    const atollBadEnds = ["tried-to-escape", "death-under-water", "the-witch-cup", "a-cursed-item", "the-witch-net", "the-crocodile-meal", "raiahui-good-end"];
+    if (this.state.achievements.filter((achievement) => atollBadEnds.indexOf(achievement) !== -1).length >= 2) {
+      // At least two different bad ends
+      return true;
+    }
+
+    return false;
+  }
+
   render() {
     const title = `Au Cœur d’un Cercle de Sable et d’Eau`;
     const newGameText = `Nouvelle partie`;
@@ -145,6 +160,8 @@ class App extends Component {
     const creditsText = `Plumes`;
     const unlockedAchievements = this.state.achievements;
     const settings = storage.load("settings");
+    const canFastForward = this.canFastForward();
+    const startingSection = this.canFastForward()? "quick-start": "prelude";
 
     if ("title" === this.state.screen) {
       let buttons = [
@@ -223,7 +240,7 @@ class App extends Component {
 
     return (
       <Game
-        startingSection={"prelude"}
+        startingSection={startingSection}
         startingFlags={flags}
         currentSection={this.state.section}
         currentFlags={this.state.flags}
@@ -240,6 +257,7 @@ class App extends Component {
         clearProgress={this.clearProgress}
         quit={this.titleScreen}
         canSave={storage.isAvailable()}
+        canFastForward={canFastForward}
       />
     );
   }

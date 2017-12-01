@@ -246,6 +246,11 @@ class Game extends React.Component {
   }
 
   render() {
+    let mainContainerClassName = "container-fluid core ";
+    mainContainerClassName += " font-"+this.state.settings.fontSize;
+    mainContainerClassName += this.state.settings.justified ? " text-justify" : "";
+    mainContainerClassName += this.props.canFastForward ? " highlight-conditional": "";
+
     return (
       <div>
         <Navbar fixedTop fluid collapseOnSelect>
@@ -258,7 +263,7 @@ class Game extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <div className={"container-fluid core font-"+this.state.settings.fontSize + (this.state.settings.justified ? " text-justify" : "")}>
+        <div className={mainContainerClassName}>
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
               <div className="logs">
@@ -271,7 +276,7 @@ class Game extends React.Component {
                   );
                 })}
               </div>
-              <div>              
+              <div>
                 <Text content={this.state.currentSectionText} ref={(ref) => { this.currentSectionRef = ref; }} />
                 {this.getSection(this.state.currentSection).next(this.goToSection, this.state.flags, this.updateFlag, this.reset, this.resetAndQuit)}
               </div>
@@ -308,6 +313,7 @@ Game.propTypes = {
   currentSettings: PropTypes.object,
   saveSettings: PropTypes.func.isRequired,
   canSave: PropTypes.bool.isRequired,
+  canFastForward: PropTypes.bool.isRequired,
 };
 
 export default Game;

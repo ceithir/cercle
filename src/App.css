@@ -463,7 +463,7 @@ img.text-img {
   font-weight: bold;
 }
 
-.text-conditional {
+.highlight-conditional .text-conditional {
   color: #31708f;
 }
 
