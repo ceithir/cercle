@@ -331,6 +331,26 @@
   stroke-width: 2;
 }
 
+.atoll-map.fragment {
+  max-width: 360px;
+  max-height: 360px;
+}
+
+.atoll-map.animated .course {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: growing 5s linear infinite;
+}
+
+@keyframes growing {
+  from {
+    stroke-dashoffset: 500;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .ending-message > p {
   font-style: italic;
 }

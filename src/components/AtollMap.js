@@ -29,8 +29,8 @@ class AtollMap extends React.Component {
   render() {
     return (
       <svg
-        viewBox="0 0 720 720"
-        className="atoll-map center-block"
+        viewBox={this.props.viewBox.join(" ")}
+        className={`atoll-map center-block ${this.props.extraClassName}`}
         xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
       >
         <image xlinkHref={this.props.mapImg} x="0" y="0" height="720" width="720"/>
@@ -94,6 +94,13 @@ AtollMap.propTypes = {
     cross: PropTypes.arrayOf(PropTypes.number),
   })).isRequired,
   course: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
+  viewBox: PropTypes.arrayOf(PropTypes.number),
+  extraClassName: PropTypes.string,
+};
+
+AtollMap.defaultProps = {
+  viewBox: [0, 0, 720, 720],
+  extraClassName: "",
 };
 
 export default AtollMap;

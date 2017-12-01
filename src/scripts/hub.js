@@ -4,6 +4,7 @@ import Funnel from "./../components/Funnel.js";
 import {useItem, acquireItem, endGame, repeatingFunnel, coatSentence, wentToIsland, itemUpdateFeedback} from "./helpers.js";
 import atollMapImg from "./../images/map.jpg";
 import AtollMap from "./../components/AtollMap.js";
+import ReactDOMServer from 'react-dom/server';
 
 const timeLimit = 12;
 
@@ -423,6 +424,36 @@ const timeDescription = (time) => {
   }
 }
 
+const getJourneyMap = (flags) => {
+  if (flags.targetIsland === flags.currentIsland) {
+    return "";
+  }
+
+  const origin = getIslandWithMapMetadata(flags.currentIsland, flags)["harbor"];
+  const dest = getIslandWithMapMetadata(flags.targetIsland, flags)["harbor"];
+
+  const course = [[
+    origin["x"],
+    origin["y"],
+    dest["x"],
+    dest["y"],
+  ]];
+
+  const distX = Math.abs(dest["x"]-origin["x"]);
+  const distY = Math.abs(origin["y"]-dest["y"])
+
+  let viewBox = [
+    Math.min(dest["x"], origin["x"])-50,
+    Math.min(dest["y"], origin["y"])-50,
+    distX+100,
+    distY+100,
+  ];
+
+  return ReactDOMServer.renderToStaticMarkup(
+    <AtollMap mapImg={atollMapImg} islands={[]} course={course} viewBox={viewBox} extraClassName="fragment animated" />
+  );
+}
+
 const hub = {
   "hub": {
     "text": (flags) => {
@@ -705,7 +736,10 @@ ${itemUpdateFeedback(flags.inventory.pearls.name)}
   },
   "island-confirm": {
     "text": (flags) => {
-      return getIslandWithMapMetadata(flags.targetIsland, flags)["description"];
+      return `
+        ${getJourneyMap(flags)}
+        ${getIslandWithMapMetadata(flags.targetIsland, flags)["description"]}
+      `;
     },
     "next": (goToSection, flags, updateFlag) => {
       const island = getIslandWithMapMetadata(flags.targetIsland, flags);
