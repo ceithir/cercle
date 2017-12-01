@@ -15,6 +15,25 @@ export const useItem = function(itemKey, updateFlag) {
   updateFlag(["inventory", itemKey, "used"], true);
 };
 
+const gameIsStillWinnableWithoutTurningFullyMad = (flags) => {
+  if (flags.drunk) {
+    // Technically still possible with enough other options, but so hard it barely matters
+    return false;
+  }
+
+  const options = [
+    flags.wellRested,
+    flags.boostedByFruit,
+    flags.inventory.dolphin.acquired && !flags.inventory.dolphin.used,
+    flags.inventory.smokePearls.acquired && !flags.inventory.smokePearls.used,
+    flags.inventory.doll.acquired && !flags.inventory.doll.used,
+    flags.inventory.net.acquired && !flags.inventory.net.used,
+  ];
+
+  // You can win with only one option, but it's quite hard, so requiring at least two
+  return options.filter(element => element).length >= 2;
+}
+
 const computeAchievements = function(flags) {
   return achievements.filter((achievement) => {
     return achievement.condition(flags);
@@ -67,12 +86,18 @@ const endButtons = function(flags, reset, quit) {
     });
   }
 
+  const showWarningText = !flags.survivedTheTrial && flags.flagsBeforeActualTrial && !gameIsStillWinnableWithoutTurningFullyMad(flags);
+  const warningText = `Mananuiva s'est présentée à l'épreuve avec bien peu d'atouts dans sa manche. Il serait sans doute sage de recommencer du début pour acquérir une meilleure main plutôt que de s'acharner sur une situation potentiellement sans issue.`;
+
   return (
-    <Row>
-      <Col md={6} mdOffset={3} className="lead text-center">
-        <Crossroads choices={choices} />
-      </Col>
-    </Row>
+    <div className="restart-buttons">
+      {showWarningText && <p className="hint">{warningText}</p>}
+      <Row>
+        <Col md={6} mdOffset={3} className="lead text-center">
+          <Crossroads choices={choices} />
+        </Col>
+      </Row>
+    </div>
   );
 }
 

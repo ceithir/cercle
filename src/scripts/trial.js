@@ -100,30 +100,9 @@ const trueStartFunnel = (text, goToSection, flags, updateFlag) => {
   );
 }
 
-const gameIsStillWinnableWithoutTurningFullyMad = (flags) => {
-  if (flags.drunk) {
-    // Technically still possible with enough other options, but so hard it barely matters
-    return false;
-  }
-
-  const options = [
-    flags.wellRested,
-    flags.boostedByFruit,
-    flags.inventory.dolphin.acquired && !flags.inventory.dolphin.used,
-    flags.inventory.smokePearls.acquired && !flags.inventory.smokePearls.used,
-    flags.inventory.doll.acquired && !flags.inventory.doll.used,
-    flags.inventory.net.acquired && !flags.inventory.net.used,
-  ];
-
-  // You can win with only one option, but it's quite hard, so requiring at least two
-  return options.filter(element => element).length >= 2;
-}
-
 const savePointAction = (text, goToSection, flags, updateFlag) => {
   updateFlag("seenRaiahuiTrueForm", true);
-  if (gameIsStillWinnableWithoutTurningFullyMad(flags)) {
-    updateFlag("flagsBeforeActualTrial", Object.assign({}, flags, {"seenRaiahuiTrueForm": true}));
-  }
+  updateFlag("flagsBeforeActualTrial", Object.assign({}, flags, {"seenRaiahuiTrueForm": true}));
   return goToSection("trial-underwater", coatSentence(text));
 }
 

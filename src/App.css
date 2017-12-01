@@ -664,3 +664,7 @@ img.text-img {
     min-height: 400px;
   }
 }
+
+.restart-buttons p.hint {
+  margin-bottom: 20px;
+}
