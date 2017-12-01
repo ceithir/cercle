@@ -685,7 +685,7 @@ ${statusComment}
 
 <p>Alors que vous plongez votre main dans l’eau pour la nettoyer, vous remarquez que l’eau change de couleur, s’obscurcissant énormément autour de vos phalanges. Il vous vient alors à l’idée d’immerger entièrement une de ces perles.</p>
 
-<p>Sans grand effet tout d’abord. À peine quelques maigrichonnes fumerolles un peu plus foncées sans échappent. Vous la frottez un peu, et la fumée sous-marine gagne en épaisseur et en opacité. Vous finissez par l’écraser carrément, libérant une vaste nuage ne laissant pas passer la moindre particule de lumière.</p>
+<p>Sans grand effet tout d’abord. À peine quelques maigrichonnes fumerolles un peu plus foncées s’en échappent. Vous la frottez un peu, et la fumée sous-marine gagne en épaisseur et en opacité. Vous finissez par l’écraser carrément, libérant une vaste nuage ne laissant pas passer la moindre particule de lumière.</p>
 
 <p>Le faible courant du lagon ayant le plus grand mal à disperser le résultat de votre expérience, votre pirogue se trouve maintenant au centre d’une flaque d’ombre. Elle ne semble pas dangereuse, juste impénétrable.</p>
 
