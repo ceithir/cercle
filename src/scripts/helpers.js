@@ -114,23 +114,11 @@ export const endGame = function(goToSection, flags, updateFlag, reset, quit) {
 
 const goodEndMessage = function(flags) {
   const achievementsText = `Ce fut un parcours mouvementé, mais vous en êtes venue à bout :`;
-  const hintText = `Mais avez-vous découvert tous les secrets du lagon ? Par exemple saviez-vous…`;
-  //TODO Random hints out of a list
-  const hints = [
-    `Qu’il est possible de rencontrer la mère de Raiahui ?`,
-    `De battre Raiahui sans jamais avoir quitté l’île de départ ?`,
-  ];
 
   return (
     <div className="ending-message">
       <p>{achievementsText}</p>
       <Achievements achievements={computeAchievements(flags)} />
-      <p>{hintText}</p>
-      <ul>
-        {hints.map((hint, index) => {
-          return <li key={index.toString()}>{hint}</li>;
-        })}
-      </ul>
     </div>
   );
 }
