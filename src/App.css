@@ -658,3 +658,9 @@ img.text-img {
     background: none;
   }
 }
+
+@media (min-width: 992px) {
+  .logs + div {
+    min-height: 400px;
+  }
+}

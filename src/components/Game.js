@@ -271,12 +271,10 @@ class Game extends React.Component {
                   );
                 })}
               </div>
-              <Text content={this.state.currentSectionText} ref={(ref) => { this.currentSectionRef = ref; }} />
-            </div>
-          </div>
-          <div className="row next">
-            <div className="col-md-8 col-md-offset-2">
-              {this.getSection(this.state.currentSection).next(this.goToSection, this.state.flags, this.updateFlag, this.reset, this.resetAndQuit)}
+              <div>              
+                <Text content={this.state.currentSectionText} ref={(ref) => { this.currentSectionRef = ref; }} />
+                {this.getSection(this.state.currentSection).next(this.goToSection, this.state.flags, this.updateFlag, this.reset, this.resetAndQuit)}
+              </div>
             </div>
           </div>
         </div>
