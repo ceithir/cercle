@@ -8,7 +8,7 @@ class Text extends React.Component {
 
   render() {
     return (
-    	<div dangerouslySetInnerHTML={this.prepareHtmlContent()} ></div>
+    	<div className="active-text" dangerouslySetInnerHTML={this.prepareHtmlContent()} ></div>
     );
   }
 }

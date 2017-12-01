@@ -404,7 +404,7 @@
   opacity: 0.6;
 }
 
-.core .logs > div > hr {
+.core .logs > div > hr, .active-text + .choices {
   clear: both;
 }
 
@@ -666,5 +666,9 @@ img.text-img {
 }
 
 .restart-buttons p.hint {
+  margin-bottom: 20px;
+}
+
+.active-text {
   margin-bottom: 20px;
 }
