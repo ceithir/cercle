@@ -87,7 +87,7 @@ const endButtons = function(flags, reset, quit) {
   }
 
   const showWarningText = !flags.survivedTheTrial && flags.flagsBeforeActualTrial && !gameIsStillWinnableWithoutTurningFullyMad(flags);
-  const warningText = `Mananuiva s'est présentée à l'épreuve avec bien peu d'atouts dans sa manche. Il serait sans doute sage de recommencer du début pour acquérir une meilleure main plutôt que de s'acharner sur une situation potentiellement sans issue.`;
+  const warningText = `Mananuiva s’est présentée à l’épreuve avec bien peu d’atouts dans sa manche. Il serait sans doute sage de recommencer du début pour acquérir une meilleure main plutôt que de s’acharner sur une situation potentiellement sans issue.`;
 
   return (
     <div className="restart-buttons">
@@ -189,6 +189,6 @@ export const itemAcquisitionFeedback = (itemName) => {
 
 export const itemUpdateFeedback = (itemName) => {
   return inventoryChange(`
-L'objet <span class="item-name">${itemName}</span> a été mis à jour.
+L’objet <span class="item-name">${itemName}</span> a été mis à jour.
   `);
 }
