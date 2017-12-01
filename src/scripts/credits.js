@@ -10,7 +10,7 @@ const credits = `
 
 <p>Autres éléments graphiques par <a target="_blank" rel="noopener noreferrer" href="https://lemmasoft.renai.us/forums/viewtopic.php?t=40027">WinterMochie</a>.</p>
 
-<p>Code par Skarn.</p>
+<p>Code par <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/Skarn_TG">Skarn</a>.</p>
 </div>
 `;
 
