@@ -36,7 +36,9 @@ class GalleryScreen extends React.Component {
         "width": 1200,
         "height": 1600,
       };
-    });
+    })
+    // See https://github.com/neptunian/react-photo-gallery/issues/70
+    .map(illustration => Object.assign({}, illustration, {srcset: [], sizes: []}));
   }
 
   openLightbox = (index, event) => {
