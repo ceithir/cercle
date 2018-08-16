@@ -5,18 +5,18 @@ const island2 = {
     "text": (flags) => {
       if (secondTimeToIsland("island-2", flags)) {
         return `
-<p>Le vacarme des oiseaux n’a pas diminué depuis votre précédent passage.</p>
+<p>The birds are just as loud as last time.</p>
         `;
       }
 
       return `
-<p>L’île dont vous approchez est couverte de nombreux palmiers et buissons. Approchant votre pirogue de la plage de sable clair, vous êtes frappée par la cacophonie de trilles et de sifflements qui s’échappe de cette abondance végétale. De toute évidence, une multitude d’oiseaux a élu ici domicile. En revanche, vous ne distinguez aucun signe qu’il y ait d’autres habitants.</p>
+<p>This island is covered with many palm trees and bushes. As you bring your canoe closer to the white sand beach, you’re struck by a cacophony of trills and whistling coming out of the dense vegetation. Many birds have obviously made this island their home. Nothing seems to suggest that there may be other inhabitants.</p>
       `;
     },
     "next": function(goToSection, flags, updateFlag) {
       const choices = [
         {
-          "text": `Vous abordez cette île pour l’explorer.`,
+          "text": `You land your canoe and explore the island.`,
           "action": () => {
             updateFlag("time", flags.time+1);
             updateFlag("searchedIsland2", true);
@@ -24,7 +24,7 @@ const island2 = {
           },
         },
         {
-          "text": `Vous décidez de vous rendre ailleurs.`,
+          "text": `You choose another destination.`,
           "action":  "back-to-hub",
         },
       ];
@@ -34,10 +34,10 @@ const island2 = {
   },
   "exploring-island-2" : {
     "text":`
-<p>Non sans mal, vous vous frayez un chemin à travers l’épaisse végétation. Le ciel n’est bientôt plus visible que sous la forme de fragments d’azur minces et dispersés. Les cris d’oiseaux vous entourent de toute part et, même si les volatiles sont plus audibles que visibles, vous apercevez sans peine nombre d’entre eux. Votre présence ne semble pas les alarmer le moins du monde et, si vous disposiez du matériel nécessaire, il serait sans doute facile d’en attraper quelques-uns. Mais, même si le festin de la veille n’a pas épuisé votre goût pour la viande et que les plumes vivement colorées de certains des oiseaux vous font envie, il y a sans doute de meilleures façons d’occuper votre temps aujourd’hui.</p>
+<p>You make your way through the dense vegetation with some difficulty. Soon enough, the sky is reduced to azure fragments, small and scattered. You see many birds above you, and you hear many more. Your presence doesn’t seem to worry them in the slightest and, if you had the right equipment, it would probably be easy to catch a few of them. But, though yesterday's feast hasn't exhausted your taste for meat, and the brightly colored feathers of some birds are highly tempting, you realize that there are more useful ways of spending your time today.</p>
     `,
     "next": function(goToSection) {
-      const text = `Après vous être assurée qu’il n’y a rien d’autre sur cette île, vous regagnez votre pirogue pour repartir.`;
+      const text = `Once you've made certain that there's nothing else on this island, you go back to your canoe and leave.`;
       const action = "back-to-hub";
 
       return repeatingFunnel(
