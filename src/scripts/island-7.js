@@ -7,17 +7,17 @@ const island7 = {
     "text": (flags) => {
       if (secondTimeToIsland("island-7", flags)) {
         return `
-<p>L’îlot paraît encore plus insignifiant que lors de votre passage précédent. Il ne vous serait jamais venu à l’esprit spontanément qu’il puisse s’y trouver quelque chose de précieux.</p>
+<p>The islet looks even tinier than the previous time you were here. You’d never have guessed that it might hide something valuable.</p>
         `;
       }
 
       return `
-<p>Cette île n’est rien d’autre qu’une étendue de sable nu affleurant tout juste au-dessus des vagues. Vous pourriez la traverser en moins d’une dizaine d’enjambées.</p>
+<p>This islet is but a stretch of bare sand, rising only slightly above the waves. Ten strides would be more than sufficient to cross it.</p>
       `;
     },
     "next": function(goToSection, flags, updateFlag) {
       if (flags.talkedWithFaanarua && !flags.inventory.dolphin.acquired) {
-        const text = `Vous vous mettez à la recherche du médaillon dont Faanarua vous a parlé.`;
+        const text = `You start looking for the pendant Faanarua told you about.`;
         const action = () => {
           acquireItem("dolphin", updateFlag);
           updateFlag("time", flags.time+1);
@@ -29,7 +29,7 @@ const island7 = {
         );
       }
 
-      const text = `Vous parvenez vite à la conclusion qu’il n’y a rien à faire ici.`;
+      const text = `You quickly come to the conclusion that there’s nothing for you to discover here.`;
       const action = "back-to-hub";
 
       return repeatingFunnel(goToSection, text, action);
@@ -38,17 +38,17 @@ const island7 = {
   "exploring-island-7" : {
     "text": (flags) => {
       return `
-<p>L’île est minuscule, mais l’objet que vous recherchez l’est également. Vous retournez méthodiquement le sable chaud à sa recherche, espérant que Faanarua ne l’a pas trop profondément enterré. Il va de toute façon vous falloir de la chance ou de la patience. Après de longs moments infructueux, vous ne pouvez cependant vous empêcher de commencer à éprouver une certaine lassitude. Le talisman est-il vraiment là ? Même si Faanarua vous a raconté la vérité, il s’est écoulé de nombreuses années depuis qu’elle l’a caché ici. Comment savoir si la pluie, le vent et les vagues ne l’ont pas fait progressivement glisser dans l’océan ou dans le lagon ?</p>
+<p>The islet may be tiny, but so is the object you’re looking for. You methodically search the warm sand, hoping that Faanarua didn’t bury the pendant too deep. You know you’re going to need either luck or patience. But after a while, seeing your efforts remain unfruitful becomes wearisome. Is the pendant really here ? According to Faanarua, it’s been many years since she hid it. The rain, the wind and the waves could have gradually shifted its position until it vanished into the ocean or into the lagoon.</p>
 
-<p>Vous êtes tellement préoccupée par ces doutes que vous jetez presque de côté l’objet de vos recherches lorsque vous mettez la main dessus, l’ayant pris pour un coquillage brisé. Heureusement, votre attention n’est pas encore tout à fait engourdie et vous retenez juste à temps votre geste !</p>
+<p>You’re so preoccupied by those growing doubts that, when your fingers close on the very object you were looking for, you almost throw it aside, taking it for a broken piece of seashell. Fortunately, you’re still paying enough attention to cancel your gesture just in time !</p>
 
-<p>Vous observez avec curiosité l’amulette, taillée dans une pierre blanche comme l’écume. Elle est à peu près grande comme votre index et, même si elle a été endommagée, il reste clair qu’elle représente un dauphin. Vous allez chercher à bord de votre pirogue une lanière en cuir, que vous passez par le mince trou pratiqué dans la pierre à cet effet. Lorsque vous accrochez l’amulette autour de votre cou, vous êtes saisie d’une sensation étrange, comme si vous veniez de prendre une inspiration particulièrement profonde. Mais l’impression se dissipe presque aussitôt, vous laissant tout à fait inchangée. L’amulette a-t-elle conservé le moindre pouvoir ? En tout cas, elle ne peut pas vous nuire.</p>
+<p>You study the pendant curiously. It’s white as foam and about the size of your forefinger. Though it’s damaged, it clearly represents a dolphin. You fetch a leather thong from your canoe and use it to hang the pendant around your neck. As you do, you feel somewhat strange, as if you’d just taken an especially deep breath. But the impression dissipates almost immediately, leaving you quite unchanged. Has the pendant retained any power at all ? In any case, wearing it can’t harm you.</p>
 
 ${itemAcquisitionFeedback(flags.inventory.dolphin.name)}
       `;
     },
     "next": function(goToSection) {
-      const text = `N’ayant de toute évidence rien d’autre à faire sur cette île, vous ne tardez pas à repartir.`;
+      const text = `There’s obviously nothing new for you to do here, and you soon decide to head elsewhere.`;
       const action = "back-to-hub";
 
       return repeatingFunnel(goToSection, text, action);

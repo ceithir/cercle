@@ -3,11 +3,11 @@ import Crossroads from "./../components/Crossroads.js";
 import {acquireItem, repeatingCrossroad, repeatingFunnel, coatSentence, itemAcquisitionFeedback} from "./helpers.js";
 
 const exploreOrLeave = function(goToSection, flags, updateFlag) {
-  const leaveText = `Vous regagnez votre pirogue.`;
+  const leaveText = `You go back to your canoe.`;
 
   const choices = [
     {
-      "text": `Vous partez explorer le reste de l’île.`,
+      "text": `You decide to explore the rest of the island.`,
       "action": () => {
         updateFlag("time", flags.time+1);
         goToSection("outside-the-village");
@@ -27,19 +27,19 @@ const exploreOrLeave = function(goToSection, flags, updateFlag) {
 const village = {
   "village": {
     "text": `
- <p>Le village est encore plongé dans une profonde torpeur, mais vous n’êtes pas la seule personne réveillée : à une certaine distance des huttes, vous remarquez un homme et une femme en train de s’affairer avec leurs couteaux d’ivoire, entaillant profondément un grand nombre de palmiers. Ils vous adressent un signe de main en vous apercevant, mais n’interrompent pas leur besogne.</p>
+ <p>The village is still deep in sleep, but you’re not the only one who’s awake : some distance away from the huts, you notice a man and a woman busy making deep cuts on palm trees with their ivory knives. They wave when they spot you, but do not halt their activity.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
       const choices = [
         {
-          "text": `Vous décidez de les aborder.`,
+          "text": `You decide to approach them.`,
           "action": () => {
             updateFlag("time", flags.time+1);
             goToSection("wine-makers");
           },
         },
         {
-          "text": `Vous partez explorer le reste de l’île.`,
+          "text": `You decide to explore the rest of the island`,
           "action": () => {
             updateFlag("time", flags.time+1);
             goToSection("outside-the-village");
@@ -54,44 +54,44 @@ const village = {
   },
   "wine-makers": {
     "text": `
-<p>L’homme s’appelle Oramui et la femme Terani. En préparation de la cérémonie de ce soir, ils sont occupés à récupérer la sève nécessaire pour faire du vin de palme. Cette boisson claire et effervescente ne vous est pas inconnue — elle est fréquemment servie lors des célébrations dans votre tribu — mais vous n’avez qu’une idée assez vague de la manière dont elle est préparée.</p>
+<p>The man is Oramui and the woman Terani. As a preparation for this evening’s ceremony, they’re collecting sap to make palm wine. The pale, sweet beverage is not unknown to you – it’s commonly served during the celebrations of your tribe – but you only have a vague idea of how it’s prepared.</p>
 
 <div class="conversation">
-<p>— Il ne faut pas récolter la sève trop à l’avance, vous explique Oramui. La boisson devient très rapidement plus forte et plus acide. Si on la conserve plus d’un jour, elle se fait vite imbuvable.</p>
+<p>— It’s important not to collect the sap too early, explains Oramui, because it quickly becomes stronger and more acidic. If you wait more than a day, it will be undrinkable.</p>
 </div>
 
-<p>Il vous indique du doigt quelques petites piles de calebasses, en vous expliquant qu’elles contiennent la sève qu’ils ont récoltée la veille, peu après votre arrivée. Mais votre regard ne tarde pas à être attirée par une douzaine de calebasses conservées à l’écart et enveloppées dans de grandes feuilles.</p>
+<p>He shows you small piles of calabashes and explains they contain the sap they collected yesterday, shortly after your arrival. But your eyes are soon drawn to a dozen of calabashes kept apart from the others, and wrapped in large leaves.</p>
 
 <div class="conversation">
-<p>— C’est aussi du vin de palme ? demandez-vous.</p>
+<p>— is this palm wine too ? you ask.</p>
 </div>
 
-<p>Oramui et Terani secouent vigoureusement la tête et se lancent dans une description compliquée, émaillée de mots que vous ne connaissez pas. Vous parvenez tout de même à saisir qu’il s’agit d’une boisson dérivée du vin de palme, mais beaucoup plus forte.</p>
+<p>Oramui and Terani shake their heads and engage in a complicated explanation, involving quite a few words you do not know. You only manage to understand that it’s a beverage derived from palm wine, but much stronger.</p>
 
-<p>Une fois leurs explications achevées, les deux récolteurs s’apprêtent à reprendre leur ouvrage, mais une grimace contrariée tord la bouche de Terani lorsqu’elle réalise qu’elle a égaré son couteau d’ivoire. Elle le cherche pendant quelques instants avec une frustration visible ; vous êtes sur le point de lui proposer votre aide lorsqu’elle le retrouve enfin, planté à hauteur d’yeux dans le tronc d’un palmier voisin.</p>
+<p>As they’re about to go back to their work, Terani is upset to discover that she’s misplaced her ivory knife. She looks for it with obvious frustration. Just as you’re about to offer your help, she finds it stuck at eye level in the trunk of a nearby palm tree.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
       const choices = [
         {
-          "text": `Vous demandez à boire un peu de vin de palme.`,
+          "text": `You ask if you can drink some palm wine.`,
           "action": "soft-drink",
         },
         {
-          "text": `Vous demandez à essayer l’alcool fort.`,
+          "text": `You ask if you can try their hard liquor.`,
           "action": () => {
             acquireItem("alcohol", updateFlag);
             return "hard-drink";
           },
         },
         {
-          "text": `Vous prenez congé pour aller explorer le reste de l’île.`,
+          "text": `You take your leave and explore the rest of the island.`,
           "action": () => {
             updateFlag("time", flags.time+1);
             return "outside-the-village";
           },
         },
         {
-          "text": `Vous prenez congé et regagnez votre pirogue.`,
+          "text": `You take your leave and head back to your canoe.`,
           "action": "hub",
         },
       ];
@@ -101,10 +101,10 @@ const village = {
   },
   "outside-the-village": {
     "text": `
-<p>L’île fait une longueur non négligeable et, si la végétation n’est pas suffisamment dense pour ralentir votre allure, elle limite en revanche beaucoup votre champ de vision. Vous ne tardez pas à réaliser qu’explorer l’île en détail vous prendrait la moitié de la journée. Vous persévérez néanmoins un certain temps, mais ne découvrez rien d’intéressant. C’est à peine si vous remarquez quelques signes rappelant qu’un village se trouve tout près. La tribu ne se livre apparemment à aucune sorte de culture et on peut tout juste deviner çà et là qu’un arbre a été abattu à coups de hache.</p>
+<p>The island is fairly long and, while the vegetation isn’t dense enough to really slow you down, it greatly limits your field of vision. You soon realize that exploring the entire island in detail would require half the day. You persist for a while, but discover nothing of interest. In fact, few details even remind you of the presence of the nearby village. The tribe does not seem to cultivate any plants, or to cut down trees very often.</p>
     `,
     "next": function(goToSection) {
-      const text = `Lassée, vous bifurquez pour atteindre la plage et vous hâtez ensuite de regagner votre pirogue.`;
+      const text = `Feeling bored, you head for the beach and, from there, quickly return to your canoe.`;
       const action = "hub";
 
       return repeatingFunnel(goToSection, text, action);
@@ -112,22 +112,22 @@ const village = {
   },
   "soft-drink": {
     "text": `
-<p>Terani vous fait goûter un peu de la sève recueillie la veille. La liqueur blanchâtre a un goût légèrement sucré que vous trouvez agréable. Vous remerciez poliment les deux récolteurs avant de prendre congé.</p>
+<p>Terani lets you drink a bit of the sap collected yesterday. The pale beverage has a slightly sweet taste that you find quite pleasant. You thank them politely, then take your leave.</p>
     `,
     "next": exploreOrLeave,
   },
   "hard-drink": {
     "text": (flags) => {
       return `
-<p>Terani fronce les sourcils lorsque vous présentez votre requête et vous devinez que cette boisson, dont la préparation demande davantage d’efforts, est d’une consommation plus réservée que le simple vin de palme. Vous vous attendez à ce qu’elle refuse, mais, après avoir échangé un regard avec Oramui, elle hausse les épaules et vous offre l’une des calebasses d’alcool fort.</p>
+<p>Terani frowns, and you surmise that the liquor – being harder to produce – is not as easily shared as mere palm wine. You expect her to refuse, but, after exchanging a look with Oramui, she shrugs and hands over to you one of the calabashes full of hard liquor.</p>
 
 ${itemAcquisitionFeedback(flags.inventory.alcohol.name)}
 
 <div class="conversation">
-<p>— Cela fait très vite tourner la tête, vous dit-elle. Il ne faut surtout pas que tu en boives avant d’avoir terminé ta course de ce soir contre Raiahui.</p>
+<p>— It will make you feel dizzy very quickly, she warns you. You absolutely musn’t drink any of it before your race against Raiahui.</p>
 </div>
 
-<p>La recommandation fait sourire Oramui, mais il n’ajoute rien. Vous remerciez poliment les deux récolteurs avant de prendre congé.</p>
+<p>Her advice brings a smile to Oramui’s lips, but he doesn’t add anything. You thank them politely before taking your leave.</p>
       `
     },
     "next": exploreOrLeave,
