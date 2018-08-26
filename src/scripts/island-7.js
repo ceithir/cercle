@@ -38,11 +38,11 @@ const island7 = {
   "exploring-island-7" : {
     "text": (flags) => {
       return `
-<p>The islet may be tiny, but so is the object you’re looking for. You methodically search the warm sand, hoping that Faanarua didn’t bury the pendant too deep. You know you’re going to need either luck or patience. But after a while, seeing your efforts remain unfruitful becomes wearisome. Is the pendant really here ? According to Faanarua, it’s been many years since she hid it. The rain, the wind and the waves could have gradually shifted its position until it vanished into the ocean or into the lagoon.</p>
+<p>The islet may be tiny, but so is the object you’re looking for. You methodically search the warm sand, hoping that Faanarua didn’t bury the pendant too deep. You know you’re going to need either luck or patience. But after a while, seeing your efforts remain unfruitful becomes wearisome. Is the pendant really here? According to Faanarua, it’s been many years since she hid it. The rain, the wind and the waves could have gradually shifted its position until it vanished into the ocean or into the lagoon.</p>
 
-<p>You’re so preoccupied by those growing doubts that, when your fingers close on the very object you were looking for, you almost throw it aside, taking it for a broken piece of seashell. Fortunately, you’re still paying enough attention to cancel your gesture just in time !</p>
+<p>You’re so preoccupied by those growing doubts that, when your fingers close on the very object you were looking for, you almost throw it aside, taking it for a broken piece of seashell. Fortunately, you’re still paying enough attention to cancel your gesture just in time!</p>
 
-<p>You study the pendant curiously. It’s white as foam and about the size of your forefinger. Though it’s damaged, it clearly represents a dolphin. You fetch a leather thong from your canoe and use it to hang the pendant around your neck. As you do, you feel somewhat strange, as if you’d just taken an especially deep breath. But the impression dissipates almost immediately, leaving you quite unchanged. Has the pendant retained any power at all ? In any case, wearing it can’t harm you.</p>
+<p>You study the pendant curiously. It’s white as foam and about the size of your forefinger. Though it’s damaged, it clearly represents a dolphin. You fetch a leather thong from your canoe and use it to hang the pendant around your neck. As you do, you feel somewhat strange, as if you’d just taken an especially deep breath. But the impression dissipates almost immediately, leaving you quite unchanged. Has the pendant retained any power at all? In any case, wearing it can’t harm you.</p>
 
 ${itemAcquisitionFeedback(flags.inventory.dolphin.name)}
       `;
