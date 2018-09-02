@@ -5,18 +5,18 @@ const island4 = {
     "text": (flags) => {
       if (secondTimeToIsland("island-4", flags)) {
         return `
-<p>La bizarrerie de la végétation qui recouvre cet îlot vous frappe tout autant que lors de votre précédent passage.</p>
+<p>The weirdness of this islet’s vegetation is no less bewildering than the first time you caught sight of it.</p>
         `;
       }
 
       return `
-<p>Arrivée à proximité de la petite île, vous êtes saisie d’une hésitation. Sans être réellement monstrueuses, les nombreuses plantes qui y poussent ont des formes et des teintes bizarres, nettement différente de la végétation qui vous est familière. Même les cris d’oiseau que vous entendez ont une sonorité qui vous paraît étrange.</p>
+<p>As you come close to this islet, you find yourself hesitating. The many plants that grow here aren’t exactly monstrous, but they have weird shapes and colors, very different from the vegetation you’re used to. Even the bird cries sound eerie.</p>
       `;
     },
     "next": function(goToSection, flags, updateFlag) {
       const choices = [
         {
-          "text": `Vous accostez sur l’île pour l’explorer.`,
+          "text": `You land your canoe and explore the islet.`,
           "action": () => {
             updateFlag("time", flags.time+1);
             updateFlag("toldAboutWitchByMonkey", true);
@@ -24,7 +24,7 @@ const island4 = {
           },
         },
         {
-          "text": `Vous jugez préférable de vous rendre à un autre point de l’atoll.`,
+          "text": `You’d rather choose a different destination.`,
           "action": "back-to-hub",
         },
       ];
@@ -35,61 +35,61 @@ const island4 = {
   "exploring-island-4": {
     "text": (flags) => {
       let text = `
-<p>C’est non sans une certaine difficulté que vous vous frayez un chemin à travers la végétation épaisse. En y regardant de plus près, vous parvenez à reconnaître des formes familières derrière l’apparence générale d’étrangeté. C’est comme si quelqu’un avait pris des plantes ordinaires et, d’une manière inexplicable, les avait profondément déformées.</p>
+<p>You slowly make your way through the thick vegetation. Now that you can examine it more closely, you recognize familiar shapes hiding behind the general impression of weirdness. It’s as if someone had taken ordinary plants and inexplicably warped them.</p>
 
-<p>Vous explorez l’île avec patience, mais sans rien observer qui vous paraisse utile. Vous entendez de temps à autres des animaux détaler à votre approche, mais ils restent essentiellement invisibles.</p>
+<p>You patiently explore the islet, but fail to discover anything of any use. You can sometimes hear animals running away at your approach, but they remain largely invisible.</p>
 
-<p>Vous êtes sur le point de regagner votre pirogue, lassée par l’inutilité de vos efforts, lorsque vous apercevez une sorte de petit singe gris qui vous observe avec de grands yeux, accroché à une branche voisine. Sa tête est d’une taille curieusement disproportionnée avec le reste de son corps.</p>
+<p>Tired of wasting your time, you’re about to go back to your canoe when you spot a strange little gray monkey, clinging to a nearby branch and staring at you. Its head is disproportionately large compared to the rest of its body.</p>
 
 <div class="conversation">
-<p>— Alors, mon petit, lui lancez-vous avec un peu d’amusement, il y a des choses que tu me recommandes de voir par ici ?</p>
+<p>"So, little one," you ask in jest, "are there any sights you’d recommend on this island?"</p>
 </div>
 
-<p>À votre stupéfaction totale, il ouvre la bouche pour vous répondre d’une voix fluette :</p>
+<p>To your utter astonishment, it opens its mouth and answers in a thin voice:</p>
 <div class="conversation">
-<p>— Je suis homme.</p>
-<p>— Qu… Quoi ?</p>
-<p>— Je suis homme. Changé par sorcière.</p>
+<p>"I am man."</p>
+<p>"Wh… What?"</p>
+<p>"I am man. Changed by witch."</p>
       `;
 
       if (flags.survivedWitchIsland) {
         text += `
 </div>
-<p class="text-conditional">Il parle sans doute de la sorcière que vous avez croisé sur l’île mitoyenne.</p>
-<p>Vous décidez cependant de vous en assurer, peu désireuse de tomber par surprise sur une confrère de la précédente.</p>
+<p class="text-conditional">It must be referring to the witch you saw on the neighboring island.</p>
+<p>It’s however not completely impossible that there might be another witch in the area. You decide to make sure.</p>
 <div class="conversation">
-<p>— Il y a une sorcière sur cette île ?</p>
+<p>"There’s a witch on this island?"</p>
         `;
       } else {
         text += `
-<p>— Il y a une sorcière sur cette île ? demandez-vous, regardant les alentours avec alarme.</p>
+<p>"There’s a witch on this island?" you ask, looking around you nervously.</p>
         `;
       }
 
       text += `
-<p>— Autre île. Ici sorcière laisse résultats changements.</p>
-<p>— Comment… Comment est-ce que cela t’est arrivé ?</p>
-<p>— Je touche fétiche. Fétiche crie. Sorcière attrape moi dans filet. Filet toujours attrape, jamais manque.</p>
-<p>— Est-ce que je peux faire quelque chose pour t’aider ?</p>
+<p>"Other island. Here witch leaves results changes."</p>
+<p>"How… How did it happen to you?"</p>
+<p>"I touch fetish. Fetish screams. Witch catches me in net. Net always catches, never misses."</p>
+<p>"Can I do anything to help you?"</p>
 </div>
 
-<p>Le singe secoue la tête avec une tristesse terriblement humaine.</p>
+<p>The monkey shakes its head with terribly human sadness.</p>
 
 <div class="conversation">
-<p>— Pas possible… Pas possible…</p>
+<p>"Not possible… Not possible…"</p>
 </div>
 
-<p>Il se laisse tomber de sa branche et disparaît rapidement parmi la végétation.</p>
+<p>It drops from the branch and quickly disappears amid the vegetation.</p>
       `;
 
       if (!flags.survivedWitchIsland && flags.toldAboutAtollByRaiahui) {
-        text += `<p class="text-conditional">Vous n’aviez pas totalement pris au sérieux Raiahui quand elle évoquait une sorcière, mais vous êtes en train de revoir votre position.</p>`;
+        text += `<p class="text-conditional">You weren’t convinced that Raiahui was being serious when she told you about a witch, but you’re beginning to reconsider.</p>`;
       }
 
       return text;
     },
     "next": function(goToSection) {
-      const text = `Ébranlée, vous revenez à votre pirogue.`;
+      const text = `Shaken, you go back to your canoe.`;
       const action = "back-to-hub";
 
       return repeatingFunnel(goToSection, text, action);

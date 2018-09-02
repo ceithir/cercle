@@ -4,36 +4,36 @@ const flags = {
   "time": 0,
   "inventory": {
     "alcohol": {
-      "name": `Alcool fort`,
-      "description": `<p>Une calebasse d’alcool fort offerte par Oramui et Terani.</p>`,
+      "name": `Hard liquor`,
+      "description": `<p>A calabash full of hard liquor, given to you by Oramui and Terani.</p>`,
     },
     "dolphin": {
-      "name": `Amulette`,
-      "description": `<p>Une amulette en forme de dauphin que vous avez déterrée sous les conseils de Faanarua.</p><p>D’après elle, elle fera de vous une encore meilleure nageuse que vous ne l’êtes déjà.</p>`,
+      "name": `Pendant`,
+      "description": `<p>A pendant shaped like a dolphin, that you discovered by following the advice of Faanarua.</p><p>According to her, it’ll make you an even better swimmer than you already are.</p>`,
     },
     "pearls": {
-      "name": `Perles noires`,
-      "description": `<p>Des perles d’un noir profond que vous avez volées à la sorcière du lagon.</p><p>Du moins est-ce ainsi qu’elles se présentent à l’œil.</p>`,
+      "name": `Black pearls`,
+      "description": `<p>Pearls of pure black, stolen from the witch.</p><p>So far, you can’t tell anything else about them.</p>`,
     },
     "smokePearls": {
-      "name": `Perles de fumée`,
-      "description": `<p>Des perles d’un noir profond que vous avez volées à la sorcière du lagon.</p><p>Vous avez découvert que lorsque l’une d’elles est écrasée sous l’eau, elle se dissout aussitôt en un épais nuage absolument opaque.</p>`,
+      "name": `Smoke pearls`,
+      "description": `<p>Pearls of pure black, stolen from the witch.</p><p>You’ve discovered that crushing one of them underwater will create a thick, impenetrable cloud.</p>`,
     },
     "fruit": {
-      "name": `Fruits rouges`,
-      "description": `<p>Un poignée de mystérieux fruits qu’un crocodile parlant vous a conseillé. Il prétend qu’ils vous aideront pour l’épreuve qui vous attend.</p><p>Vous ne sauriez dire si le fait qu’il ait également essayé de vous manger est un argument en la faveur ou en la défaveur de la véracité de cette information.</p>`,
+      "name": `Red fruits`,
+      "description": `<p>A handful of red fruits you picked on the advice of a talking crocodile. It said they would help you for the race.</p><p>You can’t tell if the fact that it had previously tried to eat you should make you doubt its sincerity.</p>`,
     },
     "doll": {
-      "name": `Figurine du crocodile`,
-      "description": `<p>Une figurine à votre effigie qu’un crocodile parlant a « sculpté » à partir de racines. Vous ne savez rien d’autre à son sujet si ce n’est qu’il a essayé de s’en servir comme appât dans un piège à votre intention.</p>`,
+      "name": `Wooden figurine`,
+      "description": `<p>A figurine that strangely resembles you, created by a talking crocodile out of a tree root. The beast used it as bait in an attempt to make a meal out of you. You don’t know anything else about its properties.</p>`,
     },
     "net": {
-      "name": `Filet de la sorcière`,
-      "description": `<p>Une filet que vous avez récupéré auprès d’une sorcière. Taillé pour la capture d’êtres humains, pas pour celles de petits poissons.</p>`,
+      "name": `Witch’s net`,
+      "description": `<p>A fishing net that used to belong to a witch. It’s made for capturing humans, not small fish.</p>`,
     },
     "fieryCalabash": {
-      "name": `Calebasse piégée`,
-      "description": `<p>Juste un peu de vin de palme, agrémenté de quelques fruits légèrement épicés.</p>`
+      "name": `Doctored alcohol`,
+      "description": `<p>Palm wine, now with added spice.</p>`
     },
   },
   "drunk": false,

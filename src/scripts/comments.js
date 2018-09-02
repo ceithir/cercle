@@ -3,14 +3,14 @@ const comments = (flags) => {
 
   if (flags.wellRested) {
     comments.push({
-      "text": `Vous vous sentez en pleine forme, prête à en découdre.`,
+      "text": `You’re in great form, ready for anything.`,
       "color": "success",
     });
   }
 
   if (flags.drunk) {
     comments.push({
-      "text": `Vous avez la tête qui tourne.`,
+      "text": `You feel dizzy.`,
       "color": "warning",
     });
   }

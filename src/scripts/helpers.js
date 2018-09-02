@@ -43,13 +43,13 @@ const computeAchievements = function(flags) {
 const badEndMessage = function(flags) {
   const achievements = computeAchievements(flags);
 
-  let achievementsText = `Vous avez fait preuve de prudence et d’ingéniosité, mais cela n’a pas suffi à vous éviter une fin brutale :`;
+  let achievementsText = `You showed caution and cleverness, but it wasn’t enough to save you from a brutal end:`;
   if (1 === achievements.length) {
-    achievementsText = `Votre séjour dans ce lagon paradisiaque s’est conclu de bien brutale façon :`;
+    achievementsText = `Your stay on this idyllic atoll has ended in a rather brutal manner:`;
   }
 
   const hint = getHint(flags);
-  const hintWarning = `Peut-être souhaiteriez-vous un indice avant d’effectuer une nouvelle tentative ?`;
+  const hintWarning = `Would you like a clue before making another attempt?`;
 
   return (
     <div className="ending-message">
@@ -65,29 +65,29 @@ const endButtons = function(flags, reset, quit) {
 
   if (!flags.survivedTheTrial && flags.flagsBeforeActualTrial) {
     choices.push({
-      "text": `Retenter l’épreuve`,
+      "text": `Start the trial again`,
       "action": () => {
         const recursiveFlags = Object.assign({}, flags, {"flagsBeforeActualTrial": flags})
         reset("trial-underwater", recursiveFlags);
       },
     });
     choices.push({
-      "text": `Recommencer à zéro`,
+      "text": `Start again from the beginning`,
       "action": () => {reset()},
     });
   } else {
     choices.push({
-      "text": flags.survivedTheTrial? `Nouvelle partie`: `Recommencer`,
+      "text": flags.survivedTheTrial? `New game`: `Start again`,
       "action": () => {reset()},
     });
     choices.push({
-      "text": `Retourner à l’écran titre`,
+      "text": `Go back to the main page`,
       "action": () => {quit()},
     });
   }
 
   const showWarningText = !flags.survivedTheTrial && flags.flagsBeforeActualTrial && !gameIsStillWinnableWithoutTurningFullyMad(flags);
-  const warningText = `Mananuiva s’est présentée à l’épreuve avec bien peu d’atouts dans sa manche. Il serait sans doute sage de recommencer du début pour acquérir une meilleure main plutôt que de s’acharner sur une situation potentiellement sans issue.`;
+  const warningText = `The odds were definitely against Mananuiva when she faced the trial. It might be wiser to start again from the beginning.`;
 
   return (
     <div className="restart-buttons">
@@ -113,7 +113,7 @@ export const endGame = function(goToSection, flags, updateFlag, reset, quit) {
 }
 
 const goodEndMessage = function(flags) {
-  const achievementsText = `Ce fut un parcours mouvementé, mais vous en êtes venue à bout :`;
+  const achievementsText = `It was rough, but you’ve succeeded:`;
 
   return (
     <div className="ending-message">
@@ -171,12 +171,12 @@ const inventoryChange = (content) => {
 
 export const itemAcquisitionFeedback = (itemName) => {
   return inventoryChange(`
-<span class="item-name">${itemName}</span> a été ajouté à votre inventaire.
+<span class="item-name">${itemName}</span> has been added to your inventory.
   `);
 }
 
 export const itemUpdateFeedback = (itemName) => {
   return inventoryChange(`
-L’objet <span class="item-name">${itemName}</span> a été mis à jour.
+The object <span class="item-name">${itemName}</span> has been updated.
   `);
 }

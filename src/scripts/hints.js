@@ -1,27 +1,27 @@
 export const getHint = (flags) => {
   if (flags.triedToFlee) {
     return `
-<p>Vous pouvez réussir cette aventure en explorant les diverses îles de l’atoll, en y faisant des rencontres et des découvertes utiles. Vous pouvez aussi la réussir en vous contentant de faire la sieste pendant l’essentiel de la journée.</p>
+<p>In this adventure, you can win by exploring the islands of the atoll, meeting unusual people and making useful discoveries. You can also win after lazying in a hammock for most of the day.</p>
 
-<p>Vous ne pouvez pas — comme vous venez de le découvrir — la réussir en quittant l’atoll avant votre course contre Raiahui.</p>
+<p>You cannot – as you’ve just discovered – win by leaving the atoll before your race against Raiahui.</p>
     `;
   }
 
   if (flags.eatenByFaanarua) {
     return `
-<p>La femme qui vous a envoyé pêcher dans le lagon s’est installée sur cette île parce qu’elle ne supporte plus le contact et la conversation des membres de sa propre tribu. Pour vous concilier ses bonnes grâces, il serait judicieux de vous démarquer d’eux autant que possible.</p>
+<p>The woman who asked you to bring her seafood is staying on this island because she really dislikes interacting with the members of her own tribe. If you want to ingratiate yourself with her, try to seem as different from them as possible.</p>
     `;
   }
 
   if (flags.caughtInAWitchNet || flags.drunkAtTheWitchCup || flags.touchedACursedItem) {
     return `
-<p>Les objets magiques que possède la sorcière sont d’une efficacité redoutable, mais ils ne s’affranchissent pas totalement des limites que leur impose leur forme même.</p>
+<p>The magical objects owned by the witch are dangerous, but their efficiency is somewhat constrained by their very shapes.</p>
     `;
   }
 
   if (flags.eatenByCrocodile) {
     return `
-<p>Bien qu’il soit vieux et patient, le crocodile est avant tout gouverné par ses impulsions. Ses trois motivations principales – par ordre décroissant d’importance – sont la faim, la perfidie et la rancœur.</p>
+<p>As old and patient as it may be, the crocodile is mainly ruled by urges. Its three main motivations – in descending order of importance – are hunger, treachery and resentment.</p>
     `;
   }
 
@@ -29,25 +29,25 @@ export const getHint = (flags) => {
     if (!flags.seenRaiahuiTrueForm) {
       if (flags.gotAHeadStart) {
         return `
-<p>Dans une course ordinaire, rester à la surface et ne prêter attention à rien d’autre qu’à votre destination aurait été un comportement sensé.</p>
+<p>In an ordinary race, remaining on the surface and paying attention to nothing but the arrival point would have been sensible.</p>
 
-<p>Pas dans cette course-ci.</p>
+<p>Not in this race.</p>
         `;
       }
 
       return `
-<p>Raiahui n’est pas aussi fair-play qu’elle veut bien le laisser paraître. Veillez à ne pas l’être non plus.</p>
+<p>Raiahui isn’t as sporting as she pretends to be. Don’t play fair either.</p>
       `;
     }
 
     return `
-<p>Un requin possède des sens bien particuliers, capable de détecter certaines choses dont un être humain n’aurait aucune conscience. Un être humain possède une intelligence développée, capable d’anticiper et de planifier à un degré qu’un requin serait incapable d’atteindre. Vous devez échapper aux deux à la fois.</p>
+<p>A shark is gifted with very specific senses, and able to detect certain things a human would remain completely unaware of. A human is gifted with high intelligence, and able to anticipate and to plan much better than a shark ever could. You need to escape both at the same time.</p>
     `;
   }
 
   if (flags.stabbedToDeath) {
     return `
-<p>Si proche ! Cette ultime confrontation est plus facile si vous y parvenez sans être trop épuisée.</p>
+<p>So close! This final showdown is easier if you reach it without being too exhausted.</p>
     `;
   }
 

@@ -7,20 +7,20 @@ const island3 = {
     "text": (flags) => {
       if (secondTimeToIsland("island-3", flags)) {
         return `
-<p>La voile blanche attire votre attention aussitôt que vous approchez de nouveau de l’île. Accroupie sur le sable de la plage, concentrée, l’inconnue travaille toujours à l’entretien de sa pirogue.</p>
+<p>The white sail draws your attention as you come close to this island again. Squatting on the sand, the unknown woman is still focused on the maintenance of her canoe.</p>
         `;
       }
 
       return `
-<p>Alors que vous approchez de cette île couverte de nombreux palmiers, votre œil est attiré par une voile blanche triangulaire, frémissant à peine sous l’effet d’une légère brise. Une pirogue un peu plus grande que la vôtre a été tirée sur la plage et une femme est visiblement en train d’oeuvrer à son entretien. Elle vous tourne le dos et rien ne suggère qu’elle a remarqué votre approche.</p>
+<p>As you come close to this island covered with many palm trees, your eye is drawn to a triangular white sail, shivering slightly in the breeze. Somewhat larger than yours, a canoe has been hauled on the beach and a woman is taking care of its maintenance. Her back is turned and nothing suggests that she has noticed your approach.</p>
       `;
     },
     "next": function(goToSection, flags, updateFlag) {
-      const leaveText = `Vous préférez vous rendre à un autre point de l’atoll.`;
+      const leaveText = `You’d rather pick a different destination.`;
 
       const choices = [
         {
-          "text": `Vous décidez d’aborder cette île.`,
+          "text": `You decide to land your canoe on this island.`,
           "action": () => {
             updateFlag("approachedFaanarua", true);
             goToSection("exploring-island-3");
@@ -41,24 +41,24 @@ const island3 = {
   },
   "exploring-island-3" : {
     "text":`
-<p> Vous avez tout juste eu le temps de faire accoster votre pirogue sur la plage lorsque la femme, interrompant son ouvrage, se retourne avec une expression furieuse :</p>
+<p>You barely have time to land your canoe on the beach before the woman turns to face you with a furious expression:</p>
 
 <div class="conversation">
-<p>— Est-ce que vous allez tous finir par me laisser tranquille ? Je croyais avoir…</p>
+<p>"Are you people going to leave me in peace? I thought I’d…"</p>
 </div>
 
-<p>Elle s’interrompt momentanément en réalisant que vous lui êtes inconnue, mais ne tarde pas à reprendre, d’un ton à peine moins hostile :</p>
+<p>She pauses as she realizes that you're unknown to her. But she quickly gets over her surprise, and the hostility in her voice barely diminishes:</p>
 <div class="conversation">
-<p>— Tu es l’étrangère qui est arrivée hier, c’est ça ? Et bien, il n’y a rien d’intéressant pour toi ici. Retourne au village ou va te promener ailleurs, mais ne reste pas ici à me déranger.</p>
+<p>"You're the foreign girl who's arrived yesterday, aren't you? Well, there's nothing for you here. Go back to the village or visit any of the other islands, I don't care. Just leave and stop bothering me."</p>
 
-<p>Son accent l’identifie clairement comme une membre de la tribu, mais son apparence est assez différente des femmes que vous avez observées la veille au festin : sa chevelure abondante est attachée en une queue de cheval, elle porte un collier fait de nombreux coquillages et un paréo délavé lui entoure les reins. Elle a son couteau d’ivoire à la main et vous devinez qu’elle était en train de s’en servir pour retirer les coquillages accrochés à la coque de sa pirogue.</p>
+<p>Her accent clearly identifies her as a member of the tribe, but she looks fairly different from the women you saw during yesterday's feast: her thick hair is tied behind her head, she wears an elaborate shell necklace and a faded pareo is wrapped around her waist. She's holding her ivory knife and was obviously using it to rid her canoe's hull from the barnacles clinging to it.</p>
 
-<p>Il vous paraît probable que la présence de cette femme est le seul intérêt que présente cette île. Mais vous ne tirerez rien d’elle à moins de la convaincre que vous ne méritez pas son agressivité.</p>
+<p>Aside from this woman, you don't expect to discover anything of interest to you on this island. And you won't get anything out of her unless you convince her that you don't deserve her hostility.</p>
     `,
     "next": function(goToSection) {
-      const text1 = `Vous l’interrogez sur les voyages qu’elle réalise avec sa pirogue.`;
-      const text2 = `Vous lui parlez de la course qui va vous opposer à Raiahui.`;
-      const text3 = `Vous préférez repartir comme elle vous le demande.`;
+      const text1 = `You ask her where she travels to with her canoe.`;
+      const text2 = `You tell her about your race against Raiahui.`;
+      const text3 = `You comply with her request and leave the island.`;
 
       const choices = [
         {
@@ -68,7 +68,7 @@ const island3 = {
           },
         },
         {
-          "text": `Vous lui parlez de votre propre voyage.`,
+          "text": `You tell her about your own journey.`,
           "action": () => {
             goToSection("faanarua-your-journey");
           },
@@ -94,19 +94,19 @@ const island3 = {
   },
   "faanarua-her-journey": {
     "text":`
-<p>Le visage de la femme se plisse d’une grimace impatiente et vous vous attendez à ce qu’elle vous demande à nouveau de déguerpir. Il n’en est cependant rien : un soupir lui échappe et, après quelques instants, elle reprend la parole d’une voix plus calme :</p>
+<p>The woman frowns impatiently. But instead of once again telling you to scram, she just sighs. After a while, she speaks in a calmer voice:</p>
 
 <div class="conversation">
-<p>— Ecoute, je veux bien te parler si ça te fait partir plus vite. Mais ça fait un bon moment que je travaille sans rien manger et je commence à avoir vraiment faim. Rapporte-moi quelques crabes ou quelques écrevisses — il y en a plein le lagon — et je te raconterai ce que tu veux ensuite.</p>
+<p>"Look, I'll talk to you if that's what it takes to make you leave. But I've been working for a while now, and I'm getting really hungry. Bring me back a few crabs or some crayfish - the lagoon is full of them - and I'll tell you about anything you want afterwards."</p>
 </div>
 
-<p>Vous n’obtiendrez clairement pas mieux que ce marché.</p>
+<p>You clearly won't be able to negotiate another deal.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
-      const leaveText = `Vous le refusez et regagnez votre pirogue.`;
+      const leaveText = `You refuse and go back to your canoe.`;
       const choices = [
         {
-          "text": `Vous l’acceptez.`,
+          "text": `You accept the deal.`,
           "action": () => {
             updateFlag("eatenByFaanarua", true);
             goToSection("faanarua-prey");
@@ -127,34 +127,34 @@ const island3 = {
   },
   "faanarua-prey": {
     "text":`
-<p>Les eaux tièdes et transparentes du lagon se referment sur vous. Une multitude de petits poissons colorés se hâtent de disparaître dans les innombrables cachettes que leur fournissent les récifs de corail. Tenant dans une main le petit filet où vous rangerez vos prises, vous progressez à brasses lentes, cherchant du regard des proies moins mobiles.</p>
+<p>You dive in the warm, clear water of the lagoon. Small, colorful fish hastily disappear in the countless hiding places provided by the coral reefs. Holding in one hand the small net you'll use to carry your catch, you swim without haste, looking for slower preys.</p>
 
-<p>Une douleur effroyable vous transperce soudain la jambe et, sous le choc, vous laissez échapper tout l’air que contenaient vos poumons. Vous essayez aussitôt de remonter vers la surface, mais vous êtes retenue par une étreinte féroce. Vous vous débattez en vain contre votre agresseur, que vous ne parvenez pas à distinguer clairement.  La panique instinctive qui vous emplit diminue vos forces plutôt qu’elle ne les accroît et un voile sombre ne tarde pas à recouvrir vos yeux. La dernière chose que vous voyez avant que tout ne disparaisse est l’épaisse couleur écarlate qui souille l’eau précédemment cristalline.</p>
+<p>Horrifying pain suddenly pierces your leg. In shock, you reflexively exhale all the air from your lungs. You immediately try to reach the surface, but you're held by a savage grip. You struggle in vain, unable to distinguish your assailant clearly. Far from increasing your strength, panic makes you weaker and frantic. A dark veil soon begins to thicken before your eyes. The last thing you see before everything disappears is the thick red color sullying the previously clear water.</p>
     `,
     "next": endGame,
   },
   "faanarua-your-journey": {
     "text": `
-<p>Une expression agacée se peint sur le visage de la femme tandis vous lui expliquez le principe de votre voyage d’initiation, mais elle disparaît peu à peu lorsque vous commencez à lui parler des îles que vous avez visité. Ses commentaires — d’abord assez brefs — révèlent vite que certaines d’entre elles lui sont familières.</p>
+<p>The woman looks irritated when you explain to her the meaning of your journey, but her annoyance slowly dissipates as you start describing the islands you’ve visited. Her comments – very terse at first – reveal that some of them are known to her.</p>
 
 <div class="conversation">
-<p>— Alors comme ça tu es passée chez les Tongakiri ? fait-elle à un moment. Est-ce qu’ils sont toujours en train de sculpter cette statue en pierre ridiculement grande de je ne sais quel chef légendaire ?</p>
-<p>— Ils devaient la mettre en place justement le jour où je suis arrivée, mais ils s’y sont mal pris : la statue s’est renversée et cassée en trois. J’ai décidé de vite repartir lorsque le chamane de la tribu a déclaré que c’était parce que les dieux étaient mécontents et qu’il fallait leur faire un sacrifice.</p>
+<p>"So you’ve visited the Tongakiri? she asks at one point. Are they still busy carving that ludicrously tall statue of their legendary founder?"</p>
+<p>"I arrived on the very day it was supposed to be erected. But something went wrong: the statue toppled and broke into three pieces. I decided not to tarry on the island after the shaman of the tribe stated that the accident was a sign of divine displeasure and that a sacrifice would need to be performed."</p>
 </div>
 
-<p>Ce récit fait rire votre interlocutrice et détend pour de bon l’atmosphère. Pendant quelques instants agréables, vous vous décrivez l’une à l’autre vos découvertes et vos rencontres les plus saisissantes. La femme est clairement une grande voyageuse et vous apprenez beaucoup en l’écoutant. Mais elle met finalement un terme à cet échange en abordant un sujet différent :</p>
+<p>You story makes her laugh, lightening the atmosphere. For a few pleasant moments, you tell each other about your most memorable discoveries and encounters. The woman’s clearly a great traveler and you learn much by listening to her. Eventually, she puts an end to this exchange by switching to a different subject:</p>
 <div class="conversation">
-<p>— Tu ne peux pas savoir quelle révélation t’apportera ton voyage, bien sûr, mais en quoi est-ce que tu espères qu’il te changera ?</p>
+<p>"You can’t know in advance what revelation your journey will bring, of course. But how do you hope that it will change you?"</p>
 </div>
 
-<p>C’est une excellente question, mais la réflexion prolongée qu’elle mérite demanderait clairement plus de temps libre que vous n’en avez aujourd’hui.</p>
+<p>That’s an excellent question, but properly thinking about it would require more free time than you have today.</p>
 
-<p>Deux idées vagues de réponse vous viennent cependant à l’esprit :</p>
+<p>Two possible answers – both rather vague – nevertheless come to your mind:</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
       const choices = [
         {
-          "text": `— Je voudrais que ce voyage m’apporte une vision plus vaste du monde tout entier.`,
+          "text": `"I hope this journey will expand my outlook on the entire world."`,
           "action": () => {
             updateFlag("time", flags.time+1);
             updateFlag("talkedWithFaanarua", true);
@@ -162,7 +162,7 @@ const island3 = {
           },
         },
         {
-          "text": `— Je voudrais que ce voyage me donne une vision différente de mon île natale et de ma tribu.`,
+          "text": `"I hope this journey will give me a different outlook on my native island and my tribe."`,
           "action": () => {
             updateFlag("time", flags.time+1);
             return "faanarua-my-world";
@@ -175,60 +175,60 @@ const island3 = {
   },
   "faanarua-the-world": {
     "text":`
-<p>La femme vous donne une tape amicale sur l’épaule.</p>
+<p>The woman gives you a friendly tap on the shoulder.</p>
 
 <div class="conversation">
-<p>— Ma petite, tu commences à me plaire ! Je m’appelle Faanarua, au fait.</p>
-<p>— Moi, c’est Mananuiva.</p>
-<p>— Alors écoute-moi bien, Mananuiva, parce que je vais te donner quelques conseils utiles pour gagner la course de ce soir.</p>
+<p>"I’m beginning to like you, my girl! My name’s Faanarua, by the way."</p>
+<p>"I’m Mananuiva."</p>
+<p>"Then listen well, Mananuiva, for I’m about to give you some useful advice for this evening’s race."</p>
 </div>
 
-<p>Vous dressez aussitôt l’oreille avec intérêt.</p>
+<p>You immediately perk up your ears.</p>
 
 <div class="conversation">
-<p>— Est-ce qu’il y a des courants ou des récifs dangereux entre les deux îles ? demandez-vous. Je suis passée là en pirogue et je n’ai rien remarqué.</p>
+<p>"Are there currents or dangerous reefs between the two islands?" you ask. "I passed between them on my canoe and didn’t notice anything."</p>
 </div>
 
-<p>Faanarua secoue la tête.</p>
+<p>Faanarua shakes her head.</p>
 
 <div class="conversation">
-<p>— Il n’y a rien de tout cela, c’est un trajet tout à fait simple. Mais la course elle-même n’est pas le genre de compétition que tu imagines sans doute. Il faudra que tu réfléchisses différemment. Pour commencer, si tu ne pars pas avec une bonne avance sur Raiahui, tu vas forcément perdre.</p>
-<p>— Je suis une excellente nageuse ! protestez-vous, quelque peu vexée.</p>
+<p>"There’s nothing of the sort, you don’t need to worry about that. But the race itself is not the type of competition that you probably have in mind. You’ll have to think differently. First of all, if you don’t start the race well before Raiahui, you’re necessarily going to lose."</p>
+<p>"I’m an excellent swimmer!" you exclaim, somewhat offended.</p>
 </div>
 
-<p>Un bref sourire traverse le visage de votre interlocutrice.</p>
+<p>A brief smile crosses the woman’s lips.</p>
 
 <div class="conversation">
-<p>— Fais-moi confiance, Raiahui nage beaucoup plus vite que toi. Elle le sait, comme tout le reste de la tribu. D’une certaine façon, cela joue à ton avantage : elle ne voudra pas partir en même temps que toi, parce que ça suggèrerait qu’elle manque de confiance en elle-même. Mais il ne faut pas trop compter sur cela pour te donner une chance : Raiahui ne prendra pas intentionnellement le risque de perdre cette course. Si tu veux gagner, il faudra te débrouiller pour qu’elle entre dans l’eau plus tard qu’elle ne le voudrait.</p>
+<p>"Trust me, Raiahui swims much faster than you do. She knows it, as does the rest of the tribe. In a way, it’ll play to your advantage: she won’t want to start the race at the same time as you do, for that would suggest that she lacks confidence in herself. But don’t count on that to give you a real chance: Raiahui will not intentionally risk losing the race. If you want to win, you’ll have to ensure that she goes in the water later than she would want to.</p>
 </div>
 
-<p>Elle s’arrête un instant pour réfléchir, tandis que vous digérez ce conseil pour le moins étrange.</p>
+<p>She pauses for thought, while you consider this fairly strange piece of advice.</p>
 
 <div class="conversation">
-<p>— Même avec une solide avance, il faudra que tu prêtes très attention à tout ce qui t’entoure et que tu saches réagir rapidement à l’inattendu, ajoute-t-elle après un moment. Je n’ai pas de conseil infaillible à te donner, mais je viens de penser à un objet qui pourrait peut-être t’être utile. Comme tous les membres de la tribu, j’ai accompli ce même rite de passage, mais l’étranger que j’ai eu pour adversaire n’était pas quelqu’un d’ordinaire : il avait une amulette qui en faisait de lui un nageur exceptionnel.</p>
-<p>— Vous voulez dire qu’il utilisait une amulette magique ? interrompez-vous. Est-ce que ce n’était pas de la triche ?</p>
-<p>— Oublie ces histoires de triche, vous dit Faanarua. En-dehors du fait qu’elle doit s’accomplir à la nage, cette course n’a presque aucune règle. C’est l’astuce qui permet de gagner alors qu’on devrait perdre. Et c’est ce qui s’est passé à l’époque : j’ai volé l’amulette de mon adversaire et, comme je n’arrivais ni à m’en servir, ni à la détruire, je l’ai tout simplement enfouie quelque part. Lorsque la course a eu lieu, j’ai facilement gagné.</p>
-<p>— Et l’amulette ?</p>
-<p>— Je ne suis jamais retournée la chercher. Je l’avais enterrée au milieu de la toute petite île qui se trouve à l’autre bout de l’atoll.</p>
-<p>— Mais vous avez dit que vous n’arriviez pas à vous en servir…</p>
-<p>— Je suis en quelque sorte incompatible, mais elle marchera certainement pour toi. Elle a peut-être perdu un peu en pouvoir — je l’ai abîmée en essayant de la briser — mais je crois sincèrement qu’elle pourrait t’être utile.</p>
+<p>"Even with a solid lead," she adds after a moment, "you’ll need to pay close attention to your surroundings and to react quickly to the unexpected. There’s no infallible advice I can give you, but I’ve just remembered an object that could be of use to you. Like all the members of the tribe, I’ve undergone this rite of passage, but the outsider I had to face was not an ordinary opponent: he had an amulet that made him an exceptional swimmer."</p>
+<p>"You mean that he was using a magical amulet?" you ask. "Wouldn’t that be cheating?"</p>
+<p>"Don’t worry about playing fair. Other than the fact that you have to swim from one island to the other, this race barely has any rule. It’s cunning that makes victory possible. And that’s how it happened back then: I stole my opponent’s pendant and, as I could neither use it nor destroy it, I simply buried it somewhere. When the race happened, I won easily.</p>
+<p>"And the pendant?"</p>
+<p>"I’ve never retrieved it. It’s buried in the middle of the tiny island at the other end of the atoll."</p>
+<p>"But you told me that it wouldn’t work for you…"</p>
+<p>"I’m not really compatible with it, but I’m sure you won’t have the same problem. It may have lost some of its power – I’ve damaged it somewhat – but I sincerely believe that it can be useful to you."</p>
 </div>
 
-<p>Un sourire étrange plisse les lèvres de Faanarua.</p>
+<p>A strange smile shows on Faanarua’s lips.</p>
 
 <div class="conversation">
-<p>— J’ai raconté à Raiahui l’histoire de cette amulette, mais je suis sûre qu’elle n’y fera pas attention même si elle te voit la porter autour du cou. La vigilance fait partie des nombreuses choses qu’elle n’a pas héritées de moi.</p>
+<p>"I’ve told Raiahui the story of that pendant, but I’m sure she won't recognize it, even if she sees it around your neck. Attention to details is one of the many things she didn’t inherit from me."</p>
 </div>
 
-<p>Il vous faut un instant pour réaliser ce qu’elle vient de dire.</p>
+<p>It takes you a moment to realize what she’s just said.</p>
 
 <div class="conversation">
-<p>— Raiahui est votre fille ?</p>
-<p>— Ce genre de liens n’a pas ici l’importance à laquelle tu es habituée. Raiahui et moi n’avons à peu près rien en commun. C’est à toi que je souhaite d’avoir l’astuce et la ténacité nécessaires. Crois-moi, ce sont des qualités bien supérieures à n’importe quel objet magique.</p>
+<p>"Raiahui’s your daughter?"</p>
+<p>"Such ties don't matter much here. Raiahui and I barely have anything in common. You're the one I hope will have the cunning and the tenacity needed to win the race. Believe me, those qualities are much stronger than any magic."</p>
 </div>
     `,
     "next": function(goToSection) {
-      const text = `Faanarua n’a pas d’autres conseils à vous fournir et, après l’avoir remerciée, vous regagnez votre pirogue.`;
+      const text = `Faanarua doesn't have anything else to tell you and, after thanking her, you go back to your canoe.`;
       const action = "back-to-hub";
 
       return repeatingFunnel(goToSection, text, action);
@@ -236,14 +236,14 @@ const island3 = {
   },
   "faanarua-my-world": {
     "text":`
-<p>La femme hoche pensivement la tête en vous écoutant.</p>
+<p>The woman nods thoughtfully.</p>
 
 <div class="conversation">
-<p>— Il faut que je me remette au travail, dit-elle. J’aimerais repartir dès demain et cette pirogue a encore besoin d’entretien. Mais tu m’es moins désagréable que les membres de ma tribu et je vais donc te donner trois conseils pour la course de ce soir. Le premier est très simple, mais facilement négligé : c’est de prendre le temps de réfléchir et de ne pas t’arrêter aux apparences. Le deuxième est que tu ne pourras gagner qu’en te montrant suffisamment astucieuse : en-dehors du fait qu’elle doit s’effectuer à la nage, cette course n’a presque aucune règle. Et le troisième conseil est de prendre autant d’avance que possible avant même que Raiahui ne soit dans l’eau.</p>
+<p>"I need to get back to work," she says. "I'd like to leave tomorrow and this canoe still requires maintenance. But I find you less annoying than the members of my tribe, so I'll give you three pieces of advice. The first one is very simple, but easily overlooked: take time to think and don't trust appearances. The second one is that you'll only be able to win if you're cunning enough: other than the fact that you need to swim from one island to the other, the race doesn't really have any rule. And the third one is that you should make sure that you have as much of a lead as possible before Raiahui goes in the water.</p>
 </div>
     `,
     "next": function(goToSection) {
-      const text = `Elle n’a rien d’autre à ajouter et, après l’avoir remerciée, vous regagnez votre pirogue.`;
+      const text = `She has nothing more to add and, after thanking her, you go back to your canoe.`;
       const action = "back-to-hub";
 
       return repeatingFunnel(goToSection, text, action);
@@ -251,28 +251,28 @@ const island3 = {
   },
   "faanarua-raiahui": {
     "text": `
-<p>La femme ne tarde pas à vous interrompre :</p>
+<p>The woman quickly cuts you off:</p>
 
 <div class="conversation">
-<p>— Je suis déjà au courant de la course entre Raiahui et toi. Ca ne m’intéresse absolument pas.</p>
-<p>— C’est tout de même un rite de passage à l’âge adulte…</p>
-<p>— C’est une coutume idiote, oui. Qu’est-ce que tu imagines que cela t’apportera de participer à cette course ?</p>
+<p>"I already know about the race between Raiahui and you. I don't care in the slightest."</p>
+<p>"But it's a rite of passage to adulthood...</p>
+<p>"It's a stupid tradition, that's what it is. What do you think you'll get out of it?"</p>
 </div>
 
-<p>Vous essayez de lui expliquer que vous êtes vous-même en train d’accomplir un rite de passage et de lui décrire ce que vous recherchez. Elle vous écoute avec une moue dubitative.</p>
+<p>You try to explain that you're also undergoing a rite of passage, and to describe what you seek. She listens with a skeptical expression.</p>
 
 <div class="conversation">
-<p>— Voyager en quête d’une révélation me paraît tout à fait respectable, mais je ne vois toujours pas ce que tu espères trouver ici.</p>
+<p>"To travel in search of revelation seems quite respectable, but I still don't understand what you expect to find here."</p>
 </div>
     `,
     "next": function(goToSection, flags, updateFlag) {
       const choices = [
         {
-          "text": `Vous répondez que participer à la course pourrait vous aider à découvrir quelque chose sur vous-même.`,
+          "text": `You answer that taking part in the race might help you discover something about yourself.`,
           "action": "faanarua-her-journey",
         },
         {
-          "text": `Vous lui parlez de l’Écume des Profondeurs, la récompense qu’on vous a promise si vous l’emportez.`,
+          "text": `You tell her about the Foam of the Deep, the reward you were promised should you win the race.`,
           "action": () => {
             updateFlag("time", flags.time+1);
             return "faanarua-my-world";
