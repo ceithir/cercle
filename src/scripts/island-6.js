@@ -4,26 +4,26 @@ import {endGame, acquireItem, coatSentence, repeatingFunnel, repeatingCrossroad,
 import crocodileImage from "./../images/crocodile.jpg";
 
 const crocodileLastWords = `
-<p>Les échos d’un rire guttural vous parviennent tandis que vous vous enfuyez.</p>
+<p>As you run away, a guttural laugh echoes loudly behind you.</p>
 
 <div class="conversation">
-<p>— Tu ne peux pas me reprocher d’avoir essayé, délicieuse fille humaine ! vous crie le crocodile. Mais je vais te donner un véritable conseil pour humilier cette tribu de voleurs. Trouve quelques-uns des fruits rouges qui poussent sur cette île et emporte-les avec toi. Si tu goûte l’un d’entre eux juste avant ta course, cela te donnera peut-être une chance de l’emporter. Tu auras également besoin d’astuce, mais ce n’est pas quelque chose qui s’acquiert aussi facilement !</p>
+<p>"You can’t blame me for trying, appetizing human girl!" the crocodile shouts. "But I’ll give you a real piece of advice, so you can humiliate that thieving tribe. Find some of the red fruits that grow on this island and take them with you. If you taste one of them just before your race, it may give you a chance to win. You’ll also need cunning, but that’s not so easily acquired!"</p>
 </div>
 
-<p>Sa voix disparaît derrière vous, mais vous ne ralentissez guère l’allure avant d’avoir regagné votre pirogue. En chemin, vous observez quelques arbustes qui portent en effet de petits fruits ovales d’une couleur écarlate. Il s’agit sans doute de ce dont parlait le crocodile, mais pouvez-vous lui faire confiance cette fois-ci ?</p>
+<p>You barely slow down, even after his voice has disappeared behind you. Just before you reach your canoe, you notice a few shrubs bearing red fruits. They must be what the crocodile was referring to, but can you trust him this time? </p>
 `;
 
 const crocodileLastCrossroads = (goToSection, flags, updateFlag) => {
   const choices = [
     {
-      "text": `Vous prenez quelques instants pour récolter une poignée de ces fruits rouges.`,
+      "text": `You take a moment to pick a handful of those red fruits.`,
       "action": () => {
         acquireItem("fruit", updateFlag);
         return "gather-fruits";
       },
     },
     {
-      "text": `Vous quittez immédiatement cette île dangereuse.`,
+      "text": `You leave this dangerous island immediately.`,
       "action": () => {
         updateFlag("time", flags.time+1);
         return "back-to-hub";
@@ -38,11 +38,11 @@ const crocodileLastCrossroads = (goToSection, flags, updateFlag) => {
 };
 
 const singOrDie = (goToSection, flags, updateFlag) => {
-  const songText = `Vous essayez de l’imiter en fredonnant.`;
+  const songText = `You try to hum the same tune.`;
 
   const choices = [
     {
-      "text": `Vous écoutez le crocodile.`,
+      "text": `You listen to the crocodile.`,
       "action": () => {
         updateFlag("eatenByCrocodile", true);
         goToSection("crocodile-song");
@@ -55,7 +55,7 @@ const singOrDie = (goToSection, flags, updateFlag) => {
       },
     },
     {
-      "text": `Soupçonnant qu’il s’agit d’un piège, vous décidez de vous enfuir.`,
+      "text": `Suspecting a trap, you decide to run away.`,
       "action": () => {
         goToSection("crocodile-siren");
       },
@@ -72,31 +72,31 @@ const island6 = {
     "text": (flags) => {
       if (flags.encounteredCrocodileAtSea) {
         return `
-<p>Vos coups de pagaie se font plus hésitants à mesure que vous approchez des rives étouffées sous les palétuviers. Vous connaissez désormais le danger qui réside sur cette île.</p>
+<p>Your paddle strokes become more hesitant as you come close to the shore, smothered under the mangrove trees. You now know the peril that exists on this island.</p>
         `;
       }
 
       if (secondTimeToIsland("island-6", flags)) {
         return `
-<p>Ensevelie sous les racines des palétuviers, l’île ne paraît pas avoir connu le moindre changement depuis votre précédent passage.</p>
+<p>Buried under the roots of the mangrove trees, the island doesn’t seem to have changed in the slightest since the previous time you approached it.</p>
         `;
       }
 
       return `
-<p>Cette île est couverte d’une abondance de palétuviers, dont les racines enchevêtrées recouvrent totalement le sol. Cà et là, quelques coins de plage résistent non sans mal à l’étouffement. L’île fait une bonne taille — sans être aussi grande que celle où se trouve le village — et son coeur vous est totalement masqué par la végétation.</p>
+<p>This island is covered by a multitude of mangrove trees, their entangled roots hiding the ground from your eyes. Here and there, tiny beaches have managed not to be smothered. The island is fairly large – though not as much as the one where the village is located – and its heart is completely hidden by the vegetation.</p>
       `;
     },
     "next": (goToSection, flags, updateFlag) => {
       if (flags.encounteredCrocodileAtSea) {
         const choices = [
           {
-            "text": `Vous prenez le risque d’y retourner malgré tout.`,
+            "text": `You decide to go back to the island, despite the risk.`,
             "action": () => {
               return "island-6-take-two";
             },
           },
           {
-            "text": `Vous jugez plus sensé de choisir une nouvelle destination.`,
+            "text": `You deem it wiser to choose another destination.`,
             "action": () => {
               return "back-to-hub";
             },
@@ -109,17 +109,17 @@ const island6 = {
         );
       }
 
-      const leaveText = `Vous préférez repartir vers une autre destination.`;
+      const leaveText = `You’d rather choose another destination.`;
 
       const choices = [
         {
-          "text": `Vous accostez sur l’une des bandes de sable et entreprenez votre exploration à pied.`,
+          "text": `You land on one of the stretches of sand and start exploring on foot.`,
           "action": () => {
             goToSection("exploring-island-6");
           },
         },
         {
-          "text": `Vous commencez par longer l’île en pirogue.`,
+          "text": `You paddle along the shore of the island.`,
           "action": () => {
             updateFlag("encounteredCrocodileAtSea", true);
             goToSection("observing-island-6");
@@ -140,16 +140,16 @@ const island6 = {
   },
   "exploring-island-6": {
     "text": `
-<p>Vous accostez sur une minuscule plage et vous enfoncez vers le coeur de l’île. Les racines tapissent le sol comme une épaisse toile d’araignée, ce qui rend la marche malaisée et vous fait presque perdre l’équilibre à plusieurs reprises. A mesure que vous vous enfoncez vers l’intérieur, les arbres se font progressivement plus épais, mais vous ne remarquez toujours aucune vie animale. Le silence — que vous trouviez d’abord reposant — ne tarde pas à vous paraître quelque peu oppressant.</p>
+<p>You land on a very small beach and head straight for the heart of the island. The roots cover the ground like a thick spider web, and walking is not easy: several times, you almost lose your balance. As you get farther from the shore, the trees become larger, but you’re still unable to notice any sign of animal life. The silence – that you found relaxing at first – is now beginning to feel somewhat oppressive.</p>
 
-<p>Après de longs moments qui ne vous font rien découvrir d’intéressant, vous commencez à vous lasser de cette exploration. Il semble de moins en moins probable qu’il y ait quoi que ce soit qui puisse vous être utile sur cette île. Ne sachant plus bien de quelle direction vous êtes venue, vous décidez de regagner simplement le lagon et de le longer ensuite jusqu’à retrouver votre pirogue. Il vous suffit de quelques instants pour atteindre l’une des petites plages qui entourent l’île, presque étranglée par les racines qui l’entourent.</p>
+<p>Time goes by and you fail to discover anything of interest, eventually getting tired of this fruitless exploration. It seems increasingly unlikely that anything on this island could be of any use to you. Not quite certain that you’d manage to retrace your steps, you decide to simply head for the lagoon, and then walk along the shore until you find your canoe. A few short moments are enough for you to reach one of the small beaches of the island, surrounded and nearly choked by countless tree roots.</p>
 
-<p>Votre sang se refroidit dans vos veines. Etendu sur le sable, juste devant vous, il y a un crocodile qui fait quatre fois votre taille.</p>
+<p>Your blood freezes in your veins. Lying on the sand, just before you, is a crocodile four times your size.</p>
 
-<p>L’animal est immobile comme un tronc d’arbre abattu. On pourrait croire qu’il est mort. Vous êtes sur le point de détaler à toutes jambes lorsqu’une voix rocailleuse vient vous heurter les oreilles :</p>
+<p>The beast is still as a fallen tree. It seems lifeless. You’re about to run away as fast as you can when a guttural voice suddenly makes itself heard:</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `— Attends.`;
+      const text = `"Wait."`;
       const action = () => {
         updateFlag("approchedCrocodile", true);
         return "crocodile";
@@ -164,22 +164,22 @@ const island6 = {
   },
   "observing-island-6": {
     "text": `
-<p>Plongée dans l’ombre des palétuviers, vous faites progresser votre pirogue à coups de pagaie réguliers. Tout ce qui se trouve sur l’île semble plongé dans une profonde torpeur, que ne vient pas troubler le moindre chant d’oiseau. L’immobilité générale vous inspire progressivement l’impression que rien d’animé ne se trouve ici. Et, pour cette raison, vous ne remarquez l’unique habitant de l’île que très tardivement.</p>
+<p>In the shade of the mangrove trees, you paddle along the shore. The entire island seems to be slumbering, undisturbed by any birdsong. The general stillness slowly gives you the impression that nothing here is able to move. And for that reason, you fail to notice the island’s only inhabitant as early as you could have.</p>
 
-<p>Le sang se refroidit dans vos veines. Etendu sur une bande de sable garrottée d’épaisses racines, si proche que vous pourriez l’atteindre en deux coups de pagaie, il y a un crocodile qui fait quatre fois votre taille.</p>
+<p>Your blood freezes in your veins. Lying on a stretch of sand surrounded by thick tree roots, so close that two paddle strokes would be enough for you to reach it, is a crocodile four times your size.</p>
 
-<p>Il ne bouge pas d’un pouce et vous ne distinguez pas si ses yeux sont ouverts.</p>
+<p>It’s perfectly still and you can’t tell if its eyes are open.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous vous éloignez précipitamment.`,
+          "text": `You quickly paddle away.`,
           "action": () => {
             goToSection("crocodile-swift-paddling");
           },
         },
         {
-          "text": `Vous vous éloignez aussi silencieusement que possible.`,
+          "text": `You paddle away as silently as possible.`,
           "action": () => {
             updateFlag("damagedBoat", true);
             goToSection("crocodile-quiet-paddling");
@@ -194,20 +194,20 @@ const island6 = {
   },
   "crocodile-swift-paddling": {
     "text": `
-<p>Faisant brutalement virer votre pirogue vers le centre du lagon, vous pagayez de toutes vos forces pour vous éloigner au plus vite de ce monstre cuirassé. Il s’écoule un bon moment avant que vous n’osiez vous arrêter, au bord de l’essoufflement. Jetant alors un coup d’œil en arrière, vous voyez que le crocodile est toujours au même emplacement, aussi immobile qu’un tronc abattu.</p>
+<p>Sharply turning your canoe toward the center of the lagoon, you paddle with all your strength to get away from that armored monster. Only after a long moment do you finally dare to stop, nearly out of breath. Looking behind you, you see that the crocodile is still lying in the exact same spot, as motionless as a fallen tree.</p>
 
-<p>Vous connaissez à présent le danger qui réside sur cette île.</p>
+<p>You now know the peril of this island.</p>
     `,
     "next": (goToSection) => {
       const choices = [
         {
-          "text": `Vous prenez le risque d’y retourner malgré tout.`,
+          "text": `You return to the island, despite the risk.`,
           "action": () => {
             return "island-6-take-two";
           },
         },
         {
-          "text": `Vous jugez plus sensé de choisir une nouvelle destination.`,
+          "text": `You deem it wiser to choose a different destination.`,
           "action": () => {
             return "back-to-hub";
           },
@@ -222,18 +222,18 @@ const island6 = {
   },
   "crocodile-quiet-paddling": {
     "text": `
-<p>Plongeant votre pagaie dans l’eau de manière à ne faire aucun bruit, vous dirigez lentement votre pirogue vers le centre du lagon, malgré la peur qui crispe vos muscles. Mais le crocodile, jusque-là immobile comme un tronc d’arbre abattu, se met alors en mouvement avec une soudaineté foudroyante, se précipitant vers vous dans un grand bruit d’éclaboussures ! Saisie de terreur, vous vous mettez aussitôt à pagayer de toutes vos forces, mais le reptile a déjà atteint votre embarcation.</p>
+<p>Plunging your paddle into the water without a sound, you slowly turn your canoe toward the center of the lagoon, your muscles tense with fear. But the crocodile, until then as motionless as a fallen tree, abruptly springs into action, rushing toward you with a great splashing sound! Terrified, you start paddling with all your strength, but the huge reptile has already reached your canoe.</p>
 
 <img src="${crocodileImage}" class="img-responsive text-img" alt=""/>
 
-<p>Un choc violent vous fait presque tomber à l’eau lorsque sa mâchoire puissante se referme sur votre flotteur. Le crocodile essaie de se servir de cette prise pour renverser votre pirogue, mais il emploie une telle violence qu’il arrache totalement le flotteur, vous donnant une chance de lui échapper. Vous ne la laissez pas passer, pagayant plus énergiquement que vous ne l’avez jamais fait de votre vie jusqu’à vous sentir au bord de l’évanouissement.</p>
+<p>A brutal impact nearly makes you fall into the water when the beast’s powerful jaws close on your outrigger. The crocodile tries to use this hold to overturn the canoe, but does so with such violence that it completely tears off the outrigger. You desperately seize this chance to escape, paddling quicker than you ever have in your entire life, until you feel ready to faint.</p>
 
-<p>Lorsque vous vous arrêtez enfin, le coeur battant à tout rompre, un coup d’œil en arrière vous apprend que le monstre ne vous a pas poursuivie. Encore sous le choc d’avoir vu la mort vous frôler de si près, il faut un moment pour que cette constatation vous inspire un véritable soulagement.</p>
+<p>When you finally stop, your heart banging wildly in your chest, a glance behind you reveals that the monster hasn’t given chase. Still in shock after seeing death up close, it takes you a moment to even feel relieved.</p>
 
-<p>Vos moyens finissent par vous revenir et vous décidez de faire route vers une autre île. Mais la perte de son flotteur rend votre pirogue beaucoup moins stable et il vous faudra la piloter avec davantage de prudence. Ce qui vous ralentira d’autant.</p>
+<p>Once you’ve pulled yourself together, you decide to head for a different island. But the loss of its outrigger makes your canoe much less stable. You’ll have to paddle more cautiously, and that will slow you down.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous décidez de vous choisir une destination moins dangereuse.`;
+      const text = `You decide to choose a less dangerous destination.`;
       const action = () => "back-to-hub";
 
       return repeatingFunnel(
@@ -245,20 +245,20 @@ const island6 = {
   },
   "island-6-take-two": {
     "text": `
-<p>Vous prenez soin d’accoster sur une plage située à bonne distance de celle sur laquelle vous avez observé l’énorme crocodile avant d’entamer une exploration prudente de l’île.</p>
+<p>You make sure to land on a beach far from the one where you spotted the huge crocodile. Then you cautiously start exploring the island.</p>
 
-<p>Les racines tapissent le sol comme une épaisse toile d’araignée, ce qui rend la marche malaisée et vous fait presque perdre l’équilibre à plusieurs reprises. A mesure que vous vous enfoncez vers l’intérieur, les arbres se font progressivement plus épais, mais vous ne remarquez toujours aucune vie animale. Loin d’être reposant, le silence ne tarde pas à vous paraître oppressant.</p>
+<p>The roots cover the ground like a thick spider web, and walking is not easy; several times, you almost lose your balance. As you get farther from the shore, the trees become larger, but you’re still unable to notice any sign of animal life. Far from being relaxing, the silence soon feels oppressive.</p>
 
-<p>Après de longs moments qui ne vous font rien découvrir d’intéressant, vous ne pouvez vous empêcher d’être gagnée par une certaine nervosité. Et si le crocodile avait quitté sa plage et attendait désormais à proximité de votre pirogue ? Vous seriez prise au piège !</p>
+<p>Time goes by, you fail to discover anything of interest, and you start feeling nervous. What if the crocodile had left its beach and was now lying in wait close to your canoe? You’d find yourself trapped!</p>
 
-<p>Vous décidez que vous êtes restée suffisamment longtemps sur cette île, où il n’y a de toute évidence rien qui puisse vous être utile. Mais avant d’en partir, vous jugez prudent de vous assurer que le crocodile n’a pas bougé de l’endroit où vous l’avez vu. C’est clairement un risque, mais il vous fait moins peur que de ne pas être certaine de l’endroit exact où se trouve ce monstre.</p>
+<p>You decide you’ve stayed long enough on this island, where there’s obviously nothing that could be of any use to you. But before you leave, you want to make sure that the crocodile is still where you saw it. It’s clearly a risk, but it scares you less than not knowing for sure the position of that monster.</p>
 
-<p>Vous vous dirigez avec une extrême prudence vers la plage où vous avez vu le crocodile, prête à vous enfuir à toutes jambes au moindre signe alarmant. Votre coeur cogne dans votre poitrine avec une violence assourdissante et votre appréhension croît jusqu’à une intensité telle que vous êtes bien près de partir en courant rejoindre votre pirogue, lorsque la bande de sable se dévoile soudain juste devant vous.</p>
+<p>With extreme caution, you head for the beach where the crocodile was lying, ready to flee at the slightest scare. Your heart is banging violently in your chest and your fear keeps growing. As you’re about to run back to your canoe, the stretch of sand suddenly appears just before you.</p>
 
-<p>Le crocodile est toujours au même endroit, figé comme une statue. On pourrait croire qu’il est mort. Ayant vérifié son emplacement, vous vous apprêtez à vous esquiver discrètement lorsqu’une voix rocailleuse vient vous heurter les oreilles :</p>
+<p>The crocodile has remained in the same spot, still as a statue. It seems lifeless. Now that you know its position for sure, you’re about to slip away discreetly, but a guttural voice makes itself heard:</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `— Attends.`;
+      const text = `"Wait."`;
       const action = () => {
         updateFlag("approchedCrocodile", true);
         return "crocodile";
@@ -273,24 +273,24 @@ const island6 = {
   },
   "crocodile": {
     "text": `
-<p>Le corps massif et cuirassé du crocodile n’a pas perdu son immobilité pesante, mais il a légèrement tourné la tête pour vous regarder de ses yeux jaunes. La voix qui s’échappe de sa gueule à peine entrouverte est à la fois rauque et grondante, ce qui rend presque difficile de saisir ce qu’elle dit :</p>
+<p>The heavy, armored body of the crocodile hasn’t lost its ponderous stillness, but his head has moved a little and his yellow eyes are now watching you. The voice that comes out of his slightly open mouth is rough and growling at the same time, making the words almost difficult to understand:</p>
 
 <div class="conversation">
-<p>— N’aie pas peur, je ne te ferai aucun mal. Je veux t’être utile, au contraire. Approche-toi un peu pour que nous parlions, car j’entends difficilement les voix humaines.</p>
+<p>"Have no fear, I won’t hurt you. On the contrary, I want to help you. Come a bit closer, so we can talk; I don’t perceive human voices very clearly."</p>
 </div>
 
-<p>La plupart des légendes de votre tribu mettent en scène des animaux doués de l’esprit et de la parole. Lors de vos moments de rêverie, vous avez souvent imaginé votre rencontre avec une telle créature. Mais vous ne vous attendiez certes pas à ce qu’elle se déroule ainsi !</p>
+<p>Most of your tribe’s legends feature animals gifted with intelligence and speech. You’ve sometimes daydreamed about meeting such a creature. But you didn’t expect it to happen this way!</p>
 
-<p>Votre stupéfaction ne vous ôte cependant pas votre prudence instinctive.</p>
+<p>Your astonishment doesn’t make you any less cautious, however.</p>
 
-<p>Vous vous trouvez à quatre bonnes enjambées du crocodile.</p>
+<p>You’re four strides away from the crocodile.</p>
     `,
     "next": (goToSection) => {
-      const unmovingText = `Vous restez exactement où vous êtes.`;
+      const unmovingText = `You remain exactly where you are.`;
 
       const choices = [
         {
-          "text": `Vous vous rapprochez — très légèrement — de lui, comme il le demande.`,
+          "text": `You get closer – very slightly closer – to him.`,
           "action": () => {
             goToSection("crocodile-closer");
           },
@@ -310,22 +310,22 @@ const island6 = {
   },
   "crocodile-closer": {
     "text": `
-<p>Vous faites un pas prudent en avant, prête à vous enfuir à la moindre alerte. Mais le corps énorme du crocodile reste aussi immobile que le sable sur lequel il repose.</p>
+<p>You take a cautious step forward, ready to flee at any moment. But the enormous body of the crocodile remains as motionless as the sand it’s lying on.</p>
 
 <div class="conversation">
-<p>— C’est bien, tu apprends à ne pas te fier aux apparences. Je veux sincèrement t’aider, comme tu en as besoin. Réfléchis : que veux-tu savoir ?</p>
+<p>"Good, you’ve learned not to trust appearances. I genuinely want to help you, and you do need help. Now think: what do you want to know?"</p>
 </div>
     `,
     "next": (goToSection) => {
       const choices = [
         {
-          "text": `Vous l’interrogez sur la course que vous allez devoir livrer.`,
+          "text": `You ask him about the race that’ll pit you against Raiahui.`,
           "action": () => {
             goToSection("crocodile-trial");
           },
         },
         {
-          "text": `Vous l’interrogez sur la tribu.`,
+          "text": `You ask him about the tribe.`,
           "action": () => {
             goToSection("crocodile-bitterness");
           },
@@ -340,21 +340,21 @@ const island6 = {
   "crocodile-bitterness": {
     "text": `
 <div class="conversation">
-<p>— Ces voleurs… J’étais le seul maître de l’atoll avant que leur misérable tribu ne décide de s’y installer ! Aujourd’hui, il ne me reste plus que cette seule île et une petite partie du lagon pour y chasser. Mais je suis patient, je sais attendre pendant des saisons et des saisons… Un jour, ils apprendront que je conserve bien des secrets et des pouvoirs cachés, mais il sera trop tard ce jour-là !</p>
+<p>"Those thieves… I was the only master of the atoll before their miserable tribe decided to settle here. Now, the only things I have left are this island and a small part of the lagoon where I can hunt. But I’m patient, I can wait for many seasons… One day, they’ll learn that I possess many secrets and hidden powers, but it’ll be too late!"</p>
 </div>
 
-<p>Il est difficile d’identifier clairement des émotions dans une voix aussi inhumaine, mais vous ne doutez pas de la rancoeur vengeresse que nourrit jalousement le reptile.</p>
+<p>It’s difficult to recognize emotions expressed in such an inhuman voice, but the bitter, vengeful resentment of the reptile is nevertheless unmistakable.</p>
     `,
     "next": (goToSection) => {
       const choices = [
         {
-          "text": `Vous demandez à voir une preuve des pouvoirs qu’il est censé posséder.`,
+          "text": `You ask him for a demonstration of the powers he claims to possess.`,
           "action": () => {
             return "crocodile-power";
           },
         },
         {
-          "text": `Vous lui demandez s’il peut vous aider à gagner votre course contre Raiahui.`,
+          "text": `You ask him if he can help you win your race against Raiahui.`,
           "action": () => {
             return "crocodile-help";
           },
@@ -370,36 +370,36 @@ const island6 = {
   "crocodile-power": {
     "text": `
 <div class="conversation">
-<p>— Tu doutes peut-être de ce que je te raconte ? dit le crocodile. Tu es encore jeune et ignorante. Je vais te montrer ce que je peux faire.</p>
+<p>"Maybe you doubt the truth of my words?" the crocodile says. "You’re still young and ignorant. I’ll show you what I can do."</p>
 </div>
 
-<p>Son corps massif se met à bouger et vous vous raidissez aussitôt, alarmée, mais il ne se dirige pas vers vous. Sa mâchoire puissante se referme sur une racine voisine et en arrache un tronçon épais, qu’elle semble ensuite mastiquer longuement. Puis le crocodile se retourne vers vous et recrache sur le sable le morceau de bois.</p>
+<p>His huge body starts moving. You tense, frightened, but he’s not heading in your direction. Its powerful jaws close on a nearby root and tear off part of it. The crocodile seemingly gnaw on the thick piece of wood for a while, then he turns back toward you and spits it on the sand.</p>
 
 <div class="conversation">
-<p>— Regarde, voici l’un de mes pouvoirs !</p>
+<p>"Look! Here’s one of my powers!"</p>
 </div>
 
-<p>Son séjour dans la gueule du crocodile a donné une forme étrange au fragment de racine : il ressemble désormais à une figurine humaine. Et, bien que la forme en soit très grossière et les détails inexistants, la certitude étrange apparaît dans votre esprit que c’est vous qu’elle représente. Vos yeux la fixent avec une fascination croissante.</p>
+<p>Its stay in the crocodile’s mouth has strangely altered this piece of wood: it now looks like a human-shaped figurine. And, though it’s very rough and has little detail, you’re suddenly struck with the weird conviction that it represents you. You stare at it with growing fascination.</p>
 
 <div class="conversation">
-<p>— Cela te plaît, non ? dit le crocodile d’une voix presque susurrante. Et elle te serait profondément utile. Viens la chercher… Viens… Approche…</p>
+<p>"You like it, don’t you?" the crocodile says, almost whispering. "And it would be extremely useful to you. Come and take it… Come… Come closer…"</p>
 </div>
 
-<p>Le désir de posséder la figurine s’est totalement emparé de votre esprit et vous êtes prête à défier la mort pour vous en emparer. Mais, bien que vous soyez incapable de résister au charme qu’elle exerce sur vous, votre bon sens n’est pas totalement engourdi. Vous réalisez que les actions du crocodile n’ont pas d’autre but que de faire de vous son repas.</p>
+<p>The desire to possess the figurine now dominates your mind, and you’re ready to risk death to obtain it. But, though you’re unable to resist this enthallment, your common sense isn’t completely numb. You realize that the crocodile's actions have no other purpose than to make a meal out of you.</p>
 
-<p>La figurine se trouve à mi-chemin entre vous deux. Une longue branche, épaisse comme votre cheville, gît sur le sol à côté de vous.</p>
+<p>The figurine is halfway between you. A long branch, thick as your calf, lies on the ground next to you.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous ramassez la branche et vous en servez pour tenir à distance le crocodile.`,
+          "text": `You pick up the branch and use it to keep the crocodile away.`,
           "action": () => {
             updateFlag("eatenByCrocodile", true);
             goToSection("crocodile-branch");
           },
         },
         {
-          "text": `Vous essayez de le distraire en faisant semblant d’apercevoir un membre de la tribu qu’il déteste tant.`,
+          "text": `You try to distract the crocodile by pretending to catch sight of a member of the tribe he hates so much.`,
           "action": () => {
             acquireItem("doll", updateFlag);
             goToSection("crocodile-look-out");
@@ -414,7 +414,7 @@ const island6 = {
   },
   "crocodile-branch": {
     "text": `
-<p>Vous vous avancez rapidement vers la figurine, tenant la branche devant vous comme une lance. Le crocodile reste immobile jusqu’au moment où vous devez vous baisser pour ramasser la figurine. C’est à ce moment-là qu’il se jette sur vous avec une soudaineté effrayante. Sa gueule terrible se referme sur votre branche et vous l’arrache violemment des mains, vous déséquilibrant par la même occasion. Vous essayez de vous redresser pour vous enfuir, mais il est trop tard : le crocodile, qui passe l’essentiel de ses journées sans le moindre mouvement, est capable d’une explosion de vélocité lorsqu’il s’agit de s’emparer d’une proie. Pour la première fois depuis bien longtemps, il va pouvoir se repaître de chair humaine.</p>
+<p>You quickly walk toward the figurine, holding the branch before you like a spear. The crocodile remains still until you bend down to pick up the figurine. Then it rushes toward you with terrifying suddenness. Its frightful jaws close on the branch and violently rip it out of your hands, making you lose your balance and fall. You try to get up, but it’s too late: though he seldom moves, the crocodile is capable of great speed when it comes to catching a prey. For the first time in many years, he’s about to feast on human flesh.</p>
     `,
     "next": endGame,
   },
@@ -422,20 +422,20 @@ const island6 = {
     "text": (flags) => {
       return `
 <div class="conversation">
-<p>— On dirait que je ne vais pas avoir le temps, dites-vous avec un geste de main vers le lagon. Je vois qu’on vient déjà me chercher pour la course. Ce sera pour…</p>
+<p>"It seems I no longer have the time," you say, gesturing toward the lagoon. "I see someone coming, probably to tell me that the race is going to begin. I’ll have to… </p>
 </div>
 
-<p>L’efficacité de votre mensonge dépasse vos espérances : le corps massif se tourne avec une vélocité stupéfiante vers les nouveaux arrivants imaginaires et la gueule hérissée de dents s’ouvre en grand, de la manière la plus menaçante possible.</p>
+<p>Your lie works beyond your hopes: with astonishing speed, the huge beast turns to face the imaginary newcomer, opening its frightful jaws as threateningly as possible.</p>
 
-<p>Vous ne laissez pas passer cette occasion fabuleuse : le temps que le monstre saisisse votre subterfuge, vous avez franchi l’espace vous séparant de la figurine, vous en êtes emparée et repartez en courant à toutes jambes. Il se jette rageusement à vos trousses, mais vous le distancez sans peine, prenant garde de ne pas trébucher sur l’une des innombrables racines qui parsèment l’île.</p>
+<p>You immediately seize this wonderful opportunity : by the time the monster realizes he’s been tricked, you’ve reached the figurine and grabbed it, and you’re now running away as fast as you can, making sure not to stumble on one of the countless roots. He furiously chases after you, but you easily outdistance him.</p>
 
-<p>Quelques instants plus tard, atteignant votre pirogue, vous prenez le temps d’examiner la figurine grossière. Le charme qui vous avait inspiré le désir irrésistible de la posséder s’est dissipé, mais une intuition vous dit qu’elle pourrait véritablement se révéler utile.</p>
+<p>A few moments later, as you get back to your canoe, you take the time to examine the rough figurine. The spell that made you crave for it has now dissipated, but your intuition tells you it might really be useful.</p>
 
 ${itemAcquisitionFeedback(flags.inventory.doll.name)}
       `;
     },
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous vous éloignez de l’île.`;
+      const text = `You leave the island.`;
       const action = () => {
         updateFlag("time", flags.time+1);
         return "back-to-hub";
@@ -451,46 +451,46 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
   "crocodile-help": {
     "text":`
 <div class="conversation">
-<p>— Je dois participer à une course pour le rite de passage d’une jeune fille de la tribu, dites-vous à l’énorme reptile. Vous connaissez peut-être un moyen de m’aider ? Si je gagne, cela embarrassera la tribu toute entière.</p>
+<p>"I have to take part in the rite of passage of a young woman from the tribe," you tell the huge reptile. "Do you anything that could help me? If I win, it’ll humble the entire tribe."</p>
 </p>
 
-<p>Le crocodile médite la suggestion pendant un long moment avant de finalement répondre :</p>
+<p>The crocodile reflects for a while before answering:</p>
 <div class="conversation">
-<p>— Ne te fais pas d’illusion : cette course est davantage une cérémonie qu’une épreuve pour ton adversaire. Les traditions de cette tribu bâtarde n’ont pour raison d’être que de leur rappeler leur prétendue supériorité. Lorsque cette course débutera, dis-toi bien que tu n’auras une chance qu’en faisant preuve de ruse et de vigilance. Mais je veux t’aider à humilier ces voleurs. Ecoute bien, je vais te révéler l’un de mes secrets…</p>
+<p>"Do not fool yourself: as far as your opponent is concerned, that race is a formality more than it is a real trial. The traditions of that bastard tribe have no other purpose than to remind them of their supposed superiority. Once the race has begun, know that you’ll only stand a chance if you show cunning and alertness. But I want to help you humiliate those thieves. Listen well, I’ll reveal one of my secrets to you…"</p>
 </div>
 
-<p>Il s’échappe de sa gueule un bruit étrange, très grave, à mi-chemin entre un grondement et un chant. Son rythme, qui ne ressemble à aucune musique que vous connaissez, exerce sur vous un attrait fascinant.</p>
+<p>Out of his mouth comes a strange sound, very deep, halfway between a growl and a song. Its rhythm, different from any music you know, is strangely mesmerizing.</p>
     `,
     "next": singOrDie,
   },
   "crocodile-song": {
     "text": `
-<p>Le son lancinant s’insinue peu à peu dans tout votre esprit, étouffant votre instinct et paralysant vos pensées. Vous êtes bientôt tout à fait immobile, les bras ballants et le regard fixe. Et alors, le crocodile interrompt son chant et, soulevant sa masse pesante du lieu où il était étendu, s’avance sans hâte vers vous, qui n’en avez aucune conscience. Sa satisfaction est grande, car cela fait bien longtemps qu’il n’a pas eu l’occasion de dévorer un être humain. Vous allez reprendre vos esprits d’ici un instant, mais il sera bien trop tard.</p>
+<p>The haunting sound infiltrates your entire mind, smothering your instinct and paralyzing your thoughts. Soon enough, you’re completely motionless and staring at nothing. Then the crocodile stops singing and, lifting his heavy body from the sand, slowly approaches you, who remain unaware. He feels great satisfaction, for it has been many years since he last had the occasion to devour a human being. You will snap out of the enthrallment in a moment, but it’ll be much too late then.</p>
     `,
     "next": endGame,
   },
   "crocodile-siren": {
     "text": `
-<p>Vous tournez les talons pour vous enfuir. Le bruit cesse aussitôt et l’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Heureusement, vous n’êtes déjà plus à l’endroit où les puissantes mâchoires se referment en claquant. Sans vous retourner, vous vous lancez en courant de toutes vos forces parmi les arbres.</p>
+<p>You turn to flee. The sound stops immediately and the crocodile rushes toward you with startling suddenness, its mouth wide open! Fortunately, you’ve already moved, and the frightful jaws close on empty air. You run away as fast as you can among the trees, without ever looking back.</p>
     ` + crocodileLastWords,
     "next": crocodileLastCrossroads,
   },
   "crocodile-close-enough": {
     "text": `
-<p>Un rire saccadé et grinçant s’échappe de la gueule puissante du reptile.</p>
+<p>A halting, raucous laugh comes out of the reptile’s powerful mouth.</p>
 <div class="conversation">
-<p>— Tu es bien méfiante ! J’imagine que les apparences sont contre moi. Mais tu as pourtant bien d’autres sujets de préoccupation. Veux-tu que je te fasse part de ma sagesse malgré tout ?</p>
+<p>"So distrustful! I guess appearances are against me. Yet you have many other reasons to worry. Do you want me to share my wisdom with you anyway?</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous l’interrogez sur la course que vous allez devoir livrer.`,
+          "text": `You ask him about the race that will pit you against Raiahui.`,
           "action": () => {
             return "crocodile-trial";
           },
         },
         {
-          "text": `Vous l’interrogez au sujet de la tribu.`,
+          "text": `You ask him about the tribe.`,
           "action": () => {
             return "crocodile-angry";
           },
@@ -506,25 +506,25 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
   "crocodile-angry": {
     "text": `
 <div class="conversation">
-<p>— Je hais ces misérables voleurs, siffle le crocodile avec animosité. L’atoll tout entier m’appartenait avant que leur tribu bâtarde ne décide de s’y installer. Aujourd’hui, il ne me reste plus que cette seule île et une petite partie du lagon pour y chasser. Mais je suis patient et je conserve bien des secrets dont cette misérable tribu n’a aucune idée. Ecoute bien, je vais te révéler l’un d’entre eux, il te sera utile…</p>
+<p>"I hate those miserable thieves," the crocodile hisses angrily. "I was the only master of the atoll before their bastard tribe decided to settle here. Now, the only things I have left are this island and a small part of the lagoon where I can hunt. But I’m patient, and I have many secrets that despicable tribe doesn’t know of. Listen well, I’ll share one of them with you, it’ll be useful…"</p>
 </div>
 
-<p>Il s’échappe de sa gueule un bruit étrange, très grave, à mi-chemin entre un grondement et un chant. Son rythme, qui ne ressemble à aucune musique que vous connaissez, exerce sur vous un attrait fascinant.</p>
+<p> Out of his mouth comes a strange sound, very deep, halfway between a growl and a song. Its rhythm, different from any music you know, is strangely mesmerizing.</p>
     `,
     "next": singOrDie,
   },
   "crocodile-trial": {
     "text": `
 <div class="conversation">
-<p>— Ne t’y trompe pas : les membres arrogants de cette tribu bâtarde ne pensent pas que tu as la moindre chance de remporter leur course traditionnelle. Ce n’est pour eux qu’une cérémonie, pas une véritable épreuve. Mais cela me plaierait d’humilier ces voleurs en te faisant gagner malgré tout. Regarde parmi les racines de l’arbre qui se trouve à côté de toi, il y a un objet qui pourrait t’être bien utile.</p>
+<p>"Do not fool yourself: the arrogant members of that bastard tribe don’t think that you stand any chance of winning their traditional race. As far as they’re concerned, it’s merely a formality, not a real trial. But I’d like to humiliate those thieves by helping you win. Look among the roots of the tree next to you, there’s an object that would serve you well."</p>
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const noText = `Vous vous abstenez, soupçonnant un piège.`;
+      const noText = `You refrain from doing so, suspecting a trap.`;
 
       const choices = [
         {
-          "text": `Vous suivez cette avis.`,
+          "text": `You follow his advice.`,
           "action": () => {
             goToSection("crocodile-tree");
           },
@@ -544,20 +544,20 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
   },
   "crocodile-tree": {
     "text": `
-<p>Les racines de l’arbre en question sont un écheveau inextricable. Vous vous baissez pour le fouiller à l’aide de vos mains.</p>
-<p>L’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Prise par surprise, vous avez à peine le temps de réagir.</p>
+<p>The roots of the tree in question are inextricably tangled. You bend down to search for the object.</p>
+<p>The crocodile rushes toward you with startling suddenness, its mouth wide open! Taken by surprise, you barely have time to react.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous vous jetez en arrière.`,
+          "text": `You jump backward.`,
           "action": () => {
             updateFlag("eatenByCrocodile", true);
             goToSection("crocodile-meal");
           },
         },
         {
-          "text": `Vous plongez sur le côté.`,
+          "text": `You jump to the side.`,
           "action": () => {
             goToSection("crocodile-escape");
           },
@@ -571,59 +571,59 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
   },
   "crocodile-meal": {
     "text": `
-<p>Votre bond convulsif en arrière vous dérobe aux mâchoires puissantes, mais seulement pour un instant. Votre pied heurte l’une des innombrables racines et vous tombez brutalement à la renverse. L’énorme crocodile, avide d’un repas qu’il n’escomptait pas, ne vous laissera pas l’occasion de vous relever.</p>
+<p>You evade the powerful jaws, but only for a brief moment. As you jump backward, your foot hits one the countless roots covering the ground, and you fall down abruptly. The huge crocodile, eager for a meal he wasn’t counting on, won’t give you a chance to get up.</p>
     `,
     "next": endGame,
   },
   "crocodile-escape": {
     "text": `
-<p>La détente convulsive de vos jambes vous projette sur le côté juste à temps pour que les puissantes mâchoires du crocodile se referment sur le vide. Vous roulez sur le sol, vous meurtrissant les bras et le dos contre les épaisses racines, mais l’énergie que vous insuffle la terreur vous remet presque aussitôt sur vos pieds et vous vous enfuyez en courant. La plage se trouve déjà loin derrière vous lorsque vous vous souvenez de respirer.</p>
+<p>You reflexively jump to the side, just in time for the powerful jaws to close on empty air. You roll on the ground, bruising your arms and your back against the thick roots. Spurred on by terror, you get up almost immediately and run away as fast as you can. The beach is already far behind you when you remember to breathe.</p>
     ` + crocodileLastWords,
     "next": crocodileLastCrossroads,
   },
   "crocodile-unmasked": {
     "text": `
-<p>L’immobilité monolithique du crocodile explose en un jaillissement fulgurant qui le précipite vers vous, la gueule grande ouverte ! Heureusement, vous n’aviez pas relâché votre vigilance et vous avez juste le temps de vous enfuir à toutes jambes.</p>
+<p>The crocodile rushes toward you with startling suddenness, its mouth wide open! Fortunately, you’ve remained on your guard and you flee before he can reach you.</p>
     ` + crocodileLastWords,
     "next": crocodileLastCrossroads,
   },
   "crocodile-chorus": {
     "text": `
-<p>Vous faites de votre mieux, mais votre oreille est aussi incapable de comprendre le rythme étrange que votre gorge humaine l’est de produire des notes aussi graves. Sous l’effet d’une pulsion, vous poursuivez néanmoins votre fredonnement, couvrant le son lancinant qui s’insinuait dans votre crâne, mélangeant à la mélopée du crocodile votre imitation de moins en moins ressemblante.</p>
+<p>You do your best, but your ear is unable to understand the strange rhythm, just like your human voice is unable to produce such low notes. Out of instinct, you nevertheless keep humming, covering the haunting sound that was infiltrating your mind, imitating the crocodile’s song more and more poorly.</p>
 
-<p>Le crocodile s’interrompt tout à coup et vous en faites autant, vacillant comme sous l’effet d’un étourdissement soudain.</p>
-
-<div class="conversation">
-<p>— Assez chanté. Regarde, à présent.</p>
-</div>
-
-<p>Son corps massif se met à bouger et vous vous raidissez aussitôt, alarmée, mais il ne se dirige pas vers vous. Sa mâchoire puissante se referme sur une racine voisine et en arrache un tronçon épais, qu’elle semble ensuite mastiquer longuement. Puis le crocodile se retourne vers vous et recrache sur le sable le morceau de bois.</p>
+<p>The crocodile suddenly stops and so do you, staggering as though you were feeling faint.</p>
 
 <div class="conversation">
-<p>— Voici l’un de mes pouvoirs !</p>
+<p>"Enough singing. Watch now."</p>
 </div>
 
-<p>Son séjour dans la gueule du crocodile a donné une forme étrange au fragment de racine : il ressemble désormais à une figurine humaine. Et, bien que la forme en soit très grossière et les détails inexistants, la certitude étrange apparaît dans votre esprit que c’est vous qu’elle représente. Vos yeux la fixent avec une fascination croissante.</p>
+<p> His huge body starts moving. You tense, frightened, but he’s not heading in your direction. Its powerful jaws close on a nearby root and tear off part of it. The crocodile seemingly gnaw on the thick piece of wood for a while, then he turns back toward you and spits it on the sand.</p>
 
 <div class="conversation">
-<p>— Cela te plaît, non ? dit le crocodile d’une voix presque susurrante. Et elle te serait profondément utile. Viens la chercher… Viens… Approche…</p>
+<p>"Look! Here’s one of my powers!"</p>
 </div>
 
-<p>Le désir de posséder la figurine s’est totalement emparé de votre esprit et vous êtes prête à défier la mort pour vous en emparer. Mais, bien que vous soyez incapable de résister au charme qu’elle exerce sur vous, votre bon sens n’est pas totalement engourdi. Vous réalisez que les actions du crocodile n’ont pas d’autre but que de faire de vous son repas.</p>
+<p> Its stay in the crocodile’s mouth has strangely altered this piece of wood: it now looks like a human-shaped figurine. And, though it’s very rough and has little detail, you’re suddenly struck with the weird conviction that it represents you. You stare at it with growing fascination.</p>
 
-<p>La figurine se trouve à mi-chemin entre vous. Une longue branche, épaisse comme votre cheville, gît sur le sol à côté de vous.</p>
+<div class="conversation">
+<p>"You like it, don’t you?" the crocodile says, almost whispering. "And it would be extremely useful to you. Come and take it… Come… Come closer…"</p>
+</div>
+
+<p> The desire to possess the figurine now dominates your mind, and you’re ready to risk death to obtain it. But, though you’re unable to resist this enthallment, your common sense isn’t completely numb. You realize that the crocodile's actions have no other purpose than to make a meal out of you.</p>
+
+<p> The figurine is halfway between you. A long branch, thick as your calf, lies on the ground next to you.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous ramassez la branche et vous en servez pour tenir à distance le crocodile le temps de récupérer la figurine.`,
+          "text": ` You pick up the branch and use it to keep the crocodile away.`,
           "action": () => {
             updateFlag("eatenByCrocodile", true);
             goToSection("crocodile-branch");
           },
         },
         {
-          "text": `Vous tentez de distraire le crocodile en faisant semblant d’apercevoir un membre de la tribu qu’il déteste tant, avant de courir vous emparer de la figurine.`,
+          "text": ` You try to distract the crocodile by pretending to catch sight of a member of the tribe he hates so much.`,
           "action": () => {
             acquireItem("doll", updateFlag);
             goToSection("crocodile-look-out");
@@ -639,7 +639,7 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
   "gather-fruits": {
     "text": (flags) => {
       return `
-<p>Vous ne ressentez aucune démangeaison ou autre réaction cutanée malsaine au contact des fruits. Si nouveau piège du crocodile il y a, il n'est pas à chercher de ce côté-là.</p>
+<p>Touching the fruits doesn't harm you in any way. Of course, that doesn't tell whether eating them would be safe.</p>
 
 ${itemAcquisitionFeedback(flags.inventory.fruit.name)}
       `;
@@ -647,7 +647,7 @@ ${itemAcquisitionFeedback(flags.inventory.fruit.name)}
     "next": (goToSection, flags, updateFlag) => {
       return repeatingFunnel(
         goToSection,
-        `Vous repartez aussitôt votre récolte effectuée.`,
+        `It's more than time to leave this island.`,
         () => {
           updateFlag("time", flags.time+1);
           return "back-to-hub";
