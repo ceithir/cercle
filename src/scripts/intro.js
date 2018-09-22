@@ -38,20 +38,20 @@ const arrivalActions = function(goToSection, flags, updateFlag) {
     [
       {
         "key": "visit",
-        "text": `Vous visitez le village.`,
+        "text": `You visit the village.`,
         "flag": "toldAboutFaanaruaByRaiahui",
       },
       {
         "key": "repair",
-        "text": `Vous vous consacrez à l’entretien de votre pirogue.`,
+        "text": `You spend time on the maintenance of your canoe.`,
       },
       {
         "key": "raiahui-trial",
-        "text": `Vous discutez avec Raiahui de son épreuve d’initiation.`,
+        "text": `You ask Raiahui about her rite of passage.`,
       },
       {
         "key": "raiahui-atoll",
-        "text": `Vous demandez à Raiahui de vous décrire l’atoll.`,
+        "text": `You ask Raiahui to describe the atoll to you.`,
         "flag": "toldAboutAtollByRaiahui",
       },
     ],
@@ -70,7 +70,7 @@ const arrivalNext = function(goToSection, flags, updateFlag) {
 
   return repeatingFunnel(
     goToSection,
-    `Le festin est désormais sur le point de commencer.`,
+    `The feast is now about to begin.`,
     "feast",
   );
 }
@@ -81,25 +81,25 @@ const feastActions = function(goToSection, flags, updateFlag, transitionText) {
     [
       {
         "key": "feast-chief",
-        "text": `Le chef Ataroa.`,
+        "text": `The chieftain Ataroa.`,
       },
       {
         "key": "feast-men",
-        "text": `Les hommes.`,
+        "text": `The men.`,
       },
       {
         "key": "feast-women",
-        "text": `Les femmes.`,
+        "text": `The women.`,
         "flag": "toldAboutLazyOneByAriinea",
       },
       {
         "key": "feast-boys",
-        "text": `Les adolescents.`,
+        "text": `The male adolescents.`,
         "flag": "toldAboutFaanaruaByVarenui",
       },
       {
         "key": "feast-girls",
-        "text": `Les adolescentes.`,
+        "text": `The female adolescents.`,
         "flag": "watchedKnifeImportance",
       },
     ],
@@ -108,7 +108,7 @@ const feastActions = function(goToSection, flags, updateFlag, transitionText) {
     updateFlag,
     text => {
         if (!transitionText) {
-          transitionText = `<p>Vous pourriez passer du temps à discuter avec <span class="transition-sentence">{text}</span>.</p>`;
+          transitionText = `<p>You could spend time talking with <span class="transition-sentence">{text}</span>.</p>`;
         }
 
         return transitionText.replace("{text}", text.charAt(0).toLowerCase() + text.slice(1, -1));
@@ -118,11 +118,11 @@ const feastActions = function(goToSection, flags, updateFlag, transitionText) {
 
 const feastNext = function(goToSection, flags, updateFlag) {
   if (flags.feastActions.length <= 1) {
-    const transitionText = `<p>Vous conversez encore quelques instants avant de prendre poliment congé pour aller rencontrer <span class="transition-sentence">{text}</span>.</p>`
+    const transitionText = `<p>You talk a while longer, then politely take your leave and approach <span class="transition-sentence">{text}</span>.</p>`
 
     return (
       <div>
-        <p>{`Vous conversez encore quelques instants avant de prendre poliment congé pour aller rencontrer d’autres personnes :`}</p>
+        <p>{`You talk a while longer, then politely take your leave and approach other people:`}</p>
         <Crossroads choices={feastActions(goToSection, flags, updateFlag, transitionText)} />
       </div>
     );
@@ -130,7 +130,7 @@ const feastNext = function(goToSection, flags, updateFlag) {
 
   return repeatingFunnel(
     goToSection,
-    `Vous discutez encore un certain temps. L’activité qui vous entoure est en train de commencer à décroître.`,
+    `You talk a while longer. Around you, the feast is slowly petering out.`,
     "night"
   );
 }
@@ -139,58 +139,58 @@ const intro = {
   "prelude": {
     "text":
 `
-<p>Vous pagayez avec une régularité fluide, sans réfléchir ni rêver à rien, absorbée par les sensations purement physiques de vos muscles qui travaillent, de l’air humide emplissant vos narines et de la caresse ardente du soleil sur votre dos nu. Votre petite pirogue et son mince flotteur ne font naître que des traînées éphémères et insignifiantes à la surface de l’énorme océan, dont les vagues paisibles vous laissent pareillement en repos. Dans le ciel tout aussi immense, les points minuscules que sont les oiseaux ressortent nettement sur l’azur limpide. C’est en suivant leur vol des yeux que vous avez deviné l’existence d’une île peu distante dans cette direction. Cette théorie a été confirmée vers le milieu de la journée, lorsque son contour aplati a commencé à se détacher de l’horizon. Si votre estimation de la distance est correcte, vous devriez atteindre l’île bien avant le crépuscule.</p>
+<p>You paddle regularly, not thinking or dreaming about anything, focused only on the purely physical sensations provided by the shift of your muscles, the moist air filling your nostrils and the burning touch of the sun on your naked back. Your small outrigger canoe creates short-lived, insignificant trails on the surface of the immense ocean, barely disturbing its peaceful waves. Above your head, the birds are dots in the azure sky, tiny yet clearly visible. Watching their flight is what made you suspect the existence of an island in this direction. Your guess was confirmed around midday, when the island's flat outline became visible against the horizon. If you judge the distance correctly, you should reach it long before sunset.</p>
 
-<p>Au fil de votre approche, tandis que le trait clair d’une plage apparaît entre le bleu sombre de l’eau et le foisonnement vert des arbres, votre esprit abandonne son état de détachement pour appréhender de nouveau le futur. Cette île sera-t-elle habitée ? Depuis que vous avez laissé derrière vous la petite partie de l’archipel que vous connaissiez, vous avez fait beaucoup d’escales en des lieux qui se sont révélés absolument déserts. Vous n’étiez pas habituée à une telle solitude avant d’entamer ce voyage et, même si elle ne s’est pas révélée aussi désagréable que vous auriez pu le penser, vous appréciez tout de même les occasions de l’interrompre.</p>
+<p>As you get closer, and the pale line of a beach appears between the dark blue of the water and the green abundance of the trees, your mind leaves its state of detachment and considers the near future. Will the island turn out to be inhabited? Ever since you left behind you the small part of the archipelago you were familiar with, you've often made stopovers in completely deserted places. You weren't used to such solitude before you embarked on this journey, and though it hasn't turned out to be as unpleasant as you might have thought, it becomes wearisome when it remains uninterrupted for too long.</p>
 
-<p>Que l’île soit habitée ou non, elle offrira l’occasion de renouveler vos provisions, qui se limitent actuellement à une petite quantité de tubercules cuits d’igname et de patate douce, agrémentée de quelques bananes. Une source d’eau fraîche serait la bienvenue : l’une de vos deux gourdes est totalement vide. Réparer ou remplacer certains de vos outils ne serait par ailleurs pas un luxe si vous êtes en mesure de prolonger un peu votre escale : votre couteau en os n’est plus guère tranchant et vous avez récemment brisé le manche de votre hachette de pierre.</p>
+<p>Whether the island is inhabited or not, it will give you the opportunity to restock your supplies, currently limited to a small quantity of yam and sweet potatoes, along with a few bananas. A freshwater spring would also be welcome: one of your two waterskins is completely empty. And if you can stay for a while, repairing or replacing some of your tools wouldn't be luxury: your bone knife is now quite dull and you recently broke the handle of your stone hatchet. Ideally, you'd find the materials necessary to create makeshift replacements for your mast and sail, that were destroyed a few days ago during a bout of rough weather.</p>
 
-<p>Et ensuite ? À moins que, par un fait improbable, cette île ne recèle la totalité de ce que vous recherchez, il ne vous restera plus qu’à choisir une nouvelle direction dans laquelle poursuivre votre errance.</p>
+<p>And then? Unless, by extraordinary happenstance, this island turns out to hold everything you're looking for, you'll pick a new direction and resume your wandering.</p>
 
-<p>Vous vous appelez Mananuiva et, depuis le jour de votre naissance, la saison des pluies est revenue dix-sept fois. Au cours de ces années, vous n’avez connu que votre île natale, ses voisines immédiates et les flots qui les entourent. Mais vous avez finalement atteint l’âge auquel les jeunes gens de votre tribu accomplissent leur rite de passage à l’âge adulte : s’embarquer seul sur une pirogue et partir au large. La tradition appelle cela « partir pour l’horizon » et bien des légendes ont pour point de départ un jeune garçon s’aventurant à cette occasion jusqu’à une île lointaine et étrange. Mais la réalité actuelle de cette coutume est que les adolescents ne font que se rendre à l’une des îles habitées situées à moins d’une journée de voyage et y prendre du bon temps pendant une dizaine de jours. Il est courant que des liaisons romantiques se créent à l’occasion de ces séjours et c’est ainsi que naissent bien des mariages entre des personnes qui auraient pu ne jamais se rencontrer.</p>
+<p>Your name is Mananuiva and, since the day of your birth, the wet season has returned seventeen times. During all those years, you've known nothing but your home island, its close neighbors and the waves surrounding them. But you've finally reached the age when the young men and women of your tribe perform their rite of passage to adulthood: taking a canoe and sailing far away, alone. Tradition calls it "heading for the horizon" and many legends start with a young boy discovering a mysterious, faraway island during the rite. These days, truth be told, adolescents content themselves with going to an island less than a day away, where they have fun as best they can for a week or so. Flings and romance are common during such stays, and the rite is responsible for many marriages between people that might otherwise have never met.</p>
 
-<p>Au cours des mois qui ont précédé, vous avez passé de nombreuses soirées à rêvasser à la manière dont se déroulerait votre propre rite de passage, remuant l’espérance imprécise qu’il vous apprendrait quelque chose d’inestimable sur vous-même et sur le monde. Et, le jour venu, votre île natale n’avait pas encore disparu derrière vous lorsque vous avez effectivement eu une révélation soudaine… celle que la vie d’adulte qui vous attend à l’issue de ce voyage ne recèle aucune perspective qui vous plaise. Vous n’avez pas envie de devenir une femme raisonnable et rangée, pas envie de vous marier et d’avoir beaucoup d’enfants, pas envie de mener une vie comme celle de vos parents et de vos cinq frères et soeurs plus âgés.</p>
+<p>During the months that preceded it, you spent many evenings daydreaming about your own rite of passage, vaguely hoping that it would teach you something invaluable about yourself and the entire world. And, on the day of your departure, your home island hadn't yet disappeared behind you when you did have a revelation... the revelation that the adult life waiting for you after this journey held nothing that you found promising. You don't want to become a reasonable woman, to marry and have many children, to have a life like your parents or your five older siblings.</p>
 
-<p>Cela remonte à près de deux mois. Depuis, vous avez visité bien des îles à la recherche d’un signe, d’une vision ou d’un oracle qui vous révélera une voie qui vous vous convienne. Vous n’êtes toujours pas certaine de la raison pour laquelle vous avez refusé l’avenir qui vous était promis : votre vie jusqu’alors n’avait pas été malheureuse, tout au plus teintée parfois d’une certaine insatisfaction. Mais vous n’avez jamais douté d’avoir fait le bon choix.</p>
+<p>That was two months ago. Since then, you've visited many islands, looking for a sign, a vision or an oracle that would reveal a path that would fit you. You still don't know for sure why you rejected the future waiting for you: your life until then hadn't been unhappy, and could at worst be described as slightly unsatisfying. But you've never doubted your decision.</p>
 
-<p>Vous avez adroitement franchi les brisants qu’engendrent les récifs de corail et n’êtes désormais plus qu’à quelques coups de pagaie de la plage où expirent les vagues. Mais vous n’accostez pas encore. Vous soupçonnez que vous n’avez pas affaire à une île unique, mais à un atoll, auquel cas accéder au lagon intérieur vous offrira une bien meilleure vue d’ensemble.</p>
+<p>The island is surrounded with coral reefs reaching close to the surface; you skillfully maneuver your canoe to cross that natural barrier. You're now but a few paddle strokes away from the beach where the waves expire, but you don't land yet. You suspect that this isn't a single island but an atoll, in which case getting to the inner lagoon should give you a much better overall view.</p>
 
-<p>Vous êtes en train de vous demander dans quelle direction il serait préférable de longer la plage lorsqu’un bruit d’éclaboussures vous fait tourner la tête.</p>
+<p>As you wonder whether you should paddle along the beach to your left or to your right, a splashing sound makes you turn your head.</p>
 
 <img src="${raiahuiIntroImage}" class="img-responsive text-img tall left" alt=""/>
 
-<p>Surgie de l’eau, les deux bras posés sur le flotteur de votre pirogue, une jeune fille vous observe avec une curiosité ravie.</p>
+<p>Having just emerged from the water, both of her arms resting on your outrigger, a young woman is watching you with delighted curiosity.</p>
 
 <div class="conversation">
-<p>— Salut, vous dit-elle d’un ton enjoué. Tu viens de loin ?</p>
-<p>— Assez loin, répondez-vous une fois votre surprise surmontée. Tu veux monter ?</p>
-<p>— Attends un moment. J’ai lâché quelque chose en remontant et je préfère le récupérer tout de suite.</p>
+<p>"Hello," she says cheerfully. "Do you come from afar?"</p>
+<p>"I guess," you answer after a moment of surprise. "Do you want to climb aboard?"</p>
+<p>"Wait just a moment. I dropped something as I was surfacing, and I'd rather get it back right now.</p>
 </div>
 
-<p>Elle plonge sans attendre de réponse. À travers l’eau claire, vous la voyez s’enfoncer vers un enchevêtrement de corail particulièrement dense, plonger le bras dans une anfractuosité, puis remonter aussitôt. Un bref instant plus tard, elle refait surface et se hisse alors sans se faire prier à bord de votre pirogue. Elle tient désormais un couteau en ivoire à la main et vous êtes étonnée qu’elle ait pu retrouver aussi rapidement un objet de cette taille parmi le foisonnement extravagant des récifs. L’idée vous effleure qu’elle devait être en train de chercher des coquillages ou des crustacés sous l’eau lorsque vous êtes arrivée, mais elle possèderait dans ce cas un filet où ranger ses prises et elle n’a absolument rien sur elle.</p>
+<p>She dives without waiting for an answer. Through the clear water, you see her approach an especially dense jumble of coral, stick her arm in a crevice, then immediately head back in your direction. Once she's resurfaced, she readily climbs aboard your canoe. She now holds an ivory knife, and you're surprised that she could find such a small object so quickly amid the extravagant profusion of coral. You consider that she might have been searching for shellfish or crustaceans underwater when you arrived; but if that were the case, she'd have brought a small net to carry her catch, and she has nothing of the sort.</p>
 
 <div class="conversation">
-<p>— Je m’appelle Raiahui. Et toi ?</p>
-<p>— Mananuiva. Ton village est loin d’ici ?</p>
-<p>— Il est du côté du lagon. Je vais te montrer la passe la plus proche.</p>
+<p>"My name's Raiahui. What's yours ?"</p>
+<p>"Mananuiva. Is your village far from here?"</p>
+<p>"It's on the side of the lagoon. I'll show you the nearest channel."</p>
 </div>
 
-<p>Raiahui a à peu près le même âge que vous. Elle est un peu plus grande, un peu plus mince et sa peau brune est légèrement plus claire. Ses cheveux noirs ont été coupés de manière curieusement courte, ne lui tombant même pas jusqu’aux épaules.</p>
+<p>Raiahui is about as old as you are. She's a bit taller, a bit thinner, and her brown skin is slightly lighter. Her dark hair has been cut strangely short, and doesn't even reach her shoulders.</p>
 
-<p>Vous dirigez votre pirogue alourdie suivant ses instructions. La langue que parle Raiahui est essentiellement la même que la vôtre et son accent n’est pas plus difficile à saisir que beaucoup de ceux que vous avez rencontrés au cours de votre voyage. Certaines des expressions qu’elle emploie ne vous sont pas familières, mais cela ne gêne guère votre compréhension mutuelle.</p>
+<p>You maneuver your canoe according to her instructions. Raiahui speaks the same language as you do, and her accent is no thicker than many you've heard during your journey. Some of the expressions she uses are unfamiliar to you, but it doesn't prevent you from easily understanding one another.</p>
 
-<p>Vous accédez bientôt à la passe et vous y engagez. Sur votre gauche, l’île que vous avez longée jusqu’ici est tout du long restée d’un enchevêtrement de palmiers. Sur votre droite, vous distinguez à une certaine distance une autre île de l’atoll, qui n’est guère plus qu’une bande de sable nu. En-dessous de votre pirogue, l’eau est d’une limpidité qui contraste avec le bleu profond de l’océan comme du lagon.</p>
+<p>You soon reach the channel and go through it. To your left, the island you've been paddling along is evenly covered with an entanglement of trees. To your right, some distance away, you now see another of the atoll's islands; it's barely more than a stretch of bare sand. Under your canoe, the water has a limpidity that constrasts with the dark blue of the ocean and the lagoon.</p>
 
 <div class="conversation">
-<p>— Est-ce que tu es une bonne nageuse ? vous demande soudain Raiahui.</p>
-<p>— Très bonne.</p>
+<p>"Are you a good swimmer?" Raiahui asks suddenly.</p>
+<p>"Very good."</p>
 </div>
 
-<p>Votre réponse la fait sourire, mais elle ne vous explique pas pourquoi.</p>
+<p>Your answer makes her smile, but she doesn't explain why.</p>
 `
     ,
     "next": function(goToSection) {
-      const text = `Suivant ses instructions, vous pénétrez à l’intérieur du lagon.`;
+      const text = `Following her instructions, you reach the lagoon.`;
       const action = "arrival";
 
       return repeatingFunnel(goToSection, text, action);
@@ -199,57 +199,57 @@ const intro = {
   "arrival": {
     "text":
 `
-<p>Le village de Raiahui se révèle d’entrée de jeu fort modeste : il ne consiste qu’en quelques huttes très simples, disposées sans ordre parmi les arbres. Les premiers habitants que vous apercevez — et qui vous aperçoivent — sont de jeunes enfants en train de jouer avec animation sur le sable et dans les vagues. Leurs exclamations excitées ne tardent pas à faire paraître quelques adultes, qui se prélassaient jusque-là dans des hamacs voisins.</p>
+<p>Raiahui's village turns out to be quite modest: it only comprises a few very simple huts, spread without order among the trees. The first inhabitants you see are young children, loudly playing on the sand and in the water. When they catch sight of you, their excited calls quickly bring a few adults, who'd been resting in hammocks nearby.</p>
 
-<p>Lorsque vous parvenez tout près de la plage, Raiahui saute hors de la pirogue pour vous aider à accoster. Une vingtaine de spectateurs de tous âges se sont approchés pour vous observer avec des yeux curieux et il en arrive encore davantage. Vous soutenez de votre mieux toute cette attention ; vous avez visité d’autres îles où le passage d’étrangers est si rare que votre venue faisait figure d’évènement.</p>
+<p>As you get very close to the beach, Raiahui jumps out of the canoe to help you land. A score of spectators of all ages have gathered to watch you with curious eyes, and many others are approaching. You endure the attention as best you can; you've already visited islands where strangers are so rare that your arrival was an event.</p>
 
-<p>La foule s’écarte soudain pour laisser passer un homme aux cheveux presque ras, dont le corps noueux est marqué de diverses cicatrices.</p>
-
-<div class="conversation">
-<p>— C’est le chef de la tribu, Ataroa, vous glisse Raiahui tandis que vous descendez à votre tour de la pirogue.</p>
-</div>
-
-<p>Vous vous inclinez et vous présentez respectueusement, espérant que l’étiquette locale n’est pas plus exigeante. Ataroa vous examine pendant un instant, sans que ses traits rudes ne laissent filtrer la moindre expression. Puis il hoche la tête.</p>
+<p>The crowd suddenly makes way for a man with very close-shaven hair, whose muscular body bears many scars.</p>
 
 <div class="conversation">
-<p>— Tu es la bienvenue parmi nous. Es-tu venue y chercher quelque chose ?</p>
-<p>— J’accomplis mon voyage d’initiation, répondez-vous. Je suis à la recherche d’un signe pour guider mon avenir.</p>
+<p>"It's the chieftain of the tribe, Ataroa," whispers Raiahui as you get out of your canoe.</p>
 </div>
 
-<p>Cette explication vous a valu un certain nombre de regards étonnés depuis le début de votre voyage : les rites de passage à l’âge adulte prennent des formes très variées à travers l’archipel, mais leur rôle véritable reste d’intégrer les adolescents à la communauté des adultes, non de les lancer dans le genre de quête mystique que pourrait entreprendre un chamane. Si votre réponse surprend Ataroa, il n’en laisse cependant rien paraître.</p>
-
-<p>— La coïncidence est heureuse, dit-il. Il y a également dans notre tribu quelqu’un qui doit accomplir son rite de passage, mais elle devait attendre pour cela la venue d’un étranger.</p>
-
-<p>D’un geste de la main, il désigne Raiahui, qui a clairement du mal à contenir son excitation.</p>
+<p>You bow and introduce yourself politely, hoping that the local etiquette isn't more demanding than that. Ataroa watches you for a moment, his face expressionless. Then he nods.</p>
 
 <div class="conversation">
-<p>— En quoi consiste ce rite ? demandez-vous, quelque peu étonnée.</p>
-<p>— Il s’agit d’une simple course entre l’île où nous sommes et sa voisine, rien de plus. Si Raiahui gagne, elle pourra rejoindre les adultes de la tribu. Si tu gagnes…</p>
+<p>"You're welcome here. Have you come to search for something?</p>
+<p>"I'm performing my rite of passage," you answer. "I'm looking for omens about my future."</p>
 </div>
 
-<p>Il s’arrête brièvement pour réfléchir, puis reprend :</p>
+<p>That explanation has earned quite a few puzzled looks since the beginning of your journey: rites of passage to adulthood take many different forms throughout the archipelago, but their true role is to integrate adolescents into the community of adults, not to send them on the kind of mystic quest that would befit a shaman. If your answer surprises Ataroa, however, he doesn't show it.</p>
+
+<p>"That's a lucky coincidence," he says. "There's a member of our tribe who also has to perform her rite of passage, but she had to wait for the arrival of an outsider to do so."</p>
+
+<p>He gestures toward Raiahui, who's clearly having a hard time keeping her excitement in check.</p>
 
 <div class="conversation">
-<p>— Il y a une boisson sacrée, appelée l’Écume des Profondeurs, que nous ne préparons presque jamais tant les ingrédients sont difficiles à rassembler. Celui qui en boit entre en contact avec le monde des esprits et en reçoit sagesse et connaissance. Mes prédécesseurs recouraient à l’Écume des Profondeurs lorsque la tribu était en danger ; moi-même, je n’ai pas eu l’occasion de le faire jusqu’à présent. Si tu remportes la course, tu pourras en boire. Acceptes-tu ?</p>
+<p>"What is that rite like?" you ask, a bit surprised.</p>
+<p>"A simple race between this island and its neighbor, nothing more. If Raiahui wins, she can join the adults of the tribe. If you win...</p>
 </div>
 
-<p>La mention de cette récompense a suscité quelques exclamations de surprise au sein de l’assistance. Cette Écume des Profondeurs vous apportera-t-elle vraiment les réponses que vous recherchez ? La magie réelle n’est pas une chose aussi commune que les légendes le font croire, ainsi que vous avez pu l’observer depuis le début de votre voyage. D’un autre côté, si vous ne saisissez pas toutes les opportunités qui se présentent, il est probable que votre quête n’aboutira jamais à rien.</p>
-
-<p>D’un point de vue beaucoup plus pratique, vous soupçonnez que la tribu ne vous accordera pas l’hospitalité si vous refusez de participer à cette course et vous n’éprouvez aucune envie de repartir sur votre pirogue avant une bonne nuit de sommeil.</p>
+<p>He briefly pauses for thought, then resumes:</p>
 
 <div class="conversation">
-<p>— J’accepte de participer à ce rite de passage, dites-vous.</p>
+<p>"There's a sacred beverage, called the Foam of the Deep, that we hardly ever brew, for its ingredients are difficult to gather. The one who drinks it can access the world of the spirits, and receive wisdom and knowledge. My predecessors used the Foam of the Deep when the tribe was in danger, I have not yet had the occasion to do so myself. If you win the race, we'll brew the Foam of the Deep for you. Do you accept?"</p>
 </div>
 
-<p>Un gloussement joyeux échappe à Raiahui avant même que vous n’ayiez achevé la phrase ; un murmure de contentement général lui fait écho au sein de la foule.</p>
+<p>Hearing Ataroa offer you such a prize has drawn a few surprised exclamations out of the crowd. Would that Foam of the Deep really bring you the answers you seek? Real magic is not as common as legends suggest, as you've realized since the beginning of your journey. On the other hand, if you don't seize all possible opportunities, your quest is likely to remain fruitless.</p>
+
+<p>From a more practical point of view, you suspect that the tribe won't give you hospitality if you refuse to take part in the race, and you certainly don't feel like leaving on your canoe before a good night's sleep.</p>
 
 <div class="conversation">
-<p>— C’est parfait, dit Ataroa. La course aura lieu d’ici une journée et nous tiendrons ce soir un festin en cet honneur.</p>
+<p>"I will take part in the rite of passage," you say.</p>
 </div>
 
-<p>Il distribue des instructions autour de lui et les spectateurs se dispersent tous pour aller préparer le repas. Raiahui s’absente brièvement pour aller passer un pagne, puis revient vous trouver, un large sourire toujours peint sur le visage. Vous observez sa souple musculature d’un œil calculateur, vous demandant à quel point elle sera difficile à battre. Vous êtes restée en deçà de la vérité en lui disant que vous étiez une très bonne nageuse : vous n’avez jamais rencontré une jeune fille de votre âge capable de vous surpasser.</p>
+<p>Raiahui giggles happily, and a murmur of general satisfaction echoes her among the crowd.</p>
 
-<p>Il va sans doute s’écouler un certain temps avant que le festin ne puisse commencer.</p>
+<div class="conversation">
+<p>"Excellent," says Ataroa. "The race will happen a day from now. This evening, we'll have a feast in your honor."</p>
+</div>
+
+<p>He gives instructions and the crowd disperses to prepare the feast. Raiahui briefly goes away to get dressed, then comes back, a wide smile still stuck to her face. You study her lithe, athletic build, wondering how hard it'll be to defeat her. You were being modest when you claimed to be a very good swimmer: the truth is that you've never met a woman that could surpass you.</p>
+
+<p>Some time will obviously pass before the feast can begin.</p>
 `
     ,
     "next": (goToSection, flags, updateFlag) => {
@@ -261,24 +261,24 @@ const intro = {
   "visit": {
     "text": flags =>
 `
-<p>Raiahui vous fait visiter son village. Les quelques huttes qui le composent se révèlent rudimentaires et peu élégantes, même si vous gardez bien entendu cette opinion pour vous. La végétation qui s’étend tout autour est abondante, mais de taille limitée, comme c’est fréquemment le cas sur les atolls : même si les palmiers s’élèvent nettement au-dessus de votre tête, ils restent d’une épaisseur fort modeste.</p>
+<p>Raiahui makes you visit her village. Its few huts turn out to be rudimentary and ungainly; you keep that opinion to yourself, of course. The vegetation around it is plentiful, but its size is limited, as is common on atolls: though the palm trees reach well above your head, their trunks are all fairly thin.</p>
 
-<p>Le centre du village vous réserve cependant une surprise impressionnante. Non loin de l’espace que certains des habitants sont en train de préparer pour le festin s’élève un monument fait de très nombreux trophées de pêche. Vous observez des carapaces de tortues, des rostres d’espadon, de nombreux crânes allongés de dauphins… Au centre s’élève une mâchoire mince et allongée, dont la longueur dépasse le double de votre taille ; elle est hérissée de dents épaisses et pointues.</p>
-
-<div class="conversation">
-<p>— C’est la mâchoire d’un cachalot, vous explique Raiahui, souriant de votre étonnement.</p>
-</div>
-
-<p>Vous avez entendu parler de ces animaux énormes, mais vous n’en avez jamais vu aucun, ce dont vous vous félicitez à la vue de ce vestige.</p>
+<p>The center of the village holds an impressive surprise. Not far from the area where the villagers are now preparing the feast is a monument built from many fishing trophies. You see turtle shells, swordfish bills, many dolphin skulls... In the middle is a long, thin jaw, twice as big as you are; its many teeth are thick and sharp.</p>
 
 <div class="conversation">
-<p>— Comment est-ce que vous avez réussi à pêcher une chose pareille ?</p>
-<p>— Je n’étais pas très grande à l’époque et je me souviens surtout d’avoir mangé du cachalot pendant plusieurs jours. Ils étaient une vingtaine de chasseurs et ils ont eu énormément de mal à séparer l’animal du groupe dont il faisait partie et à le faire s’échouer près de l’atoll. C’est dommage que tu ne puisses pas entendre Faanarua t’expliquer comment ils ont fait.</p>
-<p>— Qui est Faanarua ?</p>
-<p>— C’était l’une des meilleures chasseuses de la tribu… et elle racontait vraiment très bien les histoires. Mais elle est devenue un peu bizarre et on ne la voit plus souvent. Je crois qu’elle est de passage en ce moment, mais je ne pense pas qu’elle aura envie de venir ce soir.</p>
+<p>"It's the jaw of a sperm whale," Raiahui explains, smiling at your astonishment.</p>
 </div>
 
-${flags.arrivalActions.length <= 1? `<p>Une fois la visite du village terminée, il reste encore un certain temps avant que le festin ne puisse commencer.</p>`: ""}
+<p>You've heard about those huge animals, but you've never seen one; judging from these remains, that may be fortunate.</p>
+
+<div class="conversation">
+<p>"How did you manage to catch such a beast?"</p>
+<p>"I wasn't very old when it happened, and I mostly remember eating whale meat for several days. There were about twenty hunters and they had a very hard time separating the animal from its herd and making it run aground near the atoll. It's a pity Faanarua's not here to explain how they pulled it off."</p>
+<p>"Who's Faanarua?"</p>
+<p>"She used to be one of the best hunters in the tribe... and she tells stories really well. But she's become a bit weird and doesn't show up very often anymore. Today, I think she's around, but she probably won't come to this evening's feast.</p>
+</div>
+
+${flags.arrivalActions.length <= 1? `<p>After the visit of the village is over, some time still remains before the feast can begin.</p>`: ""}
 `
     ,
     "next": arrivalNext,
@@ -286,13 +286,13 @@ ${flags.arrivalActions.length <= 1? `<p>Une fois la visite du village terminée,
   "repair": {
     "text": flags =>
 `
-<p>Vérifier à chaque escale l’état de votre pirogue est une habitude que vous avez eu le bon sens de prendre dès le début de votre voyage. Sa faible taille vous permet de la manoeuvrer seule, mais la rendrait plus vulnérable si le ciel et la mer cessaient d’être aussi favorables. Elle serait mise à rude épreuve si vous veniez à être surprise en pleine mer par un coup de vent sérieux.</p>
+<p>Sensibly enough, you've got into the habit of checking the condition of your canoe at each stop. Its small size means that you can maneuver it by yourself, but it also makes it more vulnerable when the wind and the sea become unfriendly. A bout of rough weather can really put it to the test, as you've already experienced.</p>
 
-<p>Sous le regard curieux de Raiahui, vous examinez donc votre embarcation sous toutes les coutures, vous assurant que rien ne menace son étanchéité et que les liens maintenant en place le flotteur sont toujours solides.</p>
+<p>Under Raiahui's curious eyes, you examine your canoe from all angles, making sure that nothing threatens its watertightness, and that the outrigger remains firmly attached.</p>
 
-<p>Aucun sujet de préoccupation ne s’étant présenté à vos yeux, vous mettez finalement un terme à votre inspection. Mais, au moment où vous vous redressez, vous remarquez subitement quelque chose d’étonnant : sur la plage longeant le village, il n’y a — en plus de la vôtre — que deux pirogues, d’ailleurs fort frêles. Même si les habitants de l’atoll ne s’aventurent guère en mer, la simple activité de pêcher devrait exiger bien plus d’embarcations que cela. Les autres pirogues de la tribu sont-elles conservées ailleurs ? Vous décidez que la question n’est tout de même pas essentielle au point de mériter une investigation immédiate.</p>
+<p>You don't notice any reason for concern, and you eventually put an end to your examination. But as you turn away, you suddenly notice something strange: on the beach next to the village, there are only two canoes other than your own, and both of them are rather puny. Even if the members of the tribe seldom venture on the open sea, mere fishing should require more than what you see. Are there other canoes kept somewhere else? You decide that the matter is not so important that it requires immediate investigation.</p>
 
-${flags.arrivalActions.length <= 1? `<p>Il reste encore un certain temps avant que le festin ne puisse commencer.</p>`: ""}
+${flags.arrivalActions.length <= 1? `<p>There's still some time left before the feast can begin.</p>`: ""}
 `
     ,
     "next": arrivalNext,
@@ -301,20 +301,20 @@ ${flags.arrivalActions.length <= 1? `<p>Il reste encore un certain temps avant q
     "text": flags =>
 `
 <div class="conversation">
-<p>— Si j’ai bien compris, tu ne pouvais pas accomplir ton rite de passage sans la venue d’un étranger ?</p>
-<p>— C’est ça. Mais il faut quelqu’un qui soit en bonne santé et suffisamment robuste, bien sûr, ou ce serait trop facile.</p>
-<p>— Vous avez souvent des visiteurs ?</p>
-<p>— Pas tellement, non. J’attends quelqu’un depuis le début de la saison sèche. S’il ne vient personne qui convienne pendant une année entière, quelques adultes emmènent ceux qui ont atteint l’âge nécessaire jusqu’à l’une des îles habitées les plus proches, pour y trouver des gens qui acceptent de participer à la course. Mais grâce à toi, je vais pouvoir devenir une adulte dès demain soir. Je suis vraiment contente.</p>
-<p>— Il y a d’abord notre course, ne pouvez-vous vous empêcher de lui faire remarquer.</p>
+<p>"If I understand correctly, you couldn't perform your rite of passage without an outsider?</p>
+<p>"Exactly. But it has to be someone who's healthy and sturdy enough, of course. Otherwise, it would be too easy.</p>
+<p>"Do you often get visitors?"</p>
+<p>"Not really, no. I've been waiting since the beginning of the dry season. If no one comes for an entire year, a few adults bring those who're old enough to one of the closest inhabited islands, where they can find people who'll take part in the rite. But thanks to you, I'll be an adult tomorrow evening. I'm really glad.</p>
+<p>"The race hasn't happened yet," you observe.</p>
 </div>
 
-<p>Le sourire qui se dessine sur le visage de Raiahui vous dévoile toutes ses dents.</p>
+<p>Raiahui's smile shows all of her teeth.</p>
 
 <div class="conversation">
-<p>— Je suis désolée pour ta quête, Mananuiva, mais c’est moi qui gagnerai.
+<p>"I'm sorry for your quest, Mananuiva, but I'll be the winner."
 </div>
 
-${flags.arrivalActions.length <= 1? `<p>Il reste encore un certain temps avant que le festin ne puisse commencer.</p>`: ""}
+${flags.arrivalActions.length <= 1? `<p>There's still some time left before the feast can begin.</p>`: ""}
 `
     ,
     "next": arrivalNext
@@ -322,34 +322,34 @@ ${flags.arrivalActions.length <= 1? `<p>Il reste encore un certain temps avant q
   "raiahui-atoll": {
     "text": flags =>
 `
-<p>À en juger par la direction dans laquelle le soleil décline, l’île où se trouve le village est située à l’extrémité sud de l’atoll. Depuis la plage où a accosté votre pirogue, vous pouvez distinguer les contours des autres îles, mais pas en déterminer le nombre exact. Raiahui vous dessine un plan sommaire sur le sable.</p>
+<p>Judging from the sun's position, the island where the village is located lies at the southern end of the atoll. From the beach where you've landed your canoe, you can see the outlines of the other islands, but not determine their exact number. Raiahui draws a basic map on the sand.</p>
 
 <div class="conversation">
-<p>— Nous sommes ici, dit-elle en traçant un trait légèrement courbe. Juste à droite, c’est la passe par laquelle nous sommes entrées dans le lagon et, de l’autre côté, c’est le point d’arrivée de notre course. Tu as dû voir au passage à quoi ça ressemble : il n’y a même pas un buisson !
-Son doigt continue à tracer des formes sans grande précision, faisant progresser la représentation vers le nord.</p>
-<p>— Après, il y a un îlot tout petit, qui donne l’impression qu’il va disparaître à chaque fois que revient la saison des pluies. Et ensuite, il y a l’île où habite le Vieux Fainéant. C’est là qu’on trouve les plus gros arbres de l’atoll, mais je ne te conseille pas d’aller les voir de près : le Vieux n’est pas sincèrement accueillant. Il est assez malin pour nous laisser tranquille, mais les étrangers, c’est une autre histoire.</p>
+<p>"We're here," she says, drawing a slightly curved line. "To the right is the channel we passed through to enter the lagoon, and on the other side, there's the arrival point for our race. You must have seen what it's like: there's not even a shrub!
+Her finger keeps drawing vague shapes, moving toward the north.</p>
+<p>"After that, there's a tiny islet, that nearly vanishes during the wet season. Then there's the island of the Old Sluggard. That's where the largest trees in the atoll can be found, but you shouldn't go and have a look: the Old One isn't really welcoming. He's smart enough to stay away from us, but strangers are another matter."</p>
 </div>
 
-<p>Vous allez lui demander des précisions, mais elle est déjà en train de passer à la suite :</p>
+<p>You're about to ask her for more details, but she's already moving on:</p>
 <div class="conversation">
-<p>— Et là, c’est la demeure de la sorcière !</p>
-<p>— Une sorcière ?</p>
+<p>"And here's the home of the witch!"</p>
+<p>"A witch?"</p>
 </div>
 
-<p>Vous vous demandez si Raiahui n’est pas en train de se moquer de vous, mais elle semble tout à fait sincère et très désireuse de vous fournir davantage de détails.</p>
+<p>You wonder if Raiahui might not be having fun at your expense, but she seems quite sincere and eager to tell you more.</p>
 
 <div class="conversation">
-<p>— Lorsque j’étais encore petite, raconte-t-elle avec une excitation nostalgique, il n’y avait rien qui émergeait de l’eau à cet endroit de l’atoll. Et puis, un beau matin, il y a une île qui est apparue là ! Certains pensent qu’elle est venue en flottant, d’autres qu’elle est en fait sur le dos d’un crabe géant au service de la sorcière. L’eau est très sombre tout autour, alors on ne peut pas bien voir… Enfin bon, il y a plusieurs adultes qui sont partis explorer l’île et ils ne sont jamais revenus. Depuis, bien sûr, personne n’y va.</p>
-<p>— Mais comment est-ce que vous savez qu’il y a une sorcière, dans ce cas ?</p>
-<p>— On l’aperçoit de loin, de temps en temps. Elle est très grosse, avec des cheveux hérissés comme des épines d’oursins, et elle porte beaucoup de bijoux dorés bizarres. Elle a souvent l’air occupée, mais personne ne sait vraiment ce qu’elle fait.</p>
+<p>"When I was young," she says with nostalgic excitement, "nothing rose above the surface in that part of the atoll. And then, one morning, an island had appeared! Some think it floats, other that it's actually on the back of a giant crab enslaved by the witch. The water around it is very dark, so you can't really tell... Anyway, several adults decided to explore it and they never came back. Since then, of course, nobody goes there.</p>
+<p>"Then how do you know there's a witch?"</p>
+<p>"We spot her from time to time. She's very fat, with spiky hair like the spines of an urchin, and she wears weird golden jewelry. She usually looks busy, but no one knows for sure what she does.</p>
 </div>
 
-<p>Les trois îles qui complètent l’atoll du côté ouest sont visiblement loin d’inspirer autant d’intérêt à Raiahui, qui les expédie en quelques mots :</p>
+<p>The three remaining islands, on the western side of the atoll, clearly don't interest Raiahui anywhere as much, and she describes them in just a few words:</p>
 <div class="conversation">
-<p>— Celle-ci est très petite et il n’y a presque rien. Les deux dernières sont de taille moyenne et elles ont beaucoup de palmiers, comme cette île-ci.</p>
+<p>"This one's very small and there's hardly anything on it. The other two are medium-sized and they have many palm trees, just like this island.</p>
 </div>
 
-${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste encore un certain temps avant que le festin ne puisse commencer.</p>`: ""}
+${flags.arrivalActions.length <= 1? `<p>The description is over, but some time still remains before the feast can begin.</p>`: ""}
 `
     ,
     "next": arrivalNext,
@@ -357,27 +357,27 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
   "feast": {
     "text":
 `
-<p>Le ciel commence à s’assombrir lorsque Raiahui vous amène à l’endroit préparé pour le festin. Une nourriture abondante, empalée sur une multitude de broches, est en train de rôtir autour d’un grand feu, emplissant l’air d’une odeur qui vous met instantanément l’eau à la bouche. Le bruit vif et régulier de tambours à l’unisson vient donner un rythme à la soirée qui débute.</p>
+<p>The sky is getting dark when Raiahui brings you to the space prepared for the feast. An abundance of food, impaled on plenty of spits, is roasting around a large fire, filling the air with smells that immediately make you mouth water. The brisk sound of drums in unison gives rhythm to the celebration about to begin.</p>
 
 <img src="${feastImage}" class="img-responsive text-img tall left" alt=""/>
 
-<p>Toute la tribu semble rassemblée pour l’occasion : un peu moins d’une centaine de personnes, dont une moitié d’enfants et d’adolescents. Soucieuse de donner une bonne impression, vous avez revêtu le paréo aux couleurs vives que vous conserviez à bord de votre pirogue, mais il semble que ce n’était guère nécessaire : même parmi les femmes, personne n’est vêtu d’autre chose qu’un simple pagne et c’est à peine si vous remarquez çà et là quelques bijoux simples. Vous êtes accueillie par de nombreux regards curieux.</p>
+<p>All the tribe seems to have gathered for the occasion: not quite a hundred people, half of them children and adolescents. Eager to make a good impression, you've put on the brightly colored pareo you've brought along, but it probably wasn't necessary: even the women wear little more than simple loincloths, and you notice only a few basic ornaments here and there. You're met with many curious looks.</p>
 
-<p>Le festin débute sans cérémonie. En tant qu’invitée d’honneur, vous êtes invitée à vous servir la première, ce que votre estomac vous fait accepter avec plaisir. Une assiette en feuilles de palmier tressées vous est offerte et vous faites votre choix parmi les victuailles abondantes, qui incluent de la viande d’oiseau et de tortue, des oeufs, des crustacés, des coquillages et quelques fruits. Une noix de coco verte, au sommet percé, vous est présentée pour que vous puissiez vous désaltérer.</p>
+<p>The feast begins without further ado. As the guest of honor, you're invited to help yourself before anyone else, much to the satisfaction of your stomach. You're given a platen woven out of palm leaves, and you make your choice among an assortment of bird meat, turtle meat, eggs, crustaceans, shellfish and a few fruits. A green coconut with a pierced top is brought to you so you can quench your thirst.</p>
 
-<p>Une fois que vous êtes allée vous asseoir, les membres de la tribu vont à leur tour se servir, avec un enthousiasme désordonné qui laisse supposer que ces festins ne sont pas choses courantes. À l’exception des très jeunes enfants, vous remarquez qu’ils possèdent tous des couteaux en ivoire semblables à celui de Raiahui — courbes et légèrement dentelés — qu’ils utilisent avec une grande dextérité. À en juger par l’aisance avec laquelle ils ouvrent les noix de coco, décortiquent les crustacés découpent la chair, le tranchant de ces instruments doit être incomparablement supérieur à celui de votre couteau en os.</p>
+<p>Once you've sat down, the members of the tribe help themselves in turn, with a chaotic enthusiasm that suggests such feasts are not common. Except for the very young children, you notice that they all own ivory knives similar to Raiahui's - curved and slightly serrated - that they wield with great dexterity. Judging from the ease with which they pierce coconuts, remove shells and cut meat, those tools must be incomparably sharper than your bone knife.</p>
 
-<p>Vous saisissez vite pourquoi il y a une telle abondance de nourriture en observant la voracité avec  laquelle mangent les gens qui vous entourent. Vous entendez fréquemment craquer sous leurs dents des morceaux de carapace ou de petits os d’oiseau qu’ils n’ont pas pris la peine de recracher.</p>
+<p>You quickly understand why there's such an abundance of food as you watch the gluttony of the people surrounding you. They don't even bother to spit out the small pieces of shell and bird bones that crack under their teeth.</p>
 
-<p>Raiahui vous a déserté pour aller retrouver d’autres adolescents, que vous voyez la féliciter — certains avec une envie perceptible — de son passage prochain à l’âge adulte. De toute évidence, ils présument sa victoire lors de votre course de demain !</p>
+<p>Raiahui has left you and is currently talking with other adolescents, who're congratulating her - some with obvious envy - for soon becoming an adult. Quite obviously, they're convinced that she'll win tomorrow's race!</p>
 
-<p>Ce festin est une excellente occasion d’en apprendre davantage sur la tribu, même si vous n’aurez certainement pas l’occasion de bavarder avec tout le monde.</p>
+<p>This feast is an excellent occasion to learn more about the tribe, though you clearly won't have time to chat with everybody.</p>
 `
     ,
     "next": (goToSection, flags, updateFlag) => {
       return (
         <div>
-          <p>{`Vous pourriez passer du temps à discuter avec :`}</p>
+          <p>{`You could spend time talking with:`}</p>
           <Crossroads choices={feastActions(goToSection, flags, updateFlag)} />
         </div>
       );
@@ -386,20 +386,20 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
   "feast-chief": {
     "text":
 `
-<p>Ataroa est un homme des plus inexpressifs, mais il n’a rien de hautain et ne considère visiblement pas qu’il possède une supériorité innée sur ceux qui l’entourent. C’est un contraste plaisant avec les nombreux chefs de tribu qui prétendent descendre des dieux et imposent le respect de rituels pesants afin de le rappeler à chaque instant. Depuis le début de votre voyage, vous avez à deux reprises dû mettre un terme précipité à votre séjour sur une île parce que vous aviez sans le vouloir enfreint tel ou tel tabou aussi dénué de sens qu’absolu.</p>
+<p>Ataroa is a very inexpressive man, but he's not at all haughty and clearly doesn't believe himself to be innately superior to the people around him. That makes him pleasantly different from the many chieftains that claim to be descended from deities, and impose burdensome rituals to constantly remind people of it. On two occasions since the beginning of your journey, you've had to cut short your stay on an island because you'd unwillingly transgressed an absurd, yet absolute taboo.</p>
 
-<p>Après quelques questions anodines, vous vous aventurez à l’interroger sur le rite de passage qu’impose sa tribu pour accéder au statut d’adulte :</p>
+<p>After a few casual questions, you ask Ataroa about the rite of passage used by his tribe:</p>
 
 <div class="conversation">
-<p>—  Pourquoi est-ce que la venue d’un étranger est nécessaire ? Est-ce qu’il ne serait pas plus simple d’organiser chaque année une course entre les adolescents qui sont assez âgés ?</p>
-<p>— Tous les jeunes de la tribu ont l’habitude d’être en compétition les uns avec les autres depuis leur enfance, vous répond Ataroa tout en décortiquant adroitement un crabe de la pointe de son couteau. Cela ne peut plus rien leur apprendre. En les confrontant à quelqu’un qu’ils ne connaissent pas, le rite les place dans une situation incertaine, où ils doivent anticiper et s’adapter. L’épreuve est loin d’être purement physique. Si tu veux la victoire, tu ne l’obtiendras que par l’intelligence.</p>
-<p>— Raiahui a l’air certaine qu’elle va gagner.</p>
+<p>"Why is an outsider necessary? Wouldn't it be simpler to have a race every year between all the adolescents who're old enough?</p>
+<p>"All the youths of the tribe are used to competing with each other since their childhood," Ataroa answers, while skillfully removing the shell of a crab with the point of his knife. "It can no longer teach them anything. By confronting them with someone they don't know, the rite places them in a uncertain situation, where they'll have to anticipate and to adapt. The trial is not merely physical, far from it. If you want to win, you will need to show cunning.</p>
+<p>"Raiahui seems quite sure that she's going to win."</p>
 </div>
 
-<p>Ataroa a un bref hochement de tête.</p>
+<p>Ataroa briefly nods.</p>
 
 <div class="conversation">
-<p>— Si elle perd, ce sera à cause de cette présomption. Ne commets pas la même erreur lorsqu’il faudra commencer la course.</p>
+<p>"If she loses, it'll be because of her overconfidence. Don't make the same mistake when the time comes to start the race."</p>
 </div>
 `
     ,
@@ -408,28 +408,28 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
   "feast-men": {
     "text":
 `
-<p>La plupart des hommes sont occupés à satisfaire leur appétit, mais certains d’entre eux se révèlent curieux d’en savoir davantage sur vous. Leurs questions portent surtout sur vos capacités de nageuse et cherchent clairement à déterminer si vous vous montrerez à la hauteur lors de la compétition du lendemain. Vous restez modeste dans votre description de vous-même : ce que vous dites parviendra peut-être aux oreilles de Raiahui et il vous semble préférable qu’elle vous sous-estime.</p>
+<p>Most of the men are busy filling their bellies, but some are curious to learn more about you. Most of their questions are about your skill as a swimmer; they're clearly trying to determine if you'll be a worthy contestant in tomorrow's race. You remain modest in your description of yourself: what you say may come to Raiahui's ears and you'd rather have her underestimate you.</p>
 
 <div class="conversation">
-<p>— Est-ce que ta tribu organise également des compétitions traditionnelles ? vous demande un homme du nom de Harumu.</p>
-<p>— Oui. Chaque année, beaucoup d’oiseaux viennent pondre sur une toute petite île proche de la nôtre et il y a une course dont le but est d’être le premier à en rapporter des oeufs.</p>
-<p>— Est-ce qu’il t’est arrivé de gagner ?</p>
-<p>— Oh, il n’y a que les hommes qui participent.</p>
+<p>"Does your tribe also hold traditional competitions?" ask a man named Harumu.</p>
+<p>"Yes. Every year, many birds come to a tiny island close to ours and lay their eggs. There's a race to be the first one to bring back some of those eggs.</p>
+<p>"Have you ever won that race?"</p>
+<p>"Oh, only men take part in it."</p>
 </div>
 
-<p>Une expression étonnée se peint sur les traits de Harumu.</p>
+<p>A puzzled expression appears on Harumu's face.</p>
 
 <div class="conversation">
-<p>— C’est une coutume étrange, commente-t-il. Est-ce qu’elle a une raison particulière ?</p>
+<p>"That's a strange custom," he says. "Is there any specific reason for it?"</p>
 </div>
 
-<p>Ne vous sentant pas en mesure d’apporter à cette question la réponse complexe qu’il lui faudrait, vous vous contentez d’une justification purement technique :</p>
+<p>You don't feel up to the task of putting into words the complex explanation this question calls for, so you opt for an easier answer:</p>
 <div class="conversation">
-<p>— Les hommes nagent plus vite, donc ce ne serait pas une course équitable.</p>
-<p>— Oh… Oui, évidemment…</p>
+<p>"Men swim faster than women, so it wouldn't be a fair race."</p>
+<p>"Oh... Yes, obviously."</p>
 </div>
 
-<p>À en juger par la perplexité que laisse paraître son visage, cette raison n’a en réalité rien d’évidente pour lui.</p>
+<p>Judging from the look on his face, he doesn't deem it obvious at all.</p>
 `
     ,
     "next": feastNext,
@@ -437,22 +437,22 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
   "feast-women": {
     "text":
 `
-<p>Lorsque vous engagez la conversation avec quelques-unes des femmes présentes, vous vous attendez à ce que cela vous fournisse un aperçu de la vie domestique de la tribu. Mais, comme vous ne tardez pas à vous en rendre compte, elles ont davantage envie de vous parler de sujets tels que les plus gros poissons qu’il leur est arrivé d’attraper. Certaines des descriptions qu’elles vous font vous laissent pour le moins dubitative !</p>
+<p>When you start talking to some of the women, you expect them to give you an overview of the tribe's domestic life. But, as you quickly discover, they're much more interested in telling you about the biggest fish they've caught. Some of their boasts seem rather doubtful to you!</p>
 
 <div class="conversation">
-<p>— Est-ce qu’il vous arrive de pêcher simplement dans le lagon ? finissez-vous par demander, car elles mentionnent fréquemment qu’elles réalisent leurs prises au large.</p>
+<p>"Do you ever fish in the lagoon itself?" you eventually ask, for they only mention catching fish out at sea.</p>
 </div>
 
-<p>La question fait rire une femme du nom d’Ariinea, qui était il y a à peine un instant en train de vous parler d’un espadon d’une taille improbable.</p>
+<p>Your question gets a laugh out of a woman named Ariinea, who was just a moment ago telling you about a swordfish of improbable size.</p>
 
 <div class="conversation">
-<p>— Assez souvent, par paresse, vous répond-elle, mais ce n’est pas très excitant. La plupart des poissons du lagon ne sont pas très gros. On se lasse vite de ne manger que ça, à moins d’être le Vieux Fainéant.</p>
-<p>— Le Vieux Fainéant ?</p>
-<p>— Il habite sur une île de l’autre côté de l’atoll, vous dit Ariinea, et il passe tout son temps à faire le moins d’effort possible.</p>
-<p>— Il peut tout de même être dangereux, intervient une autre femme, surtout lorsqu’on ne le connaît pas. Je te conseille de ne pas approcher de cette partie de l’atoll, Mananuiva.</p>
+<p>"Quite often, out of sheer laziness," she answers, "but it's not very exciting. Most of the lagoon's fish are quite small. Eating nothing else gets boring very quickly, unless you're the Old Sluggard.</p>
+<p>"The Old Sluggard?"</p>
+<p>"He lives on an island at the other end of the atoll," Ariinea says, "and spends all of his time doing as little as possible.</p>
+<p>"He can still be dangerous," another woman mentions, "especially for those who don't know him. I don't think you should approach that part of the atoll, Mananuiva."</p>
 </div>
 
-<p>Ariinea fait la moue, mais ne conteste pas la validité de cette recommandation.</p>
+<p>Ariinea pouts, but doesn't refute the validity of that recommandation.</p>
 `
     ,
     "next": feastNext,
@@ -460,17 +460,17 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
   "feast-boys": {
     "text":
 `
-<p>La tribu compte un certain nombre de garçons ayant plus ou moins votre âge. Vous vous mêlez à eux, discutant un peu avec chacun. Après quelques instants, vous êtes forcée de parvenir à la conclusion plutôt vexante qu’aucun d’eux n’éprouve le désir de flirter avec vous. Lors de vos escales précédentes sur des îles habitées, votre statut d’étrangère vous conférait un charme exotique qui piquait l’intérêt des adolescents. Cela ne vous rapprochait pas de ce que vous cherchez, mais cela ne nuisait pas à votre amour-propre.</p>
+<p>The tribe has quite a few boys close to your age. You mingle with them, exchanging a few words here and there. After a while, you feel somewhat vexed to observe that not a single one of them feels like flirting with you. During your previous stops on inhabited islands, your status as an outsider gave you an exotic charm that piqued the interest of male adolescents. It didn't bring you any closer to what you're looking for, but it didn't harm your self-esteem either.</p>
 
-<p>Un jeune garçon du nom de Varenui se montre en revanche intéressé par le récit de votre voyage. Tout lui raconter serait bien long, mais vous prenez le temps de lui décrire quelques-uns des lieux les plus mémorables qu’il vous est arrivé de visiter. Il prête une attention fascinée au moindre détail et pose de nombreuses questions.</p>
+<p>A young boy named Varenui is however very interested in your journey. Telling him about everything would be much too long, but you take the time to describe some of the most memorable places you've visited. He seems fascinated by the slightest details, and asks many questions.</p>
 
 <div class="conversation">
-<p>— Tu n’as jamais visité une autre île habitée ? finissez-vous par lui demander.
-<p>— Non. Même les adultes ne le font presque jamais… enfin, à part Faanarua, mais c’est à peine si elle fait encore partie de la tribu.
-<p>— Qui est-ce ?
-<p>— C’est… quelqu’un de bizarre. Elle s’est construit une pirogue avec une voile pour voyager et visiter autant d’autres îles que possible. Elle ne passe généralement ici que quelques jours par an. Elle est justement revenue avant-hier et je voulais lui demander de me raconter ses voyages, mais elle m’a envoyé promener.
-<p>— Elle assiste au festin ? demandez-vous en regardant autour de vous.</p>
-<p>— Non, elle n’est même pas au village. Elle s’est installée sur l’île de l’atoll qui se trouve le plus à l’ouest et elle ne voit presque personne.</p>
+<p>"You've never visited another inhabited island?" you ask him eventually.
+<p>"No. Even the adults very seldom do... well, except Faanarua, but she's barely a member of the tribe anymore."
+<p>"Who's she?"
+<p>"She's... someone weird. She's built a canoe with a sail for herself, so she can travel far and visit as many new islands as she can. Out of every year, she only spends a few days around here. She actually came back to the atoll just two days ago, and I tried to have her tell me about her journeys, but she sent me packing.
+<p>"Is she present at the feast right now?" you ask, looking around you.</p>
+<p>"No, she's not even in the village. She's settled on the westernmost island of the atoll, and she's barely seeing anyone.</p>
 </div>
 `
     ,
@@ -479,42 +479,42 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
   "feast-girls": {
     "text":
 `
-<p>Vous abordez quelques adolescentes qui ne sont pas pour le moment en train d’entourer Raiahui. La conversation est d’abord hésitante et gênée : elles ne savent visiblement pas comment s’y prendre pour discuter avec une étrangère à la tribu. Mais, après avoir tâtonné quelque peu, vous réussissez à les décrisper en leur faisant un récit à peine exagéré des coutumes et des traditions étranges que vous avez découvertes au cours de votre voyage. Elles n’ont visiblement qu’une idée fort confuse de la manière dont vivent les autres tribus ; les bizarreries que vous leur révélez ne vont pas leur en donner une image beaucoup plus exacte, mais elles ne tardent pas à les faire rire.</p>
+<p>You approach a few of the girls that are not currently gathered around Raiahui. Conversation is awkward at first: they obviously don't know what to discuss with an outsider. But, after a while, you manage to lighten the mood by giving them barely exaggerated descriptions of the weird customs and traditions you've observed during your journey. The girls clearly have but vague ideas of how the other tribes live; the variety of oddities you tell them about won't make them much more knowledgeable, but it soon has them laughing.</p>
 
-<p>Après avoir décrit à votre audience amusée quelques-unes des fêtes traditionnelles les plus extravagantes que vous avez observées, vous faites une pause pour reprendre votre souffle. Une jeune fille appelée Runuhati va aussitôt vous chercher une moitié de langouste, présumant visiblement que manger vous donnera la force de poursuivre votre récit. Vous acceptez avec reconnaissance, mais, si votre appétit est resté aiguisé, il n’en va pas de même de votre couteau en os, qui n’est plus en état de découper grand-chose.</p>
+<p>After describing to your amused audience some of the more extravagant traditional celebrations you've seen, you pause to catch your breath. A young girl named Runuhati fetches half a lobster for you, clearly expecting that some food will give you the strength to continue. You accept gratefully, but though you still have quite an appetite, your bone knife is now very blunt, and you'd have a hard time cutting anything with it.</p>
 
 <div class="conversation">
-<p>— Est-ce que je peux t’emprunter ton couteau ? demandez-vous à Runuhati.</p>
+<p>"Can I borrow your knife?" you ask Runuhati.</p>
 </div>
 
-<p>La jeune fille ouvre aussitôt de grands yeux, avec une expression presque affolée.</p>
+<p>The girl opens wide eyes, looking almost panicked.</p>
 
 <div class="conversation">
-<p>— Je… Non… C’est…</p>
+<p>"I... No... It's..."</p>
 </div>
 
-<p>Une fille un peu plus âgée vient à son aide :</p>
+<p>An older girl comes to her help:</p>
 
 <div class="conversation">
-<p>— C’est un objet entièrement personnel, que nous conservons toute notre vie et que nous ne prêtons jamais, même entre nous. Donne-moi ta langouste, je vais te la décortiquer.</p>
+<p>"It's an extremely personal item; we keep it throughout our entire lives and we never lend it, even among ourselves. Give me your lobster, I'll remove the shell for you.</p>
 </div>
 `
     ,
     "next": (goToSection, flags, updateFlag) => {
       if (flags.feastActions.length <= 1) {
         const transitionText = `
-<p>Vous conversez encore quelques instants, ajoutant quelques récits semi-fantaisistes aux précédents, avant de prendre poliment congé pour aller rencontrer <span class="transition-sentence">{text}</span>.</p>
+<p>You talk a while longer, adding a few semi-fanciful stories to the previous ones, before you politely take your leave and approach <span class="transition-sentence">{text}</span>.</p>
         `;
 
         return (
           <div>
-            <p>{`Vous conversez encore quelques instants, ajoutant quelques récits semi-fantaisistes aux précédents, avant de prendre poliment congé pour aller rencontrer :`}</p>
+            <p>{`You talk a while longer, adding a few semi-fanciful stories to the previous ones, before you politely take your leave and approach:`}</p>
             <Crossroads choices={feastActions(goToSection, flags, updateFlag, transitionText)} />
           </div>
         );
       }
 
-      const text = `Vous discutez encore un certain temps, ajoutant quelques récits semi-fantaisistes aux précédents. L’activité qui vous entoure est en train de commencer à décroître.`;
+      const text = `You talk a while longer, adding a few semi-fanciful stories to the previous ones. Around you, the feast is slowly petering out.`;
       const action = "night";
 
       return repeatingFunnel(goToSection, text, action);
@@ -523,11 +523,11 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
   "night": {
     "text":
 `
-<p>La nuit est tombée depuis un bon moment lorsque le festin s’achève. Le feu en train d’agoniser vous laisse distinguer au-dessus de votre tête le foisonnement immense des étoiles. Alors que les membres de la tribu se dispersent peu à peu, Raiahui vous emmène jusqu’à un hamac accroché entre deux palmiers, non loin de la plage. La fatigue de votre journée de voyage est en train de s’appesantir sur vous et vous vous y allongez avec plaisir.</p>
+<p>Sunset is long past when the feast ends. The fire has died down enough to let you see the countless stars above your head. As the members of the tribe slowly disperse, Raiahui takes you to a hammock tied between two palm trees, not far from the beach. The tiredness accumulated during this day of travel is making your body heavy, and you gratefully lie down.</p>
 `
     ,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous ne tardez pas à vous endormir, bercée par le murmure de l’eau et un souffle d’air tiède.`;
+      const text = `You're quickly lulled to sleep by the whisper of the water and the warm breeze.`;
       const action = () => {
         updateFlag("wentBeyondIntroduction", true);
         return "awakening";
@@ -539,25 +539,25 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
   "awakening": {
     "text":
 `
-<p>Le soleil matinal filtrant entre les palmes vous réveille. Tout est calme. Vous vous prélassez mollement quelques instants avant de vous décider à vous lever. Il n’y a pas d’autre bruit que le chant des oiseaux, ce qui vous laisse supposer que la plupart de la tribu est encore en train de dormir.</p>
+<p>You're woken up by the morning sunshine, filtering through the palm leaves. Everything is quiet. You laze for a while before finally deciding to get up. The only sounds coming to your ears are birdsongs, which suggests that most of the tribe is still asleep.</p>
 
-<p>Raiahui est allongée dans un hamac peu distant du vôtre, son couteau posé sur le ventre. Elle ouvre un œil tandis que vous entreprenez de vous étirer.</p>
+<p>Raiahui is lying on a hammock close to yours, her knife on her belly. She opens an eye when you start stretching.</p>
 
 <div class="conversation">
-<p>— Déjà levée ? fait-elle d’une voix pâteuse. Tu devrais te reposer pour la course de ce soir.</p>
-<p>— Je ne vais pas rester ici toute la journée à ne rien faire qu’attendre.</p>
-<p>— Comme tu veux, répond-elle en bâillant, mais ne t’approche pas des deux îles au nord de l’atoll…</p>
+<p>"Up already?" she mumbles. "You should rest for this evening's race."</p>
+<p>"I'm not going to spend all day doing nothing but wait."</p>
+<p>"As you wish," she answers, yawning. "But don't get close to the two islands at the northern end of the atoll..."</p>
 </div>
 
-<p>En l’espace d’à peine quelques respirations, elle s’est déjà rendormie.</p>
+<p>A few moments later, she's gone back to sleep.</p>
 `
     ,
     "next": function(goToSection) {
-      const hubText = `Vous allez prendre votre pirogue pour explorer le reste de l’atoll.`;
+      const hubText = `You head for your canoe to explore the rest of the island.`;
 
       const choices = [
         {
-          "text": `Vous prenez le temps de visiter l’île sur laquelle se trouve le village.`,
+          "text": `You take some time to explore the island where the village is located.`,
           "action": () => {goToSection("village");},
         },
         {
@@ -572,13 +572,13 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
     }
   },
   "quick-start": {
-    "text": `<p>Passer l'introduction ?</p>`,
+    "text": `<p>Skip the introduction?</p>`,
     "next": (goToSection, flags, updateFlag) => {
       const noLog = () => "";
 
       const choices = [
         {
-          "text": `Oui.`,
+          "text": `Yes.`,
           "action": () => {
             updateFlag("toldAboutFaanaruaByRaiahui", true);
             updateFlag("toldAboutAtollByRaiahui", true);
@@ -590,7 +590,7 @@ ${flags.arrivalActions.length <= 1? `<p>Cette description achevée, il reste enc
           },
         },
         {
-          "text": `Non.`,
+          "text": `No.`,
           "action": () => {
             goToSection("prelude", noLog);
           },
