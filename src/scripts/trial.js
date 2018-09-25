@@ -20,7 +20,7 @@ const preludeChoices = (goToSection, flags, updateFlag) => {
   const fruit = flags.inventory.fruit;
   if (fruit.acquired && !fruit.used && !flags.tastedFruit) {
     choices.push({
-      "text": `Vous goûtez à l’un des fruits rouges que vous avez cueillis sur l’île du crocodile.`,
+      "text": `You taste one of the red fruits you picked on the crocodile's island.`,
       "action": () => {
         updateFlag("tastedFruit", true);
         goToSection("trial-eat-fruit");
@@ -31,7 +31,7 @@ const preludeChoices = (goToSection, flags, updateFlag) => {
 
   if (flags.tastedFruit && flags.examinedTrialCalabashes && !flags.inventory.fieryCalabash.acquired) {
     choices.push({
-      "text": `Vous mélangez le jus des fruits rouges au contenu d’une calebasse.`,
+      "text": `You mix the juice of the red fruits with the contents of a calabash.`,
       "action": () => {
         useItem("fruit", updateFlag);
         acquireItem("fieryCalabash", updateFlag);
@@ -42,7 +42,7 @@ const preludeChoices = (goToSection, flags, updateFlag) => {
   }
 
   choices.push({
-    "text": `Vous entamez la course dès maintenant, sans attendre.`,
+    "text": `You dive into the water and start the race immediately.`,
     "action": () => {
       cleanInventoryBeforeRace(flags, updateFlag);
       updateFlag("eatenByRaiahui", true);
@@ -52,7 +52,7 @@ const preludeChoices = (goToSection, flags, updateFlag) => {
 
   if (!flags.talkedToPerfectlyUselessDrunkGirl) {
     choices.push({
-      "text": `Vous interrogez quelqu’un pour obtenir des explications.`,
+      "text": `You ask someone for explanations.`,
       "action": () => {
         updateFlag("talkedToPerfectlyUselessDrunkGirl", true);
         goToSection("trial-explanations");
@@ -62,7 +62,7 @@ const preludeChoices = (goToSection, flags, updateFlag) => {
 
   if (!flags.examinedTrialCalabashes) {
     choices.push({
-      "text": `Vous allez examiner l’une des nombreuses calebasses éparpillées ici et là.`,
+      "text": `You examine one of the many calabashes lying here and there.`,
       "action": () => {
         updateFlag("examinedTrialCalabashes", true);
         goToSection("trial-calabashes");
@@ -71,7 +71,7 @@ const preludeChoices = (goToSection, flags, updateFlag) => {
   }
 
   choices.push({
-    "text": `Vous allez voir Raiahui.`,
+    "text": `You go see Raiahui.`,
     "action": () => {
       goToSection("trial-raiahui");
     },
@@ -107,41 +107,41 @@ const savePointAction = (text, goToSection, flags, updateFlag) => {
 }
 
 const raiahuiGoodEndText = `
-<p>La journée est à présent sur le point de toucher à son terme. La course est terminée depuis quelques instants déjà et sur l’île sablonneuse se déroule une cérémonie succincte, qu’aucune personne étrangère à la tribu n’est plus là pour observer.</p>
+<p>The sun is about to reach the horizon. The race ended a few moments ago and a succinct ceremony is now happening on the sandy island, unobserved by any outsider.</p>
 
 <div class="conversation">
-<p>— Je te félicite, Raiahui, dit Ataroa. Tu as remporté l’épreuve et prouvé que tu étais digne de faire partie des adultes de la tribu.</p>
+<p>"I congratulate you, Raiahui," Ataroa says. "You've won the trial and proven that you were worthy of becoming an adult."</p>
 </div>
 
-<p>Des bruits d’approbation parcourent les hommes et les femmes qui se trouvent là. Raiahui hoche la tête avec un mélange de respect, de fierté et de joie.</p>
+<p>Sounds of approval can be heard among the men and women gathered here. Raiahui nods, with a mix of respect, pride and happiness.</p>
 
 <div class="conversation">
-<p>— Cette épreuve t’a-t-elle appris quelque chose ? demande le chef.</p>
-<p>— Elle m’a beaucoup appris.</p>
-<p>— Je souhaite que tu n’oublies pas Mananuiva à l’avenir. Même si elle a participé à ce rite dans d’autres intentions, c’est grâce à elle que tu es désormais une adulte.</p>
-<p>— Je ne l’oublierai pas.</p>
+<p>"Have you learned from the trial?" the chieftain asks.</p>
+<p>"It has taught me much."</p>
+<p>"I hope that you won't forget Mananuiva in the future. Though she took part in the rite for different reasons, it's because of her that you're now an adult."</p>
+<p>"I won't forget her."</p>
 </div>
 
-<p>Aucune autre parole n’est nécessaire. Un à un, les adultes qui assistaient à la cérémonie quittent l’île pour regagner le village. Il ne reste bientôt plus que Raiahui, que l’épreuve a laissé curieusement épuisée et pleine d’une humeur introspective. Avec une lenteur rêveuse, elle effleure du bout des doigts le contour de ses lèvres. Puis elle s’assied sur le sable encore chaud. Du côté du lagon, le soleil est en train de se coucher. Raiahui reste à le regarder jusqu’à ce que les derniers reflets ensanglantés aient disparu de la surface de l’eau.</p>
+<p>Nothing else needs to be said. One by one, the adults who've witnessed the ceremony leave the island and return to the village. Soon, only Raiahui is left, feeling strangely exhausted and contemplative now that the trial is over. Almost dreamily, she touches her lips with the tips of her fingers. Then she sits on the still-warm sand. On the other side of the lagoon, the sun is setting. Raiahui watches it until the last bloody hues have disappeared from the surface of the water.</p>
 `;
 
 const trial = {
   "trial": {
     "text": `
-<p>À la suite du jeune garçon, vous arrivez sur la plage bordant l’extrémité de l’île, où toute la tribu est en train de s’assembler. Vous apercevez Raiahui en compagnie des adolescents de son âge, formant un groupe un peu à part du reste de la foule ; un large sourire se dessine sur son visage lorsque ses yeux se posent sur vous.</p>
+<p>Following the young boy, you reach the beach at the end of the island, where the entire tribe is now gathering. You see that the adolescents are standing slightly apart from the rest of the crowd; a smile appears on Raiahui's face when she spots you.</p>
 
-<p>Le jour est en train de décliner, mais sa clarté reste suffisante pour donner à l’eau une grande transparence. Le fond de la passe — celle-là même que vous avez traversée hier pour pénétrer dans le lagon — est en partie recouvert de coraux que vous distinguez avec netteté. De l’autre côté se trouve l’île sablonneuse qui servira de point d’arrivée à votre course.</p>
+<p>The day is on the wane, but there's enough light left for the water to remain very clear. You can distinctly see how the bottom of the channel - the very channel you went through yesterday to enter the lagoon - is partly covered with coral. On the other side is the sandy island that'll serve as the arrival point for your race.</p>
 
-<p>Les murmures qui parcouraient la foule s’éteignent lorsqu’Ataroa fait signe à Raiahui et à vous-même de vous tenir devant lui.</p>
+<p>Murmurs die down among the crowd as Ataroa gestures for Raiahui and yourself to stand before him.</p>
 
 <div class="conversation">
-<p>— Vous connaissez toutes les deux les détails dont vous avez besoin, déclare-t-il sans que son visage rude ne manifeste aucune expression. Aucun membre de la tribu ne viendra interférer. La course commence dès maintenant.</p>
+<p>"You both know all the details you need," he says, his rough face expressionless. "No member of the tribe will interfere. The race begins right now."</p>
 </div>
 
-<p>Il ponctue cette déclaration laconique d’un hochement de tête, puis, sans rien ajouter, il quitte la plage pour retourner vers le village. Sous votre regard interloqué, l’essentiel de la tribu lui emboîte le pas.</p>
+<p>He concludes that laconic statement with a nod, then turns and leaves the beach to return to the village. Dumbfounded, you see most of the tribe follow him.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Il ne reste bientôt plus que vous-même, Raiahui et les autres adolescents.`;
+      const text = `Soon, there's no one left but yourself, Raiahui and the other adolescents.`;
       const action = () => {
         updateFlag("reachedTheTrial", true);
         goToSection("trial-preparation");
@@ -158,71 +158,71 @@ const trial = {
 
       const amulet = flags.inventory.dolphin;
       if (amulet.acquired && !amulet.used) {
-        equipment += `<p class="text-conditional">Vous portez l’amulette en forme de dauphin autour de votre cou. Il est impossible de ne pas la voir, mais ni Raiahui ni sa cour ne semblent y accorder la moindre espèce d’attention.</p>`;
+        equipment += `<p class="text-conditional">You wear the dolphin-shaped pendant around your neck. It's impossible to miss, but Raiahui and the other adolescents don't seem to pay any attention to it.</p>`;
       }
 
       let items = ``;
 
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
-        items += `<p class="text-conditional">Vous avez en revanche enroulé le filet de la sorcière autour de votre taille, soupçonnant qu’il pourrait vous être très utile.</p>`;
+        items += `<p class="text-conditional">You've however wrapped the witch's net around your waist, as you expect that it could be very useful to you.</p>`;
       }
 
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
-        items += `<p class="text-conditional">Vous avez en revanche attaché la figurine de bois à une lanière passée autour de votre taille, vous fiant à l’intuition qui vous souffle qu’elle pourrait vous être très utile.</p>`;
+        items += `<p class="text-conditional">You've however tied the wooden figurine to your waist with a thong, trusting the intuition that tells you it could be very useful.</p>`;
       }
 
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         if (doll.acquired && !doll.used) {
-          items += `<p class="text-conditional">Vous avez également glissé à ses côtés un petit sac de toile abritant les perles de la sorcière.`;
+          items += `<p class="text-conditional">Next to it, you also carry a tiny purse, holding the witch's pearls.`;
         } else {
           if (net.acquired && !net.used) {
-            items += `<p class="text-conditional">Vous emportez également ses perles`;
+            items += `<p class="text-conditional">You're also bringing her pearls`;
           } else {
-            items += `<p class="text-conditional">Vous emportez avec vous les perles de la sorcière`;
+            items += `<p class="text-conditional">You're bringing the witch's pearls`;
           }
-          items += `, dans un petit sac de toile accroché à votre taille à l’aide d’une lanière.`;
+          items += `, stored in a tiny purse tied to your waist with a thong.`;
         }
         items += `</p>`;
       }
 
       return `
-<p>La course a-t-elle vraiment commencé ? L’ambiance qui vous entoure n’en donne pas l’impression. Les adolescents chahutent, rient et font circuler des calebasses remplies de vin de palme. Raiahui est au coeur de cette sorte de célébration anticipée, savourant visiblement l’attention dont elle est l’objet et ne vous accordant pas un regard.</p>
+<p>Has the trial really started? The mood around you doesn't give that impression. The adolescents are having fun, laughing, and passing around calabashes full of palm wine. In the middle of that premature celebration, Raiahui's obviously enjoying the attention she receives and not even glancing in your direction.</p>
 
 <img src="${raiahuiFriendsImage}" class="img-responsive text-img tall" alt=""/>
 
-<p>Vous jetez un coup d’œil vers votre point d’arrivée. Il y a une certaine distance à parcourir, mais il ne s’agira pas d’une épreuve d’endurance : si vous partiez avec quelques instants d’avance, même un excellent nageur aurait peu de chances de vous rattraper.</p>
+<p>You look at the arrival point. The distance separating you from it isn't exactly short, but this won't be an endurance test: if you had a decent head start, even an excellent swimmer would stand little chance of catching up to you.</p>
 
-<p>Déstabilisée par l’étrangeté de la situation, vous vous raccrochez à des questions plus concrètes, vérifiant que vous êtes dans de bonnes conditions pour nager.</p>
+<p>Unsettled by the weirdness of the situation, you cling to more practical matters, making sure that you're in the best possible conditions to swim.</p>
 
 ${equipment}
 
-<p>Vous commencez par vous débarasser de votre pagne, qui vous ralentirait inutilement.</p>
+<p>You begin by getting rid of your clothes, as they would unnecessarily slow you down.</p>
 
 ${items}
 
-<p>Vous faites ensuite jouer vos articulations en un échauffement sommaire, plus pour rappeler à Raiahui que vous prenez cette épreuve au sérieux que par réel besoin physique.</p>
+<p>Then you start stretching, more to remind Raiahui that you're taking this trial seriously than out of any real need.</p>
       `;
     },
     "next": preludeNext,
   },
   "trial-eat-fruit": {
     "text": `
-<p>Espérant qu’il vous aidera dans votre course, comme vous l’a assuré le crocodile, vous goûtez au plus petit des fruits rouges… mais vos dents ont à peine entamé sa chair juteuse qu’une atroce sensation de brûlure enflamme toute votre gorge.</p>
+<p>Hoping that will help you during the race, as the crocodile said it would, you taste the smallest of the red fruits… but your teeth have barely grazed its juicy flesh when a terrible burning feel sets your entire throat ablaze.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous recrachez le fruit aussitôt.`,
+          "text": `You spit out the fruit immediately.`,
           "action": () => {
             updateFlag("boostedByFruit", true);
             goToSection("trial-spit-fruit");
           },
         },
         {
-          "text": `Vous avalez le fruit malgré tout.`,
+          "text": `You nevertheless swallow the fruit.`,
           "action": () => {
             if (flags.drunk) {
               updateFlag("drunk", false);
@@ -242,81 +242,81 @@ ${items}
   },
   "trial-spit-fruit": {
     "text": `
-<p>Vous recrachez sans tarder le fruit sur le sable de la plage. La sensation de brûlure persiste et semble même se répandre dans le reste de votre corps, faisant naître de minuscules gouttes de sueur à la surface de votre peau.</p>
+<p>You hurriedly spit out the fruit on the sand of the beach. The burning feels persists and even seems to spread to the rest of your body, creating tiny drops of sweat on your skin.</p>
 
-<p>Vous prenez des inspirations profondes et, après quelques instants, le phénomène se résorbe heureusement jusqu’à ne laisser qu’une vague impression de chaleur au creux de votre ventre.</p>
+<p>You take deep breaths and, after a few moments, the phenomenon fortunately begins to dissipate, leaving only a vague feeling of heat in your stomach.</p>
 
-<p>Pas question de goûter à un autre de ces fruits !</p>
+<p>Tasting another one of those fruits is obviously out of the question!</p>
     `,
     "next": preludeNext,
   },
   "trial-swallow-fruit-drunk": {
     "text": `
-<p>Avec une grimace, vous vous forcez à avaler le fruit rouge. L’espace d’un instant, vous n’éprouvez rien de plus que la sensation de brûlure qui subsiste dans votre gorge. Puis vos entrailles se tordent, des frémissements convulsifs parcourent votre peau et une sueur glacée naît sur votre front. Terrifiée, il vous vient la pensée que vous venez de vous empoisonner, trompée par le dernier mensonge du crocodile.</p>
+<p>Grimacing, you make yourself swallow the red fruit. For a moment, there's nothing more than the burning feel persisting in your throat. Then your innards start twisting, convulsive quivering shakes your limbs, and a cold sweat appears on your brow. Terrified, you think you've just poisoned yourself, deceived by the crocodile's final lie.</p>
 
-<p>Tout aussi soudainement qu’il était apparu, le malaise se dissipe. Quelques tremblements vous agitent encore, mais ils ne sont plus dûs qu’à un reste de peur. Vous ne vous sentez pas plus mal qu’auparavant. Au contraire, vous réalisez que la migraine nauséeuse qui vous tourmentait depuis que vous avez eu l’imprudence de boire la calebasse d’alcool fort s’est dissipée !</p>
+<p>Just as suddenly as it had appeared, the queasiness vanishes. You keep quivering for a moment, but it's now merely the aftermath of fear. You don't feel any worse than you did before. On the contrary, you realize that the unpleasant aftereffects of alcohol, that were still tormenting you when you arrived to this beach, have completely dissipated!</p>
 
-<p>Vous jugez néanmoins imprudent de consommer davantage qu’un seul de ces fruits.</p>
+<p>You nevertheless deem it unwise to eat another one of those fruits.</p>
     `,
     "next": preludeNext,
   },
   "trial-swallow-fruit": {
     "text": `
-<p>Avec une grimace, vous vous forcez à avaler le fruit rouge. L’espace d’un instant, vous n’éprouvez rien de plus que la sensation de brûlure qui subsiste dans votre gorge. Puis vos entrailles se tordent, des frémissements convulsifs parcourent votre peau et une sueur glacée naît sur votre front. Terrifiée, il vous vient la pensée que vous venez de vous empoisonner, trompée par le dernier mensonge du crocodile.</p>
+<p>Grimacing, you make yourself swallow the red fruit. For a moment, there's nothing more than the burning feel persisting in your throat. Then your innards start twisting, convulsive quivering shakes your limbs, and a cold sweat appears on your brow. Terrified, you think you've just poisoned yourself, deceived by the crocodile's final lie.</p>
 
-<p>Après quelques instants de panique, le malaise se résorbe heureusement peu à peu. Mais c’est de façon incomplète : un vertige insistant rend instable le sol sous vos pas et des accès de nausée vous donnent périodiquement l’impression que vous êtes sur le point de vomir.</p>
+<p>After a few panicked moments, the queasiness fortunately subsides. But not completely: persisting dizziness makes you unsteady on your feet, and bouts of nausea periodically give you the impression that you're about to throw up.</p>
 
-<p>Il n’y a rien à faire, sinon maudire la perfidie irrationnelle du reptile géant. Vous allez devoir faire preuve de volonté et de ressource pour arracher la victoire dans cette course en dépit de votre état.</p>
+<p>There's nothing to do but curse the giant reptile for his irrational treachery. You're going to need willpower and resourcefulness to win the race in your current state.</p>
 
-<p>Il est bien entendu hors de question de goûter à un autre de ces maudits fruits !</p>
+<p>Tasting another one of those blasted fruits is of course out of the question!</p>
     `,
     "next": preludeNext,
   },
   "trial-surprise": {
     "text": `
-<p>Vous ne saisissez pas clairement les raisons du comportement de Raiahui, mais la chose la plus sensée à faire vous semble être de saisir l’occasion. Vous assurant que personne ne vous prête attention, vous vous approchez de la rive et vous immergez aussi silencieusement que possible dans les eaux tièdes de la passe. Quelques brasses vigoureuses sous la surface vous propulsent en direction de l’île sablonneuse. Lorsque vous refaites surface, un rapide regard en arrière vous apprend que Raiahui se tient toujours sur la plage, entourée des autres adolescents. Elle ne semble pas avoir remarqué votre départ.</p>
+<p>You don't really understand the reasons for Raiahui's behavior, but the most sensible thing to do is probably to seize this occasion. Making sure that nobody's paying any attention to you, you walk to the shore and get into the warm water of the channel as silently as possible. A few vigorous breaststrokes under the surface propel you toward the sandy island. When you come back to the surface, a quick glance behind you reveals that Raiahui's still on the beach, surrounded by the other adolescents. She doesn't seem to have noticed your departure.</p>
 
-<p>Vous avez déjà accompli le quart du trajet lorsque des exclamations excitées vous parviennent aux oreilles depuis la plage. Votre concurrente vient sans doute enfin d’entamer la course à son tour. Vous vous contentez d’accélérer légèrement le rythme de vos mouvements. Quand bien même Raiahui serait vraiment meilleure nageuse que vous-même, il vous suffit de ne pas épuiser vos forces trop vite pour que votre avance vous garantisse virtuellement la victoire.</p>
+<p>You've covered a fourth of the distance when excited cries reach your ears, coming from the beach. You opponent must have finally started the race. You do little more than increase your pace slightly. Even if Raiahui really is a better swimmer than you are, your head start virtually ensures your victory, as long as you don't exhaust yourself too quickly.</p>
 
-<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez la cadence de votre nage plus tôt que vous n’en aviez l’intention, alors que vous n’avez pas tout à fait accompli la moitié du trajet. Mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien.</p>
+<p>And yet, irrational anxiety is creeping in your mind. From time to time, you cast glances behind you, but you're unable to spot Raiahui, as if she were swimming underwater without ever surfacing. Unable to put a name on your fear, you force the pace earlier than you'd intended, before you've even reached the halfway point. But a chilling foreboding tells you that it changes nothing.</p>
 
-<p>Il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
+<p>With each stroke, it now seems that the arrival point is getting a bit farther, and that something horrible is getting a bit closer.</p>
 
 <hr/>` + raiahuiGoodEndText,
     "next": endGame,
   },
   "trial-explanations": {
     "text": `
-<p>Vous saisissez par le bras une adolescente en train de boire du vin de palme non loin de vous.</p>
+<p>A girl is drinking palm wine not far from you. You grab her by the arm.</p>
 
 <div class="conversation">
-<p>— Qu’est-ce qui se passe ? demandez-vous à savoir. Si la course a bien commencé, pourquoi est-ce que nous ne partons pas toutes les deux ? Est-ce qu’il faut attendre quelque chose ?</p>
+<p>"What's going on?" you ask. "If the race has really begun, why aren't we both getting into the water? Are we supposed to wait for something?</p>
 </div>
 
-<p>La fille glousse. À en juger par l’expression hilare qui est peinte sur son visage, la calebasse qu’elle tient doit déjà être assez vide.</p>
+<p>The girl giggles. Judging from the look on her face, her calabash must already be rather empty.</p>
 
 <div class="conversation">
-<p>— Ne t’en fais pas, ne t’en fais pas, dit-elle en vous donnant une tape maladroite sur l’épaule. Raiahui va partir, mais tu n’as pas besoin de l’attendre. Prendre un peu d’avance, ça peut être utile !</p>
+<p>"Don't worry, don't worry," she says, giving you a clumsy pat on the shoulder. "Raiahui's going to start the race, but you don't need to wait for her. Getting a head start can be useful!</p>
 </div>
 
-<p>Vous n’en tirez rien d’autre.</p>
+<p>You don't get anything else out of her.</p>
     `,
     "next": preludeNext,
   },
   "trial-raiahui": {
     "text": `
-<p>Raiahui est le centre rayonnant d’un cercle d’adolescents, dont la conversation gaie est ponctuée de rires fréquents.</p>
+<p>Raiahui is the beaming center of a circle of adolescents, whose merry chatting is punctuated with many laughs.</p>
 
 <div class="conversation">
-<p>— Mananuiva ! s’exclame-t-elle en vous apercevant. Je pensais que tu étais déjà partie. Ne m’attends pas : je bois juste un peu et je te rejoins !</p>
+<p>"Mananuiva!" she exclaims when she sees you. "I thought you'd already started the race. Don't wait for me: I'm just going to drink a bit more and then I'll catch up to you!"</p>
 </div>
 
-<p>Les autres adolescents vous regardent d’un air amusé, mais ne disent rien. Une calebasse vide gît déjà aux pieds de Raiahui.</p>
+<p>The other adolescents watch you with amused looks on their faces, but they don't say anything. An empty calabash is already lying at Raiahui's feet.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [
         {
-          "text": `Vous suivez son conseil et entamez immédiatement la course.`,
+          "text": `You follow her advice and start the race immediately.`,
           "action": () => {
             cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
@@ -324,7 +324,7 @@ ${items}
           },
         },
         {
-          "text": `Vous la provoquez pour qu’elle parte en même temps que vous.`,
+          "text": `You insist that she start the race at the same time as you do.`,
           "action": () => {
             cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
@@ -332,13 +332,13 @@ ${items}
           },
         },
         {
-          "text": `Vous restez quelques instants en sa compagnie.`,
+          "text": `You stay with her for a while.`,
           "action": () => {
             goToSection("trial-raiahui-slow");
           },
         },
         {
-          "text": `Vous essayez de dérober le couteau en ivoire que vous voyez accroché à son pagne.`,
+          "text": `You try to steal the ivory knife hanging from her waist.`,
           "action": () => {
             goToSection("trial-knife");
           },
@@ -348,7 +348,7 @@ ${items}
       const alcohol = flags.inventory.alcohol;
       if (alcohol.acquired && !alcohol.used) {
         choices.push({
-          "text": `Vous lui offrez votre propre calebasse d’alcool fort.`,
+          "text": `You give her your calabash full of hard liquor.`,
           "action": () => {
             useItem("alcohol", updateFlag);
             goToSection("raiahui-drunk");
@@ -360,7 +360,7 @@ ${items}
       const calabash = flags.inventory.fieryCalabash;
       if (calabash.acquired && !calabash.used) {
         choices.push({
-          "text": `Vous lui offrez la calebasse à laquelle vous avez mélangé le jus des fruits rouges.`,
+          "text": `You give her the calabash of palm wine mixed with the juice of the red fruits.`,
           "action": () => {
             useItem("fieryCalabash", updateFlag);
             goToSection("raiahui-poisoned");
@@ -376,13 +376,13 @@ ${items}
   },
   "trial-surprise-alt": {
     "text": `
-<p>Vous ne saisissez pas bien les raisons du comportement de Raiahui, mais la chose la plus sensée à faire vous semble être de saisir effectivement l’occasion. Vous vous dirigez à grands pas vers la rive et plongez sans attendre dans les eaux tièdes de la passe. Quelques brasses vigoureuses sous la surface vous propulsent en direction de l’île sablonneuse. Lorsque vous refaites surface, un rapide regard en arrière vous apprend que Raiahui se tient toujours sur la plage, entourée des autres adolescents. Elle ne semble même pas regarder dans votre direction.</p>
+<p>You don't really understand the reasons for Raiahui's behavior, but seizing this occasion seems to be the most sensible thing to do. You walk to the shore and, without waiting any further, dive into the warm water of the channel. A few vigorous breaststrokes under the surface propel you toward the sandy island. When you come back to the surface, a quick glance behind you reveals that Raiahui's still on the beach, surrounded by the other adolescents. She doesn't even seem to be looking in your direction.</p>
 
-<p>Vous avez déjà accompli le quart du trajet lorsque des exclamations excitées vous parviennent aux oreilles depuis la plage. Votre concurrente vient sans doute enfin de se lancer à votre poursuite. Vous vous contentez d’accélérer légèrement le rythme de vos mouvements. Quand bien même Raiahui serait vraiment meilleure nageuse que vous-même, il vous suffit de ne pas épuiser vos forces trop vite pour que votre avance vous garantisse virtuellement la victoire.</p>
+<p>You've covered a fourth of the distance when excited cries reach your ears, coming from the beach. You opponent must have finally started the race. You do little more than increase your pace slightly. Even if Raiahui really is a better swimmer than you are, your head start virtually ensures your victory, as long as you don't exhaust yourself too quickly.</p>
 
-<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez la cadence de votre nage plus tôt que vous n’en aviez l’intention, alors que vous n’avez pas tout à fait accompli la moitié du trajet. Mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien.</p>
+<p>And yet, irrational anxiety is creeping in your mind. From time to time, you cast glances behind you, but you're unable to spot Raiahui, as if she were swimming underwater without ever surfacing. Unable to put a name on your fear, you force the pace earlier than you'd intended, before you've even reached the halfway point. But a chilling foreboding tells you that it changes nothing.</p>
 
-<p>Il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
+<p>With each stroke, it now seems that the arrival point is getting a bit farther, and that something horrible is getting a bit closer.</p>
 
 <hr/>
     ` + raiahuiGoodEndText,
@@ -391,24 +391,24 @@ ${items}
   "trial-fair": {
     "text": `
 <div class="conversation">
-<p>— Pour quelqu’un qui s’attend à devenir adulte aujourd’hui, tu as vraiment un comportement de gamine ! Je ne suis pas là pour te faire rire ! Si tu ne débutes pas cette course tout de suite, en même temps que moi, je renonce à participer à ton rite de passage et tu pourras attendre la venue du prochain étranger !</p>
+<p>"For someone who expects to become an adult today, you're really behaving like a kid! I'm not here for your amusement! If you don't start the race right now, at the same time as I do, then I'm no longer taking part in your rite of passage, and you can just wait for the next outsider!</p>
 </div>
 
-<p>Une expression à la fois alarmée et vexée passe sur le visage de Raiahui. Elle regarde les adolescents qui l’entourent comme si elle en espérait un conseil, puis hausse finalement les épaules.</p>
+<p>Raiahui looks startled and offended at the same time. She glances at the adolescents around her as though she didn't quite know how to react, then shrugs.</p>
 
 <div class="conversation">
-<p>— Comme tu veux, mais c’est tant pis pour toi.</p>
+<p>"As you wish, but it's your loss."</p>
 </div>
 
-<p>Vous descendez ensemble vers la rive, suivies de toute la jeune assistance, que la scène semble beaucoup amuser. Des plaisanteries s’échangent autour de vous, mais vous n’y prêtez guère attention. Votre adversaire affiche quant à elle une désinvolture ostensible et vous la voyez même prendre quelques gorgées d’alcool supplémentaires au goulot d’une calebasse.</p>
+<p>You both head for the shore, followed by all of the young spectators, who seem highly amused by the whole thing. Jokes are being exchanged around you, but you pay little attention to them. Your opponent is ostensibly behaving in a nonchalant manner, and you even see her drink a bit more palm wine from a calabash.</p>
 
-<p>Les eaux tièdes de la passe se referment en même temps sur vous deux, mais quelques brasses vigoureuses vous permettent de passer devant Raiahui. Vous savez que la distance à franchir va vous imposer d’économiser vos forces, mais le fait de se retrouver d’entrée de jeu derrière vous devrait ébranler la confiance en elle-même de votre concurrente.</p>
+<p>The warm water of the channel close around both of you at the same time, but a few vigorous breaststrokes enable you to get ahead of Raiahui. You know that you'll need to save your strength during the first half of the race, but finding herself behind you right from the start should shake your opponent's self-confidence.</p>
 
-<p>Votre tête émerge finalement à la surface et vous êtes alors presque assourdie par la cacophonie de cris des adolescents restés sur la plage. Raiahui est toujours sous l’eau, mais vous ne perdez pas un instant à essayer de déterminer sa position exacte. A présent que la course a commencé, l’habitude vous fait faire abstraction de tout ce qui est extérieur à vos mouvements de nage.</p>
+<p>Your head finally emerges above the water and you're nearly deafened by the cries coming from the beach. Raiahui's still underwater, but you don't waste time trying to determine her exact position. Now that the race has started, force of habit makes you focus on nothing but your swimming strokes.</p>
 
-<p>Mais cet état de concentration ne dure que jusqu’à votre inspiration suivante. Quelque chose ne va pas. Raiahui n’a toujours pas reparu, les cris provenant de la plage sont en train d’atteindre un sommet d’excitation stridente.</p>
+<p>But your concentration only lasts until the next time you take a breath in. Something's wrong. Raiahui still hasn't resurfaced and the cries coming from the beach are reaching a peak of shrill excitement.</p>
 
-<p>Sans savoir pourquoi, vous sentez grandir en vous le pressentiment glaçant d’avoir commis une terrible erreur.</p>
+<p>Though you don't know why, a chilling foreboding is telling you that you've made a terrible mistake.</p>
 
 <hr/>
     ` + raiahuiGoodEndText,
@@ -416,18 +416,18 @@ ${items}
   },
   "trial-knife": {
     "text": `
-<p>Vous profitez de ce que Raiahui est en train d’entamer une nouvelle calebasse pour lui subtiliser adroitement son couteau. Mais elle s’en rend compte aussitôt et tourne vers vous un regard où il n’y a plus la moindre trace d’amusement.</p>
+<p>As Raiahui starts drinking from a new calabash, you deftly steal her knife. But she realizes it immediately and amusement vanishes from her eyes.</p>
 
 <div class="conversation">
-<p>— Rends-moi ça ! Rends-moi ça tout de suite !</p>
+<p>"Give it back! Give it back right now!"</p>
 </div>
 
-<p>Laissant tomber la calebasse sur le sable, elle se jette sur vous pour récupérer sa possession.</p>
+<p>Dropping the calabash on the sand, she springs toward you to reclaim the item.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous jetez le couteau dans le lagon.`,
+          "text": `You throw the knife into the lagoon.`,
           "action": () => {
             cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
@@ -435,7 +435,7 @@ ${items}
           },
         },
         {
-          "text": `Vous jetez le couteau parmi les arbres qui bordent la plage.`,
+          "text": `You throw the knife among the trees close to the beach.`,
           "action": () => {
             goToSection("knife-land");
           },
@@ -449,15 +449,15 @@ ${items}
   },
   "knife-sea": {
     "text": `
-<p>Le couteau d’ivoire décrit une ample courbe et retombe dans le lagon avec une légère éclaboussure. Avec une exclamation agacée, Raiahui se détourne aussitôt de vous et se précipite dans cette direction. Vous n’allez pas laisser passer cette occasion ! Sous le regard ébahi des adolescents qui vous entourent, vous franchissez en un instant la distance qui vous sépare de la rive et plongez sans attendre dans les eaux tièdes de la passe.</p>
+<p>The ivory knife swirls through the air and disappears into the lagoon with a slight splash. With an annoyed exclamation, Raiahui turns away from you and runs in that direction. You're not going to let such a chance slip away! Under the astonished eyes of the other adolescents, you quickly cross the distance separating you from the shore and dive into the warm water of the channel.</p>
 
-<p>Quelques brasses vigoureuses sous la surface vous propulsent en direction de l’île sablonneuse. Lorsque vous remontez à l’air libre, Raiahui n’est plus en vue, mais presque tous les spectateurs restés sur la plage se tiennent désormais du côté du lagon, sans doute pour voir si votre concurrente parvient à récupérer son précieux couteau. Vous adoptez un rythme de nage modéré, de manière à économiser pour l’instant vos forces.</p>
+<p>A few vigorous breaststrokes propel you toward the sandy beach. When you come back to the surface, Raiahui's no longer in sight, but most of the spectators have gathered close to the lagoon, probably to see whether your opponent manages to find her precious knife. You start swimming at a moderate pace, in order to save your strength.</p>
 
-<p>Vous avez déjà parcouru presque le quart du trajet lorsque le bruit d’exclamation vous parvient aux tympans. Un bref regard en arrière vous apprend que les adolescents présents sur la plage sont en train d’agiter les bras en poussant des cris d’encouragement. Raiahui a dû enfin se lancer à votre poursuite, soit que la chance lui ait permis de retrouver rapidement son couteau au fond du lagon, soit qu’elle ait décidé de s’en occuper plus tard. Cela n’a pas une grande importance : quand bien même elle serait vraiment meilleure nageuse que vous, l’avance que vous avez acquise vous garantit virtuellement la victoire.</p>
+<p>You've nearly covered a fourth of the distance when exclamations reach your ears. Glancing back, you see the adolescents on the beach waving their arms and screaming their support. Either Raiahui was lucky enough to quickly find her knife at the bottom of the lagoon or she's decided to recover it later; in any case, it's clear that she's finally set off after you. It doesn't matter much: even if she really is a better swimmer than you are, your head start virtually ensures your victory.</p>
 
-<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’œil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez la cadence de votre nage plus tôt que vous n’en aviez l’intention, alors que vous n’avez pas tout à fait accompli la moitié du trajet. Mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien.</p>
+<p>And yet, irrational anxiety is creeping in your mind. From time to time, you cast glances behind you, but you're unable to spot Raiahui, as if she were swimming underwater without ever surfacing. Unable to put a name on your fear, you force the pace earlier than you'd intended, before you've even reached the halfway point. But a chilling foreboding tells you that it changes nothing.</p>
 
-<p>Il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
+<p>With each stroke, it now seems that the arrival point is getting a bit farther, and that something horrible is getting a bit closer.</p>
 
 <hr/>
     ` + raiahuiGoodEndText,
@@ -465,10 +465,10 @@ ${items}
   },
   "knife-land": {
     "text": `
-<p>Le couteau d’ivoire décrit une ample courbe et disparaît silencieusement parmi les palmiers. Avec une exclamation furieuse, Raiahui se détourne aussitôt de vous et se précipite dans cette direction. Vous n’allez pas laisser passer cette occasion !</p>
+<p>The ivory knife swirls through the air and silently disappears among the trees. With a furious exclamation, Raiahui turns away from you and runs in that direction. You're not going to let such a chance slip away!</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Sous le regard absolument stupéfait des adolescents qui vous entourent, vous franchissez en trois enjambées la distance qui vous sépare de la rive.`;
+      const text = `Under the astonished eyes of the other adolescents, you cross the distance separating you from the shore in three strides.`;
 
       return trueStartFunnel(text, goToSection, flags, updateFlag);
     },
@@ -476,13 +476,13 @@ ${items}
   "raiahui-drunk": {
     "text": `
 <div class="conversation">
-<p>— Ce n’est pas moi qui vais t’empêcher de te saoûler, dites-vous en lui tendant votre calebasse. Tiens, vide aussi celle-ci, si tu t’imagines vraiment que tu pourras me battre à la course ensuite !</p>
+<p>"I'm certainly not going to dissuade you from getting drunk," you say, handing your calabash to her. "Here, empty this one too, if you really trust that you'll be able to beat me afterwards!</p>
 </div>
 
-<p>Votre défi fait courir des exclamations amusées parmi la jeune assistance. Raiahui accepte votre présent avec un sourire de confiance totale. Même si elle réalise que cette boisson est autrement plus forte que du simple vin de palme, vous soupçonnez qu’elle videra tout de même l’essentiel de la calebasse, ne serait-ce que pour ne pas perdre la face.</p>
+<p>Your challenge causes amused exclamations among the young audience. Raiahui accepts your gift with a supremely confident smile. Even if she realizes that this beverage is much stronger than mere palm wine, you suspect that she'll still drink at least most of it to avoid losing face.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Laissant votre concurrente s’enivrer plus qu’elle ne devrait, vous traversez la plage d’un pas rapide en direction de la rive.`;
+      const text = `Letting your opponent drink more than she should, you quickly head for the shore.`;
 
       return trueStartFunnel(text, goToSection, flags, updateFlag);
     },
@@ -490,7 +490,7 @@ ${items}
   "the-trial-begins": {
     "text": (flags) => {
       let intro = `
-<p>Les eaux tièdes et transparentes de la passe se referment sur vous. Vous glissez un instant, portée par l’élan de votre plongeon, puis vous commencez à nager sans remonter tout de suite à la surface. Vous adoptez un rythme énergique, mais pas précipité, de manière à conserver une partie de vos forces.</p>
+<p>The warm, clear water of the channel closes around you. You slide for a moment, carried by the momentum of your dive, then you start swimming under the surface. You adopt a moderate pace, in order to save most of your strength for later.</p>
       `;
 
       if (flags.playedTheFool) {
@@ -500,20 +500,20 @@ ${items}
       return `
 ${intro}
 
-<p>Votre tête émerge finalement à l’air libre. Vous adoptez un style de natation un peu plus rapide, mais sans forcer encore l’allure. Plongée dans l’exécution de vos mouvements souples et réguliers, vous oubliez presque la compétition un instant pour ne plus éprouver que le plaisir sans mélange que vous apporte toujours le simple fait de nager.</p>
+<p>Your head finally emerges above the water. You increase your speed slightly, but it's much too early to really force the pace. Focused on your steady swimming strokes, you nearly forget about the race for a while, feeling nothing but the unmitigated pleasure swimming always brings you.</p>
 
-<p>Vous avez franchi près de la moitié de la distance vous séparant de votre destination lorsqu’un concert d’exclamations vous parvient aux oreilles. Jetant un coup d’œil en arrière sans perdre votre allure, vous voyez que tous les adolescents se sont assemblés près de la rive. Leurs gesticulations vous laissent deviner que Raiahui vient enfin de plonger à son tour.</p>
+<p>You're nearly halfway when many loud exclamations reach your ears. Glancing back without slowing down, you see that all the adolescents have gathered close to the shore. Judging from the excited way they wave their arms, Raiahui has only just dived into the water.</p>
 
-<p>Vous n’augmentez pas immédiatement la cadence de vos mouvements. Vous avez après tout une avance considérable. Vous prenez la précaution de jeter par la suite des coups d’œil périodiques en arrière, mais, curieusement, ils ne vous apprennent rien : vous ne voyez à aucun moment la tête de Raiahui émerger au-dessus des vagues et sa position vous reste absolument inconnue.</p>
+<p>You don't increase your pace immediately. After all, your head start is considerable. Out of caution, you cast a few glances behind you afterward, but they strangely fail to reveal anything: at no point do you spot Raiahui's head above the surface and her position is a complete mystery.</p>
 
-<p>Comment peut-elle retenir son souffle aussi longtemps ?</p>
+<p>How can she hold her breath for so long?</p>
       `;
     },
     "next": (goToSection, flags, updateFlag) => {
-      const diveText = `Vous plongez sous l’eau pour distinguer enfin où se trouve Raiahui.`;
+      const diveText = `You dive under the surface to see where Raiahui is.`;
       const choices = [
         {
-          "text": `Vous accélérez votre rythme de nage.`,
+          "text": `You quicken your pace.`,
           "action": () => {
             goToSection("trial-straightforward");
           },
@@ -533,12 +533,12 @@ ${intro}
   },
   "trial-straightforward": {
     "text": `
-<p>Vous forcez la cadence de vos mouvements, atteignant la vitesse maximale dont vous êtes capable. Il reste à peine plus d’un tiers de la course. Comment qui que ce soit pourrait-il encore vous rattraper à présent ?</p>
+<p>You increase your speed and are soon swimming as fast as you can. Barely more than a third of the distance remains before you. How could anyone catch up to you now?</p>
 
-<p>Et pourtant, un pressentiment oppressant s’est insinué en vous et ne cesse de croître, à chaque fois que vos membres achèvent un nouveau mouvement, à chaque fois que vous prenez une inspiration nouvelle. Il vous semble — et vous ne comprenez pas pourquoi — que le temps dont vous disposez est en train de s’effilocher rapidement.</p>
+<p>And yet, a heavy foreboding has crept in your mind and now keeps growing, every time you finish a stroke, every time you take a new breath. Though you don't understand why, it feels like your time is quickly running out.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Il vous semble — et vous ne comprenez pas pourquoi — que le temps dont vous disposez est en train de s’effilocher rapidement.`;
+      const text = `Though you don't understand why, it feels like your time is quickly running out.`;
 
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
@@ -580,12 +580,12 @@ ${intro}
   },
   "trial-doll": {
     "text": `
-<p>La figurine, que vous aviez attachée à votre taille, commence à s’agiter furieusement. Craignant quelque sorcellerie, vous essayez de vous en débarrasser, mais elle se délivre d’elle-même et s’accroche fermement à votre bras. Son poids devient tout à coup immense et vous avez à peine le temps de prendre une inspiration avant qu’il ne vous entraîne sous la surface.</p>
+<p>The figurine you've tied to your waist starts thrashing about wildly. Fearing some witchcraft, you try to get rid of it, but it frees itself and grabs your arm. Suddenly, its weight becomes considerable: you barely have time to take a breath in before it pulls you under the surface.</p>
 
-<p>Vous vous débattez furieusement, mais la figurine vous a déjà relâchée et a disparu.</p>
+<p>You struggle, but the figurine has already released you and disappeared.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Soulagée, vous êtes sur le point de remonter à la surface, mais votre regard se tourne un instant derrière vous.`;
+      const text = `Relieved, you're about to get back to the surface, but you briefly look behind you.`;
       const action = () => {
         savePointAction(text, goToSection, flags, updateFlag);
       };
@@ -597,14 +597,14 @@ ${intro}
   },
   "trial-early-amulet": {
     "text": `
-<p>Une multitude de sons à peine audibles est en train de vous parvenir, emplissant votre crâne jusqu’à presque le saturer. D’une manière que vous seriez incapable d’expliquer, vous possédez soudain une manière supplémentaire de percevoir ce qui vous entoure. Vous avez une conscience très nette du fond sablonneux de la passe, saisissant sans avoir besoin les voir tous les récifs de corail qui le hérisse.</p>
+<p>A multitude of barely audible sounds is reaching you, filling your head until it feels nearly saturated. In a way you couldn't possibly explain, you suddenly possess a new way of perceiving the things that surround you. You're perfectly aware of the sandy bottom of the channel, detecting all the coral reefs that cover it without needing to see them.</p>
 
-<p>Mais surtout, vous pouvez sentir une forme qui se trouve derrière vous et ne cesse de se rapprocher. Vous ne parvenez pas à interpréter ses contours fuselés, mais ils vous inspirent une profonde crainte instinctive.</p>
+<p>But more importantly, you sense a shape that's located behind you and keeps getting closer. You can't interpret its sleek forms, but they fill you with instinctive dread.</p>
 
-<p>Votre sens supplémentaire se volatilise aussi soudainement qu’il était apparu et, au même instant, l’amulette que vous portiez autour de votre cou se désagrège.</p>
+<p>Your additional sense vanishes as suddenly as it had appeared, and at the same time, the pendant around your neck disintegrates.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Devinant intuitivement qu’elle vient d’épuiser ses derniers pouvoirs pour vous transmettre cet avertissement, vous plongez sous l’eau pour voir ce qui vous suit.`;
+      const text = `Intuitively guessing that it has just exhausted its remaining powers to give you a warning, you dive under the surface to see what's following you.`;
       const action = () => {
         savePointAction(text, goToSection, flags, updateFlag);
       };
@@ -616,32 +616,32 @@ ${intro}
   },
   "trial-underwater": {
     "text": `
-<p>Avez-vous deviné que la tribu apparemment si dénuée de moyens vous dissimulait sa vraie nature ? Avez-vous soupçonné que cette course n’était pas une simple compétition, à l’issue de laquelle le perdant ne connaîtrait rien de pire que la vexation de l’échec ? Vous est-il revenu en mémoire de vieilles légendes parlant d’humains qui étaient en même temps autre chose ?</p>
+<p>Did you guess that the tribe, seemingly so primitive, was hiding its true nature? Did you suspect that this race wasn't a simple trial, after which the loser would face nothing worse than the humiliation of defeat? Did you remember old legends speaking of humans who were also something else?</p>
 
-<p>Tout cela n’a plus aucune importance à présent, car la transparence de l’eau vous permet de distinguer sans aucun mal la seconde apparence de Raiahui tandis qu’elle réduit à vive allure la distance qui vous sépare.</p>
+<p>None of that matters anymore, for the clear water gives you a perfect view of Raiahui's second shape as she gets closer and closer to you.</p>
 
 <img src="${squaleImage}" class="img-responsive text-img" alt=""/>
 
-<p>Propulsé par les mouvements puissants de sa queue, son corps marbré de rayures sombres est plus à l’aise dans l’élément aquatique que vous ne pourrez jamais l’être. Sa gueule paraît presque inoffensive pour le moment, mais vous avez déjà vu des mâchoires de requin-tigre et les nombreuses dents tranchantes dont elles sont garnies.</p>
+<p>Propelled by its powerful tail, her striped body is more comfortable in water than you can ever be. Her mouth seems almost harmless for now, but you've seen the jaws of tiger sharks before, as well as the many sharp teeth that cover them.</p>
 
-<p>Vous remontez à la surface pour respirer. Une terreur horrible s’est répandue dans tout votre être, mais elle ne vous prive pas encore de vos moyens. Un tiers de la distance vous sépare encore de l’îlot qui constitue votre destination. En-dessous de vous, quelques récifs de corail émergent ici et là du fond sablonneux de la passe. Sur votre droite, du côté de l’océan, le corail devient beaucoup plus dense et enchevêtré.</p>
+<p>You get back to the surface and take a breath in. Horrible dread has filled your entire being, but you're still thinking clearly. A third of the distance still separates you from the islet that's your arrival point. Below, a few coral reefs emerge from the sandy bottom of the channel, here and there. To your right, closer to the ocean, the reefs become much larger.</p>
     `,
     "next": (goToSection) => {
       const choices = [
         {
-          "text": `Vous nagez de toutes vos forces en direction de l’îlot.`,
+          "text": `You swim as fast as you can toward the islet.`,
           "action": () => {
             goToSection("trial-rush");
           },
         },
         {
-          "text": `Vous plongez vers les récifs de corail qui se trouvent juste en-dessous de vous.`,
+          "text": `You dive toward the coral reefs right under you.`,
           "action": () => {
             goToSection("trial-hide-closer");
           },
         },
         {
-          "text": `Vous essayez d’atteindre les récifs sur votre droite, plus denses mais deux fois plus éloignés.`,
+          "text": `You try to reach the reefs to your right, which are larger but twice as distant.`,
           "action": () => {
             goToSection("trial-hide");
           },
@@ -655,7 +655,7 @@ ${intro}
   },
   "trial-rush": {
     "text": `
-<p>La panique anime vos membres d’une énergie bouillonnante, vous faisant nager plus vite que vous n’en avez jamais été capable. Mais Raiahui reste beaucoup trop rapide. Un coup d’œil angoissé en arrière vous permet de voir qu’elle est sur le point de vous rejoindre.</p>
+<p>Panic fills your limbs with searing strength and you swim faster than you ever have. But Raiahui's speed remains much higher. A distressed glance behond you reveals that she's about to catch up to you.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -663,7 +663,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -676,7 +676,7 @@ ${intro}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Vous écrasez les perles noires en votre possession.`,
+          "text": `You crush the black pearls.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("killed-by-pearls");
@@ -685,7 +685,7 @@ ${intro}
         });
       }
 
-      const escapeText = `Vous nagez aussi vite que possible en une tentative désespérée pour lui échapper malgré tout.`;
+      const escapeText = `You desperately try to outdistance her.`;
       choices.push({
         "text": escapeText,
         "action": () => {
@@ -701,10 +701,10 @@ ${intro}
   },
   "caught-a-raiahui": {
     "text": `
-<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez vers Raiahui. Votre geste n’a presque aucune force, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante alors qu’elle allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+<p>Grabbing the net you've tied around your waist, you throw it in Raiahui's direction. Your gesture has very little strength, but the witch's net has retained its powers: it spreads out by itself and wraps around your pursuer as she was about to reach you. Raiahui thrashes about wildly, ripping up the tight mesh in order to free herself.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous vous éloignez d’elle avec toute la vitesse possible.`;
+      const text = `You get away from her as fast as you can.`;
       const action = () => {goToSection("arrival-in-sight")};
 
       return (
@@ -714,16 +714,16 @@ ${intro}
   },
   "killed-by-pearls": {
     "text": `
-<p>Vous écrasez les perles d’un geste convulsif et les eaux transparentes qui vous entourent deviennent brusquement d’un noir impénétrable.</p>
+<p>You hurriedly crush the pearls, and the clear water around you suddenly becomes completely opaque.</p>
 
-<p>Vous continuez à nager aussi vite que vous en êtes capable, mais il ne s’écoule qu’un bref instant avant qu’un impact cuisant ne vous cingle tout à coup la jambe. Un corps rugueux vient de passer tout près de vous !</p>
+<p>You keep swimming as fast as you can, but you feel a stinging impact against your leg a short moment later. A rough-skinned body has just brushed past you!</p>
 
-<p>Sous vos yeux horrifiés, un aileron brun-gris émerge de l’eau opaque juste devant vous.</p>
+<p>Under your horrified eyes, a brown fin emerges from the dark water right before you.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       return repeatingFunnel(
         goToSection,
-        `D’un mouvement brusque, il s’oriente dans votre direction.`,
+        `It sharply turns in your direction.`,
         () => {
           updateFlag("eatenByRaiahui", true);
           return "raiahui-good-end";
@@ -733,11 +733,11 @@ ${intro}
   },
   "arrival-in-sight": {
     "text": `
-<p>L’île sablonneuse n’est désormais plus qu’à une faible distance devant vous. Vous nagez vers elle aussi vite que possible, mais les intenses efforts physiques auxquels la terreur vous a poussée commencent à affecter vos forces. Vous sentez un début d’épuisement vous gagner.</p>
+<p>The sandy island is now close. You keep swimming as fast as you can, but your fear-fueled efforts are taking their toll. You feel close to exhaustion.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       if (flags.drunk) {
-        const text = `Votre ventre est agité de douloureux gargouillis tandis qu’un arrière-goût d’alcool remonte dans votre bouche.`
+        const text = `Your stomach twists painfully and an aftertaste of alcohol comes to your mouth.`
         const action = () => {
           goToSection("exhausted");
         };
@@ -749,7 +749,7 @@ ${intro}
 
       const amulet = flags.inventory.dolphin;
       if (amulet.acquired && !amulet.used) {
-        const text = `L’amulette contre votre poitrine tremble sous l’irrégularité de votre souffle.`
+        const text = `The pendant is quivering around your neck.`
         const action = () => {
           useItem("dolphin", updateFlag);
           goToSection("trial-saved-by-dolphin");
@@ -761,7 +761,7 @@ ${intro}
       }
 
       if (flags.boostedByFruit) {
-        const text = `Votre ventre, délaissé par votre organisme au profit de vos muscles, gronde.`
+        const text = `Your stomach is growling strangely.`
         const action = () => {
           goToSection("trial-saved-by-fruit");
         };
@@ -772,7 +772,7 @@ ${intro}
       }
 
       if (flags.wellRested) {
-        const text = `Vous êtes plus forte que la fatigue.`
+        const text = `You're stronger than exhaustion.`
         const action = () => {
           goToSection("trial-saved-by-sloth");
         };
@@ -782,7 +782,7 @@ ${intro}
         );
       }
 
-      const text = `Vous rassemblez vos dernières forces.`
+      const text = `You gather your remaining strength.`
       const action = () => {
         goToSection("exhausted");
       };
@@ -794,10 +794,10 @@ ${intro}
   },
   "trial-saved-by-dolphin": {
     "text": `
-<p>Il vous semble tout à coup qu’une profonde bouffée d’air pur s’infiltre dans vos poumons. La faiblesse qui commençait à alourdir vos membres se dissipe comme si elle n’avait jamais existé et vous continuez sans mal à nager à une vitesse étourdissante.</p>
+<p>A deep breath of pure air suddenly seems to fill your lungs. The tiredness making your limbs heavy vanishes as though it had never existed, and you keep swimming as quickly as you ever have.</p>
     `,
     "next": (goToSection) => {
-      const text = `À votre cou, l’amulette en forme de dauphin se désagrège, ayant épuisé pour vous ses derniers pouvoirs.`;
+      const text = `Around your neck, the dolphin-shaped pendant disintegrates, having exhausted its remaining powers.`;
       const action = () => {goToSection("final-island")};
 
       return (
@@ -807,10 +807,10 @@ ${intro}
   },
   "trial-saved-by-fruit": {
     "text": `
-<p>Alors que la panique vous saisit à l’idée de défaillir si près de votre but, une énergie brûlante naît soudain dans le creux de votre ventre et se répand dans tous vos muscles avec la vivacité de la foudre.</p>
+<p>As you're close to panic, burning strength suddenly appears in your stomach, spreading to your limbs as fast as lightning.</p>
     `,
     "next": (goToSection) => {
-      const text = `N’éprouvant plus rien de l’épuisement qui alourdissait vos membres il y a un instant, vous continuez de nager à une vitesse étourdissante.`;
+      const text = `No longer feeling any tiredness, you keep swimming as fast as you ever have.`;
       const action = () => {goToSection("final-island")};
 
       return (
@@ -820,23 +820,23 @@ ${intro}
   },
   "trial-saved-by-sloth": {
     "text": `
-<p>Vous puisez dans toutes vos ressources pour franchir la distance qui vous sépare encore de votre but.</p>
+<p>You draw on your inner resources to cross the distance still separating you from your goal.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Là où la panique ne suffit plus, c’est votre volonté qui contraint vos muscles à dépasser l’épuisement et à vous propulser vers l’île, toujours plus près, sans ralentir un instant.`,
+        `Stronger than panic, your willpower makes your muscles overcome exhaustion, and keep propelling you toward the island, ever closer, without ever slowing down.`,
         "final-island",
       );
     },
   },
   "final-island": {
     "text": `
-<p>Une bouffée d’espoir délirante vous saisit lorsque vous sentez enfin le sable sous vos pieds. Vous vous hâtez de vous redresser. L’eau ne vous parvient qu’à la taille et il vous suffira de quelques enjambées pour atteindre enfin l’île.</p>
+<p>A surge of wild hope fills your mind when you finally feel the sand under your feet. You quickly stand up. Water only comes to your waist and a few strides will be enough for you to reach the island.</p>
 
-<p>Un grand bruit d’éclaboussures vous fait vous retourner : Raiahui vient d’émerger de l’eau à son tour. L’espace d’un fugitif instant, vous la voyez sous une curieuse forme hybride, à mi-chemin entre ses deux apparences. Puis sa peau reprend une couleur brune uniforme, son visage retrouve un aspect humain et ses membres antérieurs se terminent à nouveau par des mains, dont l’une serre un couteau couleur d’ivoire.</p>
+<p>A great splashing sound makes you turn around: Raiahui has emerged from the water in turn. For a brief moment, you see her as a weird hybrid being, halfway between her two shapes. Then her skin becomes uniformly brown, her face is human again, and her upper limbs have hands, one of which holds an ivory knife.</p>
 
-<p>Son arme tendue devant elle, Raiahui se précipite vers vous avec un hurlement enragé.</p>
+<p>Holding her weapon before her, Raiahui rushes toward you with an enraged scream.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -844,7 +844,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -856,13 +856,13 @@ ${intro}
 
       choices = choices.concat([
         {
-          "text": `Vous essayez de lui arracher son couteau.`,
+          "text": `You try to disarm her.`,
           "action": () => {
             goToSection("raiahui-fight");
           },
         },
         {
-          "text": `Vous vous précipitez vers l’île.`,
+          "text": `You run toward the island.`,
           "action": () => {
             goToSection("run-to-finish");
           },
@@ -876,18 +876,18 @@ ${intro}
   },
   "raiahui-fight": {
     "text": `
-<p>Vous échouez à saisir le poignet de Raiahui. D’un mouvement vif, elle tente de vous transpercer le ventre, mais vous vous tordez de justesse sur le côté et le tranchant aiguisé du couteau ne vous inflige qu’une légère estafilade.</p>
+<p>You fail to grab Raiahui's wrist. She tries to stab you in the stomach, but you manage to twist aside just in time, and the sharp edge of the knife only inflicts a light cut.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous lui assénez un coup de poing.`,
+          "text": `You punch her.`,
           "action": () => {
             goToSection("raiahui-punch");
           },
         },
         {
-          "text": `Vous l’agrippez au corps-à-corps.`,
+          "text": `You get a hold on her.`,
           "action": () => {
             if (flags.drunk || flags.weakened) {
               updateFlag("stabbedToDeath", true);
@@ -906,10 +906,10 @@ ${intro}
   },
   "raiahui-punch": {
     "text": `
-<p>Votre coup de poing surprend Raiahui, qui n’a pas le réflexe de l’esquiver. Il la frappe en plein ventre et elle vacille légèrement en arrière, mais elle tend son couteau devant elle pour vous empêcher d’en profiter.</p>
+<p>Raiahui fails to dodge your punch in time. You hit her in the stomach and she staggers back slightly, but she holds her knife before her to prevent you from pressing your advantage.</p>
     `,
     "next": (goToSection) => {
-      const text = `Réalisant que la situation est à votre désavantage, vous profitez de l’occasion pour vous précipiter vers l’île.`;
+      const text = `Realizing that the situation is not to your advantage, you seize the occasion and run toward the island.`;
       const action = () => {
         goToSection("run-to-finish");
       };
@@ -921,27 +921,27 @@ ${intro}
   },
   "raiahui-grapple": {
     "text": `
-<p>Vous essayez de saisir votre adversaire d’une manière qui l’empêche de se servir de son arme, mais l’eau rend sa peau glissante. Brièvement déséquilibrée par cette tentative, vous n’arrivez pas cette fois à éviter le couteau de Raiahui : sa pointe effilée s’enfonce profondément dans votre poitrine et vous basculez en arrière, soudain privée de force. La dernière chose que vous distinguez, alors que les eaux déjà rouges se referment sur votre visage, est le regard de votre meurtrière posé sur vous.</p>
+<p>You try to grab your opponent in a way that'll prevent her from using her weapon, but water makes her skin too slippery. You briefly lose your balance and, this time, you're unable to dodge Raiahui's knife: its sharp blade buries into your chest and you fall backward, suddenly deprived of all your strength. The last thing you see, as the reddening water closes above your face, is your murderer staring at you.</p>
     `,
     "next": endGame,
   },
   "raiahui-grapple-strong": {
     "text": `
-<p>Vous essayez de saisir votre adversaire d’une manière qui l’empêche de se servir de son arme, mais l’eau rend sa peau glissante. Brièvement déséquilibrée par cette tentative, c’est tout juste si vous parvenez à arrêter le bras de Raiahui lorsqu’elle tente à nouveau de vous poignarder.</p>
+<p>You try to grab your opponent in a way that'll prevent her from using her weapon, but water makes her skin too slippery. You briefly lose your balance, and barely manage to get a hold on Raiahui's arm before she can stab you.</p>
 
-<p>Vous luttez un instant l’un contre l’autre, mais vos prises sont mal assurées et vous n’avez pas l’avantage.</p>
+<p>You fight as best you can, but your hold is poor and you can't get the upper hand.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous poussez Raiahui en arrière de toutes vos forces.`,
+          "text": `You push Raiahui away with all your strength.`,
           "action": () => {
             updateFlag("stabbedToDeath", true);
             goToSection("raiahui-grapple-strong-death");
           },
         },
         {
-          "text": `Vous lui griffez le visage.`,
+          "text": `You claw at her eyes.`,
           "action": () => {
             goToSection("raiahui-grapple-strong-escape");
           },
@@ -955,40 +955,40 @@ ${intro}
   },
   "raiahui-grapple-strong-death": {
     "text": `
-<p>Vous parvenez à déséquilibrer Raiahui, mais elle s’agrippe à vous et vous entraîne avec elle ! Vous basculez ensemble dans l’eau, où s’ensuit une mêlée confuse et frénétique. Le couteau de Raiahui finit par s’enfoncer dans votre ventre et la douleur foudroyante vous ôte instantanément toutes vos forces. La dernière chose que vous distinguez, alors qu’un rouge épais remplace la transparence de l’eau, est le visage de votre meurtrière tout proche du vôtre.</p>
+<p>You make Raiahui lose her balance, but she grabs your wrist, taking you down with her! You tumble into the water together, and a chaotic, frantic fight ensues. Eventually, Raiahui's knife buries into your chest and the fiery pain immediately takes away all of your strength. The last thing you see, as a thick red spreads in the clear water, is the face of your murderer right next to your own.</p>
     `,
     "next": endGame,
   },
   "raiahui-grapple-strong-escape": {
     "text": `
-<p>Raiahui a un réflexe de recul lorsque vos doigts tendus se rapprochent de ses yeux. Saisissant l’occasion, vous parvenez à vous dégager et à la repousser en arrière. Raiahui est momentanément déséquilibrée, mais elle tend son couteau devant elle pour vous empêcher d’en profiter.</p>
+<p>Seeing your stretched fingers aiming for her eyes, Raiahui reflexively tries to dodge. Seizing this occasion, you manage to get free and push her away. Raiahui's briefly out of balance, but she holds her knife before her to prevent you from pressing your advantage.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Réalisant que vous avez peu de chance de prendre le dessus dans cet affrontement, vous vous enfuyez vers l’îlot.`,
+        `Realizing that you're unlikely to get the upper hand in this fight, you run toward the island.`,
         "run-to-finish",
       );
     }
   },
   "net-on-sand": {
     "text": `
-<p>Vous jetez le filet de la sorcière vers Raiahui, mais elle est trop proche pour qu’il puisse se déployer totalement avant de l’atteindre. Il ne fait que s’enrouler étroitement autour de son bras, sans lui causer de gêne véritable. Ce phénomène inattendu la fait cependant hésiter un instant et vous en profitez pour vous enfuir vers la rive sablonneuse.</p>
+<p>You throw the witch's net toward Raiahui, but she's so close that the net can't spread out properly, and it only wraps itself around her arm. Though it doesn't really hinder her, she's momentarily surprised; you seize the occasion and run toward the sandy shore.</p>
 
-<p>Vous n’avez pas le temps de l’atteindre : vous avez à peine effectué quelques enjambées, soulevant de grandes gerbes d’eau autour de vous, lorsqu’une poussée brutale vous fait perdre l’équilibre et basculer en avant. Reprenant rapidement pied, vous vous retournez juste à temps pour saisir le poignet de Raiahui, arrêtant la pointe de son couteau tout près de votre visage. L’eau vous arrive encore à mi-cuisse. La main libre de Raiahui se referme sur votre bras et vous luttez furieusement l’une contre l’autre, faisant jaillir des éclaboussures à moins de trois enjambées de la rive.</p>
+<p>You don't manage to reach it: after only a few splashing strides, you're violently shoved from behind and you fall into the water. Quickly getting to your feet, you turn just in time to grab Raiahui's wrist, stopping the tip of her knife very close to your face. The water is still at mid-thigh. Raiahui's free hand grabs your arm and you fight furiously, splashing water all around you, less than three strides away from the shore.</p>
 
-<p>Le couteau vous frôle à plusieurs reprises et vous sentez que Raiahui essaie de vous ramener à un endroit où l’eau sera plus profonde.</p>
+<p>The knife grazes you several times, and you can tell that Raiahui's trying to drag you back toward the channel, where the water will be deeper.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous résistez farouchement.`,
+          "text": `You fight as fiercely as you can.`,
           "action": () => {
             goToSection("raiahui-struggle");
           },
         },
         {
-          "text": `Vous guettez une occasion de vous dégager et de fuir vers l’île.`,
+          "text": `You wait for an occasion to free yourself and run toward the island.`,
           "action": () => {
             if (flags.drunk || flags.weakened) {
               updateFlag("stabbedToDeath", true);
@@ -1007,18 +1007,18 @@ ${intro}
   },
   "run-to-finish": {
     "text": `
-<p>Vos jambes soulèvent de grandes gerbes d’eau tandis que vous essayez de gagner la rive sablonneuse au plus vite. Mais vous avez à peine le temps d’effectuer quelques enjambées avant qu’une poussée brutale ne vous fasse perdre l’équilibre et basculer en avant. Reprenant rapidement pied, vous vous retournez juste à temps pour saisir le poignet de Raiahui, arrêtant la pointe de son couteau tout près de votre visage. L’eau vous arrive encore à mi-cuisse. La main libre de Raiahui se referme sur votre bras et vous luttez furieusement l’une contre l’autre, faisant jaillir des éclaboussures à moins de trois enjambées de la rive. Le couteau vous frôle à plusieurs reprises et vous sentez que Raiahui essaie de vous ramener à un endroit où l’eau sera plus profonde.</p>
+<p>You run toward the sandy shore as best you can. But, after only a few splashing strides, you're violently shoved from behind and you fall into the water. Quickly getting to your feet, you turn just in time to grab Raiahui's wrist, stopping the tip of her knife very close to your face. The water is still at mid-thigh. Raiahui's free hand grabs your arm and you fight furiously, splashing water all around you, less than three strides away from the shore. The knife grazes you several times, and you can tell that Raiahui's trying to drag you back toward the channel, where the water will be deeper.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous résistez farouchement.`,
+          "text": `You fight as fiercely as you can.`,
           "action": () => {
             goToSection("raiahui-struggle");
           },
         },
         {
-          "text": `Vous guettez une occasion de vous dégager et de fuir vers l’île.`,
+          "text": `You wait for an occasion to free yourself and run toward the island.`,
           "action": () => {
             if (flags.drunk || flags.weakened) {
               updateFlag("stabbedToDeath", true);
@@ -1037,26 +1037,26 @@ ${intro}
   },
   "raiahui-backstab": {
     "text": `
-<p>Vous réussissez finalement à vous dégager de l’étreinte de votre adversaire et vous vous élancez vers l’île dans l’espoir de l’atteindre enfin. Mais Raiahui vous rattrape et son couteau s’enfonce profondément dans votre dos. Foudroyée par la douleur, vous vous effondrez en avant. La rive est à portée de bras, mais toutes vos forces vous ont abandonné. Votre dernière vision est celle de l’eau devant votre visage se teintant peu à peu de rouge.</p>
+<p>You finally manage to escape from your opponent's hold and you run toward the island, hoping to finally reach it. But Raiahui catches up to you and buries her knife into your back. Struck as though by lightning, you crumple forward. The shore is at arm's reach, but all of your strength has deserted you. The last thing you see is the water brushing against your face, as it slowly becomes tinged with red.</p>
     `,
     "next": endGame,
   },
   "raiahui-knife-close": {
     "text": `
-<p>Vous réussissez finalement à vous dégager de l’étreinte de votre adversaire et vous tournez pour courir jusqu’à la rive ensablée. Mais Raiahui est trop proche et réagit trop rapidement. Du coin de l’oeil, vous voyez son bras se tendre pour vous poignarder. D’extrême justesse, vous parvenez à vous tordre sur le côté et le couteau d’ivoire ne fait que vous écorcher le flanc au lieu de s’enfoncer profondément dans votre dos.</p>
+<p>You finally manage to escape from your opponent's hold and you turn, hoping to finally reach the sandy shore. But Raiahui remains too close and she reacts too quickly. Out of the corner of your eye, you see that she's about to stab you. You manage to twist aside just in time, and the ivory knife only inflicts a light wound instead of burying into your back.</p>
 
-<p>Raiahui vous agrippe par les cheveux et vous tire brutalement en arrière. Vous parvenez à lui donner un coup de coude dans le ventre, ce qui ne lui fait pas lâcher prise mais vous donne le temps de lui saisir le poignet à deux mains avant qu’elle ne puisse vous enfoncer son couteau d’ivoire dans la gorge.</p>
+<p>Raiahui grabs your hair and pulls you back. You manage to elbow her in the stomach; it's not enough to make her lose her grip, but it enables you to grab her wrist with both hands before her ivory knife can slit your throat.</p>
 
-<p>Pendant un bref instant, vous êtes toutes les deux immobiles, haletantes, guettant pareillement l’occasion de prendre l’avantage dans cet étrange corps-à-corps. Tout près de votre visage, vous distinguez avec netteté les gouttes de votre sang qui perlent le long de la blancheur laiteuse du couteau.</p>
+<p>For a brief moment, you both remain motionless, panting, watching out for an occasion to gain the upper hand in this weird fight. Very close to your face, you can distinctly see drops of your blood running off the milky edge of the knife.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous frappez Raiahui aussi fort que vous le pouvez.`,
+          "text": `You strike Raiahui as hard as you can.`,
           "action": () => {goToSection("raiahui-struggle-alt")},
         },
         {
-          "text": `Vous lui tordez le bras pour essayer de lui faire lâcher son couteau.`,
+          "text": `You twist her arm in order to disarm her.`,
           "action": () => {
             updateFlag("stabbedToDeath", true);
             goToSection("raiahui-struggle-death");
@@ -1071,26 +1071,26 @@ ${intro}
   },
   "raiahui-struggle-death": {
     "text": `
-<p>Vous parvenez brièvement à éloigner de vous la pointe du couteau d’ivoire. Puis le bras libre de Raiahui entoure votre cou, sa jambe s’enroule autour de la vôtre et elle vous tire brutalement en arrière. Vous basculez ensemble dans l’eau, où s’ensuit une mêlée confuse et frénétique. Le couteau de Raiahui finit par s’enfoncer dans votre ventre et la douleur foudroyante vous ôte instantanément toutes vos forces. La dernière chose que vous distinguez, alors qu’un rouge épais remplace la transparence de l’eau, est le visage de votre meurtrière tout proche du vôtre.</p>
+<p>For a brief moment, you manage to push away the tip of the ivory knife. Then Raiahui's free arm gets a hold on your neck, her leg wraps around yours, and she abruptly pulls you backward. You tumble into the water together, and a chaotic, frantic fight ensues. Eventually, Raiahui's knife buries into your chest and the fiery pain immediately takes away all of your strength. The last thing you see, as a thick red spreads in the clear water, is the face of your murderer right next to your own.</p>
     `,
     "next": endGame,
   },
   "raiahui-struggle": {
     "text": `
-<p>Votre terreur a atteint son point d’ébullition et elle se vaporise soudain en une rage brûlante.</p>
+<p>Your fear has reached its boiling point and suddenly evaporates into burning rage.</p>
 
 <div class="conversation">
-<p>— LÂCHE-MOI, ESPÈCE DE…</p>
+<p>"LET GO OF ME, YOU…"</p>
 </div>
 
-<p>Vous hurlez un mot que votre mère n’aurait pas été heureuse d’entendre, le ponctuez d’un violent coup de tête qui frappe votre adversaire en plein visage et lui mordez ensuite sauvagement l’avant-bras. Raiahui pousse un cri de douleur perçant et laisse presque échapper son précieux couteau. Vous lui écrasez votre poing sur la figure et, tandis qu’elle titube en arrière, vous franchissez enfin la distance qui vous séparait de la rive sablonneuse.</p>
+<p>You scream a word your mother wouldn't approve of, then hit your opponent with a violent headbutt, and savagely bite her forearm. Raiahui lets out a piercing scream of pain and almost drops her precious knife. You punch her in the face and, as she staggers back, you finally cross the distance separating you from the sandy shore.</p>
 
-<p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir.</p>
+<p>Raiahui regains her balance and runs after you. But as she reaches the shore, many figures appear all around you, and hands restrain her.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       return repeatingFunnel(
         goToSection,
-        `— L’épreuve est terminée, déclare Ataroa.`,
+        `"The trial is over," Ataroa says.`,
         () => {
           updateFlag("survivedTheTrial", true);
           return "victory";
@@ -1100,20 +1100,20 @@ ${intro}
   },
   "raiahui-struggle-alt": {
     "text": `
-<p>Votre terreur a atteint son point d’ébullition et elle se vaporise soudain en une rage brûlante.</p>
+<p>Your fear has reached its boiling point and suddenly evaporates into burning rage.</p>
 
 <div class="conversation">
-<p>— LÂCHE-MOI, ESPÈCE DE…</p>
+<p>"LET GO OF ME, YOU…"</p>
 </div>
 
-<p>Vous hurlez un mot que votre mère n’aurait pas été heureuse d’entendre, le ponctuez d’un violent coup de tête en arrière qui frappe votre adversaire en plein visage et lui mordez ensuite sauvagement l’avant-bras. Raiahui pousse un cri de douleur perçant, lâche vos cheveux et laisse presque échapper son précieux couteau. Vous retournant à demi, vous lui assénez un coup de coude brutal en pleine poitrine et, tandis qu’elle titube en arrière, vous franchissez enfin la distance qui vous séparait de la rive sablonneuse.</p>
+<p>You scream a word your mother wouldn't approve of, then hit your opponent with a violent backward headbutt, and savagely bite her forearm. Raiahui lets out a piercing scream of pain, loses her grip on your hair, and almost drops her precious knife. You elbow her in the chest and, as she staggers back, you finally cross the distance separating you from the sandy shore.</p>
 
-<p>Raiahui retrouve son équilibre et elle se précipite à vos trousses, mais, avant qu’elle ne puisse vous rejoindre, de nombreuses silhouettes surgissent tout autour de vous et des mains viennent la retenir.</p>
+<p>Raiahui regains her balance and runs after you. But as she reaches the shore, many figures appear all around you, and hands restrain her.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       return repeatingFunnel(
         goToSection,
-        `— L’épreuve est terminée, déclare Ataroa.`,
+        `"The trial is over," Ataroa says.`,
         () => {
           updateFlag("survivedTheTrial", true);
           return "victory";
@@ -1123,60 +1123,60 @@ ${intro}
   },
   "victory": {
     "text": `
-<p>Les adultes de la tribu vous entourent en un cercle épais et leurs yeux vous détaillent avec beaucoup plus d’attention que lors de votre arrivée de la veille. Vous vous sentez trop épuisée pour avoir encore peur, mais il n’y a de toute façon aucune hostilité sur leurs visages, seulement une profonde curiosité.</p>
+<p>The adults of the tribe are gathered in a dense circle, and studying you with much closer attention than they did yesterday. You're too exhausted to really feel afraid anymore; anyway, their faces show no signs of hostility, merely deep curiosity.</p>
 
 <div class="conversation">
-<p>— Tu as mérité notre respect, Mananuiva, vous déclare Ataroa d’une voix où perce presque une certaine admiration. Ce n’est pas fréquemment qu’un étranger remporte une de nos courses.</p>
+<p>"You've deserved our respect, Mananuiva," Ataroa says with almost perceptible admiration. "It's not often that an outsider wins one of our races."</p>
 </div>
 
-<p>Quelques remarques acerbes se présentent à votre esprit, mais, même si vous aviez le courage de les articuler, vous ne vous sentez pas l’énergie nécessaire.</p>
+<p>A few cutting remarks come to your mind, but even if you dared to speak them, you feel simply too tired to do so.</p>
 
 <div class="conversation">
-<p>— Tu es libre de repartir, poursuit Ataroa, désignant du doigt votre pirogue, qui repose sur le sable à l’autre extrémité de la petite île. Nous avons pris soin de ton embarcation et nous l’avons remplie des provisions dont tu pourras avoir besoin. Quant à ta récompense…</p>
+<p>"You're free to go," the chieftain adds, and he points at your canoe, lying at the other end of the islet with a new mast and a sail quivering in the evening breeze. "We've taken care of your craft and filled it with the supplies you may need. As for your reward…</p>
 </div>
 
-<p>Il fait un signe de la main et un autre homme s’avance, portant un bol rempli d’un liquide blanc-gris.</p>
+<p>He gestures and another man approaches, bearing a bowl full of a greyish beverage.</p>
 
 <div class="conversation">
-<p>— L’Écume des Profondeurs t’appartient. Il ne reste qu’un ingrédient à y ajouter, ce que nous allons faire tout de suite. Il est ordinairement fourni par celui qui va boire l’Écume, mais, étant donné les circonstances, il est normal qu’il vienne de quelqu’un d’autre.</p>
+<p>"The Foam of the Deep is yours. There's only one ingredient left to add, and we'll take care of that right now. It's normally provided by the one who'll drink the Foam, but given the circumstances, it's only fair that it comes from somebody else."</p>
 </div>
 
-<p>Deux adultes s’approchent, tenant entre eux Raiahui, qui est visiblement terrifiée. Ataroa lui saisit le poignet et lui entaille profondément la paume de son couteau. Un filet de sang vient se mêler au contenu de la coupe, qui prend aussitôt une teinte vivement argentée.</p>
+<p>Two adults come forward, holding an obviously terrified Raiahui between them. Ataroa grabs her wrist and cuts her palm deeply with his knife. Bloods trickles into the bowl, and the beverage immediately take a bright silvery hue.</p>
 
 <div class="conversation">
-<p>— L’Écume des Profondeurs est prête, déclare Ataroa en vous la remettant. Bois-là ce soir et tu visiteras le monde des esprits pendant ton sommeil.</p>
+<p>"The Foam of the Deep is ready," says Ataroa, presenting it to you. "Drink it this evening, and you'll visit the world of spirits during your sleep.</p>
 </div>
 
-<p>Il se tourne à présent vers votre concurrente, qui tremble de tout son corps.</p>
+<p>He now turns toward your trembling opponent.</p>
 
 <div class="conversation">
-<p>— Raiahui, dit-il d’une voix froide, tu ne mérites pas d’être une adulte. Tu as échoué à l’épreuve par arrogance, en sous-estimant ton adversaire. Je pense que tu ne prendras pas ton épreuve suivante autant à la légère.</p>
+<p>"Raiahui," he says in a cold voice, "you don't deserve to become an adult. You've failed your trial out of arrogance, by underestimating your opponent. I'm sure you won't take your next test so lightly.</p>
 </div>
 
-<p>Il s’empare du couteau de la jeune femme et, d’un mouvement puissant, le jette vers le lagon.</p>
+<p>He grabs the young woman's knife and throws it far away into the lagoon.</p>
 
 <div class="conversation">
-<p>— Si tu parviens à regagner le village, ta stupidité sera pardonnée.</p>
+<p>"If you manage to get back to the village, your foolishness will be forgiven.</p>
 </div>
 
-<p>Les mains qui retenaient Raiahui la relâchent subitement. La jeune femme promène un regard affolé sur les adultes qui l’entourent, puis se précipite vers le lagon pour y plonger. Vous la regardez un instant nager de toutes ses forces vers l’endroit où son couteau a disparu. Prisonnière de sa forme humaine, elle reste une très bonne nageuse, mais vous êtes certaine que vous auriez pu la battre dans une course normale.</p>
+<p>The hands that were holding Raiahui suddenly release her. The young woman casts a frightened look on the adults surrounding her. Then she runs toward the shore and dives into the lagoon. You watch as she swims as fast as possible toward the spot where her knife has sunk. Trapped in her human shape, she remains a very good swimmer, but you're sure that you could have beaten her in a normal race.</p>
 
-<p>Ataroa se tourne vers vous et vous adresse un dernier hochement de tête en guise d’adieu.</p>
+<p>Ataroa turns toward you and nods his farewell.</p>
 
 <div class="conversation">
-<p>— Je te souhaite de découvrir ce que tu cherches, Mananuiva.</p>
+<p>"I hope you'll find what you seek, Mananuiva."</p>
 </div>
 
-<p>Puis tous les adultes de la tribu vont plonger à leur tour et vous voyez dans l’eau transparente leurs formes effilées se lancer à la poursuite de Raiahui.</p>
+<p>Then all of the adults go to the shore and dive in turn. In the clear water, you see their sleek shapes chasing after Raiahui.</p>
 
-<p>Vous ne tenez pas à savoir ce qui va se dérouler dans le lagon et vous n’êtes même pas certaine de préférer l’une ou l’autre issue possible. Vous traversez la petite île sablonneuse et allez vous asseoir devant l’océan. Le bruit régulier des vagues vous apaise, dissipant le peu de tension qui subsiste encore dans vos muscles. Derrière vous, le soleil ne tardera plus à atteindre l’horizon.</p>
+<p>You don't want to know what's going to happen in the lagoon; you're not even sure that you have a preference for one of the two possible outcomes. You cross the sandy island and sit in front of the ocean. The steady sound of the waves relaxes you, easing the tension from your muscles. It won't be long before the sun reaches the horizon behind you.</p>
 
-<p>Vous baissez les yeux vers l’Écume des Profondeurs, dont la surface reflète confusément votre visage. Cela valait-il la peine que vous vous êtes donnée et les dangers que vous avez courus ? Peu importe désormais : votre aventure sur cet atoll appartient déjà au passé et la suite de votre quête vous attend.</p>
+<p>You look at the Foam of the Deep, its shining surface vaguely reflecting your face. Is this worth all your efforts and the dangers you've faced? It doesn't matter now: your adventure on this atoll already belongs to the past, and your quest is far from over.</p>
 
-<p>Vous vous installez confortablement et portez la coupe à vos lèvres.</p>
+<p>You settle comfortably and bring the bowl to your lips.</p>
     `,
     "next": (goToSection) => {
-      const text = `Cette nuit, vous allez rêver. Et demain, vous allez repartir.`;
+      const text = `Tonight, you'll dream. And tomorrow, you'll set off again.`;
       const action = () => {
         goToSection("ending-credits");
       };
@@ -1190,20 +1190,20 @@ ${intro}
   },
   "trial-hide": {
     "text": `
-<p>Vous restez un instant encore à la surface, nageant de toutes vos forces pour vous rapprocher des récifs. Puis vous prenez une profonde inspiration et vous plongez.</p>
+<p>You remain on the surface for a while, swimming as fast as you can to get closer to the reefs. Then you take a deep breath and dive.</p>
 
-<p>Quelques brasses puissantes vous permettent de vous enfoncer rapidement vers le fond de la passe. Entre deux masses de corail aux formes extravagantes, vous repérez une anfractuosité verticale et irrégulière, qui vous semble trop étroite pour que Raiahui vous y suive.</p>
+<p>A few strong strokes bring you close to the bottom of the channel. Between two extravagantly shaped masses of coral, you spot a vertical, uneven crevice, that seems too narrow for Raiahui.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous nagez sans vous retourner pour l’atteindre le plus vite possible.`,
+          "text": `You try to reach it as quickly as possible.`,
           "action": () => {
             goToSection("trial-not-looking-back");
           },
         },
         {
-          "text": `Vous prenez le temps de jeter un coup d’œil en arrière pour voir où se trouve Raiahui.`,
+          "text": `You take the time to cast a glance behind you and see where Raiahui is now.`,
           "action": () => {
             goToSection("trial-looking-back");
           },
@@ -1217,14 +1217,14 @@ ${intro}
   },
   "trial-not-looking-back": {
     "text": `
-<p>Vous n’avez pas besoin de voir Raiahui pour savoir qu’elle vous poursuit et que l’écart entre vous ne cesse de se réduire. Tourner la tête pour le vérifier vous ralentirait un instant sans rien vous apporter.</p>
+<p>You don't need to see Raiahui to know that she's after you and that the distance between you is ever decreasing. Turning your head would needlessly slow you down.</p>
 
-<p>Vous nagez aussi vite que vous en êtes capable. Six brasses vous séparent encore de l’anfractuosité où vous espérez vous réfugier. Puis cinq. Puis quatre. Raiahui ne doit certainement plus être loin derrière vous. Plus que trois. Plus que deux. Vous y êtes presque. Une. Vous y êtes !</p>
+<p>You swim as fast as you can. Six more strokes and you'll reach the crevice where you hope to find shelter. Then five. Then four. Raiahui can't be very far now. Three. Two. You're almost there. One. You're there!</p>
 
-<p>Alors que vous vous glissez à l’intérieur de l’anfractuosité, vous voyez du coin de l’oeil Raiahui sur le point de vous rejoindre, sa gueule entrouverte révélant ses nombreuses dents effilées.</p>
+<p>As you slip inside the crevice, you see out of the corner of your eye that Raiahui's about to catch up to you, her half-open mouth revealing her many sharp teeth.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous vous hâtez de vous enfoncer parmi les coraux pour vous mettre hors de sa portée.`;
+      const text = `You quickly get deeper among the reefs, out of her reach.`;
       const action = () => {goToSection("far-corals")};
 
       return (
@@ -1234,7 +1234,7 @@ ${intro}
   },
   "trial-looking-back": {
     "text": `
-<p>Vous tournez la tête et un frémissement d’effroi vous parcourt lorsque vous découvrez que Raiahui est beaucoup plus proche qu’elle ne l’était il y a seulement quelques instants. La distance qui vous sépare encore est en train de diminuer avec une grande rapidité. Pouvez-vous vraiment atteindre les récifs de corail avant qu’elle ne vous rattrape ?</p>
+<p>Turning your head, you quiver with fear as you discover that Raiahui's much closer than she was mere moments ago. The distance between you is quickly diminishing. Can you really reach the coral reefs before she reaches you?</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -1242,7 +1242,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -1255,7 +1255,7 @@ ${intro}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Vous écrasez les perles noires en votre possession.`,
+          "text": `You crush your black pearls.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("far-corals-pearls");
@@ -1265,7 +1265,7 @@ ${intro}
       }
 
       choices.push({
-        "text": `Vous nagez de toutes vos forces vers l’anfractuosité que vous avez repérée.`,
+        "text": `You swim as fast as you can toward the crevice you've spotted.`,
         "action": () => {
           if (flags.boostedByFruit) {
             updateFlag("boostedByFruit", false);
@@ -1284,86 +1284,86 @@ ${intro}
   },
   "far-corals-pearls": {
     "text": `
-<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. Totalement aveugle, vous nagez dans la direction approximative de l’anfractuosité.</p>
+<p>You crush all the pearls you have and a thick, opaque cloud immediately spreads around you. Completely blind, you keep swimming in the approximate direction of the crevice.</p>
 
-<p>Après quelques brasses énergiques, vous parvenez de nouveau à distinguer vos propres membres, puis les couleurs vives du corail.</p>
+<p>A few strokes later, you're able to see your hands again, then the brightly colored coral.</p>
 
-<p>L’eau achève de redevenir transparente autour de vous. Tournant la tête, vous apercevez la forme souple et fuselée de Raiahui, à une certaine distance sur votre droite. Elle est parvenue à rester en-dehors du nuage opaque, mais cela lui a fait perdre du temps. L’anfractuosité où vous espériez trouver refuge ne se trouve plus qu’à quelques brasses devant vous.</p>
+<p>You reach completely clear water. Turning your head, you spot Raiahui's sleek shape. She's managed to stay outside of the opaque cloud, but it's cost her some time. The crevice where you hope to find shelter is now very close.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Vous l’atteignez et vous y glissez sans perdre un instant.`,
+        `You reach it and slip inside immediately.`,
         "far-corals",
       );
     }
   },
   "far-corals-net": {
     "text": `
-<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et traverse en un instant la distance qui vous sépare pour envelopper étroitement votre poursuivante. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+<p>Grabbing the net you've tied around your waist, you throw it in Raiahui's direction. Your gesture has little strength and precision, but the witch's net has retained its powers: it spreads out by itself and wraps around your pursuer as she was about to reach you. Raiahui thrashes about wildly, ripping up the tight mesh in order to free herself.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Ce répit vous suffit amplement à atteindre les récifs de corail et à vous réfugier dans l’anfractuosité.`,
+        `This gives you more than enough time to reach the coral reefs and slip inside the crevice.`,
         "far-corals",
       );
     },
   },
   "far-corals-doped": {
     "text": `
-<p>Vous nagez aussi vite que vous en êtes capable, mais la panique vous tenaille à l’idée que ce n’est pas suffisant.</p>
+<p>You swim as fast as you can, but growing fear whispers that it won't be enough.</p>
 
-<p>Une énergie brûlante naît soudain dans le creux de votre ventre et se répand dans tous vos muscles avec la vivacité de la foudre. Vos mouvements se font plus rapides et plus puissants. Les récifs de corail se rapprochent à une vitesse étourdissante !</p>
+<p>Burning strength suddenly appears in your stomach, spreading to your limbs as fast as lightning. Your strokes become quicker and more powerful. You cross the remaining distance with amazing speed!</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Cette vitalité anormale se volatilise à l’instant même où vous atteignez l’anfractuosité, où vous vous glissez sans perdre un instant.`,
+        `The abnormal vigor vanishes as you reach the crevice; you slip inside immediately.`,
         "far-corals",
       );
     }
   },
   "far-corals-wound": {
     "text": `
-<p>Vous nagez aussi vite que vous en êtes capable, mais la panique vous tenaille à l’idée que ce n’est pas suffisant.</p>
+<p>You swim as fast as you can, but growing fear whispers that it won't be enough.</p>
 
-<p>Six brasses vous séparent encore de l’anfractuosité où vous espérez vous réfugier. Plus que cinq. Plus que quatre. À quelle distance se trouve désormais Raiahui ? Trois. Il vous semble à chaque instant que sa mâchoire est sur le point de se refermer sur votre jambe. Deux. Vous y êtes presque. Une. Vous y êtes !</p>
+<p>Six more strokes and you'll reach the crevice where you hope to find shelter. Then five. Then four. How close is Raiahui now? Three. You constantly expect her jaws to close on your leg. Two. You're almost there. One. You're there!</p>
 
-<p>Alors qu’un ultime mouvement de jambes vous propulse à l’intérieur de l’anfractuosité, vous sentez un impact soudain contre la plante de votre pied. Terrifiée, vous vous enfoncez en hâte parmi les formes baroques et colorées du corail.</p>
+<p>As a final stroke propels you inside the crevice, you feel a sudden impact against your foot. Terrified, you hasten to get deeper among the colorful reefs.</p>
 
-<p>Une fois certaine d’être — pour l’instant — hors d’atteinte de Raiahui, vous prenez le temps d’examiner votre pied. Vous avez une mince coupure au talon, trop peu profonde pour être bien doulourouse. Il s’en échappe un peu de sang, qui se dissout presque aussitôt dans la transparence de l’eau.</p>
+<p>Once you're certain that you're out of Raiahui's reach - at least for the moment - you examine your foot. There's a small cut on your heel, to shallow to be very painful. A bit of blood flows out of the wound, dissolving almost immediately in the clear water.</p>
 
-<p>Avec un frémissement, vous réalisez ce qui s’est passé : juste au moment où vous atteigniez l’anfractuosité, Raiahui a tenté de vous happer par la cheville. Elle vous a manqué de justesse, mais votre pied a heurté le rebord de sa gueule et c’est le tranchant de l’une de ses dents qui vous a fait cette blessure superficielle.</p>
+<p>Quivering, you realize what happened: just as you were reaching the crevice, Raiahui tried to grab you by the ankle. She barely missed, but your feet hit the edge of her mouth. The cut was caused by the sharp edge of one of her teeth.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Vous vous en tirez à bon compte et ce n’est pas cette coupure qui vous gênera pour nager, mais vous êtes encore loin d’être tirée d’affaire.`,
+        `You were lucky, and this cut isn't enough to hinder your swimming, but you're certainly not out of trouble yet.`,
         "far-corals",
       );
     }
   },
   "far-corals": {
     "text": `
-<p>La lumière qui vous parvient depuis la surface diminue brièvement lorsque la forme effilée de Raiahui passe juste au-dessus de vous avec une lenteur ostensible.</p>
+<p>The light coming from the surface briefly dims as Raiahui's sleek shape passes above you, swimming at ostensibly slow speed.</p>
 
-<p>Vous savez que le temps ne joue pas en votre faveur. Raiahui ne peut pas vous atteindre, mais elle sait très bien où vous êtes en ce moment et, contrairement à elle, vous ne pouvez pas rester sous l’eau indéfiniment.</p>
+<p>You know that time isn't on your side. Raiahui can't reach you, but she knows exactly where you are; and unlike her, you can't stay underwater indefinitely.</p>
 
-<p>L’étroite faille entre les deux masses de corail est plus longue que vous ne le réalisiez et vous réalisez avec une bouffée d’espoir qu’elle est plus ou moins orientée vers l’îlot qui constitue votre destination. Peut-être avez-vous une chance de vous rapprocher de la terre ferme sans vous exposer aux yeux de votre poursuivante.</p>
+<p>The narrow crevice between the two masses of coral is longer than you thought; with a burst of hope, you realize that it's more or less oriented toward the islet. Maybe you can get closer to your goal without exposing yourself to your pursuer.</p>
 
-<p>Vous progressez adroitement le long de la faille. Les parois irrégulières du corail sont d’abord si rapprochées que vous devez parfois vous contorsionner pour vous glisser entre elles sans vous écorcher la peau. Mais elles s’écartent peu à peu, jusqu’à un point où vous commencez à vous sentir dangereusement exposée.</p>
+<p>You deftly move along the crevice. The walls of coral are at first so close together than you're sometimes forced to contort yourself to pass through without scratching your skin. But then they start edging away from each other, up to the point where you begin to feel dangerously exposed.</p>
 
-<p>Vous vous arrêtez un instant, hésitante. Une demi-douzaine de brasses devant vous, la faille capricieuse se resserre de nouveau. Mais, sur toute cette distance, sa largeur est suffisante pour qu’un requin puisse s’y introduire. Raiahui est actuellement hors de votre champ de vision, mais cela ne signifie pas qu’elle soit éloignée.</p>
+<p>You halt for a moment, feeling hesitant. You can see that the coral walls eventually get closer again. But while you cross the distance between your current position and that spot, which will require half a dozen strokes, the crevice will be wide enough for a shark to slip into it. You can't see Raiahui, but it doesn't mean that she's very far.</p>
     `,
     "next": (goToSection) => {
       const choices = [
         {
-          "text": `Vous traversez cet espace exposé aussi rapidement que possible.`,
+          "text": `You cross that distance as quickly as you can.`,
           "action": () => {goToSection("far-corals-quick")},
         },
         {
-          "text": `Vous traversez l’espace exposé en vous efforçant de rester discrète.`,
+          "text": `You cross that distance as stealthily as possible.`,
           "action": () => {goToSection("far-corals-sneaky")},
         },
       ];
@@ -1375,7 +1375,7 @@ ${intro}
   },
   "far-corals-quick": {
     "text": `
-<p>Vous vous propulsez en avant et nagez aussi vite que vous le permet cet espace malgré tout confiné. Mais vous avez à peine franchi la moitié de la distance lorsque Raiahui apparaît soudain sur votre gauche ! D’un mouvement rapide, elle se glisse à l’intérieur de la faille, ses nageoires frôlant les parois de corail. Vous distinguez avec une netteté terrifiante les dents qui hérissent sa gueule encore presque close alors qu’elle se rapproche de vos jambes.</p>
+<p>You propel yourself forward as fast as this confined space allows. But you've barely crossed half the distance when Raiahui suddenly appears on your left! She swiftly slips inside the crevice, her fins grazing the walls of coral. You can see with terrifying clarity the teeth filling her half-open mouth as she gets close to your legs.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -1383,7 +1383,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -1396,7 +1396,7 @@ ${intro}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Vous écrasez les perles noires en votre possession.`,
+          "text": `You crush your black pearls.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("far-corals-pearls-2");
@@ -1406,14 +1406,14 @@ ${intro}
       }
 
       choices.push({
-        "text": `Vous lui donnez des coups de pieds en une tentative désespérée pour la tenir à distance.`,
+        "text": `You kick her in a desperate attempt to keep her away.`,
         "action": () => {
           updateFlag("bleeding", true);
           goToSection("far-corals-fight");
         }
       });
 
-      const deathText = `Vous continuez de nager aussi vite que vous êtes capable.`;
+      const deathText = `You keep swimming as fast as you can.`;
       choices.push({
         "text": deathText,
         "action": () => {
@@ -1429,14 +1429,14 @@ ${intro}
   },
   "far-corals-net-2": {
     "text": `
-<p>Raiahui est trop proche pour que le filet de la sorcière puisse se déployer totalement avant de l’atteindre. Mais il s’enroule étroitement autour de sa tête et s’accroche à ses dents tranchantes.</p>
+<p>Raiahui's too close for the net to spread out completely. But it wraps around her head, entangling in her sharp teeth.</p>
 
-<p>Elle s’agite furieusement, déchiquetant les mailles serrées pour se débarrasser de cette gêne. Le mince sursis que cela vous accorde vous permet d’atteindre le point où les parois de corail se resserrent suffisamment pour qu’elle ne puisse plus vous suivre.</p>
+<p>She thrashes about wildly, ripping up the tight mesh to rid herself of that hindrance. This grants you just enough time to reach the point where the crevice narrows down too much for her to follow.</p>
 
-<p>Jetant un coup d’œil en arrière, vous voyez Raiahui achever de mettre le filet en lambeaux, puis remonter et disparaître de votre champ de vision.</p>
+<p>Casting a glance behind you, you see Raiahui tear to pieces the remains of the net, then head up and disappear out of your sight.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous reprenez votre progression sans perdre un instant.`;
+      const text = `You keep moving forward without wasting any time.`;
       const action = () => {goToSection("far-corals-last")};
 
       return (
@@ -1446,32 +1446,32 @@ ${intro}
   },
   "far-corals-fight": {
     "text": `
-<p>Vous décochez des coups de pied convulsifs au museau gris-brun avec toute la force que vous donne la panique. Raiahui n’en est guère affectée, mais cette résistance acharnée fait obstacle à ses efforts pour vous happer. Sa mâchoire terrifiante s’ouvre et se referme à plusieurs reprises tout près de l’une de vos chevilles, sans parvenir à l’atteindre.</p>
+<p>You frantically kick the brown snout with fear-fueled strength. That doesn't harm Raiahui in any way, but your resistance makes it more difficult for her to grab you. Her frightful jaws open and close several times right next to your ankles, but don't manage to seize either of them.</p>
 
-<p>Si l’espace qui vous entoure était plus dégagé, vous n’auriez aucune chance de vous défendre ainsi. Mais le corail confine les mouvements de Raiahui, l’empêchant de tirer parti de sa mobilité et de sa vitesse.</p>
+<p>If the space around you were wider, you couldn't possibly defend yourself like this. But the reefs confine Raiahui's movements, and she's unable to take advantage of her speed and mobility.</p>
 
-<p>Tout en la repoussant de votre mieux, vous continuez autant que possible à progresser le long de la passe. Votre attention étant toute entière concentrée dans une seule direction, vous vous écorchez à plusieurs reprises contre les aspérités du corail, mais c’est à peine si vous remarquez la douleur.</p>
+<p>Holding her back as best you can, you keep slowly moving along the crevice. Completely focused on your assailant, you scratch yourself several times against the coral, but you barely notice the pain.</p>
 
-<p>Enfin, presque sans vous en rendre compte, vous atteignez le point où la faille se resserre trop pour votre poursuivante. Avec un soulagement incrédule, vous voyez Raiahui remonter tout à coup, puis disparaître de votre champ de vision.</p>
+<p>Finally, almost without realizing it, you reach the point where the crevice once again becomes too narrow for your pursuer. With disbelieving relief, you see Raiahui suddenly head up and disappear out of your sight.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Vous poursuivez sans attendre votre progression.`,
+        `You keep moving forward without wasting any time.`,
         "far-corals-last"
       );
     }
   },
   "far-corals-pearls-2": {
     "text": `
-<p>Vous écrasez d’un geste convulsif toutes les perles en votre possession et un nuage noir impénétrable se répand aussitôt autour de vous.</p>
+<p>You crush all the pearls you have and a thick, opaque cloud immediately spreads around you.</p>
 
-<p>Votre réconfort ne dure qu’un minuscule instant : Raiahui ne peut certes plus vous voir, mais vous êtes vous-même totalement aveugle ! Le corail qui vous entoure, loin de vous accorder encore la moindre protection, est devenu un piège invisible contre lequel vous risquez à chaque instant de vous blesser.</p>
+<p>Your relief is short-lived: Raiahui can no longer see you, but you find yourself completely blind! The reefs around you, far from offering protection, are now an invisible trap, where you're at constant risk of hurting yourself against the coral's sharp edges.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
-        const text = `Juste avant que vous ne preniez une décision, il se passe quelque chose de totalement inattendu.`;
+        const text = `Before you can attempt anything, something completely unexpected happens.`;
         const action = () => {
           useItem("doll", updateFlag);
           goToSection("far-corals-doll");
@@ -1484,7 +1484,7 @@ ${intro}
 
       const dolphin = flags.inventory.dolphin;
       if (dolphin.acquired && !dolphin.used) {
-        const text = `Juste avant que vous ne preniez une décision, il se passe quelque chose de totalement inattendu.`;
+        const text = `Before you can attempt anything, something completely unexpected happens.`;
         const action = () => {
           useItem("dolphin", updateFlag);
           goToSection("far-corals-amulet");
@@ -1495,7 +1495,7 @@ ${intro}
         );
       }
 
-      const deathText = `Vous vous efforcez malgré tout de continuer à suivre la faille.`;
+      const deathText = `You keep moving along the crevice as best you can.`;
       const choices = [
         {
           "text": deathText,
@@ -1505,7 +1505,7 @@ ${intro}
           },
         },
         {
-          "text": `Vous remontez vers la surface.`,
+          "text": `You head for the surface.`,
           "action": () => {
             updateFlag("bleeding", true);
             goToSection("i-hate-pearls");
@@ -1520,12 +1520,12 @@ ${intro}
   },
   "far-corals-doll": {
     "text": `
-<p> La figurine créée par le crocodile est tout à coup agitée de mouvements convulsifs, jusqu’à se détacher de la lanière par laquelle elle était retenue à votre taille. Vous ne saisissez pas ce qui est en train d’arriver, mais, un instant plus tard, vous sentez une main en bois — de taille tout à fait humaine — se refermer autour de la vôtre pour vous tirer vers le haut. Totalement aveugle mais étrangement confiante, vous vous laissez guider, accompagnant à peine le mouvement de petits battements de jambes.</p>
+<p>The figurine created by the crocodile suddenly starts thrashing about wildly, quickly freeing itself from the thong that was tying it to your waist. You don't understand what's happening, but a moment later, you feel a wooden hand - quite human-sized - close on yours and drag you upward. Completely blind but filled with a strange trust, you let yourself be led, kicking slowly.</p>
 
-<p>Quelques instants plus tard, la main vous relâche et vous émergez hors de l’épais nuage. La surface ensoleillée se trouve à seulement quelques brasses au-dessus de vous. En contrebas, les récifs de corail parmi lesquels vous vous trouviez restent en bonne partie dissimulés par l’étrange obscurité. Vous ne parvenez pas à distinguer où se trouve Raiahui, mais vous ne pouvez de toute façon pas retenir votre respiration beaucoup plus longtemps.</p>
+<p>A few moments later, the hand releases you and you soon leave the thick cloud. The bright surface is only a short distance above you. Under your feet, the coral reefs remain partly hidden by the strange darkness. You can't tell where Raiahui is, but you can't hold your breath for much longer anyway.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous remontez à l’air libre.`;
+      const text = `You head for the surface.`;
       const action = () => {goToSection("surface-close")};
 
       return (
@@ -1535,29 +1535,29 @@ ${intro}
   },
   "far-corals-amulet": {
     "text": `
-<p>Une multitude de sons à peine audibles est en train de vous parvenir, emplissant votre crâne jusqu’à presque le saturer. Brusquement, vous n’êtes plus aveugle. Vos yeux restent incapables de percer l’obscurité, mais, d’une façon que vous seriez incapable d’expliquer, vous percevez les formes de tout ce qui vous entoure, aussi bien celles du corail que celle — toute proche — de Raiahui.</p>
+<p>A multitude of barely audible sounds is reaching you, filling your head until it feels nearly saturated. Suddenly, you're no longer blind. You eyes remain unable to see through the darkness, but in a way you couldn't possibly explain, you feel the shape of everything around you, from the coral reefs to Raiahui herself, who's still very close.</p>
 
-<p>Ne cherchant pas à comprendre ce phénomène miraculeux, vous vous hâtez de vous éloigner de votre poursuivante. Quelques instants vous suffisent à atteindre le point où la faille se resserre trop pour qu’elle puisse vous suivre. Vous continuez votre progression sans presque ralentir.</p>
+<p>You don't try to understand this miracle and you quickly move away from your pursuer. A few moments are enough for you to reach the point where the crevice becomes too narrow for her to follow. You keep moving forward without wasting any time.</p>
 
-<p>L’eau qui vous entoure retrouve progressivement sa transparence : vous pouvez de nouveau distinguer votre propre membres, puis le mélange désordonné des couleurs du corail. À mesure que la vue vous revient, votre étrange sens supplémentaire s’estompe. Lorsqu’il disparaît complètement, vous voyez l’amulette que vous portez se désagréger tout à coup. Ce phénomène surnaturel devait être son œuvre, mais il lui a coûté les derniers pouvoirs qu’elle possédait encore.</p>
+<p>The water around you slowly clears up: you can see your hands again, then the bright colors of the reefs. As your sight return, your strange additional sense starts to fade. When it disappears completely, you see the pendant around your neck suddenly disintegrate. What happened to you must have been its work, but it exhausted all the power it had left.</p>
 
-<p>Derrière vous, la zone d’obscurité est loin d’avoir disparu. Vous ne pouvez pas distinguer où se trouve Raiahui.</p>
+<p>Behind you, the darkness is nowhere close to disappearing. You can't tell where Raiahui is.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Vous poursuivez sans attendre votre progression.`,
+        `You keep moving forward without wasting any time.`,
         "far-corals-last"
       );
     },
   },
   "i-hate-pearls": {
     "text": `
-<p>Vous vous écorchez la jambe contre l’une des excroissances invisibles du corail, mais vous parvenez tant bien que mal à vous diriger vers la surface. L’obscurité qui vous entoure perd peu à peu son opacité : vous pouvez de nouveau distinguer vos propres membres, puis les reflets du soleil au-dessus de vous.</p>
+<p>You scratch your leg against one of the coral's invisible edges, but you still manage to head for the surface. The darkness around you slowly becomes less opaque: you can see your hands again, then the reflection of the sun above your head.</p>
 
-<p>Mais lorsque l’eau achève de redevenir transparente, c’est pour vous révéler la forme souple et fuselée de Raiahui, juste en-dessous de vous ! Qu’elle ait deviné votre tentative ou simplement voulu échapper à la zone de ténèbres, elle est remontée en même temps que vous.</p>
+<p>But when the water completely clears up, it reveals the sleek shape of Raiahui, just below you! Whether she expected you to do that or was simply trying to get out of the thick cloud, she headed up at the same time as you did.</p>
 
-<p>Elle se dirige droit sur vous aussitôt qu’elle vous aperçoit.</p>
+<p>She heads straight for you as soon as she spots you.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -1565,7 +1565,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -1575,7 +1575,7 @@ ${intro}
         });
       }
 
-      const deathText = `Vous tentez désespérément de lui échapper.`;
+      const deathText = `You desperately try to outdistance her.`;
       choices.push({
         "text": deathText,
         "action": () => {
@@ -1591,48 +1591,48 @@ ${intro}
   },
   "far-net-surface": {
     "text": `
-<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez en hâte vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante juste au moment où celle-ci allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+<p>Grabbing the net you've tied around your waist, you throw it in Raiahui's direction. Your gesture has little strength and precision, but the witch's net has retained its powers: it spreads out by itself and wraps around your pursuer as she was about to reach you. Raiahui thrashes about wildly, ripping up the tight mesh in order to free herself.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Vous vous hâtez de vous éloigner d’elle, tout en remontant progressivement à l’air libre.`,
+        `You quickly move away from her, while slowly heading for the surface.`,
         "surface-close",
       );
     },
   },
   "far-corals-sneaky": {
     "text": `
-<p>Vous progressez de façon fluide, utilisant autant que possible le relief du corail pour que Raiahui ait du mal à vous apercevoir si elle venait à passer soudain au-dessus de vous. La crainte qui vous tenaille fait de cette lenteur délibérée une torture, mais vous vous forcez à ne pas aller plus vite.</p>
+<p>You move forward slowly, staying as close as possible to one of the reef, in order to make it as difficult as possible for Raiahui to spot you should she pass above your position. The fear gnawing at you makes this deliberate slowness almost unbearable, but you force yourself not to quicken your pace.</p>
 
-<p>Après quelques instants qui vous paraissent interminables, vous atteignez le point où les parois de corail se rapprochent suffisamment pour vous accorder de nouveau une relative sécurité. Vous jetez un coup d’oeil en arrière, mais ne distinguez toujours pas où se trouve Raiahui.</p>
+<p>After a few seemingly very long moments, you reach the spot where the crevice once again becomes narrow enough to offer some amount of security. You cast a glance behind you, but you're still unable to see where Raiahui is.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Vous reprenez sans plus attendre votre progression.`,
+        `You keep moving forward without wasting any time.`,
         "far-corals-last",
       );
     }
   },
   "far-corals-last": {
     "text": `
-<p>La faille s’incurve sur la gauche et se resserre encore. Les deux masses de corail qui vous entourent se font si proches qu’elles commencent à se confondre et il vient un point où les espaces qui subsistent entre elles sont devenus trop étroits pour que vous puissiez encore vous y glisser. Vous allez devoir remonter.</p>
+<p>The crevice curves to the left and becomes even narrower. The two masses of coral surrounding you are now so close that they begin to merge. After a while, the space between them is no longer large enough to allow you passage. You'll have to head upward.</p>
 
-<p>Le manque d’air commence de toute façon à être difficile à supporter. Vous êtes capable de retenir très longtemps votre respiration, mais vous n’êtes pas un poisson !</p>
+<p>The lack of air is becoming a problem anyway. You can hold your breath for a very long time, but you're not a fish!</p>
 
-<p>Vous élevant prudemment jusqu’au rebord de l’anfractuosité, vous réalisez que votre parcours au milieu des récifs de corail ne vous a pas autant rapproché de l’îlot sablonneux que vous l’espériez. Du moins vous a-t-il permis d’échapper temporairement à Raiahui. Vous vous efforcez de distinguer où elle se trouve actuellement, mais sans succès.</p>
+<p>Cautiously rising up to the edge of the crevice, you see that your swimming among the coral reefs didn't get you as close to the sandy islet as you were hoping. At least, it helped you get away from Raiahui. You try to see where she currently is, but without success.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous abandonnez définitivement votre abri et remontez vers la surface.`,
+          "text": `You abandon your shelter and head for the surface.`,
           "action": () => {
             goToSection("far-corals-last-out-quick");
           },
         },
         {
-          "text": `Vous restez où vous êtes, malgré la sensation de brûlure qui commence à remplir vos poumons.`,
+          "text": `You stay where you are, even though your lungs are beginning to burn.`,
           "action": () => {
             const dolphin = flags.inventory.dolphin;
             if (dolphin.acquired && !dolphin.used) {
@@ -1653,10 +1653,10 @@ ${intro}
   },
   "far-corals-last-out-quick": {
     "text": `
-<p>Vous abandonnez votre abri et remontez vers la surface. C’est à ce moment-là seulement que vous apercevez la forme fuselée de Raiahui, à une certaine distance, en train de vous chercher parmi les récifs de corail. Elle n’est pas tournée dans votre direction pour l’instant. Vous espérez que cela durera assez longtemps pour que vous puissiez vous éloigner.</p>
+<p>You leave your shelter and head for the surface. Only then do you spot Raiahui, some distance away, searching for you among the coral reefs. She's not looking in your direction for the moment. You hope that'll last long enough for you to get farther away from her.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous franchissez en hâte la distance qui vous sépare encore de l’air libre.`;
+      const text = `You quickly cross the distance remaining between you and the surface.`;
       const action = () => {goToSection("surface-close")};
 
       return (
@@ -1666,12 +1666,12 @@ ${intro}
   },
   "far-corals-last-out-slow-amulet": {
     "text": `
-<p>Il vous semble tout à coup qu’une profonde bouffée d’air pur s’infiltre dans vos poumons. La tentation grandissante de remonter à la surface se volatilise et vous vous sentez capable de retenir votre respiration au moins aussi longtemps que vous l’avez déjà fait. À votre cou, l’amulette en forme de dauphin se désagrège et vous devinez qu’elle vient d’épuiser pour vous ses derniers pouvoirs.</p>
+<p>A deep breath of pure air suddenly seems to fill your lungs. The growing temptation to head back for the surface vanishes, and you feel capable of remaining underwater as long as you already have. Around your neck, the dolphin-shaped pendant disintegrates; you surmise that it's just exhausted its remaining powers to help you.</p>
 
-<p>Les instants s’écoulent et vous n’apercevez toujours pas Raiahui. Continuer d’attendre indéfiniment n’est guère susceptible d’augmenter vos chances ; vous devez prendre le risque de remonter.</p>
+<p>Time goes by and you still can't see Raiahui. Waiting indefinitely is unlikely to increase your chances; you must head up despite the risks.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous quittez donc votre refuge temporaire et vous dirigez vers la surface.`;
+      const text = `You leave your shelter and head for the surface.`;
       const action = () => {
         if (flags.bleeding) {
           return goToSection("far-corals-last-out-slow-amulet-bleeding");
@@ -1687,9 +1687,9 @@ ${intro}
   },
   "far-corals-last-out-slow-amulet-bleeding": {
     "text": `
-<p>Vous avez à peine quitté votre abri pour vous diriger vers la surface lorsque la forme souple de Raiahui surgit tout à coup sur votre droite ! Elle savait où vous étiez cachée et guettait le moment où vous seriez forcée d’en sortir !</p>
+<p>You've barely left your shelter when Raiahui suddenly appears to your right! She knew where you were hiding and was waiting for you to finally head for the surface!</p>
 
-<p>Une accélération foudroyante la propulse dans votre direction.</p>
+<p>A sudden burst of acceleration propels her in your direction.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -1697,7 +1697,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -1710,7 +1710,7 @@ ${intro}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Vous écrasez les perles noires en votre possession.`,
+          "text": `You crush your black pearls.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("i-hate-pearls-2");
@@ -1719,7 +1719,7 @@ ${intro}
         });
       }
 
-      const deathText = `Vous tentez désespérément de lui échapper.`;
+      const deathText = `You desperately try to outdistance her.`;
       choices.push({
         "text": deathText,
         "action": () => {
@@ -1735,28 +1735,28 @@ ${intro}
   },
   "i-hate-pearls-2": {
     "text": `
-<p>Juste à temps, vous vous souvenez des perles noires en votre possession. Vous les écrasez d’un geste convulsif, sans même les retirer du sachet accroché à votre taille, et un épais nuage de ténèbres impénétrables vous enveloppe instantanément.</p>
+<p>Just in time, you remember the black pearls you carry. You crush them all without even taking them out of their small purse, and a thick, opaque cloud immediately spreads around you.</p>
 
-<p>Totalement aveugle, vous voulez d’abord continuer à vous diriger vers la surface, mais vous réalisez soudain que c’est sans doute ce à quoi s’attendra Raiahui. Fort heureusement, le sursis que vous a accordé l’amulette vous permet de retenir votre respiration encore un certain temps. Interrompant donc votre remontée, vous vous mettez à nager vigoureusement dans une direction perpendiculaire à celle d’où venait votre poursuivante.</p>
+<p>Completely blind, you mean to head straight for the surface, but you realize that Raiahui will probably expect you to do just that. Fortunately, the effects of the pendant allow you to remain underwater for a while longer. Instead of heading up, you start swimming vigorously in a direction perpendicular to the one your pursuer was coming from.</p>
 
-<p>L’eau qui vous entoure retrouve sa transparence à mesure que vous vous éloignez de l’endroit où vous avez écrasé les perles. Vous distinguez de nouveau vos propres membres, puis les reflets du soleil contre la surface, puis les récifs de corail et l’îlot qui constitue votre destination. Risquant un regard en arrière, vers la zone d’obscurité qui s’étire et se dilue avec une grande lenteur, vous ne parvenez pas à apercevoir Raiahui.</p>
+<p>The water clears up as you get farther from the point where you crushed the pearls. You can see your hands again, then the reflection of the sun above you, as well as the islet that's your goal. You cast a glance behind you: the opaque cloud is stretching and thinning down very slowly, and you can't spot Raiahui.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `L’effet de l’amulette s’est totalement estompé et vous êtes donc contrainte de remonter à l’air libre.`,
+        `The effects of the amulet have completely faded and you have to head for the surface.`,
         "surface-close",
       );
     }
   },
   "far-corals-last-out-slow": {
     "text": `
-<p>Vous vous contraignez à rester où vous êtes, cherchant à apercevoir Raiahui malgré les ombres qui s’amoncellent devant vos yeux. Vous plaquez une main contre votre bouche pour retenir le réflexe mortel qui vous ferait tenter de prendre une inspiration.</p>
+<p>You force yourself to remain where you are, still trying to spot Raiahui in spite of the shadows that begin to form before your eyes. You put your hand against your mouth to ensure that you won't reflexively try to take a breath.</p>
 
-<p>Les instants passent et vous ne distinguez toujours nulle part votre poursuivante. Votre crâne s’est rempli d’un brouillard noir et rouge qui ne cesse de s’épaissir. Finalement, vous réalisez que vous n’avez plus le choix : vous devez prendre le risque de remonter ou mourir noyée.</p>
+<p>Time goes by and your pursuer is still nowhere to be seen. Red and black mist has filled your head and is becoming ever thicker. Finally, you realize you can no longer wait: you must head for the surface or drown.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous quittez votre refuge temporaire et vous dirigez vers la surface en toute hâte.`;
+      const text = `You leave your shelter and swim toward the surface as fast as you can.`;
       const action = () => {
         if (flags.bleeding) {
           return goToSection("far-corals-last-out-slow-bleeding");
@@ -1772,9 +1772,9 @@ ${intro}
   },
   "far-corals-last-out-slow-bleeding": {
     "text": `
-<p>Vous avez à peine quitté votre abri pour vous diriger vers la surface lorsque la forme souple de Raiahui surgit tout à coup sur votre droite ! Elle savait où vous étiez cachée et guettait le moment où vous seriez forcée d’en sortir !</p>
+<p>You've barely left your shelter when Raiahui suddenly appears to your right! She knew where you were hiding and was waiting for you to finally head for the surface!</p>
 
-<p>Une accélération foudroyante la propulse dans votre direction.</p>
+<p>A sudden burst of acceleration propels her in your direction.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -1782,7 +1782,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -1795,7 +1795,7 @@ ${intro}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Vous écrasez les perles noires en votre possession.`,
+          "text": `You crush your black pearls.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("i-hate-pearls-3");
@@ -1804,7 +1804,7 @@ ${intro}
         });
       }
 
-      const deathText = `Vous tentez désespérément de lui échapper.`;
+      const deathText = `You desperately try to outdistance her.`;
       choices.push({
         "text": deathText,
         "action": () => {
@@ -1820,11 +1820,11 @@ ${intro}
   },
   "i-hate-pearls-3": {
     "text": `
-<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. Totalement aveugle, vous vous dirigez vers la surface pour pouvoir enfin respirer.</p>
+<p>You crush all of the pearls without even taking them out of their small purse, and a thick, opaque cloud immediately spreads around you. Completely blind, you head for the surface so you can finally breathe.</p>
 
-<p>Après quelques brasses vigoureuses, l’obscurité commence à perdre son opacité : vous pouvez de nouveau distinguer vos propres membres, puis les reflets du soleil au-dessus de vous.</p>
+<p>After a few strokes, the darkness begins to fade: you can see your hands again, then the reflection of the sun above your head.</p>
 
-<p>Mais lorsque l’eau achève de redevenir transparente, c’est pour vous révéler la forme souple et fuselée de Raiahui, juste en-dessous de vous ! Devinant peut-être que vous manquiez d’air, elle s’est également rapprochée de la surface. Elle se dirige droit vers vous aussitôt qu’elle vous aperçoit de nouveau.</p>
+<p>But when the water becomes completely clear, it reveals that Raiahui's just below you! Probably surmising that you needed air, she also got closer to the surface. She heads straight for you as soon as she spots you.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -1832,7 +1832,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -1842,7 +1842,7 @@ ${intro}
         });
       }
 
-      const deathText = `Vous tentez désespérément de lui échapper.`;
+      const deathText = `You desperately try to outdistance her.`;
       choices.push({
         "text": deathText,
         "action": () => {
@@ -1858,20 +1858,20 @@ ${intro}
   },
   "surface-close": {
     "text": `
-<p>Votre tête émerge brusquement à la surface et une profonde inspiration fait de nouveau affluer l’air dans vos poumons. Mais la peur qui vous tenaille ne vous laisse pas éprouver le moindre soulagement. Les reflets du soleil contre les vagues ne vous permettent pas de bien scruter les eaux de la passe, mais vous savez que Raiahui se trouve quelque part en-dessous de vous. Vous espérez qu’elle ne vous a pas vu remonter à la surface, mais cela ne vous accorde qu’un faible répit. Elle ne peut pas perdre totalement votre trace alors que vous n’avez qu’une seule destination possible.</p>
+<p>Your head suddenly emerges above the surface and a deep breath fills your lungs with air. But the fear that keeps gnawing at you leaves no room for relief. The reflection of the sun on the waves makes the water less transparent, but you know that Raiahui's somewhere below you. You hope that she didn't see you surfacing, but you're far from safe even if that's the case. She can't lose your track for good when she knows exactly where you're headed for.</p>
 
-<p>L’îlot de sable se trouve droit devant vous, à une distance qui vous paraîtrait négligeable dans des circonstances normales, mais qui vous emplit actuellement d’une incertitude glaçante. Même en nageant aussi vite que vous en êtes capable, pouvez-vous vraiment la franchir sans être rattrapée ?</p>
+<p>The distance separating you from the sandy islet would seem negligible in normal circumstances, but it fills you with chilling uncertainty. Even if you swim as fast as possible, can you reach it before Raiahui catches up to you?</p>
 
-<p>Une alternative vous vient soudain à l’esprit : vous pourriez plonger de nouveau vers le fond de la passe — de façon à être plus difficilement repérable  — puis nager jusqu’à l’îlot en suivant une trajectoire indirecte, qui vous rapprocherait de l’intérieur du lagon. Raiahui aura peut-être plus de mal à vous repérer si vous ne suivez pas le chemin le plus bref jusqu’à votre destination.</p>
+<p>Another option suddenly comes to your mind: you could dive again toward the bottom of the channel - in order to be more difficult to spot - and then swim for the islet by following an indirect route that'll bring you closer to the lagoon. Raiahui may have a harder time spotting you if you don't head directly for your goal.</p>
     `,
     "next": (goToSection) => {
       const choices = [
         {
-          "text": `Vous restez à la surface et nagez de toutes vos forces vers l’îlot.`,
+          "text": `You stay on the surface and swim as fast as you can toward the islet.`,
           "action": () => {goToSection("final-stretch-straight")},
         },
         {
-          "text": `Vous plongez de nouveau et essayez d’atteindre l’îlot sans être repérée.`,
+          "text": `You dive again and try to reach the islet without getting spotted.`,
           "action": () => {goToSection("final-stretch-oblique")},
         },
       ];
@@ -1883,12 +1883,12 @@ ${intro}
   },
   "final-stretch-straight": {
     "text": `
-<p>La distance qui vous sépare de votre destination diminue à une vitesse qui vous exalterait lors d’une course ordinaire, mais qui est loin de suffire à vous donner espoir en ce moment. Jamais vous n’avez à ce point perçu l’eau comme un milieu étranger et vos mouvements de nage comme une imitation dérisoire de ses véritables habitants.</p>
+<p>The distance separating you from your goal is decreasing at a speed you would find exhilarating in a normal race, but that's far from sufficient to give you hope right now. Never before have you perceived the water to be such an alien environment, and your swimming strokes to be such pitiful imitations of its real inhabitants.</p>
 
-<p>Pire que tout, vous pouvez sentir qu’un début d’épuisement est en train de vous gagner.</p>
+<p>Worse than everything, you now feel close to exhaustion.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous vous efforcez désespérément de maintenir votre allure malgré tout.`;
+      const text = `You desperately try to maintain the same pace.`;
 
       if (flags.boostedByFruit) {
         const action = () => {
@@ -1938,12 +1938,12 @@ ${intro}
   },
   "final-stretch-oblique": {
     "text": `
-<p>Vous plongez de nouveau et nagez vigoureusement pour atteindre le fond de la passe. Vous ne parvenez pas à distinguer où se trouve Raiahui et vous ne pouvez qu’espérer que l’inverse est également vrai.</p>
+<p>You dive again and swim vigorously toward the bottom of the channel. You can't see Raiahui, and hopefully she can't see you either.</p>
 
-<p>Ne pas suivre le trajet le plus rapide jusqu’à la terre ferme révolte votre instinct de survie, mais vous vous forcez à le faire malgré tout. Vous ne pouvez qu’espérer que vous parviendrez à retenir votre respiration suffisamment longtemps.</p>
+<p>Not heading straight for the shore goes completely against your survival instinct, but you force yourself to do so. You can only hope you'll be able to hold your breath long enough.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous nagez aussi vite que vous en êtes capable vers le lagon.`;
+      const text = `You swim as fast as you can toward the lagoon.`;
 
       if (flags.bleeding) {
         const action = () => {goToSection("final-stretch-oblique-bleeding")}
@@ -1990,7 +1990,7 @@ ${intro}
   },
   "final-stretch-oblique-bleeding": {
     "text": `
-<p>Alors que vous jugez vous être suffisamment éloignée pour vous diriger de nouveau vers l’îlot qui constitue votre destination, un frémissement de terreur vous parcourt tout à coup. Raiahui vient d’apparaître sur votre droite et vous la voyez se diriger vers vous à vive allure !</p>
+<p>Just as you deem to be far enough to finally head for the islet, a shiver of dread runs through you. Raiahui has just appeared on your right and is rushing toward you!</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -1998,7 +1998,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -2011,7 +2011,7 @@ ${intro}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Vous écrasez les perles noires en votre possession.`,
+          "text": `You crush your black pearls.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("final-stretch-oblique-bleeding-pearls");
@@ -2020,7 +2020,7 @@ ${intro}
         });
       }
 
-      const deathText = `Vous nagez de toutes vos forces en direction de l’îlot.`;
+      const deathText = `You swim as fast as you can toward the islet.`;
       choices.push({
         "text": deathText,
         "action": () => {
@@ -2036,29 +2036,29 @@ ${intro}
   },
   "final-stretch-oblique-bleeding-net": {
     "text": `
-<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez en hâte vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante juste au moment où celle-ci allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+<p>Grabbing the net you've tied around your waist, you throw it in Raiahui's direction. Your gesture has little strength and precision, but the witch's net has retained its powers: it spreads out by itself and wraps around your pursuer as she was about to reach you. Raiahui thrashes about wildly, ripping up the tight mesh in order to free herself.</p>
 
-<p>Il n’est plus question de discrétion à présent ! Vous remontez en toute hâte vers la surface. Votre tête émerge bientôt à l’air libre.</p>
+<p>Stealth is now out of the question! You quickly head for the surface, and your head soon emerges above the water.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Vous prenez tout juste le temps d’inspirer profondément avant de nager de toutes vos forces vers l’îlot sablonneux.`,
+        `You barely take the time to breathe deeply before you start swimming toward the sandy islet as fast as you can.`,
         "final-stretch-straight",
       );
     }
   },
   "final-stretch-oblique-bleeding-pearls": {
     "text": `
-<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. Totalement aveugle, vous nagez dans la direction approximative de l’îlot, espérant échapper au péril mortel que vous savez être tout proche.</p>
+<p>You crush all the pearls you carry and a thick, opaque cloud immediately spreads around you. Completely blind, you swim in the general direction of the islet, hoping to escape from the deadly peril you know is so close.</p>
 
-<p>Après quelques brasses énergiques, vous parvenez de nouveau à distinguer vos propres membres, puis la pâleur du fond sablonneux. Le manque d’air commence à devenir difficile à supporter.</p>
+<p>After a few vigorous strokes, you can see your hands again, then the pale color of the sand. Holding your breath is becoming difficult.</p>
 
-<p>L’eau achève de redevenir transparente autour de vous. Mais au lieu de remonter à la surface pour y respirer, vous vous immobilisez soudain, frappée par la terreur en voyant la forme souple et fuselée de Raiahui passer lentement devant vous. Elle est à une certaine distance, mais vous repère au moment même où vous la apercevez et oblique brusquement dans votre direction.</p>
+<p>The water is now completely clear around you. But instead of heading for the surface, you freeze in terror as you see the sleek shape of Raiahui slowly pass before you. She's some distance away, but she spots you immediately and sharply turns in your direction.</p>
 
-<p>Vous réalisez qu’elle est parvenue à rester à l’extérieur du nuage opaque. Même s’il vous a temporairement dérobée à ses yeux, elle n’a pas eu de mal à deviner dans quelle direction vous vous dirigiez et à vous couper la route.</p>
+<p>You realize that she was able to stay outside of the opaque cloud. Even though you were temporarily invisible to her, she easily surmised where you were heading and moved to bar your path.</p>
 
-<p>Une accélération foudroyante la propulse vers vous, sa gueule entrouverte dévoilant ses nombreuses dents effilées.</p>
+<p>A sudden burst of acceleration propels her in your direction, her half-open mouth revealing her many sharp teeth.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -2066,7 +2066,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -2077,7 +2077,7 @@ ${intro}
       }
 
       choices.push({
-        "text": `Vous nagez de toutes vos forces en direction de l’îlot.`,
+        "text": `You swim as fast as you can toward the islet.`,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
           goToSection("raiahui-good-end");
@@ -2091,27 +2091,27 @@ ${intro}
   },
   "final-stretch-oblique-dolphin": {
     "text": `
-<p>Une fois que vous jugez vous être suffisamment éloignée, vous vous dirigez de nouveau vers l’îlot qui constitue votre destination.</p>
+<p>Once you deem to be far enough, you start heading straight for the islet.</p>
 
-<p>Vous avez franchi la moitié de la distance qui vous en sépare encore lorsqu’il vous semble tout à coup qu’une profonde bouffée d’air pur s’infiltre dans vos poumons. La tentation grandissante de remonter à la surface se volatilise et vous vous sentez capable de retenir votre respiration au moins aussi longtemps que vous l’avez déjà fait. À votre cou, l’amulette en forme de dauphin se désagrège et vous devinez qu’elle vient d’épuiser pour vous ses derniers pouvoirs.</p>
+<p>You've crossed half the distance when a deep breath of pure air suddenly seems to fill your lungs. The growing temptation to head back to the surface vanishes, and you feel capable of remaining underwater as long as you already have. Around your neck, the dolphin-shaped pendant disintegrates; you surmise that it's just exhausted its remaining powers to help you.</p>
 
-<p>Vous n’êtes plus guère éloignée de l’îlot lorsque vous apercevez soudain la forme fuselée de Raiahui sur votre droite. Elle vous a finalement repérée et se dirige vers vous à une vitesse foudroyante !</p>
+<p>You're very close to the islet when you suddenly see Raiahui's sleek shape appear to your right. She's finally spotted you and is rushing in your direction at great speed!</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`,
+        `Terrified at the thought that she might catch up to you at the last moment, you surface and swim as fast as you can toward the shore.`,
         "final-island",
       );
     }
   },
   "final-stretch-oblique-weak": {
     "text": `
-<p>Une fois que vous jugez vous être suffisamment éloignée, vous vous dirigez de nouveau vers l’îlot qui constitue votre destination.</p>
+<p>Once you deem to be far enough, you start heading straight for the islet.</p>
 
-<p>Vous avez franchi un peu plus de la moitié de la distance qui vous en sépare encore lorsque la brûlure de vos poumons commence à devenir insupportable. Vous redoublez d’effort, mais c’est en vain. Vous réalisez que vous ne pourrez pas retenir votre respiration jusqu’à l’îlot.</p>
+<p>You've crossed a bit more than half the distance separating you from it when the burning of your lungs becomes unbearable. You try to swim faster, but it's in vain. You realize you won't be able to hold your breath until you reach the islet.</p>
 
-<p>Vous remontez rapidement vers la surface… et, alors que vous êtes sur le point de l’atteindre, vous apercevez tout à coup tout à coup Raiahui se dirigeant droit sur vous à une vitesse effrayante !</p>
+<p>You quickly head for the surface… and just before you reach it, you suddenly spot Raiahui rushing in your direction at terrifying speed!</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -2119,7 +2119,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -2132,7 +2132,7 @@ ${intro}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Vous écrasez les perles noires en votre possession.`,
+          "text": `You crush your black pearls.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("final-stretch-oblique-weak-pearls");
@@ -2141,7 +2141,7 @@ ${intro}
         });
       }
 
-      const deathText = `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`;
+      const deathText = `You swim as fast as you can in a desperate attempt to outdistance her.`;
       choices.push({
         "text": deathText,
         "action": () => {
@@ -2157,26 +2157,26 @@ ${intro}
   },
   "final-stretch-oblique-weak-net": {
     "text": `
-<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez en hâte vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante juste au moment où celle-ci allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+<p>Grabbing the net you've tied around your waist, you throw it in Raiahui's direction. Your gesture has little strength and precision, but the witch's net has retained its powers: it spreads out by itself and wraps around your pursuer as she was about to reach you. Raiahui thrashes about wildly, ripping up the tight mesh in order to free herself.</p>
 
-<p>Il n’est plus question de discrétion à présent !</p>
+<p>Stealth is now out of the question!</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Votre tête émerge à l’air libre et vous prenez tout juste le temps d’inspirer profondément avant de nager de toutes vos forces pour atteindre enfin l’îlot sablonneux.`,
+        `Your head emerges above the water; you barely take the time to breathe deeply before you start swimming toward the sandy islet as fast as you can.`,
         "final-island",
       );
     }
   },
   "final-stretch-oblique-weak-pearls": {
     "text": `
-<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. L’espace d’un bref instant, vous êtes totalement aveugle. Puis votre tête émerge à l’air libre et vous pouvez de nouveau voir et respirer.</p>
+<p>You crush all the pearls you carry and a thick, opaque cloud immediately spreads around you. For a brief moment, you find yourself completely blind. Then your head emerges above the surface, and you can again see and breathe.</p>
 
-<p>La zone de noirceur opaque s’étend sur une large surface et vous êtes incapable de deviner où se trouve actuellement Raiahui. Vous ne pouvez qu’espérer que l’inverse est également vrai.</p>
+<p>The area of total darkness spreads spreads widely around you, and you're completely unable to tell where Raiahui is. You can only hope she can't tell where you are either.</p>
     `,
     "next": (goToSection) => {
-      const text = `Vous nagez aussi vite que vous en êtes capable pour atteindre enfin l’îlot sablonneux.`;
+      const text = `You swim as fast as you can toward the sandy islet.`;
       const action = () => {goToSection("final-island")};
 
       return (
@@ -2186,37 +2186,37 @@ ${intro}
   },
   "final-stretch-oblique-strong": {
     "text": `
-<p>Une fois que vous jugez vous être suffisamment éloignée, vous vous dirigez de nouveau vers l’îlot qui constitue votre destination.</p>
+<p>Once you deem to be far enough, you start heading straight for the islet.</p>
 
-<p>À mesure que vous vous en rapprochez, vous éprouvez la tentation grandissante de remonter à l’air libre ne serait-ce que pour un bref moment. Mais vous êtes une nageuse expérimentée, habituée à retenir votre respiration pendant de longues périodes. Vous restez près du fond sablonneux et continuez à progresser régulièrement vers votre objectif.</p>
+<p>As you get closer to it, you feel the growing temptation to surface, if only for a moment. But you're an experienced swimmer, used to holding your breath for long periods of time. You stay close to the sandy bottom and keep swimming steadily toward your goal.</p>
 
-<p>Vous n’êtes plus guère éloignée de l’îlot lorsque vous apercevez soudain la forme fuselée de Raiahui sur votre droite. Elle vous a finalement repérée et se dirige vers vous à une vitesse foudroyante !</p>
+<p>You're very close to the islet when you suddenly see Raiahui's sleek shape appear to your right. She's finally spotted you and is rushing in your direction at great speed!</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`,
+        `Terrified at the thought that she might catch up to you at the last moment, you surface and swim as fast as you can toward the shore.`,
         "final-island",
       );
     }
   },
   "final-stretch-oblique-default": {
     "text": `
-<p>Une fois que vous jugez vous être suffisamment éloignée, vous vous dirigez de nouveau vers l’îlot qui constitue votre destination.</p>
+<p>Once you deem to be far enough, you start heading straight for the islet.</p>
 
-<p>Vous avez franchi un peu plus de la moitié de la distance qui vous en sépare encore lorsque la brûlure de vos poumons commence à devenir très pénible. Êtes-vous vraiment capable de retenir votre respiration jusqu’à cet îlot ?</p>
+<p>You've crossed a bit more than half the distance separating you from it when the burning of your lungs starts becoming very painful. Can you really hold your breath until you reach the islet?</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous vous forcez à rester sous l’eau jusqu’au bout.`,
+          "text": `You force yourself to remain underwater until the end.`,
           "action": () => {
             updateFlag("weakened", true);
             goToSection("final-stretch-oblique-default-force");
           },
         },
         {
-          "text": `Vous prenez le risque de remonter à la surface pour respirer.`,
+          "text": `You head for the surface, despite the risks.`,
           "action": () => {goToSection("final-stretch-oblique-default-interrupt")},
         },
       ];
@@ -2228,21 +2228,21 @@ ${intro}
   },
   "final-stretch-oblique-default-force": {
     "text": `
-<p>Vous nagez vigoureusement, malgré la brûlure qui dévore désormais vos poumons et les ombres qui s’amoncellent devant vos yeux. Votre mâchoire est crispée par l’effort de résister au réflexe mortel qui vous ferait tenter de prendre une inspiration.</p>
+<p>You keep swimming vigorously, in spite of the consuming pain in your lungs and the shadows forming before your eyes. Your jaw is tense with the effort it takes to resist your instinctive need to take a breath.</p>
 
-<p>Un brouillard noir et rouge est en train de remplir votre crâne lorsque vous réalisez que vous n’êtes plus qu’à une faible distance de l’îlot. Au même instant, vous apercevez soudain la forme fuselée de Raiahui sur votre droite. Elle vous a finalement repérée et se dirige vers vous à une vitesse foudroyante !</p>
+<p>As a red and black mist starts filling your head, you suddenly realize you're now very close to the islet. At the same time, you suddenly see Raiahui's sleek shape appear to your right. She's finally spotted you and is rushing in your direction at great speed!</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Terrifiée à l’idée d’être rattrapée au dernier instant, vous remontez à la surface et, prenant à peine le temps de respirer, vous nagez aussi vite que vous en êtes capable pour atteindre enfin la terre ferme.`,
+        `Terrified at the thought that she might catch up to you at the last moment, you surface and swim as fast as you can toward the shore.`,
         "final-island",
       );
     }
   },
   "final-stretch-oblique-default-interrupt": {
     "text": `
-<p>Vous remontez rapidement vers la surface… et, alors que vous êtes sur le point de l’atteindre, vous apercevez tout à coup tout à coup Raiahui se dirigeant droit sur vous à une vitesse terrifiante !</p>
+<p>You quickly head for the surface… and just before you reach it, you suddenly spot Raiahui rushing in your direction at terrifying speed!</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -2250,7 +2250,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -2263,7 +2263,7 @@ ${intro}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Vous écrasez les perles noires en votre possession.`,
+          "text": `You crush your black pearls.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("final-stretch-oblique-weak-pearls");
@@ -2272,7 +2272,7 @@ ${intro}
         });
       }
 
-      const deathText = `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`;
+      const deathText = `You desperately attempt to outdistance her.`;
       choices.push({
         "text": deathText,
         "action": () => {
@@ -2288,7 +2288,7 @@ ${intro}
   },
   "exhausted": {
     "text": `
-<p>La panique ne parvient plus à vous faire ignorer votre fatigue. Vos membres sont lourds, votre respiration difficile et vos mouvements se font inexorablement plus lents. Jetant un coup d’œil angoissé derrière vous, vous voyez à travers l’eau transparente Raiahui se rapprocher rapidement. Vous n’aurez pas le temps d’atteindre l’île avant qu’elle ne vous rattrape ! Allez-vous échouer si près du but ?</p>
+<p>Panic is no longer sufficient to make you ignore your exhaustion. Your limbs are heavy, you breathe with difficulty, and your strokes are growing ever slower. Casting a fearful glance behind you, you can see Raiahui rushing in your direction. You won't be able to reach the islet before she catches up to you! Are you going to fail so close to your goal?</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -2296,7 +2296,7 @@ ${intro}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             updateFlag("caughtARaiahui", true);
@@ -2309,7 +2309,7 @@ ${intro}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Vous écrasez les perles noires en votre possession.`,
+          "text": `You crush your black pearls.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("trial-exhausted-pearls");
@@ -2319,7 +2319,7 @@ ${intro}
       }
 
       choices.push({
-        "text": `Vous tentez désespérément de nager assez vite pour lui échapper.`,
+        "text": `You desperately attempt to outdistance her.`,
         "action": () => {
           updateFlag("eatenByRaiahui", true);
           goToSection("raiahui-good-end");
@@ -2333,24 +2333,24 @@ ${intro}
   },
   "trial-exhausted-net": {
     "text": `
-<p>Le désespoir est en train de vous envahir lorsque vous vous souvenez tout à coup du filet que vous avez enroulé autour de votre taille. Vous vous en emparez en hâte et le jetez vers Raiahui. Votre geste n’a presque aucune force, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante alors qu’elle allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+<p>You're close to despair when you suddenly remember the net you've tied around your waist. You quickly grab it and you throw it in Raiahui's direction. Your gesture has very little strength, but the witch's net has retained its powers: it spreads out by itself and wraps around your pursuer as she was about to reach you. Raiahui thrashes about wildly, ripping up the tight mesh in order to free herself.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Avec un sursaut d’énergie, vous nagez vers l’île sablonneuse aussi vite que vous le pouvez encore.`,
+        `With a burst of strength, you swim toward the sandy islet as fast as you still can.`,
         "final-island",
       );
     },
   },
   "trial-exhausted-pearls": {
     "text": `
-<p>Le désespoir est en train de vous envahir lorsque vous vous souvenez tout à coup des perles noires que vous transportez. Vous vous en emparez en hâte et les écrasez toutes à la fois. Les eaux qui vous entourent deviennent soudain d’un noir impénétrable, vous dissimulant aux yeux de Raiahui avant qu’elle ne puisse vous atteindre.</p>
+<p>You're close to despair when you suddenly remember the black pearls you carry. You quickly crush them, without even taking them out of their purse. The water around you immediately becomes utterly dark, hiding you from Raiahui's eyes before she can reach you.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Avec un sursaut d’énergie, vous nagez vers l’île sablonneuse aussi vite que vous le pouvez encore.`,
+        `With a burst of strength, you swim toward the sandy islet as fast as you still can.`,
         "final-island",
       );
     },
@@ -2358,11 +2358,11 @@ ${intro}
   "trial-calabashes": {
     "text": (flags) => {
       return `
-<p>Plusieurs des calebasses qui jonchent la plage sont déjà vides, mais vous n’avez pas trop de difficulté à en trouver une de pleine. Vous en reniflez le contenu, ce qui vous permet de confirmer qu’il s’agit bel et bien de vin de palme. Ce n’est normalement pas un alcool bien fort et en boire une gorgée ou deux n’aurait guère d’effet sur vous, mais il vous semble inutile de prendre ce risque juste avant une course.</p>
+<p>Several of the calabashes lying on the beach are already empty, but you easily find one that's still full, and sniff its contents. Palm wine, just like you thought. It's not very strong alcohol, and drinking a small quantity wouldn't affect you much, but it seems unnecessary to take such a risk before a race.</p>
 
-<p>Raiahui ne partage clairement pas cette prudence, car vous la voyez boire sans aucune retenue au milieu des autres adolescents !</p>
+<p>Raiahui clearly doesn't share your caution, for you see her drinking quite unrestrainedly among the other adolescents!</p>
 
-${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et réfléchissez à ce qu’il convient de faire à présent.</p>`}
+${flags.tastedFruit? ``: `<p>You leave the calabash where it is and think about what you should do now.</p>`}
       `;
     },
     "next": preludeNext,
@@ -2370,7 +2370,7 @@ ${flags.tastedFruit? ``: `<p>Vous laissez la calebasse où elle se trouve et ré
   "trial-brew-fire": {
     "text": (flags) => {
       return `
-<p>Vous écrasez facilement tous les fruits rouges qui vous restent et en mélangez le jus avec le contenu de la calebasse. Le simple fait d’entamer un seul d’entre eux ayant suffi à vous mettre la gorge en feu, le breuvage que vous préparez ainsi devrait avoir quelques similarités avec la lave en fusion. Raiahui va très rapidement se rendre compte qu’il ne s’agit pas de vin de palme ordinaire, mais pas avant d’en avoir avalé une gorgée ou deux.</p>
+<p>You easily crush all the red fruits you have left, and mix their juice with the contents of the calabash. Merely tasting one of those fruits was enough to set your throat on fire, so the beverage you're preparing should have some similarities with molten lava. Raiahui will very quickly realize it's not ordinary palm wine, but not before she's swallowed a mouthful or two.</p>
 
 ${itemUpdateFeedback(flags.inventory.alcohol.name)}
       `;
@@ -2378,7 +2378,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Il est à présent temps d’aller trouver votre concurrente.`,
+        `It's now time to go see your opponent.`,
         "trial-raiahui"
       );
     },
@@ -2386,15 +2386,15 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   "raiahui-poisoned": {
     "text": `
 <div class="conversation">
-<p>— Ce n’est pas moi qui vais t’empêcher de te saoûler, dites-vous en lui tendant votre calebasse. Tiens, vide aussi celle-ci, si tu t’imagines vraiment que tu pourras me battre à la course ensuite !</p>
+<p>"I'm certainly not going to dissuade you from getting drunk," you say, handing your calabash to her. "Here, empty this one too, if you really trust that you'll be able to beat me afterwards!"</p>
 </div>
 
-<p>Votre défi fait courir des exclamations amusées parmi la jeune assistance. Raiahui accepte votre présent avec un sourire de confiance totale. L’idée que vous lui tendiez un piège ne lui effleure visiblement pas l’esprit.</p>
+<p>Your challenge causes amused exclamations among the young audience. Raiahui accepts your gift with a supremely confident smile. The though that it might be a trap is clearly the furthest thing from her mind.</p>
 
-<p>Ne tenant pas à vous attarder, vous descendez ensuite la plage d’un pas rapide. Juste au moment où vous atteignez la rive, un sursaut de brouhaha vous fait vous retourner : au milieu des autres adolescents, étonnés et quelquefois moqueurs, Raiahui est courbée en deux, la main pressée contre sa bouche comme si elle allait vomir.</p>
+<p>Tarrying any longer wouldn't be to your advantage, and you quickly cross the beach. Just as you reach the shore, the hubbub becomes louder and you cast a glance behind you: surrounded by the other adolescents, some of them startled, others mocking her, Raiahui is bent forward and holding her hand against her mouth as if she was about to throw up.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Désormais assurée de disposer d’une avance confortable, vous plongez.`;
+      const text = `Now certain that you'll have a comfortable head start, you dive.`;
 
       return trueStartFunnel(text, goToSection, flags, updateFlag);
     }
@@ -2402,19 +2402,19 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   "trial-raiahui-slow": {
     "text": `
 <div class="conversation">
-<p>— Si tu n’es pas pressée, je ne le suis pas non plus, déclarez-vous en ramassant l’une des calebasses de vin de palme éparpillées sur le sol.</p>
+<p>"If you're not in any hurry, neither am I," you say, picking up one of the calabashes lying on the sand.</p>
 </div>
 
-<p>Raiahui affecte d’accueillir cette décision avec désinvolture, mais vous sentez que votre présence a subtilement modifiée l’atmosphère qui règne parmi les adolescents. Les paroles deviennent plus brèves et plus espacées, les plaisanteries s’échangent à demi-mot, les rires restent tout aussi fréquents mais se font moins sonores, des coups d’œil incessants tissent une toile de communication muette dont vous êtes le centre.</p>
+<p>Raiahui affects indifference, but you can tell that your presence has subtly transformed the mood that reigns among the adolescents. Words become more sparse, jokes are only half-spoken, laughter remains just as common but not quite as loud, constant glances weave a web of silent communication around you.</p>
 
-<p>Quelques instants s’écoulent. Vous portez périodiquement la calebasse à vos lèvres et faites mine de boire. En réalité, c’est à peine si vous laissez à chaque fois une minuscule quantité de vin de palme traverser votre bouche. L’excitation sous-jacente qui vous entoure est telle que personne ne remarque ce subterfuge.</p>
+<p>A few moments go by. You frequently bring the calabash to your lips and pretend to drink. In truth, you barely ever let a few drops of palm wine reach your throat. The underlying excitement is such that nobody notices your subterfuge.</p>
 
-<p>Raiahui laisse tomber sa calebasse vide sur le sable, vous adresse un regard inquisiteur, puis se cherche ostensiblement autre chose à boire. Il est désormais très clair qu’elle ne souhaite pas entamer la course en même temps que vous. Vous allez devoir prendre l’initiative.</p>
+<p>Raiahui drops her empty calabash on the sand, gives you an inquisitive look, then ostensibly looks for something else to drink. It's now very clear that she doesn't wish to start the race at the same time as you do. You'll have to take the initiative.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [
         {
-          "text": `Vous entamez la course sans attendre davantage.`,
+          "text": `You start the race without waiting any further.`,
           "action": () => {
             cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
@@ -2422,7 +2422,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
           },
         },
         {
-          "text": `Vous provoquez Raiahui pour qu’elle parte en même temps que vous.`,
+          "text": `You insist that Raiahui start the race at the same time as you do.`,
           "action": () => {
             cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
@@ -2430,14 +2430,14 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
           },
         },
         {
-          "text": `Vous prétextez un besoin naturel pour vous éclipser parmi les arbres, puis entamer la course sans qu’elle puisse vous voir.`,
+          "text": `You pretend you need to relieve yourself, disappear among the trees, and then start the race out of her sight.`,
           "action": () => {
             updateFlag("playedTheFool", true);
             goToSection("trial-bathroom-break");
           },
         },
         {
-          "text": `Vous essayez de dérober le couteau en ivoire accroché à son pagne.`,
+          "text": `You try to steal the ivory knife hanging from her waist.`,
           "action": () => {
             goToSection("trial-copypaste-3");
           },
@@ -2447,7 +2447,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
       const alcohol = flags.inventory.alcohol;
       if (alcohol.acquired && !alcohol.used) {
         choices.push({
-          "text": `Vous lui offrez votre propre calebasse d’alcool fort.`,
+          "text": `You give her your calabash full of hard liquor.`,
           "action": () => {
             useItem("alcohol", updateFlag);
             goToSection("trial-copypaste-4");
@@ -2459,7 +2459,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
       const calabash = flags.inventory.fieryCalabash;
       if (calabash.acquired && !calabash.used) {
         choices.push({
-          "text": `Vous lui offrez la calebasse à laquelle vous avez mélangé le jus des fruits rouges.`,
+          "text": `You give her the calabash of palm wine mixed with the juice of the red fruits.`,
           "action": () => {
             useItem("fieryCalabash", updateFlag);
             goToSection("trial-copypaste-5");
@@ -2475,15 +2475,15 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   },
   "trial-copypaste-1": {
     "text": `
-<p>Vous saisissez mal les raisons du comportement de Raiahui, mais à quoi bon refuser l’avance qu’elle s’obstine à vouloir vous accorder ? Vous quittez le groupe sans un mot et vous dirigez à grands pas vers la rive, ignorant les gloussements qui vous poursuivent. Vous jetez de côté votre calebasse encore presque pleine et plongez sans plus attendre dans les eaux tièdes de la passe. Quelques brasses vigoureuses sous la surface vous propulsent en direction de l’île sablonneuse. Lorsque vous refaites surface, un rapide regard en arrière vous apprend que Raiahui se tient toujours sur la plage, entourée des autres adolescents. Elle ne semble même pas regarder dans votre direction.</p>
+<p>You don't really understand the reasons for Raiahui's behavior, but why you should you refuse the head start she clearly wants to give you? You leave the group without a word and head for the shore, ignoring the sniggers that follow you. Throwing aside your calabash, you dive into the warm water of the channel. A few vigorous breaststrokes under the surface propel you toward the sandy island. When you come back to the surface, a quick glance behind you reveals that Raiahui's still on the beach, surrounded by the other adolescents. She doesn't even seem to be looking in your direction.</p>
 
-<p>Vous avez déjà accompli le quart du trajet lorsque des exclamations excitées vous parviennent aux oreilles depuis la plage. Votre concurrente vient sans doute enfin de se lancer à votre poursuite. Vous vous contentez d’accélérer légèrement le rythme de vos mouvements. Quand bien même Raiahui serait vraiment meilleure nageuse que vous-même, il vous suffit de ne pas épuiser vos forces trop vite pour que votre avance vous garantisse virtuellement la victoire.</p>
+<p>You've covered a fourth of the distance when excited cries reach your ears, coming from the beach. You opponent must have finally started the race. You do little more than increase your pace slightly. Even if Raiahui really is a better swimmer than you are, your head start virtually ensures your victory, as long as you don't exhaust yourself too quickly.</p>
 
-<p>Et pourtant, une inquiétude irrationnelle s’est insinuée en vous. Vous jetez de manière espacée quelques coups d’oeil furtifs en arrière, mais ils ne vous permettent pas d’apercevoir où se trouve Raiahui, comme si elle nageait sans jamais remonter à la surface. Saisie tout à coup d’une peur sans motif apparent, vous hâtez la cadence de votre nage plus tôt que vous n’en aviez l’intention, alors que vous n’avez pas tout à fait accompli la moitié du trajet.</p>
+<p>And yet, irrational anxiety is creeping in your mind. From time to time, you cast glances behind you, but you're unable to spot Raiahui, as if she were swimming underwater without ever surfacing. Unable to put a name on your fear, you force the pace earlier than you'd intended, before you've even reached the halfway point.</p>
 
-<p>Mais le pressentiment glaçant qui ne cesse de grandir dans votre esprit vous dit que cela ne change rien.</p>
+<p>But an ever-growing foreboding tells you that it changes nothing.</p>
 
-<p>Il vous semble désormais, à chaque nouveau mouvement de vos membres, que le point d’arrivée s’éloigne un peu plus et que se rapproche inexorablement quelque chose d’horrible.</p>
+<p>With each stroke, it now seems that the arrival point is getting a bit farther, and that something horrible is getting a bit closer.</p>
 
 <hr/>
     ` + raiahuiGoodEndText,
@@ -2492,26 +2492,26 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   "trial-copypaste-2": {
     "text": `
 <div class="conversation">
-<p>— Nous avons assez bu, il est temps de commencer la course.</p>
-<p>— J’ai encore un peu soif, fait Raiahui en souriant. Vas-y, je te rattraperai.</p>
-<p>— Je ne suis pas là pour jouer ! Si tu ne débutes pas cette course tout de suite, en même temps que moi, je renonce à participer à ton rite de passage et tu pourras attendre la venue du prochain étranger !</p>
+<p>"Enough drinking, it's time to start the race."</p>
+<p>"I'm still a bit thirsty," Raiahui says, smiling. "Go ahead, I'll catch up to you."</p>
+<p>"I'm not here to play around! If you don't start the race right now, at the same time as I do, then I'm no longer taking part in your rite of passage, and you can just wait for the next outsider!"</p>
 </div>
 
-<p>Une expression à la fois alarmée et vexée passe sur le visage de Raiahui. Elle regarde les adolescents qui l’entourent comme si elle en espérait un conseil, puis hausse finalement les épaules.</p>
+<p>Raiahui looks startled and offended at the same time. She glances at the adolescents around her as though she didn't quite know how to react, then shrugs.</p>
 
 <div class="conversation">
-<p>— Comme tu veux, mais c’est tant pis pour toi.</p>
+<p>"As you wish, but it's your loss."</p>
 </div>
 
-<p>Vous descendez ensemble vers la rive, suivies de toute la jeune assistance, que la scène semble beaucoup amuser. Des plaisanteries s’échangent autour de vous, mais vous n’y prêtez guère attention. Votre adversaire affiche quant à elle une désinvolture ostensible et vous la voyez même prendre quelques gorgées d’alcool supplémentaires au goulot d’une calebasse.</p>
+<p>You both head for the shore, followed by all of the young spectators, who seem highly amused by the whole thing. Jokes are being exchanged around you, but you pay little attention to them. Your opponent is ostensibly behaving in a nonchalant manner, and you even see her drink a bit more palm wine from a calabash.</p>
 
-<p>Les eaux tièdes de la passe se referment en même temps sur vous deux, mais quelques brasses vigoureuses vous permettent de passer devant Raiahui. Vous savez que la distance à franchir va vous imposer d’économiser vos forces, mais le fait de se retrouver d’entrée de jeu derrière vous devrait ébranler la confiance en elle-même de votre concurrente.</p>
+<p>The warm water of the channel close around both of you at the same time, but a few vigorous breaststrokes enable you to get ahead of Raiahui. You know that you'll need to save your strength during the first half of the race, but finding herself behind you right from the start should shake your opponent's self-confidence.</p>
 
-<p>Votre tête émerge finalement à la surface et vous êtes alors presque assourdie par la cacophonie de cris des adolescents restés sur la plage. Raiahui est toujours sous l’eau, mais vous ne perdez pas un instant à essayer de déterminer sa position exacte. A présent que la course a commencé, l’habitude vous fait faire abstraction de tout ce qui est extérieur à vos mouvements de nage.</p>
+<p>Your head finally emerges above the water and you're nearly deafened by the cries coming from the beach. Raiahui's still underwater, but you don't waste time trying to determine her exact position. Now that the race has started, force of habit makes you focus on nothing but your swimming strokes.</p>
 
-<p>Mais cet état de concentration ne dure que jusqu’à votre inspiration suivante. Quelque chose ne va pas. Raiahui n’a toujours pas reparu et les cris provenant de la plage sont en train d’atteindre un sommet d’excitation stridente.</p>
+<p>But your concentration only lasts until the next time you take a breath in. Something's wrong. Raiahui still hasn't resurfaced and the cries coming from the beach are reaching a peak of shrill excitement.</p>
 
-<p>Sans savoir pourquoi, vous sentez grandir en vous le pressentiment glaçant d’avoir commis une terrible erreur.</p>
+<p>Though you don't know why, a chilling foreboding is telling you that you've made a terrible mistake.</p>
 
 <hr/>
     ` + raiahuiGoodEndText,
@@ -2519,21 +2519,21 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   },
   "trial-bathroom-break": {
     "text": `
-<p>Des éclats de rire explosent tout autour de vous quand, feignant l’embarras, vous laissez entendre que vous avez un besoin urgent à satisfaire.</p>
+<p>Laughter erupts all around you when, feigning embarrassment, you imply that you need to pass water urgently.</p>
 
 <div class="conversation">
-<p>— Vas-y, vas-y, vous dit Raiahui en étouffant un gloussement. Ne t’inquiète pas, je ne partirai pas en douce pendant que tu es occupée.</p>
+<p>"Got for it," Raiahui says, muffling a snigger. "Don't worry, I won't start the race while you're busy."</p>
 </div>
 
-<p>Vous vous hâtez de disparaître parmi les palmiers, suivie par les regards amusés des adolescents. Sitôt qu’ils ne peuvent plus vous apercevoir, vous vous débarrassez de la calebasse – encore presque pleine – et traversez en courant la végétation jusqu’à un point de la plage suffisamment éloigné. Ce point de départ alternatif augmentera à peine la distance que vous avez à franchir pour atteindre l’îlot qui constitue la destination de la course.</p>
+<p>You quickly disappear among the palm trees, followed by the amused eyes of the adolescents. Once you're sure they can no longer see you, you throw away the calabash - still almost full - and run toward a part of the beach that's sufficiently far away. This alternative starting point will barely increase the distance you need to cross to reach the sandy islet that's your goal.</p>
 
-<p>Dissimulée derrière un tronc suffisamment épais, vous jetez un coup d’œil rapide dans la direction où se trouvent Raiahui et les autres adolescents de la tribu. L’un d’entre eux pourrait peut-être vous apercevoir pendant que vous traverserez la plage, mais leur état de dissipation vous fait juger que les chances sont en votre faveur. Vous espérez qu’il retardera par ailleurs le moment où votre concurrente réalisera que votre absence s’est trop prolongée.</p>
+<p>Hidden behind a tree, you cast a quick glance in the direction of the tribe's adolescents. One of them might spot you while you cross the beach, but their unruly merrymaking doesn't make it very likely. You hope that it'll also delay the moment when your opponent realizes that you've been absent for too long.</p>
 
-<p>Vous prenez plusieurs profondes inspirations, puis vous quittez votre cachette et traversez en quelques enjambées rapides la distance qui vous sépare de la rive. Les eaux tièdes et transparentes de la passe se referment sur vous lorsque vous plongez. Vous glissez un instant, portée par l’élan de votre plongeon, avant de vous mettre à nager. Pour ne pas risquer d’être aperçue avant d’avoir acquis une solide avance, vous prévoyez de ne remonter à la surface que le plus tard possible.</p>
+<p>You take several deep breaths, then leave your hiding place and run toward the shore. The warm, clear water of the channel closes around you. You slide for a moment, carried by the momentum of your dive, then you start swimming. To decrease your chances of being spotted before you have a solid head start, you intend to surface as late as possible.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       return trueStartFunnel(
-        `Vous nagez à une allure modérée, de manière à conserver l’essentiel de vos forces.`,
+        `You adopt a moderate pace, in order to save most of your strength for later.`,
         goToSection,
         flags,
         updateFlag,
@@ -2542,18 +2542,18 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   },
   "trial-copypaste-3": {
     "text": `
-<p>Vous profitez de ce que Raiahui se penche pour ramasser une nouvelle calebasse pour lui subtiliser adroitement son couteau. Mais elle s’en rend compte immédiatement et il n’y a plus la moindre trace d’amusement dans le regard qu’elle dirige sur vous.</p>
+<p>As Raiahui bends down to pick up another calabash, you deftly steal her knife. But she realizes it immediately and amusement vanishes from her eyes.</p>
 
 <div class="conversation">
-<p>— Rends-moi ça ! Rends-moi ça tout de suite !</p>
+<p>"Give it back! Give it back right now!"</p>
 </div>
 
-<p>Laissant tomber la calebasse sur le sable, elle se jette sur vous pour récupérer sa possession.</p>
+<p>Dropping the calabash on the sand, she springs toward you to reclaim the item.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous jetez le couteau dans le lagon.`,
+          "text": `You throw the knife into the lagoon.`,
           "action": () => {
             cleanInventoryBeforeRace(flags, updateFlag);
             updateFlag("eatenByRaiahui", true);
@@ -2561,7 +2561,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
           },
         },
         {
-          "text": `Vous jetez le couteau parmi les arbres qui bordent la plage.`,
+          "text": `You throw the knife among the trees close to the beach.`,
           "action": () => {
             goToSection("knife-land");
           },
@@ -2576,16 +2576,16 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   "trial-copypaste-4": {
     "text": `
 <div class="conversation">
-<p>— J’ai vraiment assez bu, prétendez-vous. Pas toi ?</p>
-<p>— Pas du tout, répond Raiahui avec assurance. Je tiens très bien l’alcool.</p>
-<p>— Eh bien, je n’ai pas de raison de t’empêcher de te saoûler, dites-vous en lui tendant votre calebasse. Tiens, vide aussi celle-ci, si tu t’imagines vraiment que tu pourras me battre à la course ensuite !</p>
+<p>"I've had enough to drink," you lie. "Haven't you?"</p>
+<p>"Not at all," Raiahui answers with self-assurance. "I know how to hold my liquor."</p>
+<p>"Well, I'm certainly not going to dissuade you from getting drunk," you say, handing your calabash to her. "Here, empty this one too, if you really trust that you'll be able to beat me afterwards!"</p>
 </div>
 
-<p>Votre défi fait courir des exclamations amusées parmi la jeune assistance. Raiahui accepte votre présent avec un sourire de confiance totale. Même si elle réalise que cette boisson est autrement plus forte que du simple vin de palme, vous soupçonnez qu’elle videra tout de même l’essentiel de la calebasse, ne serait-ce que pour ne pas perdre la face.</p>
+<p>Your challenge causes amused exclamations among the young audience. Raiahui accepts your gift with a supremely confident smile. Even if she realizes that this beverage is much stronger than mere palm wine, you suspect that she'll still drink at least most of it to avoid losing face.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       return trueStartFunnel(
-        `Laissant votre concurrente s’enivrer plus qu’elle ne devrait, vous traversez rapidement la plage en direction de la rive.`,
+        `Letting your opponent drink more than she should, you quickly head for the shore.`,
         goToSection,
         flags,
         updateFlag,
@@ -2595,18 +2595,18 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   "trial-copypaste-5": {
     "text": `
 <div class="conversation">
-<p>— J’ai vraiment assez bu, prétendez-vous. Pas toi ?</p>
-<p>— Pas du tout, répond Raiahui avec assurance. Je tiens très bien l’alcool.</p>
-<p>— Eh bien, je n’ai pas de raison de t’empêcher de te saoûler, dites-vous en lui tendant votre calebasse. Tiens, vide aussi celle-ci, si tu t’imagines vraiment que tu pourras me battre à la course ensuite !</p>
+<p>"I've had enough to drink," you lie. "Haven't you?"</p>
+<p>"Not at all," Raiahui answers with self-assurance. "I know how to hold my liquor."</p>
+<p>"Well, I'm certainly not going to dissuade you from getting drunk," you say, handing your calabash to her. "Here, empty this one too, if you really trust that you'll be able to beat me afterwards!"</p>
 </div>
 
-<p>Votre défi fait courir des exclamations amusées parmi la jeune assistance. Raiahui accepte votre présent avec un sourire de confiance totale. L’idée que vous lui tendiez un piège ne lui effleure visiblement pas l’esprit.</p>
+<p>Your challenge causes amused exclamations among the young audience. Raiahui accepts your gift with a supremely confident smile. The though that it might be a trap is clearly the furthest thing from her mind.</p>
 
-<p>Ne tenant pas à vous attarder, vous descendez ensuite la plage d’un pas rapide. Juste au moment où vous atteignez la rive, un sursaut de brouhaha vous fait vous retourner : au milieu des autres adolescents, étonnés et quelquefois moqueurs, Raiahui est courbée en deux, la main pressée contre la bouche comme si elle allait vomir.</p>
+<p>Tarrying any longer wouldn't be to your advantage, and you quickly cross the beach. Just as you reach the shore, the hubbub becomes louder and you cast a glance behind you: surrounded by the other adolescents, some of them startled, others mocking her, Raiahui is bent forward and holding her hand against her mouth as if she was about to throw up.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       return trueStartFunnel(
-        `Désormais assurée de disposer d’une avance confortable, vous plongez.`,
+        `Now certain that you'll have a comfortable head start, you dive.`,
         goToSection,
         flags,
         updateFlag,
@@ -2615,28 +2615,28 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   },
   "trial-hide-closer": {
     "text": `
-<p>Vous prenez une profonde inspiration et plongez à nouveau. Quelques brasses énergiques vous permettent de vous enfoncer rapidement sous la surface. Un frémissement d’espoir vous saisit lorsque vous découvrez, juste au-dessus du sol sabloneux, un renfoncement dans les formes baroques du récif le plus proche. Vous vous glissez sans attendre dans cette cachette et restez aussi immobile que possible, entourée par les mille couleurs extravagantes du corail.</p>
+<p>You take a deep breath and dive again. A few vigorous strokes quickly take you well below the surface. With a sudden burst of hope, you spot a recess in the closest reef, just above the sandy bottom of the channel. You slip inside it and remain as still as possible, surrounded by the many extravagant hues of the coral.</p>
 
-<p>Quelques instants plus tard, la forme effilée de Raiahui vient se découper contre la surface ensoleillée de l’eau, à la verticale exacte de votre position. Vous redoutez de la voir obliquer aussitôt dans votre direction, mais elle n’en fait rien, continuant d’avancer dans la même direction. Ses mouvements fluides sont désormais d’une lenteur qui vous paraît presque moqueuse.</p>
+<p>A few moments later, you see Raiahui pass right above you: a dark, sleek shape against the bright surface of the water. You're afraid that she'll suddenly turn in your direction, but she does nothing of the sort and keeps moving forward. Her flexible movements seem almost mockingly slow.</p>
 
-<p>Vous n’imaginez pas un instant qu’elle prévoit de gagner la course simplement en atteignant l’îlot avant vous. Peut-être, cependant, n’a-t-elle pas une idée claire de l’endroit où vous avez trouvé refuge.</p>
+<p>You don't imagine for a moment that she intends to win the race by simply reaching the islet before you do. However, it's possible that she doesn't quite know where you've hidden yourself.</p>
 
-<p>Vous réfléchissez rapidement. Le renfoncement vous rend sans doute difficile à apercevoir, mais vous seriez une proie facile si cela ne suffisait pas, car il est trop peu profond pour vous mettre hors de portée d’une mâchoire de requin. Sur votre gauche, à une distance modeste, un autre récif de corail émerge du fond sablonneux ; il n’offre aucun abri comparable à celui où vous vous trouvez, mais il est juste assez grand pour vous dissimuler aux yeux de Raiahui si vous l’interposez entre elle et vous. Sur votre droite, un récif de taille plus importante vous semble offrir de meilleures cachettes, mais il est nettement plus éloigné.</p>
+<p>You take a very brief moment to consider the situation. The recess does make you hard to spot, but you'd be easy prey if that didn't prove to be enough, for it's too shallow to put you out of reach of a shark's jaws. To your left, not very far, another coral reef emerges from the sandy bottom; it doesn't have any recesses, but it's just large enough to hide you as long as you keep it between Raiahui and yourself. To your right, a larger reef seems to offer better hiding places, but it's much farther.</p>
 
-<p>L’allure de Raiahui se ralentit encore et vous craignez qu’elle ne continue pas davantage à s’éloigner.</p>
+<p>Raiahui's pace slows down even more and you fear that it won't be long before she turns back.</p>
     `,
     "next": (goToSection) => {
       const choices = [
         {
-          "text": `Vous restez prudemment abritée dans votre cachette actuelle.`,
+          "text": `You cautiously remain in your current hiding place.`,
           "action": () => {goToSection("trial-hide-closer-1")},
         },
         {
-          "text": `Vous quittez votre cachette et nagez jusqu’au récif de gauche.`,
+          "text": `You leave your hiding place and swim toward the reef to your left.`,
           "action": () => {goToSection("trial-hide-closer-2")},
         },
         {
-          "text": `Vous quittez votre cachette et nagez de toutes vos forces pour atteindre le récif de droite.`,
+          "text": `You leave your hiding place and swim as fast as you can toward the reef to your right.`,
           "action": () => {goToSection("trial-hide-closer-3")},
         },
       ];
@@ -2648,16 +2648,16 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   },
   "trial-hide-closer-1": {
     "text": `
-<p>Un instant plus tard, comme vous le redoutiez, Raihui fait demi-tour et revient dans votre direction. Elle s’approche cette fois tout près du récif et entreprend de tourner autour. Si elle sait que vous êtes là, vous réalisez qu’elle n’a pas besoin de découvrir votre cachette précise : il lui suffit d’attendre que le manque d’air vous force à tenter de rejoindre la surface !</p>
+<p>A moment later, as you feared, Raiahui turns around and heads back in your direction. She comes very close to the reef and starts circling it. If she knows you're here, you realize that she doesn't need to discover precisely where you're hiding: she just has to wait until the lack of air forces you to head for the surface!</p>
 
-<p>Raiahui décrit un premier cercle… un deuxième cercle… puis elle disparaît de votre champ de vision et n’y revient plus.</p>
+<p>Raiahui circles the reef once… twice… then she leaves your sight and doesn't reappear.</p>
 
-<p>Le ventre noué par la peur, vous hésitez à saisir cette occasion.</p>
+<p>Your stomach knotted with fear, you wonder if you should seize this occasion.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
-        const text = `Avant que vous ne puissiez prendre une décision, il se passe quelque chose de totalement inattendu.`;
+        const text = `Before you can make a decision, something completely unexpected happens.`;
         const action = () => {
           useItem("doll", updateFlag);
           goToSection("trial-hide-closer-1-doll");
@@ -2673,7 +2673,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Vous écrasez les perles noires en votre possession avant de quitter votre cachette.`,
+          "text": `You crush your black pearls before leaving your hiding place.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             goToSection("trial-hide-closer-1-pearls");
@@ -2683,11 +2683,11 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
       }
 
       choices.push({
-        "text": `Vous restez immobile.`,
+        "text": `You remain still.`,
         "action": () => {goToSection("trial-hide-closer-1-still")},
       });
       choices.push({
-        "text": `Vous quittez votre cachette et vous éloignez le plus vite possible.`,
+        "text": `You leave your hiding place and move away as fast as you can.`,
         "action": () => {goToSection("trial-hide-closer-1-fast")},
       });
 
@@ -2698,31 +2698,31 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   },
   "trial-hide-closer-1-doll": {
     "text": `
-<p>La figurine de bois, que vous aviez attachée à votre taille, commence à s’agiter furieusement. Craignant quelque sorcellerie, vous essayez de vous en débarrasser, mais elle se délivre d’elle-même et, d’un mouvement convulsif, se propulse à l’extérieur de votre cachette. Sous vos yeux ébahis, la création du crocodile se met alors à grandir et à changer de couleur jusqu’à ce que vous ayiez devant vous une réplique très exacte de vous-même !</p>
+<p>The figurine you've tied to your waist starts thrashing about wildly. Fearing some witchcraft, you try to get rid of it, but it frees itself and propels itself out of the hiding place. Under your astonished eyes, the creation of the crocodile then grows up and changes color until it becomes a perfect copy of yourself!</p>
 
-<p>Votre double vous adresse un sourire amusé, puis se met à nager vigoureusement vers l’extérieur de l’atoll. Elle n’a pas franchi une distance bien importante lorsque la forme redoutée de Raiahui surgit au-dessus du récif de corail et se lance à sa poursuite. Vous n’attendez pas davantage pour vous propulser hors de votre cachette et vous enfuir vers l’îlot en nageant de toutes vos forces.</p>
+<p>Your twin gives you an amused smile, then starts swimming vigorously in the direction of the ocean. She hasn't gotten far when the frightful shape of Raiahui appears above the reef and starts chasing after her. You don't waste any time: propelling yourself out of your hiding place, you start swimming toward the islet as fast as you can.</p>
 
-<p>Un rapide coup d’œil sur le côté vous permet de voir l’accélération fulgurante avec laquelle Raiahui rattrape celle qu’elle croit être sa proie. Aussitôt que les dents acérées se referment sur votre étrange jumelle, celle-ci se désagrège en une myriade de minuscules fragments de bois. Cette diversion inespérée n’aura pas duré longtemps, mais vous espérez que la stupéfaction fera perdre quelques instants supplémentaires à Raiahui.</p>
+<p>Casting a glance to the side, you see Raiahui, with a sudden burst of acceleration, catch up to the thing she believes to be her prey. As soon as her sharp teeth close on your strange copy, it disintegrates into dust. That miraculous distraction didn't last very long, but you hope that sheer surprise will cost Raiahui a bit more time.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Ne pouvant pas vous passer d’air beaucoup plus longtemps, vous remontez à l’air libre.`,
+        `Unable to hold your breath any longer, you head for the surface.`,
         "surface-close",
       );
     }
   },
   "trial-hide-closer-1-pearls": {
     "text": `
-<p>Vous écrasez toutes les perles dont vous disposez et un nuage noir impénétrable se répand autour de vous. Sans attendre davantage, vous vous propulsez hors de votre cachette et vous enfuyez dans la direction approximative de l’îlot.</p>
+<p>You crush all the pearls you have and a thick, opaque cloud immediately spreads around you. Without waiting any further, you propel yourself out of your hiding place and start swimming in the approximate direction of the islet.</p>
 
-<p>La zone d’obscurité totale n’englobe que le récif de corail et ses environs immédiat. Après quelques brasses énergiques, vous parvenez de nouveau à distinguer vos propres membres, puis la pâleur du fond sablonneux. Le manque d’air est en train de devenir difficile à supporter.</p>
+<p>The total darkness only encompasses the area surrounding the reef. After a few vigorous strokes, you can see your own hands again, then the pale sandy bottom. Lack of air is becoming hard to endure.</p>
 
-<p>L’eau achève de redevenir transparente autour de vous. Mais au lieu de remonter à la surface pour y respirer, vous vous immobilisez soudain, frappée par la terreur en voyant la forme souple et fuselée de Raiahui passer lentement devant vous. Elle est à une certaine distance, mais vous repère au moment même où vous l’apercevez et oblique brusquement dans votre direction.</p>
+<p>The water is now completely clear around you. But instead of heading for the surface, you freeze in terror as you see the sleek shape of Raiahui slowly pass before you. She's some distance away, but she spots you immediately and sharply turns in your direction.</p>
 
-<p>Vous réalisez tout à coup que votre usage des perles noires a eu pour principal effet de confirmer à Raiahui votre position et de l’avertir de votre tentative de fuite. Elle s’est facilement tenue à l’extérieur du nuage opaque et, même s’il l’a d’abord empêchée de vous repérer, elle n’a eu aucun mal à deviner dans quelle direction vous vous dirigiez et à vous couper la route.</p>
+<p>You suddenly realize that using the black pearls has only resulted in confirming your position and warning Raiahui of your attempt to escape. She had no trouble remaining outside of the opaque cloud, and though you were temporarily invisible to her, she easily surmised where you were heading and moved to bar your path.</p>
 
-<p>Une accélération foudroyante la propulse vers vous, sa gueule entrouverte dévoilant ses nombreuses dents effilées.</p>
+<p>A sudden burst of acceleration propels her in your direction, her half-open mouth revealing her many sharp teeth.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -2730,7 +2730,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             goToSection("trial-hide-closer-net");
@@ -2739,7 +2739,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
         })
       }
 
-      const deathText = `Vous nagez de toutes vos forces en une tentative désespérée pour lui échapper.`;
+      const deathText = `You desperately attempt to outdistance her.`;
       choices.push({
         "text": deathText,
         "action": () => {
@@ -2755,18 +2755,18 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   },
   "trial-hide-closer-1-still": {
     "text": `
-<p>Vous restez le plus immobile possible. Les instants s’écoulent sans que Raiahui ne reparaisse dans votre champ de vision. S’est-elle réellement éloignée ou vous tend-elle un piège ? Le manque d’air est en train de devenir douloureux. Vous êtes capable de retenir très longtemps votre respiration, mais vous n’êtes pas un poisson !</p>
+<p>You remain as motionless as possible. Time goes by and Raiahui still doesn't reappear. Did she really move away from the reef or is it a trap? Lack of air is becoming painful. You can hold your breath for a long time, but you're not a fish!</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
         {
-          "text": `Vous tentez votre chance en quittant votre cachette.`,
+          "text": `You decide to leave your hiding place.`,
           "action": () => {
             goToSection("trial-hide-closer-1-still-exit");
           },
         },
         {
-          "text": `Vous restez où vous êtes.`,
+          "text": `You remain where you are.`,
           "action": () => {
             const dolphin = flags.inventory.dolphin;
             if (dolphin.acquired && !dolphin.used) {
@@ -2787,58 +2787,58 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   },
   "trial-hide-closer-1-still-exit": {
     "text": `
-<p>Vous vous glissez prudemment hors du renfoncement, regardant tout autour de vous. Un tressaillement de frayeur vous saisit lorsque vous apercevez tout à coup la forme fuselée de Raiahui. Mais elle s’est éloignée vers le grand récif que vous avez remarqué sur votre droite et ne regarde pas dans votre direction.</p>
+<p>You cautiously slip out of the recess, looking all around you. With a shiver of fear, you suddenly spot Raiahui. But she's moved away, toward the larger reef to your right, and is not looking in your direction.</p>
 
-<p>Réalisant que vous n’aurez pas de meilleure occasion, vous abandonnez définitivement votre cachette et vous éloignez sans perdre un instant.</p>
+<p>Realizing you'll get not better chance, you abandon your hiding place for good and swim away as fast as you can.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Vous restez sous l’eau autant que possible, mais vous devez finalement remonter à l’air libre.`,
+        `You remain underwater as long as possible, but you finally have to head for the surface.`,
         "surface-close",
       );
     }
   },
   "trial-hide-closer-1-still-dolphin": {
     "text": `
-<p>Il vous semble tout à coup qu’une profonde bouffée d’air pur s’infiltre dans vos poumons. Le réflexe mortel qui allait bientôt vous faire ouvrir la bouche s’éloigne et vous vous sentez capable de retenir votre respiration au moins aussi longtemps que vous l’avez déjà fait. À votre cou, l’amulette en forme de dauphin se désagrège et vous devinez qu’elle vient d’épuiser pour vous ses derniers pouvoirs.</p>
+<p>A deep breath of pure air suddenly seems to fill your lungs. The growing temptation to head back for the surface vanishes, and you feel capable of remaining underwater as long as you already have. Around your neck, the dolphin-shaped pendant disintegrates; you surmise that it's just exhausted its remaining powers to help you.</p>
 
-<p>Vous ne pouvez cependant pas rester dans cette cachette éternellement. Après un assez long moment, vous vous risquez enfin à la quitter. Il ne vous faut pas longtemps pour apercevoir la forme fuselée de Raiahui, qui s’est éloignée vers une zone où les récifs sont plus denses. Votre patience a apparemment réussi à la tromper pour l’instant.</p>
+<p>Nevertheless, you can't remain in this hiding place forever. After a fairly long while, you decide to leave it. It doesn't take you long to spot Raiahui: she's wandered away toward an area where the reefs are thicker. Your patience has seemingly managed to deceive her, at least for now.</p>
 
-<p>Vous ne perdez pas un instant de plus : abandonnant définitivement votre cachette, vous nagez vigoureusement en direction de l’îlot.</p>
+<p>You don't waste any time: abandoning your hiding place for good, you swim vigorously toward the islet.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `L’effet de l’amulette finit par s’estomper et vous devez remonter à l’air libre.`,
+        `The effects of the pendant eventually vanish and you have to head for the surface.`,
         "surface-close",
       );
     }
   },
   "trial-hide-closer-1-still-asphyxia": {
     "text": `
-<p>Vous vous contraignez à rester dans votre cachette, malgré la sensation de brûlure qui dévore vos poumons et les ombres qui s’amoncellent devant vos yeux. Vous plaquez une main contre votre bouche pour retenir le réflexe mortel qui vous ferait tenter de prendre une inspiration.</p>
+<p>You force yourself to remain in your hiding place, in spite of the consuming pain in your lungs and the shadows forming before your eyes. You put your hand against your mouth to ensure that you won't reflexively try to take a breath.</p>
 
-<p>Les instants passent. Votre crâne s’est rempli d’un brouillard noir et rouge qui ne cesse de s’épaissir davantage. Finalement, vous réalisez que vous n’avez plus le choix : vous devez prendre le risque de remonter à la surface ou mourir noyée.</p>
+<p>Time goes by. Red and black mist has filled your head and is becoming ever thicker. Finally, you realize you can no longer wait: you must head for the surface or drown.</p>
 
-<p>Vous jaillissez hors de votre cachette sans plus attendre. Votre vision obscurcie ne distingue plus avec précision ce qui vous entoure, mais Raiahui n’est pas à proximité. Il vous semble apercevoir sa forme fuselée à une certaine distance, au-dessus d’une zone où les récifs de corail sont plus denses.</p>
+<p>You propel yourself out of your hiding place. You can't perceive things very clearly, but Raiahui's nowhere near. You spot something that looks like her some distance away, above an area where the reefs are thicker.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Vous remontez à l’air libre aussi vite que vos forces vous le permettent.`,
+        `You head for the surface as fast as you can.`,
         "surface-close",
       );
     }
   },
   "trial-hide-closer-1-fast": {
     "text": `
-<p>Vous vous propulsez hors de votre cachette. Mais vous avez à peine esquissé une brasse lorsque Raiahui surgit tout à coup au-dessus du récif de corail ! Elle vous guettait !</p>
+<p>You propel yourself out of your hiding place. But you've barely taken a stroke when Raiahui suddenly appears just above the coral reef! She was waiting for you!</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       return repeatingFunnel(
         goToSection,
-        `Une accélération foudroyante la propulse dans votre direction, ne vous laissant pas le temps de tenter quoi que ce soit.`,
+        `A sudden burst of acceleration propels her in your direction before you can do anything.`,
         () => {
           updateFlag("eatenByRaiahui", true);
           return "raiahui-good-end";
@@ -2848,37 +2848,37 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   },
   "trial-hide-closer-net": {
     "text": `
-<p>Saisissant le filet que vous aviez entouré autour de votre taille, vous le jetez en hâte vers Raiahui. Votre geste n’a ni la force ni la précision qui seraient normalement nécessaire, mais le filet de la sorcière n’a pas perdu sa vertu : il se déploie de lui-même et enveloppe étroitement votre poursuivante juste au moment où celle-ci allait vous atteindre. Raiahui se contorsionne furieusement, déchiquetant les mailles serrées pour parvenir à se libérer.</p>
+<p>Grabbing the net you've tied around your waist, you throw it in Raiahui's direction. Your gesture has little strength and precision, but the witch's net has retained its powers: it spreads out by itself and wraps around your pursuer as she was about to reach you. Raiahui thrashes about wildly, ripping up the tight mesh in order to free herself.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Vous nagez de toutes vos forces en direction de l’îlot, tout en remontant progressivement à l’air libre.`,
+        `You swim as fast as you can toward the islet, while also heading back for the surface.`,
         "surface-close",
       );
     }
   },
   "trial-hide-closer-2": {
     "text": `
-<p>Le cœur battant à tout rompre, vous vous glissez hors de ce renfoncement providentiel et nagez vers votre objectif. Vous l’atteignez juste à temps : Raiahui est en train de faire demi-tour ! Vous vous tapissez derrière le récif, espérant que cela suffira à vous faire échapper à ses yeux.</p>
+<p>Your heart beating wildly, you slip out of the recess and swim toward your goal. You reach it just in time: Raiahui's turning around! You hide behind the reef, desperately hoping that she won't spot you.</p>
 
-<p>De minces espaces entre les excroissances colorés du corail vous permettent de suivre Raiahui à mesure qu’elle se rapproche. Elle passe à une faible distance, apparemment sans vous remarquer. Vous la voyez s’approcher très près du récif où vous aviez précédemment trouvé refuge, puis commencer à en faire le tour.</p>
+<p>Narrow spaces between the colorful coral growths let you watch Raiahui as she gets closer. She passes by without seeming to notice you. You see her come very close to the reef where you were previously hiding, then start circling it.</p>
 
-<p>Votre instinct vous dit que vous n’aurez pas de meilleure occasion ; profitant de ce qu’elle est momentanément incapable de vous apercevoir, vous quittez votre deuxième cachette et nagez en direction de l’îlot, restant proche du fond sablonneux dans l’espoir que cela vous rendra un peu plus difficile à repérer.</p>
+<p>Your instinct tells you there won't be a better occasion; while she's behind the reef, you leave your new hiding place and swim toward the islet, remaining close to the sandy bottom in the hope that it'll make you slightly more difficult to spot.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Ne pouvant pas retenir indéfiniment votre souffle, il vient cependant un moment où vous devez remonter à l’air libre.`,
+        `You can't hold your breath forever and you eventually have to head for the surface.`,
         "surface-close",
       );
     },
   },
   "trial-hide-closer-3": {
     "text": `
-<p>Le cœur battant à tout rompre, vous vous glissez hors du renfoncement et nagez de toutes vos forces vers votre objectif. Vous avez franchi la moitié de la distance qui vous en sépare lorsque Raiahui fait tout à coup demi-tour !</p>
+<p>Your heart beating wildly, you slip out of the recess and swim toward your goal as fast as you can. You've crossed half the distance when Raiahui suddenly turns around!</p>
 
-<p>Il est immédiatement clair qu’elle vous a aperçu : d’un mouvement puissant de sa queue, elle se propulse dans votre direction à une vitesse bien supérieure à l’allure paresseuse qu’elle avait adopté. Vous redoublez d’efforts pour atteindre le récif de corail, dans l’espoir d’y trouver un refuge providentiel. Mais vous réalisez avec effroi que vous n’y parviendrez pas à temps : Raiahui vient d’accélèrer de façon foudroyante, sa gueule entrouverte dévoilant ses nombreuses dents effilées.</p>
+<p>It's immediately clear that she's spotted you: her tail propels her in your direction at a pace much faster than previously. You try to reach the coral reef, hoping it'll provide you with some sort of shelter. But you fearfully realize that you won't reach it in time: Raiahui's now rushing toward you at blinding speed, her half-open mouth revealing her many sharp teeth.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -2886,7 +2886,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
         choices.push({
-          "text": `Vous lui jetez le filet de la sorcière.`,
+          "text": `You throw the witch's net at her.`,
           "action": () => {
             useItem("net", updateFlag);
             goToSection("trial-hide-closer-net");
@@ -2898,7 +2898,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
       const pearls = flags.inventory.smokePearls;
       if (pearls.acquired && !pearls.used) {
         choices.push({
-          "text": `Vous écrasez les perles noires que vous transportez.`,
+          "text": `You crush your black pearls.`,
           "action": () => {
             useItem("smokePearls", updateFlag);
             updateFlag("bleeding", true);
@@ -2908,7 +2908,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
         })
       }
 
-      const deathText = `Vous tentez désespérément de lui échapper malgré tout.`;
+      const deathText = `You desperately try to outdistance her.`;
       choices.push({
         "text": deathText,
         "action": () => {
@@ -2924,25 +2924,25 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   },
   "trial-hide-closer-3-pearls": {
     "text": `
-<p>Juste à temps, vous vous souvenez des perles noires en votre possession. Vous les écrasez d’un geste convulsif, sans même les retirer du sachet accroché à votre taille, et un épais nuage de ténèbres impénétrables vous enveloppe instantanément.</p>
+<p>Just in time, you remember the black pearls you carry. You crush them all without even taking them out of their small purse, and a thick, opaque cloud immediately spreads around you.</p>
 
-<p>Totalement aveugle, vous nagez droit devant vous dans l’espoir d’échapper au péril mortel que vous savez être tout proche. Vous éprouvez soudain un impact cuisant contre votre cuisse ! Raiahui n’est pas parvenue à vous mordre, mais elle vient de vous cingler involontairement avec sa queue, vous écorchant sans doute la peau.</p>
+<p>Completely blind, you keep swimming forward, hoping to escape from the lethal peril you know is so close. Suddenly, you feel a stinging impact against your thigh! Raiahui didn't manage to bite you, but she's unintentionally hit you with her tail, probably scratching your skin.</p>
 
-<p>Refoulant immédiatement la terreur qui menace de vous faire perdre vos moyens, vous descendez plus profondément, jusqu’à effleurer le sol sablonneux, puis vous vous mettez à nager dans la direction opposée à celle que vous suiviez auparavant.</p>
+<p>As terrified as you are, you're still thinking clearly. You head downward, until you brush against the sandy bottom of the pass, then you start swimming in a completely different direction.</p>
 
-<p>L’eau qui vous entoure retrouve sa transparence à mesure que vous vous éloignez de l’endroit où vous avez écrasé les perles. Vous distinguez de nouveau vos propres membres, puis les reflets du soleil contre la surface, puis les récifs de corail et l’îlot qui constitue votre destination. Risquant un regard en arrière, vers la zone d’obscurité qui s’étire et se dilue avec une grande lenteur, vous ne parvenez pas à apercevoir Raiahui.</p>
+<p>The water clears up as you get farther and farther away from the spot where you've crushed the pearls. You can see your hands again, then the bright surface, then the coral reefs and the islet. You cast a glance behind you: the opaque cloud is stretching and thinning down very slowly, and you can't spot Raiahui.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
         goToSection,
-        `Incapable de retenir votre respiration beaucoup plus longtemps, vous remontez à l’air libre.`,
+        `Unable to hold your breath for much longer, you head for the surface.`,
         "surface-close",
       );
     }
   },
   "ending-credits": {
     "text": `
-<h1>Au Cœur d’un Cercle de Sable et d’Eau</h1>
+<h1>Within a Circle of Water and Sand</h1>
 
 <img src="${sunsetImage}" class="img-responsive text-img tall left" alt=""/>
 
