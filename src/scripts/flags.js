@@ -4,7 +4,7 @@ const flags = {
   "time": 0,
   "inventory": {
     "alcohol": {
-      "name": `Hard liquor`,
+      "name": `Calabash of hard liquor`,
       "description": `<p>A calabash full of hard liquor, given to you by Oramui and Terani.</p>`,
     },
     "dolphin": {
@@ -12,15 +12,15 @@ const flags = {
       "description": `<p>A pendant shaped like a dolphin, that you discovered by following the advice of Faanarua.</p><p>According to her, it’ll make you an even better swimmer than you already are.</p>`,
     },
     "pearls": {
-      "name": `Black pearls`,
+      "name": `Handful of black pearls`,
       "description": `<p>Pearls of pure black, stolen from the witch.</p><p>So far, you can’t tell anything else about them.</p>`,
     },
     "smokePearls": {
-      "name": `Smoke pearls`,
+      "name": `Handful of smoke pearls`,
       "description": `<p>Pearls of pure black, stolen from the witch.</p><p>You’ve discovered that crushing one of them underwater will create a thick, impenetrable cloud.</p>`,
     },
     "fruit": {
-      "name": `Red fruits`,
+      "name": `Handful of red fruits`,
       "description": `<p>A handful of red fruits you picked on the advice of a talking crocodile. It said they would help you for the race.</p><p>You can’t tell if the fact that it had previously tried to eat you should make you doubt its sincerity.</p>`,
     },
     "doll": {
@@ -32,7 +32,7 @@ const flags = {
       "description": `<p>A fishing net that used to belong to a witch. It’s made for capturing humans, not small fish.</p>`,
     },
     "fieryCalabash": {
-      "name": `Doctored alcohol`,
+      "name": `Calabash of doctored alcohol`,
       "description": `<p>Palm wine, now with added spice.</p>`
     },
   },
