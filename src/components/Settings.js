@@ -49,14 +49,14 @@ class Settings extends React.Component {
   render() {
     return (
       <div>
-        <div className="modal-title"><h2>{`Paramètres`}</h2></div>
+        <div className="modal-title"><h2>{`Settings`}</h2></div>
         <form onSubmit={(e) => {e.preventDefault()}}>
           <FormGroup
             controlId="fontSizeOption"
             validationState={ this.isFontSizeValid(this.state.form.fontSize) ? null : 'error' }
           >
             <ControlLabel>
-              {`Taille de la police`}
+              {`Font size`}
             </ControlLabel>
             <FormControl
               type="number"
@@ -72,7 +72,7 @@ class Settings extends React.Component {
               checked={this.state.form.justified}
               onChange={this.onJustificationChange}
             >
-              {`Justifier le texte ?`}
+              {`Justify text?`}
             </Checkbox>
           </FormGroup>
           <FormGroup>
@@ -80,7 +80,7 @@ class Settings extends React.Component {
               checked={this.state.form.noTransitions}
               onChange={this.onTransitionChange}
             >
-              {`Désactiver les transitions ?`}
+              {`Skip transitions?`}
             </Checkbox>
           </FormGroup>
         </form>

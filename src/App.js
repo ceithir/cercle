@@ -152,12 +152,12 @@ class App extends Component {
   }
 
   render() {
-    const title = `Au Cœur d’un Cercle de Sable et d’Eau`;
-    const newGameText = `Nouvelle partie`;
-    const continueText = `Reprendre la partie précédente`;
-    const achievementsText = `Souvenirs`;
-    const galleryText = `Illustrations`;
-    const creditsText = `Plumes`;
+    const title = `Within a Circle of Sand and Water`;
+    const newGameText = `New game`;
+    const continueText = `Continue`;
+    const achievementsText = `Memories`;
+    const galleryText = `Gallery`;
+    const creditsText = `Credits`;
     const unlockedAchievements = this.state.achievements;
     const settings = storage.load("settings");
     const canFastForward = this.canFastForward();

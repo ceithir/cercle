@@ -165,21 +165,21 @@ class Game extends React.Component {
       {
         "key": "settings",
         "action": this.showSettings,
-        "text": `Paramètres`,
+        "text": `Settings`,
       },
       {
         "key": "autosave",
-        "text": this.props.canSave? `Ce jeu sauvegarde automatiquement.` : `Sauvegarde indisponible sur ce navigateur.`,
+        "text": this.props.canSave? `Autosave enabled.` : `Autosave unavailable on this browser.`,
       },
       {
         "key": "reset",
         "action": this.reset,
-        "text": `Recommencer`,
+        "text": `Restart`,
       },
       {
         "key": "quit",
         "action": this.quit,
-        "text": `Retourner à l’écran titre`,
+        "text": `Title screen`,
       },
     ];
   }

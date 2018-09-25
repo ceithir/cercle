@@ -88,7 +88,7 @@ class GalleryScreen extends React.Component {
         </Row>
         <Row>
           <Col md={6} mdOffset={3} className="lead text-center">
-            <Funnel text={`Retour`} action={this.props.quit} />
+            <Funnel text={`Back`} action={this.props.quit} />
           </Col>
         </Row>
         <Lightbox
@@ -98,8 +98,8 @@ class GalleryScreen extends React.Component {
           onClickNext={this.goToNext}
           currentImage={this.state.currentImageIndex}
           isOpen={this.state.lightboxIsOpen}
-          leftArrowTitle={`Illustration précédente`}
-          rightArrowTitle={`Illustration suivante`}
+          leftArrowTitle={`Previous`}
+          rightArrowTitle={`Next`}
           showImageCount={false}
           width={1600}
           showCloseButton={false}

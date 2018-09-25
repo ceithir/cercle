@@ -23,7 +23,7 @@ class CreditsScreen extends React.Component {
         </Row>
         <Row>
           <Col md={6} mdOffset={3} className="lead text-center">
-            <Funnel text={`Retour`} action={this.props.quit} />
+            <Funnel text={`Back`} action={this.props.quit} />
           </Col>
         </Row>
       </Grid>
