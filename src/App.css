@@ -20,6 +20,10 @@
   color: #a77e55;
 }
 
+.navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:not(:focus) {
+  color: #d7a26d;
+}
+
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
   background: none;
   box-shadow: none;
