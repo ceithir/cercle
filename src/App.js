@@ -152,7 +152,7 @@ class App extends Component {
   }
 
   render() {
-    const title = `Within a Circle of Sand and Water`;
+    const title = `Within a Circle of Water and Sand`;
     const newGameText = `New game`;
     const continueText = `Continue`;
     const achievementsText = `Memories`;
