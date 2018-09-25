@@ -7,14 +7,14 @@ import witchImage from "./../images/witch.jpg";
 const escapeTheWitch = (goToSection, flags, updateFlag) => {
   const choices = [
     {
-      "text": `Vous essayez de l’esquiver et de filer par la porte.`,
+      "text": `You get past her and flee through the door.`,
       "action": () => {
         updateFlag("caughtInAWitchNet", true);
         goToSection("witch-thief-doomed-escape");
       },
     },
     {
-      "text": `Vous vous jetez à travers la fenêtre ronde qui s’ouvre dans le mur opposé.`,
+      "text": `You escape through the round window in the opposite wall.`,
       "action": () => {
         goToSection("witch-window-escape");
       },
@@ -27,25 +27,25 @@ const escapeTheWitch = (goToSection, flags, updateFlag) => {
 };
 
 const sneakingIntoIslandText = `
-<p>Il vous semble probable que, si cette île recèle quoi que ce soit d’intéressant, c’est dans la hutte située à son sommet que vous le trouverez. Mais les nombreux fétiches disposés le long des pentes vous mettent mal à l’aise : il vous revient à l’esprit des récits parlant de statues créées par des sorciers pour les avertir de la présence des intrus.</p>
+<p>If there’s anything of interest on this island, it seems likely that it’ll be found in the hut on the top. But the many fetishes set on the slopes are worrying: you remember stories about sorcerers creating enchanted statues to keep watch for intruders.</p>
 
-<p>Jetant un coup d’œil prudent hors de l’endroit où vous êtes dissimulée, il vous semble possible de parvenir jusqu’au sommet sans vous exposer aux yeux figés des fétiches. La végétation qui couvre l’île est peu élevée, mais suffisamment dense.</p>
+<p>Casting a cautious glance upward, you deem it possible to reach the top without exposing yourself to the motionless eyes of the fetishes. The vegetation of the island is not very high, but it’s dense enough.</p>
 
-<p>Mettant votre idée à exécution, vous entreprenez de ramper à l’abri des broussailles. Votre progression est lente, mais aucun signe ne permet de penser que vous avez été repérée.</p>
+<p>Putting your plan into action, you start crawling among the bushes. Your progress is slow, but you seem to remain unnoticed by anyone or anything.</p>
 
-<p>Votre trajet nécessairement sinueux vous fait passer dans un buisson situé juste derrière l’un des fétiches. Vous observez avec méfiance les motifs étranges gravés dans le bois. La statue est immobile, mais vous ne pouvez vous défaire de l’impression qu’elle va d’un moment à l’autre s’animer et se tourner vers vous.</p>
+<p>The route you follow is fairly roundabout. At one point, it brings you right behind one of the fetishes. You warily examine the strange symbols carved into the wood. The statue is completely still, but you can’t get rid of the impression that it’s about to come to life and turn in your direction.</p>
 `;
 
 const sneakingIntoIslandCrossroads = (goToSection, flags, updateFlag) => {
   const choices = [
     {
-      "text": `Vous poussez le fétiche de manière à ce qu’il se renverse.`,
+      "text": `You push the fetish in order to make it fall over.`,
       "action": () => {
         goToSection("witch-fetish-embrace");
       },
     },
     {
-      "text": `Vous l’ignorez et poursuivez votre lente ascension comme auparavant .`,
+      "text": `You ignore it and keep moving slowly toward the top.`,
       "action": () => {
         if (flags.swumUnderWitchIsland) {
           acquireItem("pearls", updateFlag);
@@ -63,7 +63,7 @@ const sneakingIntoIslandCrossroads = (goToSection, flags, updateFlag) => {
 };
 
 const ascensionText = `
-<p>Au terme d’une progression patiente, vous atteignez enfin le sommet de l’île. A quelques pas de vous s’élève la hutte, d’où ne s’échappe pas le moindre son. Est-elle vraiment vide ? Il est impossible d’en distinguer l’intérieur de là où vous vous trouvez.</p>
+<p>Crawling patiently, you finally reach the top of the island. The hut is but a few steps away, completely silent. Is it really empty? It’s impossible to see the inside from where you are.</p>
 `;
 
 const island5 = {
@@ -71,35 +71,35 @@ const island5 = {
     "text": (flags) => {
       if (secondTimeToIsland("island-5", flags)) {
         return `
-<p>Les statues de bois sombre montent toujours leur garde silencieuse sur les flancs de l’île. La silhouette que vous avez précédemment cru apercevoir près de la hutte ronde située au sommet n’est plus visible nulle part.</p>
+<p>The dark wood statues still stand guard silently on the slopes of the island. The figure you thought you spotted near the round hut on the top is nowhere to be seen.</p>
         `;
       }
 
       return `
-<p> Vue de plus près, l’île se distingue encore davantage du reste de l’atoll. Ses pentes curieusement régulières sont couvertes d’une végétation peu élevée, parmi lesquelles se dressent de nombreuses statues de bois sombre. Moitié moins grandes que vous, elles vous font penser à certains types de fétiches qu’il vous est arrivé d’observer sur d’autres îles. Les personnages impassibles qu’elles représentent ont tous le regard tourné vers l’extérieur.</p>
+<p>From up close, the island looks even more different from the rest of the atoll. Its curiously even slopes are covered with fairly low vegetation and studded with dark wood statues. Only half your height, the statues remind you of certain types of fetishes that you’ve observed on other islands. The impassive characters they represent are all looking outward.</p>
 
-<p>Au sommet de l’île, vous distinguez une large hutte ronde et il vous semble apercevoir fugitivement une silhouette en train d’y entrer.</p>
+<p>At the top of the island is a large round hut, and you glimpse a figure that seems to be entering it.</p>
       `;
     },
     "next": function(goToSection, flags, updateFlag) {
-      const leaveText = `Vous préférez renoncez à visiter cette île.`;
+      const leaveText = `You decide against visiting this island.`;
 
       const choices = [
         {
-          "text": `Vous abordez normalement et montez tout droit vers la hutte.`,
+          "text": `You land normally and head straight for the hut.`,
           "action": () => {
             updateFlag("friendlyWithWitch", true);
             goToSection("witch-bold-approach");
           },
         },
         {
-          "text": `Vous abordez dans un endroit discret, de manière à ne pas être repérée.`,
+          "text": `You land in a discret spot and try to avoid being noticed.`,
           "action": () => {
             goToSection("witch-sneaky-approach");
           },
         },
         {
-          "text": `Vous utilisez votre ancre rudimentaire pour fixer votre pirogue où elle se trouve et vous rendre ensuite sur l’île en nageant sous l’eau.`,
+          "text": `You anchor your canoe where it is and swim underwater to reach the island.`,
           "action": () => {
             updateFlag("swumUnderWitchIsland", true);
             goToSection("witch-underwater-approach");
@@ -120,23 +120,23 @@ const island5 = {
   },
   "witch-bold-approach": {
     "text": `
-<p>Le contour de l’île est rocailleux, mais vous parvenez néanmoins à accoster sans trop de mal. Vous gravissez ensuite la pente sous le regard impassible des nombreux fétiches. Alors que vous êtes sur le point d’atteindre la hutte, il en sort soudain une grosse femme enroulée dans un paréo pourpre. Ses cheveux courts sont hérissés comme des piquants et, de la tête aux chevilles, elle porte de nombreux bijoux en or d’une élégance que vous avez rarement observée. A sa taille sont accrochés un sac à demi-plein, un filet gris et un petit couteau en métal. Elle tient à la main une coupe remplie d’un liquide clair.</p>
+<p>The shore is stony, but you manage to land without too much trouble. Then you climb the slope under the impassive eyes of the many fetishes. Just before you reach the hut, a fat woman wrapped in a purple pareo suddenly comes out of it. Her short hair is bristling like spines and, from her head to her ankles, she wears many splendid pieces of golden jewelry. Tied around her waist, you observe a half-full bag, a grey fishing net and a small metal knife. She’s holding a cup full of a clear beverage.</p>
 
 <img src="${witchImage}" class="img-responsive text-img tall left" alt=""/>
 
 <div class="conversation">
-<p>— Une visiteuse ! s’exclame-t-elle d’une voix ravie. Quel plaisir ! Cela faisait si longtemps que personne n’était venu…</p>
+<p>"A visitor!" she exclaims in a delighted voice. "How nice! It’s been such a long time…"</p>
 </div>
 
-<p>Son accent ne ressemble pas à celui de la tribu, ni à aucun autre de votre connaissance. Elle vous tend la coupe avec tant d’énergie que son contenu vous gicle presque dans la figure et poursuit sans vous laisser le temps de placer un mot :</p>
+<p>Her accent is unlike any you’ve ever heard. She holds out the cup so suddenly that its contents almost splash your face and, before you can even say a word, she adds:</p>
 <div class="conversation">
-<p>— Il faut célébrer cela ! C’est la tradition !</p>
+<p>"We must celebrate! It’s tradition!"</p>
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [
         {
-          "text": `Vous acceptez de boire.`,
+          "text": `You drink the beverage.`,
           "action": () => {
             updateFlag("drunkAtTheWitchCup", true);
             goToSection("witch-drink");
@@ -147,7 +147,7 @@ const island5 = {
       const alcohol = flags.inventory.alcohol;
       if (alcohol.acquired && !alcohol.used) {
         choices.push({
-          "text": `Vous lui offrez en retour la calebasse d’alcool que vous transportez.`,
+          "text": `You offer her the calabash of hard liquor you carry.`,
           "action": () => {
             useItem("alcohol", updateFlag);
             goToSection("witch-my-alcohol");
@@ -157,7 +157,7 @@ const island5 = {
       }
 
       choices.push({
-        "text": `Vous jugez que la meilleure chose à faire est de fuir.`,
+        "text": `You decide to flee.`,
         "action": () => {
           updateFlag("caughtInAWitchNet", true);
           goToSection("witch-doomed-escape");
@@ -171,28 +171,28 @@ const island5 = {
   },
   "witch-sneaky-approach": {
     "text":`
-<p>Longeant l’île à bonne distance, vous finissez par apercevoir un endroit où la végétation est un peu plus dense et les fétiches plus rares. Vous en prenez la direction de quelques coups de pagaie.  Le contour de l’île est rocailleux, mais vous parvenez néanmoins à accoster sans trop de mal. Vous tirez votre pirogue sur la rive et la dissimulez de votre mieux derrière un épais buisson.</p>
+<p>Paddling along the shore at a good distance, you finally spot an area where the vegetation is a bit denser and the fetishes are a bit fewer. You head for it. The shore is stony, but your manage to land without too much trouble. You then hide your canoe as best you can.</p>
     ` + sneakingIntoIslandText,
     "next": sneakingIntoIslandCrossroads,
   },
   "witch-underwater-approach": {
     "text":`
-<p>Le lagon est peu profond à l’endroit où vous êtes et les récifs de corail offrent des prises faciles auxquelles accrocher votre ancre. Cela fait, vous prenez une profonde inspiration avant de plonger dans les eaux tièdes.</p>
+<p>The lagoon is fairly shallow around here, and the coral reefs offer plenty of holds for your rudimentary anchor. That being taken care of, you take a deep breath and dive into the warm water.</p>
 
-<p>Vous nagez vigoureusement, mais sans précipitation. La pêche aux coquillages que vous pratiquiez autour de votre île natale vous a habituée à retenir votre souffle pendant de longues périodes.</p>
+<p>You swim vigorously, but without undue haste. You often fished for shellfish when you were younger, and you’re used to holding your breath for long periods of time.</p>
 
-<p>Approchant de votre destination, vous êtes surprise de remarquer que l’eau perd à cet endroit sa transparence cristalline et devient presque opaque en-dessous d’une faible profondeur. Mettant cela sur le compte des particularités de l’île, vous poursuivez votre approche sans vous démonter. Un instant plus tard, vous émergez juste devant la rive rocailleuse. Sortant de l’eau sans perdre de temps, vous allez vous dissimuler derrière un épais buisson.</p>
+<p>As you get closer to your goal, you’re surprised to notice that the water is no longer clear, and becomes nearly opaque below you. Surmising it to be one of the island’s peculiarities, you keep swimming without letting it fluster you. A bit later, you surface very close to the stony shore. Quickly getting out of the water, you hide behind a thick bush.</p>
     ` + sneakingIntoIslandText,
     "next": sneakingIntoIslandCrossroads,
   },
   "witch-fetish-embrace": {
     "text":`
-<p>Une douleur aiguë vous transperce le bras au moment où vous touchez la statue et, aussitôt, tous les fétiches de l’île émettent un cri d’alarme strident. Paniquée et à demi assourdie, vous abandonnez toute idée de discrétion et vous redressez pour dévaler la pente en courant. Un coup d’œil en arrière vous fait apercevoir une large silhouette sortant de la hutte, mais elle est heureusement trop loin pour pouvoir vous arrêter. Vous vous hâtez de rejoindre votre pirogue où vous l’avez laissée et de vous éloigner de l’île.</p>
+<p>Sharp pain pierces your arm when you touch the statue, and all the fetishes of the island cry out stridently. Frightened and almost deafened, you give up on stealth, stand up and run toward the shore. Casting a glance behind you, you see a wide figure coming out of the hut, but the unknown person is fortunately too far to be able to stop you. You quickly get back to your canoe and move away from the island.</p>
 
-<p>La douleur est passée, mais, maintenant que votre panique s’apaise, vous remarquez qu’un certain engourdissement s’est emparé de votre bras. Vous espérez que cette faiblesse n’est que temporaire.</p>
+<p>The pain has passed, but now that you’re no longer in a panic, you notice that your arm has become somewhat numb. Hopefully, it’s just a temporary effet.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous le massez patiemment, attendant qu’il ait retrouvé toute sa sensibilité pour vous remettre en route.`;
+      const text = `You patiently massage your arm until it has recovered all of its sensitivity before you set out again.`;
       const action = () => {
         updateFlag("time", flags.time+1);
         return "back-to-hub";
@@ -207,25 +207,25 @@ const island5 = {
   },
   "witch-drink": {
     "text": `
-<p>Le liquide clair n’a presque aucun goût, mais il a à peine franchi le seuil de votre gorge qu’un terrible sentiment de lourdeur s’empare de vos membres. La grosse femme éclate de rire, mais c’est à peine si vous l’entendez : tout ce qui vous entoure est en train de s’éloigner avec une folle rapidité. Vous avez totalement perdu connaissance avant même de heurter le sol.</p>
+<p>The clear beverage is nearly tasteless, but as soon as it goes through your throat, your limbs start feeling terribly heavy. The fat woman laughs, but you can barely even hear her anymore: everything around you is moving away at great speed. You lose consciousness before your body even hits the ground.</p>
 
-<p>La sorcière ne vous tuera pas et elle finira même par vous rendre une forme de liberté, mais ce que vous aurez subi entre ses mains ne vous laissera pas en mesure de poursuivre encore la moindre quête.</p>`,
+<p>The witch won’t kill you, and she’ll even release you after a while. But what you’ll suffer in her hands before that will make it impossible for you to pursue any quest.</p>`,
     "next": endGame,
   },
   "witch-my-alcohol": {
     "text": `
 <div class="conversation">
-<p>— Je vous suis très reconnaissante de votre accueil ! vous exclamez-vous chaleureusement. Et, pour honorer la tradition, j’ai également une excellente boisson à vous offrir !</p>
+<p>"I’m very grateful for your welcome!" you answer warmly. "And, to honor tradition, I’d also like to present you with an excellent drink!"</p>
 </div>
 
-<p>La grosse femme paraît désarçonnée par votre geste. Après vous avoir remis la coupe — que vous n’avez aucune intention de boire — elle accepte néanmoins la calebasse que vous lui tendez. La débouchant, elle l’approche de ses narines et son expression s’éclaircit aussitôt. Oubliant tout le reste, elle porte la calebasse à ses lèvres et se met à boire goulûment l’alcool qu’elle contient.</p>
+<p>The fat woman seems disconcerted by your offer. After giving you the cup – that you have absolutely no intention of drinking – she nevertheless accepts the calabash you’re holding out to her. Uncorking it, she brings it close to her nostrils and a wide smile immediately appears on her face. Forgetting everything else, she brings the calabash to her mouth and starts guzzling the alcoholic beverage.</p>
     `,
     "next": (goToSection) => {
-      const sneakText = `Vous profitez de l’occasion pour vous glisser à l’intérieur de la hutte.`;
+      const sneakText = `You seize this occasion to slip into the hut.`;
 
       const choices = [
         {
-          "text": `Vous profitez de l’occasion pour vous enfuir.`,
+          "text": `You seize this occasion to run away.`,
           "action": () => {
             goToSection("witch-drunk-escape");
           },
@@ -245,20 +245,20 @@ const island5 = {
   },
   "in-the-witch-house": {
     "text": `
-<p>L’intérieur de la hutte est encombré d’un invraisemblable fatras d’objets étranges. Ils sont accrochés aux murs, suspendus au plafond, disposés sur des meubles en bois ou éparpillés sur le sol terreux. Mais vous n’avez pas le temps de les examiner tous, loin de là ! Le cri furieux de la grosse femme vient vous frapper les oreilles et vous l’entendez s’approcher à grands pas.</p>
+<p>The inside of the hut is full of an incredible clutter of weird objects, tied to the walls, hanging from the ceiling, scattered on the wooden furniture or lying on the floor. But you don’t have time to examine them all, far from it! An angry exclamation reaches your ears and you can hear the fat woman coming closer.</p>
 
 <div class="conversation">
-<p>— Sale petite voleuse ! Tu vas avoir ce que tu mérites !</p>
+<p>"Nasty little thief! You’re about to get what you deserve!"</p>
 </div>
 
-<p>Pressée par l’urgence, n’ayant aucune idée de ce qui peut vous être utile, vous posez par hasard les yeux sur les objets disposés sur une petite table voisine.</p>
+<p>Pressed for time, unable to guess what could be of use to you, you look at the items lying on the closest table.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Pressée par l’urgence, n’ayant aucune idée de ce qui peut vous être utile, vous posez par hasard les yeux sur les objets disposés sur une petite table voisine :`;
+      const text = ` Pressed for time, unable to guess what could be of use to you, you look at the items lying on the closest table:`;
 
-      const feathers = `une parure décoratives faite de plumes jaunes et rouges`;
-      const scepter = `un sceptre sinistre sculpté dans un os blanc comme la craie`;
-      const pearls = `une poignée de perles d’un noir profond`;
+      const feathers = `a decorative headdress made of yellow and red feathers`;
+      const scepter = `a sinister-looking scepter carved from a bone as white as chalk`;
+      const pearls = `a handful of perfectly black pearls`;
 
       const feathersAction = () => {
         goToSection("witch-feathers", `<p>${text} <span class="transition-sentence">${feathers}</span>, ${scepter} et ${pearls}.</p>`)
@@ -285,14 +285,14 @@ const island5 = {
   },
   "witch-feathers": {
     "text": `
-<p>Les plumes se désagrègent au contact de vos doigts. Vous n’avez pas le temps de faire un autre choix : la grosse femme vient d’entrer dans la hutte et se dirige droit sur vous en vociférant des menaces.</p>
+<p>The feathers disintegrate between your fingers. You don’t have time to make another choice: the fat woman has entered the hut and is heading straight for you, shouting threats.</p>
     `,
     "next": escapeTheWitch,
   },
   "witch-pearls": {
     "text": (flags) => {
       return `
-<p>Les perles glissent dans votre paume sans se faire prier. Vous n’avez pas le temps de vous intéresser à autre chose : la grosse femme vient d’entrer dans la hutte et se dirige droit sur vous en vociférant des menaces.</p>
+<p>You grab the pearls. You don’t have time to steal anything else: the fat woman has entered the hut and is heading straight for you, shouting threats.</p>
 
 ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
       `;
@@ -301,24 +301,24 @@ ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
   },
   "witch-sceptre": {
     "text": `
-<p>Une douleur glaciale vous foudroie lorsque vous refermez la main sur le sceptre en os. Toute énergie déserte instantanément vos membres et vous vous effondrez au sol, au bord de l’évanouissement.</p>
+<p>Chilling pain erupts in your body as soon as you grab the bone scepter. All strength immediately deserts your limbs and you fall to the ground, feeling close to fainting.</p>
 
-<p>Respirant avec difficulté, incapable du moindre mouvement, vous voyez la grosse femme s’approcher sans hâte et s’accroupir à côté de vous.</p>
+<p>Breathing with difficulty, unable to move a finger, you see the fat woman come closer and crouch next to you.</p>
 
 <div class="conversation">
-<p>— Voilà ce qui arrive quand on touche à n’importe quoi sans savoir ce que c’est, fait-elle en vous prenant le visage entre ses doigts épais. Mais, puisque tu t’intéresses à la sorcellerie, je vais prendre tout le temps nécessaire pour te montrer ce qu’elle permet d’accomplir.</p>
+<p>"That’s what happens when you touch something without knowing what it is," she says, grabbing your chin between her thick fingers. "But since you’re interested in witchcraft, I’m going to take plenty of time to show you what it can do."</p>
 </div>
 
-<p>La sorcière ne vous tuera pas et elle finira même par vous rendre une forme de liberté, mais ce que vous aurez subi entre ses mains ne vous laissera pas en mesure de poursuivre encore la moindre quête.</p>
+<p>The witch won’t kill you, and she’ll even release you after a while. But what you’ll suffer in her hands before that will make it impossible for you to pursue any quest.</p>
     `,
     "next": endGame,
   },
   "witch-window-escape": {
     "text": `
-<p>Vous vous précipitez vers la fenêtre. La grosse femme se lance à vos trousses, mais vous êtes beaucoup plus rapide et agile. En moins de temps qu’il n’en faut pour le dire, vous vous êtes glissée hors de la hutte par cette sortie improvisée.</p>
+<p>You run toward the window. The fat woman chases after you, but you’re much faster and more agile. It takes you but an instant to slip out of the hut through that improvised exit.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous dévalez ensuite la pente à toutes jambes, pressée de quitter cette île au plus vite.`;
+      const text = `You then run down toward the shore, eager to leave this island.`;
       const action = () => {
         updateFlag("time", flags.time+1);
         updateFlag("survivedWitchIsland", true);
@@ -334,48 +334,48 @@ ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
   },
   "witch-doomed-escape": {
     "text": `
-<p>Vous tournez les talons et dévalez la pente en courant, mais vous n’avez franchi qu’une faible distance lorsque le filet gris de la grosse femme, traversant l’air, vient vous envelopper et vous faire chuter brutalement. Vous essayez de vous en dépêtrer, mais il vous retient aussi étroitement prisonnière qu’un insecte enveloppé de soie par une araignée.</p>
+<p>You turn and start running down the slope, but you’ve only crossed a short distance when the fat woman’s grey net flies through the air and wraps around you, making you suddenly fall to the ground. You try to disentangle yourself from it, but it holds you tight, like an insect caught in a spider’s web.</p>
 
-<p>À peine capable du moindre mouvement, vous voyez la grosse femme s’approcher sans hâte et s’accroupir à côté de vous.</p>
+<p>Barely able to move, you see the fat woman come closer and crouch next to you.</p>
 
 <div class="conversation">
-<p>— Quelle jolie prise, fait-elle, vous prenant le visage entre ses doigts épais. Elle va certainement m’occuper pendant bien des jours.</p>
+<p>"What a nice catch," she says, grabbing your chin between her thick fingers. "I’m sure she’ll keep me occupied for quite a few days."</p>
 </div>
 
-<p>La sorcière ne vous tuera pas et elle finira même par vous rendre une forme de liberté, mais ce que vous aurez subi entre ses mains ne vous laissera pas en mesure de poursuivre encore la moindre quête.</p>
+<p>The witch won’t kill you, and she’ll even release you after a while. But what you’ll suffer in her hands before that will make it impossible for you to pursue any quest.</p>
     `,
     "next": endGame,
   },
   "witch-thief-doomed-escape": {
     "text": `
-<p>Échappant agilement aux doigts qui cherchent à vous saisir, vous jaillissez en courant hors de la hutte et entreprenez de dévaler la pente. Mais vous n’avez franchi qu’une faible distance lorsque le filet gris de la grosse femme, traversant l’air, vient vous envelopper et vous faire chuter brutalement. Vous essayez de vous en dépêtrer, mais il vous retient aussi étroitement prisonnière qu’un insecte enveloppé de soie par une araignée.</p>
+<p>You deftly dodge the hands trying to grab you, rush out of the hut and start running down the slope. But you’ve only crossed a short distance when the fat woman’s grey net flies through the air and wraps around you, making you suddenly fall to the ground. You try to disentangle yourself from it, but it holds you tight, like an insect caught in a spider’s web.</p>
 
-<p>À peine capable du moindre mouvement, vous voyez la grosse femme s’approcher sans hâte et s’accroupir à côté de vous.</p>
+<p> Barely able to move, you see the fat woman come closer and crouch next to you.</p>
 
 <div class="conversation">
-<p>— J’ai toujours beaucoup d’idées à expérimenter sur les gens qui me tombent entre les mains, fait-elle, vous prenant le visage entre ses doigts épais. Mais, pour une petite voleuse dans ton genre, je vais me donner plus de mal que d’ordinaire.</p>
+<p>"I always have plenty of ideas to experiment on the people I catch," she says, grabbing your chin between her thick fingers. "But for a little thief like you, I’ll put in extra effort."</p>
 </div>
 
-<p>La sorcière ne vous tuera pas et elle finira même par vous rendre une forme de liberté, mais ce que vous aurez subi entre ses mains ne vous laissera pas en mesure de poursuivre encore la moindre quête.</p>
+<p>The witch won’t kill you, and she’ll even release you after a while. But what you’ll suffer in her hands before that will make it impossible for you to pursue any quest.</p>
     `,
     "next": endGame,
   },
   "witch-master-thief": {
     "text": (flags) => {
       return ascensionText + `
-<p>Vous êtes sur le point de quitter votre cachette lorsqu’une grosse femme enroulée dans un paréo pourpre apparaît à peu de distance. Ses cheveux courts sont hérissés comme des piquants et, de la tête aux chevilles, elle porte de nombreux bijoux en or d’une élégance que vous avez rarement observée. A sa taille sont accrochés un sac à demi-plein, un filet gris et un petit couteau en métal.</p>
+<p>You’re about to leave your hiding place when a fat woman wrapped in a purple pareo appears a short distance away. Her short hair is bristling like spines and, from her head to her ankles, she wears many splendid pieces of golden jewelry. Tied around her waist, you observe a half-full bag, a grey fishing net and a small metal knife.</p>
 
-<p>Vous êtes soulagée de voir qu’elle semble totalement ignorer la présence en ce moment d’une intruse sur son île. Elle passe tout près de l’endroit où vous êtes dissimulée et s’éloigne ensuite dans une autre direction. Enhardie, vous attendez qu’elle ait disparu pour vous faufiler sans bruit jusqu’à la hutte et vous glisser à l’intérieur.</p>
+<p>You’re relieved to notice that she seems completely unaware of the presence of an outsider on her island. It isn’t long before she wanders away. Feeling bold, you wait until she’s disappeared, then noiselessly head for the hut and slip inside.</p>
 
-<p>Un invraisemblable fatras d’objets étranges accueille aussitôt votre regard. Ils sont accrochés aux murs, suspendus au plafond, disposés sur des meubles en bois ou éparpillés sur le sol terreux. Vous les examinez des yeux, vous abstenant prudemment de les toucher. Beaucoup d’entre eux dégagent une impression extrêmement désagréable.</p>
+<p>An incredible clutter of weird objects immediately greets your eyes; they’re tied to the walls, hanging from the ceiling, scattered on the wooden furniture or lying on the floor. You examine them, but make sure not to touch anything. Many of the objects give off an extremely disquieting impression.</p>
 
-<p>Vous êtes en train de regarder quelques perles d’un noir extrêmement profond lorsqu’un bruit de pas vous parvient aux oreilles. La grosse femme est déjà en train de revenir ! Il n’est plus question de poursuivre votre inspection, mais vous vous emparez néanmoins des perles noires, qui ont piqué votre intérêt.</p>
+<p>You’re looking at a handful of perfectly black pearls when you suddenly hear the sound of steps. The fat woman is already coming back! Finding yourself unable to continue your search, you decide to just grab the black pearls, as they’ve piqued your interest.</p>
 
 ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
       `;
     } ,
     "next": (goToSection, flags, updateFlag) => {
-      const text = `La grosse femme n’est plus qu’à quelques pas de la hutte.`;
+      const text = `The fat woman is now but a few steps away from the hut. `;
 
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
@@ -401,26 +401,26 @@ ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
   },
   "witch-thief-honeypot": {
     "text": `
-<p>La grosse femme apparaît à l’entrée de la hutte et ses yeux se posent instantanément sur vous.</p>
+<p>The fat woman enters the hut and immediately spots you.</p>
 
 <div class="conversation">
-<p>— Sale petite voleuse ! crache-t-elle. D’où sors-tu ?</p>
+<p>"Nasty little thief!" she spits. "How did you get here?"</p>
 </div>
 
-<p>Elle se dirige droit sur vous en vociférant des menaces.</p>
+<p>She heads straight for you, shouting threats.</p>
     `,
     "next": escapeTheWitch,
   },
   "witch-poor-thief": {
     "text": ascensionText + `
-<p>Vous vous glissez à pas prudents jusqu’à l’entrée de la hutte. Un coup d’œil rapide à l’intérieur vous apprend qu’elle est effectivement vide. Vous êtes sur le point d’y pénétrer lorsqu’un bruit de pas vous fait vous retourner : une grosse femme enroulée dans un paréo pourpre est en train de regagner la hutte. Ses cheveux courts sont hérissés comme des piquants et elle est chargée de nombreux bijoux en or. À sa taille, vous remarquez un filet gris et un petit couteau en métal. Il est trop tard pour regagner votre cachette, elle vous a vue.</p>
+<p>You cautiously approach the hut’s entrance. A quick glance inside reveals that it’s indeed empty. You’re about to enter when the sound of steps makes you turn: a fat woman wrapped in a purple pareo is heading back toward the hut. Her short hair is bristling like spines and, from her head to her ankles, she wears many splendid pieces of golden jewelry. Tied around her waist, you observe a half-full bag, a grey fishing net and a small metal knife. It’s too late to get back to your hiding place: she’s seen you.</p>
 
 <div class="conversation">
-<p>— Tiens, tiens, tiens, fait-elle d’une voix peu affable. J’étais partie chercher mon intruse et je la trouve sur le seuil de chez moi…</p>
+<p>"Well, well," she says in an unfriendly voice. "I was looking for the intruder and I find her on my doorstep…"</p>
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const inText = `Vous vous engouffrez à l’intérieur de la hutte.`;
+      const inText = `You rush inside the hut.`;
       const choices = [
         {
           "text": inText,
@@ -429,7 +429,7 @@ ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
           },
         },
         {
-          "text": `Vous vous enfuyez dans la direction d’où vous êtes venue.`,
+          "text": `You run down the slope toward the shore.`,
           "action": () => {
             updateFlag("caughtInAWitchNet", true);
             goToSection("witch-doomed-escape");
@@ -445,15 +445,15 @@ ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
   "witch-versus-root": {
     "text": (flags) => {
       return `
-<p>Alors que vous cherchez un moyen de vous enfuir, les membres de la figurine de bois sont saisis de mouvements convulsifs. Sous vos yeux ébahis, la création du crocodile se lève sur ses deux jambes et se met à grandir et à changer de couleur jusqu’à ce que vous ayez devant vous une réplique très exacte de vous-même !</p>
+<p>As you look around for a way to escape, the limbs of the wooden figurine suddenly start quivering. Under your astonished eyes, the creation of the crocodile stands on its legs, then grows up and changes color until it becomes a perfect copy of yourself!</p>
 
-<p>Votre double vous adresse un sourire amusé, puis elle jaillit hors de la hutte, passant juste devant la grosse femme qui arrivait. Celle-ci n’est surprise qu’un instant : s’emparant du filet gris qui se trouve à sa taille, elle le jette après l’intruse d’un geste furieux. Vous étant approchée de la porte de  la hutte, vous voyez le filet traverser l’air avec une précision parfaite et s’enrouler étroitement autour de votre sosie. Prise au piège, la figurine reprend aussitôt son aspect d’origine, puis se désagrège en un nuage de poussière. Saisissant l’occasion, vous passez en courant à côté de la grosse femme ébahie, vous emparez au passage du filet et continuez sans ralentir votre fuite jusqu’à ce que vous ayez regagné votre pirogue.</p>
+<p>Your twin gives you an amused smile, then springs out of the hut right under the fat woman’s nose. The woman is only surprised for a moment, then she grabs the grey net tied to her waist and throws it after the intruder. Peering through the hut’s entrance, you see the net fly through the air with perfect precision and tightly wrap itself around your copy. Trapped, the figurine immediately returns to its original shape, then crumbles to dust. Seizing the occasion, you rush out of the hut under the astonished eyes of the fat woman, grab the net, and flee as fast as you can until you’ve returned to your canoe.</p>
 
 ${itemAcquisitionFeedback(flags.inventory.net.name)}
       `;
     },
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous vous hâtez de vous éloigner de cette île.`;
+      const text = `You quickly move away from the island.`;
       const action = () => {
         updateFlag("time", flags.time+1);
         updateFlag("survivedWitchIsland", true);
@@ -469,12 +469,12 @@ ${itemAcquisitionFeedback(flags.inventory.net.name)}
   },
   "witch-drunk-escape": {
     "text": `
-<p>Vous dévalez la pente à toutes jambes. Derrière vous s’élève le cri furieux de la grosse femme, mais vous vous glissez à cet instant derrière un épais buisson qui vous dissimule à sa vue.</p>
+<p>You run down the slope as fast as you can. Behind you, the fat woman is yelling angrily, but you escape from her sight by slipping behind a thick bush.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const doll = flags.inventory.doll;
       if (doll.acquired && !doll.used) {
-        const text = `Avant que vous ne repreniez votre course, il se passe quelque chose de totalement inattendu.`;
+        const text = `Just before you can resume your flight, something completely unexpected happens.`;
         const action = () => {
           useItem("doll", updateFlag);
           acquireItem("net", updateFlag);
@@ -486,7 +486,7 @@ ${itemAcquisitionFeedback(flags.inventory.net.name)}
         );
       }
 
-      const text = `Vous poursuivez votre fuite sans ralentir, regagnez votre pirogue et vous hâtez de vous éloigner de cette île.`;
+      const text = `You resume your flight without wasting any time, get back to your canoe, and quickly move away from the island.`;
       const action = () => {
         updateFlag("time", flags.time+1);
         updateFlag("survivedWitchIsland", true);
@@ -503,15 +503,15 @@ ${itemAcquisitionFeedback(flags.inventory.net.name)}
   "witch-versus-root-alt": {
     "text": (flags) => {
       return `
-<p>Alors que vous vous apprêtez à poursuivre votre descente, les membres de la figurine de bois sont saisis de mouvements convulsifs. Sous vos yeux ébahis, la création du crocodile se lève sur ses deux jambes et se met à grandir et à changer de couleur jusqu’à ce que vous ayiez devant vous une réplique très exacte de vous-même !</p>
+<p>As you were about to resume running toward the shore, the limbs of the wooden figurine suddenly start quivering. Under your astonished eyes, the creation of the crocodile stands on its legs, then grows up and changes color until it becomes a perfect copy of yourself!</p>
 
-<p>Votre double vous adresse un sourire amusé, puis elle sort de derrière le buisson et se met à courir en terrain exposé. Un instant plus tard, vous voyez le filet gris de la grosse femme traverser l’air avec une précision parfaite et s’enrouler étroitement autour d’elle. Prise au piège, la figurine reprend aussitôt son aspect d’origine, puis se désagrège en un nuage de poussière. Saisissant l’occasion, vous courez vous emparer du filet, puis reprenez votre fuite. Quelques instants plus tard, vous avez regagné votre pirogue.</p>
+<p>Your twin gives you an amused smile, then springs out from behind the bush and starts running in plain sight of the fat woman. A moment later, you see the woman’s grey net fly through the air with perfect precision and tightly wraps itself around your copy. Trapped, the figurine immediately returns to its original shape, then crumbles to dust. Seizing the occasion, you run toward the net and grab it, then resume your flight. It doesn’t take you long to get back to your canoe.</p>
 
 ${itemAcquisitionFeedback(flags.inventory.net.name)}
       `;
     },
     "next": (goToSection, flags, updateFlag) => {
-      const text = `Vous vous hâtez de vous éloigner de cette île.`;
+      const text = `You quickly move away from the island.`;
       const action = () => {
         updateFlag("time", flags.time+1);
         updateFlag("survivedWitchIsland", true);
