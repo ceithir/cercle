@@ -515,6 +515,18 @@ ${intro}
         {
           "text": `You quicken your pace.`,
           "action": () => {
+            const doll = flags.inventory.doll;
+            if (doll.acquired && !doll.used) {
+              useItem("doll", updateFlag);
+              return goToSection("trial-doll");
+            }
+
+            const amulet = flags.inventory.dolphin;
+            if (amulet.acquired && !amulet.used) {
+              useItem("dolphin", updateFlag);
+              return goToSection("trial-early-amulet");
+            }
+
             goToSection("trial-straightforward");
           },
         },
@@ -535,35 +547,10 @@ ${intro}
     "text": `
 <p>You increase your speed and are soon swimming as fast as you can. Barely more than a third of the distance remains before you. How could anyone catch up to you now?</p>
 
-<p>And yet, a heavy foreboding has crept in your mind and now keeps growing, every time you finish a stroke, every time you take a new breath. Though you don't understand why, it feels like your time is quickly running out.</p>
+<p>And yet, a heavy foreboding has crept in your mind and now keeps growing, every time you finish a stroke, every time you take a new breath.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const text = `Though you don't understand why, it feels like your time is quickly running out.`;
-
-      const doll = flags.inventory.doll;
-      if (doll.acquired && !doll.used) {
-        const action = () => {
-          useItem("doll", updateFlag);
-          goToSection("trial-doll", coatSentence(text));
-        };
-
-        return (
-          <Funnel text={text} action={action} conditional={true} />
-        );
-      }
-
-      const amulet = flags.inventory.dolphin;
-      if (amulet.acquired && !amulet.used) {
-        const action = () => {
-          useItem("dolphin", updateFlag);
-          goToSection("trial-early-amulet", coatSentence(text));
-        };
-
-        return (
-          <Funnel text={text} action={action} conditional={true} />
-        );
-      }
-
       const action = () => {
         updateFlag("eatenByRaiahui", true);
         goToSection("raiahui-good-end", coatSentence(text));
