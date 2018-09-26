@@ -373,7 +373,7 @@ const island6 = {
 <p>"Maybe you doubt the truth of my words?" the crocodile says. "You’re still young and ignorant. I’ll show you what I can do."</p>
 </div>
 
-<p>His huge body starts moving. You tense, frightened, but he’s not heading in your direction. Its powerful jaws close on a nearby root and tear off part of it. The crocodile seemingly gnaw on the thick piece of wood for a while, then he turns back toward you and spits it on the sand.</p>
+<p>His huge body starts moving. You tense, frightened, but he’s not heading in your direction. His powerful jaws close on a nearby root and tear off part of it. The crocodile seemingly gnaw on the thick piece of wood for a while, then he turns back toward you and spits it on the sand.</p>
 
 <div class="conversation">
 <p>"Look! Here’s one of my powers!"</p>
@@ -414,7 +414,7 @@ const island6 = {
   },
   "crocodile-branch": {
     "text": `
-<p>You quickly walk toward the figurine, holding the branch before you like a spear. The crocodile remains still until you bend down to pick up the figurine. Then it rushes toward you with terrifying suddenness. Its frightful jaws close on the branch and violently rip it out of your hands, making you lose your balance and fall. You try to get up, but it’s too late: though he seldom moves, the crocodile is capable of great speed when it comes to catching a prey. For the first time in many years, he’s about to feast on human flesh.</p>
+<p>You quickly walk toward the figurine, holding the branch before you like a spear. The crocodile remains still until you bend down to pick up the figurine. Then he rushes toward you with terrifying suddenness. His frightful jaws close on the branch and violently rip it out of your hands, making you lose your balance and fall. You try to get up, but it’s too late: though he seldom moves, the crocodile is capable of great speed when it comes to catching a prey. For the first time in many years, he’s about to feast on human flesh.</p>
     `,
     "next": endGame,
   },
@@ -597,7 +597,7 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
 <p>"Enough singing. Watch now."</p>
 </div>
 
-<p> His huge body starts moving. You tense, frightened, but he’s not heading in your direction. Its powerful jaws close on a nearby root and tear off part of it. The crocodile seemingly gnaw on the thick piece of wood for a while, then he turns back toward you and spits it on the sand.</p>
+<p> His huge body starts moving. You tense, frightened, but he’s not heading in your direction. His powerful jaws close on a nearby root and tear off part of it. The crocodile seemingly gnaw on the thick piece of wood for a while, then he turns back toward you and spits it on the sand.</p>
 
 <div class="conversation">
 <p>"Look! Here’s one of my powers!"</p>

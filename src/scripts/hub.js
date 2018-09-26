@@ -164,7 +164,7 @@ Approaching this island again is out of the question!
     },
     {
       "key": "island-7",
-      "name": `The islet next to the island that will be the arrival point of the race`,
+      "name": `The islet next to the island of the test`,
       "path": "M595 260 C 605 240, 625 210, 650 250 S 580 290, 595 260",
       "harbor": {"x": 605, "y": 265},
       "textPosition": {"x": 590, "y": 265},
@@ -496,7 +496,7 @@ ${crocodileIslandDescription}
 
 <p>You glance at the sun's position: you haven't paid close attention to the passage of time, but the afternoon is indeed about to end.</p>
 
-<p>You get in your canoe and tell the boy - who doesn't have anything on him but his curved ivory knife - to sit before you. Then, plunging your paddle into the water, you head for the island where the tribe lives.</p>
+<p>You get in your canoe and tell the boy - who you notice is carrying his curved ivory knife - to sit before you. Then, plunging your paddle into the water, you head for the island where the tribe lives.</p>
         `;
       }
 
@@ -551,7 +551,7 @@ ${crocodileIslandDescription}
 
 <p>You stop your canoe and glance at the sun's position: you haven't paid close attention to the passage of time, but the afternoon is indeed about to end.</p>
 
-<p>You help the boy - who's carrying his curved ivory knife - climb aboard your canoe, then you head toward the island where the tribe lives.</p>
+<p>You help the boy - who's you notice is carrying his curved ivory knife - climb aboard your canoe, then you head toward the island where the tribe lives.</p>
     `,
     "next": function(goToSection) {
       const text = `Once you're back to the very beach you departed from this morning, you leave your canoe and follow your young guide to the place from where the race will start.`;
@@ -593,7 +593,7 @@ ${crocodileIslandDescription}
           },
         },
         {
-          "text": `You decide to give up on the race and to leave the atoll.`,
+          "text": `You decide to give up on the race and leave the atoll.`,
           "action": () => {
             updateFlag("triedToFlee", true);
             goToSection("out-of-here");
@@ -612,7 +612,7 @@ ${crocodileIslandDescription}
 
 <p>Lost in your thoughts, you suddenly hear a splashing sound right next to you, and horrifying pain pierces through your arm. You're brutally pulled out of your canoe and into the water, that closes over your head.</p>
 
-<p>Once that flurry of movements has ended, the surface of the water quickly becomes calm again. Deprived of impetus, your canoe is floating in an idle, carefree manner. Around it, the reflection of the sun on the waves is slowly turning to sparkling rubies.</p>
+<p>Once that flurry of movements has ended, the surface of the water quickly becomes calm again. Deprived of momentum, your canoe is floating idly. Around it, the reflection of the sun on the waves is slowly turning to sparkling rubies.</p>
     `,
     "next": endGame,
   },
@@ -654,7 +654,7 @@ ${crocodileIslandDescription}
       }
 
       if (flags.wellRested) {
-        statusComment = `<p class="text-conditional">This nap has set you back to rights. You feel in good shape, ready for anything.</p>`;
+        statusComment = `<p class="text-conditional">This nap has set you back to rights. You feel in great shape, ready for anything.</p>`;
       }
 
       return `
@@ -681,7 +681,7 @@ ${statusComment}
   "look-at-pearls": {
     "text": (flags) => {
       return `
-<p>The pearls were not created by a mollusk, at least not by any mollusk you know of. They feel strange: uneven, rough, mineral. And they crumble easily between your fingers, producing dust darker than a moonless night.</p>
+<p>The pearls were not produced by shellfish, at least not by any kind of shellfish you know of. They feel strange: uneven, rough, mineral. And they crumble easily between your fingers, producing dust darker than a moonless night.</p>
 
 <p>As you wash your hand, you notice the water becoming nearly opaque around your fingers. You decide to check what would happen if you immersed one of the pearls completely.</p>
 

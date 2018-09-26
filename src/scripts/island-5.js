@@ -27,7 +27,7 @@ const escapeTheWitch = (goToSection, flags, updateFlag) => {
 };
 
 const sneakingIntoIslandText = `
-<p>If there’s anything of interest on this island, it seems likely that it’ll be found in the hut on the top. But the many fetishes set on the slopes are worrying: you remember stories about sorcerers creating enchanted statues to keep watch for intruders.</p>
+<p>If there’s anything of interest on this island, it seems likely that it’ll be found in the hut at the top. But the many fetishes set on the slopes are worrying: you remember stories about sorcerers creating enchanted statues to keep watch for intruders.</p>
 
 <p>Casting a cautious glance upward, you deem it possible to reach the top without exposing yourself to the motionless eyes of the fetishes. The vegetation of the island is not very high, but it’s dense enough.</p>
 
@@ -71,7 +71,7 @@ const island5 = {
     "text": (flags) => {
       if (secondTimeToIsland("island-5", flags)) {
         return `
-<p>The dark wood statues still stand guard silently on the slopes of the island. The figure you thought you spotted near the round hut on the top is nowhere to be seen.</p>
+<p>The dark wood statues still stand guard silently on the slopes of the island. The figure you thought you spotted near the round hut at the top is nowhere to be seen.</p>
         `;
       }
 
@@ -365,7 +365,7 @@ ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
       return ascensionText + `
 <p>You’re about to leave your hiding place when a fat woman wrapped in a purple pareo appears a short distance away. Her short hair is bristling like spines and, from her head to her ankles, she wears many splendid pieces of golden jewelry. Tied around her waist, you observe a half-full bag, a grey fishing net and a small metal knife.</p>
 
-<p>You’re relieved to notice that she seems completely unaware of the presence of an outsider on her island. It isn’t long before she wanders away. Feeling bold, you wait until she’s disappeared, then noiselessly head for the hut and slip inside.</p>
+<p>You’re relieved to notice that she seems completely unaware of the presence of an outsider on her island. Before long, she wanders away. Feeling bold, you wait until she’s disappeared, then noiselessly head for the hut and slip inside.</p>
 
 <p>An incredible clutter of weird objects immediately greets your eyes; they’re tied to the walls, hanging from the ceiling, scattered on the wooden furniture or lying on the floor. You examine them, but make sure not to touch anything. Many of the objects give off an extremely disquieting impression.</p>
 

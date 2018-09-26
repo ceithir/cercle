@@ -113,7 +113,7 @@ export const endGame = function(goToSection, flags, updateFlag, reset, quit) {
 }
 
 const goodEndMessage = function(flags) {
-  const achievementsText = `It was rough, but you’ve succeeded:`;
+  const achievementsText = `It wasn't easy, but you’ve done it:`;
 
   return (
     <div className="ending-message">

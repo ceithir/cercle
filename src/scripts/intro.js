@@ -139,7 +139,7 @@ const intro = {
   "prelude": {
     "text":
 `
-<p>You paddle regularly, not thinking or dreaming about anything, focused only on the purely physical sensations provided by the shift of your muscles, the moist air filling your nostrils and the burning touch of the sun on your naked back. Your small outrigger canoe creates short-lived, insignificant trails on the surface of the immense ocean, barely disturbing its peaceful waves. Above your head, the birds are dots in the azure sky, tiny yet clearly visible. Watching their flight is what made you suspect the existence of an island in this direction. Your guess was confirmed around midday, when the island's flat outline became visible against the horizon. If you judge the distance correctly, you should reach it long before sunset.</p>
+<p>You paddle steadily, not thinking or dreaming about anything, focused only on the purely physical sensations provided by the shift of your muscles, the moist air filling your nostrils and the burning touch of the sun on your naked back. Your small outrigger canoe creates short-lived, insignificant trails on the surface of the immense ocean, barely disturbing its peaceful waves. Above your head, the birds are dots in the azure sky, tiny yet clearly visible. Watching their flight is what made you suspect the existence of an island in this direction. Your guess was confirmed around midday, when the island's flat outline became visible against the horizon. If you judge the distance correctly, you should reach it long before sunset.</p>
 
 <p>As you get closer, and the pale line of a beach appears between the dark blue of the water and the green abundance of the trees, your mind leaves its state of detachment and considers the near future. Will the island turn out to be inhabited? Ever since you left behind you the small part of the archipelago you were familiar with, you've often made stopovers in completely deserted places. You weren't used to such solitude before you embarked on this journey, and though it hasn't turned out to be as unpleasant as you might have thought, it becomes wearisome when it remains uninterrupted for too long.</p>
 
@@ -147,7 +147,7 @@ const intro = {
 
 <p>And then? Unless, by extraordinary happenstance, this island turns out to hold everything you're looking for, you'll pick a new direction and resume your wandering.</p>
 
-<p>Your name is Mananuiva and, since the day of your birth, the wet season has returned seventeen times. During all those years, you've known nothing but your home island, its close neighbors and the waves surrounding them. But you've finally reached the age when the young men and women of your tribe perform their rite of passage to adulthood: taking a canoe and sailing far away, alone. Tradition calls it "heading for the horizon" and many legends start with a young boy discovering a mysterious, faraway island during the rite. These days, truth be told, adolescents content themselves with going to an island less than a day away, where they have fun as best they can for a week or so. Flings and romance are common during such stays, and the rite is responsible for many marriages between people that might otherwise have never met.</p>
+<p>Your name is Mananuiva and, since the day of your birth, the wet season has returned seventeen times. During all those years, you've known nothing but your home island, its close neighbors and the waves surrounding them. But you've finally reached the age when the young men and women of your tribe perform their rite of passage to adulthood: taking a canoe and sailing far away, alone. Tradition calls it "heading for the horizon" and many legends begin with a young boy discovering a mysterious, faraway island during the rite. These days, truth be told, adolescents content themselves with going to the islands located less than a day away, where they have fun as best they can for a week or two. Flings and romance are common during such stays, and the rite is responsible for many marriages between people that might otherwise have never met.</p>
 
 <p>During the months that preceded it, you spent many evenings daydreaming about your own rite of passage, vaguely hoping that it would teach you something invaluable about yourself and the entire world. And, on the day of your departure, your home island hadn't yet disappeared behind you when you did have a revelation... the revelation that the adult life waiting for you after this journey held nothing that you found promising. You don't want to become a reasonable woman, to marry and have many children, to have a life like your parents or your five older siblings.</p>
 
@@ -163,7 +163,7 @@ const intro = {
 
 <div class="conversation">
 <p>"Hello," she says cheerfully. "Do you come from afar?"</p>
-<p>"I guess," you answer after a moment of surprise. "Do you want to climb aboard?"</p>
+<p>"I guess I do," you answer after a moment of surprise. "Do you want to climb aboard?"</p>
 <p>"Wait just a moment. I dropped something as I was surfacing, and I'd rather get it back right now.</p>
 </div>
 
@@ -361,15 +361,15 @@ ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time s
 
 <img src="${feastImage}" class="img-responsive text-img tall left" alt=""/>
 
-<p>All the tribe seems to have gathered for the occasion: not quite a hundred people, half of them children and adolescents. Eager to make a good impression, you've put on the brightly colored pareo you've brought along, but it probably wasn't necessary: even the women wear little more than simple loincloths, and you notice only a few basic ornaments here and there. You're met with many curious looks.</p>
+<p>All the tribe seems to have gathered for the occasion: not quite a hundred people, half of them children and adolescents. Eager to make a good impression, you've put on the brightly colored pareo usually stored aboard your canoe, but that probably wasn't necessary: even the women wear little more than simple loincloths, and you notice only a few basic ornaments here and there. You're met with many curious looks.</p>
 
 <p>The feast begins without further ado. As the guest of honor, you're invited to help yourself before anyone else, much to the satisfaction of your stomach. You're given a platen woven out of palm leaves, and you make your choice among an assortment of bird meat, turtle meat, eggs, crustaceans, shellfish and a few fruits. A green coconut with a pierced top is brought to you so you can quench your thirst.</p>
 
-<p>Once you've sat down, the members of the tribe help themselves in turn, with a chaotic enthusiasm that suggests such feasts are not common. Except for the very young children, you notice that they all own ivory knives similar to Raiahui's - curved and slightly serrated - that they wield with great dexterity. Judging from the ease with which they pierce coconuts, remove shells and cut meat, those tools must be incomparably sharper than your bone knife.</p>
+<p>Once you've sat down, the members of the tribe help themselves in turn, with a chaotic enthusiasm that suggests such feasts are not common. Except for the very young children, you notice that they all own ivory knives similar to Raiahui's - curved and slightly serrated - and wield them with great dexterity. Judging from the ease with which they pierce coconuts, remove shells and cut meat, those tools must be incomparably sharper than your bone knife.</p>
 
 <p>You quickly understand why there's such an abundance of food as you watch the gluttony of the people surrounding you. They don't even bother to spit out the small pieces of shell and bird bones that crack under their teeth.</p>
 
-<p>Raiahui has left you and is currently talking with other adolescents, who're congratulating her - some with obvious envy - for soon becoming an adult. Quite obviously, they're convinced that she'll win tomorrow's race!</p>
+<p>Raiahui has left you and is currently surrounded by other adolescents, who're congratulating her - some with obvious envy - for soon becoming an adult. Quite obviously, they're convinced that she'll win tomorrow's race!</p>
 
 <p>This feast is an excellent occasion to learn more about the tribe, though you clearly won't have time to chat with everybody.</p>
 `
@@ -487,7 +487,7 @@ ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time s
 <p>"Can I borrow your knife?" you ask Runuhati.</p>
 </div>
 
-<p>The girl opens wide eyes, looking almost panicked.</p>
+<p>Her eyes open wide and she looks almost panic-struck.</p>
 
 <div class="conversation">
 <p>"I... No... It's..."</p>
@@ -553,7 +553,7 @@ ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time s
 `
     ,
     "next": function(goToSection) {
-      const hubText = `You head for your canoe to explore the rest of the island.`;
+      const hubText = `You head for your canoe to explore the rest of the atoll.`;
 
       const choices = [
         {

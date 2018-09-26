@@ -44,7 +44,7 @@ const island3 = {
 <p>You barely have time to land your canoe on the beach before the woman turns to face you with a furious expression:</p>
 
 <div class="conversation">
-<p>"Are you people going to leave me in peace? I thought I’d…"</p>
+<p>"Are you people ever going to leave me in peace? I thought I’d…"</p>
 </div>
 
 <p>She pauses as she realizes that you're unknown to her. But she quickly gets over her surprise, and the hostility in her voice barely diminishes:</p>
@@ -207,14 +207,14 @@ const island3 = {
 <div class="conversation">
 <p>"Even with a solid lead," she adds after a moment, "you’ll need to pay close attention to your surroundings and to react quickly to the unexpected. There’s no infallible advice I can give you, but I’ve just remembered an object that could be of use to you. Like all the members of the tribe, I’ve undergone this rite of passage, but the outsider I had to face was not an ordinary opponent: he had an amulet that made him an exceptional swimmer."</p>
 <p>"You mean that he was using a magical amulet?" you ask. "Wouldn’t that be cheating?"</p>
-<p>"Don’t worry about playing fair. Other than the fact that you have to swim from one island to the other, this race barely has any rule. It’s cunning that makes victory possible. And that’s how it happened back then: I stole my opponent’s pendant and, as I could neither use it nor destroy it, I simply buried it somewhere. When the race happened, I won easily.</p>
+<p>"Don’t worry about playing fair. Other than the fact that you have to swim from one island to the other, this race barely has any rule. It’s cunning that makes victory possible. And that’s what made a difference back then: I stole my opponent’s pendant and, since I could neither use it nor destroy it, I simply buried it somewhere. When the race happened, I won easily.</p>
 <p>"And the pendant?"</p>
 <p>"I’ve never retrieved it. It’s buried in the middle of the tiny island at the other end of the atoll."</p>
 <p>"But you told me that it wouldn’t work for you…"</p>
-<p>"I’m not really compatible with it, but I’m sure you won’t have the same problem. It may have lost some of its power – I’ve damaged it somewhat – but I sincerely believe that it can be useful to you."</p>
+<p>"I’m not really compatible with it, but I’m sure you won’t have the same problem. It may have lost some of its power – I’ve damaged it somewhat – but I genuinely believe that it can be of use to you."</p>
 </div>
 
-<p>A strange smile shows on Faanarua’s lips.</p>
+<p>A strange smile appears on Faanarua’s lips.</p>
 
 <div class="conversation">
 <p>"I’ve told Raiahui the story of that pendant, but I’m sure she won't recognize it, even if she sees it around your neck. Attention to details is one of the many things she didn’t inherit from me."</p>

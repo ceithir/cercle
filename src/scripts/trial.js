@@ -165,7 +165,7 @@ const trial = {
 
       const net = flags.inventory.net;
       if (net.acquired && !net.used) {
-        items += `<p class="text-conditional">You've however wrapped the witch's net around your waist, as you expect that it could be very useful to you.</p>`;
+        items += `<p class="text-conditional">You've however tied the witch's net around your waist, as you expect that it could be very useful to you.</p>`;
       }
 
       const doll = flags.inventory.doll;
@@ -199,11 +199,11 @@ const trial = {
 
 ${equipment}
 
-<p>You begin by getting rid of your clothes, as they would unnecessarily slow you down.</p>
+<p>You get rid of your clothes, as they would unnecessarily slow you down.</p>
 
 ${items}
 
-<p>Then you start stretching, more to remind Raiahui that you're taking this trial seriously than out of any real need.</p>
+<p>You stretch a bit, more to remind Raiahui that you're taking this trial seriously than out of any real need.</p>
       `;
     },
     "next": preludeNext,
@@ -296,7 +296,7 @@ ${items}
 <p>The girl giggles. Judging from the look on her face, her calabash must already be rather empty.</p>
 
 <div class="conversation">
-<p>"Don't worry, don't worry," she says, giving you a clumsy pat on the shoulder. "Raiahui's going to start the race, but you don't need to wait for her. Getting a head start can be useful!</p>
+<p>"Don't worry, don't worry," she says, giving you a clumsy pat on the shoulder. "Raiahui's going to start the race, but you don't need to wait for her. Getting a head start can be useful!"</p>
 </div>
 
 <p>You don't get anything else out of her.</p>
@@ -515,18 +515,6 @@ ${intro}
         {
           "text": `You quicken your pace.`,
           "action": () => {
-            const doll = flags.inventory.doll;
-            if (doll.acquired && !doll.used) {
-              useItem("doll", updateFlag);
-              return goToSection("trial-doll");
-            }
-
-            const amulet = flags.inventory.dolphin;
-            if (amulet.acquired && !amulet.used) {
-              useItem("dolphin", updateFlag);
-              return goToSection("trial-early-amulet");
-            }
-
             goToSection("trial-straightforward");
           },
         },
@@ -547,10 +535,35 @@ ${intro}
     "text": `
 <p>You increase your speed and are soon swimming as fast as you can. Barely more than a third of the distance remains before you. How could anyone catch up to you now?</p>
 
-<p>And yet, a heavy foreboding has crept in your mind and now keeps growing, every time you finish a stroke, every time you take a new breath.</p>
+<p>And yet, a heavy foreboding has crept in your mind and now keeps growing, every time you finish a stroke, every time you take a new breath. Though you don't understand why, it feels like your time is quickly running out.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const text = `Though you don't understand why, it feels like your time is quickly running out.`;
+
+      const doll = flags.inventory.doll;
+      if (doll.acquired && !doll.used) {
+        const action = () => {
+          useItem("doll", updateFlag);
+          goToSection("trial-doll", coatSentence(text));
+        };
+
+        return (
+          <Funnel text={text} action={action} conditional={true} />
+        );
+      }
+
+      const amulet = flags.inventory.dolphin;
+      if (amulet.acquired && !amulet.used) {
+        const action = () => {
+          useItem("dolphin", updateFlag);
+          goToSection("trial-early-amulet", coatSentence(text));
+        };
+
+        return (
+          <Funnel text={text} action={action} conditional={true} />
+        );
+      }
+
       const action = () => {
         updateFlag("eatenByRaiahui", true);
         goToSection("raiahui-good-end", coatSentence(text));
@@ -567,7 +580,7 @@ ${intro}
   },
   "trial-doll": {
     "text": `
-<p>The figurine you've tied to your waist starts thrashing about wildly. Fearing some witchcraft, you try to get rid of it, but it frees itself and grabs your arm. Suddenly, its weight becomes considerable: you barely have time to take a breath in before it pulls you under the surface.</p>
+<p>As you increase your speed, the figurine you've tied to your waist starts thrashing about wildly. Fearing some witchcraft, you try to get rid of it, but it frees itself and grabs your arm. Suddenly, its weight becomes considerable: you barely have time to take a breath in before it pulls you under the surface.</p>
 
 <p>You struggle, but the figurine has already released you and disappeared.</p>
     `,
@@ -584,7 +597,7 @@ ${intro}
   },
   "trial-early-amulet": {
     "text": `
-<p>A multitude of barely audible sounds is reaching you, filling your head until it feels nearly saturated. In a way you couldn't possibly explain, you suddenly possess a new way of perceiving the things that surround you. You're perfectly aware of the sandy bottom of the channel, detecting all the coral reefs that cover it without needing to see them.</p>
+<p>As you increase your speed, a multitude of barely audible sounds starts reaching you, filling your head until it feels nearly saturated. In a way you couldn't possibly explain, you suddenly possess a new way of perceiving the things that surround you. You're perfectly aware of the sandy bottom of the channel, detecting all the coral reefs that cover it without needing to see them.</p>
 
 <p>But more importantly, you sense a shape that's located behind you and keeps getting closer. You can't interpret its sleek forms, but they fill you with instinctive dread.</p>
 
@@ -609,7 +622,7 @@ ${intro}
 
 <img src="${squaleImage}" class="img-responsive text-img" alt=""/>
 
-<p>Propelled by its powerful tail, her striped body is more comfortable in water than you can ever be. Her mouth seems almost harmless for now, but you've seen the jaws of tiger sharks before, as well as the many sharp teeth that cover them.</p>
+<p>Propelled by its powerful tail, her striped body is more comfortable in water than you could ever be. Her mouth seems almost harmless for now, but you've seen the jaws of tiger sharks before, as well as the many sharp teeth that cover them.</p>
 
 <p>You get back to the surface and take a breath in. Horrible dread has filled your entire being, but you're still thinking clearly. A third of the distance still separates you from the islet that's your arrival point. Below, a few coral reefs emerge from the sandy bottom of the channel, here and there. To your right, closer to the ocean, the reefs become much larger.</p>
     `,
@@ -642,7 +655,7 @@ ${intro}
   },
   "trial-rush": {
     "text": `
-<p>Panic fills your limbs with searing strength and you swim faster than you ever have. But Raiahui's speed remains much higher. A distressed glance behond you reveals that she's about to catch up to you.</p>
+<p>Panic fills your limbs with searing strength and you swim faster than you ever have. But Raiahui's speed remains much higher. A distressed glance behind you reveals that she's about to catch up to you.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -1110,16 +1123,16 @@ ${intro}
   },
   "victory": {
     "text": `
-<p>The adults of the tribe are gathered in a dense circle, and studying you with much closer attention than they did yesterday. You're too exhausted to really feel afraid anymore; anyway, their faces show no signs of hostility, merely deep curiosity.</p>
+<p>The adults of the tribe are gathered in a thick circle, and studying you with much closer attention than they did yesterday. You're too exhausted to really feel afraid anymore; anyway, their faces show no signs of hostility, merely deep curiosity.</p>
 
 <div class="conversation">
 <p>"You've deserved our respect, Mananuiva," Ataroa says with almost perceptible admiration. "It's not often that an outsider wins one of our races."</p>
 </div>
 
-<p>A few cutting remarks come to your mind, but even if you dared to speak them, you feel simply too tired to do so.</p>
+<p>A few cutting remarks come to your mind, but even if you dared to speak them, you simply feel too tired to do so.</p>
 
 <div class="conversation">
-<p>"You're free to go," the chieftain adds, and he points at your canoe, lying at the other end of the islet with a new mast and a sail quivering in the evening breeze. "We've taken care of your craft and filled it with the supplies you may need. As for your reward…</p>
+<p>"You're free to go," the chieftain adds, and he points at your outrigger canoe, waiting at the other end of the islet with a new mast and a sail quivering in the evening breeze. "We've taken care of your craft and filled it with the supplies you may need. As for your reward…"</p>
 </div>
 
 <p>He gestures and another man approaches, bearing a bowl full of a greyish beverage.</p>
@@ -1128,25 +1141,25 @@ ${intro}
 <p>"The Foam of the Deep is yours. There's only one ingredient left to add, and we'll take care of that right now. It's normally provided by the one who'll drink the Foam, but given the circumstances, it's only fair that it comes from somebody else."</p>
 </div>
 
-<p>Two adults come forward, holding an obviously terrified Raiahui between them. Ataroa grabs her wrist and cuts her palm deeply with his knife. Bloods trickles into the bowl, and the beverage immediately take a bright silvery hue.</p>
+<p>Two adults come forward, holding an obviously terrified Raiahui between them. Ataroa grabs her wrist and cuts her palm deeply with his knife. Blood trickles into the bowl, and the beverage immediately takes a bright silvery hue.</p>
 
 <div class="conversation">
-<p>"The Foam of the Deep is ready," says Ataroa, presenting it to you. "Drink it this evening, and you'll visit the world of spirits during your sleep.</p>
+<p>"The Foam of the Deep is ready," says Ataroa, presenting it to you. "Drink it this evening, and you'll visit the world of spirits during your sleep."</p>
 </div>
 
 <p>He now turns toward your trembling opponent.</p>
 
 <div class="conversation">
-<p>"Raiahui," he says in a cold voice, "you don't deserve to become an adult. You've failed your trial out of arrogance, by underestimating your opponent. I'm sure you won't take your next test so lightly.</p>
+<p>"Raiahui," he says in a cold voice, "you don't deserve to become an adult. You've failed your trial out of arrogance, by underestimating your opponent. I'm sure you won't take your next test so lightly."</p>
 </div>
 
 <p>He grabs the young woman's knife and throws it far away into the lagoon.</p>
 
 <div class="conversation">
-<p>"If you manage to get back to the village, your foolishness will be forgiven.</p>
+<p>"If you manage to get back to the village, your foolishness will be forgiven."</p>
 </div>
 
-<p>The hands that were holding Raiahui suddenly release her. The young woman casts a frightened look on the adults surrounding her. Then she runs toward the shore and dives into the lagoon. You watch as she swims as fast as possible toward the spot where her knife has sunk. Trapped in her human shape, she remains a very good swimmer, but you're sure that you could have beaten her in a normal race.</p>
+<p>The hands that were holding Raiahui suddenly release her. The young woman casts a frightened look at the adults surrounding her. Then she runs toward the shore and dives into the lagoon. You watch as she swims as fast as possible toward the spot where her knife has sunk. Trapped in her human shape, she remains a very good swimmer, but you're sure that you could have beaten her in a normal race.</p>
 
 <p>Ataroa turns toward you and nods his farewell.</p>
 
@@ -1154,7 +1167,7 @@ ${intro}
 <p>"I hope you'll find what you seek, Mananuiva."</p>
 </div>
 
-<p>Then all of the adults go to the shore and dive in turn. In the clear water, you see their sleek shapes chasing after Raiahui.</p>
+<p>Then all of the adults head for the shore and dive in turn. In the clear water, you see their sleek shapes chasing after Raiahui.</p>
 
 <p>You don't want to know what's going to happen in the lagoon; you're not even sure that you have a preference for one of the two possible outcomes. You cross the sandy island and sit in front of the ocean. The steady sound of the waves relaxes you, easing the tension from your muscles. It won't be long before the sun reaches the horizon behind you.</p>
 
@@ -1179,7 +1192,7 @@ ${intro}
     "text": `
 <p>You remain on the surface for a while, swimming as fast as you can to get closer to the reefs. Then you take a deep breath and dive.</p>
 
-<p>A few strong strokes bring you close to the bottom of the channel. Between two extravagantly shaped masses of coral, you spot a vertical, uneven crevice, that seems too narrow for Raiahui.</p>
+<p>A few vigorous strokes bring you close to the bottom of the channel. Between two extravagantly shaped masses of coral, you spot a vertical, uneven crevice, that seems too narrow for Raiahui.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
@@ -1190,7 +1203,7 @@ ${intro}
           },
         },
         {
-          "text": `You take the time to cast a glance behind you and see where Raiahui is now.`,
+          "text": `You cast a glance behind you to see where Raiahui is now.`,
           "action": () => {
             goToSection("trial-looking-back");
           },
@@ -1335,13 +1348,13 @@ ${intro}
     "text": `
 <p>The light coming from the surface briefly dims as Raiahui's sleek shape passes above you, swimming at ostensibly slow speed.</p>
 
-<p>You know that time isn't on your side. Raiahui can't reach you, but she knows exactly where you are; and unlike her, you can't stay underwater indefinitely.</p>
+<p>You know that time isn't on your side. Raiahui can't reach you, but she knows exactly where you are; and unlike her, you can't remain underwater indefinitely.</p>
 
 <p>The narrow crevice between the two masses of coral is longer than you thought; with a burst of hope, you realize that it's more or less oriented toward the islet. Maybe you can get closer to your goal without exposing yourself to your pursuer.</p>
 
 <p>You deftly move along the crevice. The walls of coral are at first so close together than you're sometimes forced to contort yourself to pass through without scratching your skin. But then they start edging away from each other, up to the point where you begin to feel dangerously exposed.</p>
 
-<p>You halt for a moment, feeling hesitant. You can see that the coral walls eventually get closer again. But while you cross the distance between your current position and that spot, which will require half a dozen strokes, the crevice will be wide enough for a shark to slip into it. You can't see Raiahui, but it doesn't mean that she's very far.</p>
+<p>You halt for a moment, feeling hesitant. You can see that the coral walls eventually get closer again. But while you cross the distance between your current position and that spot - something that'll require half a dozen strokes - the crevice will be wide enough for a shark to slip into it. You can't see Raiahui, but it doesn't mean that she's very far.</p>
     `,
     "next": (goToSection) => {
       const choices = [
@@ -1433,7 +1446,7 @@ ${intro}
   },
   "far-corals-fight": {
     "text": `
-<p>You frantically kick the brown snout with fear-fueled strength. That doesn't harm Raiahui in any way, but your resistance makes it more difficult for her to grab you. Her frightful jaws open and close several times right next to your ankles, but don't manage to seize either of them.</p>
+<p>You frantically kick her snout with fear-fueled strength. That doesn't harm Raiahui in any way, but your resistance makes it more difficult for her to grab you. Her frightful jaws open and close several times right next to your ankles, but don't manage to seize either of them.</p>
 
 <p>If the space around you were wider, you couldn't possibly defend yourself like this. But the reefs confine Raiahui's movements, and she's unable to take advantage of her speed and mobility.</p>
 
@@ -1590,7 +1603,7 @@ ${intro}
   },
   "far-corals-sneaky": {
     "text": `
-<p>You move forward slowly, staying as close as possible to one of the reef, in order to make it as difficult as possible for Raiahui to spot you should she pass above your position. The fear gnawing at you makes this deliberate slowness almost unbearable, but you force yourself not to quicken your pace.</p>
+<p>You move forward slowly, staying very close to one of the reefs, in order to make yourself as difficult to spot as possible should Raiahui pass above your position. The fear gnawing at you makes this deliberate slowness almost unbearable, but you force yourself not to quicken your pace.</p>
 
 <p>After a few seemingly very long moments, you reach the spot where the crevice once again becomes narrow enough to offer some amount of security. You cast a glance behind you, but you're still unable to see where Raiahui is.</p>
     `,
@@ -2332,7 +2345,7 @@ ${intro}
   },
   "trial-exhausted-pearls": {
     "text": `
-<p>You're close to despair when you suddenly remember the black pearls you carry. You quickly crush them, without even taking them out of their purse. The water around you immediately becomes utterly dark, hiding you from Raiahui's eyes before she can reach you.</p>
+<p>You're close to despair when you suddenly remember the black pearls you carry. You quickly crush them all, without even taking them out of their purse. The water around you immediately becomes utterly dark, hiding you from Raiahui's eyes before she can reach you.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
@@ -2345,7 +2358,7 @@ ${intro}
   "trial-calabashes": {
     "text": (flags) => {
       return `
-<p>Several of the calabashes lying on the beach are already empty, but you easily find one that's still full, and sniff its contents. Palm wine, just like you thought. It's not very strong alcohol, and drinking a small quantity wouldn't affect you much, but it seems unnecessary to take such a risk before a race.</p>
+<p>Several of the calabashes lying on the beach are already empty, but you easily find one that's still full, and sniff its contents. Palm wine, just like you thought. It's not very strong alcohol, and drinking a small quantity wouldn't affect you much, but it seems unnecessary to take any risk before a race.</p>
 
 <p>Raiahui clearly doesn't share your caution, for you see her drinking quite unrestrainedly among the other adolescents!</p>
 
@@ -2392,7 +2405,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
 <p>"If you're not in any hurry, neither am I," you say, picking up one of the calabashes lying on the sand.</p>
 </div>
 
-<p>Raiahui affects indifference, but you can tell that your presence has subtly transformed the mood that reigns among the adolescents. Words become more sparse, jokes are only half-spoken, laughter remains just as common but not quite as loud, constant glances weave a web of silent communication around you.</p>
+<p>Raiahui affects indifference, but you can tell that your presence has subtly transformed the mood reigning among the adolescents. Words become sparser, jokes are only half-spoken, laughter remains just as frequent but not quite as loud, repeated glances weave a web of silent communication around you.</p>
 
 <p>A few moments go by. You frequently bring the calabash to your lips and pretend to drink. In truth, you barely ever let a few drops of palm wine reach your throat. The underlying excitement is such that nobody notices your subterfuge.</p>
 
