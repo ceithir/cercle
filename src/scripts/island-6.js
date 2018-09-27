@@ -249,13 +249,13 @@ const island6 = {
 
 <p>The roots cover the ground like a thick spider web, and walking is not easy; several times, you almost lose your balance. As you get farther from the shore, the trees become larger, but you’re still unable to notice any sign of animal life. Far from being relaxing, the silence soon feels oppressive.</p>
 
-<p>Time goes by, you fail to discover anything of interest, and you start feeling nervous. What if the crocodile had left its beach and was now lying in wait close to your canoe? You’d find yourself trapped!</p>
+<p>Time goes by, you fail to discover anything of interest, and you start feeling nervous. What if the crocodile has left its beach and is now lying in wait close to your canoe? You’d find yourself trapped!</p>
 
 <p>You decide you’ve stayed long enough on this island, where there’s obviously nothing that could be of any use to you. But before you leave, you want to make sure that the crocodile is still where you saw it. It’s clearly a risk, but it scares you less than not knowing for sure the position of that monster.</p>
 
 <p>With extreme caution, you head for the beach where the crocodile was lying, ready to flee at the slightest scare. Your heart is banging violently in your chest and your fear keeps growing. As you’re about to run back to your canoe, the stretch of sand suddenly appears just before you.</p>
 
-<p>The crocodile has remained in the same spot, still as a statue. It seems lifeless. Now that you know its position for sure, you’re about to slip away discreetly, but a guttural voice makes itself heard:</p>
+<p>The crocodile has remained in the same spot, still as a statue. It seems lifeless. Having confirmed its position, you’re about to slip away discreetly, but a guttural voice makes itself heard:</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const text = `"Wait."`;
@@ -639,7 +639,7 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
   "gather-fruits": {
     "text": (flags) => {
       return `
-<p>Touching the fruits doesn't harm you in any way. Of course, that doesn't tell whether eating them would be safe.</p>
+<p>Touching the fruits doesn't harm you in any way. Of course, that doesn't tell you whether eating them would be safe.</p>
 
 ${itemAcquisitionFeedback(flags.inventory.fruit.name)}
       `;

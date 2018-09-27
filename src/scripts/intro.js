@@ -141,13 +141,13 @@ const intro = {
 `
 <p>You paddle steadily, not thinking or dreaming about anything, focused only on the purely physical sensations provided by the shift of your muscles, the moist air filling your nostrils and the burning touch of the sun on your naked back. Your small outrigger canoe creates short-lived, insignificant trails on the surface of the immense ocean, barely disturbing its peaceful waves. Above your head, the birds are dots in the azure sky, tiny yet clearly visible. Watching their flight is what made you suspect the existence of an island in this direction. Your guess was confirmed around midday, when the island's flat outline became visible against the horizon. If you judge the distance correctly, you should reach it long before sunset.</p>
 
-<p>As you get closer, and the pale line of a beach appears between the dark blue of the water and the green abundance of the trees, your mind leaves its state of detachment and considers the near future. Will the island turn out to be inhabited? Ever since you left behind you the small part of the archipelago you were familiar with, you've often made stopovers in completely deserted places. You weren't used to such solitude before you embarked on this journey, and though it hasn't turned out to be as unpleasant as you might have thought, it becomes wearisome when it remains uninterrupted for too long.</p>
+<p>As you get closer, and the pale line of a beach appears between the dark blue of the water and the green vividness of the trees, your mind leaves its state of detachment and considers the near future. Will the island turn out to be inhabited? Ever since you left behind you the small part of the archipelago you were familiar with, you've often made stopovers in completely deserted places. You weren't used to such solitude before you embarked on this journey, and though it hasn't turned out to be as unpleasant as you might have thought, it becomes wearisome when it remains uninterrupted for too long.</p>
 
 <p>Whether the island is inhabited or not, it will give you the opportunity to restock your supplies, currently limited to a small quantity of yam and sweet potatoes, along with a few bananas. A freshwater spring would also be welcome: one of your two waterskins is completely empty. And if you can stay for a while, repairing or replacing some of your tools wouldn't be luxury: your bone knife is now quite dull and you recently broke the handle of your stone hatchet. Ideally, you'd find the materials necessary to create makeshift replacements for your mast and sail, that were destroyed a few days ago during a bout of rough weather.</p>
 
 <p>And then? Unless, by extraordinary happenstance, this island turns out to hold everything you're looking for, you'll pick a new direction and resume your wandering.</p>
 
-<p>Your name is Mananuiva and, since the day of your birth, the wet season has returned seventeen times. During all those years, you've known nothing but your home island, its close neighbors and the waves surrounding them. But you've finally reached the age when the young men and women of your tribe perform their rite of passage to adulthood: taking a canoe and sailing far away, alone. Tradition calls it "heading for the horizon" and many legends begin with a young boy discovering a mysterious, faraway island during the rite. These days, truth be told, adolescents content themselves with going to the islands located less than a day away, where they have fun as best they can for a week or two. Flings and romance are common during such stays, and the rite is responsible for many marriages between people that might otherwise have never met.</p>
+<p>Your name is Mananuiva and, since the day of your birth, the wet season has come and passed seventeen times. During all those years, you've known nothing but your home island, its close neighbors and the waves surrounding them. But you've finally reached the age when the young men and women of your tribe perform their rite of passage to adulthood: taking a canoe and sailing far away, alone. Tradition calls it "heading for the horizon" and many legends begin with a young boy discovering a mysterious, faraway island during the rite. These days, truth be told, adolescents content themselves with going to the islands located less than a day away, where they have fun as best they can for a week or two. Flings and romances are common during such stays, and the tradition is responsible for many marriages between people that might otherwise never have met.</p>
 
 <p>During the months that preceded it, you spent many evenings daydreaming about your own rite of passage, vaguely hoping that it would teach you something invaluable about yourself and the entire world. And, on the day of your departure, your home island hadn't yet disappeared behind you when you did have a revelation... the revelation that the adult life waiting for you after this journey held nothing that you found promising. You don't want to become a reasonable woman, to marry and have many children, to have a life like your parents or your five older siblings.</p>
 
@@ -212,7 +212,7 @@ const intro = {
 <p>You bow and introduce yourself politely, hoping that the local etiquette isn't more demanding than that. Ataroa watches you for a moment, his face expressionless. Then he nods.</p>
 
 <div class="conversation">
-<p>"You're welcome here. Have you come to search for something?</p>
+<p>"You're welcome here. Have you come in search of something?</p>
 <p>"I'm performing my rite of passage," you answer. "I'm looking for omens about my future."</p>
 </div>
 
@@ -235,7 +235,7 @@ const intro = {
 
 <p>Hearing Ataroa offer you such a prize has drawn a few surprised exclamations out of the crowd. Would that Foam of the Deep really bring you the answers you seek? Real magic is not as common as legends suggest, as you've realized since the beginning of your journey. On the other hand, if you don't seize all possible opportunities, your quest is likely to remain fruitless.</p>
 
-<p>From a more practical point of view, you suspect that the tribe won't give you hospitality if you refuse to take part in the race, and you certainly don't feel like leaving on your canoe before a good night's sleep.</p>
+<p>From a more practical point of view, you suspect that the tribe won't grant you hospitality if you refuse to take part in the race, and you certainly don't feel like leaving on your canoe before a good night's sleep.</p>
 
 <div class="conversation">
 <p>"I will take part in the rite of passage," you say.</p>
@@ -437,7 +437,7 @@ ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time s
   "feast-women": {
     "text":
 `
-<p>When you start talking to some of the women, you expect them to give you an overview of the tribe's domestic life. But, as you quickly discover, they're much more interested in telling you about the biggest fish they've caught. Some of their boasts seem rather doubtful to you!</p>
+<p>When you start talking with some of the women, you expect them to give you an overview of the tribe's domestic life. But, as you quickly discover, they're much more interested in telling you about the biggest fish they've caught. Some of their boasts seem rather doubtful, to say the least!</p>
 
 <div class="conversation">
 <p>"Do you ever fish in the lagoon itself?" you eventually ask, for they only mention catching fish out at sea.</p>

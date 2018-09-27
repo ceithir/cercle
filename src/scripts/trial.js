@@ -210,7 +210,7 @@ ${items}
   },
   "trial-eat-fruit": {
     "text": `
-<p>Hoping that will help you during the race, as the crocodile said it would, you taste the smallest of the red fruits… but your teeth have barely grazed its juicy flesh when a terrible burning feel sets your entire throat ablaze.</p>
+<p>Hoping it will help you during the race, as the crocodile said it would, you taste the smallest of the red fruits… but your teeth have barely grazed its juicy flesh when a terrible burning feel sets your entire throat ablaze.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
@@ -242,9 +242,9 @@ ${items}
   },
   "trial-spit-fruit": {
     "text": `
-<p>You hurriedly spit out the fruit on the sand of the beach. The burning feels persists and even seems to spread to the rest of your body, creating tiny drops of sweat on your skin.</p>
+<p>You hurriedly spit out the fruit on the sand of the beach. The burning feel persists and even seems to spread to the rest of your body, creating tiny drops of sweat on your skin.</p>
 
-<p>You take deep breaths and, after a few moments, the phenomenon fortunately begins to dissipate, leaving only a vague feeling of heat in your stomach.</p>
+<p>You take deep breaths and, after a few moments, the phenomenon fortunately begins to dissipate, leaving only a vague impression of heat in your stomach.</p>
 
 <p>Tasting another one of those fruits is obviously out of the question!</p>
     `,
@@ -515,18 +515,6 @@ ${intro}
         {
           "text": `You quicken your pace.`,
           "action": () => {
-            const doll = flags.inventory.doll;
-            if (doll.acquired && !doll.used) {
-              useItem("doll", updateFlag);
-              return goToSection("trial-doll");
-            }
-
-            const amulet = flags.inventory.dolphin;
-            if (amulet.acquired && !amulet.used) {
-              useItem("dolphin", updateFlag);
-              return goToSection("trial-early-amulet");
-            }
-
             goToSection("trial-straightforward");
           },
         },
@@ -547,10 +535,35 @@ ${intro}
     "text": `
 <p>You increase your speed and are soon swimming as fast as you can. Barely more than a third of the distance remains before you. How could anyone catch up to you now?</p>
 
-<p>And yet, a heavy foreboding has crept in your mind and now keeps growing, every time you finish a stroke, every time you take a new breath.</p>
+<p>And yet, a heavy foreboding has crept in your mind and now keeps growing, every time you finish a stroke, every time you take a new breath. Though you don't understand why, it feels like your time is quickly running out.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const text = `Though you don't understand why, it feels like your time is quickly running out.`;
+
+      const doll = flags.inventory.doll;
+      if (doll.acquired && !doll.used) {
+        const action = () => {
+          useItem("doll", updateFlag);
+          goToSection("trial-doll", coatSentence(text));
+        };
+
+        return (
+          <Funnel text={text} action={action} conditional={true} />
+        );
+      }
+
+      const amulet = flags.inventory.dolphin;
+      if (amulet.acquired && !amulet.used) {
+        const action = () => {
+          useItem("dolphin", updateFlag);
+          goToSection("trial-early-amulet", coatSentence(text));
+        };
+
+        return (
+          <Funnel text={text} action={action} conditional={true} />
+        );
+      }
+
       const action = () => {
         updateFlag("eatenByRaiahui", true);
         goToSection("raiahui-good-end", coatSentence(text));
@@ -1315,13 +1328,13 @@ ${intro}
     "text": `
 <p>You swim as fast as you can, but growing fear whispers that it won't be enough.</p>
 
-<p>Six more strokes and you'll reach the crevice where you hope to find shelter. Then five. Then four. How close is Raiahui now? Three. You constantly expect her jaws to close on your leg. Two. You're almost there. One. You're there!</p>
+<p>Six more strokes and you'll reach the crevice where you hope to find shelter. Then five. Then four. How close is Raiahui now? Three. All the time, you expect her jaws to suddenly close on your leg. Two. You're almost there. One. You're there!</p>
 
 <p>As a final stroke propels you inside the crevice, you feel a sudden impact against your foot. Terrified, you hasten to get deeper among the colorful reefs.</p>
 
-<p>Once you're certain that you're out of Raiahui's reach - at least for the moment - you examine your foot. There's a small cut on your heel, to shallow to be very painful. A bit of blood flows out of the wound, dissolving almost immediately in the clear water.</p>
+<p>Once you're certain that you're out of Raiahui's reach - at least for the moment - you examine your foot. There's a small cut on your heel, too shallow to be very painful. A bit of blood flows out of the wound, dissolving almost immediately in the clear water.</p>
 
-<p>Quivering, you realize what happened: just as you were reaching the crevice, Raiahui tried to grab you by the ankle. She barely missed, but your feet hit the edge of her mouth. The cut was caused by the sharp edge of one of her teeth.</p>
+<p>Quivering, you realize what happened: just as you were reaching the crevice, Raiahui tried to grab you by the ankle. She barely missed, but your feet hit her mouth. The cut was caused by the sharp edge of one of her teeth.</p>
     `,
     "next": (goToSection) => {
       return repeatingFunnel(
@@ -1362,7 +1375,7 @@ ${intro}
   },
   "far-corals-quick": {
     "text": `
-<p>You propel yourself forward as fast as this confined space allows. But you've barely crossed half the distance when Raiahui suddenly appears on your left! She swiftly slips inside the crevice, her fins grazing the walls of coral. You can see with terrifying clarity the teeth filling her half-open mouth as she gets close to your legs.</p>
+<p>You propel yourself forward as fast as this confined space allows. But you've barely crossed half the distance when Raiahui suddenly appears to your left! She swiftly slips inside the crevice, her fins grazing the walls of coral. You can see with terrifying clarity the teeth filling her half-open mouth as she gets close to your legs.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -2275,7 +2288,7 @@ ${intro}
   },
   "exhausted": {
     "text": `
-<p>Panic is no longer sufficient to make you ignore your exhaustion. Your limbs are heavy, you breathe with difficulty, and your strokes are growing ever slower. Casting a fearful glance behind you, you can see Raiahui rushing in your direction. You won't be able to reach the islet before she catches up to you! Are you going to fail so close to your goal?</p>
+<p>Panic is no longer sufficient to make you ignore your exhaustion. Your limbs are heavy, you breathe with difficulty, and your strokes are growing ever slower. Casting a fearful glance behind you, you see Raiahui rushing in your direction. You won't be able to reach the islet before she catches up to you! Are you going to fail so close to your goal?</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -2378,7 +2391,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
 
 <p>Your challenge causes amused exclamations among the young audience. Raiahui accepts your gift with a supremely confident smile. The though that it might be a trap is clearly the furthest thing from her mind.</p>
 
-<p>Tarrying any longer wouldn't be to your advantage, and you quickly cross the beach. Just as you reach the shore, the hubbub becomes louder and you cast a glance behind you: surrounded by the other adolescents, some of them startled, others mocking her, Raiahui is bent forward and holding her hand against her mouth as if she was about to throw up.</p>
+<p>Tarrying any longer wouldn't be to your advantage, and you quickly cross the beach. Just as you reach the shore, the hubbub becomes louder and you cast a glance behind you: surrounded by the other adolescents, some of them startled, others mocking her, Raiahui is bent forward and holding her hand against her mouth as if she were about to throw up.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const text = `Now certain that you'll have a comfortable head start, you dive.`;
@@ -2589,7 +2602,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
 
 <p>Your challenge causes amused exclamations among the young audience. Raiahui accepts your gift with a supremely confident smile. The though that it might be a trap is clearly the furthest thing from her mind.</p>
 
-<p>Tarrying any longer wouldn't be to your advantage, and you quickly cross the beach. Just as you reach the shore, the hubbub becomes louder and you cast a glance behind you: surrounded by the other adolescents, some of them startled, others mocking her, Raiahui is bent forward and holding her hand against her mouth as if she was about to throw up.</p>
+<p>Tarrying any longer wouldn't be to your advantage, and you quickly cross the beach. Just as you reach the shore, the hubbub becomes louder and you cast a glance behind you: surrounded by the other adolescents, some of them startled, others mocking her, Raiahui is bent forward and holding her hand against her mouth as if she were about to throw up.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       return trueStartFunnel(
@@ -2635,7 +2648,7 @@ ${itemUpdateFeedback(flags.inventory.alcohol.name)}
   },
   "trial-hide-closer-1": {
     "text": `
-<p>A moment later, as you feared, Raiahui turns around and heads back in your direction. She comes very close to the reef and starts circling it. If she knows you're here, you realize that she doesn't need to discover precisely where you're hiding: she just has to wait until the lack of air forces you to head for the surface!</p>
+<p>A moment later, as you feared, Raiahui turns around and heads back in your direction. She comes very close to the reef and starts circling it. If she knows you're here, you realize that she doesn't need to discover precisely where you're hiding: she can simply wait until the lack of air forces you to head for the surface!</p>
 
 <p>Raiahui circles the reef once… twice… then she leaves your sight and doesn't reappear.</p>
 

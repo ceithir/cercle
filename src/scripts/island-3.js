@@ -129,7 +129,7 @@ const island3 = {
     "text":`
 <p>You dive in the warm, clear water of the lagoon. Small, colorful fish hastily disappear in the countless hiding places provided by the coral reefs. Holding in one hand the small net you'll use to carry your catch, you swim without haste, looking for slower preys.</p>
 
-<p>Horrifying pain suddenly pierces your leg. In shock, you reflexively exhale all the air from your lungs. You immediately try to reach the surface, but you're held by a savage grip. You struggle in vain, unable to distinguish your assailant clearly. Far from increasing your strength, panic makes you weaker and frantic. A dark veil soon begins to thicken before your eyes. The last thing you see before everything disappears is the thick red color sullying the previously clear water.</p>
+<p>Horrifying pain suddenly pierces your leg. In shock, you reflexively exhale all the air from your lungs. You immediately try to reach the surface, but you're held in a savage grip. You struggle in vain, unable to distinguish your assailant clearly. Far from increasing your strength, panic makes you weaker and frantic. A dark veil soon begins to thicken before your eyes. The last thing you see before everything disappears is the thick red color sullying the previously clear water.</p>
     `,
     "next": endGame,
   },
@@ -239,7 +239,7 @@ const island3 = {
 <p>The woman nods thoughtfully.</p>
 
 <div class="conversation">
-<p>"I need to get back to work," she says. "I'd like to leave tomorrow and this canoe still requires maintenance. But I find you less annoying than the members of my tribe, so I'll give you three pieces of advice. The first one is very simple, but easily overlooked: take time to think and don't trust appearances. The second one is that you'll only be able to win if you're cunning enough: other than the fact that you need to swim from one island to the other, the race doesn't really have any rule. And the third one is that you should make sure that you have as much of a lead as possible before Raiahui goes in the water.</p>
+<p>"I need to get back to work," she says. "I'd like to leave tomorrow and this canoe still requires maintenance. But I find you less annoying than the members of my tribe, so I'll give you three pieces of advice. The first one is very simple, but easily overlooked: take time to think and don't trust appearances. The second one is that you'll only be able to win if you're cunning enough: other than the fact that you need to swim from one island to the other, the race doesn't really have any rule. And the third one is that you should make sure that you have as much of a lead as possible before Raiahui goes into the water.</p>
 </div>
     `,
     "next": function(goToSection) {
@@ -262,7 +262,7 @@ const island3 = {
 <p>You try to explain that you're also undergoing a rite of passage, and to describe what you seek. She listens with a skeptical expression.</p>
 
 <div class="conversation">
-<p>"To travel in search of revelation seems quite respectable, but I still don't understand what you expect to find here."</p>
+<p>"Travelling in search of revelation seems quite respectable, but I still don't understand what you expect to find here."</p>
 </div>
     `,
     "next": function(goToSection, flags, updateFlag) {

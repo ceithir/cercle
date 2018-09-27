@@ -171,7 +171,7 @@ const island5 = {
   },
   "witch-sneaky-approach": {
     "text":`
-<p>Paddling along the shore at a good distance, you finally spot an area where the vegetation is a bit denser and the fetishes are a bit fewer. You head for it. The shore is stony, but your manage to land without too much trouble. You then hide your canoe as best you can.</p>
+<p>Paddling along the shore at a good distance, you finally spot an area where the vegetation is a bit denser and the fetishes are a bit fewer. You head for it. The shore is stony, but you manage to land without too much trouble. You then hide your canoe as best you can.</p>
     ` + sneakingIntoIslandText,
     "next": sneakingIntoIslandCrossroads,
   },
@@ -218,7 +218,7 @@ const island5 = {
 <p>"I’m very grateful for your welcome!" you answer warmly. "And, to honor tradition, I’d also like to present you with an excellent drink!"</p>
 </div>
 
-<p>The fat woman seems disconcerted by your offer. After giving you the cup – that you have absolutely no intention of drinking – she nevertheless accepts the calabash you’re holding out to her. Uncorking it, she brings it close to her nostrils and a wide smile immediately appears on her face. Forgetting everything else, she brings the calabash to her mouth and starts guzzling the alcoholic beverage.</p>
+<p>The fat woman seems disconcerted by your offer. After giving you the cup – that you have absolutely no intention of drinking – she nevertheless accepts the calabash you’re holding out to her. Uncorking it, she takes a sniff, and a wide smile immediately appears on her face. Forgetting everything else, she brings the calabash to her mouth and starts guzzling the alcoholic beverage.</p>
     `,
     "next": (goToSection) => {
       const sneakText = `You seize this occasion to slip into the hut.`;

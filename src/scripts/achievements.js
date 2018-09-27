@@ -61,7 +61,7 @@ const achievements = [
   },
   {
     "key": "sore-raiahui",
-    "name": `It’s only an island if you look at it from the water`,
+    "name": `One can be more effective than a hundred`,
     "description": `You survived Raiahui’s countless teeth. Not her one and only knife.`,
     "condition": (flags) => {return flags.stabbedToDeath;},
   },
