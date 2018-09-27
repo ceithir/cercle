@@ -163,6 +163,20 @@
   text-shadow: 1px 0 0 #c1c8cd, 0 -1px 0 #c1c8cd, 0 1px 0 #c1c8cd, -1px 0 0 #c1c8cd;
 }
 
+@media (hover: none) {
+  .panel.choices > .list-group .list-group-item:hover,
+  .panel.choices > .list-group .list-group-item:focus,
+  .panel.choices > .list-group:first-child .list-group-item:first-child:hover,
+  .panel.choices > .list-group:first-child .list-group-item:first-child:focus,
+  .panel.choices > .list-group:last-child .list-group-item:last-child:hover,
+  .panel.choices > .list-group:last-child .list-group-item:last-child:focus {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: #c1a28a;
+    text-shadow: none;
+  }
+}
+
 .panel.choices.funnel > .list-group .list-group-item,
 .panel.choices.funnel > .list-group:first-child .list-group-item:first-child,
 .panel.choices.funnel > .list-group:last-child .list-group-item:last-child {
