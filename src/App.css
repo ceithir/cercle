@@ -296,6 +296,10 @@
   margin-bottom: 20px;
 }
 
+.atoll-map text {
+  fill: white;
+}
+
 .atoll-map text.text-anchor-left {
   text-anchor: start;
 }
