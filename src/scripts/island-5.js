@@ -254,32 +254,43 @@ const island5 = {
 <p>Pressed for time, unable to guess what could be of use to you, you look at the items lying on the closest table.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
-      const text = ` Pressed for time, unable to guess what could be of use to you, you look at the items lying on the closest table:`;
-
       const feathers = `a decorative headdress made of yellow and red feathers`;
       const scepter = `a sinister-looking scepter carved from a bone as white as chalk`;
       const pearls = `a handful of perfectly black pearls`;
 
       const feathersAction = () => {
-        goToSection("witch-feathers", `<p>${text} <span class="transition-sentence">${feathers}</span>, ${scepter} et ${pearls}.</p>`)
+        goToSection("witch-feathers")
       };
       const scepterAction = () => {
         updateFlag("touchedACursedItem", true);
-        goToSection("witch-sceptre", `<p>${text} ${feathers}, <span class="transition-sentence">${scepter}</span> et ${pearls}.</p>`);
+        goToSection("witch-sceptre");
       };
       const pearlsAction = () => {
         acquireItem("pearls", updateFlag);
-        goToSection("witch-pearls", `<p>${text} ${feathers}, ${scepter} et <span class="transition-sentence">${pearls}</span>.</p>`);
+        goToSection("witch-pearls");
       };
 
-      const link = (text, action) => {
-        return (
-          <a className="choice" onClick={action}>{text}</a>
-        );
-      }
+      const cap = (string) => {
+        return string.charAt(0).toUpperCase() + string.substr(1) + '.';
+      };
+
+      const choices = [
+        {
+          "text": cap(feathers),
+          "action": feathersAction,
+        },
+        {
+          "text": cap(scepter),
+          "action": scepterAction,
+        },
+        {
+          "text": cap(pearls),
+          "action": pearlsAction,
+        }
+      ];
 
       return (
-        <p>{text} {link(feathers, feathersAction)}, {link(scepter, scepterAction)} et {link(pearls, pearlsAction)}.</p>
+        <Crossroads choices={choices} />
       );
     },
   },
