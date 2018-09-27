@@ -551,7 +551,7 @@ ${crocodileIslandDescription}
 
 <p>You stop your canoe and glance at the sun's position: you haven't paid close attention to the passage of time, but the afternoon is indeed about to end.</p>
 
-<p>You help the boy - who's you notice is carrying his curved ivory knife - climb aboard your canoe, then you head toward the island where the tribe lives.</p>
+<p>You help the boy - who you notice is carrying his curved ivory knife - climb aboard your canoe, then you head toward the island where the tribe lives.</p>
     `,
     "next": function(goToSection) {
       const text = `Once you're back to the very beach you departed from this morning, you leave your canoe and follow your young guide to the place from where the race will start.`;
