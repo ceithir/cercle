@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {endGame, trueEnd, useItem, acquireItem, repeatingFunnel, coatSentence, itemUpdateFeedback} from "./helpers.js";
+import {endGame, trueEnd, useItem, acquireItem, repeatingFunnel, coatSentence, itemAcquisitionFeedback} from "./helpers.js";
 import squaleImage from "./../images/squale.jpg";
 import raiahuiFriendsImage from "./../images/raiahui-friends.jpg";
 import sunsetImage from "./../images/sunset.jpg";
@@ -2359,7 +2359,7 @@ ${flags.tastedFruit? ``: `<p>You leave the calabash where it is and think about 
       return `
 <p>You easily crush all the red fruits you have left, and mix their juice with the contents of the calabash. Merely tasting one of those fruits was enough to set your throat on fire, so the beverage you're preparing should have some similarities with molten lava. Raiahui will very quickly realize it's not ordinary palm wine, but not before she's swallowed a mouthful or two.</p>
 
-${itemUpdateFeedback(flags.inventory.alcohol.name)}
+${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
       `;
     },
     "next": (goToSection) => {
