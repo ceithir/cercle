@@ -328,7 +328,7 @@
   pointer-events:none;
 }
 
-.atoll-map .island .shape:hover + text {
+.atoll-map .island .shape:hover + text, .atoll-map .island > a:focus > text {
   visibility: visible;
 }
 
