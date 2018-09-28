@@ -110,16 +110,16 @@ const raiahuiGoodEndText = `
 <p>The sun is about to reach the horizon. The race ended a few moments ago and a succinct ceremony is now happening on the sandy island, unobserved by any outsider.</p>
 
 <div class="conversation">
-<p>"I congratulate you, Raiahui," Ataroa says. "You’ve won the trial and proven that you are worthy of becoming an adult."</p>
+<p>“I congratulate you, Raiahui,” Ataroa says. “You’ve won the trial and proven that you are worthy of becoming an adult.”</p>
 </div>
 
 <p>Sounds of approval can be heard among the men and women gathered here. Raiahui nods, with a mix of respect, pride and happiness.</p>
 
 <div class="conversation">
-<p>"Have you learned from the trial?" the chieftain asks.</p>
-<p>"It has taught me much."</p>
-<p>"I hope that you won’t forget Mananuiva in the future. Though she took part in the rite for different reasons, it’s because of her that you’re now an adult."</p>
-<p>"I won’t forget her."</p>
+<p>“Have you learned from the trial?” the chieftain asks.</p>
+<p>“It has taught me much.”</p>
+<p>“I hope that you won’t forget Mananuiva in the future. Though she took part in the rite for different reasons, it’s because of her that you’re now an adult.”</p>
+<p>“I won’t forget her.”</p>
 </div>
 
 <p>Nothing else needs to be said. One by one, the adults who’ve witnessed the ceremony leave the island and return to the village. Soon, only Raiahui is left, feeling strangely exhausted and thoughtful now that the trial is over. Almost dreamily, she touches her lips with the tips of her fingers. Then she sits on the still-warm sand. On the other side of the lagoon, the sun is setting. Raiahui watches it until the last bloody hues have disappeared from the surface of the water.</p>
@@ -135,7 +135,7 @@ const trial = {
 <p>Murmurs die down among the crowd as Ataroa gestures for Raiahui and yourself to stand before him.</p>
 
 <div class="conversation">
-<p>"You both know all the details you need," he says, his rough face expressionless. "No member of the tribe will interfere. The race begins right now."</p>
+<p>“You both know all the details you need,” he says, his rough face expressionless. “No member of the tribe will interfere. The race begins right now.”</p>
 </div>
 
 <p>He concludes that laconic statement with a nod, then turns and leaves the beach to return to the village. Dumbfounded, you see most of the tribe follow him.</p>
@@ -290,13 +290,13 @@ ${items}
 <p>A girl is drinking palm wine not far from you. You grab her by the arm.</p>
 
 <div class="conversation">
-<p>"What’s going on?" you ask. "If the race has really begun, why aren’t we both getting into the water? Are we supposed to wait for something?</p>
+<p>“What’s going on?” you ask. “If the race has really begun, why aren’t we both getting into the water? Are we supposed to wait for something?”</p>
 </div>
 
 <p>The girl giggles. Judging from the look on her face, her calabash must already be rather empty.</p>
 
 <div class="conversation">
-<p>"Don’t worry, don’t worry," she says, giving you a clumsy pat on the shoulder. "Raiahui’s going to start the race, but you don’t need to wait for her. Getting a head start can be useful!"</p>
+<p>“Don’t worry, don’t worry,” she says, giving you a clumsy pat on the shoulder. “Raiahui’s going to start the race, but you don’t need to wait for her. Getting a head start can be useful!”</p>
 </div>
 
 <p>You don’t get anything else out of her.</p>
@@ -308,7 +308,7 @@ ${items}
 <p>Raiahui is the beaming center of a circle of adolescents, whose merry chatting is punctuated with many laughs.</p>
 
 <div class="conversation">
-<p>"Mananuiva!" she exclaims when she sees you. "I thought you’d already started the race. Don’t wait for me: I’m just going to drink a bit more and then I’ll catch up to you!"</p>
+<p>“Mananuiva!” she exclaims when she sees you. “I thought you’d already started the race. Don’t wait for me: I’m just going to drink a bit more and then I’ll catch up to you!”</p>
 </div>
 
 <p>The other adolescents watch you with amused looks on their faces, but they don’t say anything. An empty calabash is already lying at Raiahui’s feet.</p>
@@ -391,13 +391,13 @@ ${items}
   "trial-fair": {
     "text": `
 <div class="conversation">
-<p>"For someone who expects to become an adult today, you’re really behaving like a kid! I’m not here for your amusement! If you don’t start the race right now, at the same time as I do, then I’m no longer taking part in your rite of passage, and you can just wait for the next outsider!</p>
+<p>“For someone who expects to become an adult today, you’re really behaving like a kid! I’m not here for your amusement! If you don’t start the race right now, at the same time as I do, then I’m no longer taking part in your rite of passage, and you can just wait for the next outsider!</p>
 </div>
 
 <p>Raiahui looks startled and offended at the same time. She glances at the adolescents around her as though she didn’t quite know how to react, then shrugs.</p>
 
 <div class="conversation">
-<p>"As you wish, but it’s your loss."</p>
+<p>“As you wish, but it’s your loss.”</p>
 </div>
 
 <p>You both head for the shore, followed by all of the young spectators, who seem highly amused by the whole thing. Jokes are being exchanged around you, but you pay little attention to them. Your opponent is ostensibly behaving in a nonchalant manner, and you even see her drink a bit more palm wine from a calabash.</p>
@@ -419,7 +419,7 @@ ${items}
 <p>As Raiahui starts drinking from a new calabash, you deftly steal her knife. But she realizes it immediately and amusement vanishes from her eyes.</p>
 
 <div class="conversation">
-<p>"Give it back! Give it back right now!"</p>
+<p>“Give it back! Give it back right now!”</p>
 </div>
 
 <p>Dropping the calabash on the sand, she springs toward you to reclaim the item.</p>
@@ -476,7 +476,7 @@ ${items}
   "raiahui-drunk": {
     "text": `
 <div class="conversation">
-<p>"I’m certainly not going to dissuade you from getting drunk," you say, handing your calabash to her. "Here, empty this one too, if you really trust that you’ll be able to beat me afterwards!</p>
+<p>“I’m certainly not going to dissuade you from getting drunk,” you say, handing your calabash to her. “Here, empty this one too, if you really trust that you’ll be able to beat me afterwards!”</p>
 </div>
 
 <p>Your challenge causes amused exclamations among the young audience. Raiahui accepts your gift with a supremely confident smile. Even if she realizes that this beverage is much stronger than mere palm wine, you suspect that she’ll still drink at least most of it to avoid losing face.</p>
@@ -1067,7 +1067,7 @@ ${intro}
 <p>Your fear has reached its boiling point and suddenly evaporates into burning rage.</p>
 
 <div class="conversation">
-<p>"LET GO OF ME, YOU…"</p>
+<p>“LET GO OF ME, YOU…”</p>
 </div>
 
 <p>You scream a word your mother wouldn’t approve of, then hit your opponent with a violent headbutt, and savagely bite her forearm. Raiahui lets out a piercing scream of pain and almost drops her precious knife. You punch her in the face and, as she staggers back, you finally cross the distance separating you from the sandy shore.</p>
@@ -1090,7 +1090,7 @@ ${intro}
 <p>Your fear has reached its boiling point and suddenly evaporates into burning rage.</p>
 
 <div class="conversation">
-<p>"LET GO OF ME, YOU…"</p>
+<p>“LET GO OF ME, YOU…”</p>
 </div>
 
 <p>You scream a word your mother wouldn’t approve of, then hit your opponent with a violent backward headbutt, and savagely bite her forearm. Raiahui lets out a piercing scream of pain, loses her grip on your hair, and almost drops her precious knife. You elbow her in the chest and, as she staggers back, you finally cross the distance separating you from the sandy shore.</p>
@@ -1113,37 +1113,37 @@ ${intro}
 <p>The adults of the tribe are gathered in a thick circle, and studying you with much closer attention than they did yesterday. You’re too exhausted to really feel afraid anymore; besides, their faces show no signs of hostility, merely deep curiosity.</p>
 
 <div class="conversation">
-<p>"You’ve deserved our respect, Mananuiva," Ataroa says with almost perceptible admiration. "It’s not often that an outsider wins one of our races."</p>
+<p>“You’ve deserved our respect, Mananuiva,” Ataroa says with almost perceptible admiration. “It’s not often that an outsider wins one of our races.”</p>
 </div>
 
 <p>A few cutting remarks come to your mind, but even if you dared to speak them, you simply feel too tired to do so.</p>
 
 <div class="conversation">
-<p>"You’re free to go," the chieftain adds, and he points at your outrigger canoe, waiting at the other end of the islet with a new mast and a sail quivering in the evening breeze. "We’ve taken care of your craft and filled it with the supplies you may need. As for your reward…"</p>
+<p>“You’re free to go,” the chieftain adds, and he points at your outrigger canoe, waiting at the other end of the islet with a new mast and a sail quivering in the evening breeze. “We’ve taken care of your craft and filled it with the supplies you may need. As for your reward…”</p>
 </div>
 
 <p>He gestures and another man approaches, bearing a bowl full of a greyish beverage.</p>
 
 <div class="conversation">
-<p>"The Foam of the Deep is yours. There’s only one ingredient left to add, and we’ll take care of that right now. It’s normally provided by the one who’ll drink the Foam, but given the circumstances, it’s only fair that it comes from somebody else."</p>
+<p>“The Foam of the Deep is yours. There’s only one ingredient left to add, and we’ll take care of that right now. It’s normally provided by the one who’ll drink the Foam, but given the circumstances, it’s only fair that it comes from somebody else.”</p>
 </div>
 
 <p>Two adults come forward, holding an obviously terrified Raiahui between them. Ataroa grabs her wrist and cuts her palm deeply with his knife. Blood trickles into the bowl, and the beverage immediately takes on a bright silvery hue.</p>
 
 <div class="conversation">
-<p>"The Foam of the Deep is ready," says Ataroa, presenting it to you. "Drink it this evening, and you’ll visit the world of spirits during your sleep."</p>
+<p>“The Foam of the Deep is ready,” says Ataroa, presenting it to you. “Drink it this evening, and you’ll visit the world of spirits during your sleep.”</p>
 </div>
 
 <p>He now turns toward your trembling opponent.</p>
 
 <div class="conversation">
-<p>"Raiahui," he says in a cold voice, "you don’t deserve to become an adult. You’ve failed your trial out of arrogance, by underestimating your opponent. I’m sure you won’t take your next test so lightly."</p>
+<p>“Raiahui,” he says in a cold voice, “you don’t deserve to become an adult. You’ve failed your trial out of arrogance, by underestimating your opponent. I’m sure you won’t take your next test so lightly.”</p>
 </div>
 
 <p>He grabs the young woman’s knife and throws it far away into the lagoon.</p>
 
 <div class="conversation">
-<p>"If you manage to get back to the village, your foolishness will be forgiven."</p>
+<p>“If you manage to get back to the village, your foolishness will be forgiven.”</p>
 </div>
 
 <p>The hands that were holding Raiahui suddenly release her. The young woman casts a frightened look at the adults surrounding her. Then she runs toward the shore and dives into the lagoon. You watch as she swims as fast as possible toward the spot where her knife has sunk. Trapped in her human shape, she remains a very good swimmer, but you’re sure that you could have beaten her in a normal race.</p>
@@ -1151,7 +1151,7 @@ ${intro}
 <p>Ataroa turns toward you and nods his farewell.</p>
 
 <div class="conversation">
-<p>"I hope you’ll find what you seek, Mananuiva."</p>
+<p>“I hope you’ll find what you seek, Mananuiva.”</p>
 </div>
 
 <p>Then all of the adults head for the shore and dive in turn. In the clear water, you see their sleek shapes chasing after Raiahui.</p>
@@ -2373,7 +2373,7 @@ ${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
   "raiahui-poisoned": {
     "text": `
 <div class="conversation">
-<p>"I’m certainly not going to dissuade you from getting drunk," you say, handing your calabash to her. "Here, empty this one too, if you really trust that you’ll be able to beat me afterwards!"</p>
+<p>“I’m certainly not going to dissuade you from getting drunk,” you say, handing your calabash to her. “Here, empty this one too, if you really trust that you’ll be able to beat me afterwards!”</p>
 </div>
 
 <p>Your challenge causes amused exclamations among the young audience. Raiahui accepts your gift with a supremely confident smile. The though that it might be a trap is clearly the furthest thing from her mind.</p>
@@ -2389,7 +2389,7 @@ ${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
   "trial-raiahui-slow": {
     "text": `
 <div class="conversation">
-<p>"If you’re not in any hurry, neither am I," you say, picking up one of the calabashes lying on the sand.</p>
+<p>“If you’re not in any hurry, neither am I,” you say, picking up one of the calabashes lying on the sand.</p>
 </div>
 
 <p>Raiahui affects indifference, but you can tell that your presence has subtly transformed the mood reigning among the adolescents. Words become sparser, jokes are only half-spoken, laughter remains just as frequent but not quite as loud, repeated glances weave a web of silent communication around you.</p>
@@ -2479,15 +2479,15 @@ ${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
   "trial-copypaste-2": {
     "text": `
 <div class="conversation">
-<p>"Enough drinking, it’s time to start the race."</p>
-<p>"I’m still a bit thirsty," Raiahui says, smiling. "Go ahead, I’ll catch up to you."</p>
-<p>"I’m not here to play around! If you don’t start the race right now, at the same time as I do, then I’m no longer taking part in your rite of passage, and you can just wait for the next outsider!"</p>
+<p>“Enough drinking, it’s time to start the race.”</p>
+<p>“I’m still a bit thirsty,” Raiahui says, smiling. “Go ahead, I’ll catch up to you.”</p>
+<p>“I’m not here to play around! If you don’t start the race right now, at the same time as I do, then I’m no longer taking part in your rite of passage, and you can just wait for the next outsider!”</p>
 </div>
 
 <p>Raiahui looks startled and offended at the same time. She glances at the adolescents around her as though she didn’t quite know how to react, then shrugs.</p>
 
 <div class="conversation">
-<p>"As you wish, but it’s your loss."</p>
+<p>“As you wish, but it’s your loss.”</p>
 </div>
 
 <p>You both head for the shore, followed by all of the young spectators, who seem highly amused by the whole thing. Jokes are being exchanged around you, but you pay little attention to them. Your opponent is ostensibly behaving in a nonchalant manner, and you even see her drink a bit more palm wine from a calabash.</p>
@@ -2509,7 +2509,7 @@ ${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
 <p>Laughter erupts all around you when, feigning embarrassment, you imply that you need to pass water urgently.</p>
 
 <div class="conversation">
-<p>"Got for it," Raiahui says, muffling a snigger. "Don’t worry, I won’t start the race while you’re busy."</p>
+<p>“Got for it,” Raiahui says, muffling a snigger. “Don’t worry, I won’t start the race while you’re busy.”</p>
 </div>
 
 <p>You quickly disappear among the palm trees, followed by the amused eyes of the adolescents. Once you’re sure they can no longer see you, you throw away the calabash – still almost full – and run toward a part of the beach that’s sufficiently far away. This alternative starting point will barely increase the distance you need to cross to reach the sandy islet that’s your goal.</p>
@@ -2532,7 +2532,7 @@ ${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
 <p>As Raiahui bends down to pick up another calabash, you deftly steal her knife. But she realizes it immediately and amusement vanishes from her eyes.</p>
 
 <div class="conversation">
-<p>"Give it back! Give it back right now!"</p>
+<p>“Give it back! Give it back right now!”</p>
 </div>
 
 <p>Dropping the calabash on the sand, she springs toward you to reclaim the item.</p>
@@ -2563,9 +2563,9 @@ ${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
   "trial-copypaste-4": {
     "text": `
 <div class="conversation">
-<p>"I’ve had enough to drink," you lie. "Haven’t you?"</p>
-<p>"Not at all," Raiahui answers with self-assurance. "I know how to hold my liquor."</p>
-<p>"Well, I’m certainly not going to dissuade you from getting drunk," you say, handing your calabash to her. "Here, empty this one too, if you really trust that you’ll be able to beat me afterwards!"</p>
+<p>“I’ve had enough to drink,” you lie. “Haven’t you?”</p>
+<p>“Not at all,” Raiahui answers with self-assurance. “I know how to hold my liquor.”</p>
+<p>“Well, I’m certainly not going to dissuade you from getting drunk,” you say, handing your calabash to her. “Here, empty this one too, if you really trust that you’ll be able to beat me afterwards!”</p>
 </div>
 
 <p>Your challenge causes amused exclamations among the young audience. Raiahui accepts your gift with a supremely confident smile. Even if she realizes that this beverage is much stronger than mere palm wine, you suspect that she’ll still drink at least most of it to avoid losing face.</p>
@@ -2582,9 +2582,9 @@ ${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
   "trial-copypaste-5": {
     "text": `
 <div class="conversation">
-<p>"I’ve had enough to drink," you lie. "Haven’t you?"</p>
-<p>"Not at all," Raiahui answers with self-assurance. "I know how to hold my liquor."</p>
-<p>"Well, I’m certainly not going to dissuade you from getting drunk," you say, handing your calabash to her. "Here, empty this one too, if you really trust that you’ll be able to beat me afterwards!"</p>
+<p>“I’ve had enough to drink,” you lie. “Haven’t you?”</p>
+<p>“Not at all,” Raiahui answers with self-assurance. “I know how to hold my liquor.”</p>
+<p>“Well, I’m certainly not going to dissuade you from getting drunk,” you say, handing your calabash to her. “Here, empty this one too, if you really trust that you’ll be able to beat me afterwards!”</p>
 </div>
 
 <p>Your challenge causes amused exclamations among the young audience. Raiahui accepts your gift with a supremely confident smile. The though that it might be a trap is clearly the furthest thing from her mind.</p>

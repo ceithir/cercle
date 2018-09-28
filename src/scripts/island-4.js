@@ -42,14 +42,14 @@ const island4 = {
 <p>Tired of wasting your time, you’re about to go back to your canoe when you spot a strange little gray monkey, clinging to a nearby branch and staring at you. Its head is disproportionately large compared to the rest of its body.</p>
 
 <div class="conversation">
-<p>"So, little one," you ask in jest, "are there any sights you’d recommend on this island?"</p>
+<p>“So, little one,” you ask in jest, “are there any sights you’d recommend on this island?”</p>
 </div>
 
 <p>To your utter astonishment, it opens its mouth and answers in a thin voice:</p>
 <div class="conversation">
-<p>"I am man."</p>
-<p>"Wh… What?"</p>
-<p>"I am man. Changed by witch."</p>
+<p>“I am man.”</p>
+<p>“Wh… What?”</p>
+<p>“I am man. Changed by witch.”</p>
       `;
 
       if (flags.survivedWitchIsland) {
@@ -58,25 +58,25 @@ const island4 = {
 <p class="text-conditional">It must be referring to the witch you saw on the neighboring island.</p>
 <p>It’s however not completely impossible that there might be another witch in the area. You decide to make sure.</p>
 <div class="conversation">
-<p>"There’s a witch on this island?"</p>
+<p>“There’s a witch on this island?”</p>
         `;
       } else {
         text += `
-<p>"There’s a witch on this island?" you ask, looking around you nervously.</p>
+<p>“There’s a witch on this island?" you ask, looking around you nervously.</p>
         `;
       }
 
       text += `
-<p>"Other island. Here witch leaves results changes."</p>
-<p>"How… How did it happen to you?"</p>
-<p>"I touch fetish. Fetish screams. Witch catches me in net. Net always catches, never misses."</p>
-<p>"Can I do anything to help you?"</p>
+<p>“Other island. Here witch leaves results changes.”</p>
+<p>“How… How did it happen to you?”</p>
+<p>“I touch fetish. Fetish screams. Witch catches me in net. Net always catches, never misses.”</p>
+<p>“Can I do anything to help you?”</p>
 </div>
 
 <p>The monkey shakes its head with terribly human sadness.</p>
 
 <div class="conversation">
-<p>"Not possible… Not possible…"</p>
+<p>“Not possible… Not possible…”</p>
 </div>
 
 <p>It drops from the branch and quickly disappears amid the vegetation.</p>

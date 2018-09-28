@@ -125,12 +125,12 @@ const island5 = {
 <img src="${witchImage}" class="img-responsive text-img tall left" alt=""/>
 
 <div class="conversation">
-<p>"A visitor!" she exclaims in a delighted voice. "How nice! It’s been such a long time…"</p>
+<p>“A visitor!" she exclaims in a delighted voice. "How nice! It’s been such a long time…”</p>
 </div>
 
 <p>Her accent is unlike any you’ve ever heard. She holds out the cup so suddenly that its contents almost splash your face and, before you can even say a word, she adds:</p>
 <div class="conversation">
-<p>"We must celebrate! It’s tradition!"</p>
+<p>“We must celebrate! It’s tradition!”</p>
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {
@@ -215,7 +215,7 @@ const island5 = {
   "witch-my-alcohol": {
     "text": `
 <div class="conversation">
-<p>"I’m very grateful for your welcome!" you answer warmly. "And, to honor tradition, I’d also like to present you with an excellent drink!"</p>
+<p>“I’m very grateful for your welcome!" you answer warmly. "And, to honor tradition, I’d also like to present you with an excellent drink!”</p>
 </div>
 
 <p>The fat woman seems disconcerted by your offer. After giving you the cup – that you have absolutely no intention of drinking – she nevertheless accepts the calabash you’re holding out to her. Uncorking it, she takes a sniff, and a wide smile immediately appears on her face. Forgetting everything else, she brings the calabash to her mouth and starts guzzling the alcoholic beverage.</p>
@@ -248,7 +248,7 @@ const island5 = {
 <p>The inside of the hut is full of an incredible clutter of weird objects, tied to the walls, hanging from the ceiling, scattered on the wooden furniture or lying on the floor. But you don’t have time to examine them all, far from it! An angry exclamation reaches your ears and you can hear the fat woman coming closer.</p>
 
 <div class="conversation">
-<p>"Nasty little thief! You’re about to get what you deserve!"</p>
+<p>“Nasty little thief! You’re about to get what you deserve!”</p>
 </div>
 
 <p>Pressed for time, unable to guess what could be of use to you, you look at the items lying on the closest table.</p>
@@ -317,7 +317,7 @@ ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
 <p>Breathing with difficulty, unable to move a finger, you see the fat woman come closer and crouch next to you.</p>
 
 <div class="conversation">
-<p>"That’s what happens when you touch something without knowing what it is," she says, grabbing your chin between her thick fingers. "But since you’re interested in witchcraft, I’m going to take plenty of time to show you what it can do."</p>
+<p>“That’s what happens when you touch something without knowing what it is,” she says, grabbing your chin between her thick fingers. “But since you’re interested in witchcraft, I’m going to take plenty of time to show you what it can do.”</p>
 </div>
 
 <p>The witch won’t kill you, and she’ll even release you after a while. But what you’ll suffer in her hands before that will make it impossible for you to pursue any quest.</p>
@@ -350,7 +350,7 @@ ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
 <p>Barely able to move, you see the fat woman come closer and crouch next to you.</p>
 
 <div class="conversation">
-<p>"What a nice catch," she says, grabbing your chin between her thick fingers. "I’m sure she’ll keep me occupied for quite a few days."</p>
+<p>“What a nice catch,” she says, grabbing your chin between her thick fingers. “I’m sure she’ll keep me occupied for quite a few days.”</p>
 </div>
 
 <p>The witch won’t kill you, and she’ll even release you after a while. But what you’ll suffer in her hands before that will make it impossible for you to pursue any quest.</p>
@@ -364,7 +364,7 @@ ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
 <p> Barely able to move, you see the fat woman come closer and crouch next to you.</p>
 
 <div class="conversation">
-<p>"I always have plenty of ideas to experiment on the people I catch," she says, grabbing your chin between her thick fingers. "But for a little thief like you, I’ll put in extra effort."</p>
+<p>“I always have plenty of ideas to experiment on the people I catch,” she says, grabbing your chin between her thick fingers. “But for a little thief like you, I’ll put in extra effort.”</p>
 </div>
 
 <p>The witch won’t kill you, and she’ll even release you after a while. But what you’ll suffer in her hands before that will make it impossible for you to pursue any quest.</p>
@@ -415,7 +415,7 @@ ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
 <p>The fat woman enters the hut and immediately spots you.</p>
 
 <div class="conversation">
-<p>"Nasty little thief!" she spits. "How did you get here?"</p>
+<p>“Nasty little thief!” she spits. “How did you get here?”</p>
 </div>
 
 <p>She heads straight for you, shouting threats.</p>
@@ -427,7 +427,7 @@ ${itemAcquisitionFeedback(flags.inventory.pearls.name)}
 <p>You cautiously approach the hut’s entrance. A quick glance inside reveals that it’s indeed empty. You’re about to enter when the sound of steps makes you turn: a fat woman wrapped in a purple pareo is heading back toward the hut. Her short hair is bristling like spines and, from her head to her ankles, she wears many splendid pieces of golden jewelry. Tied around her waist, you observe a half-full bag, a grey fishing net and a small metal knife. It’s too late to get back to your hiding place: she’s seen you.</p>
 
 <div class="conversation">
-<p>"Well, well," she says in an unfriendly voice. "I was looking for the intruder and I find her on my doorstep…"</p>
+<p>“Well, well,” she says in an unfriendly voice. “I was looking for the intruder and I find her on my doorstep…”</p>
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {

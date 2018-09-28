@@ -491,7 +491,7 @@ ${crocodileIslandDescription}
 <p>A surprise awaits you as you return to your canoe: a young boy from the tribe is in the water, not very far from the shore.</p>
 
 <div class="conversation">
-<p>"Mananuiva!" he shouts. "I’ve been sent to fetch you: the race is going to begin."</p>
+<p>“Mananuiva!" he shouts. "I’ve been sent to fetch you: the race is going to begin.”</p>
 </div>
 
 <p>You glance at the sun’s position: you haven’t paid close attention to the passage of time, but the afternoon is indeed about to end.</p>
@@ -546,7 +546,7 @@ ${crocodileIslandDescription}
 <p>You’re paddling steadily, aiming for your next destination, when a splashing sound draws your attention: not far from your canoe, the head of a young boy from the tribe has just emerged above the water.</p>
 
 <div class="conversation">
-<p>"Mananuiva!" he shouts. "I’ve been sent to fetch you: the race is going to begin."</p>
+<p>“Mananuiva!" he shouts. "I’ve been sent to fetch you: the race is going to begin.”</p>
 </div>
 
 <p>You stop your canoe and glance at the sun’s position: you haven’t paid close attention to the passage of time, but the afternoon is indeed about to end.</p>
@@ -661,7 +661,7 @@ ${crocodileIslandDescription}
 <p>The sun has significantly dropped toward the horizon when a young boy comes to shake you out of the drowsiness you’d slipped into.</p>
 
 <div class="conversation">
-<p>"Mananuiva, you need to come, the race is going to begin!"</p>
+<p>“Mananuiva, you need to come, the race is going to begin!”</p>
 </div>
 
 <p>Opening your eyes, you leave your hammock with some regret and stretch a bit.</p>

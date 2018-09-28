@@ -7,7 +7,7 @@ const crocodileLastWords = `
 <p>As you run away, a guttural laugh echoes loudly behind you.</p>
 
 <div class="conversation">
-<p>"You can’t blame me for trying, appetizing human girl!" the crocodile shouts. "But I’ll give you a real piece of advice, so you can humiliate that thieving tribe. Find some of the red fruits that grow on this island and take them with you. If you taste one of them just before your race, it may give you a chance to win. You’ll also need cunning, but that’s not so easily acquired!"</p>
+<p>“You can’t blame me for trying, appetizing human girl!” the crocodile shouts. “But I’ll give you a real piece of advice, so you can humiliate that thieving tribe. Find some of the red fruits that grow on this island and take them with you. If you taste one of them just before your race, it may give you a chance to win. You’ll also need cunning, but that’s not so easily acquired!”</p>
 </div>
 
 <p>You barely slow down, even after his voice has disappeared behind you. Just before you reach your canoe, you notice a few shrubs bearing red fruits. They must be what the crocodile was referring to, but can you trust him this time? </p>
@@ -276,7 +276,7 @@ const island6 = {
 <p>The heavy, armored body of the crocodile hasn’t lost its ponderous stillness, but his head has moved a little and his yellow eyes are now watching you. The voice that comes out of his slightly open mouth is rough and growling at the same time, making the words almost difficult to understand:</p>
 
 <div class="conversation">
-<p>"Have no fear, I won’t hurt you. On the contrary, I want to help you. Come a bit closer, so we can talk; I don’t perceive human voices very clearly."</p>
+<p>“Have no fear, I won’t hurt you. On the contrary, I want to help you. Come a bit closer, so we can talk; I don’t perceive human voices very clearly.”</p>
 </div>
 
 <p>Most of your tribe’s legends feature animals gifted with intelligence and speech. You’ve sometimes daydreamed about meeting such a creature. But you didn’t expect it to happen this way!</p>
@@ -313,7 +313,7 @@ const island6 = {
 <p>You take a cautious step forward, ready to flee at any moment. But the enormous body of the crocodile remains as motionless as the sand it’s lying on.</p>
 
 <div class="conversation">
-<p>"Good, you’ve learned not to trust appearances. I genuinely want to help you, and you do need help. Now think: what do you want to know?"</p>
+<p>“Good, you’ve learned not to trust appearances. I genuinely want to help you, and you do need help. Now think: what do you want to know?”</p>
 </div>
     `,
     "next": (goToSection) => {
@@ -340,7 +340,7 @@ const island6 = {
   "crocodile-bitterness": {
     "text": `
 <div class="conversation">
-<p>"Those thieves… I was the only master of the atoll before their miserable tribe decided to settle here. Now, the only things I have left are this island and a small part of the lagoon where I can hunt. But I’m patient, I can wait for many seasons… One day, they’ll learn that I possess many secrets and hidden powers, but it’ll be too late!"</p>
+<p>“Those thieves… I was the only master of the atoll before their miserable tribe decided to settle here. Now, the only things I have left are this island and a small part of the lagoon where I can hunt. But I’m patient, I can wait for many seasons… One day, they’ll learn that I possess many secrets and hidden powers, but it’ll be too late!”</p>
 </div>
 
 <p>It’s difficult to recognize emotions expressed in such an inhuman voice, but the bitter, vengeful resentment of the reptile is nevertheless unmistakable.</p>
@@ -370,19 +370,19 @@ const island6 = {
   "crocodile-power": {
     "text": `
 <div class="conversation">
-<p>"Maybe you doubt the truth of my words?" the crocodile says. "You’re still young and ignorant. I’ll show you what I can do."</p>
+<p>“Maybe you doubt the truth of my words?” the crocodile says. “You’re still young and ignorant. I’ll show you what I can do.”</p>
 </div>
 
 <p>His huge body starts moving. You tense, frightened, but he’s not heading in your direction. His powerful jaws close on a nearby root and tear off part of it. The crocodile seemingly gnaw on the thick piece of wood for a while, then he turns back toward you and spits it on the sand.</p>
 
 <div class="conversation">
-<p>"Look! Here’s one of my powers!"</p>
+<p>“Look! Here’s one of my powers!”</p>
 </div>
 
 <p>Its stay in the crocodile’s mouth has strangely altered this piece of wood: it now looks like a human-shaped figurine. And, though it’s very rough and has little detail, you’re suddenly struck with the weird conviction that it represents you. You stare at it with growing fascination.</p>
 
 <div class="conversation">
-<p>"You like it, don’t you?" the crocodile says, almost whispering. "And it would be extremely useful to you. Come and take it… Come… Come closer…"</p>
+<p>“You like it, don’t you?” the crocodile says, almost whispering. “And it would be extremely useful to you. Come and take it… Come… Come closer…”</p>
 </div>
 
 <p>The desire to possess the figurine now dominates your mind, and you’re ready to risk death to obtain it. But, though you’re unable to resist this enthallment, your common sense isn’t completely numb. You realize that the crocodile’s actions have no other purpose than to make a meal out of you.</p>
@@ -422,7 +422,7 @@ const island6 = {
     "text": (flags) => {
       return `
 <div class="conversation">
-<p>"It seems I no longer have the time," you say, gesturing toward the lagoon. "I see someone coming, probably to tell me that the race is going to begin. I’ll have to… </p>
+<p>“It seems I no longer have the time,” you say, gesturing toward the lagoon. “I see someone coming, probably to tell me that the race is going to begin. I’ll have to…”</p>
 </div>
 
 <p>Your lie works beyond your hopes: with astonishing speed, the huge beast turns to face the imaginary newcomer, opening its frightful jaws as threateningly as possible.</p>
@@ -451,12 +451,12 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
   "crocodile-help": {
     "text":`
 <div class="conversation">
-<p>"I have to take part in the rite of passage of a young woman from the tribe," you tell the huge reptile. "Do you anything that could help me? If I win, it’ll humble the entire tribe."</p>
+<p>“I have to take part in the rite of passage of a young woman from the tribe,” you tell the huge reptile. “Do you anything that could help me? If I win, it’ll humble the entire tribe.”</p>
 </p>
 
 <p>The crocodile reflects for a while before answering:</p>
 <div class="conversation">
-<p>"Do not fool yourself: as far as your opponent is concerned, that race is a formality more than it is a real trial. The traditions of that bastard tribe have no other purpose than to remind them of their supposed superiority. Once the race has begun, know that you’ll only stand a chance if you show cunning and alertness. But I want to help you humiliate those thieves. Listen well, I’ll reveal one of my secrets to you…"</p>
+<p>“Do not fool yourself: as far as your opponent is concerned, that race is a formality more than it is a real trial. The traditions of that bastard tribe have no other purpose than to remind them of their supposed superiority. Once the race has begun, know that you’ll only stand a chance if you show cunning and alertness. But I want to help you humiliate those thieves. Listen well, I’ll reveal one of my secrets to you…”</p>
 </div>
 
 <p>Out of his mouth comes a strange sound, very deep, halfway between a growl and a song. Its rhythm, different from any music you know, is strangely mesmerizing.</p>
@@ -479,7 +479,7 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
     "text": `
 <p>A halting, raucous laugh comes out of the reptile’s powerful mouth.</p>
 <div class="conversation">
-<p>"So distrustful! I guess appearances are against me. Yet you have many other reasons to worry. Do you want me to share my wisdom with you anyway?</p>
+<p>“So distrustful! I guess appearances are against me. Yet you have many other reasons to worry. Do you want me to share my wisdom with you anyway?”</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
@@ -506,7 +506,7 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
   "crocodile-angry": {
     "text": `
 <div class="conversation">
-<p>"I hate those miserable thieves," the crocodile hisses angrily. "I was the only master of the atoll before their bastard tribe decided to settle here. Now, the only things I have left are this island and a small part of the lagoon where I can hunt. But I’m patient, and I have many secrets that despicable tribe doesn’t know of. Listen well, I’ll share one of them with you, it’ll be useful…"</p>
+<p>“I hate those miserable thieves," the crocodile hisses angrily. "I was the only master of the atoll before their bastard tribe decided to settle here. Now, the only things I have left are this island and a small part of the lagoon where I can hunt. But I’m patient, and I have many secrets that despicable tribe doesn’t know of. Listen well, I’ll share one of them with you, it’ll be useful…”</p>
 </div>
 
 <p> Out of his mouth comes a strange sound, very deep, halfway between a growl and a song. Its rhythm, different from any music you know, is strangely mesmerizing.</p>
@@ -516,7 +516,7 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
   "crocodile-trial": {
     "text": `
 <div class="conversation">
-<p>"Do not fool yourself: the arrogant members of that bastard tribe don’t think that you stand any chance of winning their traditional race. As far as they’re concerned, it’s merely a formality, not a real trial. But I’d like to humiliate those thieves by helping you win. Look among the roots of the tree next to you, there’s an object that would serve you well."</p>
+<p>“Do not fool yourself: the arrogant members of that bastard tribe don’t think that you stand any chance of winning their traditional race. As far as they’re concerned, it’s merely a formality, not a real trial. But I’d like to humiliate those thieves by helping you win. Look among the roots of the tree next to you, there’s an object that would serve you well.”</p>
 </div>
     `,
     "next": (goToSection, flags, updateFlag) => {
@@ -594,19 +594,19 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
 <p>The crocodile suddenly stops and so do you, staggering as though you were feeling faint.</p>
 
 <div class="conversation">
-<p>"Enough singing. Watch now."</p>
+<p>“Enough singing. Watch now.”</p>
 </div>
 
 <p> His huge body starts moving. You tense, frightened, but he’s not heading in your direction. His powerful jaws close on a nearby root and tear off part of it. The crocodile seemingly gnaw on the thick piece of wood for a while, then he turns back toward you and spits it on the sand.</p>
 
 <div class="conversation">
-<p>"Look! Here’s one of my powers!"</p>
+<p>“Look! Here’s one of my powers!”</p>
 </div>
 
 <p> Its stay in the crocodile’s mouth has strangely altered this piece of wood: it now looks like a human-shaped figurine. And, though it’s very rough and has little detail, you’re suddenly struck with the weird conviction that it represents you. You stare at it with growing fascination.</p>
 
 <div class="conversation">
-<p>"You like it, don’t you?" the crocodile says, almost whispering. "And it would be extremely useful to you. Come and take it… Come… Come closer…"</p>
+<p>“You like it, don’t you?” the crocodile says, almost whispering. “And it would be extremely useful to you. Come and take it… Come… Come closer…”</p>
 </div>
 
 <p> The desire to possess the figurine now dominates your mind, and you’re ready to risk death to obtain it. But, though you’re unable to resist this enthallment, your common sense isn’t completely numb. You realize that the crocodile’s actions have no other purpose than to make a meal out of you.</p>

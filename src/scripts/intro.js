@@ -162,17 +162,17 @@ const intro = {
 <p>Having just emerged from the water, both of her arms resting on your outrigger, a young woman is watching you with delighted curiosity.</p>
 
 <div class="conversation">
-<p>"Hello," she says cheerfully. "Do you come from afar?"</p>
-<p>"I guess I do," you answer after a moment of surprise. "Do you want to climb aboard?"</p>
-<p>"Just wait a moment. I dropped something as I was surfacing, and I’d rather get it back right now.</p>
+<p>“Hello,” she says cheerfully. “Do you come from afar?”</p>
+<p>“I guess I do,” you answer after a moment of surprise. “Do you want to climb aboard?”</p>
+<p>“Just wait a moment. I dropped something as I was surfacing, and I’d rather get it back right now.</p>
 </div>
 
 <p>She dives without waiting for an answer. Through the clear water, you see her approach an especially dense jumble of coral, stick her arm in a crevice, then immediately head back in your direction. Once she’s resurfaced, she readily climbs aboard your canoe. She now holds an ivory knife, and you’re surprised that she could find such a small object so quickly amid the extravagant profusion of coral. You consider that she might have been searching for shellfish or crustaceans underwater when you arrived; but if that were the case, she’d have brought a small net to carry her catch, and she has nothing of the sort.</p>
 
 <div class="conversation">
-<p>"My name’s Raiahui. What’s yours ?"</p>
-<p>"Mananuiva. Is your village far from here?"</p>
-<p>"It’s on the side of the lagoon. I’ll show you the nearest channel."</p>
+<p>“My name’s Raiahui. What’s yours ?”</p>
+<p>“Mananuiva. Is your village far from here?”</p>
+<p>“It’s on the side of the lagoon. I’ll show you the nearest channel.”</p>
 </div>
 
 <p>Raiahui is about as old as you are. She’s a bit taller, a bit thinner, and her brown skin is slightly lighter. Her dark hair has been cut strangely short, and doesn’t even reach her shoulders.</p>
@@ -182,8 +182,8 @@ const intro = {
 <p>You soon reach the channel and go through it. To your left, the island you’ve been paddling along is evenly covered with an entanglement of trees. To your right, some distance away, you now see another of the atoll’s islands; it’s barely more than a stretch of sand. Under your canoe, the limpidity of the water constrasts with the dark blue of the ocean and the lagoon.</p>
 
 <div class="conversation">
-<p>"Are you a good swimmer?" Raiahui asks suddenly.</p>
-<p>"Very good."</p>
+<p>“Are you a good swimmer?” Raiahui asks suddenly.</p>
+<p>“Very good.”</p>
 </div>
 
 <p>Your answer makes her smile, but she doesn’t explain why.</p>
@@ -206,31 +206,31 @@ const intro = {
 <p>The crowd suddenly makes way for a man with very close-shaven hair, whose muscular body bears many scars.</p>
 
 <div class="conversation">
-<p>"It’s the chieftain of the tribe, Ataroa," whispers Raiahui as you get out of your canoe.</p>
+<p>“It’s the chieftain of the tribe, Ataroa,” whispers Raiahui as you get out of your canoe.</p>
 </div>
 
 <p>You bow and introduce yourself politely, hoping that the local etiquette doesn’t demand more. Ataroa watches you for a moment, his face expressionless. Then he nods.</p>
 
 <div class="conversation">
-<p>"You’re welcome here. Have you come in search of something?</p>
-<p>"I’m performing my rite of passage," you answer. "I’m looking for omens about my future."</p>
+<p>“You’re welcome here. Have you come in search of something?”</p>
+<p>“I’m performing my rite of passage," you answer. "I’m looking for omens about my future.”</p>
 </div>
 
 <p>That explanation has earned you quite a few puzzled looks since the beginning of your journey: rites of passage to adulthood take many different forms throughout the archipelago, but their true role is to integrate adolescents into the community of adults, not to send them on the kind of mystic quest that would befit a shaman. If your answer surprises Ataroa, however, he doesn’t show it.</p>
 
-<p>"That’s a lucky coincidence," he says. "There’s a member of our tribe who also has to perform her rite of passage, but she had to wait for the arrival of an outsider to do so."</p>
+<p>“That’s a lucky coincidence,” he says. “There’s a member of our tribe who also has to perform her rite of passage, but she had to wait for the arrival of an outsider to do so.”</p>
 
 <p>He gestures toward Raiahui, who’s clearly having a hard time keeping her excitement in check.</p>
 
 <div class="conversation">
-<p>"What is that rite like?" you ask, a bit surprised.</p>
-<p>"A simple race between this island and its neighbor, nothing more. If Raiahui wins, she can join the adults of the tribe. If you win...</p>
+<p>“What is that rite like?” you ask, a bit surprised.</p>
+<p>“A simple race between this island and its neighbor, nothing more. If Raiahui wins, she can join the adults of the tribe. If you win...</p>
 </div>
 
 <p>He briefly pauses for thought, then resumes:</p>
 
 <div class="conversation">
-<p>"There’s a sacred beverage, called the Foam of the Deep, that we hardly ever brew, for its ingredients are difficult to gather. The one who drinks it can access the world of the spirits, and receive wisdom and knowledge. My predecessors used the Foam of the Deep when the tribe was in danger, I have not yet had the occasion to do so myself. If you win the race, we’ll brew the Foam of the Deep for you. Do you accept?"</p>
+<p>“There’s a sacred beverage, called the Foam of the Deep, that we hardly ever brew, for its ingredients are difficult to gather. The one who drinks it can access the world of the spirits, and receive wisdom and knowledge. My predecessors used the Foam of the Deep when the tribe was in danger, I have not yet had the occasion to do so myself. If you win the race, we’ll brew the Foam of the Deep for you. Do you accept?”</p>
 </div>
 
 <p>Hearing Ataroa offer you such a prize has drawn a few surprised exclamations out of the crowd. Would that Foam of the Deep really bring you the answers you seek? Real magic is not as common as legends suggest, as you’ve come to realize since the beginning of your journey. On the other hand, if you don’t seize all possible opportunities, your quest is likely to remain fruitless.</p>
@@ -238,13 +238,13 @@ const intro = {
 <p>From a more practical point of view, you suspect that the tribe won’t grant you hospitality if you refuse to take part in their race, and you certainly don’t feel like leaving on your canoe before a good night’s sleep.</p>
 
 <div class="conversation">
-<p>"I will take part in the rite of passage," you say.</p>
+<p>“I will take part in the rite of passage,” you say.</p>
 </div>
 
 <p>Raiahui giggles happily, and a murmur of general satisfaction echoes her among the crowd.</p>
 
 <div class="conversation">
-<p>"Excellent," says Ataroa. "The race will happen a day from now. This evening, we’ll have a feast in your honor."</p>
+<p>“Excellent,” says Ataroa. “The race will happen a day from now. This evening, we’ll have a feast in your honor.”</p>
 </div>
 
 <p>He gives instructions and the crowd disperses to prepare the feast. Raiahui briefly goes away to get dressed, then comes back, a wide smile still stuck to her face. You study her lithe, athletic build, wondering how hard it’ll be to defeat her. You were being modest when you claimed to be a very good swimmer: the truth is that you’ve never met a woman that could surpass you.</p>
@@ -266,16 +266,16 @@ const intro = {
 <p>The center of the village holds an impressive surprise. Not far from the area where the villagers are now preparing the feast is a monument built from many fishing trophies. You see turtle shells, swordfish bills, many dolphin skulls... In the middle is a long, thin jaw, twice as big as you are; its many teeth are thick and sharp.</p>
 
 <div class="conversation">
-<p>"It’s the jaw of a sperm whale," Raiahui explains, smiling at your astonishment.</p>
+<p>“It’s the jaw of a sperm whale,” Raiahui explains, smiling at your astonishment.</p>
 </div>
 
 <p>You’ve heard about those huge animals, but you’ve never seen one; judging from these remains, that may be fortunate.</p>
 
 <div class="conversation">
-<p>"How did you manage to catch such a beast?"</p>
-<p>"I wasn’t very old when it happened, and I mostly remember eating whale meat for several days. There were about twenty hunters and they had a very hard time separating the animal from its herd and making it run aground near the atoll. It’s a pity Faanarua’s not here to explain how they pulled it off."</p>
-<p>"Who’s Faanarua?"</p>
-<p>"She used to be one of the best hunters in the tribe... and she tells stories really well. But she’s become a bit weird and doesn’t show up very often anymore. Today, I think she’s around, but she probably won’t come to this evening’s feast.</p>
+<p>“How did you manage to catch such a beast?”</p>
+<p>“I wasn’t very old when it happened, and I mostly remember eating whale meat for several days. There were about twenty hunters and they had a very hard time separating the animal from its herd and making it run aground near the atoll. It’s a pity Faanarua’s not here to explain how they pulled it off.”</p>
+<p>“Who’s Faanarua?”</p>
+<p>“She used to be one of the best hunters in the tribe... and she tells stories really well. But she’s become a bit weird and doesn’t show up very often anymore. Today, I think she’s around, but she probably won’t come to this evening’s feast.”</p>
 </div>
 
 ${flags.arrivalActions.length <= 1? `<p>After the visit of the village is over, some time still remains before the feast can begin.</p>`: ""}
@@ -301,17 +301,17 @@ ${flags.arrivalActions.length <= 1? `<p>There’s still some time left before th
     "text": flags =>
 `
 <div class="conversation">
-<p>"If I understand correctly, you couldn’t perform your rite of passage without an outsider?</p>
-<p>"Exactly. But it has to be someone who’s healthy and sturdy enough, of course. Otherwise, it would be too easy.</p>
-<p>"Do you often get visitors?"</p>
-<p>"Not really, no. I’ve been waiting since the beginning of the dry season. If no one comes for an entire year, a few adults bring those who’re old enough to one of the closest inhabited islands, where they can find people who’ll take part in the rite. But thanks to you, I’ll be an adult tomorrow evening. I’m really glad.</p>
-<p>"The race hasn’t happened yet," you observe.</p>
+<p>“If I understand correctly, you couldn’t perform your rite of passage without an outsider?”</p>
+<p>“Exactly. But it has to be someone who’s healthy and sturdy enough, of course. Otherwise, it would be too easy.”</p>
+<p>“Do you often get visitors?”</p>
+<p>“Not really, no. I’ve been waiting since the beginning of the dry season. If no one comes for an entire year, a few adults bring those who’re old enough to one of the closest inhabited islands, where they can find people who’ll take part in the rite. But thanks to you, I’ll be an adult tomorrow evening. I’m really glad.”</p>
+<p>“The race hasn’t happened yet,” you observe.</p>
 </div>
 
 <p>Raiahui’s smile shows all of her teeth.</p>
 
 <div class="conversation">
-<p>"I’m sorry for your quest, Mananuiva, but I’ll be the winner."
+<p>“I’m sorry for your quest, Mananuiva, but I’ll be the winner.”"
 </div>
 
 ${flags.arrivalActions.length <= 1? `<p>There’s still some time left before the feast can begin.</p>`: ""}
@@ -325,28 +325,30 @@ ${flags.arrivalActions.length <= 1? `<p>There’s still some time left before th
 <p>Judging from the sun’s position, the island where the village is located lies at the southern end of the atoll. From the beach where you’ve landed your canoe, you can see the outlines of the other islands, but not determine their exact number. Raiahui draws a basic map on the sand.</p>
 
 <div class="conversation">
-<p>"We’re here," she says, drawing a slightly curved line. "To the right is the channel we passed through to enter the lagoon, and on the other side, there’s the arrival point for our race. You must have seen what it’s like: there’s not even a shrub!
-Her finger keeps drawing vague shapes, moving toward the north.</p>
-<p>"After that, there’s a tiny islet, that nearly vanishes during the wet season. Then there’s the island of the Old Sluggard. That’s where the largest trees in the atoll can be found, but you shouldn’t go and have a look: the Old One isn’t really welcoming. He’s smart enough to stay away from us, but strangers are another matter."</p>
+<p>“We’re here,” she says, drawing a slightly curved line. “To the right is the channel we passed through to enter the lagoon, and on the other side, there’s the arrival point for our race. You must have seen what it’s like: there’s not even a shrub!”</p>
+</div>
+<p>Her finger keeps drawing vague shapes, moving toward the north.</p>
+<div class="conversation">
+<p>“After that, there’s a tiny islet, that nearly vanishes during the wet season. Then there’s the island of the Old Sluggard. That’s where the largest trees in the atoll can be found, but you shouldn’t go and have a look: the Old One isn’t really welcoming. He’s smart enough to stay away from us, but strangers are another matter.”</p>
 </div>
 
 <p>You’re about to ask her for more details, but she’s already moving on:</p>
 <div class="conversation">
-<p>"And here’s the home of the witch!"</p>
-<p>"A witch?"</p>
+<p>“And here’s the home of the witch!”</p>
+<p>“A witch?”</p>
 </div>
 
 <p>You wonder if Raiahui might not be having fun at your expense, but she seems quite sincere and eager to tell you more.</p>
 
 <div class="conversation">
-<p>"When I was young," she says with nostalgic excitement, "nothing rose above the surface in that part of the atoll. And then, one morning, an island had appeared! Some think it floats, other that it’s actually on the back of a giant crab enslaved by the witch. The water around it is very dark, so you can’t really tell... Anyway, several adults decided to explore it and they never came back. Since then, of course, nobody goes there.</p>
-<p>"Then how do you know there’s a witch?"</p>
-<p>"We spot her from time to time. She’s very fat, with spiky hair like the spines of an urchin, and she wears weird golden jewelry. She usually looks busy, but no one knows for sure what she does.</p>
+<p>“When I was young,” she says with nostalgic excitement, “nothing rose above the surface in that part of the atoll. And then, one morning, an island had appeared! Some think it floats, other that it’s actually on the back of a giant crab enslaved by the witch. The water around it is very dark, so you can’t really tell... Anyway, several adults decided to explore it and they never came back. Since then, of course, nobody goes there.”</p>
+<p>“Then how do you know there’s a witch?”</p>
+<p>“We spot her from time to time. She’s very fat, with spiky hair like the spines of an urchin, and she wears weird golden jewelry. She usually looks busy, but no one knows for sure what she does.”</p>
 </div>
 
 <p>The three remaining islands, on the western side of the atoll, clearly don’t interest Raiahui anywhere as much, and she describes them in just a few words:</p>
 <div class="conversation">
-<p>"This one’s very small and there’s hardly anything on it. The other two are medium-sized and they have many palm trees, just like this island.</p>
+<p>“This one’s very small and there’s hardly anything on it. The other two are medium-sized and they have many palm trees, just like this island.”</p>
 </div>
 
 ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time still remains before the feast can begin.</p>`: ""}
@@ -391,15 +393,15 @@ ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time s
 <p>After a few casual questions, you ask Ataroa about the rite of passage used by his tribe:</p>
 
 <div class="conversation">
-<p>"Why is an outsider necessary? Wouldn’t it be simpler to have a race every year between all the adolescents who’re old enough?</p>
-<p>"All the youths of the tribe are used to competing with each other since their childhood," Ataroa answers, while skillfully removing the shell of a crab with the point of his knife. "It can no longer teach them anything. By confronting them with someone they don’t know, the rite places them in a uncertain situation, where they’ll have to anticipate and to adapt. The trial is not merely physical, far from it. If you want to win, you will need to show cunning.</p>
-<p>"Raiahui seems quite sure that she’s going to win."</p>
+<p>“Why is an outsider necessary? Wouldn’t it be simpler to have a race every year between all the adolescents who’re old enough?”</p>
+<p>“All the youths of the tribe are used to competing with each other since their childhood,” Ataroa answers, while skillfully removing the shell of a crab with the point of his knife. “It can no longer teach them anything. By confronting them with someone they don’t know, the rite places them in a uncertain situation, where they’ll have to anticipate and to adapt. The trial is not merely physical, far from it. If you want to win, you will need to show cunning.</p>
+<p>“Raiahui seems quite sure that she’s going to win.”</p>
 </div>
 
 <p>Ataroa briefly nods.</p>
 
 <div class="conversation">
-<p>"If she loses, it’ll be because of her overconfidence. Don’t make the same mistake when the time comes to start the race."</p>
+<p>“If she loses, it’ll be because of her overconfidence. Don’t make the same mistake when the time comes to start the race.”</p>
 </div>
 `
     ,
@@ -411,22 +413,22 @@ ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time s
 <p>Most of the men are busy filling their bellies, but some are curious to learn more about you. Most of their questions are about your skill as a swimmer; they’re clearly trying to determine if you’ll be a worthy contestant in tomorrow’s race. You remain modest in your description of yourself: what you say may come to Raiahui’s ears and you’d rather have her underestimate you.</p>
 
 <div class="conversation">
-<p>"Does your tribe also hold traditional competitions?" ask a man named Harumu.</p>
-<p>"Yes. Every year, many birds come to a tiny island close to ours and lay their eggs. There’s a race to be the first one to bring back some of those eggs.</p>
-<p>"Have you ever won that race?"</p>
-<p>"Oh, only men take part in it."</p>
+<p>“Does your tribe also hold traditional competitions?” ask a man named Harumu.</p>
+<p>“Yes. Every year, many birds come to a tiny island close to ours and lay their eggs. There’s a race to be the first one to bring back some of those eggs.”</p>
+<p>“Have you ever won that race?”</p>
+<p>“Oh, only men take part in it.”</p>
 </div>
 
 <p>A puzzled expression appears on Harumu’s face.</p>
 
 <div class="conversation">
-<p>"That’s a strange custom," he says. "Is there any specific reason for it?"</p>
+<p>“That’s a strange custom,” he says. “Is there any specific reason for it?”</p>
 </div>
 
 <p>You don’t feel up to the task of putting into words the complex explanation this question calls for, so you opt for an easier answer:</p>
 <div class="conversation">
-<p>"Men swim faster than women, so it wouldn’t be a fair race."</p>
-<p>"Oh... Yes, obviously."</p>
+<p>“Men swim faster than women, so it wouldn’t be a fair race.”</p>
+<p>“Oh... Yes, obviously.”</p>
 </div>
 
 <p>Judging from the look on his face, he doesn’t deem it obvious at all.</p>
@@ -440,16 +442,16 @@ ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time s
 <p>When you start talking with some of the women, you expect them to give you an overview of the tribe’s domestic life. But, as you quickly discover, they’re much more interested in telling you about the biggest fish they’ve caught. Some of their boasts seem rather doubtful, to say the least!</p>
 
 <div class="conversation">
-<p>"Do you ever fish in the lagoon itself?" you eventually ask, for they only mention catching fish out at sea.</p>
+<p>“Do you ever fish in the lagoon itself?” you eventually ask, for they only mention catching fish out at sea.</p>
 </div>
 
 <p>Your question gets a laugh out of a woman named Ariinea, who was just a moment ago telling you about a swordfish of improbable size.</p>
 
 <div class="conversation">
-<p>"Quite often, out of sheer laziness," she answers, "but it’s not very exciting. Most of the lagoon’s fish are quite small. Eating nothing else gets boring very quickly, unless you’re the Old Sluggard.</p>
-<p>"The Old Sluggard?"</p>
-<p>"He lives on an island at the other end of the atoll," Ariinea says, "and spends all of his time doing as little as possible.</p>
-<p>"He can still be dangerous," another woman mentions, "especially for those who don’t know him. I don’t think you should approach that part of the atoll, Mananuiva."</p>
+<p>“Quite often, out of sheer laziness,” she answers, “but it’s not very exciting. Most of the lagoon’s fish are quite small. Eating nothing else gets boring very quickly, unless you’re the Old Sluggard.</p>
+<p>“The Old Sluggard?”</p>
+<p>“He lives on an island at the other end of the atoll,” Ariinea says, “and spends all of his time doing as little as possible.”</p>
+<p>“He can still be dangerous,” another woman mentions, “especially for those who don’t know him. I don’t think you should approach that part of the atoll, Mananuiva.”</p>
 </div>
 
 <p>Ariinea pouts, but doesn’t refute the validity of that recommandation.</p>
@@ -465,12 +467,12 @@ ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time s
 <p>A young boy named Varenui is however very interested in your journey. Telling him about everything would be much too long, but you take the time to describe some of the most memorable places you’ve visited. He seems fascinated by the slightest details, and asks many questions.</p>
 
 <div class="conversation">
-<p>"You’ve never visited another inhabited island?" you ask him eventually.
-<p>"No. Even the adults very seldom do... well, except Faanarua, but she’s barely a member of the tribe anymore."
-<p>"Who’s she?"
-<p>"She’s... someone weird. She’s built a canoe with a sail for herself, so she can travel far and visit as many new islands as she can. Out of every year, she only spends a few days around here. She actually came back to the atoll just two days ago, and I tried to have her tell me about her journeys, but she sent me packing.
-<p>"Is she present at the feast right now?" you ask, looking around you.</p>
-<p>"No, she’s not even in the village. She’s settled on the westernmost island of the atoll, and she’s barely seeing anyone.</p>
+<p>“You’ve never visited another inhabited island?” you ask him eventually.</p>
+<p>“No. Even the adults very seldom do... well, except Faanarua, but she’s barely a member of the tribe anymore.”</p>
+<p>“Who’s she?”</p>
+<p>“She’s... someone weird. She’s built a canoe with a sail for herself, so she can travel far and visit as many new islands as she can. Out of every year, she only spends a few days around here. She actually came back to the atoll just two days ago, and I tried to have her tell me about her journeys, but she sent me packing.”</p>
+<p>“Is she present at the feast right now?” you ask, looking around you.</p>
+<p>“No, she’s not even in the village. She’s settled on the westernmost island of the atoll, and she’s barely seeing anyone.”</p>
 </div>
 `
     ,
@@ -484,19 +486,19 @@ ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time s
 <p>After describing to your amused audience some of the more extravagant traditional celebrations you’ve seen, you pause to catch your breath. A young girl named Runuhati fetches half a lobster for you, clearly expecting that some food will give you the strength to continue. You accept gratefully, but though you still have quite an appetite, your bone knife is now very blunt, and you’d have a hard time cutting anything with it.</p>
 
 <div class="conversation">
-<p>"Can I borrow your knife?" you ask Runuhati.</p>
+<p>“Can I borrow your knife?” you ask Runuhati.</p>
 </div>
 
 <p>Her eyes open wide and she looks almost panic-struck.</p>
 
 <div class="conversation">
-<p>"I... No... It’s..."</p>
+<p>“I... No... It’s...”</p>
 </div>
 
 <p>An older girl comes to her help:</p>
 
 <div class="conversation">
-<p>"It’s an extremely personal item; we keep it throughout our entire lives and we never lend it, even among ourselves. Give me your lobster, I’ll remove the shell for you.</p>
+<p>“It’s an extremely personal item; we keep it throughout our entire lives and we never lend it, even among ourselves. Give me your lobster, I’ll remove the shell for you.”</p>
 </div>
 `
     ,
@@ -544,9 +546,9 @@ ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time s
 <p>Raiahui is lying on a hammock close to yours, her knife on her belly. She opens an eye when you start stretching.</p>
 
 <div class="conversation">
-<p>"Up already?" she mumbles. "You should rest for this evening’s race."</p>
-<p>"I’m not going to spend all day doing nothing but wait."</p>
-<p>"As you wish," she answers, yawning. "But don’t get close to the two islands at the northern end of the atoll..."</p>
+<p>“Up already?” she mumbles. “You should rest for this evening’s race.”</p>
+<p>“I’m not going to spend all day doing nothing but wait.”</p>
+<p>“As you wish,” she answers, yawning. “But don’t get close to the two islands at the northern end of the atoll...”</p>
 </div>
 
 <p>A few moments later, she’s gone back to sleep.</p>

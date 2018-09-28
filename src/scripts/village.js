@@ -57,13 +57,13 @@ const village = {
 <p>The man is Oramui and the woman Terani. As a preparation for this evening’s ceremony, they’re collecting sap to make palm wine. The pale, sweet beverage is not unknown to you – it’s commonly served during the celebrations of your tribe – but you only have a vague idea as to how it’s prepared.</p>
 
 <div class="conversation">
-<p>"It’s important not to collect the sap too early," explains Oramui, "because it quickly becomes stronger and more acidic. If you wait more than a day, it will be undrinkable."</p>
+<p>“It’s important not to collect the sap too early,” explains Oramui, “because it quickly becomes stronger and more acidic. If you wait more than a day, it will be undrinkable.”</p>
 </div>
 
 <p>He shows you small piles of calabashes and explains they contain the sap they collected yesterday, shortly after your arrival. But your eyes are soon drawn to a dozen of calabashes kept apart from the others, and wrapped in large leaves.</p>
 
 <div class="conversation">
-<p>"Is this palm wine too?" you ask.</p>
+<p>“Is this palm wine too?” you ask.</p>
 </div>
 
 <p>Oramui and Terani shake their heads and engage in a complicated explanation, involving quite a few words you do not know. You only manage to understand that it’s a beverage derived from palm wine, but much stronger.</p>
@@ -124,7 +124,7 @@ const village = {
 ${itemAcquisitionFeedback(flags.inventory.alcohol.name)}
 
 <div class="conversation">
-<p>"It will make you feel very dizzy," she warns you. "You absolutely musn’t drink any of it before your race against Raiahui."</p>
+<p>“It will make you feel very dizzy,” she warns you. “You absolutely musn’t drink any of it before your race against Raiahui.”</p>
 </div>
 
 <p>Her advice brings a smile to Oramui’s lips, but he doesn’t add anything. You thank them politely before taking your leave.</p>
