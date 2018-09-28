@@ -97,7 +97,7 @@ const island3 = {
 <p>The woman frowns impatiently. But instead of once again telling you to scram, she just sighs. After a while, she speaks in a calmer voice:</p>
 
 <div class="conversation">
-<p>"Look, I’ll talk to you if that’s what it takes to make you leave. But I’ve been working for a while now, and I’m getting really hungry. Bring me back a few crabs or some crayfish - the lagoon is full of them - and I’ll tell you about anything you want afterwards."</p>
+<p>"Look, I’ll talk to you if that’s what it takes to make you leave. But I’ve been working for a while now, and I’m getting really hungry. Bring me back a few crabs or some crayfish – the lagoon is full of them – and I’ll tell you about anything you want afterwards."</p>
 </div>
 
 <p>You clearly won’t be able to negotiate another deal.</p>

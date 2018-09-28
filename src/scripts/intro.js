@@ -365,11 +365,11 @@ ${flags.arrivalActions.length <= 1? `<p>The description is over, but some time s
 
 <p>The feast begins without further ado. As the guest of honor, you’re invited to help yourself before anyone else, much to the satisfaction of your stomach. You’re given a plate woven out of palm leaves, and you make your choice among an assortment of bird meat, turtle meat, eggs, crustaceans, shellfish and a few fruits. A green coconut with a pierced top is brought to you so you can quench your thirst.</p>
 
-<p>Once you’ve sat down, the members of the tribe help themselves in turn, with a chaotic enthusiasm that suggests such feasts are not common. Except for the very young children, you notice that they all own ivory knives similar to Raiahui’s - curved and slightly serrated - and wield them with great dexterity. Judging from the ease with which they pierce coconuts, remove shells and cut meat, those tools must be incomparably sharper than your bone knife.</p>
+<p>Once you’ve sat down, the members of the tribe help themselves in turn, with a chaotic enthusiasm that suggests such feasts are not common. Except for the very young children, you notice that they all own ivory knives similar to Raiahui’s – curved and slightly serrated – and wield them with great dexterity. Judging from the ease with which they pierce coconuts, remove shells and cut meat, those tools must be incomparably sharper than your bone knife.</p>
 
 <p>You quickly understand why there’s such an abundance of food as you watch the gluttony of the people surrounding you. They don’t even bother to spit out the small pieces of shell and bird bones that crack under their teeth.</p>
 
-<p>Raiahui has left you and is currently surrounded by other adolescents, who’re congratulating her - some with obvious envy - for soon becoming an adult. Quite obviously, they’re convinced that she’ll win tomorrow’s race!</p>
+<p>Raiahui has left you and is currently surrounded by other adolescents, who’re congratulating her – some with obvious envy – for soon becoming an adult. Quite obviously, they’re convinced that she’ll win tomorrow’s race!</p>
 
 <p>This feast is an excellent occasion to learn more about the tribe, though you clearly won’t have time to chat with everybody.</p>
 `

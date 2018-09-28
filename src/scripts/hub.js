@@ -107,7 +107,7 @@ Exploring this islet once was more than enough.
       "cross": [120, 25, 225, 145, 235, 35, 115, 135],
       "description": ((flags) => {
         let text = `
-<p>This island - that Raiahui strongly advised you not to approach - is strangely different from the others: far from being low and flat, it rises above the waves like a large rock.</p>
+<p>This island – that Raiahui strongly advised you not to approach – is strangely different from the others: far from being low and flat, it rises above the waves like a large rock.</p>
         `;
         if (flags.toldAboutAtollByRaiahui) {
           text += ` <p class="text-conditional">Raiahui has mentioned that it’s inhabited by a witch.`;
@@ -116,7 +116,7 @@ Exploring this islet once was more than enough.
           }
           text += `</p>`;
         } else if (flags.toldAboutWitchByMonkey) {
-          text += ` <p class="text-conditional">The monkey - or rather the man turned into a monkey - living on the neighboring islet has warned you against the witch living on this island.</p>`;
+          text += ` <p class="text-conditional">The monkey – or rather the man turned into a monkey – living on the neighboring islet has warned you against the witch living on this island.</p>`;
         }
 
         return text;
@@ -459,7 +459,7 @@ const hub = {
 
 <p>The atoll has eight islands of varied sizes.</p>
 
-<p>The island where you currently are - and where the village is located - is at the southern extremity. It’s clearly the largest island of the atoll; its thin, curved shape somewhat reminds you of a bow.</p>
+<p>The island where you currently are – and where the village is located – is at the southern extremity. It’s clearly the largest island of the atoll; its thin, curved shape somewhat reminds you of a bow.</p>
 
 <p>Starting from where you are and going clockwise (you’ve never actually seen a clock, but you’ve heard vague descriptions of such objects), you then have two islands that look rather similar: medium-sized and covered with many palm trees.</p>
 
@@ -496,7 +496,7 @@ ${crocodileIslandDescription}
 
 <p>You glance at the sun’s position: you haven’t paid close attention to the passage of time, but the afternoon is indeed about to end.</p>
 
-<p>You get in your canoe and tell the boy - who you notice is carrying his curved ivory knife - to sit before you. Then, plunging your paddle into the water, you head for the island where the tribe lives.</p>
+<p>You get in your canoe and tell the boy – who you notice is carrying his curved ivory knife – to sit before you. Then, plunging your paddle into the water, you head for the island where the tribe lives.</p>
         `;
       }
 
@@ -551,7 +551,7 @@ ${crocodileIslandDescription}
 
 <p>You stop your canoe and glance at the sun’s position: you haven’t paid close attention to the passage of time, but the afternoon is indeed about to end.</p>
 
-<p>You help the boy - who you notice is carrying his curved ivory knife - climb aboard your canoe, then you head toward the island where the tribe lives.</p>
+<p>You help the boy – who you notice is carrying his curved ivory knife – climb aboard your canoe, then you head toward the island where the tribe lives.</p>
     `,
     "next": function(goToSection) {
       const text = `Once you’re back to the very beach you departed from this morning, you leave your canoe and follow your young guide to the place from where the race will start.`;
@@ -620,7 +620,7 @@ ${crocodileIslandDescription}
     "text": `
 <p>The outskirts of the village are more animated than when you left, but the difference isn’t exactly considerable. You see several members of the tribe, who give you nods, but Raiahui’s nowhere to be seen.</p>
 
-<p>You quickly get back to your hammock - or another one just like it - and settle in it for a nap.</p>
+<p>You quickly get back to your hammock – or another one just like it – and settle in it for a nap.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const text = `You close your eyes, just for a moment.`;

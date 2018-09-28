@@ -130,7 +130,7 @@ const trial = {
     "text": `
 <p>Following the young boy, you reach the beach at the end of the island, where the entire tribe is now gathering. You see that the adolescents are standing slightly apart from the rest of the crowd; a smile appears on Raiahui’s face when she spots you.</p>
 
-<p>The day is on the wane, but there’s enough light left for the water to remain very clear. You can distinctly see how the bottom of the channel - the very channel you went through yesterday to enter the lagoon - is partly covered with coral. On the other side is the sandy island that’ll serve as the arrival point for your race.</p>
+<p>The day is on the wane, but there’s enough light left for the water to remain very clear. You can distinctly see how the bottom of the channel – the very channel you went through yesterday to enter the lagoon – is partly covered with coral. On the other side is the sandy island that’ll serve as the arrival point for your race.</p>
 
 <p>Murmurs die down among the crowd as Ataroa gestures for Raiahui and yourself to stand before him.</p>
 
@@ -1319,7 +1319,7 @@ ${intro}
 
 <p>As a final stroke propels you inside the crevice, you feel a sudden impact against your foot. Terrified, you hasten to get deeper among the colorful reefs.</p>
 
-<p>Once you’re certain that you’re out of Raiahui’s reach - at least for the moment - you examine your foot. There’s a small cut on your heel, too shallow to be very painful. A bit of blood flows out of the wound, dissolving almost immediately in the clear water.</p>
+<p>Once you’re certain that you’re out of Raiahui’s reach – at least for the moment – you examine your foot. There’s a small cut on your heel, too shallow to be very painful. A bit of blood flows out of the wound, dissolving almost immediately in the clear water.</p>
 
 <p>Quivering, you realize what happened: just as you were reaching the crevice, Raiahui tried to grab you by the ankle. She barely missed, but your feet hit her mouth. The cut was caused by the sharp edge of one of her teeth.</p>
     `,
@@ -1341,7 +1341,7 @@ ${intro}
 
 <p>You deftly move along the crevice. The walls of coral are at first so close together than you’re sometimes forced to contort yourself to pass through without scratching your skin. But then they start edging away from each other, up to the point where you begin to feel dangerously exposed.</p>
 
-<p>You halt for a moment, feeling hesitant. You can see that the coral walls eventually get closer again. But while you cross the distance between your current position and that spot - something that’ll require half a dozen strokes - the crevice will be wide enough for a shark to slip into it. You can’t see Raiahui, but it doesn’t mean that she’s very far.</p>
+<p>You halt for a moment, feeling hesitant. You can see that the coral walls eventually get closer again. But while you cross the distance between your current position and that spot – something that’ll require half a dozen strokes – the crevice will be wide enough for a shark to slip into it. You can’t see Raiahui, but it doesn’t mean that she’s very far.</p>
     `,
     "next": (goToSection) => {
       const choices = [
@@ -1507,7 +1507,7 @@ ${intro}
   },
   "far-corals-doll": {
     "text": `
-<p>The figurine created by the crocodile suddenly starts thrashing about wildly, quickly freeing itself from the thong that was tying it to your waist. You don’t understand what’s happening, but a moment later, you feel a wooden hand - quite human-sized - close on yours and drag you upward. Completely blind but filled with a strange trust, you let yourself be led, kicking slowly.</p>
+<p>The figurine created by the crocodile suddenly starts thrashing about wildly, quickly freeing itself from the thong that was tying it to your waist. You don’t understand what’s happening, but a moment later, you feel a wooden hand – quite human-sized – close on yours and drag you upward. Completely blind but filled with a strange trust, you let yourself be led, kicking slowly.</p>
 
 <p>A few moments later, the hand releases you and you soon leave the thick cloud. The bright surface is only a short distance above you. Under your feet, the coral reefs remain partly hidden by the strange darkness. You can’t tell where Raiahui is, but you can’t hold your breath for much longer anyway.</p>
     `,
@@ -1849,7 +1849,7 @@ ${intro}
 
 <p>The distance separating you from the sandy islet would seem negligible in normal circumstances, but it fills you with chilling uncertainty. Even if you swim as fast as possible, can you reach it before Raiahui catches up to you?</p>
 
-<p>Another option suddenly comes to your mind: you could dive again toward the bottom of the channel - in order to be more difficult to spot - and then swim for the islet by following an indirect route that’ll bring you closer to the lagoon. Raiahui may have a harder time spotting you if you don’t head directly for your goal.</p>
+<p>Another option suddenly comes to your mind: you could dive again toward the bottom of the channel – in order to be more difficult to spot – and then swim for the islet by following an indirect route that’ll bring you closer to the lagoon. Raiahui may have a harder time spotting you if you don’t head directly for your goal.</p>
     `,
     "next": (goToSection) => {
       const choices = [
@@ -2512,7 +2512,7 @@ ${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
 <p>"Got for it," Raiahui says, muffling a snigger. "Don’t worry, I won’t start the race while you’re busy."</p>
 </div>
 
-<p>You quickly disappear among the palm trees, followed by the amused eyes of the adolescents. Once you’re sure they can no longer see you, you throw away the calabash - still almost full - and run toward a part of the beach that’s sufficiently far away. This alternative starting point will barely increase the distance you need to cross to reach the sandy islet that’s your goal.</p>
+<p>You quickly disappear among the palm trees, followed by the amused eyes of the adolescents. Once you’re sure they can no longer see you, you throw away the calabash – still almost full – and run toward a part of the beach that’s sufficiently far away. This alternative starting point will barely increase the distance you need to cross to reach the sandy islet that’s your goal.</p>
 
 <p>Hidden behind a tree, you cast a quick glance in the direction of the tribe’s adolescents. One of them might spot you while you cross the beach, but their unruly merrymaking doesn’t make it very likely. You hope that it’ll also delay the moment when your opponent realizes that you’ve been absent for too long.</p>
 
