@@ -16,11 +16,11 @@ const computeTripTime = function(currentIsland, newIsland) {
     return 0;
   }
 
-  return Math.abs(getIslandNumber(currentIsland) - getIslandNumber(newIsland)) % 7 < 2 ? 1 : 2;
+  return Math.abs(getIslandNumber(currentIsland)-getIslandNumber(newIsland)) % 7 < 2 ? 1 : 2;
 }
 
 const emptyFunction = () => {
-  return '';
+  return "";
 }
 
 const getIslands = function(flags) {

@@ -177,6 +177,6 @@ export const itemAcquisitionFeedback = (itemName) => {
 
 export const itemUpdateFeedback = (itemName) => {
   return inventoryChange(`
-The object <span class="item-name">${itemName}</span> has been updated.
+<span class="item-name">${itemName}</span> has been updated.
   `);
 }
