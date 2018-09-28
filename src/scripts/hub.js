@@ -47,7 +47,7 @@ You have better things to do with your time than to explore this uninhabited isl
     },
     {
       "key": "island-3",
-      "name": flags.toldAboutFaanaruaByVarenui? `Faanarua's island`: `Another very ordinary island`,
+      "name": flags.toldAboutFaanaruaByVarenui? `Faanarua’s island`: `Another very ordinary island`,
       "path": "M20 345 C 20 245, 125 245, 130 345 S 20 405, 20 345",
       "harbor": {"x": 120, "y": 340},
       "textPosition": {"x": 140, "y": 335},
@@ -60,7 +60,7 @@ You have better things to do with your time than to explore this uninhabited isl
 
           if (flags.toldAboutFaanaruaByVarenui) {
             text += `
-<p class="text-conditional">However, you've been told it's currently inhabited by Faanarua, the only member of the tribe with more than a superficial knowledge of the outside world.
+<p class="text-conditional">However, you’ve been told it’s currently inhabited by Faanarua, the only member of the tribe with more than a superficial knowledge of the outside world.
             `;
             if (flags.toldAboutFaanaruaByRaiahui) {
               text += ` Raiahui has also told you about her, describing her as a great hunter and storyteller.`
@@ -87,7 +87,7 @@ It seems unlikely that you could learn anything more by returning to this island
       "cross": [60, 175, 105, 235, 120, 175, 45, 235],
       "description": ((flags) => {
         return `
-<p>This islet is barely large enough to have vegetation, and said vegetation doesn't rise very high.</p>
+<p>This islet is barely large enough to have vegetation, and said vegetation doesn’t rise very high.</p>
         `;
       })(flags),
       "disabled": ((flags) => {
@@ -110,9 +110,9 @@ Exploring this islet once was more than enough.
 <p>This island - that Raiahui strongly advised you not to approach - is strangely different from the others: far from being low and flat, it rises above the waves like a large rock.</p>
         `;
         if (flags.toldAboutAtollByRaiahui) {
-          text += ` <p class="text-conditional">Raiahui has mentioned that it's inhabited by a witch.`;
+          text += ` <p class="text-conditional">Raiahui has mentioned that it’s inhabited by a witch.`;
           if (flags.toldAboutWitchByMonkey) {
-            text += ` And that assertion was corroborated by a man turned into a monkey, meaning that it's probably true.`;
+            text += ` And that assertion was corroborated by a man turned into a monkey, meaning that it’s probably true.`;
           }
           text += `</p>`;
         } else if (flags.toldAboutWitchByMonkey) {
@@ -142,14 +142,14 @@ You have absolutely no intention of going back to this island!
         `;
 
         if (flags.toldAboutAtollByRaiahui) {
-          text += ` <p class="text-conditional">She mentioned that it's the home of the unwelcoming "Old Sluggard".`;
+          text += ` <p class="text-conditional">She mentioned that it’s the home of the unwelcoming "Old Sluggard".`;
           if (flags.toldAboutLazyOneByAriinea) {
             text += ` Ariinea and her friend also mentioned that this mysterious individual could be dangerous.`;
           }
           text += `</p>`;
         } else {
           if (flags.toldAboutAtollByRaiahui) {
-            text += ` <p class="text-conditional">It's probably the home of the "Old Sluggard" Ariinea told you about. Her friend seemed to believe that he could be truly dangerous.</p>`;
+            text += ` <p class="text-conditional">It’s probably the home of the "Old Sluggard" Ariinea told you about. Her friend seemed to believe that he could be truly dangerous.</p>`;
           }
         }
 
@@ -196,14 +196,14 @@ Going back to this tiny islet would clearly be pointless.
       "cross": [585, 405, 645, 450, 650, 405, 580, 450],
       "description": ((flags) => {
         return `
-<p>If it weren't the arrival point of the race that'll pit you against Raiahui this evening, there'd be little to say about this stretch of sand, separated from the main island by a channel.</p>
+<p>If it weren’t the arrival point of the race that’ll pit you against Raiahui this evening, there’d be little to say about this stretch of sand, separated from the main island by a channel.</p>
         `;
       })(flags),
       "disabled": ((flags) => {
         return wentToIsland("island-8", flags);
       })(flags),
       "disabledText": `
-It'd be pointless to return to this island now. You'll have plenty of time to admire it once you've won this evening's race.
+It’d be pointless to return to this island now. You’ll have plenty of time to admire it once you’ve won this evening’s race.
       `,
     },
   ];
@@ -224,7 +224,7 @@ const getIslandsWithMapMetadata = (flags, currentIsland) => {
       "textAnchor": "middle",
       "description": ((flags) => {
           return `
-<p>The atoll's main island, where you slept last night. If you go back to it, you're not sure you'll be able to resist its comfortable hammocks.</p>
+<p>The atoll’s main island, where you slept last night. If you go back to it, you’re not sure you’ll be able to resist its comfortable hammocks.</p>
           `;
       })(flags),
       "disabled": false,
@@ -376,14 +376,14 @@ const getIslandChoices = function(goToSection, flags, updateFlag, extraLog = "")
     return 2 === computeTripTime(currentIsland, island.key);
   });
 
-  const nearText = `Right now, you're close to:`;
+  const nearText = `Right now, you’re close to:`;
   const nearChoices = nearIslands.map(function(island) {
     return getIslandChoice(island, goToSection, flags, updateFlag, extraLog);
   });
 
   let farText = `You can head directly for one of the more distant islands:`;
   if (0 === nearChoices.length) {
-    farText = `You've already visited the islands close to this one, but you could head for:`;
+    farText = `You’ve already visited the islands close to this one, but you could head for:`;
   }
   const farChoices = farIslands.map(function(island) {
     return getIslandChoice(island, goToSection, flags, updateFlag, extraLog);
@@ -428,7 +428,7 @@ const hub = {
     "text": (flags) => {
       let faanaruaIsland = ``;
       if (flags.toldAboutFaanaruaByVarenui) {
-        faanaruaIsland += `<p class="text-conditional">You've been told this is where you might find Faanarua, the only member of the tribe with more than a superficial knowledge of the outside world.`;
+        faanaruaIsland += `<p class="text-conditional">You’ve been told this is where you might find Faanarua, the only member of the tribe with more than a superficial knowledge of the outside world.`;
         if (flags.toldAboutFaanaruaByRaiahui) {
           faanaruaIsland += ` Raiahui has also told you about her, describing her as a great hunter and storyteller.`
         }
@@ -441,15 +441,15 @@ const hub = {
       }
       witchIslandDescription += `</p>`;
 
-      let crocodileIslandDescription = `<p>The second one is more ordinary, and its main distinguishing feature seems to be that it's covered by a tangle of tall trees.`;
+      let crocodileIslandDescription = `<p>The second one is more ordinary, and its main distinguishing feature seems to be that it’s covered by a tangle of tall trees.`;
       if (flags.toldAboutAtollByRaiahui) {
-        crocodileIslandDescription += ` <span class="text-conditional">Raiahui has mentioned that it's the home of the unwelcoming "Old Sluggard".</span>`;
+        crocodileIslandDescription += ` <span class="text-conditional">Raiahui has mentioned that it’s the home of the unwelcoming "Old Sluggard".</span>`;
         if (flags.toldAboutLazyOneByAriinea) {
             crocodileIslandDescription += ` <span class="text-conditional">Ariinea and her friend have also mentioned that this mysterious individual could be dangerous.</span>`;
         }
       } else {
         if (flags.toldAboutLazyOneByAriinea) {
-          crocodileIslandDescription += ` <span class="text-conditional">It's probably the home of the "Old Sluggard" Ariinea told you about. Her friend has strongly advised you not to approach it, as she believes the mysterious individual could be truly dangerous. </span>`;
+          crocodileIslandDescription += ` <span class="text-conditional">It’s probably the home of the "Old Sluggard" Ariinea told you about. Her friend has strongly advised you not to approach it, as she believes the mysterious individual could be truly dangerous. </span>`;
         }
       }
       crocodileIslandDescription += `</p>`;
@@ -459,9 +459,9 @@ const hub = {
 
 <p>The atoll has eight islands of varied sizes.</p>
 
-<p>The island where you currently are - and where the village is located - is at the southern extremity. It's clearly the largest island of the atoll; its thin, curved shape somewhat reminds you of a bow.</p>
+<p>The island where you currently are - and where the village is located - is at the southern extremity. It’s clearly the largest island of the atoll; its thin, curved shape somewhat reminds you of a bow.</p>
 
-<p>Starting from where you are and going clockwise (you've never actually seen a clock, but you've heard vague descriptions of such objects), you then have two islands that look rather similar: medium-sized and covered with many palm trees.</p>
+<p>Starting from where you are and going clockwise (you’ve never actually seen a clock, but you’ve heard vague descriptions of such objects), you then have two islands that look rather similar: medium-sized and covered with many palm trees.</p>
 
 ${faanaruaIsland}
 
@@ -473,7 +473,7 @@ ${witchIslandDescription}
 
 ${crocodileIslandDescription}
 
-<p>Then, somewhere between east and north-east, an island that's nothing more than a tiny stretch of white sand.</p>
+<p>Then, somewhere between east and north-east, an island that’s nothing more than a tiny stretch of white sand.</p>
 
 <p>The next island is very similar, though slightly larger; it will be the arrival point of the race pitting you against Raiahui.</p>
 
@@ -491,10 +491,10 @@ ${crocodileIslandDescription}
 <p>A surprise awaits you as you return to your canoe: a young boy from the tribe is in the water, not very far from the shore.</p>
 
 <div class="conversation">
-<p>"Mananuiva!" he shouts. "I've been sent to fetch you: the race is going to begin."</p>
+<p>"Mananuiva!" he shouts. "I’ve been sent to fetch you: the race is going to begin."</p>
 </div>
 
-<p>You glance at the sun's position: you haven't paid close attention to the passage of time, but the afternoon is indeed about to end.</p>
+<p>You glance at the sun’s position: you haven’t paid close attention to the passage of time, but the afternoon is indeed about to end.</p>
 
 <p>You get in your canoe and tell the boy - who you notice is carrying his curved ivory knife - to sit before you. Then, plunging your paddle into the water, you head for the island where the tribe lives.</p>
         `;
@@ -508,7 +508,7 @@ ${crocodileIslandDescription}
     },
     "next": function(goToSection, flags, updateFlag) {
       if (flags.time >= timeLimit) {
-        const text = `Once you're back to the very beach you departed from this morning, you leave your canoe and follow your young guide to the place from where the race will start.`;
+        const text = `Once you’re back to the very beach you departed from this morning, you leave your canoe and follow your young guide to the place from where the race will start.`;
         const action = () => {
           if (flags.visitedIslands.length > 0 && "island-6" === flags.visitedIslands[flags.visitedIslands.length-1]) {
             updateFlag("aVillagerOnCrocodileIsland", true);
@@ -524,9 +524,9 @@ ${crocodileIslandDescription}
   },
   "drink": {
     "text": `
-<p>You uncork the calabash and a strong smell immediately fills your nostrils. At first, you only take a cautious sip, though it's enough to almost burn your palate. The taste, acrid and intense, is unlike any beverage you've experienced. After a few more sips, however, you begin to get used to it and even to find it enjoyable. Soon enough, you've emptied the entire calabash.</p>
+<p>You uncork the calabash and a strong smell immediately fills your nostrils. At first, you only take a cautious sip, though it’s enough to almost burn your palate. The taste, acrid and intense, is unlike any beverage you’ve experienced. After a few more sips, however, you begin to get used to it and even to find it enjoyable. Soon enough, you’ve emptied the entire calabash.</p>
 
-<p>You seldom drink alcohol, and you're completely unfamiliar with the effects of such hard liquor. But you're about to discover them quite brutally: your balance dissolves into uncontrollable swaying, the colors surrounding you merge together, and a terrible pressure seemingly threatens to burst your head open.</p>
+<p>You seldom drink alcohol, and you’re completely unfamiliar with the effects of such hard liquor. But you’re about to discover them quite brutally: your balance dissolves into uncontrollable swaying, the colors surrounding you merge together, and a terrible pressure seemingly threatens to burst your head open.</p>
 
 <p>Nauseous, freezing yet burning up at the same time, you no longer have any intention of exploring the atoll. The only thing you desire is to return to the village and rest.</p>
     `,
@@ -543,18 +543,18 @@ ${crocodileIslandDescription}
   },
   "no-more-time-at-sea" : {
     "text": `
-<p>You're paddling steadily, aiming for your next destination, when a splashing sound draws your attention: not far from your canoe, the head of a young boy from the tribe has just emerged above the water.</p>
+<p>You’re paddling steadily, aiming for your next destination, when a splashing sound draws your attention: not far from your canoe, the head of a young boy from the tribe has just emerged above the water.</p>
 
 <div class="conversation">
-<p>"Mananuiva!" he shouts. "I've been sent to fetch you: the race is going to begin."</p>
+<p>"Mananuiva!" he shouts. "I’ve been sent to fetch you: the race is going to begin."</p>
 </div>
 
-<p>You stop your canoe and glance at the sun's position: you haven't paid close attention to the passage of time, but the afternoon is indeed about to end.</p>
+<p>You stop your canoe and glance at the sun’s position: you haven’t paid close attention to the passage of time, but the afternoon is indeed about to end.</p>
 
 <p>You help the boy - who you notice is carrying his curved ivory knife - climb aboard your canoe, then you head toward the island where the tribe lives.</p>
     `,
     "next": function(goToSection) {
-      const text = `Once you're back to the very beach you departed from this morning, you leave your canoe and follow your young guide to the place from where the race will start.`;
+      const text = `Once you’re back to the very beach you departed from this morning, you leave your canoe and follow your young guide to the place from where the race will start.`;
       const action = "trial";
 
       return repeatingFunnel(goToSection, text, action);
@@ -564,12 +564,12 @@ ${crocodileIslandDescription}
     "text": (flags) => {
       if (flags.hesitationCounter >= 2) {
         return `
-<p>You head for the closest channel and cross it, paddling steadily. It doesn't reveal anything new regarding the neighboring islands, but once again, you have a clear view of the barrier reef, and the foamy line separating the atoll from the immensity of the ocean.</p>
+<p>You head for the closest channel and cross it, paddling steadily. It doesn’t reveal anything new regarding the neighboring islands, but once again, you have a clear view of the barrier reef, and the foamy line separating the atoll from the immensity of the ocean.</p>
         `;
       }
 
       return `
-<p>You enter one the channels that separate the islands of the atoll. You keep a close eye on the water under your canoe, wary of coral reefs that might reach close to the surface, but you don't encounter any problem. Soon enough, you've left the lagoon and find yourself at the edge of the ocean, where the waves are a bit taller and the wind a bit stronger.</p>
+<p>You enter one the channels that separate the islands of the atoll. You keep a close eye on the water under your canoe, wary of coral reefs that might reach close to the surface, but you don’t encounter any problem. Soon enough, you’ve left the lagoon and find yourself at the edge of the ocean, where the waves are a bit taller and the wind a bit stronger.</p>
 
 <p>Your view of the atoll is a lot more limited than it was inside the lagoon, and you observe nothing new.</p>
 
@@ -608,9 +608,9 @@ ${crocodileIslandDescription}
   },
   "out-of-here": {
     "text": `
-<p>Paddling steadily, you leave the atoll behind you, your eyes turned toward the horizon. Already, you're thinking about the next islands that you'll visit. You feel certain that one of them will hold a clue that'll bring you closer to what you're looking for.</p>
+<p>Paddling steadily, you leave the atoll behind you, your eyes turned toward the horizon. Already, you’re thinking about the next islands that you’ll visit. You feel certain that one of them will hold a clue that’ll bring you closer to what you’re looking for.</p>
 
-<p>Lost in your thoughts, you suddenly hear a splashing sound right next to you, and horrifying pain pierces through your arm. You're brutally pulled out of your canoe and into the water, that closes over your head.</p>
+<p>Lost in your thoughts, you suddenly hear a splashing sound right next to you, and horrifying pain pierces through your arm. You’re brutally pulled out of your canoe and into the water, that closes over your head.</p>
 
 <p>Once that flurry of movements has ended, the surface of the water quickly becomes calm again. Deprived of momentum, your canoe is floating idly. Around it, the reflection of the sun on the waves is slowly turning to sparkling rubies.</p>
     `,
@@ -618,7 +618,7 @@ ${crocodileIslandDescription}
   },
   "island-1": {
     "text": `
-<p>The outskirts of the village are more animated than when you left, but the difference isn't exactly considerable. You see several members of the tribe, who give you nods, but Raiahui's nowhere to be seen.</p>
+<p>The outskirts of the village are more animated than when you left, but the difference isn’t exactly considerable. You see several members of the tribe, who give you nods, but Raiahui’s nowhere to be seen.</p>
 
 <p>You quickly get back to your hammock - or another one just like it - and settle in it for a nap.</p>
     `,
@@ -643,10 +643,10 @@ ${crocodileIslandDescription}
   },
   "rest": {
     "text": (flags) => {
-      let statusComment = `<p class="text-conditional">You wouldn't have minded sleeping a bit longer.</p>`;
+      let statusComment = `<p class="text-conditional">You wouldn’t have minded sleeping a bit longer.</p>`;
 
       if (flags.drunk) {
-        statusComment = `<p class="text-conditional">Unfortunately, this short rest wasn't enough for you to overcome the effects of alcohol, and you're still feeling weak. You can only hope that the excitement of the race and the seawater slapping against your face will help you pull through.</p>`;
+        statusComment = `<p class="text-conditional">Unfortunately, this short rest wasn’t enough for you to overcome the effects of alcohol, and you’re still feeling weak. You can only hope that the excitement of the race and the seawater slapping against your face will help you pull through.</p>`;
       }
 
       if (flags.refreshed) {
@@ -658,7 +658,7 @@ ${crocodileIslandDescription}
       }
 
       return `
-<p>The sun has significantly dropped toward the horizon when a young boy comes to shake you out of the drowsiness you'd slipped into.</p>
+<p>The sun has significantly dropped toward the horizon when a young boy comes to shake you out of the drowsiness you’d slipped into.</p>
 
 <div class="conversation">
 <p>"Mananuiva, you need to come, the race is going to begin!"</p>
@@ -711,7 +711,7 @@ ${itemUpdateFeedback(flags.inventory.pearls.name)}
       const island = getIslandWithMapMetadata(flags.targetIsland, flags);
 
       if (island.current && "island-1" !== island.key) {
-        const text = `You're there.`;
+        const text = `You’re there.`;
         const action = () => {
           goToSection("back-to-hub", emptyFunction);
         };

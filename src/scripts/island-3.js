@@ -47,13 +47,13 @@ const island3 = {
 <p>"Are you people ever going to leave me in peace? I thought I’d…"</p>
 </div>
 
-<p>She pauses as she realizes that you're unknown to her. But she quickly gets over her surprise, and the hostility in her voice barely diminishes:</p>
+<p>She pauses as she realizes that you’re unknown to her. But she quickly gets over her surprise, and the hostility in her voice barely diminishes:</p>
 <div class="conversation">
-<p>"You're the foreign girl who's arrived yesterday, aren't you? Well, there's nothing for you here. Go back to the village or visit any of the other islands, I don't care. Just leave and stop bothering me."</p>
+<p>"You’re the foreign girl who’s arrived yesterday, aren’t you? Well, there’s nothing for you here. Go back to the village or visit any of the other islands, I don’t care. Just leave and stop bothering me."</p>
 
-<p>Her accent clearly identifies her as a member of the tribe, but she looks fairly different from the women you saw during yesterday's feast: her thick hair is tied behind her head, she wears an elaborate shell necklace and a faded pareo is wrapped around her waist. She's holding her ivory knife and was obviously using it to rid her canoe's hull from the barnacles clinging to it.</p>
+<p>Her accent clearly identifies her as a member of the tribe, but she looks fairly different from the women you saw during yesterday’s feast: her thick hair is tied behind her head, she wears an elaborate shell necklace and a faded pareo is wrapped around her waist. She’s holding her ivory knife and was obviously using it to rid her canoe’s hull from the barnacles clinging to it.</p>
 
-<p>Aside from this woman, you don't expect to discover anything of interest to you on this island. And you won't get anything out of her unless you convince her that you don't deserve her hostility.</p>
+<p>Aside from this woman, you don’t expect to discover anything of interest to you on this island. And you won’t get anything out of her unless you convince her that you don’t deserve her hostility.</p>
     `,
     "next": function(goToSection) {
       const text1 = `You ask her where she travels to with her canoe.`;
@@ -97,10 +97,10 @@ const island3 = {
 <p>The woman frowns impatiently. But instead of once again telling you to scram, she just sighs. After a while, she speaks in a calmer voice:</p>
 
 <div class="conversation">
-<p>"Look, I'll talk to you if that's what it takes to make you leave. But I've been working for a while now, and I'm getting really hungry. Bring me back a few crabs or some crayfish - the lagoon is full of them - and I'll tell you about anything you want afterwards."</p>
+<p>"Look, I’ll talk to you if that’s what it takes to make you leave. But I’ve been working for a while now, and I’m getting really hungry. Bring me back a few crabs or some crayfish - the lagoon is full of them - and I’ll tell you about anything you want afterwards."</p>
 </div>
 
-<p>You clearly won't be able to negotiate another deal.</p>
+<p>You clearly won’t be able to negotiate another deal.</p>
     `,
     "next": function(goToSection, flags, updateFlag) {
       const leaveText = `You refuse and go back to your canoe.`;
@@ -127,9 +127,9 @@ const island3 = {
   },
   "faanarua-prey": {
     "text":`
-<p>You dive in the warm, clear water of the lagoon. Small, colorful fish hastily disappear in the countless hiding places provided by the coral reefs. Holding in one hand the small net you'll use to carry your catch, you swim without haste, looking for slower preys.</p>
+<p>You dive in the warm, clear water of the lagoon. Small, colorful fish hastily disappear in the countless hiding places provided by the coral reefs. Holding in one hand the small net you’ll use to carry your catch, you swim without haste, looking for slower preys.</p>
 
-<p>Horrifying pain suddenly pierces your leg. In shock, you reflexively exhale all the air from your lungs. You immediately try to reach the surface, but you're held in a savage grip. You struggle in vain, unable to distinguish your assailant clearly. Far from increasing your strength, panic makes you weaker and frantic. A dark veil soon begins to thicken before your eyes. The last thing you see before everything disappears is the thick red color sullying the previously clear water.</p>
+<p>Horrifying pain suddenly pierces your leg. In shock, you reflexively exhale all the air from your lungs. You immediately try to reach the surface, but you’re held in a savage grip. You struggle in vain, unable to distinguish your assailant clearly. Far from increasing your strength, panic makes you weaker and frantic. A dark veil soon begins to thicken before your eyes. The last thing you see before everything disappears is the thick red color sullying the previously clear water.</p>
     `,
     "next": endGame,
   },
@@ -217,18 +217,18 @@ const island3 = {
 <p>A strange smile appears on Faanarua’s lips.</p>
 
 <div class="conversation">
-<p>"I’ve told Raiahui the story of that pendant, but I’m sure she won't recognize it, even if she sees it around your neck. Attention to details is one of the many things she didn’t inherit from me."</p>
+<p>"I’ve told Raiahui the story of that pendant, but I’m sure she won’t recognize it, even if she sees it around your neck. Attention to details is one of the many things she didn’t inherit from me."</p>
 </div>
 
 <p>It takes you a moment to realize what she’s just said.</p>
 
 <div class="conversation">
 <p>"Raiahui’s your daughter?"</p>
-<p>"Such ties don't matter much here. Raiahui and I barely have anything in common. You're the one I hope will have the cunning and the tenacity needed to win the race. Believe me, those qualities are much stronger than any magic."</p>
+<p>"Such ties don’t matter much here. Raiahui and I barely have anything in common. You’re the one I hope will have the cunning and the tenacity needed to win the race. Believe me, those qualities are much stronger than any magic."</p>
 </div>
     `,
     "next": function(goToSection) {
-      const text = `Faanarua doesn't have anything else to tell you and, after thanking her, you go back to your canoe.`;
+      const text = `Faanarua doesn’t have anything else to tell you and, after thanking her, you go back to your canoe.`;
       const action = "back-to-hub";
 
       return repeatingFunnel(goToSection, text, action);
@@ -239,7 +239,7 @@ const island3 = {
 <p>The woman nods thoughtfully.</p>
 
 <div class="conversation">
-<p>"I need to get back to work," she says. "I'd like to leave tomorrow and this canoe still requires maintenance. But I find you less annoying than the members of my tribe, so I'll give you three pieces of advice. The first one is very simple, but easily overlooked: take time to think and don't trust appearances. The second one is that you'll only be able to win if you're cunning enough: other than the fact that you need to swim from one island to the other, the race doesn't really have any rule. And the third one is that you should make sure that you have as much of a lead as possible before Raiahui goes into the water.</p>
+<p>"I need to get back to work," she says. "I’d like to leave tomorrow and this canoe still requires maintenance. But I find you less annoying than the members of my tribe, so I’ll give you three pieces of advice. The first one is very simple, but easily overlooked: take time to think and don’t trust appearances. The second one is that you’ll only be able to win if you’re cunning enough: other than the fact that you need to swim from one island to the other, the race doesn’t really have any rule. And the third one is that you should make sure that you have as much of a lead as possible before Raiahui goes into the water.</p>
 </div>
     `,
     "next": function(goToSection) {
@@ -254,15 +254,15 @@ const island3 = {
 <p>The woman quickly cuts you off:</p>
 
 <div class="conversation">
-<p>"I already know about the race between Raiahui and you. I don't care in the slightest."</p>
-<p>"But it's a rite of passage to adulthood...</p>
-<p>"It's a stupid tradition, that's what it is. What do you think you'll get out of it?"</p>
+<p>"I already know about the race between Raiahui and you. I don’t care in the slightest."</p>
+<p>"But it’s a rite of passage to adulthood...</p>
+<p>"It’s a stupid tradition, that’s what it is. What do you think you’ll get out of it?"</p>
 </div>
 
-<p>You try to explain that you're also undergoing a rite of passage, and to describe what you seek. She listens with a skeptical expression.</p>
+<p>You try to explain that you’re also undergoing a rite of passage, and to describe what you seek. She listens with a skeptical expression.</p>
 
 <div class="conversation">
-<p>"Travelling in search of revelation seems quite respectable, but I still don't understand what you expect to find here."</p>
+<p>"Travelling in search of revelation seems quite respectable, but I still don’t understand what you expect to find here."</p>
 </div>
     `,
     "next": function(goToSection, flags, updateFlag) {

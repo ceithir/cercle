@@ -30,7 +30,7 @@ const gameIsStillWinnableWithoutTurningFullyMad = (flags) => {
     flags.inventory.net.acquired && !flags.inventory.net.used,
   ];
 
-  // You can win with only one option, but it's quite hard, so requiring at least two
+  // You can win with only one option, but it’s quite hard, so requiring at least two
   return options.filter(element => element).length >= 2;
 }
 
@@ -113,7 +113,7 @@ export const endGame = function(goToSection, flags, updateFlag, reset, quit) {
 }
 
 const goodEndMessage = function(flags) {
-  const achievementsText = `It wasn't easy, but you’ve done it:`;
+  const achievementsText = `It wasn’t easy, but you’ve done it:`;
 
   return (
     <div className="ending-message">

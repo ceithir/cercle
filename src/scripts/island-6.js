@@ -385,7 +385,7 @@ const island6 = {
 <p>"You like it, don’t you?" the crocodile says, almost whispering. "And it would be extremely useful to you. Come and take it… Come… Come closer…"</p>
 </div>
 
-<p>The desire to possess the figurine now dominates your mind, and you’re ready to risk death to obtain it. But, though you’re unable to resist this enthallment, your common sense isn’t completely numb. You realize that the crocodile's actions have no other purpose than to make a meal out of you.</p>
+<p>The desire to possess the figurine now dominates your mind, and you’re ready to risk death to obtain it. But, though you’re unable to resist this enthallment, your common sense isn’t completely numb. You realize that the crocodile’s actions have no other purpose than to make a meal out of you.</p>
 
 <p>The figurine is halfway between you. A long branch, thick as your calf, lies on the ground next to you.</p>
     `,
@@ -609,7 +609,7 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
 <p>"You like it, don’t you?" the crocodile says, almost whispering. "And it would be extremely useful to you. Come and take it… Come… Come closer…"</p>
 </div>
 
-<p> The desire to possess the figurine now dominates your mind, and you’re ready to risk death to obtain it. But, though you’re unable to resist this enthallment, your common sense isn’t completely numb. You realize that the crocodile's actions have no other purpose than to make a meal out of you.</p>
+<p> The desire to possess the figurine now dominates your mind, and you’re ready to risk death to obtain it. But, though you’re unable to resist this enthallment, your common sense isn’t completely numb. You realize that the crocodile’s actions have no other purpose than to make a meal out of you.</p>
 
 <p> The figurine is halfway between you. A long branch, thick as your calf, lies on the ground next to you.</p>
     `,
@@ -639,7 +639,7 @@ ${itemAcquisitionFeedback(flags.inventory.doll.name)}
   "gather-fruits": {
     "text": (flags) => {
       return `
-<p>Touching the fruits doesn't harm you in any way. Of course, that doesn't tell you whether eating them would be safe.</p>
+<p>Touching the fruits doesn’t harm you in any way. Of course, that doesn’t tell you whether eating them would be safe.</p>
 
 ${itemAcquisitionFeedback(flags.inventory.fruit.name)}
       `;
@@ -647,7 +647,7 @@ ${itemAcquisitionFeedback(flags.inventory.fruit.name)}
     "next": (goToSection, flags, updateFlag) => {
       return repeatingFunnel(
         goToSection,
-        `It's more than time to leave this island.`,
+        `It’s more than time to leave this island.`,
         () => {
           updateFlag("time", flags.time+1);
           return "back-to-hub";

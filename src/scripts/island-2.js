@@ -34,10 +34,10 @@ const island2 = {
   },
   "exploring-island-2" : {
     "text":`
-<p>You make your way through the dense vegetation with some difficulty. Soon enough, the sky is reduced to azure fragments, small and scattered. You see many birds above you, and you hear many more. Your presence doesn’t seem to worry them in the slightest and, if you had the right equipment, it would probably be easy to catch a few of them. But, though yesterday's feast hasn't exhausted your taste for meat, and the brightly colored feathers of some birds are highly tempting, you realize that there are more useful ways of spending your time today.</p>
+<p>You make your way through the dense vegetation with some difficulty. Soon enough, the sky is reduced to azure fragments, small and scattered. You see many birds above you, and you hear many more. Your presence doesn’t seem to worry them in the slightest and, if you had the right equipment, it would probably be easy to catch a few of them. But, though yesterday’s feast hasn’t exhausted your taste for meat, and the brightly colored feathers of some birds are highly tempting, you realize that there are more useful ways of spending your time today.</p>
     `,
     "next": function(goToSection) {
-      const text = `Once you've made certain that there's nothing else on this island, you go back to your canoe and leave.`;
+      const text = `Once you’ve made certain that there’s nothing else on this island, you go back to your canoe and leave.`;
       const action = "back-to-hub";
 
       return repeatingFunnel(
