@@ -255,7 +255,7 @@ const island3 = {
 
 <div class="conversation">
 <p>“I already know about the race between Raiahui and you. I don’t care in the slightest.”</p>
-<p>“But it’s a rite of passage to adulthood...”</p>
+<p>“But it’s a rite of passage to adulthood…”</p>
 <p>“It’s a stupid tradition, that’s what it is. What do you think you’ll get out of it?”</p>
 </div>
 
