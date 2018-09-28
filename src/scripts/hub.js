@@ -107,7 +107,7 @@ Exploring this islet once was more than enough.
       "cross": [120, 25, 225, 145, 235, 35, 115, 135],
       "description": ((flags) => {
         let text = `
-<p>This island - that Raiahui strongly suggested that you not approach - is strangely different from the others: far from being low and flat, it rises above the waves like a large rock.</p>
+<p>This island - that Raiahui strongly advised you not to approach - is strangely different from the others: far from being low and flat, it rises above the waves like a large rock.</p>
         `;
         if (flags.toldAboutAtollByRaiahui) {
           text += ` <p class="text-conditional">Raiahui has mentioned that it's inhabited by a witch.`;
@@ -138,7 +138,7 @@ You have absolutely no intention of going back to this island!
       "cross": [375, 15, 620, 190, 360, 90, 635, 120],
       "description": ((flags) => {
         let text = `
-<p>This island looks rather ordinary, aside from the tangle of tall trees that covers it. Raiahui has however strongly suggested that you not approach it.</p>
+<p>This island looks rather ordinary, aside from the tangle of tall trees that covers it. Raiahui has however strongly advised you not to approach it.</p>
         `;
 
         if (flags.toldAboutAtollByRaiahui) {
@@ -449,7 +449,7 @@ const hub = {
         }
       } else {
         if (flags.toldAboutLazyOneByAriinea) {
-          crocodileIslandDescription += ` <span class="text-conditional">It's probably the home of the "Old Sluggard" Ariinea told you about. Her friend has strongly suggested that you not approach it, as she believes the mysterious individual could be truly dangerous. </span>`;
+          crocodileIslandDescription += ` <span class="text-conditional">It's probably the home of the "Old Sluggard" Ariinea told you about. Her friend has strongly advised you not to approach it, as she believes the mysterious individual could be truly dangerous. </span>`;
         }
       }
       crocodileIslandDescription += `</p>`;
@@ -467,7 +467,7 @@ ${faanaruaIsland}
 
 <p>Then, to the north-west, a much smaller island with low vegetation.</p>
 
-<p>Then the two islands Raiahui has strongly suggested that you not approach.</p>
+<p>Then the two islands Raiahui has strongly advised you not to approach.</p>
 
 ${witchIslandDescription}
 

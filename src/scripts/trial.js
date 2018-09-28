@@ -1,7 +1,7 @@
 import React from "react";
 import Crossroads from "./../components/Crossroads.js";
 import Funnel from "./../components/Funnel.js";
-import {endGame, trueEnd, useItem, acquireItem, repeatingFunnel, coatSentence, itemAcquisitionFeedback} from "./helpers.js";
+import {endGame, trueEnd, useItem, acquireItem, repeatingFunnel, coatSentence, itemUpdateFeedback} from "./helpers.js";
 import squaleImage from "./../images/squale.jpg";
 import raiahuiFriendsImage from "./../images/raiahui-friends.jpg";
 import sunsetImage from "./../images/sunset.jpg";
@@ -110,7 +110,7 @@ const raiahuiGoodEndText = `
 <p>The sun is about to reach the horizon. The race ended a few moments ago and a succinct ceremony is now happening on the sandy island, unobserved by any outsider.</p>
 
 <div class="conversation">
-<p>"I congratulate you, Raiahui," Ataroa says. "You've won the trial and proven that you were worthy of becoming an adult."</p>
+<p>"I congratulate you, Raiahui," Ataroa says. "You've won the trial and proven that you are worthy of becoming an adult."</p>
 </div>
 
 <p>Sounds of approval can be heard among the men and women gathered here. Raiahui nods, with a mix of respect, pride and happiness.</p>
@@ -122,7 +122,7 @@ const raiahuiGoodEndText = `
 <p>"I won't forget her."</p>
 </div>
 
-<p>Nothing else needs to be said. One by one, the adults who've witnessed the ceremony leave the island and return to the village. Soon, only Raiahui is left, feeling strangely exhausted and contemplative now that the trial is over. Almost dreamily, she touches her lips with the tips of her fingers. Then she sits on the still-warm sand. On the other side of the lagoon, the sun is setting. Raiahui watches it until the last bloody hues have disappeared from the surface of the water.</p>
+<p>Nothing else needs to be said. One by one, the adults who've witnessed the ceremony leave the island and return to the village. Soon, only Raiahui is left, feeling strangely exhausted and thoughtful now that the trial is over. Almost dreamily, she touches her lips with the tips of her fingers. Then she sits on the still-warm sand. On the other side of the lagoon, the sun is setting. Raiahui watches it until the last bloody hues have disappeared from the surface of the water.</p>
 `;
 
 const trial = {
@@ -274,7 +274,7 @@ ${items}
   },
   "trial-surprise": {
     "text": `
-<p>You don't really understand the reasons for Raiahui's behavior, but the most sensible thing to do is probably to seize this occasion. Making sure that nobody's paying any attention to you, you walk to the shore and get into the warm water of the channel as silently as possible. A few vigorous breaststrokes under the surface propel you toward the sandy island. When you come back to the surface, a quick glance behind you reveals that Raiahui's still on the beach, surrounded by the other adolescents. She doesn't seem to have noticed your departure.</p>
+<p>You don't really understand the reasons for Raiahui's behavior, but the most sensible thing to do is probably to seize this occasion. Making sure that nobody's paying any attention to you, you walk to the shore and get into the warm water of the channel as silently as possible. A few vigorous strokes under the surface propel you toward the sandy island. When your head emerges above the water, a quick glance behind you reveals that Raiahui's still on the beach, surrounded by the other adolescents. She doesn't seem to have noticed your departure.</p>
 
 <p>You've covered a fourth of the distance when excited cries reach your ears, coming from the beach. You opponent must have finally started the race. You do little more than increase your pace slightly. Even if Raiahui really is a better swimmer than you are, your head start virtually ensures your victory, as long as you don't exhaust yourself too quickly.</p>
 
@@ -376,7 +376,7 @@ ${items}
   },
   "trial-surprise-alt": {
     "text": `
-<p>You don't really understand the reasons for Raiahui's behavior, but seizing this occasion seems to be the most sensible thing to do. You walk to the shore and, without waiting any further, dive into the warm water of the channel. A few vigorous breaststrokes under the surface propel you toward the sandy island. When you come back to the surface, a quick glance behind you reveals that Raiahui's still on the beach, surrounded by the other adolescents. She doesn't even seem to be looking in your direction.</p>
+<p>You don't really understand the reasons for Raiahui's behavior, but seizing this occasion seems to be the most sensible thing to do. You walk to the shore and, without waiting any further, dive into the warm water of the channel. A few vigorous strokes under the surface propel you toward the sandy island. When your head emerges above the water, a quick glance behind you reveals that Raiahui's still on the beach, surrounded by the other adolescents. She doesn't even seem to be looking in your direction.</p>
 
 <p>You've covered a fourth of the distance when excited cries reach your ears, coming from the beach. You opponent must have finally started the race. You do little more than increase your pace slightly. Even if Raiahui really is a better swimmer than you are, your head start virtually ensures your victory, as long as you don't exhaust yourself too quickly.</p>
 
@@ -402,7 +402,7 @@ ${items}
 
 <p>You both head for the shore, followed by all of the young spectators, who seem highly amused by the whole thing. Jokes are being exchanged around you, but you pay little attention to them. Your opponent is ostensibly behaving in a nonchalant manner, and you even see her drink a bit more palm wine from a calabash.</p>
 
-<p>The warm water of the channel close around both of you at the same time, but a few vigorous breaststrokes enable you to get ahead of Raiahui. You know that you'll need to save your strength during the first half of the race, but finding herself behind you right from the start should shake your opponent's self-confidence.</p>
+<p>The warm water of the channel close around both of you at the same time, but a few vigorous strokes enable you to get ahead of Raiahui. You know that you'll need to save your strength during the first half of the race, but finding herself behind you right from the start should shake your opponent's self-confidence.</p>
 
 <p>Your head finally emerges above the water and you're nearly deafened by the cries coming from the beach. Raiahui's still underwater, but you don't waste time trying to determine her exact position. Now that the race has started, force of habit makes you focus on nothing but your swimming strokes.</p>
 
@@ -451,7 +451,7 @@ ${items}
     "text": `
 <p>The ivory knife swirls through the air and disappears into the lagoon with a slight splash. With an annoyed exclamation, Raiahui turns away from you and runs in that direction. You're not going to let such a chance slip away! Under the astonished eyes of the other adolescents, you quickly cross the distance separating you from the shore and dive into the warm water of the channel.</p>
 
-<p>A few vigorous breaststrokes propel you toward the sandy beach. When you come back to the surface, Raiahui's no longer in sight, but most of the spectators have gathered close to the lagoon, probably to see whether your opponent manages to find her precious knife. You start swimming at a moderate pace, in order to save your strength.</p>
+<p>A few vigorous strokes propel you toward the sandy beach. When you come back to the surface, Raiahui's no longer in sight, but most of the spectators have gathered close to the lagoon, probably to see whether your opponent manages to find her precious knife. You start swimming at a moderate pace, in order to save your strength.</p>
 
 <p>You've nearly covered a fourth of the distance when exclamations reach your ears. Glancing back, you see the adolescents on the beach waving their arms and screaming their support. Either Raiahui was lucky enough to quickly find her knife at the bottom of the lagoon or she's decided to recover it later; in any case, it's clear that she's finally set off after you. It doesn't matter much: even if she really is a better swimmer than you are, your head start virtually ensures your victory.</p>
 
@@ -515,18 +515,6 @@ ${intro}
         {
           "text": `You quicken your pace.`,
           "action": () => {
-            const doll = flags.inventory.doll;
-            if (doll.acquired && !doll.used) {
-              useItem("doll", updateFlag);
-              return goToSection("trial-doll");
-            }
-
-            const amulet = flags.inventory.dolphin;
-            if (amulet.acquired && !amulet.used) {
-              useItem("dolphin", updateFlag);
-              return goToSection("trial-early-amulet");
-            }
-
             goToSection("trial-straightforward");
           },
         },
@@ -547,10 +535,35 @@ ${intro}
     "text": `
 <p>You increase your speed and are soon swimming as fast as you can. Barely more than a third of the distance remains before you. How could anyone catch up to you now?</p>
 
-<p>And yet, a heavy foreboding has crept in your mind and now keeps growing, every time you finish a stroke, every time you take a new breath.</p>
+<p>And yet, a heavy foreboding has crept in your mind and now keeps growing, every time you finish a stroke, every time you take a new breath. Though you don't understand why, it feels like your time is quickly running out.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const text = `Though you don't understand why, it feels like your time is quickly running out.`;
+
+      const doll = flags.inventory.doll;
+      if (doll.acquired && !doll.used) {
+        const action = () => {
+          useItem("doll", updateFlag);
+          goToSection("trial-doll", coatSentence(text));
+        };
+
+        return (
+          <Funnel text={text} action={action} conditional={true} />
+        );
+      }
+
+      const amulet = flags.inventory.dolphin;
+      if (amulet.acquired && !amulet.used) {
+        const action = () => {
+          useItem("dolphin", updateFlag);
+          goToSection("trial-early-amulet", coatSentence(text));
+        };
+
+        return (
+          <Funnel text={text} action={action} conditional={true} />
+        );
+      }
+
       const action = () => {
         updateFlag("eatenByRaiahui", true);
         goToSection("raiahui-good-end", coatSentence(text));
@@ -821,9 +834,9 @@ ${intro}
     "text": `
 <p>A surge of wild hope fills your mind when you finally feel the sand under your feet. You quickly stand up. Water only comes to your waist and a few strides will be enough for you to reach the island.</p>
 
-<p>A great splashing sound makes you turn around: Raiahui has emerged from the water in turn. For a brief moment, you see her as a weird hybrid being, halfway between her two shapes. Then her skin becomes uniformly brown, her face is human again, and her upper limbs have hands, one of which holds an ivory knife.</p>
+<p>A great splashing sound makes you turn around: Raiahui has just emerged from the water. For a brief moment, you see her as a weird hybrid being, halfway between her two shapes. Then her skin becomes uniformly brown, her face is human again, and her upper limbs have hands, one of which holds an ivory knife.</p>
 
-<p>Holding her weapon before her, Raiahui rushes toward you with an enraged scream.</p>
+<p>Brandishing her weapon, Raiahui rushes toward you with an enraged scream.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       let choices = [];
@@ -994,7 +1007,7 @@ ${intro}
   },
   "run-to-finish": {
     "text": `
-<p>You run toward the sandy shore as best you can. But, after only a few splashing strides, you're violently shoved from behind and you fall into the water. Quickly getting to your feet, you turn just in time to grab Raiahui's wrist, stopping the tip of her knife very close to your face. The water is still at mid-thigh. Raiahui's free hand grabs your arm and you fight furiously, splashing water all around you, less than three strides away from the shore. The knife grazes you several times, and you can tell that Raiahui's trying to drag you back toward the channel, where the water will be deeper.</p>
+<p>You run toward the sandy shore as best you can. But, after only a few splashing strides, you're violently shoved from behind and you fall into the water. Quickly getting to your feet, you turn just in time to grab Raiahui's wrist, stopping the tip of her knife very close to your face. The water still reaches mid-thigh. Raiahui's free hand grabs your arm and you fight furiously, splashing water all around you, less than three strides away from the shore. The knife grazes you several times, and you can tell that Raiahui's trying to drag you back toward the channel, where the water will be deeper.</p>
     `,
     "next": (goToSection, flags, updateFlag) => {
       const choices = [
@@ -1110,7 +1123,7 @@ ${intro}
   },
   "victory": {
     "text": `
-<p>The adults of the tribe are gathered in a thick circle, and studying you with much closer attention than they did yesterday. You're too exhausted to really feel afraid anymore; anyway, their faces show no signs of hostility, merely deep curiosity.</p>
+<p>The adults of the tribe are gathered in a thick circle, and studying you with much closer attention than they did yesterday. You're too exhausted to really feel afraid anymore; besides, their faces show no signs of hostility, merely deep curiosity.</p>
 
 <div class="conversation">
 <p>"You've deserved our respect, Mananuiva," Ataroa says with almost perceptible admiration. "It's not often that an outsider wins one of our races."</p>
@@ -1128,7 +1141,7 @@ ${intro}
 <p>"The Foam of the Deep is yours. There's only one ingredient left to add, and we'll take care of that right now. It's normally provided by the one who'll drink the Foam, but given the circumstances, it's only fair that it comes from somebody else."</p>
 </div>
 
-<p>Two adults come forward, holding an obviously terrified Raiahui between them. Ataroa grabs her wrist and cuts her palm deeply with his knife. Blood trickles into the bowl, and the beverage immediately takes a bright silvery hue.</p>
+<p>Two adults come forward, holding an obviously terrified Raiahui between them. Ataroa grabs her wrist and cuts her palm deeply with his knife. Blood trickles into the bowl, and the beverage immediately takes on a bright silvery hue.</p>
 
 <div class="conversation">
 <p>"The Foam of the Deep is ready," says Ataroa, presenting it to you. "Drink it this evening, and you'll visit the world of spirits during your sleep."</p>
@@ -1158,7 +1171,7 @@ ${intro}
 
 <p>You don't want to know what's going to happen in the lagoon; you're not even sure that you have a preference for one of the two possible outcomes. You cross the sandy island and sit in front of the ocean. The steady sound of the waves relaxes you, easing the tension from your muscles. It won't be long before the sun reaches the horizon behind you.</p>
 
-<p>You look at the Foam of the Deep, its shining surface vaguely reflecting your face. Is this worth all your efforts and the dangers you've faced? It doesn't matter now: your adventure on this atoll already belongs to the past, and your quest is far from over.</p>
+<p>You look at the Foam of the Deep, its shining surface vaguely reflecting your face. Is this really worth the efforts you made and the dangers you faced? It doesn't matter now: your adventure on this atoll already belongs to the past, while your quest is far from over.</p>
 
 <p>You settle comfortably and bring the bowl to your lips.</p>
     `,
@@ -2359,7 +2372,7 @@ ${flags.tastedFruit? ``: `<p>You leave the calabash where it is and think about 
       return `
 <p>You easily crush all the red fruits you have left, and mix their juice with the contents of the calabash. Merely tasting one of those fruits was enough to set your throat on fire, so the beverage you're preparing should have some similarities with molten lava. Raiahui will very quickly realize it's not ordinary palm wine, but not before she's swallowed a mouthful or two.</p>
 
-${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
+${itemUpdateFeedback(flags.inventory.alcohol.name)}
       `;
     },
     "next": (goToSection) => {
@@ -2462,7 +2475,7 @@ ${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
   },
   "trial-copypaste-1": {
     "text": `
-<p>You don't really understand the reasons for Raiahui's behavior, but why you should you refuse the head start she clearly wants to give you? You leave the group without a word and head for the shore, ignoring the sniggers that follow you. Throwing aside your calabash, you dive into the warm water of the channel. A few vigorous breaststrokes under the surface propel you toward the sandy island. When you come back to the surface, a quick glance behind you reveals that Raiahui's still on the beach, surrounded by the other adolescents. She doesn't even seem to be looking in your direction.</p>
+<p>You don't really understand the reasons for Raiahui's behavior, but why you should you refuse the head start she clearly wants to give you? You leave the group without a word and head for the shore, ignoring the sniggers that follow you. Throwing aside your calabash, you dive into the warm water of the channel. A few vigorous strokes under the surface propel you toward the sandy island. When your head emerges above the waves, a quick glance behind you reveals that Raiahui's still on the beach, surrounded by the other adolescents. She doesn't even seem to be looking in your direction.</p>
 
 <p>You've covered a fourth of the distance when excited cries reach your ears, coming from the beach. You opponent must have finally started the race. You do little more than increase your pace slightly. Even if Raiahui really is a better swimmer than you are, your head start virtually ensures your victory, as long as you don't exhaust yourself too quickly.</p>
 
@@ -2492,7 +2505,7 @@ ${itemAcquisitionFeedback(flags.inventory.fieryCalabash.name)}
 
 <p>You both head for the shore, followed by all of the young spectators, who seem highly amused by the whole thing. Jokes are being exchanged around you, but you pay little attention to them. Your opponent is ostensibly behaving in a nonchalant manner, and you even see her drink a bit more palm wine from a calabash.</p>
 
-<p>The warm water of the channel close around both of you at the same time, but a few vigorous breaststrokes enable you to get ahead of Raiahui. You know that you'll need to save your strength during the first half of the race, but finding herself behind you right from the start should shake your opponent's self-confidence.</p>
+<p>The warm water of the channel close around both of you at the same time, but a few vigorous strokes enable you to get ahead of Raiahui. You know that you'll need to save your strength during the first half of the race, but finding herself behind you right from the start should shake your opponent's self-confidence.</p>
 
 <p>Your head finally emerges above the water and you're nearly deafened by the cries coming from the beach. Raiahui's still underwater, but you don't waste time trying to determine her exact position. Now that the race has started, force of habit makes you focus on nothing but your swimming strokes.</p>
 
